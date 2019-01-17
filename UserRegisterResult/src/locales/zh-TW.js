@@ -1,0 +1,22 @@
+export default {
+  'BLOCK_NAME.login.userName': '賬戶',
+  'BLOCK_NAME.login.password': '密碼',
+  'BLOCK_NAME.login.message-invalid-credentials': '賬戶或密碼錯誤（admin/ant.design）',
+  'BLOCK_NAME.login.message-invalid-verification-code': '驗證碼錯誤',
+  'BLOCK_NAME.login.tab-login-credentials': '賬戶密碼登錄',
+  'BLOCK_NAME.login.tab-login-mobile': '手機號登錄',
+  'BLOCK_NAME.login.remember-me': '自動登錄',
+  'BLOCK_NAME.login.forgot-password': '忘記密碼',
+  'BLOCK_NAME.login.sign-in-with': '其他登錄方式',
+  'BLOCK_NAME.login.signup': '註冊賬戶',
+  'BLOCK_NAME.login.login': '登錄',
+  'BLOCK_NAME.register.register': '註冊',
+  'BLOCK_NAME.register.get-verification-code': '獲取驗證碼',
+  'BLOCK_NAME.register.sign-in': '使用已有賬戶登錄',
+  'BLOCK_NAME.register-result.msg': '妳的賬戶：{email} 註冊成功',
+  'BLOCK_NAME.register-result.activation-email':
+    '激活郵件已發送到妳的郵箱中，郵件有效期為24小時。請及時登錄郵箱，點擊郵件中的鏈接激活帳戶。',
+  'BLOCK_NAME.register-result.back-home': '返回首頁',
+  'BLOCK_NAME.register-result.view-mailbox': '查看郵箱',
+  'BLOCK_NAME.navBar.lang': '語言',
+};

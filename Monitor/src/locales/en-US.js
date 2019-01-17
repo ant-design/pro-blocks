@@ -1,0 +1,18 @@
+export default {
+  'BLOCK_NAME.monitor.trading-activity': 'Real-Time Trading Activity',
+  'BLOCK_NAME.monitor.total-transactions': 'Total transactions today',
+  'BLOCK_NAME.monitor.sales-target': 'Sales target completion rate',
+  'BLOCK_NAME.monitor.remaining-time': 'Remaining time of activity',
+  'BLOCK_NAME.monitor.total-transactions-per-second': 'Total transactions per second',
+  'BLOCK_NAME.monitor.activity-forecast': 'Activity forecast',
+  'BLOCK_NAME.monitor.efficiency': 'Efficiency',
+  'BLOCK_NAME.monitor.ratio': 'Ratio',
+  'BLOCK_NAME.monitor.proportion-per-category': 'Proportion Per Category',
+  'BLOCK_NAME.monitor.fast-food': 'Fast food',
+  'BLOCK_NAME.monitor.western-food': 'Western food',
+  'BLOCK_NAME.monitor.hot-pot': 'Hot pot',
+  'BLOCK_NAME.monitor.waiting-for-implementation': 'Waiting for implementation',
+  'BLOCK_NAME.monitor.popular-searches': 'Popular Searches',
+  'BLOCK_NAME.monitor.resource-surplus': 'Resource Surplus',
+  'BLOCK_NAME.monitor.fund-surplus': 'Fund Surplus',
+};

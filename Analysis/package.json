@@ -1,0 +1,28 @@
+{
+  "name": "@umi-block/analysis",
+  "version": "0.0.1",
+  "description": "Analysis",
+  "main": "src/index.js",
+  "scripts": {
+    "dev": "umi dev"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/umijs/umi-blocks/ant-design-pro/analysis"
+  },
+  "dependencies": {
+    "react": "^16.6.3",
+    "dva": "^2.4.0",
+    "antd": "^3.10.9",
+    "moment": "^2.22.2",
+    "umi-request": "^1.0.0",
+    "ant-design-pro": "^2.1.1",
+    "numeral": "^2.0.6"
+  },
+  "devDependencies": {
+    "umi": "^2.3.0-beta.1",
+    "umi-plugin-react": "^1.3.0-beta.1",
+    "umi-plugin-block-dev": "^1.1.0"
+  },
+  "license": "ISC"
+}

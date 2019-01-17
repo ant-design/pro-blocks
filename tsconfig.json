@@ -9,7 +9,7 @@
     "jsx": "react",
     "allowSyntheticDefaultImports": true,
     "moduleResolution": "node",
-    "rootDirs": ["/src", "/test", "/mock","./typings"],
+    "rootDirs": ["/src", "/test", "/mock", "./typings"],
     "forceConsistentCasingInFileNames": true,
     "noImplicitReturns": true,
     "suppressImplicitAnyIndexErrors": true,
@@ -17,10 +17,10 @@
     "allowJs": true,
     "experimentalDecorators": true,
     "paths": {
-      "@/*": ["./src/*"]
+      "@/*": ["./ant-design-pro/*/src/*"]
     }
   },
-  "include": ["./src"],
+  "include": ["./ant-design-pro"],
   "exclude": [
     "node_modules",
     "build",
