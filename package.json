@@ -10,6 +10,7 @@
     "prettier": "node ./_scripts/prettier.js"
   },
   "devDependencies": {
+    "@types/classnames": "^2.2.7",
     "babel-eslint": "^10.0.1",
     "eslint": "^5.4.0",
     "eslint-config-airbnb": "^17.0.0",

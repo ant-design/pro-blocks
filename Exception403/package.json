@@ -1,5 +1,5 @@
 {
-  "name": "@umi-block/exception-403",
+  "name": "@pro-blocks/exception-403",
   "version": "0.0.1",
   "description": "Exception403",
   "main": "src/index.js",
@@ -8,18 +8,18 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/umijs/umi-blocks/ant-design-pro/exception403"
+    "url": "https://github.com/ant-design/pro-blocks/tree/master/Exception403"
   },
   "dependencies": {
-    "react": "^16.6.3",
-    "ant-design-pro": "^2.1.1",
+    "classnames": "^2.2.6",
     "dva": "^2.4.0",
-    "umi-request": "^1.0.0-beta.1"
+    "react": "^16.6.3",
+    "umi-request": "^1.0.4",
+    "umi": "^2.6.8",
+    "umi-plugin-react": "^1.7.2"
   },
   "devDependencies": {
-    "umi": "^2.3.0-beta.1",
-    "umi-plugin-react": "^1.3.0-beta.1",
-    "umi-plugin-block-dev": "^1.0.0"
+    "umi-plugin-block-dev": "^1.3.0"
   },
-  "license": "ISC"
+  "license": "MIT"
 }
