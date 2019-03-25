@@ -1,5 +1,5 @@
 {
-  "name": "@umi-block/exception-404",
+  "name": "@pro-blocks/exception-404",
   "version": "0.0.1",
   "description": "Exception404",
   "main": "src/index.js",
@@ -8,11 +8,10 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/umijs/umi-blocks/ant-design-pro/exception404"
+    "url": "https://github.com/ant-design/pro-blocks/tree/master/Exception404"
   },
   "dependencies": {
     "react": "^16.6.3",
-    "ant-design-pro": "^2.1.1",
     "dva": "^2.4.0",
     "umi-request": "^1.0.0-beta.1"
   },

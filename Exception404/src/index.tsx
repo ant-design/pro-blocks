@@ -1,13 +1,13 @@
 import React from 'react';
-import { formatMessage } from 'umi/locale';
+import { formatMessage } from 'umi-plugin-react/locale';
 import Link from 'umi/link';
-import { Exception } from 'ant-design-pro';
+import Exception from './components/Exception';
 
-const PAGE_NAME_UPPER_CAMEL_CASE = () => (
+const PAGE_NAME_UPPER_CAMEL_CASE: React.FC = () => (
   <Exception
     type="404"
-    desc={formatMessage({ id: 'BLOCK_NAME.description.404' })}
     linkElement={Link}
+    desc={formatMessage({ id: 'BLOCK_NAME.description.404' })}
     backText={formatMessage({ id: 'BLOCK_NAME.exception.back' })}
   />
 );
