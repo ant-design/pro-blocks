@@ -1,5 +1,5 @@
 {
-  "name": "@umi-block/exception-500",
+  "name": "@pro-blocks/exception-500",
   "version": "0.0.1",
   "description": "Exception500",
   "main": "src/index.js",
@@ -8,11 +8,10 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/umijs/umi-blocks/ant-design-pro/exception500"
+    "url": "https://github.com/ant-design/pro-blocks/tree/master/Exception500"
   },
   "dependencies": {
     "react": "^16.6.3",
-    "ant-design-pro": "^2.1.1",
     "dva": "^2.4.0",
     "umi-request": "^1.0.0-beta.1"
   },
@@ -21,5 +20,5 @@
     "umi-plugin-react": "^1.3.0-beta.1",
     "umi-plugin-block-dev": "^1.0.0"
   },
-  "license": "ISC"
+  "license": "MIT"
 }
