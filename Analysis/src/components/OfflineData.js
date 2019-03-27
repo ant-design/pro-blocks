@@ -12,7 +12,10 @@ const CustomTab = ({ data, currentTabKey: currentKey }) => (
       <NumberInfo
         title={data.name}
         subTitle={
-          <FormattedMessage id="BLOCK_NAME.analysis.conversion-rate" defaultMessage="Conversion Rate" />
+          <FormattedMessage
+            id="BLOCK_NAME.analysis.conversion-rate"
+            defaultMessage="Conversion Rate"
+          />
         }
         gap={2}
         total={`${data.cvr * 100}%`}

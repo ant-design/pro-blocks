@@ -7,7 +7,7 @@
     "lint:fix": "eslint --fix --ext .js src mock tests && npm run lint:style",
     "lint-staged": "lint-staged",
     "lint-staged:js": "eslint --ext .js",
-    "prettier": "node ./_scripts/prettier.jsy"
+    "prettier": "node ./_scripts/prettier.js"
   },
   "devDependencies": {
     "@types/classnames": "^2.2.7",

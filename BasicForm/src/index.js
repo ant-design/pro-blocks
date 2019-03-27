@@ -115,7 +115,10 @@ class PAGE_NAME_UPPER_CAMEL_CASE extends PureComponent {
                 />
               )}
             </FormItem>
-            <FormItem {...formItemLayout} label={<FormattedMessage id="BLOCK_NAME.standard.label" />}>
+            <FormItem
+              {...formItemLayout}
+              label={<FormattedMessage id="BLOCK_NAME.standard.label" />}
+            >
               {getFieldDecorator('standard', {
                 rules: [
                   {

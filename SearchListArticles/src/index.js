@@ -133,11 +133,7 @@ class SearchList extends Component {
     );
 
     return (
-      <PageHeaderWrapper
-        title="搜索列表"
-        content={mainSearch}
-        onTabChange={this.handleTabChange}
-      >
+      <PageHeaderWrapper title="搜索列表" content={mainSearch} onTabChange={this.handleTabChange}>
         <Card bordered={false}>
           <Form layout="inline">
             <StandardFormRow title="所属类目" block style={{ paddingBottom: 11 }}>

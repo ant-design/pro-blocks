@@ -173,10 +173,7 @@ class BaseView extends Component {
               })(<PhoneView />)}
             </FormItem>
             <Button type="primary">
-              <FormattedMessage
-                id="BLOCK_NAME.basic.update"
-                defaultMessage="Update Information"
-              />
+              <FormattedMessage id="BLOCK_NAME.basic.update" defaultMessage="Update Information" />
             </Button>
           </Form>
         </div>

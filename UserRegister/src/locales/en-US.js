@@ -1,7 +1,8 @@
 export default {
   'BLOCK_NAME.login.userName': 'userName',
   'BLOCK_NAME.login.password': 'password',
-  'BLOCK_NAME.login.message-invalid-credentials': 'Invalid username or password（admin/ant.design）',
+  'BLOCK_NAME.login.message-invalid-credentials':
+    'Invalid username or password（admin/ant.design）',
   'BLOCK_NAME.login.message-invalid-verification-code': 'Invalid verification code',
   'BLOCK_NAME.login.tab-login-credentials': 'Credentials',
   'BLOCK_NAME.login.tab-login-mobile': 'Mobile number',
@@ -60,7 +61,8 @@ export default {
   'BLOCK_NAME.client.placeholder':
     'Please describe your customer service, internal customers directly @ Name / job number',
   'BLOCK_NAME.invites.label': 'Inviting critics',
-  'BLOCK_NAME.invites.placeholder': 'Please direct @ Name / job number, you can invite up to 5 people',
+  'BLOCK_NAME.invites.placeholder':
+    'Please direct @ Name / job number, you can invite up to 5 people',
   'BLOCK_NAME.weight.label': 'Weight',
   'BLOCK_NAME.weight.placeholder': 'Please enter weight',
   'BLOCK_NAME.public.label': 'Target disclosure',

@@ -22,10 +22,14 @@ const IntroduceRow = memo(({ loading, visitData }) => (
     <Col {...topColResponsiveProps}>
       <ChartCard
         bordered={false}
-        title={<FormattedMessage id="BLOCK_NAME.analysis.total-sales" defaultMessage="Total Sales" />}
+        title={
+          <FormattedMessage id="BLOCK_NAME.analysis.total-sales" defaultMessage="Total Sales" />
+        }
         action={
           <Tooltip
-            title={<FormattedMessage id="BLOCK_NAME.analysis.introduce" defaultMessage="Introduce" />}
+            title={
+              <FormattedMessage id="BLOCK_NAME.analysis.introduce" defaultMessage="Introduce" />
+            }
           >
             <Icon type="info-circle-o" />
           </Tooltip>
@@ -34,7 +38,9 @@ const IntroduceRow = memo(({ loading, visitData }) => (
         total={() => <Yuan>126560</Yuan>}
         footer={
           <Field
-            label={<FormattedMessage id="BLOCK_NAME.analysis.day-sales" defaultMessage="Daily Sales" />}
+            label={
+              <FormattedMessage id="BLOCK_NAME.analysis.day-sales" defaultMessage="Daily Sales" />
+            }
             value={`￥${numeral(12423).format('0,0')}`}
           />
         }
@@ -58,7 +64,9 @@ const IntroduceRow = memo(({ loading, visitData }) => (
         title={<FormattedMessage id="BLOCK_NAME.analysis.visits" defaultMessage="Visits" />}
         action={
           <Tooltip
-            title={<FormattedMessage id="BLOCK_NAME.analysis.introduce" defaultMessage="Introduce" />}
+            title={
+              <FormattedMessage id="BLOCK_NAME.analysis.introduce" defaultMessage="Introduce" />
+            }
           >
             <Icon type="info-circle-o" />
           </Tooltip>
@@ -66,7 +74,9 @@ const IntroduceRow = memo(({ loading, visitData }) => (
         total={numeral(8846).format('0,0')}
         footer={
           <Field
-            label={<FormattedMessage id="BLOCK_NAME.analysis.day-visits" defaultMessage="Daily Visits" />}
+            label={
+              <FormattedMessage id="BLOCK_NAME.analysis.day-visits" defaultMessage="Daily Visits" />
+            }
             value={numeral(1234).format('0,0')}
           />
         }
@@ -82,7 +92,9 @@ const IntroduceRow = memo(({ loading, visitData }) => (
         title={<FormattedMessage id="BLOCK_NAME.analysis.payments" defaultMessage="Payments" />}
         action={
           <Tooltip
-            title={<FormattedMessage id="BLOCK_NAME.analysis.introduce" defaultMessage="Introduce" />}
+            title={
+              <FormattedMessage id="BLOCK_NAME.analysis.introduce" defaultMessage="Introduce" />
+            }
           >
             <Icon type="info-circle-o" />
           </Tooltip>
@@ -116,7 +128,9 @@ const IntroduceRow = memo(({ loading, visitData }) => (
         }
         action={
           <Tooltip
-            title={<FormattedMessage id="BLOCK_NAME.analysis.introduce" defaultMessage="Introduce" />}
+            title={
+              <FormattedMessage id="BLOCK_NAME.analysis.introduce" defaultMessage="Introduce" />
+            }
           >
             <Icon type="info-circle-o" />
           </Tooltip>
