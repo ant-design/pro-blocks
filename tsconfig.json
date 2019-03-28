@@ -22,11 +22,5 @@
     }
   },
   "include": ["."],
-  "exclude": [
-    "node_modules",
-    "_scripts",
-    "jest",
-    "tslint:latest",
-    "tslint-config-prettier"
-  ]
+  "exclude": ["node_modules", "_scripts", "jest", "tslint:latest", "tslint-config-prettier"]
 }

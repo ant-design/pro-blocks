@@ -1,7 +1,7 @@
 {
   "private": true,
   "scripts": {
-    "dev": "umi dev",
+    "dev": "PAGES_PATH='Exception500/src' umi dev",
     "lint:style": "stylelint \"src/**/*.less\" --syntax less",
     "lint": "eslint --ext .js src mock tests && npm run lint:style",
     "lint:fix": "eslint --fix --ext .js src mock tests && npm run lint:style",
@@ -10,6 +10,7 @@
     "prettier": "node ./_scripts/prettier.js"
   },
   "devDependencies": {
+    "@types/classnames": "^2.2.7",
     "babel-eslint": "^10.0.1",
     "eslint": "^5.4.0",
     "eslint-config-airbnb": "^17.0.0",
@@ -28,7 +29,7 @@
     "stylelint-config-prettier": "^4.0.0",
     "stylelint-config-standard": "^18.0.0",
     "umi": "^2.3.0-0",
-    "umi-plugin-block-dev": "^1.0.0",
+    "umi-plugin-block-dev": "^1.3.1",
     "umi-plugin-react": "^1.3.0-0"
   },
   "lint-staged": {

@@ -19,8 +19,8 @@
     "umi-request": "^1.0.0"
   },
   "devDependencies": {
-    "umi": "^2.3.0-beta.1",
-    "umi-plugin-react": "^1.3.0-beta.1",
+    "umi": "^2.6.9",
+    "umi-plugin-react": "^1.7.2",
     "umi-plugin-block-dev": "^1.0.0"
   },
   "license": "ISC"

@@ -107,11 +107,7 @@ class CoverCardList extends PureComponent {
     );
 
     return (
-      <PageHeaderWrapper
-        title="搜索列表"
-        content={mainSearch}
-        onTabChange={this.handleTabChange}
-      >
+      <PageHeaderWrapper title="搜索列表" content={mainSearch} onTabChange={this.handleTabChange}>
         <div className={styles.coverCardList}>
           <Card bordered={false}>
             <Form layout="inline">

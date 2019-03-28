@@ -196,7 +196,10 @@ class PAGE_NAME_UPPER_CAMEL_CASE extends Component {
                 },
               ],
             })(
-              <Input size="large" placeholder={formatMessage({ id: 'BLOCK_NAME.email.placeholder' })} />
+              <Input
+                size="large"
+                placeholder={formatMessage({ id: 'BLOCK_NAME.email.placeholder' })}
+              />
             )}
           </FormItem>
           <FormItem help={help}>

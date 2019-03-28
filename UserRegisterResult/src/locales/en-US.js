@@ -1,7 +1,8 @@
 export default {
   'BLOCK_NAME.login.userName': 'userName',
   'BLOCK_NAME.login.password': 'password',
-  'BLOCK_NAME.login.message-invalid-credentials': 'Invalid username or password（admin/ant.design）',
+  'BLOCK_NAME.login.message-invalid-credentials':
+    'Invalid username or password（admin/ant.design）',
   'BLOCK_NAME.login.message-invalid-verification-code': 'Invalid verification code',
   'BLOCK_NAME.login.tab-login-credentials': 'Credentials',
   'BLOCK_NAME.login.tab-login-mobile': 'Mobile number',

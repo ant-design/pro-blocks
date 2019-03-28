@@ -121,7 +121,9 @@ class PAGE_NAME_UPPER_CAMEL_CASE extends PureComponent {
               <ActiveChart />
             </Card>
             <Card
-              title={<FormattedMessage id="BLOCK_NAME.monitor.efficiency" defaultMessage="Efficiency" />}
+              title={
+                <FormattedMessage id="BLOCK_NAME.monitor.efficiency" defaultMessage="Efficiency" />
+              }
               style={{ marginBottom: 24 }}
               bodyStyle={{ textAlign: 'center' }}
               bordered={false}
@@ -152,7 +154,10 @@ class PAGE_NAME_UPPER_CAMEL_CASE extends PureComponent {
                     animate={false}
                     percent={28}
                     subTitle={
-                      <FormattedMessage id="BLOCK_NAME.monitor.fast-food" defaultMessage="Fast food" />
+                      <FormattedMessage
+                        id="BLOCK_NAME.monitor.fast-food"
+                        defaultMessage="Fast food"
+                      />
                     }
                     total="28%"
                     height={128}
@@ -220,7 +225,10 @@ class PAGE_NAME_UPPER_CAMEL_CASE extends PureComponent {
               <WaterWave
                 height={161}
                 title={
-                  <FormattedMessage id="BLOCK_NAME.monitor.fund-surplus" defaultMessage="Fund Surplus" />
+                  <FormattedMessage
+                    id="BLOCK_NAME.monitor.fund-surplus"
+                    defaultMessage="Fund Surplus"
+                  />
                 }
                 percent={34}
               />

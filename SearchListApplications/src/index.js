@@ -1,7 +1,20 @@
 import React, { PureComponent } from 'react';
 import numeral from 'numeral';
 import { connect } from 'dva';
-import { Row, Col, Form, Card, Select, Icon, Avatar, List, Tooltip, Dropdown, Menu, Input } from 'antd';
+import {
+  Row,
+  Col,
+  Form,
+  Card,
+  Select,
+  Icon,
+  Avatar,
+  List,
+  Tooltip,
+  Dropdown,
+  Menu,
+  Input,
+} from 'antd';
 import { TagSelect } from 'ant-design-pro';
 
 import StandardFormRow from './components/StandardFormRow';
@@ -102,11 +115,7 @@ class PAGE_NAME_UPPER_CAMEL_CASE extends PureComponent {
     );
 
     return (
-      <PageHeaderWrapper
-        title="搜索列表"
-        content={mainSearch}
-        onTabChange={this.handleTabChange}
-      >
+      <PageHeaderWrapper title="搜索列表" content={mainSearch} onTabChange={this.handleTabChange}>
         <div className={styles.filterCardList}>
           <Card bordered={false}>
             <Form layout="inline">
@@ -181,7 +190,10 @@ class PAGE_NAME_UPPER_CAMEL_CASE extends PureComponent {
                     </Dropdown>,
                   ]}
                 >
-                  <Card.Meta avatar={<Avatar size="small" src={item.avatar} />} title={item.title} />
+                  <Card.Meta
+                    avatar={<Avatar size="small" src={item.avatar} />}
+                    title={item.title}
+                  />
                   <div className={styles.cardItemContent}>
                     <CardInfo
                       activeUser={formatWan(item.activeUser)}

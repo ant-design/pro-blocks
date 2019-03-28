@@ -47,7 +47,10 @@ const TopSearch = memo(({ loading, visitData2, searchData, dropdownGroup }) => (
     loading={loading}
     bordered={false}
     title={
-      <FormattedMessage id="BLOCK_NAME.analysis.online-top-search" defaultMessage="Online Top Search" />
+      <FormattedMessage
+        id="BLOCK_NAME.analysis.online-top-search"
+        defaultMessage="Online Top Search"
+      />
     }
     extra={dropdownGroup}
     style={{ marginTop: 24 }}
@@ -57,9 +60,14 @@ const TopSearch = memo(({ loading, visitData2, searchData, dropdownGroup }) => (
         <NumberInfo
           subTitle={
             <span>
-              <FormattedMessage id="BLOCK_NAME.analysis.search-users" defaultMessage="search users" />
+              <FormattedMessage
+                id="BLOCK_NAME.analysis.search-users"
+                defaultMessage="search users"
+              />
               <Tooltip
-                title={<FormattedMessage id="BLOCK_NAME.analysis.introduce" defaultMessage="introduce" />}
+                title={
+                  <FormattedMessage id="BLOCK_NAME.analysis.introduce" defaultMessage="introduce" />
+                }
               >
                 <Icon style={{ marginLeft: 8 }} type="info-circle-o" />
               </Tooltip>
@@ -81,7 +89,9 @@ const TopSearch = memo(({ loading, visitData2, searchData, dropdownGroup }) => (
                 defaultMessage="Per Capita Search"
               />
               <Tooltip
-                title={<FormattedMessage id="BLOCK_NAME.analysis.introduce" defaultMessage="introduce" />}
+                title={
+                  <FormattedMessage id="BLOCK_NAME.analysis.introduce" defaultMessage="introduce" />
+                }
               >
                 <Icon style={{ marginLeft: 8 }} type="info-circle-o" />
               </Tooltip>

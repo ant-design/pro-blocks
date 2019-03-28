@@ -15,14 +15,15 @@ const prettierConfigPath = require.resolve('../.prettierrc');
 let didError = false;
 
 let files = [];
-const jsFiles = glob.sync('ant-design-pro/**/*.js*', {
-  ignore: ['**/node_modules/**', 'build/**'],
+const jsFiles = glob.sync('**/src/*.js*', {
+  ignore: ['**/node_modules/**', 'build/**', '**/.umi/**'],
 });
-const tsFiles = glob.sync('ant-design-pro/**/*.ts*', {
-  ignore: ['**/node_modules/**', 'build/**'],
+const tsFiles = glob.sync('**/src/*.ts*', {
+  ignore: ['**/node_modules/**', 'build/**', '**/.umi/**'],
 });
 files = files.concat(jsFiles);
 files = files.concat(tsFiles);
+
 if (!files.length) {
   return;
 }
