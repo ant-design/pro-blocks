@@ -1,7 +1,7 @@
 {
   "private": true,
   "scripts": {
-    "dev": "PAGES_PATH='Exception500/src' umi dev",
+    "dev": "PAGES_PATH='AccountCenter/src' umi dev",
     "lint:style": "stylelint \"src/**/*.less\" --syntax less",
     "lint": "eslint --ext .js src mock tests && npm run lint:style",
     "lint:fix": "eslint --fix --ext .js src mock tests && npm run lint:style",
@@ -30,7 +30,8 @@
     "stylelint-config-standard": "^18.0.0",
     "umi": "^2.3.0-0",
     "umi-plugin-block-dev": "^1.3.1",
-    "umi-plugin-react": "^1.3.0-0"
+    "umi-plugin-react": "^1.3.0-0",
+    "umi-request": "^1.0.0"
   },
   "lint-staged": {
     "x/**/*.{js,ts,tsx,json,jsx,less}": [

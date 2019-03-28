@@ -1,8 +1,12 @@
 import React, { PureComponent } from 'react';
 import { connect } from 'dva';
+import { Dispatch } from 'redux';
 import Link from 'umi/link';
+import { RouteChildrenProps } from 'react-router';
 import { Card, Row, Col, Icon, Avatar, Tag, Divider, Input } from 'antd';
 import styles from './Center.less';
+import { ITag, CurrentUser } from './data';
+import { ModalState } from './model';
 
 const operationTabList = [
   {
@@ -31,24 +35,53 @@ const operationTabList = [
   },
 ];
 
-@connect(({ loading, BLOCK_NAME_CAMEL_CASE }) => ({
-  currentUser: BLOCK_NAME_CAMEL_CASE.currentUser,
-  currentUserLoading: loading.effects['BLOCK_NAME_CAMEL_CASE/fetchCurrent'],
-}))
-class PAGE_NAME_UPPER_CAMEL_CASE extends PureComponent {
-  static getDerivedStateFromProps(props, state) {
+interface BLOCK_NAME_CAMEL_CASEProps extends RouteChildrenProps {
+  dispatch: Dispatch;
+  currentUser: CurrentUser;
+  currentUserLoading: boolean;
+}
+interface BLOCK_NAME_CAMEL_CASEState {
+  newTags: ITag[];
+  tabKey: string;
+  inputVisible: boolean;
+  inputValue: string;
+}
+
+@connect(
+  ({
+    loading,
+    BLOCK_NAME_CAMEL_CASE,
+  }: {
+    loading: { effects: any };
+    BLOCK_NAME_CAMEL_CASE: ModalState;
+  }) => ({
+    currentUser: BLOCK_NAME_CAMEL_CASE.currentUser,
+    currentUserLoading: loading.effects['BLOCK_NAME_CAMEL_CASE/fetchCurrent'],
+  })
+)
+class PAGE_NAME_UPPER_CAMEL_CASE extends PureComponent<
+  BLOCK_NAME_CAMEL_CASEProps,
+  BLOCK_NAME_CAMEL_CASEState
+> {
+  static getDerivedStateFromProps(
+    props: BLOCK_NAME_CAMEL_CASEProps,
+    state: BLOCK_NAME_CAMEL_CASEState
+  ) {
     const { match, location } = props;
     const { tabKey } = state;
-    const urlTabKey = location.pathname.replace(`${match.path}/`, '');
+    const path = match && match.path;
+
+    const urlTabKey = location.pathname.replace(`${path}/`, '');
     if (urlTabKey && urlTabKey !== '/' && tabKey !== urlTabKey) {
       return {
         tabKey: urlTabKey,
       };
     }
+
     return null;
   }
 
-  state = {
+  state: BLOCK_NAME_CAMEL_CASEState = {
     newTags: [],
     inputVisible: false,
     inputValue: '',
@@ -62,7 +95,7 @@ class PAGE_NAME_UPPER_CAMEL_CASE extends PureComponent {
     });
   }
 
-  onTabChange = key => {
+  onTabChange = (key: string) => {
     // If you need to sync state to url
     // const { match } = this.props;
     // router.push(`${match.url}/${key}`);
@@ -72,14 +105,16 @@ class PAGE_NAME_UPPER_CAMEL_CASE extends PureComponent {
   };
 
   showInput = () => {
-    this.setState({ inputVisible: true }, () => this.input.focus());
+    this.setState({ inputVisible: true }, () => this.input && this.input.focus());
   };
 
-  saveInputRef = input => {
+  input: Input | null | undefined;
+
+  saveInputRef = (input: Input | null) => {
     this.input = input;
   };
 
-  handleInputChange = e => {
+  handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     this.setState({ inputValue: e.target.value });
   };
 
@@ -130,12 +165,12 @@ class PAGE_NAME_UPPER_CAMEL_CASE extends PureComponent {
                 <Divider dashed />
                 <div className={styles.tags}>
                   <div className={styles.tagsTitle}>标签</div>
-                  {currentUser.tags.concat(newTags).map(item => (
-                    <Tag key={item.key}>{item.label}</Tag>
-                  ))}
+                  {currentUser.tags.concat(newTags).map(item => {
+                    return <Tag key={item.key}>{item.label}</Tag>;
+                  })}
                   {inputVisible && (
                     <Input
-                      ref={this.saveInputRef}
+                      ref={ref => this.saveInputRef(ref)}
                       type="text"
                       size="small"
                       style={{ width: 78 }}
