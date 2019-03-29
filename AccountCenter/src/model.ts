@@ -22,7 +22,7 @@ export default {
         call,
         put,
       }: {
-        call: callType<Function, [], Promise<any>>;
+        call: callType<Function, [], ReturnType<typeof queryCurrent>>;
         put: Dispatch;
       }
     ) {

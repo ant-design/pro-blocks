@@ -1,6 +1,8 @@
 import React, { Component, Fragment } from 'react';
-import { formatMessage } from 'umi/locale';
+import { formatMessage } from 'umi-plugin-react/locale';
 import { Switch, List } from 'antd';
+
+type Unpacked<T> = T extends (infer U)[] ? U : T;
 
 class NotificationView extends Component {
   getData = () => {
@@ -31,11 +33,12 @@ class NotificationView extends Component {
   };
 
   render() {
+    const data = this.getData();
     return (
       <Fragment>
-        <List
+        <List<Unpacked<typeof data>>
           itemLayout="horizontal"
-          dataSource={this.getData()}
+          dataSource={data}
           renderItem={item => (
             <List.Item actions={item.actions}>
               <List.Item.Meta title={item.title} description={item.description} />

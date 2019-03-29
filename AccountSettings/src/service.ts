@@ -8,7 +8,7 @@ export async function queryProvince() {
   return request('/api/BLOCK_NAME/province');
 }
 
-export async function queryCity(province) {
+export async function queryCity(province: string) {
   return request(`/api/BLOCK_NAME/city/${province}`);
 }
 

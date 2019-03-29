@@ -1,24 +1,25 @@
 import React, { Component, Fragment } from 'react';
-import { formatMessage, FormattedMessage } from 'umi/locale';
+import { formatMessage, FormattedMessage } from 'umi-plugin-react/locale';
 import { List } from 'antd';
-// import { getTimeDistance } from '@/utils/utils';
+
+type Unpacked<T> = T extends (infer U)[] ? U : T;
 
 const passwordStrength = {
   strong: (
-    <font className="strong">
+    <span className="strong">
       <FormattedMessage id="BLOCK_NAME.security.strong" defaultMessage="Strong" />
-    </font>
+    </span>
   ),
   medium: (
-    <font className="medium">
+    <span className="medium">
       <FormattedMessage id="BLOCK_NAME.security.medium" defaultMessage="Medium" />
-    </font>
+    </span>
   ),
   weak: (
-    <font className="weak">
+    <span className="weak">
       <FormattedMessage id="BLOCK_NAME.security.weak" defaultMessage="Weak" />
       Weak
-    </font>
+    </span>
   ),
 };
 
@@ -83,11 +84,12 @@ class SecurityView extends Component {
   ];
 
   render() {
+    const data = this.getData();
     return (
       <Fragment>
-        <List
+        <List<Unpacked<typeof data>>
           itemLayout="horizontal"
-          dataSource={this.getData()}
+          dataSource={data}
           renderItem={item => (
             <List.Item actions={item.actions}>
               <List.Item.Meta title={item.title} description={item.description} />

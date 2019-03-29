@@ -15,6 +15,7 @@
     "suppressImplicitAnyIndexErrors": true,
     "noUnusedLocals": true,
     "allowJs": true,
+    "resolveJsonModule": true,
     "experimentalDecorators": true,
     "strict": true,
     "paths": {

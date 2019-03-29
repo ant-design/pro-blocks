@@ -1,6 +1,6 @@
 import React, { memo } from 'react';
 import { Card, Tabs, Row, Col } from 'antd';
-import { formatMessage, FormattedMessage } from 'umi/locale';
+import { formatMessage, FormattedMessage } from 'umi-plugin-react/locale';
 import { Charts, NumberInfo } from 'ant-design-pro';
 import styles from '../style.less';
 

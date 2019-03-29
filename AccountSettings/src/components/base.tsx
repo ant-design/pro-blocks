@@ -1,16 +1,17 @@
 import React, { Component, Fragment } from 'react';
-import { formatMessage, FormattedMessage } from 'umi/locale';
+import { formatMessage, FormattedMessage } from 'umi-plugin-react/locale';
 import { Form, Input, Upload, Select, Button } from 'antd';
+import { FormComponentProps } from 'antd/lib/form';
 import { connect } from 'dva';
 import styles from './BaseView.less';
 import GeographicView from './GeographicView';
 import PhoneView from './PhoneView';
-
+import { CurrentUser } from '../data';
 const FormItem = Form.Item;
 const { Option } = Select;
 
 // 头像组件 方便以后独立，增加裁剪之类的功能
-const AvatarView = ({ avatar }) => (
+const AvatarView = ({ avatar }: { avatar: string }) => (
   <Fragment>
     <div className={styles.avatar_title}>
       <FormattedMessage id="BLOCK_NAME.basic.avatar" defaultMessage="Avatar" />
@@ -27,8 +28,19 @@ const AvatarView = ({ avatar }) => (
     </Upload>
   </Fragment>
 );
+interface SelectItem {
+  label: string;
+  key: string;
+}
 
-const validatorGeographic = (rule, value, callback) => {
+const validatorGeographic = (
+  _: any,
+  value: {
+    province: SelectItem;
+    city: SelectItem;
+  },
+  callback: (message?: string) => void
+) => {
   const { province, city } = value;
   if (!province.key) {
     callback('Please input your province!');
@@ -39,7 +51,7 @@ const validatorGeographic = (rule, value, callback) => {
   callback();
 };
 
-const validatorPhone = (rule, value, callback) => {
+const validatorPhone = (rule: any, value: string, callback: (message?: string) => void) => {
   const values = value.split('-');
   if (!values[0]) {
     callback('Please input your area code!');
@@ -50,11 +62,14 @@ const validatorPhone = (rule, value, callback) => {
   callback();
 };
 
-@connect(({ BLOCK_NAME_CAMEL_CASE }) => ({
+interface BaseViewProps extends FormComponentProps {
+  currentUser: CurrentUser;
+}
+
+@connect(({ BLOCK_NAME_CAMEL_CASE }: { BLOCK_NAME_CAMEL_CASE: { currentUser: CurrentUser } }) => ({
   currentUser: BLOCK_NAME_CAMEL_CASE.currentUser,
 }))
-@Form.create()
-class BaseView extends Component {
+class BaseView extends Component<BaseViewProps> {
   componentDidMount() {
     this.setBaseInfo();
   }
@@ -76,8 +91,9 @@ class BaseView extends Component {
     const url = 'https://gw.alipayobjects.com/zos/rmsportal/BiazfanxmamNRoxxVxka.png';
     return url;
   }
+  view: HTMLDivElement | undefined;
 
-  getViewDom = ref => {
+  getViewDom = (ref: HTMLDivElement) => {
     this.view = ref;
   };
 
@@ -88,7 +104,7 @@ class BaseView extends Component {
     return (
       <div className={styles.baseView} ref={this.getViewDom}>
         <div className={styles.left}>
-          <Form layout="vertical" onSubmit={this.handleSubmit} hideRequiredMark>
+          <Form layout="vertical" hideRequiredMark>
             <FormItem label={formatMessage({ id: 'BLOCK_NAME.basic.email' })}>
               {getFieldDecorator('email', {
                 rules: [
@@ -185,4 +201,4 @@ class BaseView extends Component {
   }
 }
 
-export default BaseView;
+export default Form.create()(BaseView);

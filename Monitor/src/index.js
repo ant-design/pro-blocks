@@ -1,6 +1,6 @@
 import React, { PureComponent } from 'react';
 import { connect } from 'dva';
-import { formatMessage, FormattedMessage } from 'umi/locale';
+import { formatMessage, FormattedMessage } from 'umi-plugin-react/locale';
 import { Row, Col, Card, Tooltip } from 'antd';
 import { NumberInfo, Charts } from 'ant-design-pro';
 import CountDown from 'ant-design-pro/lib/CountDown';

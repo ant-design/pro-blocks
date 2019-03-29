@@ -1,5 +1,5 @@
 import React, { PureComponent } from 'react';
-import { FormattedMessage } from 'umi/locale';
+import { FormattedMessage } from 'umi-plugin-react/locale';
 import { findDOMNode } from 'react-dom';
 import moment from 'moment';
 import { connect } from 'dva';

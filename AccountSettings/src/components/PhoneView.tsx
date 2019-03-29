@@ -2,7 +2,12 @@ import React, { Fragment, PureComponent } from 'react';
 import { Input } from 'antd';
 import styles from './PhoneView.less';
 
-class PhoneView extends PureComponent {
+interface PhoneViewProps {
+  value?: string;
+  onChange?: (value: string) => void;
+}
+
+class PhoneView extends PureComponent<PhoneViewProps> {
   render() {
     const { value, onChange } = this.props;
     let values = ['', ''];
@@ -15,13 +20,13 @@ class PhoneView extends PureComponent {
           className={styles.area_code}
           value={values[0]}
           onChange={e => {
-            onChange(`${e.target.value}-${values[1]}`);
+            onChange && onChange(`${e.target.value}-${values[1]}`);
           }}
         />
         <Input
           className={styles.phone_number}
           onChange={e => {
-            onChange(`${values[0]}-${e.target.value}`);
+            onChange && onChange(`${values[0]}-${e.target.value}`);
           }}
           value={values[1]}
         />
