@@ -1,22 +1,10 @@
-import React, { PureComponent } from 'react';
-import {
-  Card,
-  Button,
-  Form,
-  Icon,
-  Col,
-  Row,
-  DatePicker,
-  TimePicker,
-  Input,
-  Select,
-  Popover,
-} from 'antd';
+import React, { Component } from 'react';
+import { Card, Form, Icon, Col, Row, DatePicker, TimePicker, Input, Select, Popover } from 'antd';
 import { connect } from 'dva';
-import { FooterToolbar } from 'ant-design-pro';
-import PageHeaderWrapper from './components/PageHeaderWrapper';
 import TableForm from './components/TableForm';
 import styles from './style.less';
+import { FormComponentProps } from 'antd/lib/form';
+import { Dispatch } from 'redux';
 
 const { Option } = Select;
 const { RangePicker } = DatePicker;
@@ -57,11 +45,14 @@ const tableData = [
   },
 ];
 
-@connect(({ loading }) => ({
+interface PAGE_NAME_UPPER_CAMEL_CASEProps extends FormComponentProps {
+  dispatch: Dispatch;
+}
+
+@connect(({ loading }: { loading: { effects: any } }) => ({
   submitting: loading.effects['BLOCK_NAME_CAMEL_CASE/submitAdvancedForm'],
 }))
-@Form.create()
-class PAGE_NAME_UPPER_CAMEL_CASE extends PureComponent {
+class PAGE_NAME_UPPER_CAMEL_CASE extends Component<PAGE_NAME_UPPER_CAMEL_CASEProps> {
   state = {
     width: '100%',
   };
@@ -83,7 +74,7 @@ class PAGE_NAME_UPPER_CAMEL_CASE extends PureComponent {
     if (!errors || errorCount === 0) {
       return null;
     }
-    const scrollToField = fieldKey => {
+    const scrollToField = (fieldKey: string) => {
       const labelNode = document.querySelector(`label[for="${fieldKey}"]`);
       if (labelNode) {
         labelNode.scrollIntoView(true);
@@ -119,7 +110,7 @@ class PAGE_NAME_UPPER_CAMEL_CASE extends PureComponent {
 
   resizeFooterToolbar = () => {
     requestAnimationFrame(() => {
-      const sider = document.querySelectorAll('.ant-layout-sider')[0];
+      const sider = document.querySelectorAll('.ant-layout-sider')[0] as HTMLDivElement;
       if (sider) {
         const width = `calc(100% - ${sider.style.width})`;
         const { width: stateWidth } = this.state;
@@ -149,16 +140,10 @@ class PAGE_NAME_UPPER_CAMEL_CASE extends PureComponent {
   render() {
     const {
       form: { getFieldDecorator },
-      submitting,
     } = this.props;
-    const { width } = this.state;
 
     return (
-      <PageHeaderWrapper
-        title="高级表单"
-        content="高级表单常见于一次性输入和提交大批量数据的场景。"
-        wrapperClassName={styles.advancedForm}
-      >
+      <>
         <Card title="仓库管理" className={styles.card} bordered={false}>
           <Form layout="vertical" hideRequiredMark>
             <Row gutter={16}>
@@ -309,15 +294,15 @@ class PAGE_NAME_UPPER_CAMEL_CASE extends PureComponent {
             initialValue: tableData,
           })(<TableForm />)}
         </Card>
-        <FooterToolbar style={{ width }}>
+        {/* <FooterToolbar style={{ width }}>
           {this.getErrorInfo()}
           <Button type="primary" onClick={this.validate} loading={submitting}>
             提交
           </Button>
-        </FooterToolbar>
-      </PageHeaderWrapper>
+        </FooterToolbar> */}
+      </>
     );
   }
 }
 
-export default PAGE_NAME_UPPER_CAMEL_CASE;
+export default Form.create()(PAGE_NAME_UPPER_CAMEL_CASE);

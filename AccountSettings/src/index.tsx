@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'dva';
+import { Dispatch } from 'redux';
 import { FormattedMessage } from 'umi-plugin-react/locale';
 import { Menu } from 'antd';
 import styles from './style.less';
@@ -7,14 +8,31 @@ import BaseView from './components/base';
 import SecurityView from './components/security';
 import BindingView from './components/binding';
 import NotificationView from './components/notification';
+import { CurrentUser } from './data';
 
 const { Item } = Menu;
 
-@connect(({ BLOCK_NAME_CAMEL_CASE }) => ({
+interface PAGE_NAME_UPPER_CAMEL_CASEProps {
+  dispatch: Dispatch;
+  currentUser: CurrentUser;
+}
+
+type PAGE_NAME_UPPER_CAMEL_CASEStateKeys = 'base' | 'security' | 'binding' | 'notification';
+interface PAGE_NAME_UPPER_CAMEL_CASEState {
+  mode: 'inline' | 'horizontal';
+  menuMap: {
+    [key: string]: React.ReactNode;
+  };
+  selectKey: PAGE_NAME_UPPER_CAMEL_CASEStateKeys;
+}
+@connect(({ BLOCK_NAME_CAMEL_CASE }: { BLOCK_NAME_CAMEL_CASE: { currentUser: CurrentUser } }) => ({
   currentUser: BLOCK_NAME_CAMEL_CASE.currentUser,
 }))
-class PAGE_NAME_UPPER_CAMEL_CASE extends Component {
-  constructor(props) {
+class PAGE_NAME_UPPER_CAMEL_CASE extends Component<
+  PAGE_NAME_UPPER_CAMEL_CASEProps,
+  PAGE_NAME_UPPER_CAMEL_CASEState
+> {
+  constructor(props: PAGE_NAME_UPPER_CAMEL_CASEProps) {
     super(props);
     const menuMap = {
       base: <FormattedMessage id="BLOCK_NAME.menuMap.basic" defaultMessage="Basic Settings" />,
@@ -38,6 +56,8 @@ class PAGE_NAME_UPPER_CAMEL_CASE extends Component {
     };
   }
 
+  main: HTMLDivElement | undefined;
+
   componentDidMount() {
     const { dispatch } = this.props;
     dispatch({
@@ -51,7 +71,7 @@ class PAGE_NAME_UPPER_CAMEL_CASE extends Component {
     window.removeEventListener('resize', this.resize);
   }
 
-  getmenu = () => {
+  getMenu = () => {
     const { menuMap } = this.state;
     return Object.keys(menuMap).map(item => <Item key={item}>{menuMap[item]}</Item>);
   };
@@ -61,7 +81,7 @@ class PAGE_NAME_UPPER_CAMEL_CASE extends Component {
     return menuMap[selectKey];
   };
 
-  selectKey = ({ key }) => {
+  selectKey = (key: PAGE_NAME_UPPER_CAMEL_CASEStateKeys) => {
     this.setState({
       selectKey: key,
     });
@@ -75,7 +95,7 @@ class PAGE_NAME_UPPER_CAMEL_CASE extends Component {
       if (!this.main) {
         return;
       }
-      let mode = 'inline';
+      let mode: 'inline' | 'horizontal' = 'inline';
       const { offsetWidth } = this.main;
       if (this.main.offsetWidth < 641 && offsetWidth > 400) {
         mode = 'horizontal';
@@ -117,12 +137,18 @@ class PAGE_NAME_UPPER_CAMEL_CASE extends Component {
       <div
         className={styles.main}
         ref={ref => {
-          this.main = ref;
+          if (ref) {
+            this.main = ref;
+          }
         }}
       >
-        <div className={styles.leftmenu}>
-          <Menu mode={mode} selectedKeys={[selectKey]} onClick={this.selectKey}>
-            {this.getmenu()}
+        <div className={styles.leftMenu}>
+          <Menu
+            mode={mode}
+            selectedKeys={[selectKey]}
+            onClick={({ key }) => this.selectKey(key as PAGE_NAME_UPPER_CAMEL_CASEStateKeys)}
+          >
+            {this.getMenu()}
           </Menu>
         </div>
         <div className={styles.right}>

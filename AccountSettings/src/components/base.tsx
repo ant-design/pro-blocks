@@ -63,7 +63,7 @@ const validatorPhone = (rule: any, value: string, callback: (message?: string) =
 };
 
 interface BaseViewProps extends FormComponentProps {
-  currentUser: CurrentUser;
+  currentUser?: CurrentUser;
 }
 
 @connect(({ BLOCK_NAME_CAMEL_CASE }: { BLOCK_NAME_CAMEL_CASE: { currentUser: CurrentUser } }) => ({
@@ -76,20 +76,25 @@ class BaseView extends Component<BaseViewProps> {
 
   setBaseInfo = () => {
     const { currentUser, form } = this.props;
-    Object.keys(form.getFieldsValue()).forEach(key => {
-      const obj = {};
-      obj[key] = currentUser[key] || null;
-      form.setFieldsValue(obj);
-    });
+    if (currentUser) {
+      Object.keys(form.getFieldsValue()).forEach(key => {
+        const obj = {};
+        obj[key] = currentUser[key] || null;
+        form.setFieldsValue(obj);
+      });
+    }
   };
 
   getAvatarURL() {
     const { currentUser } = this.props;
-    if (currentUser.avatar) {
-      return currentUser.avatar;
+    if (currentUser) {
+      if (currentUser.avatar) {
+        return currentUser.avatar;
+      }
+      const url = 'https://gw.alipayobjects.com/zos/rmsportal/BiazfanxmamNRoxxVxka.png';
+      return url;
     }
-    const url = 'https://gw.alipayobjects.com/zos/rmsportal/BiazfanxmamNRoxxVxka.png';
-    return url;
+    return '';
   }
   view: HTMLDivElement | undefined;
 
