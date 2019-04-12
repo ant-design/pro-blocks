@@ -99,7 +99,7 @@ class PAGE_NAME_UPPER_CAMEL_CASE extends Component<PAGE_NAME_UPPER_CAMEL_CASEPro
           content={errorList}
           overlayClassName={styles.errorPopover}
           trigger="click"
-          getPopupContainer={trigger => trigger.parentNode}
+          getPopupContainer={trigger => trigger && trigger.parentNode}
         >
           <Icon type="exclamation-circle" />
         </Popover>
@@ -269,7 +269,7 @@ class PAGE_NAME_UPPER_CAMEL_CASE extends Component<PAGE_NAME_UPPER_CAMEL_CASEPro
                     <TimePicker
                       placeholder="提醒时间"
                       style={{ width: '100%' }}
-                      getPopupContainer={trigger => trigger.parentNode}
+                      getPopupContainer={trigger => trigger.ParentNode}
                     />
                   )}
                 </Form.Item>

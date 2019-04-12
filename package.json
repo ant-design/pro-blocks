@@ -1,7 +1,7 @@
 {
   "private": true,
   "scripts": {
-    "dev": "PAGES_PATH='AdvancedForm/src' umi dev",
+    "dev": "cross-env PAGES_PATH='AdvancedProfile/src' umi dev",
     "lint:style": "stylelint \"src/**/*.less\" --syntax less",
     "lint": "eslint --ext .js src mock tests && npm run lint:style",
     "lint:fix": "eslint --fix --ext .js src mock tests && npm run lint:style",
@@ -45,5 +45,9 @@
     "hooks": {
       "pre-commit": "npm run lint-staged"
     }
+  },
+  "dependencies": {
+    "@ant-design/pro-layout": "^4.0.5",
+    "cross-env": "^5.2.0"
   }
 }
