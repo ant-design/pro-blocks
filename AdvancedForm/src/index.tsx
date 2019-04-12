@@ -1,10 +1,23 @@
 import React, { Component } from 'react';
-import { Card, Form, Icon, Col, Row, DatePicker, TimePicker, Input, Select, Popover } from 'antd';
+import {
+  Card,
+  Form,
+  Icon,
+  Button,
+  Col,
+  Row,
+  DatePicker,
+  TimePicker,
+  Input,
+  Select,
+  Popover,
+} from 'antd';
 import { connect } from 'dva';
 import TableForm from './components/TableForm';
 import styles from './style.less';
 import { FormComponentProps } from 'antd/lib/form';
 import { Dispatch } from 'redux';
+import FooterToolbar from './components/FooterToolbar';
 
 const { Option } = Select;
 const { RangePicker } = DatePicker;
@@ -47,9 +60,10 @@ const tableData = [
 
 interface PAGE_NAME_UPPER_CAMEL_CASEProps extends FormComponentProps {
   dispatch: Dispatch;
+  submitting: boolean;
 }
 
-@connect(({ loading }: { loading: { effects: any } }) => ({
+@connect(({ loading }: { loading: { effects: { [key: string]: boolean } } }) => ({
   submitting: loading.effects['BLOCK_NAME_CAMEL_CASE/submitAdvancedForm'],
 }))
 class PAGE_NAME_UPPER_CAMEL_CASE extends Component<PAGE_NAME_UPPER_CAMEL_CASEProps> {
@@ -99,7 +113,12 @@ class PAGE_NAME_UPPER_CAMEL_CASE extends Component<PAGE_NAME_UPPER_CAMEL_CASEPro
           content={errorList}
           overlayClassName={styles.errorPopover}
           trigger="click"
-          getPopupContainer={trigger => trigger && trigger.parentNode}
+          getPopupContainer={(trigger: HTMLElement) => {
+            if (trigger && trigger.parentNode) {
+              return trigger.parentNode as HTMLElement;
+            }
+            return trigger;
+          }}
         >
           <Icon type="exclamation-circle" />
         </Popover>
@@ -140,8 +159,9 @@ class PAGE_NAME_UPPER_CAMEL_CASE extends Component<PAGE_NAME_UPPER_CAMEL_CASEPro
   render() {
     const {
       form: { getFieldDecorator },
+      submitting,
     } = this.props;
-
+    const { width } = this.state;
     return (
       <>
         <Card title="仓库管理" className={styles.card} bordered={false}>
@@ -269,7 +289,12 @@ class PAGE_NAME_UPPER_CAMEL_CASE extends Component<PAGE_NAME_UPPER_CAMEL_CASEPro
                     <TimePicker
                       placeholder="提醒时间"
                       style={{ width: '100%' }}
-                      getPopupContainer={trigger => trigger.ParentNode}
+                      getPopupContainer={trigger => {
+                        if (trigger && trigger.parentNode) {
+                          return trigger.parentNode as HTMLElement;
+                        }
+                        return trigger;
+                      }}
                     />
                   )}
                 </Form.Item>
@@ -294,12 +319,12 @@ class PAGE_NAME_UPPER_CAMEL_CASE extends Component<PAGE_NAME_UPPER_CAMEL_CASEPro
             initialValue: tableData,
           })(<TableForm />)}
         </Card>
-        {/* <FooterToolbar style={{ width }}>
+        <FooterToolbar style={{ width }}>
           {this.getErrorInfo()}
           <Button type="primary" onClick={this.validate} loading={submitting}>
             提交
           </Button>
-        </FooterToolbar> */}
+        </FooterToolbar>
       </>
     );
   }
