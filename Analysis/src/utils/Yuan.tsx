@@ -1,18 +1,20 @@
 import React from 'react';
-import { yuan } from 'ant-design-pro/lib/Charts';
+import { yuan } from '../components/Charts';
 /**
  * 减少使用 dangerouslySetInnerHTML
  */
-export default class Yuan extends React.PureComponent {
+export default class Yuan extends React.Component<{
+  children: React.ReactText;
+}> {
   componentDidMount() {
-    this.rendertoHtml();
+    this.renderToHtml();
   }
 
   componentDidUpdate() {
-    this.rendertoHtml();
+    this.renderToHtml();
   }
-
-  rendertoHtml = () => {
+  main: HTMLSpanElement | undefined | null;
+  renderToHtml = () => {
     const { children } = this.props;
     if (this.main) {
       this.main.innerHTML = yuan(children);

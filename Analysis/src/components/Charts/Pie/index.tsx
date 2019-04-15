@@ -34,14 +34,10 @@ export interface IPieProps {
   valueFormat?: (value: string) => string | React.ReactNode;
   subTitle?: React.ReactNode;
 }
-
-/* eslint react/no-danger:0 */
-
 interface IPieState {
   legendData: Array<{ checked: boolean; x: string; color: string; percent: number; y: string }>;
   legendBlock: boolean;
 }
-
 class Pie extends Component<IPieProps, IPieState> {
   state: IPieState = {
     legendData: [],
@@ -74,7 +70,9 @@ class Pie extends Component<IPieProps, IPieState> {
       window.cancelAnimationFrame(this.requestRef);
     }
     window.removeEventListener('resize', this.resize);
-    (this.resize as any).cancel();
+    if (this.resize) {
+      (this.resize as any).cancel();
+    }
   }
 
   getG2Instance = (chart: G2.Chart) => {
@@ -85,8 +83,6 @@ class Pie extends Component<IPieProps, IPieState> {
     });
   };
 
-  root!: HTMLDivElement;
-  chart: G2.Chart | undefined;
   // for custom lengend view
   getLegendData = () => {
     if (!this.chart) return;
@@ -94,7 +90,7 @@ class Pie extends Component<IPieProps, IPieState> {
     if (!geom) return;
     const items = geom.get('dataArray') || []; // 获取图形对应的
 
-    const legendData = items.map((item: Array<any>) => {
+    const legendData = items.map((item: { color: any; _origin: any }[]) => {
       /* eslint no-underscore-dangle:0 */
       const origin = item[0]._origin;
       origin.color = item[0].color;
@@ -106,7 +102,6 @@ class Pie extends Component<IPieProps, IPieState> {
       legendData,
     });
   };
-
   handleRoot = (n: HTMLDivElement) => {
     this.root = n;
   };
@@ -128,6 +123,8 @@ class Pie extends Component<IPieProps, IPieState> {
       legendData,
     });
   };
+  root!: HTMLDivElement;
+  chart: G2.Chart | undefined;
 
   // for window resize auto responsive legend
   @Bind()
@@ -139,7 +136,11 @@ class Pie extends Component<IPieProps, IPieState> {
       window.removeEventListener('resize', this.resize);
       return;
     }
-    if ((this.root!.parentNode! as HTMLDivElement).clientWidth <= 380) {
+    if (
+      this.root &&
+      this.root.parentNode &&
+      (this.root.parentNode as HTMLElement).clientWidth <= 380
+    ) {
       if (!legendBlock) {
         this.setState({
           legendBlock: true,
@@ -160,11 +161,13 @@ class Pie extends Component<IPieProps, IPieState> {
       hasLegend = false,
       className,
       style,
-      height = 1,
+      height = 0,
       forceFit = true,
       percent,
+      color,
       inner = 0.75,
       animate = true,
+      colors,
       lineWidth = 1,
     } = this.props;
 
@@ -183,9 +186,12 @@ class Pie extends Component<IPieProps, IPieState> {
     let data = propsData || [];
     let selected = propsSelected;
     let tooltip = propsTooltip;
+
+    const defaultColors = colors;
     data = data || [];
     selected = selected || true;
     tooltip = tooltip || true;
+    let formatColor;
 
     const scale = {
       x: {
@@ -200,6 +206,12 @@ class Pie extends Component<IPieProps, IPieState> {
     if (percent || percent === 0) {
       selected = false;
       tooltip = false;
+      formatColor = (value: string) => {
+        if (value === '占比') {
+          return color || 'rgba(24, 144, 255, 0.85)';
+        }
+        return '#F0F2F5';
+      };
 
       data = [
         {
@@ -221,7 +233,7 @@ class Pie extends Component<IPieProps, IPieState> {
       }),
     ];
 
-    const padding: [number, number, number, number] = [12, 0, 12, 0];
+    const padding = [12, 0, 12, 0] as [number, number, number, number];
 
     const dv = new DataView();
     dv.source(data).transform({
@@ -248,9 +260,10 @@ class Pie extends Component<IPieProps, IPieState> {
               <Coord type="theta" innerRadius={inner} />
               <Geom
                 style={{ lineWidth, stroke: '#fff' }}
-                tooltip={tooltip && tooltipFormat}
+                tooltip={tooltip ? tooltipFormat : undefined}
                 type="intervalStack"
                 position="percent"
+                color={['x', percent || percent === 0 ? formatColor : defaultColors] as any}
                 selected={selected}
               />
             </Chart>
