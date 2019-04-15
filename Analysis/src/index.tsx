@@ -1,11 +1,13 @@
 import React, { Component, Suspense } from 'react';
 import { connect } from 'dva';
 import { Row, Col, Icon, Menu, Dropdown } from 'antd';
-
+import { RangePickerValue } from 'antd/lib/date-picker/interface';
 import { getTimeDistance } from './utils/utils';
-
 import styles from './style.less';
 import PageLoading from './components/PageLoading';
+import { Dispatch } from 'redux';
+import { IAnalysisData } from './data.d';
+import { RadioChangeEvent } from 'antd/lib/radio';
 
 const IntroduceRow = React.lazy(() => import('./components/IntroduceRow'));
 const SalesCard = React.lazy(() => import('./components/SalesCard'));
@@ -13,17 +15,43 @@ const TopSearch = React.lazy(() => import('./components/TopSearch'));
 const ProportionSales = React.lazy(() => import('./components/ProportionSales'));
 const OfflineData = React.lazy(() => import('./components/OfflineData'));
 
-@connect(({ BLOCK_NAME_CAMEL_CASE, loading }) => ({
-  BLOCK_NAME_CAMEL_CASE,
-  loading: loading.effects['BLOCK_NAME_CAMEL_CASE/fetch'],
-}))
-class PAGE_NAME_UPPER_CAMEL_CASE extends Component {
-  state = {
+interface BLOCK_NAME_CAMEL_CASEProps {
+  BLOCK_NAME_CAMEL_CASE: IAnalysisData;
+  dispatch: Dispatch;
+  loading: boolean;
+}
+
+interface BLOCK_NAME_CAMEL_CASEState {
+  salesType: 'all' | 'online' | 'stores';
+  currentTabKey: string;
+  rangePickerValue: RangePickerValue;
+}
+
+@connect(
+  ({
+    BLOCK_NAME_CAMEL_CASE,
+    loading,
+  }: {
+    BLOCK_NAME_CAMEL_CASE: any;
+    loading: {
+      effects: { [key: string]: boolean };
+    };
+  }) => ({
+    BLOCK_NAME_CAMEL_CASE,
+    loading: loading.effects['BLOCK_NAME_CAMEL_CASE/fetch'],
+  })
+)
+class PAGE_NAME_UPPER_CAMEL_CASE extends Component<
+  BLOCK_NAME_CAMEL_CASEProps,
+  BLOCK_NAME_CAMEL_CASEState
+> {
+  state: BLOCK_NAME_CAMEL_CASEState = {
     salesType: 'all',
     currentTabKey: '',
     rangePickerValue: getTimeDistance('year'),
   };
-
+  reqRef!: number;
+  timeoutId!: number;
   componentDidMount() {
     const { dispatch } = this.props;
     this.reqRef = requestAnimationFrame(() => {
@@ -42,19 +70,19 @@ class PAGE_NAME_UPPER_CAMEL_CASE extends Component {
     clearTimeout(this.timeoutId);
   }
 
-  handleChangeSalesType = e => {
+  handleChangeSalesType = (e: RadioChangeEvent) => {
     this.setState({
       salesType: e.target.value,
     });
   };
 
-  handleTabChange = key => {
+  handleTabChange = (key: string) => {
     this.setState({
       currentTabKey: key,
     });
   };
 
-  handleRangePickerChange = rangePickerValue => {
+  handleRangePickerChange = (rangePickerValue: RangePickerValue) => {
     const { dispatch } = this.props;
     this.setState({
       rangePickerValue,
@@ -65,7 +93,7 @@ class PAGE_NAME_UPPER_CAMEL_CASE extends Component {
     });
   };
 
-  selectDate = type => {
+  selectDate = (type: 'today' | 'week' | 'month' | 'year') => {
     const { dispatch } = this.props;
     this.setState({
       rangePickerValue: getTimeDistance(type),
@@ -76,7 +104,7 @@ class PAGE_NAME_UPPER_CAMEL_CASE extends Component {
     });
   };
 
-  isActive = type => {
+  isActive = (type: 'today' | 'week' | 'month' | 'year') => {
     const { rangePickerValue } = this.state;
     const value = getTimeDistance(type);
     if (!rangePickerValue[0] || !rangePickerValue[1]) {
@@ -127,7 +155,6 @@ class PAGE_NAME_UPPER_CAMEL_CASE extends Component {
     );
 
     const activeKey = currentTabKey || (offlineData[0] && offlineData[0].name);
-
     return (
       <React.Fragment>
         <Suspense fallback={<PageLoading />}>
@@ -149,7 +176,6 @@ class PAGE_NAME_UPPER_CAMEL_CASE extends Component {
               <TopSearch
                 loading={loading}
                 visitData2={visitData2}
-                selectDate={this.selectDate}
                 searchData={searchData}
                 dropdownGroup={dropdownGroup}
               />

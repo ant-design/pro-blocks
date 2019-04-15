@@ -1,9 +1,12 @@
-import React, { memo } from 'react';
+import React from 'react';
 import { Row, Col, Table, Tooltip, Card, Icon } from 'antd';
 import { FormattedMessage } from 'umi-plugin-react/locale';
-import { Trend, NumberInfo, Charts } from 'ant-design-pro';
+import Charts from './Charts';
+import Trend from './Trend';
+import NumberInfo from './NumberInfo';
 import numeral from 'numeral';
 import styles from '../style.less';
+import { ISearchData, IVisitData2 } from '../data';
 
 const { MiniArea } = Charts;
 
@@ -19,30 +22,39 @@ const columns = [
     ),
     dataIndex: 'keyword',
     key: 'keyword',
-    render: text => <a href="/">{text}</a>,
+    render: (text: React.ReactNode) => <a href="/">{text}</a>,
   },
   {
     title: <FormattedMessage id="BLOCK_NAME.table.users" defaultMessage="Users" />,
     dataIndex: 'count',
     key: 'count',
-    sorter: (a, b) => a.count - b.count,
+    sorter: (a: { count: number }, b: { count: number }) => a.count - b.count,
     className: styles.alignRight,
   },
   {
     title: <FormattedMessage id="BLOCK_NAME.table.weekly-range" defaultMessage="Weekly Range" />,
     dataIndex: 'range',
     key: 'range',
-    sorter: (a, b) => a.range - b.range,
-    render: (text, record) => (
+    sorter: (a: { range: number }, b: { range: number }) => a.range - b.range,
+    render: (text: React.ReactNode, record: { status: number }) => (
       <Trend flag={record.status === 1 ? 'down' : 'up'}>
         <span style={{ marginRight: 4 }}>{text}%</span>
       </Trend>
     ),
-    align: 'right',
   },
 ];
 
-const TopSearch = memo(({ loading, visitData2, searchData, dropdownGroup }) => (
+const TopSearch = ({
+  loading,
+  visitData2,
+  searchData,
+  dropdownGroup,
+}: {
+  loading: boolean;
+  visitData2: IVisitData2[];
+  dropdownGroup: React.ReactNode;
+  searchData: ISearchData[];
+}) => (
   <Card
     loading={loading}
     bordered={false}
@@ -105,7 +117,7 @@ const TopSearch = memo(({ loading, visitData2, searchData, dropdownGroup }) => (
         <MiniArea line height={45} data={visitData2} />
       </Col>
     </Row>
-    <Table
+    <Table<any>
       rowKey={record => record.index}
       size="small"
       columns={columns}
@@ -116,6 +128,6 @@ const TopSearch = memo(({ loading, visitData2, searchData, dropdownGroup }) => (
       }}
     />
   </Card>
-));
+);
 
 export default TopSearch;

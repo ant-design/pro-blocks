@@ -1,10 +1,11 @@
 import moment from 'moment';
+import { RangePickerValue } from 'antd/lib/date-picker/interface';
 
-export function fixedZero(val) {
+export function fixedZero(val: number) {
   return val * 1 < 10 ? `0${val}` : val;
 }
 
-export function getTimeDistance(type) {
+export function getTimeDistance(type: 'today' | 'week' | 'month' | 'year'): RangePickerValue {
   const now = new Date();
   const oneDay = 1000 * 60 * 60 * 24;
 

@@ -1,7 +1,8 @@
 import moment from 'moment';
+import { IVisitData, IRadarData, IAnalysisData } from './data';
 
 // mock data
-const visitData = [];
+const visitData: IVisitData[] = [];
 const beginDay = new Date().getTime();
 
 const fakeY = [7, 5, 4, 2, 4, 7, 5, 6, 5, 9, 6, 3, 1, 5, 3, 6, 5];
@@ -158,7 +159,7 @@ const radarOriginData = [
   },
 ];
 
-const radarData = [];
+const radarData: IRadarData[] = [];
 const radarTitleMap = {
   ref: '引用',
   koubei: '口碑',
@@ -178,7 +179,7 @@ radarOriginData.forEach(item => {
   });
 });
 
-const getFakeChartData = {
+const getFakeChartData: IAnalysisData = {
   visitData,
   visitData2,
   salesData,
