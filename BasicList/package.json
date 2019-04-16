@@ -12,7 +12,6 @@
     "dev": "umi dev"
   },
   "dependencies": {
-    "@ant-design/pro-layout": "^4.0.5",
     "antd": "^3.10.9",
     "dva": "^2.4.0",
     "hash.js": "^1.1.5",

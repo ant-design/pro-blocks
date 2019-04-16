@@ -11,7 +11,6 @@
     "url": "https://github.com/umijs/umi-blocks/ant-design-pro/resultfail"
   },
   "dependencies": {
-    "@ant-design/pro-layout": "^4.0.5",
     "react": "^16.6.3",
     "antd": "^3.10.9",
     "ant-design-pro": "^2.1.1"

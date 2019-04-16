@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
-import { Charts, NumberInfo } from 'ant-design-pro';
-
+import Charts from '../Charts';
+import { Statistic } from 'antd';
 import styles from './index.less';
 
 const { MiniArea } = Charts;
 
-function fixedZero(val) {
+function fixedZero(val: number) {
   return val * 1 < 10 ? `0${val}` : val;
 }
 
@@ -28,15 +28,18 @@ export default class ActiveChart extends Component {
   componentDidMount() {
     this.loopData();
   }
-
+  timer: number | undefined;
+  requestRef: number | undefined;
   componentWillUnmount() {
     clearTimeout(this.timer);
-    cancelAnimationFrame(this.requestRef);
+    if (this.requestRef) {
+      cancelAnimationFrame(this.requestRef);
+    }
   }
 
   loopData = () => {
     this.requestRef = requestAnimationFrame(() => {
-      this.timer = setTimeout(() => {
+      this.timer = window.setTimeout(() => {
         this.setState(
           {
             activeData: getActiveData(),
@@ -54,7 +57,7 @@ export default class ActiveChart extends Component {
 
     return (
       <div className={styles.activeChart}>
-        <NumberInfo subTitle="目标评估" total="有望达到预期" />
+        <Statistic title="目标评估" value="有望达到预期" />
         <div style={{ marginTop: 32 }}>
           <MiniArea
             animate={false}
@@ -67,10 +70,10 @@ export default class ActiveChart extends Component {
               },
             }}
             yAxis={{
-              tickLine: false,
-              label: false,
-              title: false,
-              line: false,
+              tickLine: undefined,
+              label: undefined,
+              title: undefined,
+              line: undefined,
             }}
             data={activeData}
           />

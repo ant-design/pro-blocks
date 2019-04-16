@@ -11,7 +11,6 @@
     "url": "https://github.com/umijs/umi-blocks/ant-design-pro/cardlist"
   },
   "dependencies": {
-    "@ant-design/pro-layout": "^4.0.5",
     "ant-design-pro": "^2.1.1",
     "antd": "^3.10.9",
     "dva": "^2.4.0",

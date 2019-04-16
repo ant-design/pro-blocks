@@ -11,13 +11,18 @@
     "url": "https://github.com/umijs/umi-blocks/ant-design-pro/monitor"
   },
   "dependencies": {
+    "@antv/data-set": "^0.10.2",
     "antd": "^3.10.9",
+    "bizcharts": "^3.5.2",
+    "bizcharts-plugin-slider": "^2.1.1-beta.1",
     "dva": "^2.4.0",
     "numeral": "^2.0.6",
-    "react": "^16.6.3",
+    "react": "^16.8.6",
+    "react-fittext": "^1.0.0",
     "umi-request": "^1.0.0"
   },
   "devDependencies": {
+    "@types/numeral": "^0.0.25",
     "mockjs": "^1.0.1-beta3",
     "umi": "^2.6.9",
     "umi-plugin-react": "^1.7.2",

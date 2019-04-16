@@ -14,3 +14,4 @@ declare var APP_TYPE: string;
 
 declare module 'react-fittext';
 declare module '@antv/data-set';
+declare module 'mockjs';
