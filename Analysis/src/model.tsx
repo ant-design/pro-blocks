@@ -1,6 +1,28 @@
 import { fakeChartData } from './service';
+import { IAnalysisData } from './data';
+import { Reducer } from 'redux';
+import { EffectsCommandMap } from 'dva';
+import { AnyAction } from 'redux';
 
-export default {
+export type Effect = (
+  action: AnyAction,
+  effects: EffectsCommandMap & { select: <T>(func: (state: IAnalysisData) => T) => T }
+) => void;
+
+export interface ModelType {
+  namespace: string;
+  state: IAnalysisData;
+  effects: {
+    fetch: Effect;
+    fetchSalesData: Effect;
+  };
+  reducers: {
+    save: Reducer<IAnalysisData>;
+    clear: Reducer<IAnalysisData>;
+  };
+}
+
+const Model: ModelType = {
   namespace: 'BLOCK_NAME_CAMEL_CASE',
 
   state: {
@@ -14,7 +36,6 @@ export default {
     salesTypeDataOnline: [],
     salesTypeDataOffline: [],
     radarData: [],
-    loading: false,
   },
 
   effects: {
@@ -59,3 +80,5 @@ export default {
     },
   },
 };
+
+export default Model;

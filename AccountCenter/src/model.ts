@@ -1,14 +1,31 @@
 import { queryCurrent } from './service';
-import { Dispatch } from 'redux';
 import { CurrentUser } from './data';
 
 export interface ModalState {
-  currentUser: CurrentUser;
+  currentUser: Partial<CurrentUser>;
 }
 
-type callType<T, A extends any[], R> = (thisArg?: T, ...args: A) => R;
-Function.call;
-export default {
+import { Reducer } from 'redux';
+import { EffectsCommandMap } from 'dva';
+import { AnyAction } from 'redux';
+
+export type Effect = (
+  action: AnyAction,
+  effects: EffectsCommandMap & { select: <T>(func: (state: ModalState) => T) => T }
+) => void;
+
+export interface ModelType {
+  namespace: string;
+  state: ModalState;
+  effects: {
+    fetchCurrent: Effect;
+  };
+  reducers: {
+    saveCurrentUser: Reducer<ModalState>;
+  };
+}
+
+const Model: ModelType = {
   namespace: 'BLOCK_NAME_CAMEL_CASE',
 
   state: {
@@ -16,16 +33,7 @@ export default {
   },
 
   effects: {
-    *fetchCurrent(
-      _: ModalState,
-      {
-        call,
-        put,
-      }: {
-        call: callType<Function, [], ReturnType<typeof queryCurrent>>;
-        put: Dispatch;
-      }
-    ) {
+    *fetchCurrent(_, { call, put }) {
       const response = yield call(queryCurrent);
       yield put({
         type: 'saveCurrentUser',
@@ -35,12 +43,7 @@ export default {
   },
 
   reducers: {
-    saveCurrentUser(
-      state: ModalState,
-      action: {
-        payload: CurrentUser;
-      }
-    ) {
+    saveCurrentUser(state, action) {
       return {
         ...state,
         currentUser: action.payload || {},
@@ -48,3 +51,5 @@ export default {
     },
   },
 };
+
+export default Model;

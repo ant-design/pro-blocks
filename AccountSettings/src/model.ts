@@ -1,13 +1,47 @@
 import { query as queryUsers, queryCurrent, queryProvince, queryCity } from './service';
+import { Reducer } from 'redux';
+import { EffectsCommandMap } from 'dva';
+import { AnyAction } from 'redux';
+import { CurrentUser, City, Province } from './data';
 
-export default {
+export interface ModalState {
+  currentUser?: Partial<CurrentUser>;
+  province?: Province[];
+  city?: City[];
+  isLoading?: boolean;
+}
+
+export type Effect = (
+  action: AnyAction,
+  effects: EffectsCommandMap & { select: <T>(func: (state: ModalState) => T) => T }
+) => void;
+
+export interface ModelType {
+  namespace: string;
+  state: ModalState;
+  effects: {
+    fetchCurrent: Effect;
+    fetch: Effect;
+    fetchProvince: Effect;
+    fetchCity: Effect;
+  };
+  reducers: {
+    saveCurrentUser: Reducer<ModalState>;
+    changeNotifyCount: Reducer<ModalState>;
+    setProvince: Reducer<ModalState>;
+    setCity: Reducer<ModalState>;
+    changeLoading: Reducer<ModalState>;
+  };
+}
+
+const Model: ModelType = {
   namespace: 'BLOCK_NAME_CAMEL_CASE',
 
   state: {
-    list: [],
     currentUser: {},
     province: [],
     city: [],
+    isLoading: false,
   },
 
   effects: {
@@ -46,19 +80,13 @@ export default {
   },
 
   reducers: {
-    save(state, action) {
-      return {
-        ...state,
-        list: action.payload,
-      };
-    },
     saveCurrentUser(state, action) {
       return {
         ...state,
         currentUser: action.payload || {},
       };
     },
-    changeNotifyCount(state, action) {
+    changeNotifyCount(state = {}, action) {
       return {
         ...state,
         currentUser: {
@@ -88,3 +116,5 @@ export default {
     },
   },
 };
+
+export default Model;

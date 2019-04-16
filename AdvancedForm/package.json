@@ -2,15 +2,17 @@
   "name": "@umi-block/advanced-form",
   "version": "0.0.1",
   "description": "AdvancedForm",
-  "main": "src/index.js",
-  "scripts": {
-    "dev": "umi dev"
-  },
   "repository": {
     "type": "git",
     "url": "https://github.com/umijs/umi-blocks/ant-design-pro/advancedform"
   },
+  "license": "ISC",
+  "main": "src/index.js",
+  "scripts": {
+    "dev": "umi dev"
+  },
   "dependencies": {
+    "@ant-design/pro-layout": "^4.0.5",
     "ant-design-pro": "^2.1.1",
     "antd": "^3.10.9",
     "dva": "^2.4.0",
@@ -20,8 +22,7 @@
   },
   "devDependencies": {
     "umi": "^2.6.9",
-    "umi-plugin-react": "^1.7.2",
-    "umi-plugin-block-dev": "^1.0.0"
-  },
-  "license": "ISC"
+    "umi-plugin-block-dev": "^1.0.0",
+    "umi-plugin-react": "^1.7.2"
+  }
 }

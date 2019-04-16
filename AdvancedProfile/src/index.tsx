@@ -24,6 +24,7 @@ import { TabsProps } from 'antd/lib/tabs';
 import classNames from 'classnames';
 import DescriptionList from './DescriptionList';
 import styles from './style.less';
+import { AdvancedProfileData } from './data';
 
 const { Step } = Steps;
 const { Description } = DescriptionList;
@@ -230,45 +231,13 @@ const columns = [
     key: 'memo',
   },
 ];
-export interface AdvancedOperation1 {
-  key: string;
-  type: string;
-  name: string;
-  status: string;
-  updatedAt: string;
-  memo: string;
-}
-
-export interface AdvancedOperation2 {
-  key: string;
-  type: string;
-  name: string;
-  status: string;
-  updatedAt: string;
-  memo: string;
-}
-
-export interface AdvancedOperation3 {
-  key: string;
-  type: string;
-  name: string;
-  status: string;
-  updatedAt: string;
-  memo: string;
-}
-
-export interface RootDataObject {
-  advancedOperation1: AdvancedOperation1[];
-  advancedOperation2: AdvancedOperation2[];
-  advancedOperation3: AdvancedOperation3[];
-}
 
 @connect(
   ({
     BLOCK_NAME_CAMEL_CASE,
     loading,
   }: {
-    BLOCK_NAME_CAMEL_CASE: RootDataObject;
+    BLOCK_NAME_CAMEL_CASE: AdvancedProfileData;
     loading: {
       effects: { [key: string]: boolean };
     };
@@ -278,7 +247,7 @@ export interface RootDataObject {
   })
 )
 class PAGE_NAME_UPPER_CAMEL_CASE extends Component<
-  { loading: boolean; BLOCK_NAME_CAMEL_CASE: RootDataObject; dispatch: Dispatch },
+  { loading: boolean; BLOCK_NAME_CAMEL_CASE: AdvancedProfileData; dispatch: Dispatch },
   {
     operationKey: string;
     stepDirection: 'horizontal' | 'vertical';

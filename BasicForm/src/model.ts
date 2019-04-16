@@ -14,17 +14,16 @@ export interface ModelType {
   namespace: string;
   state: ModalState;
   effects: {
-    submitAdvancedForm: Effect;
+    submitRegularForm: Effect;
   };
 }
-
 const Model: ModelType = {
   namespace: 'BLOCK_NAME_CAMEL_CASE',
 
   state: {},
 
   effects: {
-    *submitAdvancedForm({ payload }, { call }) {
+    *submitRegularForm({ payload }, { call }) {
       yield call(fakeSubmitForm, payload);
       message.success('提交成功');
     },

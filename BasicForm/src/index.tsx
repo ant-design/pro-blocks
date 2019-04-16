@@ -1,4 +1,4 @@
-import React, { PureComponent } from 'react';
+import React, { Component } from 'react';
 import { connect } from 'dva';
 import { formatMessage, FormattedMessage } from 'umi-plugin-react/locale';
 import {
@@ -15,18 +15,24 @@ import {
 } from 'antd';
 import PageHeaderWrapper from './components/PageHeaderWrapper';
 import styles from './style.less';
+import { FormComponentProps } from 'antd/lib/form';
+import { Dispatch } from 'redux';
 
 const FormItem = Form.Item;
 const { Option } = Select;
 const { RangePicker } = DatePicker;
 const { TextArea } = Input;
 
-@connect(({ loading }) => ({
+interface PAGE_NAME_UPPER_CAMEL_CASEProps extends FormComponentProps {
+  submitting: boolean;
+  dispatch: Dispatch;
+}
+
+@connect(({ loading }: { loading: { effects: { [key: string]: boolean } } }) => ({
   submitting: loading.effects['BLOCK_NAME_CAMEL_CASE/submitRegularForm'],
 }))
-@Form.create()
-class PAGE_NAME_UPPER_CAMEL_CASE extends PureComponent {
-  handleSubmit = e => {
+class PAGE_NAME_UPPER_CAMEL_CASE extends Component<PAGE_NAME_UPPER_CAMEL_CASEProps> {
+  handleSubmit = (e: React.FormEvent) => {
     const { dispatch, form } = this.props;
     e.preventDefault();
     form.validateFieldsAndScroll((err, values) => {
@@ -247,4 +253,4 @@ class PAGE_NAME_UPPER_CAMEL_CASE extends PureComponent {
   }
 }
 
-export default PAGE_NAME_UPPER_CAMEL_CASE;
+export default Form.create()(PAGE_NAME_UPPER_CAMEL_CASE);

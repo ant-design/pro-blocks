@@ -15,7 +15,8 @@
     "antd": "^3.10.9",
     "dva": "^2.4.0",
     "react": "^16.6.3",
-    "umi-request": "^1.0.0"
+    "umi-request": "^1.0.0",
+    "@ant-design/pro-layout": "^4.0.5"
   },
   "devDependencies": {
     "umi": "^2.6.9",
