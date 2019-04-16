@@ -1,17 +1,44 @@
-import React, { PureComponent } from 'react';
+import React, { Component } from 'react';
 import { connect } from 'dva';
-import { Card, Button, Icon, List } from 'antd';
-
-import { Ellipsis } from 'ant-design-pro';
+import { Dispatch } from 'redux';
+import { IStateType } from './model';
+import { CardListItemDataType } from './data';
+import { Card, Button, Typography, Icon, List } from 'antd';
 import PageHeaderWrapper from './components/PageHeaderWrapper';
+
+const { Paragraph } = Typography;
 
 import styles from './style.less';
 
-@connect(({ BLOCK_NAME_CAMEL_CASE, loading }) => ({
-  BLOCK_NAME_CAMEL_CASE,
-  loading: loading.models.list,
-}))
-class PAGE_NAME_UPPER_CAMEL_CASE extends PureComponent {
+interface PAGE_NAME_UPPER_CAMEL_CASEProps {
+  BLOCK_NAME_CAMEL_CASE: IStateType;
+  dispatch: Dispatch;
+  loading: boolean;
+}
+interface PAGE_NAME_UPPER_CAMEL_CASEState {
+  visible: boolean;
+  done: boolean;
+  current?: Partial<CardListItemDataType>;
+}
+
+@connect(
+  ({
+    BLOCK_NAME_CAMEL_CASE,
+    loading,
+  }: {
+    BLOCK_NAME_CAMEL_CASE: IStateType;
+    loading: {
+      models: { [key: string]: boolean };
+    };
+  }) => ({
+    BLOCK_NAME_CAMEL_CASE,
+    loading: loading.models.list,
+  })
+)
+class PAGE_NAME_UPPER_CAMEL_CASE extends Component<
+  PAGE_NAME_UPPER_CAMEL_CASEProps,
+  PAGE_NAME_UPPER_CAMEL_CASEState
+> {
   componentDidMount() {
     const { dispatch } = this.props;
     dispatch({
@@ -59,7 +86,7 @@ class PAGE_NAME_UPPER_CAMEL_CASE extends PureComponent {
         />
       </div>
     );
-
+    const nullData = {} as CardListItemDataType;
     return (
       <PageHeaderWrapper title="卡片列表" content={content} extraContent={extraContent}>
         <div className={styles.cardList}>
@@ -67,7 +94,7 @@ class PAGE_NAME_UPPER_CAMEL_CASE extends PureComponent {
             rowKey="id"
             loading={loading}
             grid={{ gutter: 24, lg: 3, md: 2, sm: 1, xs: 1 }}
-            dataSource={['', ...list]}
+            dataSource={[nullData, ...list]}
             renderItem={item =>
               item ? (
                 <List.Item key={item.id}>
@@ -76,9 +103,9 @@ class PAGE_NAME_UPPER_CAMEL_CASE extends PureComponent {
                       avatar={<img alt="" className={styles.cardAvatar} src={item.avatar} />}
                       title={<a>{item.title}</a>}
                       description={
-                        <Ellipsis className={styles.item} lines={3}>
+                        <Paragraph className={styles.item} ellipsis={{ rows: 3 }}>
                           {item.description}
-                        </Ellipsis>
+                        </Paragraph>
                       }
                     />
                   </Card>

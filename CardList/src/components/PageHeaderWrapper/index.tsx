@@ -2,16 +2,19 @@ import React from 'react';
 import { RouteContext } from '@ant-design/pro-layout';
 import { PageHeader, Typography } from 'antd';
 import styles from './index.less';
+import { GridContent } from '@ant-design/pro-layout';
 
 interface IPageHeaderWrapperProps {
-  content: React.ReactNode;
+  content?: React.ReactNode;
   title: React.ReactNode;
+  extraContent?: React.ReactNode;
 }
 
 const PageHeaderWrapper: React.SFC<IPageHeaderWrapperProps> = ({
   children,
   title,
   content,
+  extraContent,
   ...restProps
 }) => (
   <RouteContext.Consumer>
@@ -31,9 +34,20 @@ const PageHeaderWrapper: React.SFC<IPageHeaderWrapperProps> = ({
           {...restProps}
           {...value}
         >
-          {content}
+          <div className={styles.detail}>
+            <div className={styles.main}>
+              <div className={styles.row}>
+                {content && <div className={styles.content}>{content}</div>}
+                {extraContent && <div className={styles.extraContent}>{extraContent}</div>}
+              </div>
+            </div>
+          </div>
         </PageHeader>
-        {children ? <div className={styles.content}>{children}</div> : null}
+        {children ? (
+          <GridContent>
+            <div className={styles['children-content']}>{children}</div>
+          </GridContent>
+        ) : null}
       </div>
     )}
   </RouteContext.Consumer>
