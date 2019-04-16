@@ -1,5 +1,4 @@
-import React, { PureComponent } from 'react';
-import { FormattedMessage } from 'umi-plugin-react/locale';
+import React, { Component } from 'react';
 import { findDOMNode } from 'react-dom';
 import moment from 'moment';
 import { connect } from 'dva';
@@ -21,8 +20,12 @@ import {
   DatePicker,
   Select,
 } from 'antd';
-
-import { Result } from 'ant-design-pro';
+import { FormComponentProps } from 'antd/lib/form';
+import { IStateType } from './model';
+import { Dispatch } from 'redux';
+import { BasicListItemDataType } from './data';
+import Result from './Result';
+import { GridContent } from '@ant-design/pro-layout';
 
 import styles from './style.less';
 
@@ -32,13 +35,35 @@ const RadioGroup = Radio.Group;
 const SelectOption = Select.Option;
 const { Search, TextArea } = Input;
 
-@connect(({ BLOCK_NAME_CAMEL_CASE, loading }) => ({
-  BLOCK_NAME_CAMEL_CASE,
-  loading: loading.models.BLOCK_NAME_CAMEL_CASE,
-}))
-@Form.create()
-class PAGE_NAME_UPPER_CAMEL_CASE extends PureComponent {
-  state = { visible: false, done: false };
+interface PAGE_NAME_UPPER_CAMEL_CASEProps extends FormComponentProps {
+  BLOCK_NAME_CAMEL_CASE: IStateType;
+  dispatch: Dispatch;
+  loading: boolean;
+}
+interface PAGE_NAME_UPPER_CAMEL_CASEState {
+  visible: boolean;
+  done: boolean;
+  current?: Partial<BasicListItemDataType>;
+}
+@connect(
+  ({
+    BLOCK_NAME_CAMEL_CASE,
+    loading,
+  }: {
+    BLOCK_NAME_CAMEL_CASE: IStateType;
+    loading: {
+      models: { [key: string]: boolean };
+    };
+  }) => ({
+    BLOCK_NAME_CAMEL_CASE,
+    loading: loading.models.BLOCK_NAME_CAMEL_CASE,
+  })
+)
+class PAGE_NAME_UPPER_CAMEL_CASE extends Component<
+  PAGE_NAME_UPPER_CAMEL_CASEProps,
+  PAGE_NAME_UPPER_CAMEL_CASEState
+> {
+  state: PAGE_NAME_UPPER_CAMEL_CASEState = { visible: false, done: false, current: undefined };
 
   formLayout = {
     labelCol: { span: 7 },
@@ -62,7 +87,7 @@ class PAGE_NAME_UPPER_CAMEL_CASE extends PureComponent {
     });
   };
 
-  showEditModal = item => {
+  showEditModal = (item: BasicListItemDataType) => {
     this.setState({
       visible: true,
       current: item,
@@ -70,7 +95,7 @@ class PAGE_NAME_UPPER_CAMEL_CASE extends PureComponent {
   };
 
   handleDone = () => {
-    setTimeout(() => this.addBtn.blur(), 0);
+    setTimeout(() => this.addBtn && this.addBtn.blur(), 0);
     this.setState({
       done: false,
       visible: false,
@@ -78,20 +103,20 @@ class PAGE_NAME_UPPER_CAMEL_CASE extends PureComponent {
   };
 
   handleCancel = () => {
-    setTimeout(() => this.addBtn.blur(), 0);
+    setTimeout(() => this.addBtn && this.addBtn.blur(), 0);
     this.setState({
       visible: false,
     });
   };
 
-  handleSubmit = e => {
+  handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     const { dispatch, form } = this.props;
     const { current } = this.state;
     const id = current ? current.id : '';
 
-    setTimeout(() => this.addBtn.blur(), 0);
-    form.validateFields((err, fieldsValue) => {
+    setTimeout(() => this.addBtn && this.addBtn.blur(), 0);
+    form.validateFields((err: string | undefined, fieldsValue: BasicListItemDataType) => {
       if (err) return;
       this.setState({
         done: true,
@@ -103,13 +128,14 @@ class PAGE_NAME_UPPER_CAMEL_CASE extends PureComponent {
     });
   };
 
-  deleteItem = id => {
+  deleteItem = (id: string) => {
     const { dispatch } = this.props;
     dispatch({
       type: 'BLOCK_NAME_CAMEL_CASE/submit',
       payload: { id },
     });
   };
+  addBtn: HTMLButtonElement | undefined | null;
 
   render() {
     const {
@@ -119,9 +145,10 @@ class PAGE_NAME_UPPER_CAMEL_CASE extends PureComponent {
     const {
       form: { getFieldDecorator },
     } = this.props;
+
     const { visible, done, current = {} } = this.state;
 
-    const editAndDelete = (key, currentItem) => {
+    const editAndDelete = (key: string, currentItem: BasicListItemDataType) => {
       if (key === 'edit') this.showEditModal(currentItem);
       else if (key === 'delete') {
         Modal.confirm({
@@ -138,7 +165,11 @@ class PAGE_NAME_UPPER_CAMEL_CASE extends PureComponent {
       ? { footer: null, onCancel: this.handleDone }
       : { okText: '保存', onOk: this.handleSubmit, onCancel: this.handleCancel };
 
-    const Info = ({ title, value, bordered }) => (
+    const Info: React.SFC<{
+      title: React.ReactNode;
+      value: React.ReactNode;
+      bordered?: boolean;
+    }> = ({ title, value, bordered }) => (
       <div className={styles.headerInfo}>
         <span>{title}</span>
         <p>{value}</p>
@@ -164,7 +195,11 @@ class PAGE_NAME_UPPER_CAMEL_CASE extends PureComponent {
       total: 50,
     };
 
-    const ListContent = ({ data: { owner, createdAt, percent, status } }) => (
+    const ListContent = ({
+      data: { owner, createdAt, percent, status },
+    }: {
+      data: BasicListItemDataType;
+    }) => (
       <div className={styles.listContent}>
         <div className={styles.listContentItem}>
           <span>Owner</span>
@@ -180,10 +215,12 @@ class PAGE_NAME_UPPER_CAMEL_CASE extends PureComponent {
       </div>
     );
 
-    const MoreBtn = props => (
+    const MoreBtn: React.SFC<{
+      current: BasicListItemDataType;
+    }> = ({ current }) => (
       <Dropdown
         overlay={
-          <Menu onClick={({ key }) => editAndDelete(key, props.current)}>
+          <Menu onClick={({ key }) => editAndDelete(key, current)}>
             <Menu.Item key="edit">编辑</Menu.Item>
             <Menu.Item key="delete">删除</Menu.Item>
           </Menu>
@@ -254,73 +291,76 @@ class PAGE_NAME_UPPER_CAMEL_CASE extends PureComponent {
     };
     return (
       <React.Fragment>
-        <div className={styles.standardList}>
-          <Card bordered={false}>
-            <Row>
-              <Col sm={8} xs={24}>
-                <Info title="我的待办" value="8个任务" bordered />
-              </Col>
-              <Col sm={8} xs={24}>
-                <Info title="本周任务平均处理时间" value="32分钟" bordered />
-              </Col>
-              <Col sm={8} xs={24}>
-                <Info title="本周完成任务数" value="24个任务" />
-              </Col>
-            </Row>
-          </Card>
+        <GridContent>
+          <div className={styles.standardList}>
+            <Card bordered={false}>
+              <Row>
+                <Col sm={8} xs={24}>
+                  <Info title="我的待办" value="8个任务" bordered />
+                </Col>
+                <Col sm={8} xs={24}>
+                  <Info title="本周任务平均处理时间" value="32分钟" bordered />
+                </Col>
+                <Col sm={8} xs={24}>
+                  <Info title="本周完成任务数" value="24个任务" />
+                </Col>
+              </Row>
+            </Card>
 
-          <Card
-            className={styles.listCard}
-            bordered={false}
-            title={<FormattedMessage id="BLOCK_NAME.list.basiclist" defaultMessage="Basic List" />}
-            style={{ marginTop: 24 }}
-            bodyStyle={{ padding: '0 32px 40px 32px' }}
-            extra={extraContent}
-          >
-            <Button
-              type="dashed"
-              style={{ width: '100%', marginBottom: 8 }}
-              icon="plus"
-              onClick={this.showModal}
-              ref={component => {
-                /* eslint-disable */
-                this.addBtn = findDOMNode(component);
-                /* eslint-enable */
-              }}
+            <Card
+              className={styles.listCard}
+              bordered={false}
+              title="基本列表"
+              style={{ marginTop: 24 }}
+              bodyStyle={{ padding: '0 32px 40px 32px' }}
+              extra={extraContent}
             >
-              添加
-            </Button>
-            <List
-              size="large"
-              rowKey="id"
-              loading={loading}
-              pagination={paginationProps}
-              dataSource={list}
-              renderItem={item => (
-                <List.Item
-                  actions={[
-                    <a
-                      onClick={e => {
-                        e.preventDefault();
-                        this.showEditModal(item);
-                      }}
-                    >
-                      编辑
-                    </a>,
-                    <MoreBtn current={item} />,
-                  ]}
-                >
-                  <List.Item.Meta
-                    avatar={<Avatar src={item.logo} shape="square" size="large" />}
-                    title={<a href={item.href}>{item.title}</a>}
-                    description={item.subDescription}
-                  />
-                  <ListContent data={item} />
-                </List.Item>
-              )}
-            />
-          </Card>
-        </div>
+              <Button
+                type="dashed"
+                style={{ width: '100%', marginBottom: 8 }}
+                icon="plus"
+                onClick={this.showModal}
+                ref={component => {
+                  /* eslint-disable */
+                  this.addBtn = findDOMNode(component) as HTMLButtonElement;
+                  /* eslint-enable */
+                }}
+              >
+                添加
+              </Button>
+              <List
+                size="large"
+                rowKey="id"
+                loading={loading}
+                pagination={paginationProps}
+                dataSource={list}
+                renderItem={item => (
+                  <List.Item
+                    actions={[
+                      <a
+                        onClick={e => {
+                          e.preventDefault();
+                          this.showEditModal(item);
+                        }}
+                      >
+                        编辑
+                      </a>,
+                      <MoreBtn current={item} />,
+                    ]}
+                  >
+                    <List.Item.Meta
+                      avatar={<Avatar src={item.logo} shape="square" size="large" />}
+                      title={<a href={item.href}>{item.title}</a>}
+                      description={item.subDescription}
+                    />
+                    <ListContent data={item} />
+                  </List.Item>
+                )}
+              />
+            </Card>
+          </div>
+        </GridContent>
+
         <Modal
           title={done ? null : `任务${current ? '编辑' : '添加'}`}
           className={styles.standardListForm}
@@ -337,4 +377,4 @@ class PAGE_NAME_UPPER_CAMEL_CASE extends PureComponent {
   }
 }
 
-export default PAGE_NAME_UPPER_CAMEL_CASE;
+export default Form.create()(PAGE_NAME_UPPER_CAMEL_CASE);

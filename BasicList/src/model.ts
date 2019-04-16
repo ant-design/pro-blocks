@@ -1,6 +1,33 @@
 import { queryFakeList, removeFakeList, addFakeList, updateFakeList } from './service';
+import { BasicListItemDataType } from './data';
+import { Reducer } from 'redux';
+import { EffectsCommandMap } from 'dva';
+import { AnyAction } from 'redux';
 
-export default {
+export interface IStateType {
+  list: BasicListItemDataType[];
+}
+
+export type Effect = (
+  action: AnyAction,
+  effects: EffectsCommandMap & { select: <T>(func: (state: IStateType) => T) => T }
+) => void;
+
+export interface ModelType {
+  namespace: string;
+  state: IStateType;
+  effects: {
+    fetch: Effect;
+    appendFetch: Effect;
+    submit: Effect;
+  };
+  reducers: {
+    queryList: Reducer<IStateType>;
+    appendList: Reducer<IStateType>;
+  };
+}
+
+const Model: ModelType = {
   namespace: 'BLOCK_NAME_CAMEL_CASE',
 
   state: {
@@ -44,7 +71,7 @@ export default {
         list: action.payload,
       };
     },
-    appendList(state, action) {
+    appendList(state = { list: [] }, action) {
       return {
         ...state,
         list: state.list.concat(action.payload),
@@ -52,3 +79,5 @@ export default {
     },
   },
 };
+
+export default Model;

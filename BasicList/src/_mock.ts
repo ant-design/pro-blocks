@@ -1,3 +1,5 @@
+import { BasicListItemDataType } from './data';
+
 const titles = [
   'Alipay',
   'Angular',
@@ -46,7 +48,7 @@ const user = [
   '仲尼',
 ];
 
-function fakeList(count) {
+function fakeList(count: number): BasicListItemDataType[] {
   const list = [];
   for (let i = 0; i < count; i += 1) {
     list.push({
@@ -54,13 +56,13 @@ function fakeList(count) {
       owner: user[i % 10],
       title: titles[i % 8],
       avatar: avatars[i % 8],
-      cover: parseInt(i / 4, 10) % 2 === 0 ? covers[i % 4] : covers[3 - (i % 4)],
+      cover: parseInt(i / 4 + '', 10) % 2 === 0 ? covers[i % 4] : covers[3 - (i % 4)],
       status: ['active', 'exception', 'normal'][i % 3],
       percent: Math.ceil(Math.random() * 50) + 50,
       logo: avatars[i % 8],
       href: 'https://ant.design',
-      updatedAt: new Date(new Date().getTime() - 1000 * 60 * 60 * 2 * i),
-      createdAt: new Date(new Date().getTime() - 1000 * 60 * 60 * 2 * i),
+      updatedAt: new Date(new Date().getTime() - 1000 * 60 * 60 * 2 * i).getTime(),
+      createdAt: new Date(new Date().getTime() - 1000 * 60 * 60 * 2 * i).getTime(),
       subDescription: desc[i % 5],
       description:
         '在中台产品的研发过程中，会出现不同的设计规范和实现方式，但其中往往存在很多类似的页面和组件，这些类似的组件会被抽离成一套标准规范。',
@@ -94,9 +96,9 @@ function fakeList(count) {
   return list;
 }
 
-let sourceData;
+let sourceData: Array<BasicListItemDataType>;
 
-function getFakeList(req, res) {
+function getFakeList(req: { query: any }, res: { json: (arg0: BasicListItemDataType[]) => void }) {
   const params = req.query;
 
   const count = params.count * 1 || 20;
@@ -106,7 +108,7 @@ function getFakeList(req, res) {
   return res.json(result);
 }
 
-function postFakeList(req, res) {
+function postFakeList(req: { body: any }, res: { json: (arg0: BasicListItemDataType[]) => void }) {
   const { /* url = '', */ body } = req;
   // const params = getUrlParams(url);
   const { method, id } = body;
@@ -126,7 +128,7 @@ function postFakeList(req, res) {
       break;
     case 'post':
       result.unshift({
-        body,
+        ...body,
         id: `fake-list-${result.length}`,
         createdAt: new Date().getTime(),
       });

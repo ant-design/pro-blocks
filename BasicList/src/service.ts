@@ -1,12 +1,17 @@
 import request from 'umi-request';
+import { BasicListItemDataType } from './data';
 
-export async function queryFakeList(params) {
+interface ParamsType extends Partial<BasicListItemDataType> {
+  count?: number;
+}
+
+export async function queryFakeList(params: ParamsType) {
   return request('/api/BLOCK_NAME/fake_list', {
     params,
   });
 }
 
-export async function removeFakeList(params) {
+export async function removeFakeList(params: ParamsType) {
   const { count = 5, ...restParams } = params;
   return request('/api/BLOCK_NAME/fake_list', {
     method: 'POST',
@@ -20,7 +25,7 @@ export async function removeFakeList(params) {
   });
 }
 
-export async function addFakeList(params) {
+export async function addFakeList(params: ParamsType) {
   const { count = 5, ...restParams } = params;
   return request('/api/BLOCK_NAME/fake_list', {
     method: 'POST',
@@ -34,7 +39,7 @@ export async function addFakeList(params) {
   });
 }
 
-export async function updateFakeList(params) {
+export async function updateFakeList(params: ParamsType) {
   const { count = 5, ...restParams } = params;
   return request('/api/BLOCK_NAME/fake_list', {
     method: 'POST',
