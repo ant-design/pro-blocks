@@ -3,7 +3,7 @@ import { formatMessage } from 'umi-plugin-react/locale';
 import Link from 'umi/link';
 import Exception from './components/Exception';
 
-const PAGE_NAME_UPPER_CAMEL_CASE: React.FC = () => (
+const PAGE_NAME_UPPER_CAMEL_CASE: React.SFC = () => (
   <Exception
     type="404"
     linkElement={Link}
