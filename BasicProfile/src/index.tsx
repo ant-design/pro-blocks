@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
 import { connect } from 'dva';
 import { Card, Badge, Table, Divider } from 'antd';
-import { DescriptionList } from 'ant-design-pro';
+import DescriptionList from './components/DescriptionList';
 import PageHeaderWrapper from './components/PageHeaderWrapper';
 import styles from './style.less';
-
+import { BasicProfileDataType, BasicGood } from './data';
+import { Dispatch } from 'redux';
 const { Description } = DescriptionList;
 
 const progressColumns = [
@@ -22,7 +23,7 @@ const progressColumns = [
     title: '状态',
     dataIndex: 'status',
     key: 'status',
-    render: text =>
+    render: (text: string) =>
       text === 'success' ? (
         <Badge status="success" text="成功" />
       ) : (
@@ -41,11 +42,33 @@ const progressColumns = [
   },
 ];
 
-@connect(({ BLOCK_NAME_CAMEL_CASE, loading }) => ({
-  BLOCK_NAME_CAMEL_CASE,
-  loading: loading.effects['BLOCK_NAME_CAMEL_CASE/fetchBasic'],
-}))
-class PAGE_NAME_UPPER_CAMEL_CASE extends Component {
+interface PAGE_NAME_UPPER_CAMEL_CASEProps {
+  loading: boolean;
+  dispatch: Dispatch;
+  BLOCK_NAME_CAMEL_CASE: BasicProfileDataType;
+}
+interface PAGE_NAME_UPPER_CAMEL_CASEState {
+  visible: boolean;
+}
+
+@connect(
+  ({
+    BLOCK_NAME_CAMEL_CASE,
+    loading,
+  }: {
+    BLOCK_NAME_CAMEL_CASE: BasicProfileDataType;
+    loading: {
+      effects: { [key: string]: boolean };
+    };
+  }) => ({
+    BLOCK_NAME_CAMEL_CASE,
+    loading: loading.effects['BLOCK_NAME_CAMEL_CASE/fetchBasic'],
+  })
+)
+class PAGE_NAME_UPPER_CAMEL_CASE extends Component<
+  PAGE_NAME_UPPER_CAMEL_CASEProps,
+  PAGE_NAME_UPPER_CAMEL_CASEState
+> {
   componentDidMount() {
     const { dispatch } = this.props;
     dispatch({
@@ -56,7 +79,7 @@ class PAGE_NAME_UPPER_CAMEL_CASE extends Component {
   render() {
     const { BLOCK_NAME_CAMEL_CASE, loading } = this.props;
     const { basicGoods, basicProgress } = BLOCK_NAME_CAMEL_CASE;
-    let goodsData = [];
+    let goodsData: typeof basicGoods = [];
     if (basicGoods.length) {
       let num = 0;
       let amount = 0;
@@ -68,12 +91,14 @@ class PAGE_NAME_UPPER_CAMEL_CASE extends Component {
         id: '总计',
         num,
         amount,
-      });
+      } as BasicGood);
     }
-    const renderContent = (value, row, index) => {
+    const renderContent = (value: any, row: any, index: any) => {
       const obj = {
         children: value,
-        props: {},
+        props: {} as {
+          colSpan?: number;
+        },
       };
       if (index === basicGoods.length) {
         obj.props.colSpan = 0;
@@ -85,7 +110,7 @@ class PAGE_NAME_UPPER_CAMEL_CASE extends Component {
         title: '商品编号',
         dataIndex: 'id',
         key: 'id',
-        render: (text, row, index) => {
+        render: (text: React.ReactNode, row: any, index: number) => {
           if (index < basicGoods.length) {
             return <a href="">{text}</a>;
           }
@@ -113,15 +138,15 @@ class PAGE_NAME_UPPER_CAMEL_CASE extends Component {
         title: '单价',
         dataIndex: 'price',
         key: 'price',
-        align: 'right',
+        align: 'right' as 'left' | 'right' | 'center',
         render: renderContent,
       },
       {
         title: '数量（件）',
         dataIndex: 'num',
         key: 'num',
-        align: 'right',
-        render: (text, row, index) => {
+        align: 'right' as 'left' | 'right' | 'center',
+        render: (text: React.ReactNode, row: any, index: number) => {
           if (index < basicGoods.length) {
             return text;
           }
@@ -132,8 +157,8 @@ class PAGE_NAME_UPPER_CAMEL_CASE extends Component {
         title: '金额',
         dataIndex: 'amount',
         key: 'amount',
-        align: 'right',
-        render: (text, row, index) => {
+        align: 'right' as 'left' | 'right' | 'center',
+        render: (text: React.ReactNode, row: any, index: number) => {
           if (index < basicGoods.length) {
             return text;
           }
