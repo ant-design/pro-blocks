@@ -11,3 +11,6 @@ declare module '*.bmp';
 declare module '*.tiff';
 
 declare var APP_TYPE: string;
+
+declare module 'react-fittext';
+declare module '@antv/data-set';

@@ -1,4 +1,3 @@
-/* eslint eqeqeq: 0 */
 import React from 'react';
 
 export type IReactComponent<P = any> =
@@ -7,6 +6,7 @@ export type IReactComponent<P = any> =
   | React.ClassicComponentClass<P>;
 
 function computeHeight(node: HTMLDivElement) {
+  node.style.height = '100%';
   const totalHeight = parseInt(getComputedStyle(node).height + '', 10);
   const padding =
     parseInt(getComputedStyle(node).paddingTop + '', 10) +
@@ -22,14 +22,9 @@ function getAutoHeight(n: HTMLDivElement) {
   let node = n;
 
   let height = computeHeight(node);
-
-  while (!height) {
-    const parentNode = node.parentNode as HTMLDivElement;
-    if (parentNode) {
-      height = computeHeight(parentNode);
-    } else {
-      break;
-    }
+  const parentNode = node.parentNode as HTMLDivElement;
+  if (parentNode) {
+    height = computeHeight(parentNode);
   }
 
   return height;
