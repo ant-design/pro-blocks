@@ -16,6 +16,7 @@
     "react": "^16.6.3",
     "umi-request": "^1.0.4",
     "umi": "^2.6.8",
+    "@ant-design/pro-layout": "^4.0.5",
     "umi-plugin-react": "^1.7.2"
   },
   "devDependencies": {

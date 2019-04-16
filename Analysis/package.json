@@ -12,6 +12,7 @@
     "dev": "umi dev"
   },
   "dependencies": {
+    "@ant-design/pro-layout": "^4.0.5",
     "@antv/data-set": "^0.10.2",
     "@types/numeral": "^0.0.25",
     "antd": "^3.10.9",

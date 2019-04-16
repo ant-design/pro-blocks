@@ -12,8 +12,7 @@
   },
   "dependencies": {
     "react": "^16.6.3",
-    "antd": "^3.10.9",
-    "ant-design-pro": "^2.1.1"
+    "antd": "^3.10.9"
   },
   "devDependencies": {
     "umi": "^2.6.9",
