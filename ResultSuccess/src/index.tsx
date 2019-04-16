@@ -1,7 +1,8 @@
 import React, { Fragment } from 'react';
 import { formatMessage, FormattedMessage } from 'umi-plugin-react/locale';
 import { Button, Row, Col, Icon, Steps, Card } from 'antd';
-import { Result } from 'ant-design-pro';
+import Result from './Result';
+import { GridContent } from '@ant-design/pro-layout';
 
 const { Step } = Steps;
 
@@ -43,7 +44,7 @@ const extra = (
       style={{
         fontSize: 16,
         color: 'rgba(0, 0, 0, 0.85)',
-        fontWeight: '500',
+        fontWeight: 500,
         marginBottom: 20,
       }}
     >
@@ -128,14 +129,16 @@ const actions = (
 );
 
 export default () => (
-  <Card bordered={false}>
-    <Result
-      type="success"
-      title={formatMessage({ id: 'BLOCK_NAME.success.title' })}
-      description={formatMessage({ id: 'BLOCK_NAME.success.description' })}
-      extra={extra}
-      actions={actions}
-      style={{ marginTop: 48, marginBottom: 16 }}
-    />
-  </Card>
+  <GridContent>
+    <Card bordered={false}>
+      <Result
+        type="success"
+        title={formatMessage({ id: 'BLOCK_NAME.success.title' })}
+        description={formatMessage({ id: 'BLOCK_NAME.success.description' })}
+        extra={extra}
+        actions={actions}
+        style={{ marginTop: 48, marginBottom: 16 }}
+      />
+    </Card>
+  </GridContent>
 );
