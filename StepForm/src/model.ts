@@ -1,6 +1,36 @@
 import { fakeSubmitForm } from './service';
+import { Reducer } from 'redux';
+import { EffectsCommandMap } from 'dva';
+import { AnyAction } from 'redux';
 
-export default {
+export interface IStateType {
+  current?: string;
+  step?: {
+    payAccount: string;
+    receiverAccount: string;
+    receiverName: string;
+    amount: string;
+  };
+}
+
+export type Effect = (
+  action: AnyAction,
+  effects: EffectsCommandMap & { select: <T>(func: (state: IStateType) => T) => T }
+) => void;
+
+export interface ModelType {
+  namespace: string;
+  state: IStateType;
+  effects: {
+    submitStepForm: Effect;
+  };
+  reducers: {
+    saveStepFormData: Reducer<IStateType>;
+    saveCurrentStep: Reducer<IStateType>;
+  };
+}
+
+const Model: ModelType = {
   namespace: 'BLOCK_NAME_CAMEL_CASE',
 
   state: {
@@ -39,10 +69,12 @@ export default {
       return {
         ...state,
         step: {
-          ...state.step,
+          ...state!.step,
           ...payload,
         },
       };
     },
   },
 };
+
+export default Model;

@@ -1,8 +1,10 @@
 import React from 'react';
 import { connect } from 'dva';
-import { Form, Input, Button, Alert, Divider } from 'antd';
-import { digitUppercase } from '../../utils/utils';
+import { Form, Input, Button, Alert, Divider, Statistic } from 'antd';
 import styles from './index.less';
+import { FormComponentProps } from 'antd/lib/form';
+import { IStateType } from '../../model';
+import { Dispatch } from 'redux';
 
 const formItemLayout = {
   labelCol: {
@@ -12,33 +14,38 @@ const formItemLayout = {
     span: 19,
   },
 };
+interface Step2Props extends FormComponentProps {
+  data?: IStateType['step'];
+  dispatch?: Dispatch;
+  submitting?: boolean;
+}
 
-@connect(({ BLOCK_NAME_CAMEL_CASE, loading }) => ({
-  submitting: loading.effects['BLOCK_NAME_CAMEL_CASE/submitStepForm'],
-  data: BLOCK_NAME_CAMEL_CASE.step,
-}))
-@Form.create()
-class Step2 extends React.PureComponent {
+class Step2 extends React.Component<Step2Props> {
   render() {
     const { form, data, dispatch, submitting } = this.props;
+    if (!data) {
+      return;
+    }
     const { getFieldDecorator, validateFields } = form;
     const onPrev = () => {
-      dispatch({
-        type: 'BLOCK_NAME_CAMEL_CASE/saveCurrentStep',
-        payload: 'info',
-      });
+      dispatch &&
+        dispatch({
+          type: 'BLOCK_NAME_CAMEL_CASE/saveCurrentStep',
+          payload: 'info',
+        });
     };
-    const onValidateForm = e => {
+    const onValidateForm = (e: React.FormEvent) => {
       e.preventDefault();
       validateFields((err, values) => {
         if (!err) {
-          dispatch({
-            type: 'BLOCK_NAME_CAMEL_CASE/submitStepForm',
-            payload: {
-              ...data,
-              ...values,
-            },
-          });
+          dispatch &&
+            dispatch({
+              type: 'BLOCK_NAME_CAMEL_CASE/submitStepForm',
+              payload: {
+                ...data,
+                ...values,
+              },
+            });
         }
       });
     };
@@ -61,7 +68,6 @@ class Step2 extends React.PureComponent {
         </Form.Item>
         <Form.Item {...formItemLayout} className={styles.stepFormText} label="转账金额">
           <span className={styles.money}>{data.amount}</span>
-          <span className={styles.uppercase}>（{digitUppercase(data.amount)}）</span>
         </Form.Item>
         <Divider style={{ margin: '24px 0' }} />
         <Form.Item {...formItemLayout} label="支付密码" required={false}>
@@ -97,5 +103,17 @@ class Step2 extends React.PureComponent {
     );
   }
 }
-
-export default Step2;
+export default connect(
+  ({
+    BLOCK_NAME_CAMEL_CASE,
+    loading,
+  }: {
+    BLOCK_NAME_CAMEL_CASE: IStateType;
+    loading: {
+      effects: { [key: string]: boolean };
+    };
+  }) => ({
+    submitting: loading.effects['BLOCK_NAME_CAMEL_CASE/submitStepForm'],
+    data: BLOCK_NAME_CAMEL_CASE.step,
+  })
+)(Form.create()(Step2));

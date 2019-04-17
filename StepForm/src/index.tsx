@@ -1,4 +1,4 @@
-import React, { PureComponent, Fragment } from 'react';
+import React, { Component, Fragment } from 'react';
 import { Card, Steps } from 'antd';
 import { connect } from 'dva';
 import PageHeaderWrapper from './components/PageHeaderWrapper';
@@ -6,13 +6,18 @@ import Step1 from './components/Step1';
 import Step2 from './components/Step2';
 import Step3 from './components/Step3';
 import styles from './style.less';
+import { IStateType } from './model';
 
 const { Step } = Steps;
 
-@connect(({ BLOCK_NAME_CAMEL_CASE }) => ({
+interface PAGE_NAME_UPPER_CAMEL_CASEProps {
+  current: IStateType['current'];
+}
+
+@connect(({ BLOCK_NAME_CAMEL_CASE }: { BLOCK_NAME_CAMEL_CASE: IStateType }) => ({
   current: BLOCK_NAME_CAMEL_CASE.current,
 }))
-class PAGE_NAME_UPPER_CAMEL_CASE extends PureComponent {
+class PAGE_NAME_UPPER_CAMEL_CASE extends Component<PAGE_NAME_UPPER_CAMEL_CASEProps> {
   getCurrentStep() {
     const { current } = this.props;
     switch (current) {

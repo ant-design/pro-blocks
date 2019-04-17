@@ -1,20 +1,40 @@
 import React, { Fragment } from 'react';
 import { connect } from 'dva';
 import { Button, Row, Col } from 'antd';
-import { Result } from 'ant-design-pro';
+import Result from '../Result';
 import styles from './index.less';
+import { IStateType } from '../../model';
+import { Dispatch } from 'redux';
 
-@connect(({ BLOCK_NAME_CAMEL_CASE }) => ({
-  data: BLOCK_NAME_CAMEL_CASE.step,
-}))
-class Step3 extends React.PureComponent {
+interface Step3Props {
+  data?: IStateType['step'];
+  dispatch?: Dispatch;
+}
+
+@connect(
+  ({
+    BLOCK_NAME_CAMEL_CASE,
+  }: {
+    BLOCK_NAME_CAMEL_CASE: IStateType;
+    loading: {
+      effects: { [key: string]: boolean };
+    };
+  }) => ({
+    data: BLOCK_NAME_CAMEL_CASE.step,
+  })
+)
+class Step3 extends React.Component<Step3Props> {
   render() {
     const { data, dispatch } = this.props;
+    if (!data) {
+      return;
+    }
     const onFinish = () => {
-      dispatch({
-        type: 'BLOCK_NAME_CAMEL_CASE/saveCurrentStep',
-        payload: 'info',
-      });
+      dispatch &&
+        dispatch({
+          type: 'BLOCK_NAME_CAMEL_CASE/saveCurrentStep',
+          payload: 'info',
+        });
     };
     const information = (
       <div className={styles.information}>

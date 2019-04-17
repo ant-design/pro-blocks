@@ -2,6 +2,9 @@ import React, { Fragment } from 'react';
 import { connect } from 'dva';
 import { Form, Input, Button, Select, Divider } from 'antd';
 import styles from './index.less';
+import { FormComponentProps } from 'antd/lib/form';
+import { IStateType } from '../../model';
+import { Dispatch } from 'redux';
 
 const { Option } = Select;
 
@@ -13,18 +16,21 @@ const formItemLayout = {
     span: 19,
   },
 };
+interface Step1Props extends FormComponentProps {
+  data?: IStateType['step'];
+  dispatch?: Dispatch;
+}
 
-@connect(({ BLOCK_NAME_CAMEL_CASE }) => ({
-  data: BLOCK_NAME_CAMEL_CASE.step,
-}))
-@Form.create()
-class Step1 extends React.PureComponent {
+class Step1 extends React.PureComponent<Step1Props> {
   render() {
     const { form, dispatch, data } = this.props;
+    if (!data) {
+      return;
+    }
     const { getFieldDecorator, validateFields } = form;
     const onValidateForm = () => {
       validateFields((err, values) => {
-        if (!err) {
+        if (!err && dispatch) {
           dispatch({
             type: 'BLOCK_NAME_CAMEL_CASE/saveStepFormData',
             payload: values,
@@ -114,4 +120,6 @@ class Step1 extends React.PureComponent {
   }
 }
 
-export default Step1;
+export default connect(({ BLOCK_NAME_CAMEL_CASE }: { BLOCK_NAME_CAMEL_CASE: IStateType }) => ({
+  data: BLOCK_NAME_CAMEL_CASE.step,
+}))(Form.create()(Step1));
