@@ -1,37 +1,26 @@
-import React, { PureComponent } from 'react';
+import React, { Component } from 'react';
 import moment from 'moment';
 import { connect } from 'dva';
-import { Row, Col, Form, Card, Select, List, Input } from 'antd';
-
-import { TagSelect, AvatarList, Ellipsis } from 'ant-design-pro';
-
+import { Row, Col, Form, Card, Select, List, Typography } from 'antd';
 import StandardFormRow from './components/StandardFormRow';
+import TagSelect from './components/TagSelect';
+import AvatarList from './components/AvatarList';
 import styles from './style.less';
-
+import { IStateType } from './model';
+import { Dispatch } from 'redux';
+import { FormComponentProps } from 'antd/lib/form';
+import { ListItemDataType } from './data';
 const { Option } = Select;
 const FormItem = Form.Item;
+const { Paragraph } = Typography;
 
-/* eslint react/no-array-index-key: 0 */
+interface PAGE_NAME_UPPER_CAMEL_CASEProps extends FormComponentProps {
+  dispatch: Dispatch;
+  BLOCK_NAME_CAMEL_CASE: IStateType;
+  loading: boolean;
+}
 
-@connect(({ BLOCK_NAME_CAMEL_CASE, loading }) => ({
-  BLOCK_NAME_CAMEL_CASE,
-  loading: loading.models.BLOCK_NAME_CAMEL_CASE,
-}))
-@Form.create({
-  onValuesChange({ dispatch }, changedValues, allValues) {
-    // 表单项变化时请求数据
-    // eslint-disable-next-line
-    console.log(changedValues, allValues);
-    // 模拟查询表单生效
-    dispatch({
-      type: 'BLOCK_NAME_CAMEL_CASE/fetch',
-      payload: {
-        count: 8,
-      },
-    });
-  },
-})
-class CoverCardList extends PureComponent {
+class PAGE_NAME_UPPER_CAMEL_CASE extends Component<PAGE_NAME_UPPER_CAMEL_CASEProps> {
   componentDidMount() {
     const { dispatch } = this.props;
     dispatch({
@@ -51,7 +40,7 @@ class CoverCardList extends PureComponent {
     const { getFieldDecorator } = form;
 
     const cardList = list ? (
-      <List
+      <List<ListItemDataType>
         rowKey="id"
         loading={loading}
         grid={{ gutter: 24, xl: 4, lg: 3, md: 3, sm: 2, xs: 1 }}
@@ -65,12 +54,16 @@ class CoverCardList extends PureComponent {
             >
               <Card.Meta
                 title={<a>{item.title}</a>}
-                description={<Ellipsis lines={2}>{item.subDescription}</Ellipsis>}
+                description={
+                  <Paragraph className={styles.item} ellipsis={{ rows: 2 }}>
+                    {item.subDescription}
+                  </Paragraph>
+                }
               />
               <div className={styles.cardItemContent}>
                 <span>{moment(item.updatedAt).fromNow()}</span>
                 <div className={styles.avatarList}>
-                  <AvatarList size="mini">
+                  <AvatarList size="small">
                     {item.members.map((member, i) => (
                       <AvatarList.Item
                         key={`${item.id}-avatar-${i}`}
@@ -93,17 +86,6 @@ class CoverCardList extends PureComponent {
         sm: { span: 16 },
       },
     };
-    const mainSearch = (
-      <div style={{ textAlign: 'center' }}>
-        <Input.Search
-          placeholder="请输入"
-          enterButton="搜索"
-          size="large"
-          onSearch={this.handleFormSubmit}
-          style={{ width: 522 }}
-        />
-      </div>
-    );
 
     return (
       <div className={styles.coverCardList}>
@@ -160,4 +142,28 @@ class CoverCardList extends PureComponent {
   }
 }
 
-export default CoverCardList;
+const WarpForm = Form.create({
+  onValuesChange({ dispatch }: PAGE_NAME_UPPER_CAMEL_CASEProps, changedValues, allValues) {
+    // 表单项变化时请求数据
+    // 模拟查询表单生效
+    dispatch({
+      type: 'BLOCK_NAME_CAMEL_CASE/fetch',
+      payload: {
+        count: 8,
+      },
+    });
+  },
+})(PAGE_NAME_UPPER_CAMEL_CASE);
+
+export default connect(
+  ({
+    BLOCK_NAME_CAMEL_CASE,
+    loading,
+  }: {
+    BLOCK_NAME_CAMEL_CASE: IStateType;
+    loading: { models: { [key: string]: boolean } };
+  }) => ({
+    BLOCK_NAME_CAMEL_CASE,
+    loading: loading.models.BLOCK_NAME_CAMEL_CASE,
+  })
+)(WarpForm);
