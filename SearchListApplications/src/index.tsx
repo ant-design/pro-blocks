@@ -1,23 +1,9 @@
 import React, { Component } from 'react';
 import numeral from 'numeral';
 import { connect } from 'dva';
-import {
-  Row,
-  Col,
-  Form,
-  Card,
-  Select,
-  Icon,
-  Avatar,
-  List,
-  Tooltip,
-  Dropdown,
-  Menu,
-  Input,
-} from 'antd';
+import { Row, Col, Form, Card, Select, Icon, Avatar, List, Tooltip, Dropdown, Menu } from 'antd';
 import TagSelect from './components/TagSelect';
 import StandardFormRow from './components/StandardFormRow';
-import PageHeaderWrapper from './components/PageHeaderWrapper';
 import { formatWan } from './utils/utils';
 import styles from './style.less';
 import { IStateType } from './model';
@@ -34,18 +20,6 @@ interface PAGE_NAME_UPPER_CAMEL_CASEProps extends FormComponentProps {
   loading: boolean;
 }
 
-@connect(
-  ({
-    BLOCK_NAME_CAMEL_CASE,
-    loading,
-  }: {
-    BLOCK_NAME_CAMEL_CASE: IStateType;
-    loading: { models: { [key: string]: boolean } };
-  }) => ({
-    BLOCK_NAME_CAMEL_CASE,
-    loading: loading.models.BLOCK_NAME_CAMEL_CASE,
-  })
-)
 class PAGE_NAME_UPPER_CAMEL_CASE extends Component<PAGE_NAME_UPPER_CAMEL_CASEProps> {
   componentDidMount() {
     const { dispatch } = this.props;
@@ -115,7 +89,7 @@ class PAGE_NAME_UPPER_CAMEL_CASE extends Component<PAGE_NAME_UPPER_CAMEL_CASEPro
             <StandardFormRow title="所属类目" block style={{ paddingBottom: 11 }}>
               <FormItem>
                 {getFieldDecorator('category')(
-                  <TagSelect expandable>
+                  <TagSelect expandable={true}>
                     <TagSelect.Option value="cat1">类目一</TagSelect.Option>
                     <TagSelect.Option value="cat2">类目二</TagSelect.Option>
                     <TagSelect.Option value="cat3">类目三</TagSelect.Option>
@@ -157,6 +131,7 @@ class PAGE_NAME_UPPER_CAMEL_CASE extends Component<PAGE_NAME_UPPER_CAMEL_CASEPro
             </StandardFormRow>
           </Form>
         </Card>
+        <br />
         <List<ListItemDataType>
           rowKey="id"
           grid={{ gutter: 24, xl: 4, lg: 3, md: 3, sm: 2, xs: 1 }}
@@ -198,7 +173,7 @@ class PAGE_NAME_UPPER_CAMEL_CASE extends Component<PAGE_NAME_UPPER_CAMEL_CASEPro
   }
 }
 
-export default Form.create({
+const WarpForm = Form.create({
   onValuesChange({ dispatch }: PAGE_NAME_UPPER_CAMEL_CASEProps, changedValues, allValues) {
     // 表单项变化时请求数据
     // 模拟查询表单生效
@@ -210,3 +185,16 @@ export default Form.create({
     });
   },
 })(PAGE_NAME_UPPER_CAMEL_CASE);
+
+export default connect(
+  ({
+    BLOCK_NAME_CAMEL_CASE,
+    loading,
+  }: {
+    BLOCK_NAME_CAMEL_CASE: IStateType;
+    loading: { models: { [key: string]: boolean } };
+  }) => ({
+    BLOCK_NAME_CAMEL_CASE,
+    loading: loading.models.BLOCK_NAME_CAMEL_CASE,
+  })
+)(WarpForm);

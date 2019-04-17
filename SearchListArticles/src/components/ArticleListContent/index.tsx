@@ -3,7 +3,19 @@ import moment from 'moment';
 import { Avatar } from 'antd';
 import styles from './index.less';
 
-const ArticleListContent = ({ data: { content, updatedAt, avatar, owner, href } }) => (
+interface ArticleListContentProps {
+  data: {
+    content: React.ReactNode;
+    updatedAt: number;
+    avatar: string;
+    owner: string;
+    href: string;
+  };
+}
+
+const ArticleListContent: React.SFC<ArticleListContentProps> = ({
+  data: { content, updatedAt, avatar, owner, href },
+}) => (
   <div className={styles.listContent}>
     <div className={styles.description}>{content}</div>
     <div className={styles.extra}>
