@@ -1,8 +1,9 @@
 import { parse } from 'url';
-
+import { TableListItem, TableListParams } from './data';
 // mock tableListDataSource
-let tableListDataSource = [];
-for (let i = 0; i < 46; i += 1) {
+let tableListDataSource: TableListItem[] = [];
+
+for (let i = 0; i < 8; i += 1) {
   tableListDataSource.push({
     key: i,
     disabled: i % 6 === 0,
@@ -23,13 +24,24 @@ for (let i = 0; i < 46; i += 1) {
   });
 }
 
-function getRule(req, res, u) {
+function getRule(
+  req: { url: any },
+  res: {
+    json: (
+      arg0: {
+        list: TableListItem[];
+        pagination: { total: number; pageSize: number; current: number };
+      }
+    ) => void;
+  },
+  u: any
+) {
   let url = u;
   if (!url || Object.prototype.toString.call(url) !== '[object String]') {
     url = req.url; // eslint-disable-line
   }
 
-  const params = parse(url, true).query;
+  const params = (parse(url, true).query as unknown) as TableListParams;
 
   let dataSource = tableListDataSource;
 
@@ -45,10 +57,15 @@ function getRule(req, res, u) {
 
   if (params.status) {
     const status = params.status.split(',');
-    let filterDataSource = [];
+    let filterDataSource: TableListItem[] = [];
     status.forEach(s => {
       filterDataSource = filterDataSource.concat(
-        dataSource.filter(data => parseInt(data.status, 10) === parseInt(s[0], 10))
+        dataSource.filter(item => {
+          if (parseInt(item.status + '', 10) === parseInt(s.split('')[0], 10)) {
+            return true;
+          }
+          return false;
+        })
       );
     });
     dataSource = filterDataSource;
@@ -60,7 +77,7 @@ function getRule(req, res, u) {
 
   let pageSize = 10;
   if (params.pageSize) {
-    pageSize = params.pageSize * 1;
+    pageSize = parseInt(params.pageSize) * 1;
   }
 
   const result = {
@@ -75,7 +92,12 @@ function getRule(req, res, u) {
   return res.json(result);
 }
 
-function postRule(req, res, u, b) {
+function postRule(
+  req: { url: any; body: any },
+  res: { json: (arg0: { list: TableListItem[]; pagination: { total: number } }) => void },
+  u: any,
+  b: { body: any }
+) {
   let url = u;
   if (!url || Object.prototype.toString.call(url) !== '[object String]') {
     url = req.url; // eslint-disable-line

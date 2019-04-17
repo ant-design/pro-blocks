@@ -1,12 +1,13 @@
 import request from 'umi-request';
+import { TableListParams } from './data';
 
-export async function queryRule(params) {
+export async function queryRule(params: TableListParams) {
   return request(`/api/BLOCK_NAME`, {
     params,
   });
 }
 
-export async function removeRule(params) {
+export async function removeRule(params: TableListParams) {
   return request('/api/BLOCK_NAME', {
     method: 'POST',
     data: {
@@ -16,7 +17,7 @@ export async function removeRule(params) {
   });
 }
 
-export async function addRule(params) {
+export async function addRule(params: TableListParams) {
   return request('/api/BLOCK_NAME', {
     method: 'POST',
     data: {
@@ -26,7 +27,7 @@ export async function addRule(params) {
   });
 }
 
-export async function updateRule(params) {
+export async function updateRule(params: TableListParams) {
   return request('/api/BLOCK_NAME', {
     method: 'POST',
     data: {

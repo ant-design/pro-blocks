@@ -1,9 +1,31 @@
-import React, { PureComponent, Fragment } from 'react';
+import React, { Component, Fragment } from 'react';
 import { Table, Alert } from 'antd';
+import { TableProps, ColumnProps, SorterResult } from 'antd/lib/table';
 import styles from './index.less';
+import { TableListItem } from '../../data';
 
-function initTotalList(columns) {
-  const totalList = [];
+type Omit<T, K extends keyof T> = Pick<T, Exclude<keyof T, K>>;
+
+export interface StandardTableProps<T> extends Omit<TableProps<T>, 'columns'> {
+  columns: StandardTableColumnProps[];
+  data: {
+    list: Array<TableListItem>;
+    pagination: StandardTableProps<TableListItem>['pagination'];
+  };
+  selectedRows: TableListItem[];
+  onSelectRow: (rows: any) => void;
+}
+
+export type StandardTableColumnProps = ColumnProps<TableListItem> & {
+  needTotal?: boolean;
+  total?: number;
+};
+
+function initTotalList(columns: StandardTableColumnProps[]) {
+  if (!columns) {
+    return [];
+  }
+  const totalList: StandardTableColumnProps[] = [];
   columns.forEach(column => {
     if (column.needTotal) {
       totalList.push({ ...column, total: 0 });
@@ -12,8 +34,13 @@ function initTotalList(columns) {
   return totalList;
 }
 
-class StandardTable extends PureComponent {
-  constructor(props) {
+interface StandardTableState {
+  selectedRowKeys: string[];
+  needTotalList: StandardTableColumnProps[];
+}
+
+class StandardTable extends Component<StandardTableProps<TableListItem>, StandardTableState> {
+  constructor(props: StandardTableProps<TableListItem>) {
     super(props);
     const { columns } = props;
     const needTotalList = initTotalList(columns);
@@ -24,7 +51,7 @@ class StandardTable extends PureComponent {
     };
   }
 
-  static getDerivedStateFromProps(nextProps) {
+  static getDerivedStateFromProps(nextProps: StandardTableProps<TableListItem>) {
     // clean state
     if (nextProps.selectedRows.length === 0) {
       const needTotalList = initTotalList(nextProps.columns);
@@ -36,7 +63,7 @@ class StandardTable extends PureComponent {
     return null;
   }
 
-  handleRowSelectChange = (selectedRowKeys, selectedRows) => {
+  handleRowSelectChange = (selectedRowKeys: string[], selectedRows: TableListItem[]) => {
     let { needTotalList } = this.state;
     needTotalList = needTotalList.map(item => ({
       ...item,
@@ -50,10 +77,15 @@ class StandardTable extends PureComponent {
     this.setState({ selectedRowKeys, needTotalList });
   };
 
-  handleTableChange = (pagination, filters, sorter) => {
+  handleTableChange = (
+    pagination: StandardTableProps<TableListItem>['pagination'],
+    filters: Record<keyof TableListItem, string[]>,
+    sorter: SorterResult<TableListItem>,
+    ...rest
+  ) => {
     const { onChange } = this.props;
     if (onChange) {
-      onChange(pagination, filters, sorter);
+      onChange(pagination, filters, sorter, ...rest);
     }
   };
 
@@ -63,8 +95,8 @@ class StandardTable extends PureComponent {
 
   render() {
     const { selectedRowKeys, needTotalList } = this.state;
-    const { data = {}, rowKey, ...rest } = this.props;
-    const { list = [], pagination } = data;
+    const { data, rowKey, ...rest } = this.props;
+    const { list = [], pagination = false } = data || {};
 
     const paginationProps = {
       showSizeChanger: true,
@@ -75,7 +107,7 @@ class StandardTable extends PureComponent {
     const rowSelection = {
       selectedRowKeys,
       onChange: this.handleRowSelectChange,
-      getCheckboxProps: record => ({
+      getCheckboxProps: (record: TableListItem) => ({
         disabled: record.disabled,
       }),
     };
@@ -87,12 +119,14 @@ class StandardTable extends PureComponent {
             message={
               <Fragment>
                 已选择 <a style={{ fontWeight: 600 }}>{selectedRowKeys.length}</a> 项&nbsp;&nbsp;
-                {needTotalList.map(item => (
+                {needTotalList.map((item, index) => (
                   <span style={{ marginLeft: 8 }} key={item.dataIndex}>
                     {item.title}
                     总计&nbsp;
                     <span style={{ fontWeight: 600 }}>
-                      {item.render ? item.render(item.total) : item.total}
+                      {item.render
+                        ? item.render(item.total, item as TableListItem, index)
+                        : item.total}
                     </span>
                   </span>
                 ))}

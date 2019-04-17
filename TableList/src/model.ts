@@ -1,6 +1,33 @@
 import { queryRule, removeRule, addRule, updateRule } from './service';
+import { TableListDate } from './data';
+import { Reducer } from 'redux';
+import { EffectsCommandMap } from 'dva';
+import { AnyAction } from 'redux';
 
-export default {
+export interface IStateType {
+  data: TableListDate;
+}
+
+export type Effect = (
+  action: AnyAction,
+  effects: EffectsCommandMap & { select: <T>(func: (state: IStateType) => T) => T }
+) => void;
+
+export interface ModelType {
+  namespace: string;
+  state: IStateType;
+  effects: {
+    fetch: Effect;
+    add: Effect;
+    remove: Effect;
+    update: Effect;
+  };
+  reducers: {
+    save: Reducer<IStateType>;
+  };
+}
+
+const Model: ModelType = {
   namespace: 'BLOCK_NAME_CAMEL_CASE',
 
   state: {
@@ -53,3 +80,5 @@ export default {
     },
   },
 };
+
+export default Model;
