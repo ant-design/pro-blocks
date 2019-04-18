@@ -34,13 +34,15 @@ class LoginTab extends Component<LoginTabProps> {
   }
 }
 
-const wrapContext = (props: TabPaneProps) => (
+const WrapContext: React.SFC<TabPaneProps> & {
+  typeName: string;
+} = props => (
   <LoginContext.Consumer>
     {value => <LoginTab tabUtil={value.tabUtil} {...props} />}
   </LoginContext.Consumer>
 );
 
 // 标志位 用来判断是不是自定义组件
-wrapContext.typeName = 'LoginTab';
+WrapContext.typeName = 'LoginTab';
 
-export default wrapContext;
+export default WrapContext;

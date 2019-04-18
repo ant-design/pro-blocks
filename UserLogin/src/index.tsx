@@ -5,40 +5,78 @@ import Link from 'umi/link';
 import { Checkbox, Alert, Icon } from 'antd';
 import Login from './components/Login';
 import styles from './style.less';
+import { Dispatch } from 'redux';
+import { IStateType } from './model';
+import { FormComponentProps } from 'antd/lib/form';
+import { CheckboxChangeEvent } from 'antd/lib/checkbox';
 const { Tab, UserName, Password, Mobile, Captcha, Submit } = Login;
 
-@connect(({ BLOCK_NAME_CAMEL_CASE, loading }) => ({
-  BLOCK_NAME_CAMEL_CASE,
-  submitting: loading.effects['BLOCK_NAME_CAMEL_CASE/login'],
-}))
-class LoginPage extends Component {
-  state = {
+interface BLOCK_NAME_CAMEL_CASEProps {
+  dispatch: Dispatch;
+  BLOCK_NAME_CAMEL_CASE: IStateType;
+  submitting: boolean;
+}
+interface BLOCK_NAME_CAMEL_CASEState {
+  type: string;
+  autoLogin: boolean;
+}
+export interface FromDataType {
+  userName: string;
+  password: string;
+  mobile: string;
+  captcha: string;
+}
+
+@connect(
+  ({
+    BLOCK_NAME_CAMEL_CASE,
+    loading,
+  }: {
+    BLOCK_NAME_CAMEL_CASE: IStateType;
+    loading: {
+      effects: {
+        [key: string]: string;
+      };
+    };
+  }) => ({
+    BLOCK_NAME_CAMEL_CASE,
+    submitting: loading.effects['BLOCK_NAME_CAMEL_CASE/login'],
+  })
+)
+class BLOCK_NAME_CAMEL_CASE extends Component<
+  BLOCK_NAME_CAMEL_CASEProps,
+  BLOCK_NAME_CAMEL_CASEState
+> {
+  state: BLOCK_NAME_CAMEL_CASEState = {
     type: 'account',
     autoLogin: true,
   };
 
-  onTabChange = type => {
+  onTabChange = (type: string) => {
     this.setState({ type });
   };
-  loginForm: loginForm;
+  loginForm: FormComponentProps['form'] | undefined | null;
   onGetCaptcha = () =>
     new Promise((resolve, reject) => {
-      this.loginForm.validateFields(['mobile'], {}, (err, values) => {
+      if (!this.loginForm) {
+        return;
+      }
+      this.loginForm.validateFields(['mobile'], {}, (err: any, values: FromDataType) => {
         if (err) {
           reject(err);
         } else {
           const { dispatch } = this.props;
-          dispatch({
+          ((dispatch({
             type: 'BLOCK_NAME_CAMEL_CASE/getCaptcha',
             payload: values.mobile,
-          })
+          }) as unknown) as Promise<any>)
             .then(resolve)
             .catch(reject);
         }
       });
     });
 
-  handleSubmit = (err, values) => {
+  handleSubmit = (err: any, values: FromDataType) => {
     const { type } = this.state;
     if (!err) {
       const { dispatch } = this.props;
@@ -52,13 +90,13 @@ class LoginPage extends Component {
     }
   };
 
-  changeAutoLogin = e => {
+  changeAutoLogin = (e: CheckboxChangeEvent) => {
     this.setState({
       autoLogin: e.target.checked,
     });
   };
 
-  renderMessage = content => (
+  renderMessage = (content: string) => (
     <Alert style={{ marginBottom: 24 }} message={content} type="error" showIcon />
   );
 
@@ -72,7 +110,7 @@ class LoginPage extends Component {
           defaultActiveKey={type}
           onTabChange={this.onTabChange}
           onSubmit={this.handleSubmit}
-          ref={form => {
+          ref={(form: any) => {
             this.loginForm = form;
           }}
         >
@@ -92,7 +130,7 @@ class LoginPage extends Component {
                   message: formatMessage({ id: 'BLOCK_NAME.userName.required' }),
                 },
               ]}
-            />{' '}
+            />
             <Password
               name="password"
               placeholder={`${formatMessage({ id: 'BLOCK_NAME.login.password' })}: ant.design`}
@@ -102,7 +140,9 @@ class LoginPage extends Component {
                   message: formatMessage({ id: 'BLOCK_NAME.password.required' }),
                 },
               ]}
-              onPressEnter={() => this.loginForm.validateFields(this.handleSubmit)}
+              onPressEnter={() =>
+                this.loginForm && this.loginForm.validateFields(this.handleSubmit)
+              }
             />
           </Tab>
           <Tab key="mobile" tab={formatMessage({ id: 'BLOCK_NAME.login.tab-login-mobile' })}>
@@ -112,7 +152,7 @@ class LoginPage extends Component {
               this.renderMessage(
                 formatMessage({ id: 'BLOCK_NAME.login.message-invalid-verification-code' })
               )}
-            {/* <Mobile
+            <Mobile
               name="mobile"
               placeholder={formatMessage({ id: 'BLOCK_NAME.phone-number.placeholder' })}
               rules={[
@@ -139,7 +179,7 @@ class LoginPage extends Component {
                   message: formatMessage({ id: 'BLOCK_NAME.verification-code.required' }),
                 },
               ]}
-            /> */}
+            />
           </Tab>
           <div>
             <Checkbox checked={autoLogin} onChange={this.changeAutoLogin}>
@@ -167,4 +207,4 @@ class LoginPage extends Component {
   }
 }
 
-export default LoginPage;
+export default BLOCK_NAME_CAMEL_CASE;

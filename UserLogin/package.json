@@ -11,8 +11,7 @@
     "url": "https://github.com/umijs/umi-blocks/ant-design-pro/userlogin"
   },
   "dependencies": {
-    "ant-design-pro": "^2.1.1",
-    "antd": "^3.10.9",
+    "antd": "^3.16.3",
     "dva": "^2.4.0",
     "moment": "^2.22.2",
     "query-string": "^6.0.0",

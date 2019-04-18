@@ -2,7 +2,34 @@ import { routerRedux } from 'dva/router';
 import { getPageQuery } from './utils/utils';
 import { fakeAccountLogin, getFakeCaptcha } from './service';
 
-export default {
+import { Reducer } from 'redux';
+import { EffectsCommandMap } from 'dva';
+import { AnyAction } from 'redux';
+
+export interface IStateType {
+  status?: 'ok' | 'error';
+  type?: string;
+  currentAuthority?: 'user' | 'guest' | 'admin';
+}
+
+export type Effect = (
+  action: AnyAction,
+  effects: EffectsCommandMap & { select: <T>(func: (state: IStateType) => T) => T }
+) => void;
+
+export interface ModelType {
+  namespace: string;
+  state: IStateType;
+  effects: {
+    login: Effect;
+    getCaptcha: Effect;
+  };
+  reducers: {
+    changeLoginStatus: Reducer<IStateType>;
+  };
+}
+
+const Model: ModelType = {
   namespace: 'BLOCK_NAME_CAMEL_CASE',
 
   state: {
@@ -20,7 +47,7 @@ export default {
       if (response.status === 'ok') {
         const urlParams = new URL(window.location.href);
         const params = getPageQuery();
-        let { redirect } = params;
+        let { redirect } = params as { redirect: string };
         if (redirect) {
           const redirectUrlParams = new URL(redirect);
           if (redirectUrlParams.origin === urlParams.origin) {
@@ -44,7 +71,6 @@ export default {
 
   reducers: {
     changeLoginStatus(state, { payload }) {
-      setAuthority(payload.currentAuthority);
       return {
         ...state,
         status: payload.status,
@@ -53,3 +79,5 @@ export default {
     },
   },
 };
+
+export default Model;

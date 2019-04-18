@@ -11,7 +11,7 @@
     "url": "https://github.com/umijs/umi-blocks/ant-design-pro/searchlistarticles"
   },
   "dependencies": {
-    "antd": "^3.10.9",
+    "antd": "^3.16.3",
     "classnames": "^2.2.6",
     "dva": "^2.4.0",
     "moment": "^2.22.2",

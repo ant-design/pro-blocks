@@ -8,12 +8,13 @@ import LoginContext, { ILoginContext } from './LoginContext';
 import { FormComponentProps } from 'antd/lib/form';
 import LoginSubmit from './LoginSubmit';
 
-export interface LoginProps extends FormComponentProps {
+export interface LoginProps {
   defaultActiveKey?: string;
   onTabChange?: (key: string) => void;
   style?: React.CSSProperties;
   onSubmit?: (error: any, values: any) => void;
   className?: string;
+  form?: FormComponentProps['form'];
   children: React.ReactElement<LoginTab>[];
 }
 
@@ -96,9 +97,10 @@ class Login extends Component<LoginProps, LoginState> {
     const { active = {}, type = '' } = this.state;
     const { form, onSubmit } = this.props;
     const activeFields = active[type] || [];
-    form.validateFields(activeFields, { force: true }, (err, values) => {
-      onSubmit && onSubmit(err, values);
-    });
+    form &&
+      form.validateFields(activeFields, { force: true }, (err, values) => {
+        onSubmit && onSubmit(err, values);
+      });
   };
 
   render() {
@@ -119,7 +121,6 @@ class Login extends Component<LoginProps, LoginState> {
         }
       }
     );
-    console.log(this.getContext());
     return (
       <LoginContext.Provider value={this.getContext()}>
         <div className={classNames(className, styles.login)}>
@@ -149,4 +150,4 @@ class Login extends Component<LoginProps, LoginState> {
   Login[item] = LoginItem[item];
 });
 
-export default Form.create()(Login);
+export default (Form.create()(Login as any) as unknown) as typeof Login;

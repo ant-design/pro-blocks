@@ -1,9 +1,14 @@
-function getFakeCaptcha(req, res) {
+function getFakeCaptcha(req: any, res: { json: (arg0: string) => void }) {
   return res.json('captcha-xxx');
 }
 
 export default {
-  'POST /api/BLOCK_NAME/account': (req, res) => {
+  'POST /api/BLOCK_NAME/account': (
+    req: { body: { password: any; userName: any; type: any } },
+    res: {
+      send: (data: any) => void;
+    }
+  ) => {
     const { password, userName, type } = req.body;
     if (password === 'ant.design' && userName === 'admin') {
       res.send({

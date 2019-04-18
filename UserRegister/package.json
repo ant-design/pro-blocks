@@ -11,8 +11,7 @@
     "url": "https://github.com/umijs/umi-blocks/ant-design-pro/userregister"
   },
   "dependencies": {
-    "ant-design-pro": "^2.1.1",
-    "antd": "^3.10.9",
+    "antd": "^3.16.3",
     "dva": "^2.4.0",
     "hash.js": "^1.1.5",
     "moment": "^2.22.2",

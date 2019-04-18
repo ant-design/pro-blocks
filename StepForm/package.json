@@ -11,7 +11,7 @@
     "url": "https://github.com/umijs/umi-blocks/ant-design-pro/stepform"
   },
   "dependencies": {
-    "antd": "^3.10.9",
+    "antd": "^3.16.3",
     "dva": "^2.4.0",
     "react": "^16.6.3",
     "umi-request": "^1.0.0",

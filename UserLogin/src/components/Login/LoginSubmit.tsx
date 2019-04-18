@@ -6,7 +6,7 @@ import { ButtonProps } from 'antd/lib/button';
 const FormItem = Form.Item;
 
 interface LoginSubmitProps extends ButtonProps {
-  className: string;
+  className?: string;
 }
 
 const LoginSubmit: React.SFC<LoginSubmitProps> = ({ className, ...rest }) => {

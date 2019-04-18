@@ -3,7 +3,7 @@ import { Form, Input, Button, Row, Col } from 'antd';
 import omit from 'omit.js';
 import styles from './index.less';
 import ItemMap from './map';
-import LoginContext, { ILoginContext } from './loginContext';
+import LoginContext, { ILoginContext } from './LoginContext';
 import { FormComponentProps } from 'antd/lib/form';
 
 type Omit<T, K extends keyof T> = Pick<T, Exclude<keyof T, K>>;
@@ -12,7 +12,7 @@ export type WrappedLoginItemProps = Omit<LoginItemProps, 'form' | 'type' | 'upda
 export type LoginItemKeyType = keyof typeof ItemMap;
 export type LoginItemType = { [K in keyof typeof ItemMap]: React.FC<WrappedLoginItemProps> };
 
-export interface LoginItemProps extends FormComponentProps {
+export interface LoginItemProps {
   name?: string;
   rules?: any[];
   style?: React.CSSProperties;
@@ -23,9 +23,10 @@ export interface LoginItemProps extends FormComponentProps {
   countDown?: number;
   getCaptchaButtonText?: string;
   getCaptchaSecondText?: string;
-  updateActive: ILoginContext['updateActive'];
-  type: string;
+  updateActive?: ILoginContext['updateActive'];
+  type?: string;
   defaultValue?: string;
+  form?: FormComponentProps['form'];
   customProps?: { [key: string]: any };
   onChange?: (e: any) => void;
 }
@@ -124,7 +125,6 @@ class WrapFormItem extends Component<LoginItemProps, LoginItemState> {
       console.warn('name is required!');
       return null;
     }
-    console.log(form);
     if (!form) {
       return null;
     }
