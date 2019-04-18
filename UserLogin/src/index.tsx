@@ -3,9 +3,8 @@ import { connect } from 'dva';
 import { formatMessage, FormattedMessage } from 'umi-plugin-react/locale';
 import Link from 'umi/link';
 import { Checkbox, Alert, Icon } from 'antd';
-import { Login } from 'ant-design-pro';
+import Login from './components/Login';
 import styles from './style.less';
-
 const { Tab, UserName, Password, Mobile, Captcha, Submit } = Login;
 
 @connect(({ BLOCK_NAME_CAMEL_CASE, loading }) => ({
@@ -21,7 +20,7 @@ class LoginPage extends Component {
   onTabChange = type => {
     this.setState({ type });
   };
-
+  loginForm: loginForm;
   onGetCaptcha = () =>
     new Promise((resolve, reject) => {
       this.loginForm.validateFields(['mobile'], {}, (err, values) => {
@@ -93,7 +92,7 @@ class LoginPage extends Component {
                   message: formatMessage({ id: 'BLOCK_NAME.userName.required' }),
                 },
               ]}
-            />
+            />{' '}
             <Password
               name="password"
               placeholder={`${formatMessage({ id: 'BLOCK_NAME.login.password' })}: ant.design`}
@@ -113,7 +112,7 @@ class LoginPage extends Component {
               this.renderMessage(
                 formatMessage({ id: 'BLOCK_NAME.login.message-invalid-verification-code' })
               )}
-            <Mobile
+            {/* <Mobile
               name="mobile"
               placeholder={formatMessage({ id: 'BLOCK_NAME.phone-number.placeholder' })}
               rules={[
@@ -140,7 +139,7 @@ class LoginPage extends Component {
                   message: formatMessage({ id: 'BLOCK_NAME.verification-code.required' }),
                 },
               ]}
-            />
+            /> */}
           </Tab>
           <div>
             <Checkbox checked={autoLogin} onChange={this.changeAutoLogin}>

@@ -1,7 +1,5 @@
 import { routerRedux } from 'dva/router';
 import { getPageQuery } from './utils/utils';
-import { setAuthority } from './utils/authority';
-import { reloadAuthorized } from './utils/Authorized';
 import { fakeAccountLogin, getFakeCaptcha } from './service';
 
 export default {
@@ -20,7 +18,6 @@ export default {
       });
       // Login successfully
       if (response.status === 'ok') {
-        reloadAuthorized();
         const urlParams = new URL(window.location.href);
         const params = getPageQuery();
         let { redirect } = params;
