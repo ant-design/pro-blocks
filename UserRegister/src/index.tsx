@@ -2,9 +2,11 @@ import React, { Component } from 'react';
 import { connect } from 'dva';
 import { formatMessage, FormattedMessage } from 'umi-plugin-react/locale';
 import Link from 'umi/link';
-import router from 'umi/router';
-import { Form, Input, Button, Select, Row, Col, Popover, Progress } from 'antd';
+import { Form, Input, message, Button, Select, Row, Col, Popover, Progress } from 'antd';
 import styles from './style.less';
+import { Dispatch } from 'redux';
+import { IStateType } from './model';
+import { FormComponentProps } from 'antd/lib/form';
 
 const FormItem = Form.Item;
 const { Option } = Select;
@@ -28,19 +30,59 @@ const passwordStatusMap = {
   ),
 };
 
-const passwordProgressMap = {
+const passwordProgressMap: {
+  ok: 'success';
+  pass: 'normal';
+  poor: 'exception';
+} = {
   ok: 'success',
   pass: 'normal',
   poor: 'exception',
 };
 
-@connect(({ BLOCK_NAME_CAMEL_CASE, loading }) => ({
-  BLOCK_NAME_CAMEL_CASE,
-  submitting: loading.effects['BLOCK_NAME_CAMEL_CASE/submit'],
-}))
-@Form.create()
-class PAGE_NAME_UPPER_CAMEL_CASE extends Component {
-  state = {
+interface BLOCK_NAME_CAMEL_CASEProps extends FormComponentProps {
+  dispatch: Dispatch;
+  BLOCK_NAME_CAMEL_CASE: IStateType;
+  submitting: boolean;
+}
+interface BLOCK_NAME_CAMEL_CASEState {
+  count: number;
+  confirmDirty: boolean;
+  visible: boolean;
+  help: string;
+  prefix: string;
+}
+
+export interface IUserRegisterParams {
+  mail: string;
+  password: string;
+  confirm: string;
+  mobile: string;
+  captcha: string;
+  prefix: string;
+}
+
+@connect(
+  ({
+    BLOCK_NAME_CAMEL_CASE,
+    loading,
+  }: {
+    BLOCK_NAME_CAMEL_CASE: IStateType;
+    loading: {
+      effects: {
+        [key: string]: string;
+      };
+    };
+  }) => ({
+    BLOCK_NAME_CAMEL_CASE,
+    submitting: loading.effects['BLOCK_NAME_CAMEL_CASE/submit'],
+  })
+)
+class PAGE_NAME_UPPER_CAMEL_CASE extends Component<
+  BLOCK_NAME_CAMEL_CASEProps,
+  BLOCK_NAME_CAMEL_CASEState
+> {
+  state: BLOCK_NAME_CAMEL_CASEState = {
     count: 0,
     confirmDirty: false,
     visible: false,
@@ -52,23 +94,18 @@ class PAGE_NAME_UPPER_CAMEL_CASE extends Component {
     const { form, BLOCK_NAME_CAMEL_CASE } = this.props;
     const account = form.getFieldValue('mail');
     if (BLOCK_NAME_CAMEL_CASE.status === 'ok') {
-      router.push({
-        pathname: '/user/register-result',
-        state: {
-          account,
-        },
-      });
+      message.success('注册成功！');
     }
   }
 
   componentWillUnmount() {
     clearInterval(this.interval);
   }
-
+  interval: number | undefined;
   onGetCaptcha = () => {
     let count = 59;
     this.setState({ count });
-    this.interval = setInterval(() => {
+    this.interval = window.setInterval(() => {
       count -= 1;
       this.setState({ count });
       if (count === 0) {
@@ -89,7 +126,7 @@ class PAGE_NAME_UPPER_CAMEL_CASE extends Component {
     return 'poor';
   };
 
-  handleSubmit = e => {
+  handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     const { form, dispatch } = this.props;
     form.validateFields({ force: true }, (err, values) => {
@@ -106,13 +143,7 @@ class PAGE_NAME_UPPER_CAMEL_CASE extends Component {
     });
   };
 
-  handleConfirmBlur = e => {
-    const { value } = e.target;
-    const { confirmDirty } = this.state;
-    this.setState({ confirmDirty: confirmDirty || !!value });
-  };
-
-  checkConfirm = (rule, value, callback) => {
+  checkConfirm = (rule: any, value: string, callback: (messgae?: string) => void) => {
     const { form } = this.props;
     if (value && value !== form.getFieldValue('password')) {
       callback(formatMessage({ id: 'BLOCK_NAME.password.twice' }));
@@ -121,7 +152,7 @@ class PAGE_NAME_UPPER_CAMEL_CASE extends Component {
     }
   };
 
-  checkPassword = (rule, value, callback) => {
+  checkPassword = (rule: any, value: string, callback: (messgae?: string) => void) => {
     const { visible, confirmDirty } = this.state;
     if (!value) {
       this.setState({
@@ -150,7 +181,7 @@ class PAGE_NAME_UPPER_CAMEL_CASE extends Component {
     }
   };
 
-  changePrefix = value => {
+  changePrefix = (value: string) => {
     this.setState({
       prefix: value,
     });
@@ -204,7 +235,7 @@ class PAGE_NAME_UPPER_CAMEL_CASE extends Component {
           </FormItem>
           <FormItem help={help}>
             <Popover
-              getPopupContainer={node => node.parentNode}
+              getPopupContainer={node => (node && node.parentNode ? node.parentNode : node)}
               content={
                 <div style={{ padding: '4px 0' }}>
                   {passwordStatusMap[this.getPasswordStatus()]}
@@ -303,7 +334,7 @@ class PAGE_NAME_UPPER_CAMEL_CASE extends Component {
               <Col span={8}>
                 <Button
                   size="large"
-                  disabled={count}
+                  disabled={!!count}
                   className={styles.getCaptcha}
                   onClick={this.onGetCaptcha}
                 >
@@ -334,4 +365,4 @@ class PAGE_NAME_UPPER_CAMEL_CASE extends Component {
   }
 }
 
-export default PAGE_NAME_UPPER_CAMEL_CASE;
+export default Form.create()(PAGE_NAME_UPPER_CAMEL_CASE);
