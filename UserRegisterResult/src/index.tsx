@@ -2,8 +2,9 @@ import React from 'react';
 import { formatMessage, FormattedMessage } from 'umi-plugin-react/locale';
 import { Button } from 'antd';
 import Link from 'umi/link';
-import { Result } from 'ant-design-pro';
+import Result from './Result';
 import styles from './style.less';
+import { RouteChildrenProps } from 'react-router';
 
 const actions = (
   <div className={styles.actions}>
@@ -20,7 +21,7 @@ const actions = (
   </div>
 );
 
-const PAGE_NAME_UPPER_CAMEL_CASE = ({ location }) => (
+const PAGE_NAME_UPPER_CAMEL_CASE: React.SFC<RouteChildrenProps> = ({ location }) => (
   <Result
     className={styles.registerResult}
     type="success"
