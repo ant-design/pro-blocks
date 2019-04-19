@@ -92,7 +92,6 @@ class PAGE_NAME_UPPER_CAMEL_CASE extends Component<
 
   componentDidUpdate() {
     const { form, BLOCK_NAME_CAMEL_CASE } = this.props;
-    const account = form.getFieldValue('mail');
     if (BLOCK_NAME_CAMEL_CASE.status === 'ok') {
       message.success('注册成功！');
     }
@@ -235,7 +234,9 @@ class PAGE_NAME_UPPER_CAMEL_CASE extends Component<
           </FormItem>
           <FormItem help={help}>
             <Popover
-              getPopupContainer={node => (node && node.parentNode ? node.parentNode : node)}
+              getPopupContainer={node =>
+                node && node.parentNode ? (node.parentNode as HTMLElement) : node
+              }
               content={
                 <div style={{ padding: '4px 0' }}>
                   {passwordStatusMap[this.getPasswordStatus()]}
