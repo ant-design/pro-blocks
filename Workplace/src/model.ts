@@ -1,81 +1,43 @@
+import { EffectsCommandMap } from 'dva';
+import { Reducer, AnyAction } from 'redux';
 import { queryCurrent, queryProjectNotice, queryActivities, fakeChartData } from './service';
+import { CurrentUser, Notice, Activeties, RadarData } from './data';
 
-export default {
+export interface ModalState {
+  currentUser: Partial<CurrentUser>;
+  projectNotice: Notice[];
+  activities: Activeties[];
+  radarData: RadarData[];
+}
+
+export type Effect = (
+  action: AnyAction,
+  effects: EffectsCommandMap & { select: <T>(func: (state: ModalState) => T) => T }
+) => void;
+
+export interface ModelType {
+  namespace: string;
+  state: ModalState;
+  reducers: {
+    save: Reducer<ModalState>;
+    clear: Reducer<ModalState>;
+  };
+  effects: {
+    init: Effect;
+    fetchUserCurrent: Effect;
+    fetchProjectNotice: Effect;
+    fetchActivitiesList: Effect;
+    fetchChart: Effect;
+  };
+}
+
+const Model: ModelType = {
   namespace: 'BLOCK_NAME_CAMEL_CASE',
   state: {
-    user: {
-      currentUser: {},
-    },
-    project: {
-      notice: [],
-    },
-    activities: {
-      list: [],
-    },
-    chart: {
-      visitData: [],
-      visitData2: [],
-      salesData: [],
-      searchData: [],
-      offlineData: [],
-      offlineChartData: [],
-      salesTypeData: [],
-      salesTypeDataOnline: [],
-      salesTypeDataOffline: [],
-      radarData: [],
-      loading: false,
-    },
-  },
-  reducers: {
-    saveCurrentUser(state, action) {
-      return {
-        ...state,
-        user: {
-          currentUser: action.payload || {},
-        },
-      };
-    },
-    saveNotice(state, action) {
-      return {
-        ...state,
-        project: {
-          notice: action.payload,
-        },
-      };
-    },
-    saveList(state, action) {
-      return {
-        ...state,
-        activities: {
-          list: action.payload,
-        },
-      };
-    },
-    saveChart(state, { payload }) {
-      return {
-        ...state,
-        chart: {
-          ...payload,
-        },
-      };
-    },
-    clear(state) {
-      return {
-        ...state,
-        chart: {
-          visitData: [],
-          visitData2: [],
-          salesData: [],
-          searchData: [],
-          offlineData: [],
-          offlineChartData: [],
-          salesTypeData: [],
-          salesTypeDataOnline: [],
-          salesTypeDataOffline: [],
-          radarData: [],
-        },
-      };
-    },
+    currentUser: {},
+    projectNotice: [],
+    activities: [],
+    radarData: [],
   },
   effects: {
     *init(_, { put }) {
@@ -87,30 +49,56 @@ export default {
     *fetchUserCurrent(_, { call, put }) {
       const response = yield call(queryCurrent);
       yield put({
-        type: 'saveCurrentUser',
-        payload: response,
+        type: 'save',
+        payload: {
+          currentUser: response,
+        },
       });
     },
     *fetchProjectNotice(_, { call, put }) {
       const response = yield call(queryProjectNotice);
       yield put({
-        type: 'saveNotice',
-        payload: Array.isArray(response) ? response : [],
+        type: 'save',
+        payload: {
+          projectNotice: Array.isArray(response) ? response : [],
+        }
       });
     },
     *fetchActivitiesList(_, { call, put }) {
       const response = yield call(queryActivities);
       yield put({
-        type: 'saveList',
-        payload: Array.isArray(response) ? response : [],
+        type: 'save',
+        payload: {
+          activities: Array.isArray(response) ? response : [],
+        }
       });
     },
     *fetchChart(_, { call, put }) {
-      const response = yield call(fakeChartData);
+      const { radarData } = yield call(fakeChartData);
       yield put({
-        type: 'saveChart',
-        payload: response,
+        type: 'save',
+        payload: {
+          radarData,
+        },
       });
     },
   },
+  reducers: {
+    save(state, { payload }) {
+      return {
+        ...state,
+        ...payload,
+      };
+    },
+    clear() {
+      return {
+        currentUser: {},
+        projectNotice: [],
+        activities: [],
+        radarData: [],
+      };
+    },
+  },
 };
+
+export default Model;

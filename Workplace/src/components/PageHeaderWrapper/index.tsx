@@ -1,26 +1,47 @@
 import React from 'react';
-import { FormattedMessage } from 'umi-plugin-react/locale';
-import Link from 'umi/link';
-import { PageHeader } from 'ant-design-pro';
+import { RouteContext } from '@ant-design/pro-layout';
+import { PageHeader, Typography } from 'antd';
 import styles from './index.less';
+import { GridContent } from '@ant-design/pro-layout';
 
-const PageHeaderWrapper = ({ children, contentWidth, wrapperClassName, ...restProps }) => (
-  <div style={{ margin: '-24px -24px 0' }} className={wrapperClassName}>
-    <PageHeader
-      wide={contentWidth === 'Fixed'}
-      home={<FormattedMessage id="BLOCK_NAME.menu.home" defaultMessage="Home" />}
-      key="pageheader"
-      {...restProps}
-      linkElement={Link}
-      itemRender={item => {
-        if (item.locale) {
-          return <FormattedMessage id={item.locale} defaultMessage={item.title} />;
-        }
-        return item.title;
-      }}
-    />
-    {children ? <div className={styles.content}>{children}</div> : null}
-  </div>
+interface IPageHeaderWrapperProps {
+  content?: React.ReactNode;
+  title?: React.ReactNode;
+  extraContent?: React.ReactNode;
+}
+
+const PageHeaderWrapper: React.SFC<IPageHeaderWrapperProps> = ({
+  children,
+  content,
+  title,
+  extraContent,
+  ...restProps
+}) => (
+  <RouteContext.Consumer>
+    {value => (
+      <div style={{ margin: '-24px -24px 0' }}>
+        <PageHeader
+          title={title}
+          {...restProps}
+          {...value}
+        >
+          <div className={styles.detail}>
+            <div className={styles.main}>
+              <div className={styles.row}>
+                {content && <div className={styles.content}>{content}</div>}
+                {extraContent && <div className={styles.extraContent}>{extraContent}</div>}
+              </div>
+            </div>
+          </div>
+        </PageHeader>
+        {children ? (
+          <GridContent>
+            <div className={styles['children-content']}>{children}</div>
+          </GridContent>
+        ) : null}
+      </div>
+    )}
+  </RouteContext.Consumer>
 );
 
 export default PageHeaderWrapper;
