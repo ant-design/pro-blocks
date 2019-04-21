@@ -4,16 +4,15 @@ import { connect } from 'dva';
 import Link from 'umi/link';
 import { Row, Col, Card, List, Avatar } from 'antd';
 import { Dispatch } from 'redux';
-import { Charts } from 'ant-design-pro';
+
 
 import EditableLinkGroup from './components/EditableLinkGroup';
 import PageHeaderWrapper from './components/PageHeaderWrapper';
+import Radar from './components/Radar';
 import { ModalState } from './model';
 import { CurrentUser, Activeties, RadarData, Notice } from './data';
 
 import styles from './style.less';
-
-const { Radar } = Charts;
 
 const links = [
   {

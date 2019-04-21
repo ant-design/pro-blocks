@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import { Chart, G2, Tooltip, Geom, Coord, Axis } from 'bizcharts';
+import { Chart, Tooltip, Geom, Coord, Axis } from 'bizcharts';
 import { Row, Col } from 'antd';
-import autoHeight from '../autoHeight';
+import autoHeight from './autoHeight';
 import styles from './index.less';
 
 export interface IRadarProps {
