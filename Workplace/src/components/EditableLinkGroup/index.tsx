@@ -1,11 +1,20 @@
 import React, { PureComponent, createElement } from 'react';
-import PropTypes from 'prop-types';
+import PropTypes, { string } from 'prop-types';
 import { Button } from 'antd';
 import styles from './index.less';
 
-// TODO: 添加逻辑
+export interface EditableLink {
+  title: string;
+  href: string;
+}
 
-class EditableLinkGroup extends PureComponent {
+interface EditableLinkGroupProps {
+  onAdd: () => void;
+  links: EditableLink[];
+  linkElement: React.Component;
+}
+
+class EditableLinkGroup extends PureComponent<EditableLinkGroupProps> {
   static propTypes = {
     links: PropTypes.array,
     onAdd: PropTypes.func,

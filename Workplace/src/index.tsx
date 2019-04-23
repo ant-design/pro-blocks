@@ -3,14 +3,16 @@ import moment from 'moment';
 import { connect } from 'dva';
 import Link from 'umi/link';
 import { Row, Col, Card, List, Avatar } from 'antd';
+import { Dispatch } from 'redux';
 
-import { Charts } from 'ant-design-pro';
+
 import EditableLinkGroup from './components/EditableLinkGroup';
 import PageHeaderWrapper from './components/PageHeaderWrapper';
+import Radar from './components/Radar';
+import { ModalState } from './model';
+import { CurrentUser, Activeties, RadarData, Notice } from './data';
 
 import styles from './style.less';
-
-const { Radar } = Charts;
 
 const links = [
   {
@@ -39,16 +41,33 @@ const links = [
   },
 ];
 
-@connect(({ BLOCK_NAME_CAMEL_CASE: { user, project, activities, chart }, loading }) => ({
-  currentUser: user.currentUser,
-  project,
+interface BLOCK_NAME_CAMEL_CASEProps {
+  currentUser: CurrentUser;
+  projectNotice: Notice[];
+  activities: Activeties[];
+  radarData: RadarData[];
+  dispatch: Dispatch;
+  currentUserLoading: boolean;
+  projectLoading: boolean;
+  activitiesLoading: boolean;
+}
+
+@connect(({
+  BLOCK_NAME_CAMEL_CASE: { currentUser, projectNotice, activities, radarData },
+  loading,
+}: {
+  BLOCK_NAME_CAMEL_CASE: ModalState,
+  loading: { effects: any },
+}) => ({
+  currentUser,
+  projectNotice,
   activities,
-  chart,
+  radarData,
   currentUserLoading: loading.effects['BLOCK_NAME_CAMEL_CASE/fetchUserCurrent'],
   projectLoading: loading.effects['BLOCK_NAME_CAMEL_CASE/fetchProjectNotice'],
   activitiesLoading: loading.effects['BLOCK_NAME_CAMEL_CASE/fetchActivitiesList'],
 }))
-class PAGE_NAME_UPPER_CAMEL_CASE extends PureComponent {
+class PAGE_NAME_UPPER_CAMEL_CASE extends PureComponent<BLOCK_NAME_CAMEL_CASEProps> {
   componentDidMount() {
     const { dispatch } = this.props;
     dispatch({
@@ -65,9 +84,9 @@ class PAGE_NAME_UPPER_CAMEL_CASE extends PureComponent {
 
   renderActivities() {
     const {
-      activities: { list },
+      activities,
     } = this.props;
-    return list.map(item => {
+    return activities.map(item => {
       const events = item.template.split(/@\{([^{}]*)\}/gi).map(key => {
         if (item[key]) {
           return (
@@ -103,11 +122,10 @@ class PAGE_NAME_UPPER_CAMEL_CASE extends PureComponent {
   render() {
     const {
       currentUser,
-      currentUserLoading,
-      project: { notice },
+      projectNotice,
       projectLoading,
       activitiesLoading,
-      chart: { radarData },
+      radarData,
     } = this.props;
 
     const pageHeaderContent =
@@ -150,7 +168,6 @@ class PAGE_NAME_UPPER_CAMEL_CASE extends PureComponent {
 
     return (
       <PageHeaderWrapper
-        loading={currentUserLoading}
         content={pageHeaderContent}
         extraContent={extraContent}
       >
@@ -165,7 +182,7 @@ class PAGE_NAME_UPPER_CAMEL_CASE extends PureComponent {
               loading={projectLoading}
               bodyStyle={{ padding: 0 }}
             >
-              {notice.map(item => (
+              {projectNotice.map(item => (
                 <Card.Grid className={styles.projectGrid} key={item.id}>
                   <Card bodyStyle={{ padding: 0 }} bordered={false}>
                     <Card.Meta
@@ -228,7 +245,7 @@ class PAGE_NAME_UPPER_CAMEL_CASE extends PureComponent {
             >
               <div className={styles.members}>
                 <Row gutter={48}>
-                  {notice.map(item => (
+                  {projectNotice.map(item => (
                     <Col span={12} key={`members-item-${item.id}`}>
                       <Link to={item.href}>
                         <Avatar src={item.logo} size="small" />
