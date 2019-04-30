@@ -1,7 +1,7 @@
 {
   "private": true,
   "scripts": {
-    "dev": "cross-env PAGES_PATH='UserRegister/src' umi dev",
+    "dev": "cross-env PAGES_PATH='Workplace/src' umi dev",
     "lint": "eslint --ext .js src mock tests && npm run lint:style",
     "lint-staged": "lint-staged",
     "lint-staged:js": "eslint --ext .js",

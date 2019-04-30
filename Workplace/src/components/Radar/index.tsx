@@ -12,7 +12,7 @@ export interface IRadarProps {
   data: Array<{
     name: string;
     label: string;
-    value: string;
+    value: string | number;
   }>;
   colors?: string[];
   animate?: boolean;

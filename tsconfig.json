@@ -22,6 +22,6 @@
       "@/*": ["./src/*"]
     }
   },
-  "include": ["."],
+  "include": [".", "./typings.d"],
   "exclude": ["node_modules", "_scripts", "jest", "tslint:latest", "tslint-config-prettier"]
 }

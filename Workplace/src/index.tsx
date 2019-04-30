@@ -5,12 +5,11 @@ import Link from 'umi/link';
 import { Row, Col, Card, List, Avatar } from 'antd';
 import { Dispatch } from 'redux';
 
-
 import EditableLinkGroup from './components/EditableLinkGroup';
 import PageHeaderWrapper from './components/PageHeaderWrapper';
 import Radar from './components/Radar';
 import { ModalState } from './model';
-import { CurrentUser, Activeties, RadarData, Notice } from './data';
+import { ICurrentUser, IActivities, IRadarData, INotice } from './data';
 
 import styles from './style.less';
 
@@ -42,31 +41,33 @@ const links = [
 ];
 
 interface BLOCK_NAME_CAMEL_CASEProps {
-  currentUser: CurrentUser;
-  projectNotice: Notice[];
-  activities: Activeties[];
-  radarData: RadarData[];
+  currentUser: ICurrentUser;
+  projectNotice: INotice[];
+  activities: IActivities[];
+  radarData: IRadarData[];
   dispatch: Dispatch;
   currentUserLoading: boolean;
   projectLoading: boolean;
   activitiesLoading: boolean;
 }
 
-@connect(({
-  BLOCK_NAME_CAMEL_CASE: { currentUser, projectNotice, activities, radarData },
-  loading,
-}: {
-  BLOCK_NAME_CAMEL_CASE: ModalState,
-  loading: { effects: any },
-}) => ({
-  currentUser,
-  projectNotice,
-  activities,
-  radarData,
-  currentUserLoading: loading.effects['BLOCK_NAME_CAMEL_CASE/fetchUserCurrent'],
-  projectLoading: loading.effects['BLOCK_NAME_CAMEL_CASE/fetchProjectNotice'],
-  activitiesLoading: loading.effects['BLOCK_NAME_CAMEL_CASE/fetchActivitiesList'],
-}))
+@connect(
+  ({
+    BLOCK_NAME_CAMEL_CASE: { currentUser, projectNotice, activities, radarData },
+    loading,
+  }: {
+    BLOCK_NAME_CAMEL_CASE: ModalState;
+    loading: { effects: any };
+  }) => ({
+    currentUser,
+    projectNotice,
+    activities,
+    radarData,
+    currentUserLoading: loading.effects['BLOCK_NAME_CAMEL_CASE/fetchUserCurrent'],
+    projectLoading: loading.effects['BLOCK_NAME_CAMEL_CASE/fetchProjectNotice'],
+    activitiesLoading: loading.effects['BLOCK_NAME_CAMEL_CASE/fetchActivitiesList'],
+  })
+)
 class PAGE_NAME_UPPER_CAMEL_CASE extends PureComponent<BLOCK_NAME_CAMEL_CASEProps> {
   componentDidMount() {
     const { dispatch } = this.props;
@@ -82,46 +83,42 @@ class PAGE_NAME_UPPER_CAMEL_CASE extends PureComponent<BLOCK_NAME_CAMEL_CASEProp
     });
   }
 
-  renderActivities() {
-    const {
-      activities,
-    } = this.props;
-    return activities.map(item => {
-      const events = item.template.split(/@\{([^{}]*)\}/gi).map(key => {
-        if (item[key]) {
-          return (
-            <a href={item[key].link} key={item[key].name}>
-              {item[key].name}
-            </a>
-          );
-        }
-        return key;
-      });
-      return (
-        <List.Item key={item.id}>
-          <List.Item.Meta
-            avatar={<Avatar src={item.user.avatar} />}
-            title={
-              <span>
-                <a className={styles.username}>{item.user.name}</a>
-                &nbsp;
-                <span className={styles.event}>{events}</span>
-              </span>
-            }
-            description={
-              <span className={styles.datetime} title={item.updatedAt}>
-                {moment(item.updatedAt).fromNow()}
-              </span>
-            }
-          />
-        </List.Item>
-      );
+  renderActivities(item: IActivities) {
+    const events = item.template.split(/@\{([^{}]*)\}/gi).map(key => {
+      if (item[key]) {
+        return (
+          <a href={item[key].link} key={item[key].name}>
+            {item[key].name}
+          </a>
+        );
+      }
+      return key;
     });
+    return (
+      <List.Item key={item.id}>
+        <List.Item.Meta
+          avatar={<Avatar src={item.user.avatar} />}
+          title={
+            <span>
+              <a className={styles.username}>{item.user.name}</a>
+              &nbsp;
+              <span className={styles.event}>{events}</span>
+            </span>
+          }
+          description={
+            <span className={styles.datetime} title={item.updatedAt}>
+              {moment(item.updatedAt).fromNow()}
+            </span>
+          }
+        />
+      </List.Item>
+    );
   }
 
   render() {
     const {
       currentUser,
+      activities,
       projectNotice,
       projectLoading,
       activitiesLoading,
@@ -167,10 +164,7 @@ class PAGE_NAME_UPPER_CAMEL_CASE extends PureComponent<BLOCK_NAME_CAMEL_CASEProp
     );
 
     return (
-      <PageHeaderWrapper
-        content={pageHeaderContent}
-        extraContent={extraContent}
-      >
+      <PageHeaderWrapper content={pageHeaderContent} extraContent={extraContent}>
         <Row gutter={24}>
           <Col xl={16} lg={24} md={24} sm={24} xs={24}>
             <Card
@@ -213,9 +207,15 @@ class PAGE_NAME_UPPER_CAMEL_CASE extends PureComponent<BLOCK_NAME_CAMEL_CASEProp
               title="动态"
               loading={activitiesLoading}
             >
-              <List loading={activitiesLoading} size="large">
-                <div className={styles.activitiesList}>{this.renderActivities()}</div>
-              </List>
+              <List<IActivities>
+                loading={activitiesLoading}
+                renderItem={item => {
+                  return this.renderActivities(item);
+                }}
+                dataSource={activities}
+                className={styles.activitiesList}
+                size="large"
+              />
             </Card>
           </Col>
           <Col xl={8} lg={24} md={24} sm={24} xs={24}>

@@ -3,22 +3,22 @@ export interface ITag {
   label: string;
 }
 
-export interface Province {
+export interface IProvince {
   label: string;
   key: string;
 }
 
-export interface City {
+export interface ICity {
   label: string;
   key: string;
 }
 
 export interface Geographic {
-  province: Province;
-  city: City;
+  province: IProvince;
+  city: ICity;
 }
 
-export interface Notice {
+export interface INotice {
   id: string;
   title: string;
   logo: string;
@@ -29,11 +29,11 @@ export interface Notice {
   memberLink: string;
 }
 
-export interface CurrentUser {
+export interface ICurrentUser {
   name: string;
   avatar: string;
   userid: string;
-  notice: Notice[];
+  notice: INotice[];
   email: string;
   signature: string;
   title: string;
@@ -47,31 +47,31 @@ export interface CurrentUser {
   phone: string;
 }
 
-export interface Member {
+export interface IMember {
   avatar: string;
   name: string;
   id: string;
 }
 
-export interface Activeties {
-  id: string,
-  updatedAt: string,
+export interface IActivities {
+  id: string;
+  updatedAt: string;
   user: {
-    name: string,
-    avatar: string,
-  },
+    name: string;
+    avatar: string;
+  };
   group: {
-    name: string,
-    link: string,
-  },
+    name: string;
+    link: string;
+  };
   project: {
-    name: string,
-    link: string,
-  },
-  template: string,
+    name: string;
+    link: string;
+  };
+  template: string;
 }
 
-export interface RadarData {
+export interface IRadarData {
   label: string;
   name: string;
   value: number;
