@@ -146,8 +146,9 @@ class Login extends Component<LoginProps, LoginState> {
     );
   }
 }
+
 (Object.keys(LoginItem) as Array<keyof LoginItemType>).forEach(item => {
   Login[item] = LoginItem[item];
 });
 
-export default (Form.create()(Login as any) as unknown) as typeof Login;
+export default Form.create<Partial<LoginProps>>()(Login);

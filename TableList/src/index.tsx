@@ -478,4 +478,4 @@ class TableList extends Component<TableListProps, TableListState> {
   }
 }
 
-export default Form.create()(TableList);
+export default Form.create<TableListProps>()(TableList);

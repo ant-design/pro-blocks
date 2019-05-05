@@ -9,6 +9,7 @@ import { Dispatch } from 'redux';
 import { IStateType } from './model';
 import { FormComponentProps } from 'antd/lib/form';
 import { CheckboxChangeEvent } from 'antd/lib/checkbox';
+
 const { Tab, UserName, Password, Mobile, Captcha, Submit } = Login;
 
 interface BLOCK_NAME_CAMEL_CASEProps {

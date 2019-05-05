@@ -173,7 +173,7 @@ class PAGE_NAME_UPPER_CAMEL_CASE extends Component<PAGE_NAME_UPPER_CAMEL_CASEPro
   }
 }
 
-const WarpForm = Form.create({
+const WarpForm = Form.create<PAGE_NAME_UPPER_CAMEL_CASEProps>({
   onValuesChange({ dispatch }: PAGE_NAME_UPPER_CAMEL_CASEProps, changedValues, allValues) {
     // 表单项变化时请求数据
     // 模拟查询表单生效

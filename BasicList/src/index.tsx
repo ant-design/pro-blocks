@@ -377,4 +377,4 @@ class PAGE_NAME_UPPER_CAMEL_CASE extends Component<
   }
 }
 
-export default Form.create()(PAGE_NAME_UPPER_CAMEL_CASE);
+export default Form.create<PAGE_NAME_UPPER_CAMEL_CASEProps>()(PAGE_NAME_UPPER_CAMEL_CASE);

@@ -206,4 +206,4 @@ class BaseView extends Component<BaseViewProps> {
   }
 }
 
-export default Form.create()(BaseView);
+export default Form.create<BaseViewProps>()(BaseView);
