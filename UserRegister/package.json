@@ -24,5 +24,8 @@
     "umi-plugin-react": "^1.7.2",
     "umi-plugin-block-dev": "^1.0.0"
   },
-  "license": "MIT"
+  "license": "MIT",
+  "blockConfig": {
+    "specVersion": "0.1"
+  }
 }
