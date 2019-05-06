@@ -13,7 +13,7 @@ import { CurrentUser } from './data';
 const { Item } = Menu;
 
 interface PAGE_NAME_UPPER_CAMEL_CASEProps {
-  dispatch: Dispatch;
+  dispatch: Dispatch<any>;
   currentUser: CurrentUser;
 }
 
@@ -32,6 +32,7 @@ class PAGE_NAME_UPPER_CAMEL_CASE extends Component<
   PAGE_NAME_UPPER_CAMEL_CASEProps,
   PAGE_NAME_UPPER_CAMEL_CASEState
 > {
+  main: HTMLDivElement | undefined;
   constructor(props: PAGE_NAME_UPPER_CAMEL_CASEProps) {
     super(props);
     const menuMap = {
@@ -55,8 +56,6 @@ class PAGE_NAME_UPPER_CAMEL_CASE extends Component<
       selectKey: 'base',
     };
   }
-
-  main: HTMLDivElement | undefined;
 
   componentDidMount() {
     const { dispatch } = this.props;

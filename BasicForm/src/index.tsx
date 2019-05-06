@@ -25,7 +25,7 @@ const { TextArea } = Input;
 
 interface PAGE_NAME_UPPER_CAMEL_CASEProps extends FormComponentProps {
   submitting: boolean;
-  dispatch: Dispatch;
+  dispatch: Dispatch<any>;
 }
 
 @connect(({ loading }: { loading: { effects: { [key: string]: boolean } } }) => ({
@@ -102,7 +102,7 @@ class PAGE_NAME_UPPER_CAMEL_CASE extends Component<PAGE_NAME_UPPER_CAMEL_CASEPro
                     formatMessage({ id: 'BLOCK_NAME.placeholder.start' }),
                     formatMessage({ id: 'BLOCK_NAME.placeholder.end' }),
                   ]}
-                />
+                />,
               )}
             </FormItem>
             <FormItem {...formItemLayout} label={<FormattedMessage id="BLOCK_NAME.goal.label" />}>
@@ -118,7 +118,7 @@ class PAGE_NAME_UPPER_CAMEL_CASE extends Component<PAGE_NAME_UPPER_CAMEL_CASEPro
                   style={{ minHeight: 32 }}
                   placeholder={formatMessage({ id: 'BLOCK_NAME.goal.placeholder' })}
                   rows={4}
-                />
+                />,
               )}
             </FormItem>
             <FormItem
@@ -137,7 +137,7 @@ class PAGE_NAME_UPPER_CAMEL_CASE extends Component<PAGE_NAME_UPPER_CAMEL_CASEPro
                   style={{ minHeight: 32 }}
                   placeholder={formatMessage({ id: 'BLOCK_NAME.standard.placeholder' })}
                   rows={4}
-                />
+                />,
               )}
             </FormItem>
             <FormItem
@@ -155,7 +155,7 @@ class PAGE_NAME_UPPER_CAMEL_CASE extends Component<PAGE_NAME_UPPER_CAMEL_CASEPro
               }
             >
               {getFieldDecorator('client')(
-                <Input placeholder={formatMessage({ id: 'BLOCK_NAME.client.placeholder' })} />
+                <Input placeholder={formatMessage({ id: 'BLOCK_NAME.client.placeholder' })} />,
               )}
             </FormItem>
             <FormItem
@@ -170,7 +170,7 @@ class PAGE_NAME_UPPER_CAMEL_CASE extends Component<PAGE_NAME_UPPER_CAMEL_CASEPro
               }
             >
               {getFieldDecorator('invites')(
-                <Input placeholder={formatMessage({ id: 'BLOCK_NAME.invites.placeholder' })} />
+                <Input placeholder={formatMessage({ id: 'BLOCK_NAME.invites.placeholder' })} />,
               )}
             </FormItem>
             <FormItem
@@ -189,7 +189,7 @@ class PAGE_NAME_UPPER_CAMEL_CASE extends Component<PAGE_NAME_UPPER_CAMEL_CASEPro
                   placeholder={formatMessage({ id: 'BLOCK_NAME.weight.placeholder' })}
                   min={0}
                   max={100}
-                />
+                />,
               )}
               <span className="ant-form-text">%</span>
             </FormItem>
@@ -212,7 +212,7 @@ class PAGE_NAME_UPPER_CAMEL_CASE extends Component<PAGE_NAME_UPPER_CAMEL_CASEPro
                     <Radio value="3">
                       <FormattedMessage id="BLOCK_NAME.radio.private" />
                     </Radio>
-                  </Radio.Group>
+                  </Radio.Group>,
                 )}
                 <FormItem style={{ marginBottom: 0 }}>
                   {getFieldDecorator('publicUsers')(
@@ -233,7 +233,7 @@ class PAGE_NAME_UPPER_CAMEL_CASE extends Component<PAGE_NAME_UPPER_CAMEL_CASEPro
                       <Option value="3">
                         <FormattedMessage id="BLOCK_NAME.option.C" />
                       </Option>
-                    </Select>
+                    </Select>,
                   )}
                 </FormItem>
               </div>

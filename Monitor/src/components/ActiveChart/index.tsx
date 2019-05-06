@@ -24,12 +24,12 @@ export default class ActiveChart extends Component {
   state = {
     activeData: getActiveData(),
   };
+  timer: number | undefined;
+  requestRef: number | undefined;
 
   componentDidMount() {
     this.loopData();
   }
-  timer: number | undefined;
-  requestRef: number | undefined;
   componentWillUnmount() {
     clearTimeout(this.timer);
     if (this.requestRef) {
@@ -46,7 +46,7 @@ export default class ActiveChart extends Component {
           },
           () => {
             this.loopData();
-          }
+          },
         );
       }, 1000);
     });

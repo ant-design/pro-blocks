@@ -16,7 +16,7 @@ const nullSlectItem: SelectItem = {
 };
 
 interface GeographicViewProps {
-  dispatch?: Dispatch;
+  dispatch?: Dispatch<any>;
   province?: ProvinceData[];
   city?: CityData[];
   value?: {
@@ -44,26 +44,28 @@ interface GeographicViewProps {
       city,
       loading: loading.models.BLOCK_NAME_CAMEL_CASE,
     };
-  }
+  },
 )
 class GeographicView extends Component<GeographicViewProps> {
   componentDidMount = () => {
     const { dispatch } = this.props;
-    dispatch &&
+    if (dispatch) {
       dispatch({
         type: 'BLOCK_NAME_CAMEL_CASE/fetchProvince',
       });
+    }
   };
 
   componentDidUpdate(props: GeographicViewProps) {
     const { dispatch, value } = this.props;
 
     if (!props.value && !!value && !!value.province) {
-      dispatch &&
+      if (dispatch) {
         dispatch({
           type: 'BLOCK_NAME_CAMEL_CASE/fetchCity',
           payload: value.province.key,
         });
+      }
     }
   }
 
@@ -101,17 +103,18 @@ class GeographicView extends Component<GeographicViewProps> {
   selectProvinceItem = (item: SelectItem) => {
     const { dispatch, onChange } = this.props;
 
-    dispatch &&
+    if (dispatch) {
       dispatch({
         type: 'BLOCK_NAME_CAMEL_CASE/fetchCity',
         payload: item.key,
       });
-
-    onChange &&
+    }
+    if (onChange) {
       onChange({
         province: item,
         city: nullSlectItem,
       });
+    }
   };
 
   selectCityItem = (item: SelectItem) => {

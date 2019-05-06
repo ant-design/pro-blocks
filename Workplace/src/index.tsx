@@ -45,7 +45,7 @@ interface BLOCK_NAME_CAMEL_CASEProps {
   projectNotice: INotice[];
   activities: IActivities[];
   radarData: IRadarData[];
-  dispatch: Dispatch;
+  dispatch: Dispatch<any>;
   currentUserLoading: boolean;
   projectLoading: boolean;
   activitiesLoading: boolean;
@@ -66,7 +66,7 @@ interface BLOCK_NAME_CAMEL_CASEProps {
     currentUserLoading: loading.effects['BLOCK_NAME_CAMEL_CASE/fetchUserCurrent'],
     projectLoading: loading.effects['BLOCK_NAME_CAMEL_CASE/fetchProjectNotice'],
     activitiesLoading: loading.effects['BLOCK_NAME_CAMEL_CASE/fetchActivitiesList'],
-  })
+  }),
 )
 class PAGE_NAME_UPPER_CAMEL_CASE extends PureComponent<BLOCK_NAME_CAMEL_CASEProps> {
   componentDidMount() {

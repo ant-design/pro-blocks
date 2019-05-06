@@ -72,7 +72,7 @@ class UpdateForm extends Component<UpdateFormProps, UpdateFormState> {
           } else {
             handleUpdate(formVals);
           }
-        }
+        },
       );
     });
   };
@@ -102,7 +102,7 @@ class UpdateForm extends Component<UpdateFormProps, UpdateFormState> {
             <Select style={{ width: '100%' }}>
               <Option value="0">表一</Option>
               <Option value="1">表二</Option>
-            </Select>
+            </Select>,
           )}
         </FormItem>,
         <FormItem key="template" {...this.formLayout} label="规则模板">
@@ -112,7 +112,7 @@ class UpdateForm extends Component<UpdateFormProps, UpdateFormState> {
             <Select style={{ width: '100%' }}>
               <Option value="0">规则模板一</Option>
               <Option value="1">规则模板二</Option>
-            </Select>
+            </Select>,
           )}
         </FormItem>,
         <FormItem key="type" {...this.formLayout} label="规则类型">
@@ -122,7 +122,7 @@ class UpdateForm extends Component<UpdateFormProps, UpdateFormState> {
             <RadioGroup>
               <Radio value="0">强</Radio>
               <Radio value="1">弱</Radio>
-            </RadioGroup>
+            </RadioGroup>,
           )}
         </FormItem>,
       ];
@@ -138,7 +138,7 @@ class UpdateForm extends Component<UpdateFormProps, UpdateFormState> {
               showTime
               format="YYYY-MM-DD HH:mm:ss"
               placeholder="选择开始时间"
-            />
+            />,
           )}
         </FormItem>,
         <FormItem key="frequency" {...this.formLayout} label="调度周期">
@@ -148,7 +148,7 @@ class UpdateForm extends Component<UpdateFormProps, UpdateFormState> {
             <Select style={{ width: '100%' }}>
               <Option value="month">月</Option>
               <Option value="week">周</Option>
-            </Select>
+            </Select>,
           )}
         </FormItem>,
       ];

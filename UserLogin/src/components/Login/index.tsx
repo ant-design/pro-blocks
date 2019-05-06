@@ -14,7 +14,7 @@ export interface LoginProps {
   style?: React.CSSProperties;
   onSubmit?: (error: any, values: any) => void;
   className?: string;
-  form?: FormComponentProps['form'];
+  form: FormComponentProps['form'];
   children: React.ReactElement<LoginTab>[];
 }
 
@@ -57,7 +57,7 @@ class Login extends Component<LoginProps, LoginState> {
         if (onTabChange) {
           onTabChange(type);
         }
-      }
+      },
     );
   };
 
@@ -97,10 +97,13 @@ class Login extends Component<LoginProps, LoginState> {
     const { active = {}, type = '' } = this.state;
     const { form, onSubmit } = this.props;
     const activeFields = active[type] || [];
-    form &&
+    if (form) {
       form.validateFields(activeFields, { force: true }, (err, values) => {
-        onSubmit && onSubmit(err, values);
+        if (onSubmit) {
+          onSubmit(err, values);
+        }
       });
+    }
   };
 
   render() {
@@ -119,7 +122,7 @@ class Login extends Component<LoginProps, LoginState> {
         } else {
           otherChildren.push(child);
         }
-      }
+      },
     );
     return (
       <LoginContext.Provider value={this.getContext()}>
@@ -151,4 +154,4 @@ class Login extends Component<LoginProps, LoginState> {
   Login[item] = LoginItem[item];
 });
 
-export default Form.create<Partial<LoginProps>>()(Login);
+export default Form.create<LoginProps>()(Login);

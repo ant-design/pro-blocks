@@ -18,6 +18,9 @@ class WaterWave extends Component<IWaterWaveProps> {
   state = {
     radio: 1,
   };
+  timer: number = 0;
+  root: HTMLDivElement | undefined | null;
+  node: HTMLCanvasElement | undefined | null;
 
   componentDidMount() {
     this.renderChart();
@@ -27,7 +30,7 @@ class WaterWave extends Component<IWaterWaveProps> {
       () => {
         requestAnimationFrame(() => this.resize());
       },
-      { passive: true }
+      { passive: true },
     );
   }
 
@@ -56,7 +59,6 @@ class WaterWave extends Component<IWaterWaveProps> {
       });
     }
   };
-  timer: number = 0;
   renderChart(type?: string) {
     const { percent, color = '#1890FF' } = this.props;
     const data = percent / 100;
@@ -199,8 +201,6 @@ class WaterWave extends Component<IWaterWaveProps> {
     }
     render();
   }
-  root: HTMLDivElement | undefined | null;
-  node: HTMLCanvasElement | undefined | null;
   render() {
     const { radio } = this.state;
     const { percent, title, height = 1 } = this.props;

@@ -42,6 +42,7 @@ class WrapFormItem extends Component<LoginItemProps, LoginItemState> {
     getCaptchaButtonText: 'captcha',
     getCaptchaSecondText: 'second',
   };
+  interval: number | undefined;
 
   constructor(props: LoginItemProps) {
     super(props);
@@ -49,7 +50,6 @@ class WrapFormItem extends Component<LoginItemProps, LoginItemState> {
       count: 0,
     };
   }
-  interval: number | undefined;
   componentDidMount() {
     const { updateActive, name = '' } = this.props;
     if (updateActive) {
@@ -122,7 +122,6 @@ class WrapFormItem extends Component<LoginItemProps, LoginItemState> {
       ...restProps
     } = this.props;
     if (!name) {
-      console.warn('name is required!');
       return null;
     }
     if (!form) {
@@ -170,7 +169,6 @@ Object.keys(ItemMap).forEach(key => {
   LoginItem[key] = (props: LoginItemProps) => (
     <LoginContext.Consumer>
       {context => {
-        console.log(context);
         return (
           <WrapFormItem
             customProps={item.props}

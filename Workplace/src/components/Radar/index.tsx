@@ -34,6 +34,8 @@ class Radar extends Component<IRadarProps, IRadarState> {
   state: IRadarState = {
     legendData: [],
   };
+  chart: G2.Chart | undefined;
+  node: HTMLDivElement | undefined;
 
   componentDidMount() {
     this.getLegendData();
@@ -45,7 +47,6 @@ class Radar extends Component<IRadarProps, IRadarState> {
       this.getLegendData();
     }
   }
-  chart: G2.Chart | undefined;
 
   getG2Instance = (chart: G2.Chart) => {
     this.chart = chart;
@@ -75,7 +76,6 @@ class Radar extends Component<IRadarProps, IRadarState> {
       legendData,
     });
   };
-  node: HTMLDivElement | undefined;
 
   handleRef = (n: HTMLDivElement) => {
     this.node = n;
@@ -86,7 +86,7 @@ class Radar extends Component<IRadarProps, IRadarState> {
       checked: boolean;
       name: string;
     },
-    i: string | number
+    i: string | number,
   ) => {
     const newItem = item;
     newItem.checked = !newItem.checked;

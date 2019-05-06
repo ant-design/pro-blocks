@@ -18,7 +18,7 @@ const formItemLayout = {
 };
 interface Step1Props extends FormComponentProps {
   data?: IStateType['step'];
-  dispatch?: Dispatch;
+  dispatch?: Dispatch<any>;
 }
 
 class Step1 extends React.PureComponent<Step1Props> {
@@ -52,7 +52,7 @@ class Step1 extends React.PureComponent<Step1Props> {
             })(
               <Select placeholder="test@example.com">
                 <Option value="ant-design@alipay.com">ant-design@alipay.com</Option>
-              </Select>
+              </Select>,
             )}
           </Form.Item>
           <Form.Item {...formItemLayout} label="收款账户">

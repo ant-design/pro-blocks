@@ -17,7 +17,7 @@ const FormItem = Form.Item;
 const pageSize = 5;
 
 interface PAGE_NAME_UPPER_CAMEL_CASEProps extends FormComponentProps {
-  dispatch: Dispatch;
+  dispatch: Dispatch<any>;
   BLOCK_NAME_CAMEL_CASE: IStateType;
   loading: boolean;
 }
@@ -134,7 +134,7 @@ class PAGE_NAME_UPPER_CAMEL_CASE extends Component<PAGE_NAME_UPPER_CAMEL_CASEPro
                     <TagSelect.Option value="cat10">类目十</TagSelect.Option>
                     <TagSelect.Option value="cat11">类目十一</TagSelect.Option>
                     <TagSelect.Option value="cat12">类目十二</TagSelect.Option>
-                  </TagSelect>
+                  </TagSelect>,
                 )}
               </FormItem>
             </StandardFormRow>
@@ -155,7 +155,7 @@ class PAGE_NAME_UPPER_CAMEL_CASE extends Component<PAGE_NAME_UPPER_CAMEL_CASEPro
                             {owner.name}
                           </Option>
                         ))}
-                      </Select>
+                      </Select>,
                     )}
                     <a className={styles.selfTrigger} onClick={this.setOwner}>
                       只看自己的
@@ -171,7 +171,7 @@ class PAGE_NAME_UPPER_CAMEL_CASE extends Component<PAGE_NAME_UPPER_CAMEL_CASEPro
                     {getFieldDecorator('user', {})(
                       <Select placeholder="不限" style={{ maxWidth: 200, width: '100%' }}>
                         <Option value="lisa">李三</Option>
-                      </Select>
+                      </Select>,
                     )}
                   </FormItem>
                 </Col>
@@ -180,7 +180,7 @@ class PAGE_NAME_UPPER_CAMEL_CASE extends Component<PAGE_NAME_UPPER_CAMEL_CASEPro
                     {getFieldDecorator('rate', {})(
                       <Select placeholder="不限" style={{ maxWidth: 200, width: '100%' }}>
                         <Option value="good">优秀</Option>
-                      </Select>
+                      </Select>,
                     )}
                   </FormItem>
                 </Col>
@@ -204,9 +204,9 @@ class PAGE_NAME_UPPER_CAMEL_CASE extends Component<PAGE_NAME_UPPER_CAMEL_CASEPro
               <List.Item
                 key={item.id}
                 actions={[
-                  <IconText type="star-o" text={item.star} />,
-                  <IconText type="like-o" text={item.like} />,
-                  <IconText type="message" text={item.message} />,
+                  <IconText key="star" type="star-o" text={item.star} />,
+                  <IconText key="like" type="like-o" text={item.like} />,
+                  <IconText type="message" key="message" text={item.message} />,
                 ]}
                 extra={<div className={styles.listItemExtra} />}
               >
@@ -257,5 +257,5 @@ export default connect(
   }) => ({
     BLOCK_NAME_CAMEL_CASE,
     loading: loading.models.BLOCK_NAME_CAMEL_CASE,
-  })
+  }),
 )(WarpForm);

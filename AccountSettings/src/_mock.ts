@@ -7,7 +7,7 @@ function getProvince(req: any, res: { json: (arg0: { name: string; id: string }[
 
 function getCity(
   req: { params: { province: string | number } },
-  res: { json: (arg: any) => void }
+  res: { json: (arg: any) => void },
 ) {
   return res.json(city[req.params.province]);
 }

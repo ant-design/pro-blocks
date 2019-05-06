@@ -39,7 +39,7 @@ const validatorGeographic = (
     province: SelectItem;
     city: SelectItem;
   },
-  callback: (message?: string) => void
+  callback: (message?: string) => void,
 ) => {
   const { province, city } = value;
   if (!province.key) {
@@ -70,6 +70,7 @@ interface BaseViewProps extends FormComponentProps {
   currentUser: BLOCK_NAME_CAMEL_CASE.currentUser,
 }))
 class BaseView extends Component<BaseViewProps> {
+  view: HTMLDivElement | undefined;
   componentDidMount() {
     this.setBaseInfo();
   }
@@ -96,7 +97,6 @@ class BaseView extends Component<BaseViewProps> {
     }
     return '';
   }
-  view: HTMLDivElement | undefined;
 
   getViewDom = (ref: HTMLDivElement) => {
     this.view = ref;
@@ -142,7 +142,7 @@ class BaseView extends Component<BaseViewProps> {
                 <Input.TextArea
                   placeholder={formatMessage({ id: 'BLOCK_NAME.basic.profile-placeholder' })}
                   rows={4}
-                />
+                />,
               )}
             </FormItem>
             <FormItem label={formatMessage({ id: 'BLOCK_NAME.basic.country' })}>
@@ -156,7 +156,7 @@ class BaseView extends Component<BaseViewProps> {
               })(
                 <Select style={{ maxWidth: 220 }}>
                   <Option value="China">中国</Option>
-                </Select>
+                </Select>,
               )}
             </FormItem>
             <FormItem label={formatMessage({ id: 'BLOCK_NAME.basic.geographic' })}>

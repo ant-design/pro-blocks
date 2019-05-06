@@ -31,10 +31,10 @@ function getRule(
       arg0: {
         list: TableListItem[];
         pagination: { total: number; pageSize: number; current: number };
-      }
+      },
     ) => void;
   },
-  u: any
+  u: any,
 ) {
   let url = u;
   if (!url || Object.prototype.toString.call(url) !== '[object String]') {
@@ -65,7 +65,7 @@ function getRule(
             return true;
           }
           return false;
-        })
+        }),
       );
     });
     dataSource = filterDataSource;
@@ -75,9 +75,9 @@ function getRule(
     dataSource = dataSource.filter(data => data.name.indexOf(params.name) > -1);
   }
 
-  let pageSize = 10;
+  let pageSize: number = 10;
   if (params.pageSize) {
-    pageSize = parseInt(params.pageSize) * 1;
+    pageSize = parseInt(params.pageSize + '', 0);
   }
 
   const result = {
@@ -96,7 +96,7 @@ function postRule(
   req: { url: any; body: any },
   res: { json: (arg0: { list: TableListItem[]; pagination: { total: number } }) => void },
   u: any,
-  b: { body: any }
+  b: { body: any },
 ) {
   let url = u;
   if (!url || Object.prototype.toString.call(url) !== '[object String]') {

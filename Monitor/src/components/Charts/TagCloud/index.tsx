@@ -34,6 +34,11 @@ class TagCloud extends Component<ITagCloudProps, ITagCloudState> {
     height: 0,
     width: 0,
   };
+  isUnmount!: boolean;
+  requestRef!: number;
+
+  root: HTMLDivElement | undefined;
+  imageMask: HTMLImageElement | undefined;
 
   componentDidMount() {
     requestAnimationFrame(() => {
@@ -49,20 +54,16 @@ class TagCloud extends Component<ITagCloudProps, ITagCloudState> {
       this.renderChart(this.props);
     }
   }
-  isUnmount!: boolean;
   componentWillUnmount() {
     this.isUnmount = true;
     window.cancelAnimationFrame(this.requestRef);
     window.removeEventListener('resize', this.resize);
   }
-  requestRef!: number;
   resize = () => {
     this.requestRef = requestAnimationFrame(() => {
       this.renderChart(this.props);
     });
   };
-
-  root: HTMLDivElement | undefined;
   saveRootRef = (node: HTMLDivElement) => {
     this.root = node;
   };
@@ -91,7 +92,7 @@ class TagCloud extends Component<ITagCloudProps, ITagCloudState> {
     (Shape as any).registerShape('point', 'cloud', {
       drawShape(
         cfg: { x: any; y: any },
-        container: { addShape: (arg0: string, arg1: { attrs: any }) => void }
+        container: { addShape: (arg0: string, arg1: { attrs: any }) => void },
       ) {
         const attrs = getTextAttrs(cfg);
         return container.addShape('text', {
@@ -103,7 +104,6 @@ class TagCloud extends Component<ITagCloudProps, ITagCloudState> {
       },
     });
   };
-  imageMask: HTMLImageElement | undefined;
 
   @Bind()
   @Debounce(500)

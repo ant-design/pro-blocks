@@ -5,7 +5,7 @@ extends:
   - tslint-config-prettier
 jsRules:
 rules:
-  class-name: true
+  class-name: false
   eofline: true
   forin: true
   jsdoc-format: false

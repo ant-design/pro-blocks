@@ -40,17 +40,6 @@ interface StandardTableState {
 }
 
 class StandardTable extends Component<StandardTableProps<TableListItem>, StandardTableState> {
-  constructor(props: StandardTableProps<TableListItem>) {
-    super(props);
-    const { columns } = props;
-    const needTotalList = initTotalList(columns);
-
-    this.state = {
-      selectedRowKeys: [],
-      needTotalList,
-    };
-  }
-
   static getDerivedStateFromProps(nextProps: StandardTableProps<TableListItem>) {
     // clean state
     if (nextProps.selectedRows.length === 0) {
@@ -61,6 +50,16 @@ class StandardTable extends Component<StandardTableProps<TableListItem>, Standar
       };
     }
     return null;
+  }
+  constructor(props: StandardTableProps<TableListItem>) {
+    super(props);
+    const { columns } = props;
+    const needTotalList = initTotalList(columns);
+
+    this.state = {
+      selectedRowKeys: [],
+      needTotalList,
+    };
   }
 
   handleRowSelectChange = (selectedRowKeys: string[], selectedRows: TableListItem[]) => {

@@ -7,7 +7,7 @@ import { AdvancedProfileData } from './data';
 
 export type Effect = (
   action: AnyAction,
-  effects: EffectsCommandMap & { select: <T>(func: (state: AdvancedProfileData) => T) => T }
+  effects: EffectsCommandMap & { select: <T>(func: (state: AdvancedProfileData) => T) => T },
 ) => void;
 
 export interface ModelType {

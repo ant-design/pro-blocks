@@ -8,7 +8,7 @@ class BindingView extends Component {
       title: formatMessage({ id: 'BLOCK_NAME.binding.taobao' }, {}),
       description: formatMessage({ id: 'BLOCK_NAME.binding.taobao-description' }, {}),
       actions: [
-        <a>
+        <a key="Bind">
           <FormattedMessage id="BLOCK_NAME.binding.bind" defaultMessage="Bind" />
         </a>,
       ],
@@ -18,7 +18,7 @@ class BindingView extends Component {
       title: formatMessage({ id: 'BLOCK_NAME.binding.alipay' }, {}),
       description: formatMessage({ id: 'BLOCK_NAME.binding.alipay-description' }, {}),
       actions: [
-        <a>
+        <a key="Bind">
           <FormattedMessage id="BLOCK_NAME.binding.bind" defaultMessage="Bind" />
         </a>,
       ],
@@ -28,7 +28,7 @@ class BindingView extends Component {
       title: formatMessage({ id: 'BLOCK_NAME.binding.dingding' }, {}),
       description: formatMessage({ id: 'BLOCK_NAME.binding.dingding-description' }, {}),
       actions: [
-        <a>
+        <a key="Bind">
           <FormattedMessage id="BLOCK_NAME.binding.bind" defaultMessage="Bind" />
         </a>,
       ],

@@ -85,17 +85,6 @@ const description = (
   </DescriptionList>
 );
 
-const tabList = [
-  {
-    key: 'detail',
-    tab: '详情',
-  },
-  {
-    key: 'rule',
-    tab: '规则',
-  },
-];
-
 /**
  * render Footer tabList
  * In order to be compatible with the old version of the PageHeader
@@ -173,7 +162,7 @@ const customDot = (
     status,
   }: {
     status: string;
-  }
+  },
 ) =>
   status === 'process' ? (
     <Popover placement="topLeft" arrowPointAtCenter content={popoverContent}>
@@ -244,7 +233,7 @@ const columns = [
   }) => ({
     BLOCK_NAME_CAMEL_CASE,
     loading: loading.effects['BLOCK_NAME_CAMEL_CASE/fetchAdvanced'],
-  })
+  }),
 )
 class PAGE_NAME_UPPER_CAMEL_CASE extends Component<
   { loading: boolean; BLOCK_NAME_CAMEL_CASE: AdvancedProfileData; dispatch: Dispatch },
@@ -263,7 +252,6 @@ class PAGE_NAME_UPPER_CAMEL_CASE extends Component<
 
   componentDidMount() {
     const { dispatch, BLOCK_NAME_CAMEL_CASE } = this.props;
-    console.log(BLOCK_NAME_CAMEL_CASE);
     dispatch({
       type: 'BLOCK_NAME_CAMEL_CASE/fetchAdvanced',
     });
@@ -344,7 +332,20 @@ class PAGE_NAME_UPPER_CAMEL_CASE extends Component<
                   margin: -24,
                 }}
                 extra={action}
-                footer={<RenderFooter tabList={tabList} />}
+                footer={
+                  <RenderFooter
+                    tabList={[
+                      {
+                        key: 'detail',
+                        tab: '详情',
+                      },
+                      {
+                        key: 'rule',
+                        tab: '规则',
+                      },
+                    ]}
+                  />
+                }
               >
                 <div
                   style={{

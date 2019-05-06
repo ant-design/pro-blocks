@@ -60,7 +60,7 @@ const AvatarList: React.SFC<AvatarListProps> & { Item: typeof Item } = ({
   const childrenWithProps = childrenArray.slice(0, numToShow).map(child =>
     React.cloneElement(child, {
       size,
-    })
+    }),
   );
 
   if (numToShow < numOfChildren) {
@@ -69,7 +69,7 @@ const AvatarList: React.SFC<AvatarListProps> & { Item: typeof Item } = ({
     childrenWithProps.push(
       <li key="exceed" className={cls}>
         <Avatar size={size} style={excessItemsStyle}>{`+${numOfChildren - maxLength}`}</Avatar>
-      </li>
+      </li>,
     );
   }
 

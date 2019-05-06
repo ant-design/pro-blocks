@@ -41,7 +41,7 @@ const passwordProgressMap: {
 };
 
 interface BLOCK_NAME_CAMEL_CASEProps extends FormComponentProps {
-  dispatch: Dispatch;
+  dispatch: Dispatch<any>;
   BLOCK_NAME_CAMEL_CASE: IStateType;
   submitting: boolean;
 }
@@ -76,7 +76,7 @@ export interface IUserRegisterParams {
   }) => ({
     BLOCK_NAME_CAMEL_CASE,
     submitting: loading.effects['BLOCK_NAME_CAMEL_CASE/submit'],
-  })
+  }),
 )
 class PAGE_NAME_UPPER_CAMEL_CASE extends Component<
   BLOCK_NAME_CAMEL_CASEProps,
@@ -89,9 +89,10 @@ class PAGE_NAME_UPPER_CAMEL_CASE extends Component<
     help: '',
     prefix: '86',
   };
+  interval: number | undefined;
 
   componentDidUpdate() {
-    const { form, BLOCK_NAME_CAMEL_CASE } = this.props;
+    const { BLOCK_NAME_CAMEL_CASE } = this.props;
     if (BLOCK_NAME_CAMEL_CASE.status === 'ok') {
       message.success('注册成功！');
     }
@@ -100,7 +101,6 @@ class PAGE_NAME_UPPER_CAMEL_CASE extends Component<
   componentWillUnmount() {
     clearInterval(this.interval);
   }
-  interval: number | undefined;
   onGetCaptcha = () => {
     let count = 59;
     this.setState({ count });
@@ -193,6 +193,7 @@ class PAGE_NAME_UPPER_CAMEL_CASE extends Component<
     return value && value.length ? (
       <div className={styles[`progress-${passwordStatus}`]}>
         <Progress
+          default={passwordProgressMap[passwordStatus]}
           status={passwordProgressMap[passwordStatus]}
           className={styles.progress}
           strokeWidth={6}
@@ -229,7 +230,7 @@ class PAGE_NAME_UPPER_CAMEL_CASE extends Component<
               <Input
                 size="large"
                 placeholder={formatMessage({ id: 'BLOCK_NAME.email.placeholder' })}
-              />
+              />,
             )}
           </FormItem>
           <FormItem help={help}>
@@ -261,7 +262,7 @@ class PAGE_NAME_UPPER_CAMEL_CASE extends Component<
                   size="large"
                   type="password"
                   placeholder={formatMessage({ id: 'BLOCK_NAME.password.placeholder' })}
-                />
+                />,
               )}
             </Popover>
           </FormItem>
@@ -281,7 +282,7 @@ class PAGE_NAME_UPPER_CAMEL_CASE extends Component<
                 size="large"
                 type="password"
                 placeholder={formatMessage({ id: 'BLOCK_NAME.confirm-password.placeholder' })}
-              />
+              />,
             )}
           </FormItem>
           <FormItem>
@@ -311,7 +312,7 @@ class PAGE_NAME_UPPER_CAMEL_CASE extends Component<
                   size="large"
                   style={{ width: '80%' }}
                   placeholder={formatMessage({ id: 'BLOCK_NAME.phone-number.placeholder' })}
-                />
+                />,
               )}
             </InputGroup>
           </FormItem>
@@ -329,7 +330,7 @@ class PAGE_NAME_UPPER_CAMEL_CASE extends Component<
                   <Input
                     size="large"
                     placeholder={formatMessage({ id: 'BLOCK_NAME.verification-code.placeholder' })}
-                  />
+                  />,
                 )}
               </Col>
               <Col span={8}>

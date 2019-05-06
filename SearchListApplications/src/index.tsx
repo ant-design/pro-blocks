@@ -4,7 +4,6 @@ import { connect } from 'dva';
 import { Row, Col, Form, Card, Select, Icon, Avatar, List, Tooltip, Dropdown, Menu } from 'antd';
 import TagSelect from './components/TagSelect';
 import StandardFormRow from './components/StandardFormRow';
-import { formatWan } from './utils/utils';
 import styles from './style.less';
 import { IStateType } from './model';
 import { Dispatch } from 'redux';
@@ -14,8 +13,34 @@ import { ListItemDataType } from './data';
 const { Option } = Select;
 const FormItem = Form.Item;
 
+export function formatWan(val: number) {
+  const v = val * 1;
+  if (!v || Number.isNaN(v)) return '';
+
+  let result = val;
+  if (val > 10000) {
+    result = (
+      <span>
+        {Math.floor(val / 10000)}
+        <span
+          style={{
+            position: 'relative',
+            top: -2,
+            fontSize: 14,
+            fontStyle: 'normal',
+            marginLeft: 2,
+          }}
+        >
+          万
+        </span>
+      </span>
+    );
+  }
+  return result;
+}
+
 interface PAGE_NAME_UPPER_CAMEL_CASEProps extends FormComponentProps {
-  dispatch: Dispatch;
+  dispatch: Dispatch<any>;
   BLOCK_NAME_CAMEL_CASE: IStateType;
   loading: boolean;
 }
@@ -89,7 +114,7 @@ class PAGE_NAME_UPPER_CAMEL_CASE extends Component<PAGE_NAME_UPPER_CAMEL_CASEPro
             <StandardFormRow title="所属类目" block style={{ paddingBottom: 11 }}>
               <FormItem>
                 {getFieldDecorator('category')(
-                  <TagSelect expandable={true}>
+                  <TagSelect expandable>
                     <TagSelect.Option value="cat1">类目一</TagSelect.Option>
                     <TagSelect.Option value="cat2">类目二</TagSelect.Option>
                     <TagSelect.Option value="cat3">类目三</TagSelect.Option>
@@ -102,7 +127,7 @@ class PAGE_NAME_UPPER_CAMEL_CASE extends Component<PAGE_NAME_UPPER_CAMEL_CASEPro
                     <TagSelect.Option value="cat10">类目十</TagSelect.Option>
                     <TagSelect.Option value="cat11">类目十一</TagSelect.Option>
                     <TagSelect.Option value="cat12">类目十二</TagSelect.Option>
-                  </TagSelect>
+                  </TagSelect>,
                 )}
               </FormItem>
             </StandardFormRow>
@@ -113,7 +138,7 @@ class PAGE_NAME_UPPER_CAMEL_CASE extends Component<PAGE_NAME_UPPER_CAMEL_CASEPro
                     {getFieldDecorator('author', {})(
                       <Select placeholder="不限" style={{ maxWidth: 200, width: '100%' }}>
                         <Option value="lisa">王昭君</Option>
-                      </Select>
+                      </Select>,
                     )}
                   </FormItem>
                 </Col>
@@ -123,7 +148,7 @@ class PAGE_NAME_UPPER_CAMEL_CASE extends Component<PAGE_NAME_UPPER_CAMEL_CASEPro
                       <Select placeholder="不限" style={{ maxWidth: 200, width: '100%' }}>
                         <Option value="good">优秀</Option>
                         <Option value="normal">普通</Option>
-                      </Select>
+                      </Select>,
                     )}
                   </FormItem>
                 </Col>
@@ -143,16 +168,16 @@ class PAGE_NAME_UPPER_CAMEL_CASE extends Component<PAGE_NAME_UPPER_CAMEL_CASEPro
                 hoverable
                 bodyStyle={{ paddingBottom: 20 }}
                 actions={[
-                  <Tooltip title="下载">
+                  <Tooltip key="download" title="下载">
                     <Icon type="download" />
                   </Tooltip>,
-                  <Tooltip title="编辑">
+                  <Tooltip key="edit" title="编辑">
                     <Icon type="edit" />
                   </Tooltip>,
-                  <Tooltip title="分享">
+                  <Tooltip title="分享" key="share">
                     <Icon type="share-alt" />
                   </Tooltip>,
-                  <Dropdown overlay={itemMenu}>
+                  <Dropdown key="ellipsis" overlay={itemMenu}>
                     <Icon type="ellipsis" />
                   </Dropdown>,
                 ]}
@@ -196,5 +221,5 @@ export default connect(
   }) => ({
     BLOCK_NAME_CAMEL_CASE,
     loading: loading.models.BLOCK_NAME_CAMEL_CASE,
-  })
+  }),
 )(WarpForm);

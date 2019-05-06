@@ -36,7 +36,7 @@ const operationTabList = [
 ];
 
 interface BLOCK_NAME_CAMEL_CASEProps extends RouteChildrenProps {
-  dispatch: Dispatch;
+  dispatch: Dispatch<any>;
   currentUser: CurrentUser;
   currentUserLoading: boolean;
 }
@@ -57,7 +57,7 @@ interface BLOCK_NAME_CAMEL_CASEState {
   }) => ({
     currentUser: BLOCK_NAME_CAMEL_CASE.currentUser,
     currentUserLoading: loading.effects['BLOCK_NAME_CAMEL_CASE/fetchCurrent'],
-  })
+  }),
 )
 class PAGE_NAME_UPPER_CAMEL_CASE extends PureComponent<
   BLOCK_NAME_CAMEL_CASEProps,
@@ -65,7 +65,7 @@ class PAGE_NAME_UPPER_CAMEL_CASE extends PureComponent<
 > {
   static getDerivedStateFromProps(
     props: BLOCK_NAME_CAMEL_CASEProps,
-    state: BLOCK_NAME_CAMEL_CASEState
+    state: BLOCK_NAME_CAMEL_CASEState,
   ) {
     const { match, location } = props;
     const { tabKey } = state;
@@ -88,6 +88,8 @@ class PAGE_NAME_UPPER_CAMEL_CASE extends PureComponent<
     tabKey: 'articles',
   };
 
+  input: Input | null | undefined;
+
   componentDidMount() {
     const { dispatch } = this.props;
     dispatch({
@@ -107,8 +109,6 @@ class PAGE_NAME_UPPER_CAMEL_CASE extends PureComponent<
   showInput = () => {
     this.setState({ inputVisible: true }, () => this.input && this.input.focus());
   };
-
-  input: Input | null | undefined;
 
   saveInputRef = (input: Input | null) => {
     this.input = input;
