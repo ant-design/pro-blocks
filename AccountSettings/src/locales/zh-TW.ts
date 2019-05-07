@@ -21,6 +21,7 @@ export default {
   'BLOCK_NAME.basic.phone': '聯系電話',
   'BLOCK_NAME.basic.phone-message': '請輸入您的聯系電話!',
   'BLOCK_NAME.basic.update': '更新基本信息',
+  'BLOCK_NAME.basic.updatesucc': '更新基本信息成功',
   'BLOCK_NAME.security.strong': '強',
   'BLOCK_NAME.security.medium': '中',
   'BLOCK_NAME.security.weak': '弱',

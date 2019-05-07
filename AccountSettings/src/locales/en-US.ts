@@ -21,6 +21,7 @@ export default {
   'BLOCK_NAME.basic.phone': 'Phone Number',
   'BLOCK_NAME.basic.phone-message': 'Please input your phone!',
   'BLOCK_NAME.basic.update': 'Update Information',
+  'BLOCK_NAME.basic.updatesucc': 'Update basic information successfully',
   'BLOCK_NAME.security.strong': 'Strong',
   'BLOCK_NAME.security.medium': 'Medium',
   'BLOCK_NAME.security.weak': 'Weak',
