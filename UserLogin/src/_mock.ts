@@ -7,7 +7,7 @@ export default {
     req: { body: { password: any; userName: any; type: any } },
     res: {
       send: (data: any) => void;
-    }
+    },
   ) => {
     const { password, userName, type } = req.body;
     if (password === 'ant.design' && userName === 'admin') {

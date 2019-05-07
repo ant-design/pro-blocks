@@ -40,7 +40,7 @@ const statusMap = ['default', 'processing', 'success', 'error'];
 const status = ['关闭', '运行中', '已上线', '异常'];
 
 interface TableListProps extends FormComponentProps {
-  dispatch: Dispatch;
+  dispatch: Dispatch<any>;
   loading: boolean;
   BLOCK_NAME_CAMEL_CASE: IStateType;
 }
@@ -69,7 +69,7 @@ interface TableListState {
   }) => ({
     BLOCK_NAME_CAMEL_CASE,
     loading: loading.models.rule,
-  })
+  }),
 )
 class TableList extends Component<TableListProps, TableListState> {
   state: TableListState = {
@@ -152,7 +152,7 @@ class TableList extends Component<TableListProps, TableListState> {
   handleStandardTableChange = (
     pagination: Partial<TableListPagination>,
     filtersArg: Record<keyof TableListItem, string[]>,
-    sorter: SorterResult<TableListItem>
+    sorter: SorterResult<TableListItem>,
   ) => {
     const { dispatch } = this.props;
     const { formValues } = this.state;
@@ -310,7 +310,7 @@ class TableList extends Component<TableListProps, TableListState> {
                 <Select placeholder="请选择" style={{ width: '100%' }}>
                   <Option value="0">关闭</Option>
                   <Option value="1">运行中</Option>
-                </Select>
+                </Select>,
               )}
             </FormItem>
           </Col>
@@ -350,7 +350,7 @@ class TableList extends Component<TableListProps, TableListState> {
                 <Select placeholder="请选择" style={{ width: '100%' }}>
                   <Option value="0">关闭</Option>
                   <Option value="1">运行中</Option>
-                </Select>
+                </Select>,
               )}
             </FormItem>
           </Col>
@@ -364,7 +364,7 @@ class TableList extends Component<TableListProps, TableListState> {
           <Col md={8} sm={24}>
             <FormItem label="更新日期">
               {getFieldDecorator('date')(
-                <DatePicker style={{ width: '100%' }} placeholder="请输入更新日期" />
+                <DatePicker style={{ width: '100%' }} placeholder="请输入更新日期" />,
               )}
             </FormItem>
           </Col>
@@ -374,7 +374,7 @@ class TableList extends Component<TableListProps, TableListState> {
                 <Select placeholder="请选择" style={{ width: '100%' }}>
                   <Option value="0">关闭</Option>
                   <Option value="1">运行中</Option>
-                </Select>
+                </Select>,
               )}
             </FormItem>
           </Col>
@@ -384,7 +384,7 @@ class TableList extends Component<TableListProps, TableListState> {
                 <Select placeholder="请选择" style={{ width: '100%' }}>
                   <Option value="0">关闭</Option>
                   <Option value="1">运行中</Option>
-                </Select>
+                </Select>,
               )}
             </FormItem>
           </Col>

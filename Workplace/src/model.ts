@@ -12,7 +12,7 @@ export interface ModalState {
 
 export type Effect = (
   action: AnyAction,
-  effects: EffectsCommandMap & { select: <T>(func: (state: ModalState) => T) => T }
+  effects: EffectsCommandMap & { select: <T>(func: (state: ModalState) => T) => T },
 ) => void;
 
 export interface ModelType {
@@ -61,7 +61,7 @@ const Model: ModelType = {
         type: 'save',
         payload: {
           projectNotice: Array.isArray(response) ? response : [],
-        }
+        },
       });
     },
     *fetchActivitiesList(_, { call, put }) {
@@ -70,7 +70,7 @@ const Model: ModelType = {
         type: 'save',
         payload: {
           activities: Array.isArray(response) ? response : [],
-        }
+        },
       });
     },
     *fetchChart(_, { call, put }) {

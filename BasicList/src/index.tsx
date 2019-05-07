@@ -37,7 +37,7 @@ const { Search, TextArea } = Input;
 
 interface PAGE_NAME_UPPER_CAMEL_CASEProps extends FormComponentProps {
   BLOCK_NAME_CAMEL_CASE: IStateType;
-  dispatch: Dispatch;
+  dispatch: Dispatch<any>;
   loading: boolean;
 }
 interface PAGE_NAME_UPPER_CAMEL_CASEState {
@@ -57,7 +57,7 @@ interface PAGE_NAME_UPPER_CAMEL_CASEState {
   }) => ({
     BLOCK_NAME_CAMEL_CASE,
     loading: loading.models.BLOCK_NAME_CAMEL_CASE,
-  })
+  }),
 )
 class PAGE_NAME_UPPER_CAMEL_CASE extends Component<
   PAGE_NAME_UPPER_CAMEL_CASEProps,
@@ -69,6 +69,7 @@ class PAGE_NAME_UPPER_CAMEL_CASE extends Component<
     labelCol: { span: 7 },
     wrapperCol: { span: 13 },
   };
+  addBtn: HTMLButtonElement | undefined | null;
 
   componentDidMount() {
     const { dispatch } = this.props;
@@ -135,7 +136,6 @@ class PAGE_NAME_UPPER_CAMEL_CASE extends Component<
       payload: { id },
     });
   };
-  addBtn: HTMLButtonElement | undefined | null;
 
   render() {
     const {
@@ -216,11 +216,11 @@ class PAGE_NAME_UPPER_CAMEL_CASE extends Component<
     );
 
     const MoreBtn: React.SFC<{
-      current: BasicListItemDataType;
-    }> = ({ current }) => (
+      item: BasicListItemDataType;
+    }> = ({ item }) => (
       <Dropdown
         overlay={
-          <Menu onClick={({ key }) => editAndDelete(key, current)}>
+          <Menu onClick={({ key }) => editAndDelete(key, item)}>
             <Menu.Item key="edit">编辑</Menu.Item>
             <Menu.Item key="delete">删除</Menu.Item>
           </Menu>
@@ -266,7 +266,7 @@ class PAGE_NAME_UPPER_CAMEL_CASE extends Component<
                 placeholder="请选择"
                 format="YYYY-MM-DD HH:mm:ss"
                 style={{ width: '100%' }}
-              />
+              />,
             )}
           </FormItem>
           <FormItem label="任务负责人" {...this.formLayout}>
@@ -277,7 +277,7 @@ class PAGE_NAME_UPPER_CAMEL_CASE extends Component<
               <Select placeholder="请选择">
                 <SelectOption value="付晓晓">付晓晓</SelectOption>
                 <SelectOption value="周毛毛">周毛毛</SelectOption>
-              </Select>
+              </Select>,
             )}
           </FormItem>
           <FormItem {...this.formLayout} label="产品描述">
@@ -338,6 +338,7 @@ class PAGE_NAME_UPPER_CAMEL_CASE extends Component<
                   <List.Item
                     actions={[
                       <a
+                        key="edit"
                         onClick={e => {
                           e.preventDefault();
                           this.showEditModal(item);
@@ -345,7 +346,7 @@ class PAGE_NAME_UPPER_CAMEL_CASE extends Component<
                       >
                         编辑
                       </a>,
-                      <MoreBtn current={item} />,
+                      <MoreBtn key="more" item={item} />,
                     ]}
                   >
                     <List.Item.Meta

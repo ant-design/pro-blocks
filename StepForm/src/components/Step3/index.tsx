@@ -8,7 +8,7 @@ import { Dispatch } from 'redux';
 
 interface Step3Props {
   data?: IStateType['step'];
-  dispatch?: Dispatch;
+  dispatch?: Dispatch<any>;
 }
 
 @connect(
@@ -21,7 +21,7 @@ interface Step3Props {
     };
   }) => ({
     data: BLOCK_NAME_CAMEL_CASE.step,
-  })
+  }),
 )
 class Step3 extends React.Component<Step3Props> {
   render() {
@@ -30,11 +30,12 @@ class Step3 extends React.Component<Step3Props> {
       return;
     }
     const onFinish = () => {
-      dispatch &&
+      if (dispatch) {
         dispatch({
           type: 'BLOCK_NAME_CAMEL_CASE/saveCurrentStep',
           payload: 'info',
         });
+      }
     };
     const information = (
       <div className={styles.information}>

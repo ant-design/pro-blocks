@@ -9,7 +9,7 @@ interface CreateFormProps extends FormComponentProps {
   handleAdd: (
     fieldsValue: {
       desc: string;
-    }
+    },
   ) => void;
   handleModalVisible: () => void;
 }

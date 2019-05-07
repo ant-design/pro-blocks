@@ -59,19 +59,19 @@ class TagSelect extends Component<TagSelectProps, TagSelectState> {
     },
   };
   static Option: TagSelectOption = TagSelectOption;
-  constructor(props: TagSelectProps) {
-    super(props);
-    this.state = {
-      expand: false,
-      value: props.value || props.defaultValue || [],
-    };
-  }
 
   static getDerivedStateFromProps(nextProps: TagSelectProps) {
     if ('value' in nextProps) {
       return { value: nextProps.value || [] };
     }
     return null;
+  }
+  constructor(props: TagSelectProps) {
+    super(props);
+    this.state = {
+      expand: false,
+      value: props.value || props.defaultValue || [],
+    };
   }
 
   onChange = (value: (string | number)[]) => {
@@ -93,7 +93,7 @@ class TagSelect extends Component<TagSelectProps, TagSelectState> {
   };
 
   getAllTags() {
-    let { children } = this.props;
+    const { children } = this.props;
     const childrenArray = React.Children.toArray(children) as React.ReactElement<TagSelectOption>[];
     const checkedTags = childrenArray
       .filter(child => this.isTagSelectOption(child))

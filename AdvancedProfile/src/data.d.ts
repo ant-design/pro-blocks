@@ -1,4 +1,4 @@
-export interface AdvancedOperation1 {
+export interface advancedoperation1 {
   key: string;
   type: string;
   name: string;
@@ -7,7 +7,7 @@ export interface AdvancedOperation1 {
   memo: string;
 }
 
-export interface AdvancedOperation2 {
+export interface advancedoperation2 {
   key: string;
   type: string;
   name: string;
@@ -16,7 +16,7 @@ export interface AdvancedOperation2 {
   memo: string;
 }
 
-export interface AdvancedOperation3 {
+export interface advancedoperation3 {
   key: string;
   type: string;
   name: string;
@@ -25,7 +25,7 @@ export interface AdvancedOperation3 {
   memo: string;
 }
 
-export interface AdvancedProfileData {
+export interface advancedprofiledata {
   advancedOperation1: AdvancedOperation1[];
   advancedOperation2: AdvancedOperation2[];
   advancedOperation3: AdvancedOperation3[];

@@ -16,7 +16,7 @@ const formItemLayout = {
 };
 interface Step2Props extends FormComponentProps {
   data?: IStateType['step'];
-  dispatch?: Dispatch;
+  dispatch?: Dispatch<any>;
   submitting?: boolean;
 }
 
@@ -28,17 +28,18 @@ class Step2 extends React.Component<Step2Props> {
     }
     const { getFieldDecorator, validateFields } = form;
     const onPrev = () => {
-      dispatch &&
+      if (dispatch) {
         dispatch({
           type: 'BLOCK_NAME_CAMEL_CASE/saveCurrentStep',
           payload: 'info',
         });
+      }
     };
     const onValidateForm = (e: React.FormEvent) => {
       e.preventDefault();
       validateFields((err, values) => {
         if (!err) {
-          dispatch &&
+          if (dispatch) {
             dispatch({
               type: 'BLOCK_NAME_CAMEL_CASE/submitStepForm',
               payload: {
@@ -46,6 +47,7 @@ class Step2 extends React.Component<Step2Props> {
                 ...values,
               },
             });
+          }
         }
       });
     };
@@ -115,5 +117,5 @@ export default connect(
   }) => ({
     submitting: loading.effects['BLOCK_NAME_CAMEL_CASE/submitStepForm'],
     data: BLOCK_NAME_CAMEL_CASE.step,
-  })
+  }),
 )(Form.create()(Step2));

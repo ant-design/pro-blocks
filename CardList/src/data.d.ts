@@ -1,10 +1,10 @@
-export interface Member {
+export interface member {
   avatar: string;
   name: string;
   id: string;
 }
 
-export interface CardListItemDataType {
+export interface cardlistitemdatatype {
   id: string;
   owner: string;
   title: string;

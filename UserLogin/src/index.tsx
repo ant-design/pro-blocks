@@ -12,12 +12,12 @@ import { CheckboxChangeEvent } from 'antd/lib/checkbox';
 
 const { Tab, UserName, Password, Mobile, Captcha, Submit } = Login;
 
-interface BLOCK_NAME_CAMEL_CASEProps {
-  dispatch: Dispatch;
+interface PAGE_NAME_UPPER_CAMEL_CASEProps {
+  dispatch: Dispatch<any>;
   BLOCK_NAME_CAMEL_CASE: IStateType;
   submitting: boolean;
 }
-interface BLOCK_NAME_CAMEL_CASEState {
+interface PAGE_NAME_UPPER_CAMEL_CASEState {
   type: string;
   autoLogin: boolean;
 }
@@ -42,21 +42,21 @@ export interface FromDataType {
   }) => ({
     BLOCK_NAME_CAMEL_CASE,
     submitting: loading.effects['BLOCK_NAME_CAMEL_CASE/login'],
-  })
+  }),
 )
-class BLOCK_NAME_CAMEL_CASE extends Component<
-  BLOCK_NAME_CAMEL_CASEProps,
-  BLOCK_NAME_CAMEL_CASEState
+class PAGE_NAME_UPPER_CAMEL_CASE extends Component<
+  PAGE_NAME_UPPER_CAMEL_CASEProps,
+  PAGE_NAME_UPPER_CAMEL_CASEState
 > {
-  state: BLOCK_NAME_CAMEL_CASEState = {
+  state: PAGE_NAME_UPPER_CAMEL_CASEState = {
     type: 'account',
     autoLogin: true,
   };
+  loginForm: FormComponentProps['form'] | undefined | null;
 
   onTabChange = (type: string) => {
     this.setState({ type });
   };
-  loginForm: FormComponentProps['form'] | undefined | null;
   onGetCaptcha = () =>
     new Promise((resolve, reject) => {
       if (!this.loginForm) {
@@ -120,7 +120,7 @@ class BLOCK_NAME_CAMEL_CASE extends Component<
               loginType === 'account' &&
               !submitting &&
               this.renderMessage(
-                formatMessage({ id: 'BLOCK_NAME.login.message-invalid-credentials' })
+                formatMessage({ id: 'BLOCK_NAME.login.message-invalid-credentials' }),
               )}
             <UserName
               name="userName"
@@ -151,7 +151,7 @@ class BLOCK_NAME_CAMEL_CASE extends Component<
               loginType === 'mobile' &&
               !submitting &&
               this.renderMessage(
-                formatMessage({ id: 'BLOCK_NAME.login.message-invalid-verification-code' })
+                formatMessage({ id: 'BLOCK_NAME.login.message-invalid-verification-code' }),
               )}
             <Mobile
               name="mobile"
@@ -208,4 +208,4 @@ class BLOCK_NAME_CAMEL_CASE extends Component<
   }
 }
 
-export default BLOCK_NAME_CAMEL_CASE;
+export default PAGE_NAME_UPPER_CAMEL_CASE;

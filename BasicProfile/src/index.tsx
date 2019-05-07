@@ -44,7 +44,7 @@ const progressColumns = [
 
 interface PAGE_NAME_UPPER_CAMEL_CASEProps {
   loading: boolean;
-  dispatch: Dispatch;
+  dispatch: Dispatch<any>;
   BLOCK_NAME_CAMEL_CASE: BasicProfileDataType;
 }
 interface PAGE_NAME_UPPER_CAMEL_CASEState {
@@ -63,7 +63,7 @@ interface PAGE_NAME_UPPER_CAMEL_CASEState {
   }) => ({
     BLOCK_NAME_CAMEL_CASE,
     loading: loading.effects['BLOCK_NAME_CAMEL_CASE/fetchBasic'],
-  })
+  }),
 )
 class PAGE_NAME_UPPER_CAMEL_CASE extends Component<
   PAGE_NAME_UPPER_CAMEL_CASEProps,

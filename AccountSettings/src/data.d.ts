@@ -1,32 +1,32 @@
-export interface ITag {
+export interface itag {
   key: string;
   label: string;
 }
 
-export interface Province {
+export interface province {
   label: string;
   key: string;
 }
 
-export interface City {
+export interface city {
   label: string;
   key: string;
 }
 
-export interface Geographic {
+export interface geographic {
   province: Province;
   city: City;
 }
-export interface ProvinceData {
+export interface provincedata {
   name: string;
   id: string;
 }
-export interface CityData {
+export interface citydata {
   province: string;
   name: string;
   id: string;
 }
-export interface Notice {
+export interface notice {
   id: string;
   title: string;
   logo: string;
@@ -37,7 +37,7 @@ export interface Notice {
   memberLink: string;
 }
 
-export interface CurrentUser {
+export interface currentuser {
   name: string;
   avatar: string;
   userid: string;

@@ -25,7 +25,7 @@ const Trend: React.SFC<ITrendProps> = ({
       [styles.trendItemGrey]: !colorful,
       [styles.reverseColor]: reverseColor && colorful,
     },
-    className
+    className,
   );
   return (
     <div {...rest} className={classString} title={typeof children === 'string' ? children : ''}>

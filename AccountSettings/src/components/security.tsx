@@ -34,7 +34,7 @@ class SecurityView extends Component {
         </Fragment>
       ),
       actions: [
-        <a>
+        <a key="Modify">
           <FormattedMessage id="BLOCK_NAME.security.modify" defaultMessage="Modify" />
         </a>,
       ],
@@ -43,10 +43,10 @@ class SecurityView extends Component {
       title: formatMessage({ id: 'BLOCK_NAME.security.phone' }, {}),
       description: `${formatMessage(
         { id: 'BLOCK_NAME.security.phone-description' },
-        {}
+        {},
       )}：138****8293`,
       actions: [
-        <a>
+        <a key="Modify">
           <FormattedMessage id="BLOCK_NAME.security.modify" defaultMessage="Modify" />
         </a>,
       ],
@@ -55,7 +55,7 @@ class SecurityView extends Component {
       title: formatMessage({ id: 'BLOCK_NAME.security.question' }, {}),
       description: formatMessage({ id: 'BLOCK_NAME.security.question-description' }, {}),
       actions: [
-        <a>
+        <a key="Set">
           <FormattedMessage id="BLOCK_NAME.security.set" defaultMessage="Set" />
         </a>,
       ],
@@ -64,10 +64,10 @@ class SecurityView extends Component {
       title: formatMessage({ id: 'BLOCK_NAME.security.email' }, {}),
       description: `${formatMessage(
         { id: 'BLOCK_NAME.security.email-description' },
-        {}
+        {},
       )}：ant***sign.com`,
       actions: [
-        <a>
+        <a key="Modify">
           <FormattedMessage id="BLOCK_NAME.security.modify" defaultMessage="Modify" />
         </a>,
       ],
@@ -76,7 +76,7 @@ class SecurityView extends Component {
       title: formatMessage({ id: 'BLOCK_NAME.security.mfa' }, {}),
       description: formatMessage({ id: 'BLOCK_NAME.security.mfa-description' }, {}),
       actions: [
-        <a>
+        <a key="bind">
           <FormattedMessage id="BLOCK_NAME.security.bind" defaultMessage="Bind" />
         </a>,
       ],

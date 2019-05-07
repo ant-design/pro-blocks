@@ -18,7 +18,7 @@ const OfflineData = React.lazy(() => import('./components/OfflineData'));
 
 interface BLOCK_NAME_CAMEL_CASEProps {
   BLOCK_NAME_CAMEL_CASE: IAnalysisData;
-  dispatch: Dispatch;
+  dispatch: Dispatch<any>;
   loading: boolean;
 }
 
@@ -40,7 +40,7 @@ interface BLOCK_NAME_CAMEL_CASEState {
   }) => ({
     BLOCK_NAME_CAMEL_CASE,
     loading: loading.effects['BLOCK_NAME_CAMEL_CASE/fetch'],
-  })
+  }),
 )
 class PAGE_NAME_UPPER_CAMEL_CASE extends Component<
   BLOCK_NAME_CAMEL_CASEProps,

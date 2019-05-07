@@ -11,7 +11,7 @@ import { AnyAction } from 'redux';
 
 export type Effect = (
   action: AnyAction,
-  effects: EffectsCommandMap & { select: <T>(func: (state: ModalState) => T) => T }
+  effects: EffectsCommandMap & { select: <T>(func: (state: ModalState) => T) => T },
 ) => void;
 
 export interface ModelType {

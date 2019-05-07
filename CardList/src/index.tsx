@@ -12,7 +12,7 @@ import styles from './style.less';
 
 interface PAGE_NAME_UPPER_CAMEL_CASEProps {
   BLOCK_NAME_CAMEL_CASE: IStateType;
-  dispatch: Dispatch;
+  dispatch: Dispatch<any>;
   loading: boolean;
 }
 interface PAGE_NAME_UPPER_CAMEL_CASEState {
@@ -33,7 +33,7 @@ interface PAGE_NAME_UPPER_CAMEL_CASEState {
   }) => ({
     BLOCK_NAME_CAMEL_CASE,
     loading: loading.models.list,
-  })
+  }),
 )
 class PAGE_NAME_UPPER_CAMEL_CASE extends Component<
   PAGE_NAME_UPPER_CAMEL_CASEProps,
@@ -98,7 +98,11 @@ class PAGE_NAME_UPPER_CAMEL_CASE extends Component<
             renderItem={item =>
               item ? (
                 <List.Item key={item.id}>
-                  <Card hoverable className={styles.card} actions={[<a>操作一</a>, <a>操作二</a>]}>
+                  <Card
+                    hoverable
+                    className={styles.card}
+                    actions={[<a key="option1">操作一</a>, <a key="option2">操作二</a>]}
+                  >
                     <Card.Meta
                       avatar={<img alt="" className={styles.cardAvatar} src={item.avatar} />}
                       title={<a>{item.title}</a>}

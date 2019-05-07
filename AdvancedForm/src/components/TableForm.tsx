@@ -4,9 +4,117 @@ import { isEqual } from 'lodash';
 import styles from '../style.less';
 
 class TableForm extends PureComponent {
+  static getDerivedStateFromProps(nextProps, preState) {
+    if (isEqual(nextProps.value, preState.value)) {
+      return null;
+    }
+    return {
+      data: nextProps.value,
+      value: nextProps.value,
+    };
+  }
   index = 0;
 
   cacheOriginData = {};
+  columns = [
+    {
+      title: '成员姓名',
+      dataIndex: 'name',
+      key: 'name',
+      width: '20%',
+      render: (text, record) => {
+        if (record.editable) {
+          return (
+            <Input
+              value={text}
+              autoFocus
+              onChange={e => this.handleFieldChange(e, 'name', record.key)}
+              onKeyPress={e => this.handleKeyPress(e, record.key)}
+              placeholder="成员姓名"
+            />
+          );
+        }
+        return text;
+      },
+    },
+    {
+      title: '工号',
+      dataIndex: 'workId',
+      key: 'workId',
+      width: '20%',
+      render: (text, record) => {
+        if (record.editable) {
+          return (
+            <Input
+              value={text}
+              onChange={e => this.handleFieldChange(e, 'workId', record.key)}
+              onKeyPress={e => this.handleKeyPress(e, record.key)}
+              placeholder="工号"
+            />
+          );
+        }
+        return text;
+      },
+    },
+    {
+      title: '所属部门',
+      dataIndex: 'department',
+      key: 'department',
+      width: '40%',
+      render: (text, record) => {
+        if (record.editable) {
+          return (
+            <Input
+              value={text}
+              onChange={e => this.handleFieldChange(e, 'department', record.key)}
+              onKeyPress={e => this.handleKeyPress(e, record.key)}
+              placeholder="所属部门"
+            />
+          );
+        }
+        return text;
+      },
+    },
+    {
+      title: '操作',
+      key: 'action',
+      render: (text, record) => {
+        const { loading } = this.state;
+        if (!!record.editable && loading) {
+          return null;
+        }
+        if (record.editable) {
+          if (record.isNew) {
+            return (
+              <span>
+                <a onClick={e => this.saveRow(e, record.key)}>添加</a>
+                <Divider type="vertical" />
+                <Popconfirm title="是否要删除此行？" onConfirm={() => this.remove(record.key)}>
+                  <a>删除</a>
+                </Popconfirm>
+              </span>
+            );
+          }
+          return (
+            <span>
+              <a onClick={e => this.saveRow(e, record.key)}>保存</a>
+              <Divider type="vertical" />
+              <a onClick={e => this.cancel(e, record.key)}>取消</a>
+            </span>
+          );
+        }
+        return (
+          <span>
+            <a onClick={e => this.toggleEditable(e, record.key)}>编辑</a>
+            <Divider type="vertical" />
+            <Popconfirm title="是否要删除此行？" onConfirm={() => this.remove(record.key)}>
+              <a>删除</a>
+            </Popconfirm>
+          </span>
+        );
+      },
+    },
+  ];
 
   constructor(props) {
     super(props);
@@ -16,16 +124,6 @@ class TableForm extends PureComponent {
       loading: false,
       /* eslint-disable-next-line react/no-unused-state */
       value: props.value,
-    };
-  }
-
-  static getDerivedStateFromProps(nextProps, preState) {
-    if (isEqual(nextProps.value, preState.value)) {
-      return null;
-    }
-    return {
-      data: nextProps.value,
-      value: nextProps.value,
     };
   }
 
@@ -132,115 +230,14 @@ class TableForm extends PureComponent {
     this.setState({ data: newData });
     this.clickedCancel = false;
   }
-
   render() {
-    const columns = [
-      {
-        title: '成员姓名',
-        dataIndex: 'name',
-        key: 'name',
-        width: '20%',
-        render: (text, record) => {
-          if (record.editable) {
-            return (
-              <Input
-                value={text}
-                autoFocus
-                onChange={e => this.handleFieldChange(e, 'name', record.key)}
-                onKeyPress={e => this.handleKeyPress(e, record.key)}
-                placeholder="成员姓名"
-              />
-            );
-          }
-          return text;
-        },
-      },
-      {
-        title: '工号',
-        dataIndex: 'workId',
-        key: 'workId',
-        width: '20%',
-        render: (text, record) => {
-          if (record.editable) {
-            return (
-              <Input
-                value={text}
-                onChange={e => this.handleFieldChange(e, 'workId', record.key)}
-                onKeyPress={e => this.handleKeyPress(e, record.key)}
-                placeholder="工号"
-              />
-            );
-          }
-          return text;
-        },
-      },
-      {
-        title: '所属部门',
-        dataIndex: 'department',
-        key: 'department',
-        width: '40%',
-        render: (text, record) => {
-          if (record.editable) {
-            return (
-              <Input
-                value={text}
-                onChange={e => this.handleFieldChange(e, 'department', record.key)}
-                onKeyPress={e => this.handleKeyPress(e, record.key)}
-                placeholder="所属部门"
-              />
-            );
-          }
-          return text;
-        },
-      },
-      {
-        title: '操作',
-        key: 'action',
-        render: (text, record) => {
-          const { loading } = this.state;
-          if (!!record.editable && loading) {
-            return null;
-          }
-          if (record.editable) {
-            if (record.isNew) {
-              return (
-                <span>
-                  <a onClick={e => this.saveRow(e, record.key)}>添加</a>
-                  <Divider type="vertical" />
-                  <Popconfirm title="是否要删除此行？" onConfirm={() => this.remove(record.key)}>
-                    <a>删除</a>
-                  </Popconfirm>
-                </span>
-              );
-            }
-            return (
-              <span>
-                <a onClick={e => this.saveRow(e, record.key)}>保存</a>
-                <Divider type="vertical" />
-                <a onClick={e => this.cancel(e, record.key)}>取消</a>
-              </span>
-            );
-          }
-          return (
-            <span>
-              <a onClick={e => this.toggleEditable(e, record.key)}>编辑</a>
-              <Divider type="vertical" />
-              <Popconfirm title="是否要删除此行？" onConfirm={() => this.remove(record.key)}>
-                <a>删除</a>
-              </Popconfirm>
-            </span>
-          );
-        },
-      },
-    ];
-
     const { loading, data } = this.state;
 
     return (
       <Fragment>
         <Table
           loading={loading}
-          columns={columns}
+          columns={this.columns}
           dataSource={data}
           pagination={false}
           rowClassName={record => (record.editable ? styles.editable : '')}

@@ -10,7 +10,7 @@ export interface IStateType {
 
 export type Effect = (
   action: AnyAction,
-  effects: EffectsCommandMap & { select: <T>(func: (state: IStateType) => T) => T }
+  effects: EffectsCommandMap & { select: <T>(func: (state: IStateType) => T) => T },
 ) => void;
 
 export interface ModelType {

@@ -19,7 +19,7 @@ function getAutoHeight(n: HTMLDivElement) {
     return 0;
   }
 
-  let node = n;
+  const node = n;
 
   let height = computeHeight(node);
   const parentNode = node.parentNode as HTMLDivElement;
@@ -36,7 +36,7 @@ interface IAutoHeightProps {
 
 function autoHeight() {
   return function<P extends IAutoHeightProps>(
-    WrappedComponent: React.ComponentClass<P> | React.SFC<P>
+    WrappedComponent: React.ComponentClass<P> | React.SFC<P>,
   ): React.ComponentClass<P> {
     class AutoHeightComponent extends React.Component<P & IAutoHeightProps> {
       state = {
@@ -46,11 +46,11 @@ function autoHeight() {
       componentDidMount() {
         const { height } = this.props;
         if (!height) {
-          const h = getAutoHeight(this.root);
+          let h = getAutoHeight(this.root);
           // eslint-disable-next-line
           this.setState({ computedHeight: h });
           if (h < 1) {
-            const h = getAutoHeight(this.root);
+            h = getAutoHeight(this.root);
             this.setState({ computedHeight: h });
           }
         }

@@ -1,19 +1,19 @@
-export interface IVisitData {
+export interface ivisitdata {
   x: string;
   y: number;
 }
 
-export interface IVisitData2 {
+export interface ivisitdata2 {
   x: string;
   y: number;
 }
 
-export interface ISalesData {
+export interface isalesdata {
   x: string;
   y: number;
 }
 
-export interface ISearchData {
+export interface isearchdata {
   index: number;
   keyword: string;
   count: number;
@@ -21,39 +21,39 @@ export interface ISearchData {
   status: number;
 }
 
-export interface IOfflineData {
+export interface iofflinedata {
   name: string;
   cvr: number;
 }
 
-export interface IOfflineChartData {
+export interface iofflinechartdata {
   x: any;
   y1: number;
   y2: number;
 }
 
-export interface ISalesTypeData {
+export interface isalestypedata {
   x: string;
   y: number;
 }
 
-export interface ISalesTypeDataOnline {
+export interface isalestypedataonline {
   x: string;
   y: number;
 }
 
-export interface ISalesTypeDataOffline {
+export interface isalestypedataoffline {
   x: string;
   y: number;
 }
 
-export interface IRadarData {
+export interface iradardata {
   name: string;
   label: string;
   value: number;
 }
 
-export interface IAnalysisData {
+export interface ianalysisdata {
   visitData: IVisitData[];
   visitData2: IVisitData2[];
   salesData: ISalesData[];

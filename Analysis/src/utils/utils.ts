@@ -32,9 +32,9 @@ export function getTimeDistance(type: 'today' | 'week' | 'month' | 'year'): Rang
 
     return [moment(beginTime), moment(beginTime + (7 * oneDay - 1000))];
   }
+  const year = now.getFullYear();
 
   if (type === 'month') {
-    const year = now.getFullYear();
     const month = now.getMonth();
     const nextDate = moment(now).add(1, 'months');
     const nextYear = nextDate.year();
@@ -46,6 +46,5 @@ export function getTimeDistance(type: 'today' | 'week' | 'month' | 'year'): Rang
     ];
   }
 
-  const year = now.getFullYear();
   return [moment(`${year}-01-01 00:00:00`), moment(`${year}-12-31 23:59:59`)];
 }

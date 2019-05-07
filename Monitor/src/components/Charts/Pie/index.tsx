@@ -45,6 +45,8 @@ class Pie extends Component<IPieProps, IPieState> {
   };
 
   requestRef: number | undefined;
+  root!: HTMLDivElement;
+  chart: G2.Chart | undefined;
 
   componentDidMount() {
     window.addEventListener(
@@ -52,7 +54,7 @@ class Pie extends Component<IPieProps, IPieState> {
       () => {
         this.requestRef = requestAnimationFrame(() => this.resize());
       },
-      { passive: true }
+      { passive: true },
     );
   }
 
@@ -123,8 +125,6 @@ class Pie extends Component<IPieProps, IPieState> {
       legendData,
     });
   };
-  root!: HTMLDivElement;
-  chart: G2.Chart | undefined;
 
   // for window resize auto responsive legend
   @Bind()

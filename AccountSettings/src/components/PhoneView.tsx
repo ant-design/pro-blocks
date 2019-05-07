@@ -20,12 +20,14 @@ class PhoneView extends PureComponent<PhoneViewProps> {
           className={styles.area_code}
           value={values[0]}
           onChange={e => {
+            // tslint:disable-next-line: no-unused-expression
             onChange && onChange(`${e.target.value}-${values[1]}`);
           }}
         />
         <Input
           className={styles.phone_number}
           onChange={e => {
+            // tslint:disable-next-line: no-unused-expression
             onChange && onChange(`${values[0]}-${e.target.value}`);
           }}
           value={values[1]}

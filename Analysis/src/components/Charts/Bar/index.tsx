@@ -28,6 +28,8 @@ class Bar extends Component<
   state = {
     autoHideXLabels: false,
   };
+  root: HTMLDivElement | undefined;
+  node: HTMLDivElement | undefined;
 
   componentDidMount() {
     window.addEventListener('resize', this.resize, { passive: true });
@@ -36,11 +38,9 @@ class Bar extends Component<
   componentWillUnmount() {
     window.removeEventListener('resize', this.resize);
   }
-  root: HTMLDivElement | undefined;
   handleRoot = (n: HTMLDivElement) => {
     this.root = n;
   };
-  node: HTMLDivElement | undefined;
   handleRef = (n: HTMLDivElement) => {
     this.node = n;
   };

@@ -59,7 +59,7 @@ const tableData = [
 ];
 
 interface PAGE_NAME_UPPER_CAMEL_CASEProps extends FormComponentProps {
-  dispatch: Dispatch;
+  dispatch: Dispatch<any>;
   submitting: boolean;
 }
 
@@ -184,7 +184,7 @@ class PAGE_NAME_UPPER_CAMEL_CASE extends Component<PAGE_NAME_UPPER_CAMEL_CASEPro
                       addonBefore="http://"
                       addonAfter=".com"
                       placeholder="请输入"
-                    />
+                    />,
                   )}
                 </Form.Item>
               </Col>
@@ -196,7 +196,7 @@ class PAGE_NAME_UPPER_CAMEL_CASE extends Component<PAGE_NAME_UPPER_CAMEL_CASEPro
                     <Select placeholder="请选择管理员">
                       <Option value="xiao">付晓晓</Option>
                       <Option value="mao">周毛毛</Option>
-                    </Select>
+                    </Select>,
                   )}
                 </Form.Item>
               </Col>
@@ -210,7 +210,7 @@ class PAGE_NAME_UPPER_CAMEL_CASE extends Component<PAGE_NAME_UPPER_CAMEL_CASEPro
                     <Select placeholder="请选择审批员">
                       <Option value="xiao">付晓晓</Option>
                       <Option value="mao">周毛毛</Option>
-                    </Select>
+                    </Select>,
                   )}
                 </Form.Item>
               </Col>
@@ -219,7 +219,10 @@ class PAGE_NAME_UPPER_CAMEL_CASE extends Component<PAGE_NAME_UPPER_CAMEL_CASEPro
                   {getFieldDecorator('dateRange', {
                     rules: [{ required: true, message: '请选择生效日期' }],
                   })(
-                    <RangePicker placeholder={['开始日期', '结束日期']} style={{ width: '100%' }} />
+                    <RangePicker
+                      placeholder={['开始日期', '结束日期']}
+                      style={{ width: '100%' }}
+                    />,
                   )}
                 </Form.Item>
               </Col>
@@ -231,7 +234,7 @@ class PAGE_NAME_UPPER_CAMEL_CASE extends Component<PAGE_NAME_UPPER_CAMEL_CASEPro
                     <Select placeholder="请选择仓库类型">
                       <Option value="private">私密</Option>
                       <Option value="public">公开</Option>
-                    </Select>
+                    </Select>,
                   )}
                 </Form.Item>
               </Col>
@@ -263,7 +266,7 @@ class PAGE_NAME_UPPER_CAMEL_CASE extends Component<PAGE_NAME_UPPER_CAMEL_CASEPro
                     <Select placeholder="请选择管理员">
                       <Option value="xiao">付晓晓</Option>
                       <Option value="mao">周毛毛</Option>
-                    </Select>
+                    </Select>,
                   )}
                 </Form.Item>
               </Col>
@@ -277,7 +280,7 @@ class PAGE_NAME_UPPER_CAMEL_CASE extends Component<PAGE_NAME_UPPER_CAMEL_CASEPro
                     <Select placeholder="请选择审批员">
                       <Option value="xiao">付晓晓</Option>
                       <Option value="mao">周毛毛</Option>
-                    </Select>
+                    </Select>,
                   )}
                 </Form.Item>
               </Col>
@@ -295,7 +298,7 @@ class PAGE_NAME_UPPER_CAMEL_CASE extends Component<PAGE_NAME_UPPER_CAMEL_CASEPro
                         }
                         return trigger;
                       }}
-                    />
+                    />,
                   )}
                 </Form.Item>
               </Col>
@@ -307,7 +310,7 @@ class PAGE_NAME_UPPER_CAMEL_CASE extends Component<PAGE_NAME_UPPER_CAMEL_CASEPro
                     <Select placeholder="请选择仓库类型">
                       <Option value="private">私密</Option>
                       <Option value="public">公开</Option>
-                    </Select>
+                    </Select>,
                   )}
                 </Form.Item>
               </Col>
