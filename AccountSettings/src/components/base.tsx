@@ -107,7 +107,7 @@ class BaseView extends Component<BaseViewProps> {
     const { form } = this.props;
     form.validateFields((err, values) => {
       if (!err) {
-        message.success(formatMessage({ id: 'BLOCK_NAME.basic.updatesucc' }));
+        message.success(formatMessage({ id: 'BLOCK_NAME.basic.update.success' }));
       }
     });
   };
