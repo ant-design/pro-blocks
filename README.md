@@ -1,5 +1,7 @@
 # pro-blocks
 
+[中文 README](./README.zh-CN.md)
+
 umi blocks of Ant Design Pro.
 
 A part of [Ant Design Pro V4](https://github.com/ant-design/ant-design-pro/issues/3143), still in progress.
