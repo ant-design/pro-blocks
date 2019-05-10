@@ -1,6 +1,6 @@
 import React, { Component, Fragment } from 'react';
 import { formatMessage, FormattedMessage } from 'umi-plugin-react/locale';
-import { Form, Input, Upload, Select, Button } from 'antd';
+import { Form, Input, Upload, Select, Button, message } from 'antd';
 import { FormComponentProps } from 'antd/lib/form';
 import { connect } from 'dva';
 import styles from './BaseView.less';
@@ -102,6 +102,16 @@ class BaseView extends Component<BaseViewProps> {
     this.view = ref;
   };
 
+  handlerSubmit = (event: Event) => {
+    event.preventDefault();
+    const { form } = this.props;
+    form.validateFields((err, values) => {
+      if (!err) {
+        message.success(formatMessage({ id: 'BLOCK_NAME.basic.update.success' }));
+      }
+    });
+  };
+
   render() {
     const {
       form: { getFieldDecorator },
@@ -193,7 +203,7 @@ class BaseView extends Component<BaseViewProps> {
                 ],
               })(<PhoneView />)}
             </FormItem>
-            <Button type="primary">
+            <Button type="primary" onClick={this.handlerSubmit}>
               <FormattedMessage id="BLOCK_NAME.basic.update" defaultMessage="Update Information" />
             </Button>
           </Form>
