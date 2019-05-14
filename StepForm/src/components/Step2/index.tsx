@@ -118,4 +118,4 @@ export default connect(
     submitting: loading.effects['BLOCK_NAME_CAMEL_CASE/submitStepForm'],
     data: BLOCK_NAME_CAMEL_CASE.step,
   }),
-)(Form.create()(Step2));
+)(Form.create<Step2Props>()(Step2));
