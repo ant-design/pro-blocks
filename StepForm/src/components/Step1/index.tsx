@@ -122,4 +122,4 @@ class Step1 extends React.PureComponent<Step1Props> {
 
 export default connect(({ BLOCK_NAME_CAMEL_CASE }: { BLOCK_NAME_CAMEL_CASE: IStateType }) => ({
   data: BLOCK_NAME_CAMEL_CASE.step,
-}))(Form.create()(Step1));
+}))(Form.create<Step1Props>()(Step1));

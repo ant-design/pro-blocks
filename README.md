@@ -1,28 +1,27 @@
 # pro-blocks
 
+[中文 README](./README.zh-CN.md)
+
 umi blocks of Ant Design Pro.
 
-> A part of [Ant Design Pro V4](https://github.com/ant-design/ant-design-pro/issues/3143), still in progress.
+A part of [Ant Design Pro V4](https://github.com/ant-design/ant-design-pro/issues/3143), still in progress.
+
+## dev
 
 ## Usage
 
 ```shell
-$ umi block add [the github url of block]
+umi block add [the github url of block]
 ```
 
 You can visit umi [doc](https://umijs.org/guide/block.html) for find out more info about umi block.
 
 ## Contribute
 
-```shell
-$ cd [some block]
-$ yarn # or npm install
-$ yarn run dev # or npm run dev
-```
-
-Or
+Enter the block you want to dev
 
 ```shell
-$ yarn # or npm install
-$ APP_ROOT=[some block] yarn run dev # or APP_ROOT=[someblock] npm run dev
+cross-env PAGES_PATH='block_name' umi
 ```
+
+> In complex typescript definitions, vscode may crash or tslint reports an error. You can restart the typescript service by "ctrl+shift+p > reload window"
