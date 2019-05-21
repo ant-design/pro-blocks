@@ -3,7 +3,7 @@ import { formatMessage } from 'umi-plugin-react/locale';
 import Link from 'umi/link';
 import Exception from './components/Exception';
 
-const PAGE_NAME_UPPER_CAMEL_CASE: React.SFC = () => (
+export default () => (
   <Exception
     type="404"
     linkElement={Link}
@@ -11,5 +11,3 @@ const PAGE_NAME_UPPER_CAMEL_CASE: React.SFC = () => (
     backText={formatMessage({ id: 'BLOCK_NAME.exception.back' })}
   />
 );
-
-export default PAGE_NAME_UPPER_CAMEL_CASE;
