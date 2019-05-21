@@ -1,32 +1,24 @@
-export interface itag {
+export interface ITag {
   key: string;
   label: string;
 }
 
-export interface province {
+export interface IProvince {
   label: string;
   key: string;
 }
 
-export interface city {
+export interface ICity {
   label: string;
   key: string;
 }
 
-export interface geographic {
-  province: Province;
-  city: City;
+export interface IGeographic {
+  province: IProvince;
+  city: ICity;
 }
-export interface provincedata {
-  name: string;
-  id: string;
-}
-export interface citydata {
-  province: string;
-  name: string;
-  id: string;
-}
-export interface notice {
+
+export interface INotice {
   id: string;
   title: string;
   logo: string;
@@ -41,7 +33,7 @@ export interface currentuser {
   name: string;
   avatar: string;
   userid: string;
-  notice: Notice[];
+  notice: INotice[];
   email: string;
   signature: string;
   title: string;
@@ -50,7 +42,7 @@ export interface currentuser {
   notifyCount: number;
   unreadCount: number;
   country: string;
-  geographic: Geographic;
+  geographic: IGeographic;
   address: string;
   phone: string;
 }
