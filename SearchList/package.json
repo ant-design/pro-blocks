@@ -1,0 +1,33 @@
+{
+  "name": "@umi-block/search-list",
+  "version": "0.0.1",
+  "description": "SearchListApplications",
+  "main": "src/index.js",
+  "scripts": {
+    "dev": "umi dev"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/umijs/umi-blocks/ant-design-pro/searchlistapplications"
+  },
+  "dependencies": {
+    "antd": "^3.16.3",
+    "classnames": "^2.2.6",
+    "dva": "^2.4.0",
+    "hash.js": "^1.1.5",
+    "moment": "^2.22.2",
+    "numeral": "^2.0.6",
+    "nzh": "^1.0.3",
+    "react": "^16.6.3",
+    "umi-request": "^1.0.0"
+  },
+  "devDependencies": {
+    "umi": "^2.6.9",
+    "umi-plugin-react": "^1.7.2",
+    "umi-plugin-block-dev": "^1.0.0"
+  },
+  "license": "ISC",
+  "blockConfig": {
+    "specVersion": "0.1"
+  }
+}
