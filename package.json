@@ -31,6 +31,7 @@
   },
   "devDependencies": {
     "@types/classnames": "^2.2.7",
+    "@types/numeral": "^0.0.25",
     "babel-eslint": "^10.0.1",
     "check-prettier": "^1.0.3",
     "glob": "^7.1.3",
