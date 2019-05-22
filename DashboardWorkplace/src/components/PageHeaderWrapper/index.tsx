@@ -20,7 +20,7 @@ const PageHeaderWrapper: React.SFC<IPageHeaderWrapperProps> = ({
   <RouteContext.Consumer>
     {value => (
       <div style={{ margin: '-24px -24px 0' }}>
-        <PageHeader title={title} {...restProps} {...value}>
+        <PageHeader {...restProps} {...value} title={title || value.title}>
           <div className={styles.detail}>
             <div className={styles.main}>
               <div className={styles.row}>

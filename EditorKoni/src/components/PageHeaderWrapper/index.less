@@ -1,0 +1,86 @@
+@import '~antd/lib/style/themes/default.less';
+
+.children-content {
+  margin: 24px 24px 0;
+}
+
+.main {
+  .detail {
+    display: flex;
+  }
+
+  .row {
+    display: flex;
+    width: 100%;
+  }
+
+  .title-content {
+    margin-bottom: 16px;
+  }
+
+  @media screen and (max-width: @screen-sm) {
+    .content {
+      margin: 24px 0 0;
+    }
+  }
+
+  .title,
+  .content {
+    flex: auto;
+  }
+
+  .extraContent,
+  .main {
+    flex: 0 1 auto;
+  }
+
+  .main {
+    width: 100%;
+  }
+
+  .title {
+    margin-bottom: 16px;
+  }
+
+  .logo,
+  .content,
+  .extraContent {
+    margin-bottom: 16px;
+  }
+
+  .extraContent {
+    min-width: 242px;
+    margin-left: 88px;
+    text-align: right;
+  }
+}
+
+@media screen and (max-width: @screen-xl) {
+  .extraContent {
+    margin-left: 44px;
+  }
+}
+
+@media screen and (max-width: @screen-lg) {
+  .extraContent {
+    margin-left: 20px;
+  }
+}
+
+@media screen and (max-width: @screen-md) {
+  .row {
+    display: block;
+  }
+
+  .action,
+  .extraContent {
+    margin-left: 0;
+    text-align: left;
+  }
+}
+
+@media screen and (max-width: @screen-sm) {
+  .detail {
+    display: block;
+  }
+}

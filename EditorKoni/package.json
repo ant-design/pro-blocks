@@ -1,0 +1,36 @@
+{
+  "name": "@umi-block/flow",
+  "version": "0.0.1",
+  "description": "flow",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/umijs/umi-blocks/ant-design-pro/flow"
+  },
+  "license": "ISC",
+  "main": "src/index.js",
+  "scripts": {
+    "dev": "umi dev"
+  },
+  "dependencies": {
+    "@antv/data-set": "^0.10.2",
+    "antd": "^3.16.3",
+    "bizcharts": "^3.5.2",
+    "bizcharts-plugin-slider": "^2.1.1-beta.1",
+    "dva": "^2.4.0",
+    "gg-editor": "^2.0.2",
+    "moment": "^2.22.2",
+    "numeral": "^2.0.6",
+    "react": "^16.6.3",
+    "react-fittext": "^1.0.0",
+    "umi-request": "^1.0.0"
+  },
+  "devDependencies": {
+    "umi": "^2.6.9",
+    "umi-plugin-block-dev": "^1.1.0",
+    "umi-plugin-react": "^1.7.2",
+    "@types/numeral": "^0.0.25"
+  },
+  "blockConfig": {
+    "specVersion": "0.1"
+  }
+}

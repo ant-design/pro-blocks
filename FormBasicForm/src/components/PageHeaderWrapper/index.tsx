@@ -18,6 +18,7 @@ const PageHeaderWrapper: React.SFC<IPageHeaderWrapperProps> = ({
     {value => (
       <div style={{ margin: '-24px -24px 0' }}>
         <PageHeader
+          {...value}
           title={
             <Typography.Title
               level={4}
@@ -25,11 +26,10 @@ const PageHeaderWrapper: React.SFC<IPageHeaderWrapperProps> = ({
                 margin: 0,
               }}
             >
-              {title}
+              {title || value.title}
             </Typography.Title>
           }
           {...restProps}
-          {...value}
         >
           {content}
         </PageHeader>
