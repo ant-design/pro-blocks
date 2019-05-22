@@ -29,7 +29,7 @@ export interface INotice {
   memberLink: string;
 }
 
-export interface currentuser {
+export interface CurrentUser {
   name: string;
   avatar: string;
   userid: string;

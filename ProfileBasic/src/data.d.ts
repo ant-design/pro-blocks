@@ -1,4 +1,4 @@
-export interface basicgood {
+export interface BasicGood {
   id: string;
   name: string;
   barcode: string;
@@ -7,7 +7,7 @@ export interface basicgood {
   amount: string | number;
 }
 
-export interface basicprogress {
+export interface BasicProgress {
   key: string;
   time: string;
   rate: string;
@@ -16,7 +16,7 @@ export interface basicprogress {
   cost: string;
 }
 
-export interface basicprofiledatatype {
+export interface BasicProfileDataType {
   basicGoods: BasicGood[];
   basicProgress: BasicProgress[];
 }

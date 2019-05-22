@@ -5,13 +5,12 @@
     "lint": "npm run lint:ts && npm run lint:style && npm run lint:prettier",
     "lint-staged": "lint-staged",
     "lint-staged:ts": "tslint",
-    "lint:fix": "npm run tslint:fix && npm run lint:style",
+    "lint:fix": "npm run lint:style",
     "lint:prettier": "check-prettier write",
     "lint:style": "stylelint --syntax less --fix **/**.less ",
     "lint:ts": "tslint -p . -c tslint.yml",
     "prettier": "node ./_scripts/prettier.js",
-    "tslint": "npm run tslint:fix",
-    "tslint:fix": "tslint -p . -c tslint.yml --fix "
+    "tslint": "npm run tslint:fix"
   },
   "husky": {
     "hooks": {

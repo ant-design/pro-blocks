@@ -1,24 +1,24 @@
-export interface itag {
+export interface ITag {
   key: string;
   label: string;
 }
 
-export interface iprovince {
+export interface IProvince {
   label: string;
   key: string;
 }
 
-export interface icity {
+export interface ICity {
   label: string;
   key: string;
 }
 
-export interface geographic {
+export interface IGeographic {
   province: IProvince;
   city: ICity;
 }
 
-export interface inotice {
+export interface INotice {
   id: string;
   title: string;
   logo: string;
@@ -29,7 +29,7 @@ export interface inotice {
   memberLink: string;
 }
 
-export interface icurrentuser {
+export interface ICurrentUser {
   name: string;
   avatar: string;
   userid: string;
@@ -42,18 +42,17 @@ export interface icurrentuser {
   notifyCount: number;
   unreadCount: number;
   country: string;
-  geographic: Geographic;
+  geographic: IGeographic;
   address: string;
   phone: string;
 }
-
-export interface imember {
+export interface IMember {
   avatar: string;
   name: string;
   id: string;
 }
 
-export interface iactivities {
+export interface IActivities {
   id: string;
   updatedAt: string;
   user: {
@@ -72,7 +71,7 @@ export interface iactivities {
   template: string;
 }
 
-export interface iradardata {
+export interface IRadarData {
   label: string;
   name: string;
   value: number;
