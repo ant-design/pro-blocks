@@ -1,7 +1,7 @@
 import { routerRedux } from 'dva/router';
-import { getPageQuery } from './utils/utils';
+import { getPageQuery, setAuthority } from './utils/utils';
 import { fakeAccountLogin, getFakeCaptcha } from './service';
-
+import { stringify } from 'qs';
 import { Reducer } from 'redux';
 import { EffectsCommandMap } from 'dva';
 import { AnyAction } from 'redux';
@@ -23,6 +23,7 @@ export interface ModelType {
   effects: {
     login: Effect;
     getCaptcha: Effect;
+    logout: Effect;
   };
   reducers: {
     changeLoginStatus: Reducer<IStateType>;
@@ -67,10 +68,33 @@ const Model: ModelType = {
     *getCaptcha({ payload }, { call }) {
       yield call(getFakeCaptcha, payload);
     },
+
+    *logout(_, { put }) {
+      yield put({
+        type: 'changeLoginStatus',
+        payload: {
+          status: false,
+          currentAuthority: 'guest',
+        },
+      });
+      const { redirect } = getPageQuery();
+      // redirect
+      if (window.location.pathname !== '/user/login' && !redirect) {
+        yield put(
+          routerRedux.replace({
+            pathname: '/user/login',
+            search: stringify({
+              redirect: window.location.href,
+            }),
+          }),
+        );
+      }
+    },
   },
 
   reducers: {
     changeLoginStatus(state, { payload }) {
+      setAuthority(payload.currentAuthority);
       return {
         ...state,
         status: payload.status,
