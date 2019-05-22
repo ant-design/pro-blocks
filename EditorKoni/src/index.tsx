@@ -24,13 +24,13 @@ export default () => {
           </Col>
         </Row>
         <Row type="flex" className={styles.editorBd}>
-          <Col span={4} className={styles.editorSidebar}>
+          <Col span={2} className={styles.editorSidebar}>
             <KoniItemPanel />
           </Col>
           <Col span={16} className={styles.editorContent}>
             <Koni className={styles.koni} />
           </Col>
-          <Col span={4} className={styles.editorSidebar}>
+          <Col span={6} className={styles.editorSidebar}>
             <KoniDetailPanel />
             <EditorMinimap />
           </Col>
