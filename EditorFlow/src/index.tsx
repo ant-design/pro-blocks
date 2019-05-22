@@ -1,5 +1,5 @@
-import React from 'EditorFlow/node_modules/_@types_react@16.8.18@@types/react';
-import { Row, Col } from 'EditorFlow/node_modules/_antd@3.18.2@antd/lib';
+import React from 'react';
+import { Row, Col } from 'antd';
 import GGEditor, { Flow } from 'gg-editor';
 import EditorMinimap from './components/EditorMinimap';
 import { FlowContextMenu } from './components/EditorContextMenu';

@@ -1,5 +1,5 @@
-import React from 'EditorFlow/node_modules/_@types_react@16.8.18@@types/react';
-import { Card } from 'EditorFlow/node_modules/_antd@3.18.2@antd/lib';
+import React from 'react';
+import { Card } from 'antd';
 import { ItemPanel, Item } from 'gg-editor';
 import styles from './index.less';
 
