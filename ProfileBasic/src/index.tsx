@@ -167,7 +167,7 @@ class PAGE_NAME_UPPER_CAMEL_CASE extends Component<
       },
     ];
     return (
-      <PageHeaderWrapper title="基础详情页">
+      <PageHeaderWrapper>
         <Card bordered={false}>
           <DescriptionList size="large" title="退款申请" style={{ marginBottom: 32 }}>
             <Description term="取货单号">1000000000</Description>

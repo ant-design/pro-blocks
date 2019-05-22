@@ -15,7 +15,7 @@ interface IPageHeaderTabConfig {
 
 interface IPageHeaderWrapperProps extends IPageHeaderTabConfig {
   content?: React.ReactNode;
-  title: React.ReactNode;
+  title?: React.ReactNode;
   extraContent?: React.ReactNode;
 }
 

@@ -6,7 +6,7 @@ import { GridContent } from '@ant-design/pro-layout';
 
 interface IPageHeaderWrapperProps {
   content?: React.ReactNode;
-  title: React.ReactNode;
+  title?: React.ReactNode;
   extraContent?: React.ReactNode;
 }
 

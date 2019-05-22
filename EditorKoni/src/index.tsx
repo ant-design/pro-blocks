@@ -13,10 +13,7 @@ GGEditor.setTrackable(false);
 
 export default () => {
   return (
-    <PageHeaderWrapper
-      title="Koni Editor"
-      content="The topology diagram refers to the network structure diagram composed of network node devices and communication media."
-    >
+    <PageHeaderWrapper content="The topology diagram refers to the network structure diagram composed of network node devices and communication media.">
       <GGEditor className={styles.editor}>
         <Row type="flex" className={styles.editorHd}>
           <Col span={24}>

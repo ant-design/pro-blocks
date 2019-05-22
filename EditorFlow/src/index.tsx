@@ -13,10 +13,7 @@ GGEditor.setTrackable(false);
 
 export default () => {
   return (
-    <PageHeaderWrapper
-      title="Flowchart Editor"
-      content="The flow chart is an excellent way to represent the idea of the algorithm."
-    >
+    <PageHeaderWrapper content="The flow chart is an excellent way to represent the idea of the algorithm.">
       <GGEditor className={styles.editor}>
         <Row type="flex" className={styles.editorHd}>
           <Col span={24}>

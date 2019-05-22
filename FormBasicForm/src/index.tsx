@@ -71,10 +71,7 @@ class PAGE_NAME_UPPER_CAMEL_CASE extends Component<PAGE_NAME_UPPER_CAMEL_CASEPro
     };
 
     return (
-      <PageHeaderWrapper
-        title={<FormattedMessage id="BLOCK_NAME.basic.title" />}
-        content={<FormattedMessage id="BLOCK_NAME.basic.description" />}
-      >
+      <PageHeaderWrapper content={<FormattedMessage id="BLOCK_NAME.basic.description" />}>
         <Card bordered={false}>
           <Form onSubmit={this.handleSubmit} hideRequiredMark style={{ marginTop: 8 }}>
             <FormItem {...formItemLayout} label={<FormattedMessage id="BLOCK_NAME.title.label" />}>

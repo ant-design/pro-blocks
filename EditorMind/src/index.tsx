@@ -13,10 +13,7 @@ GGEditor.setTrackable(false);
 
 export default () => {
   return (
-    <PageHeaderWrapper
-      title="Mind Map Editor"
-      content="The brain map is an effective graphical thinking tool for expressing divergent thinking. It is simple but effective and is a practical thinking tool."
-    >
+    <PageHeaderWrapper content="The brain map is an effective graphical thinking tool for expressing divergent thinking. It is simple but effective and is a practical thinking tool.">
       <GGEditor className={styles.editor}>
         <Row type="flex" className={styles.editorHd}>
           <Col span={24}>

@@ -81,7 +81,6 @@ class PAGE_NAME_UPPER_CAMEL_CASE extends Component<PAGE_NAME_UPPER_CAMEL_CASEPro
 
     return (
       <PageHeaderWrapper
-        title="搜索列表"
         content={mainSearch}
         tabList={tabList}
         tabActiveKey={this.getTabKey()}

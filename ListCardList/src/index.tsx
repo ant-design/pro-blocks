@@ -88,7 +88,7 @@ class PAGE_NAME_UPPER_CAMEL_CASE extends Component<
     );
     const nullData = {} as CardListItemDataType;
     return (
-      <PageHeaderWrapper title="卡片列表" content={content} extraContent={extraContent}>
+      <PageHeaderWrapper content={content} extraContent={extraContent}>
         <div className={styles.cardList}>
           <List
             rowKey="id"

@@ -43,10 +43,7 @@ class PAGE_NAME_UPPER_CAMEL_CASE extends Component<PAGE_NAME_UPPER_CAMEL_CASEPro
       stepComponent = <Step1 />;
     }
     return (
-      <PageHeaderWrapper
-        title="分步表单"
-        content="将一个冗长或用户不熟悉的表单任务分成多个步骤，指导用户完成。"
-      >
+      <PageHeaderWrapper content="将一个冗长或用户不熟悉的表单任务分成多个步骤，指导用户完成。">
         <Card bordered={false}>
           <Fragment>
             <Steps current={currentStep} className={styles.steps}>

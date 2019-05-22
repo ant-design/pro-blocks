@@ -5,7 +5,7 @@ import styles from './index.less';
 
 interface IPageHeaderWrapperProps {
   content?: React.ReactNode;
-  title: React.ReactNode;
+  title?: React.ReactNode;
 }
 
 const PageHeaderWrapper: React.SFC<IPageHeaderWrapperProps> = ({ children, content, title }) => (
