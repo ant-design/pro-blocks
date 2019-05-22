@@ -3,14 +3,14 @@ import { connect } from 'dva';
 import { formatMessage, FormattedMessage } from 'umi-plugin-react/locale';
 import Link from 'umi/link';
 import { Checkbox, Alert, Icon } from 'antd';
-import Login from './components/Login';
+import LoginComponents from './components/Login';
 import styles from './style.less';
 import { Dispatch } from 'redux';
 import { IStateType } from './model';
 import { FormComponentProps } from 'antd/lib/form';
 import { CheckboxChangeEvent } from 'antd/lib/checkbox';
 
-const { Tab, UserName, Password, Mobile, Captcha, Submit } = Login;
+const { Tab, UserName, Password, Mobile, Captcha, Submit } = LoginComponents;
 
 interface PAGE_NAME_UPPER_CAMEL_CASEProps {
   dispatch: Dispatch<any>;
@@ -107,7 +107,7 @@ class PAGE_NAME_UPPER_CAMEL_CASE extends Component<
     const { type, autoLogin } = this.state;
     return (
       <div className={styles.main}>
-        <Login
+        <LoginComponents
           defaultActiveKey={type}
           onTabChange={this.onTabChange}
           onSubmit={this.handleSubmit}
@@ -202,7 +202,7 @@ class PAGE_NAME_UPPER_CAMEL_CASE extends Component<
               <FormattedMessage id="BLOCK_NAME.login.signup" />
             </Link>
           </div>
-        </Login>
+        </LoginComponents>
       </div>
     );
   }
