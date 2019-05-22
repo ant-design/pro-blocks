@@ -6,7 +6,6 @@ import { KoniContextMenu } from './components/EditorContextMenu';
 import { KoniToolbar } from './components/EditorToolbar';
 import { KoniItemPanel } from './components/EditorItemPanel';
 import { KoniDetailPanel } from './components/EditorDetailPanel';
-import KoniCustomNode from './components/shape/nodes/KoniCustomNode';
 import styles from './index.less';
 import PageHeaderWrapper from './components/PageHeaderWrapper';
 
@@ -36,7 +35,6 @@ export default () => {
             <EditorMinimap />
           </Col>
         </Row>
-        <KoniCustomNode />
         <KoniContextMenu />
       </GGEditor>
     </PageHeaderWrapper>

@@ -1,11 +1,19 @@
 import React from 'react';
 import { Tooltip } from 'antd';
 import { Command } from 'gg-editor';
-import upperFirst from 'lodash/upperFirst';
 import IconFont from '../../common/IconFont';
 import styles from './index.less';
 
-const ToolbarButton = props => {
+const upperFirst = (str: string) => {
+  return str.toLowerCase().replace(/( |^)[a-z]/g, (l: string) => l.toUpperCase());
+};
+
+interface ToolbarButtonProps {
+  command: string;
+  icon?: string;
+  text?: string;
+}
+const ToolbarButton: React.SFC<ToolbarButtonProps> = props => {
   const { command, icon, text } = props;
 
   return (

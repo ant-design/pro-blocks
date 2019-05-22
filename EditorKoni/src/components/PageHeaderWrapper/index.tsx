@@ -1,8 +1,7 @@
 import React from 'react';
-import { RouteContext } from '@ant-design/pro-layout';
+import { RouteContext, GridContent } from '@ant-design/pro-layout';
 import { PageHeader, Tabs, Typography } from 'antd';
 import styles from './index.less';
-import { GridContent } from '@ant-design/pro-layout';
 import { TabsProps } from 'antd/lib/tabs';
 interface IPageHeaderTabConfig {
   tabList?: Array<{

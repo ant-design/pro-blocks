@@ -1,7 +1,11 @@
 import React, { Fragment } from 'react';
 import { Card, Form, Input, Select } from 'antd';
 import { withPropsAPI } from 'gg-editor';
-import upperFirst from 'lodash/upperFirst';
+import { FormComponentProps } from 'antd/lib/form';
+
+const upperFirst = (str: string) => {
+  return str.toLowerCase().replace(/( |^)[a-z]/g, (l: string) => l.toUpperCase());
+};
 
 const { Item } = Form;
 const { Option } = Select;
@@ -15,14 +19,19 @@ const inlineFormItemLayout = {
   },
 };
 
-class DetailForm extends React.Component {
+interface DetailFormProps extends FormComponentProps {
+  type: string;
+  propsAPI?: any;
+}
+
+class DetailForm extends React.Component<DetailFormProps> {
   get item() {
     const { propsAPI } = this.props;
 
     return propsAPI.getSelected()[0];
   }
 
-  handleSubmit = e => {
+  handleSubmit = (e: React.FormEvent) => {
     if (e && e.preventDefault) {
       e.preventDefault();
     }
@@ -126,4 +135,4 @@ class DetailForm extends React.Component {
   }
 }
 
-export default Form.create()(withPropsAPI(DetailForm));
+export default Form.create<DetailFormProps>()(withPropsAPI(DetailForm as any));

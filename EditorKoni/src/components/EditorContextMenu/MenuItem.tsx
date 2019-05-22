@@ -1,10 +1,18 @@
 import React from 'react';
 import { Command } from 'gg-editor';
-import upperFirst from 'lodash/upperFirst';
 import IconFont from '../../common/IconFont';
 import styles from './index.less';
 
-const MenuItem = props => {
+const upperFirst = (str: string) => {
+  return str.toLowerCase().replace(/( |^)[a-z]/g, (l: string) => l.toUpperCase());
+};
+
+interface MenuItemProps {
+  command: string;
+  icon?: string;
+  text?: string;
+}
+const MenuItem: React.SFC<MenuItemProps> = props => {
   const { command, icon, text } = props;
 
   return (
