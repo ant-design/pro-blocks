@@ -7,6 +7,9 @@ import { Card, Row, Col, Icon, Avatar, Tag, Divider, Input } from 'antd';
 import styles from './Center.less';
 import { ITag, CurrentUser } from './data';
 import { ModalState } from './model';
+import Articles from './components/Articles';
+import Applications from './components/Applications';
+import Projects from './components/Projects';
 
 const operationTabList = [
   {
@@ -42,7 +45,7 @@ interface BLOCK_NAME_CAMEL_CASEProps extends RouteChildrenProps {
 }
 interface BLOCK_NAME_CAMEL_CASEState {
   newTags: ITag[];
-  tabKey: string;
+  tabKey: 'articles' | 'applications' | 'projects';
   inputVisible: boolean;
   inputValue: string;
 }
@@ -95,6 +98,9 @@ class PAGE_NAME_UPPER_CAMEL_CASE extends PureComponent<
     dispatch({
       type: 'BLOCK_NAME_CAMEL_CASE/fetchCurrent',
     });
+    dispatch({
+      type: 'BLOCK_NAME_CAMEL_CASE/fetch',
+    });
   }
 
   onTabChange = (key: string) => {
@@ -102,7 +108,7 @@ class PAGE_NAME_UPPER_CAMEL_CASE extends PureComponent<
     // const { match } = this.props;
     // router.push(`${match.url}/${key}`);
     this.setState({
-      tabKey: key,
+      tabKey: key as BLOCK_NAME_CAMEL_CASEState['tabKey'],
     });
   };
 
@@ -131,10 +137,21 @@ class PAGE_NAME_UPPER_CAMEL_CASE extends PureComponent<
       inputValue: '',
     });
   };
-
+  renderChildrenByTabKey = (tabKey: BLOCK_NAME_CAMEL_CASEState['tabKey']) => {
+    if (tabKey === 'projects') {
+      return <Projects />;
+    }
+    if (tabKey === 'applications') {
+      return <Applications />;
+    }
+    if (tabKey === 'articles') {
+      return <Articles />;
+    }
+    return null;
+  };
   render() {
     const { newTags, inputVisible, inputValue, tabKey } = this.state;
-    const { currentUser, currentUserLoading, children } = this.props;
+    const { currentUser, currentUserLoading } = this.props;
     const dataLoading = currentUserLoading || !(currentUser && Object.keys(currentUser).length);
     return (
       <Row gutter={24}>
@@ -215,7 +232,7 @@ class PAGE_NAME_UPPER_CAMEL_CASE extends PureComponent<
             activeTabKey={tabKey}
             onTabChange={this.onTabChange}
           >
-            {children || tabKey}
+            {this.renderChildrenByTabKey(tabKey)}
           </Card>
         </Col>
       </Row>

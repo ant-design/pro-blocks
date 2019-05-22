@@ -1,5 +1,4 @@
 @import '~antd/lib/style/themes/default.less';
-@import './utils/utils.less';
 
 .iconGroup {
   i {
@@ -18,11 +17,21 @@
   padding: 0;
   list-style: none;
   li {
-    .clearfix();
-
     display: flex;
     align-items: center;
     margin-top: 16px;
+    zoom: 1;
+    &::before,
+    &::after {
+      display: table;
+      content: ' ';
+    }
+    &::after {
+      clear: both;
+      height: 0;
+      font-size: 0;
+      visibility: hidden;
+    }
     span {
       color: @text-color;
       font-size: 14px;

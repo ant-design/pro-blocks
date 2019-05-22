@@ -1,8 +1,9 @@
-import { queryCurrent } from './service';
-import { CurrentUser } from './data';
+import { queryCurrent, queryFakeList } from './service';
+import { CurrentUser, ListItemDataType } from './data';
 
 export interface ModalState {
   currentUser: Partial<CurrentUser>;
+  list: ListItemDataType[];
 }
 
 import { Reducer } from 'redux';
@@ -19,9 +20,11 @@ export interface ModelType {
   state: ModalState;
   effects: {
     fetchCurrent: Effect;
+    fetch: Effect;
   };
   reducers: {
     saveCurrentUser: Reducer<ModalState>;
+    queryList: Reducer<ModalState>;
   };
 }
 
@@ -30,6 +33,7 @@ const Model: ModelType = {
 
   state: {
     currentUser: {},
+    list: [],
   },
 
   effects: {
@@ -40,13 +44,26 @@ const Model: ModelType = {
         payload: response,
       });
     },
+    *fetch({ payload }, { call, put }) {
+      const response = yield call(queryFakeList, payload);
+      yield put({
+        type: 'queryList',
+        payload: Array.isArray(response) ? response : [],
+      });
+    },
   },
 
   reducers: {
     saveCurrentUser(state, action) {
       return {
-        ...state,
+        ...state!,
         currentUser: action.payload || {},
+      };
+    },
+    queryList(state, action) {
+      return {
+        ...state!,
+        list: action.payload,
       };
     },
   },

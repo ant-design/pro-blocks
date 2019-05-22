@@ -1,0 +1,62 @@
+import React, { Component } from 'react';
+import { List, Icon, Tag } from 'antd';
+import { connect } from 'dva';
+import ArticleListContent from '../ArticleListContent';
+import styles from './index.less';
+import { ModalState } from '../../model';
+import { ListItemDataType } from '../../data';
+
+@connect(({ BLOCK_NAME_CAMEL_CASE }: { BLOCK_NAME_CAMEL_CASE: ModalState }) => ({
+  list: BLOCK_NAME_CAMEL_CASE.list,
+}))
+class Articles extends Component<Partial<ModalState>> {
+  render() {
+    const { list } = this.props;
+    const IconText: React.SFC<{
+      type: string;
+      text: React.ReactNode;
+    }> = ({ type, text }) => (
+      <span>
+        <Icon type={type} style={{ marginRight: 8 }} />
+        {text}
+      </span>
+    );
+    return (
+      <List<ListItemDataType>
+        size="large"
+        className={styles.articleList}
+        rowKey="id"
+        itemLayout="vertical"
+        dataSource={list}
+        renderItem={item => (
+          <List.Item
+            key={item.id}
+            actions={[
+              <IconText key="star" type="star-o" text={item.star} />,
+              <IconText key="like" type="like-o" text={item.like} />,
+              <IconText key="message" type="message" text={item.message} />,
+            ]}
+          >
+            <List.Item.Meta
+              title={
+                <a className={styles.listItemMetaTitle} href={item.href}>
+                  {item.title}
+                </a>
+              }
+              description={
+                <span>
+                  <Tag>Ant Design</Tag>
+                  <Tag>设计语言</Tag>
+                  <Tag>蚂蚁金服</Tag>
+                </span>
+              }
+            />
+            <ArticleListContent data={item} />
+          </List.Item>
+        )}
+      />
+    );
+  }
+}
+
+export default Articles;
