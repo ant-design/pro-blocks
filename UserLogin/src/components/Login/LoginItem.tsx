@@ -29,6 +29,7 @@ export interface LoginItemProps {
   form?: FormComponentProps['form'];
   customProps?: { [key: string]: any };
   onChange?: (e: any) => void;
+  tabUtil?: any;
 }
 
 interface LoginItemState {
@@ -107,7 +108,7 @@ class WrapFormItem extends Component<LoginItemProps, LoginItemState> {
   render() {
     const { count } = this.state;
 
-    // 这么写是为了防止restProps中 带入 onChange, defaultValue, rules props
+    // 这么写是为了防止restProps中 带入 onChange, defaultValue, rules props tabUtil
     const {
       onChange,
       customProps,
@@ -119,6 +120,7 @@ class WrapFormItem extends Component<LoginItemProps, LoginItemState> {
       updateActive,
       type,
       form,
+      tabUtil,
       ...restProps
     } = this.props;
     if (!name) {
@@ -130,10 +132,11 @@ class WrapFormItem extends Component<LoginItemProps, LoginItemState> {
     const { getFieldDecorator } = form;
     // get getFieldDecorator props
     const options = this.getFormItemOptions(this.props);
-
     const otherProps = restProps || {};
+
     if (type === 'Captcha') {
       const inputProps = omit(otherProps, ['onGetCaptcha', 'countDown']);
+
       return (
         <FormItem>
           <Row gutter={8}>
