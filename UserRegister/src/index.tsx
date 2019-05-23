@@ -7,6 +7,7 @@ import styles from './style.less';
 import { Dispatch } from 'redux';
 import { IStateType } from './model';
 import { FormComponentProps } from 'antd/lib/form';
+import router from 'umi/router';
 
 const FormItem = Form.Item;
 const { Option } = Select;
@@ -92,9 +93,16 @@ class PAGE_NAME_UPPER_CAMEL_CASE extends Component<
   interval: number | undefined;
 
   componentDidUpdate() {
-    const { BLOCK_NAME_CAMEL_CASE } = this.props;
+    const { BLOCK_NAME_CAMEL_CASE, form } = this.props;
+    const account = form.getFieldValue('mail');
     if (BLOCK_NAME_CAMEL_CASE.status === 'ok') {
       message.success('注册成功！');
+      router.push({
+        pathname: '/user/register-result',
+        state: {
+          account,
+        },
+      });
     }
   }
 
