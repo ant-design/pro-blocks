@@ -66,23 +66,23 @@ class PAGE_NAME_UPPER_CAMEL_CASE extends PureComponent<
   BLOCK_NAME_CAMEL_CASEProps,
   BLOCK_NAME_CAMEL_CASEState
 > {
-  static getDerivedStateFromProps(
-    props: BLOCK_NAME_CAMEL_CASEProps,
-    state: BLOCK_NAME_CAMEL_CASEState,
-  ) {
-    const { match, location } = props;
-    const { tabKey } = state;
-    const path = match && match.path;
+  // static getDerivedStateFromProps(
+  //   props: BLOCK_NAME_CAMEL_CASEProps,
+  //   state: BLOCK_NAME_CAMEL_CASEState,
+  // ) {
+  //   const { match, location } = props;
+  //   const { tabKey } = state;
+  //   const path = match && match.path;
 
-    const urlTabKey = location.pathname.replace(`${path}/`, '');
-    if (urlTabKey && urlTabKey !== '/' && tabKey !== urlTabKey) {
-      return {
-        tabKey: urlTabKey,
-      };
-    }
+  //   const urlTabKey = location.pathname.replace(`${path}/`, '');
+  //   if (urlTabKey && urlTabKey !== '/' && tabKey !== urlTabKey) {
+  //     return {
+  //       tabKey: urlTabKey,
+  //     };
+  //   }
 
-    return null;
-  }
+  //   return null;
+  // }
 
   state: BLOCK_NAME_CAMEL_CASEState = {
     newTags: [],
