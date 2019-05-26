@@ -8,12 +8,18 @@ import { FlowItemPanel } from './components/EditorItemPanel';
 import { FlowDetailPanel } from './components/EditorDetailPanel';
 import styles from './index.less';
 import PageHeaderWrapper from './components/PageHeaderWrapper';
+import { formatMessage } from 'umi-plugin-react/locale';
 
 GGEditor.setTrackable(false);
 
 export default () => {
   return (
-    <PageHeaderWrapper content="The flow chart is an excellent way to represent the idea of the algorithm.">
+    <PageHeaderWrapper
+      content={formatMessage({
+        id: 'BLOCK_NAME.description',
+        defaultMessage: 'description',
+      })}
+    >
       <GGEditor className={styles.editor}>
         <Row type="flex" className={styles.editorHd}>
           <Col span={24}>

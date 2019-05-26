@@ -8,12 +8,18 @@ import { MindDetailPanel } from './components/EditorDetailPanel';
 import data from './worldCup2018.json';
 import styles from './index.less';
 import PageHeaderWrapper from './components/PageHeaderWrapper';
+import { formatMessage } from 'umi-plugin-react/locale';
 
 GGEditor.setTrackable(false);
 
 export default () => {
   return (
-    <PageHeaderWrapper content="The brain map is an effective graphical thinking tool for expressing divergent thinking. It is simple but effective and is a practical thinking tool.">
+    <PageHeaderWrapper
+      content={formatMessage({
+        id: 'BLOCK_NAME.description',
+        defaultMessage: 'description',
+      })}
+    >
       <GGEditor className={styles.editor}>
         <Row type="flex" className={styles.editorHd}>
           <Col span={24}>

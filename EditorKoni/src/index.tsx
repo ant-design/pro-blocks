@@ -8,12 +8,18 @@ import { KoniItemPanel } from './components/EditorItemPanel';
 import { KoniDetailPanel } from './components/EditorDetailPanel';
 import styles from './index.less';
 import PageHeaderWrapper from './components/PageHeaderWrapper';
+import { formatMessage } from 'umi-plugin-react/locale';
 
 GGEditor.setTrackable(false);
 
 export default () => {
   return (
-    <PageHeaderWrapper content="The topology diagram refers to the network structure diagram composed of network node devices and communication media.">
+    <PageHeaderWrapper
+      content={formatMessage({
+        id: 'BLOCK_NAME.description',
+        defaultMessage: 'description',
+      })}
+    >
       <GGEditor className={styles.editor}>
         <Row type="flex" className={styles.editorHd}>
           <Col span={24}>
