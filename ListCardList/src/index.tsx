@@ -4,7 +4,7 @@ import { Dispatch } from 'redux';
 import { IStateType } from './model';
 import { CardListItemDataType } from './data';
 import { Card, Button, Typography, Icon, List } from 'antd';
-import PageHeaderWrapper from './components/PageHeaderWrapper';
+import { PageHeaderWrapper } from '@ant-design/pro-layout';
 
 const { Paragraph } = Typography;
 

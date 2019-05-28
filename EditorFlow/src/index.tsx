@@ -7,7 +7,7 @@ import { FlowToolbar } from './components/EditorToolbar';
 import { FlowItemPanel } from './components/EditorItemPanel';
 import { FlowDetailPanel } from './components/EditorDetailPanel';
 import styles from './index.less';
-import PageHeaderWrapper from './components/PageHeaderWrapper';
+import { PageHeaderWrapper } from '@ant-design/pro-layout';
 import { formatMessage } from 'umi-plugin-react/locale';
 
 GGEditor.setTrackable(false);

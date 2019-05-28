@@ -25,7 +25,7 @@ import { IStateType } from './model';
 import { Dispatch } from 'redux';
 import { BasicListItemDataType } from './data';
 import Result from './Result';
-import { GridContent } from '@ant-design/pro-layout';
+import { PageHeaderWrapper } from '@ant-design/pro-layout';
 
 import styles from './style.less';
 
@@ -290,8 +290,8 @@ class PAGE_NAME_UPPER_CAMEL_CASE extends Component<
       );
     };
     return (
-      <React.Fragment>
-        <GridContent>
+      <>
+        <PageHeaderWrapper>
           <div className={styles.standardList}>
             <Card bordered={false}>
               <Row>
@@ -321,9 +321,7 @@ class PAGE_NAME_UPPER_CAMEL_CASE extends Component<
                 icon="plus"
                 onClick={this.showModal}
                 ref={component => {
-                  /* eslint-disable */
                   this.addBtn = findDOMNode(component) as HTMLButtonElement;
-                  /* eslint-enable */
                 }}
               >
                 添加
@@ -360,7 +358,7 @@ class PAGE_NAME_UPPER_CAMEL_CASE extends Component<
               />
             </Card>
           </div>
-        </GridContent>
+        </PageHeaderWrapper>
 
         <Modal
           title={done ? null : `任务${current ? '编辑' : '添加'}`}
@@ -373,7 +371,7 @@ class PAGE_NAME_UPPER_CAMEL_CASE extends Component<
         >
           {getModalContent()}
         </Modal>
-      </React.Fragment>
+      </>
     );
   }
 }

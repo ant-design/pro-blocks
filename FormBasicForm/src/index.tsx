@@ -13,7 +13,7 @@ import {
   Icon,
   Tooltip,
 } from 'antd';
-import PageHeaderWrapper from './components/PageHeaderWrapper';
+import { PageHeaderWrapper } from '@ant-design/pro-layout';
 import styles from './style.less';
 import { FormComponentProps } from 'antd/lib/form';
 import { Dispatch } from 'redux';

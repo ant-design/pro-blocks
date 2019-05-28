@@ -27,6 +27,7 @@ import { IStateType } from './model';
 import styles from './style.less';
 import UpdateForm, { IFormValsType } from './components/UpdateForm';
 import CreateForm from './components/CreateForm';
+import { PageHeaderWrapper } from '@ant-design/pro-layout';
 
 const FormItem = Form.Item;
 const { Option } = Select;
@@ -435,7 +436,7 @@ class TableList extends Component<TableListProps, TableListState> {
       handleUpdate: this.handleUpdate,
     };
     return (
-      <Fragment>
+      <PageHeaderWrapper>
         <Card bordered={false}>
           <div className={styles.tableList}>
             <div className={styles.tableListForm}>{this.renderForm()}</div>
@@ -473,7 +474,7 @@ class TableList extends Component<TableListProps, TableListState> {
             form={form}
           />
         ) : null}
-      </Fragment>
+      </PageHeaderWrapper>
     );
   }
 }

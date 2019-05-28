@@ -7,7 +7,7 @@ import { MindToolbar } from './components/EditorToolbar';
 import { MindDetailPanel } from './components/EditorDetailPanel';
 import data from './worldCup2018.json';
 import styles from './index.less';
-import PageHeaderWrapper from './components/PageHeaderWrapper';
+import { PageHeaderWrapper } from '@ant-design/pro-layout';
 import { formatMessage } from 'umi-plugin-react/locale';
 
 GGEditor.setTrackable(false);

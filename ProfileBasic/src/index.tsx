@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'dva';
 import { Card, Badge, Table, Divider } from 'antd';
 import DescriptionList from './components/DescriptionList';
-import PageHeaderWrapper from './components/PageHeaderWrapper';
+import { PageHeaderWrapper } from '@ant-design/pro-layout';
 import styles from './style.less';
 import { BasicProfileDataType, BasicGood } from './data';
 import { Dispatch } from 'redux';

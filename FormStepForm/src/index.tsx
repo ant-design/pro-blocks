@@ -1,7 +1,7 @@
 import React, { Component, Fragment } from 'react';
 import { Card, Steps } from 'antd';
 import { connect } from 'dva';
-import PageHeaderWrapper from './components/PageHeaderWrapper';
+import { PageHeaderWrapper } from '@ant-design/pro-layout';
 import Step1 from './components/Step1';
 import Step2 from './components/Step2';
 import Step3 from './components/Step3';

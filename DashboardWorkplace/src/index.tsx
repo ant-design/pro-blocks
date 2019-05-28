@@ -6,10 +6,10 @@ import { Row, Col, Card, List, Avatar } from 'antd';
 import { Dispatch } from 'redux';
 
 import EditableLinkGroup from './components/EditableLinkGroup';
-import PageHeaderWrapper from './components/PageHeaderWrapper';
 import Radar from './components/Radar';
 import { ModalState } from './model';
 import { ICurrentUser, IActivities, IRadarData, INotice } from './data';
+import { PageHeaderWrapper } from '@ant-design/pro-layout';
 
 import styles from './style.less';
 
