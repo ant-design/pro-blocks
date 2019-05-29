@@ -85,7 +85,7 @@ function getRule(
     pagination: {
       total: dataSource.length,
       pageSize,
-      current: parseInt(params.currentPage, 10) || 1,
+      current: parseInt(`${params.currentPage}`, 10) || 1,
     },
   };
 
@@ -155,6 +155,6 @@ function postRule(
 }
 
 export default {
-  'GET /api/BLOCK_NAME': getRule,
-  'POST /api/BLOCK_NAME': postRule,
+  'GET /api/': getRule,
+  'POST /api/': postRule,
 };

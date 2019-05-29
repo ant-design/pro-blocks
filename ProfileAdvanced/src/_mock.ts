@@ -70,5 +70,5 @@ const getProfileAdvancedData = {
 };
 
 export default {
-  'GET /api/BLOCK_NAME/advanced': getProfileAdvancedData,
+  'GET  /api/advanced': getProfileAdvancedData,
 };

@@ -173,9 +173,9 @@ function getFakeList(req: { query: any }, res: { json: (arg0: ListItemDataType[]
 }
 
 export default {
-  'GET /api/BLOCK_NAME/fake_list': getFakeList,
+  'GET  /api/fake_list': getFakeList,
   // 支持值为 Object 和 Array
-  'GET /api/BLOCK_NAME/currentUser': {
+  'GET  /api/currentUser': {
     name: 'Serati Ma',
     avatar: 'https://gw.alipayobjects.com/zos/rmsportal/BiazfanxmamNRoxxVxka.png',
     userid: '00000001',

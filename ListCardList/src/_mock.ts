@@ -110,5 +110,5 @@ function getFakeList(req: { query: any }, res: { json: (arg0: CardListItemDataTy
 }
 
 export default {
-  'GET /api/BLOCK_NAME/fake_list': getFakeList,
+  'GET  /api/fake_list': getFakeList,
 };

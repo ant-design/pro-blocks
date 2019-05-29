@@ -223,7 +223,7 @@ const radarOriginData = [
   },
 ];
 
-const radarData = [];
+const radarData: any[] = [];
 const radarTitleMap = {
   ref: '引用',
   koubei: '口碑',
@@ -244,13 +244,13 @@ radarOriginData.forEach(item => {
 });
 
 export default {
-  'GET /api/BLOCK_NAME/project/notice': getNotice,
-  'GET /api/BLOCK_NAME/activities': getActivities,
-  'GET /api/BLOCK_NAME/fake_chart_data': {
+  'GET  /api/project/notice': getNotice,
+  'GET  /api/activities': getActivities,
+  'GET  /api/fake_chart_data': {
     radarData,
   },
 
-  'GET /api/BLOCK_NAME/currentUser': {
+  'GET  /api/currentUser': {
     name: 'Serati Ma',
     avatar: 'https://gw.alipayobjects.com/zos/rmsportal/BiazfanxmamNRoxxVxka.png',
     userid: '00000001',

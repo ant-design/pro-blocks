@@ -4,7 +4,7 @@ export interface Member {
   id: string;
 }
 
-export interface ListItemDatatype {
+export interface ListItemDataType {
   id: string;
   owner: string;
   title: string;

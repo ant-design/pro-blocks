@@ -1,5 +1,5 @@
 export default {
-  'POST /api/BLOCK_NAME/register': (
+  'POST  /api/register': (
     req: any,
     res: { send: (arg0: { status: string; currentAuthority: string }) => void },
   ) => {

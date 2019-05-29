@@ -193,5 +193,5 @@ const getFakeChartData: IAnalysisData = {
 };
 
 export default {
-  'GET /api/BLOCK_NAME/fake_chart_data': getFakeChartData,
+  'GET  /api/fake_chart_data': getFakeChartData,
 };

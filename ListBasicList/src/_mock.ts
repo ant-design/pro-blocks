@@ -145,6 +145,6 @@ function postFakeList(req: { body: any }, res: { json: (arg0: BasicListItemDataT
 }
 
 export default {
-  'GET /api/BLOCK_NAME/fake_list': getFakeList,
-  'POST /api/BLOCK_NAME/fake_list': postFakeList,
+  'GET  /api/fake_list': getFakeList,
+  'POST  /api/fake_list': postFakeList,
 };

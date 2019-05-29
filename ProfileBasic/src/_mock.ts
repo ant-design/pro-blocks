@@ -82,5 +82,5 @@ const getProfileBasicData = {
 };
 
 export default {
-  'GET /api/BLOCK_NAME/basic': getProfileBasicData,
+  'GET  /api/basic': getProfileBasicData,
 };

@@ -14,7 +14,7 @@ function getCity(
 // 代码中会兼容本地 service mock 以及部署站点的静态数据
 export default {
   // 支持值为 Object 和 Array
-  'GET /api/BLOCK_NAME/currentUser': {
+  'GET  /api/currentUser': {
     name: 'Serati Ma',
     avatar: 'https://gw.alipayobjects.com/zos/rmsportal/BiazfanxmamNRoxxVxka.png',
     userid: '00000001',
@@ -64,6 +64,6 @@ export default {
     address: '西湖区工专路 77 号',
     phone: '0752-268888888',
   },
-  'GET /api/BLOCK_NAME/province': getProvince,
-  'GET /api/BLOCK_NAME/city/:province': getCity,
+  'GET  /api/province': getProvince,
+  'GET  /api/city/:province': getCity,
 };
