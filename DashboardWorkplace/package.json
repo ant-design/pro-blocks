@@ -17,7 +17,7 @@
     "prop-types": "^15.5.10",
     "react": "^16.6.3",
     "umi-request": "^1.0.0",
-    "bizcharts": "^3.5.2"
+    "bizcharts": "^3.5.3-beta.0"
   },
   "devDependencies": {
     "umi": "^2.6.9",
