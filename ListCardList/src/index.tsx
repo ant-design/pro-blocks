@@ -96,7 +96,7 @@ class PAGE_NAME_UPPER_CAMEL_CASE extends Component<
             grid={{ gutter: 24, lg: 3, md: 2, sm: 1, xs: 1 }}
             dataSource={[nullData, ...list]}
             renderItem={item =>
-              item ? (
+              item && item.id ? (
                 <List.Item key={item.id}>
                   <Card
                     hoverable
