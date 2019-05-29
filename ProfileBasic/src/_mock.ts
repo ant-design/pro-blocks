@@ -82,5 +82,5 @@ const getProfileBasicData = {
 };
 
 export default {
-  'GET  /api/basic': getProfileBasicData,
+  'GET  /api/profile/basic': getProfileBasicData,
 };

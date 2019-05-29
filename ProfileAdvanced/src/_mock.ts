@@ -70,5 +70,5 @@ const getProfileAdvancedData = {
 };
 
 export default {
-  'GET  /api/advanced': getProfileAdvancedData,
+  'GET  /api/profile/advanced': getProfileAdvancedData,
 };
