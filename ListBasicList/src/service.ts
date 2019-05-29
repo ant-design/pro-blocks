@@ -6,14 +6,14 @@ interface ParamsType extends Partial<BasicListItemDataType> {
 }
 
 export async function queryFakeList(params: ParamsType) {
-  return request('/api/BLOCK_NAME/fake_list', {
+  return request('/api/fake_list', {
     params,
   });
 }
 
 export async function removeFakeList(params: ParamsType) {
   const { count = 5, ...restParams } = params;
-  return request('/api/BLOCK_NAME/fake_list', {
+  return request('/api/fake_list', {
     method: 'POST',
     params: {
       count,
@@ -27,7 +27,7 @@ export async function removeFakeList(params: ParamsType) {
 
 export async function addFakeList(params: ParamsType) {
   const { count = 5, ...restParams } = params;
-  return request('/api/BLOCK_NAME/fake_list', {
+  return request('/api/fake_list', {
     method: 'POST',
     params: {
       count,
@@ -41,7 +41,7 @@ export async function addFakeList(params: ParamsType) {
 
 export async function updateFakeList(params: ParamsType) {
   const { count = 5, ...restParams } = params;
-  return request('/api/BLOCK_NAME/fake_list', {
+  return request('/api/fake_list', {
     method: 'POST',
     params: {
       count,
