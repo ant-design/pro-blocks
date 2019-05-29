@@ -64,6 +64,6 @@ export default {
     address: '西湖区工专路 77 号',
     phone: '0752-268888888',
   },
-  'GET  /api/province': getProvince,
-  'GET  /api/city/:province': getCity,
+  'GET  /api/geographic/province': getProvince,
+  'GET  /api/geographic/city/:province': getCity,
 };

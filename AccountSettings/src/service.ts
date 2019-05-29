@@ -5,11 +5,11 @@ export async function queryCurrent() {
 }
 
 export async function queryProvince() {
-  return request('/api/province');
+  return request('/api/geographic/province');
 }
 
 export async function queryCity(province: string) {
-  return request(`/api/city/${province}`);
+  return request(`/api/geographic/city/${province}`);
 }
 
 export async function query() {
