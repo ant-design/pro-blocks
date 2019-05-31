@@ -210,7 +210,7 @@ class PAGE_NAME_UPPER_CAMEL_CASE extends PureComponent<
                 <div className={styles.team}>
                   <div className={styles.teamTitle}>团队</div>
                   <Row gutter={36}>
-                    {currentUser.notice.map(item => (
+                    {currentUser.notice && currentUser.notice.map(item => (
                       <Col key={item.id} lg={24} xl={12}>
                         <Link to={item.href}>
                           <Avatar size="small" src={item.logo} />
