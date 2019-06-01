@@ -365,7 +365,7 @@ class PAGE_NAME_UPPER_CAMEL_CASE extends Component<
             >
               <FormattedMessage id="BLOCK_NAME.register.register" />
             </Button>
-            <Link className={styles.login} to="/User/Login">
+            <Link className={styles.login} to="/user/login">
               <FormattedMessage id="BLOCK_NAME.register.sign-in" />
             </Link>
           </FormItem>
