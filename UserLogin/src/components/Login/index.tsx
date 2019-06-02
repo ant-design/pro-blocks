@@ -127,9 +127,9 @@ class Login extends Component<LoginProps, LoginState> {
     return (
       <LoginContext.Provider value={this.getContext()}>
         <div className={classNames(className, styles.login)}>
-          {tabs.length ? (
-            <React.Fragment>
-              <Form onSubmit={this.handleSubmit}>
+          <Form onSubmit={this.handleSubmit}>
+            {tabs.length ? (
+              <React.Fragment>
                 <Tabs
                   animated={false}
                   className={styles.tabs}
@@ -139,11 +139,11 @@ class Login extends Component<LoginProps, LoginState> {
                   {TabChildren}
                 </Tabs>
                 {otherChildren}
-              </Form>
-            </React.Fragment>
-          ) : (
-            children
-          )}
+              </React.Fragment>
+            ) : (
+              children
+            )}
+          </Form>
         </div>
       </LoginContext.Provider>
     );
