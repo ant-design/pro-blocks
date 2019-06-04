@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'dva';
 import { Dispatch } from 'redux';
 import { FormattedMessage } from 'umi-plugin-react/locale';
+import { GridContent } from '@ant-design/pro-layout';
 import { Menu } from 'antd';
 import styles from './style.less';
 import BaseView from './components/base';
@@ -133,28 +134,30 @@ class PAGE_NAME_UPPER_CAMEL_CASE extends Component<
     }
     const { mode, selectKey } = this.state;
     return (
-      <div
-        className={styles.main}
-        ref={ref => {
-          if (ref) {
-            this.main = ref;
-          }
-        }}
-      >
-        <div className={styles.leftMenu}>
-          <Menu
-            mode={mode}
-            selectedKeys={[selectKey]}
-            onClick={({ key }) => this.selectKey(key as PAGE_NAME_UPPER_CAMEL_CASEStateKeys)}
-          >
-            {this.getMenu()}
-          </Menu>
+      <GridContent>
+        <div
+          className={styles.main}
+          ref={ref => {
+            if (ref) {
+              this.main = ref;
+            }
+          }}
+        >
+          <div className={styles.leftMenu}>
+            <Menu
+              mode={mode}
+              selectedKeys={[selectKey]}
+              onClick={({ key }) => this.selectKey(key as PAGE_NAME_UPPER_CAMEL_CASEStateKeys)}
+            >
+              {this.getMenu()}
+            </Menu>
+          </div>
+          <div className={styles.right}>
+            <div className={styles.title}>{this.getRightTitle()}</div>
+            {this.renderChildren()}
+          </div>
         </div>
-        <div className={styles.right}>
-          <div className={styles.title}>{this.getRightTitle()}</div>
-          {this.renderChildren()}
-        </div>
-      </div>
+      </GridContent>
     );
   }
 }
