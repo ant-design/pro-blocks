@@ -155,6 +155,6 @@ function postRule(
 }
 
 export default {
-  'GET /api/': getRule,
-  'POST /api/': postRule,
+  'GET /api/rule': getRule,
+  'POST /api/rule': postRule,
 };

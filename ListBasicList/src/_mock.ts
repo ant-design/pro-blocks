@@ -100,7 +100,7 @@ function fakeList(count: number): BasicListItemDataType[] {
   return list;
 }
 
-let sourceData: Array<BasicListItemDataType>;
+let sourceData: Array<BasicListItemDataType> = [];
 
 function getFakeList(req: { query: any }, res: { json: (arg0: BasicListItemDataType[]) => void }) {
   const params = req.query;
@@ -117,7 +117,7 @@ function postFakeList(req: { body: any }, res: { json: (arg0: BasicListItemDataT
   // const params = getUrlParams(url);
   const { method, id } = body;
   // const count = (params.count * 1) || 20;
-  let result = sourceData;
+  let result = sourceData || [];
 
   switch (method) {
     case 'delete':

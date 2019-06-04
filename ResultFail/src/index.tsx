@@ -1,20 +1,13 @@
 import React, { Fragment } from 'react';
 import { formatMessage, FormattedMessage } from 'umi-plugin-react/locale';
 import { Button, Icon, Card } from 'antd';
-import Result from './Result';
 import { GridContent } from '@ant-design/pro-layout';
+import Result from './Result';
 import styles from './index.less';
 
 const extra = (
   <Fragment>
-    <div
-      style={{
-        fontSize: 16,
-        color: 'rgba(0, 0, 0, 0.85)',
-        fontWeight: 500,
-        marginBottom: 16,
-      }}
-    >
+    <div className={styles.title}>
       <FormattedMessage
         id="BLOCK_NAME.error.hint-title"
         defaultMessage="The content you submitted has the following error:"
@@ -32,11 +25,7 @@ const extra = (
       </a>
     </div>
     <div>
-      <Icon
-        style={{ color: '#f5222d', marginRight: 8 }}
-        className={styles.error_icon}
-        type="close-circle-o"
-      />
+      <Icon style={{ marginRight: 8 }} className={styles.error_icon} type="close-circle-o" />
       <FormattedMessage
         id="BLOCK_NAME.error.hint-text2"
         defaultMessage="Your account is not yet eligible to apply"
