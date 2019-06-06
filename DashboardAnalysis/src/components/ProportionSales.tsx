@@ -4,7 +4,7 @@ import Charts from './Charts';
 import { FormattedMessage } from 'umi-plugin-react/locale';
 import styles from '../style.less';
 import Yuan from '../utils/Yuan';
-import { RadioChangeEvent } from 'antd/lib/radio';
+import { RadioChangeEvent } from 'antd/es/radio';
 import { ISalesData } from '../data';
 
 const { Pie } = Charts;

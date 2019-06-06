@@ -15,7 +15,7 @@ import {
 import { connect } from 'dva';
 import TableForm from './components/TableForm';
 import styles from './style.less';
-import { FormComponentProps } from 'antd/lib/form';
+import { FormComponentProps } from 'antd/es/form';
 import { Dispatch } from 'redux';
 import FooterToolbar from './components/FooterToolbar';
 import { PageHeaderWrapper } from '@ant-design/pro-layout';

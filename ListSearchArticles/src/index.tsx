@@ -7,7 +7,7 @@ import StandardFormRow from './components/StandardFormRow';
 import ArticleListContent from './components/ArticleListContent';
 import styles from './style.less';
 import { Dispatch } from 'redux';
-import { FormComponentProps } from 'antd/lib/form';
+import { FormComponentProps } from 'antd/es/form';
 import { ListItemDataType } from './data';
 import { IStateType } from './model';
 

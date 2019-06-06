@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Tabs } from 'antd';
-import { TabPaneProps } from 'antd/lib/tabs';
+import { TabPaneProps } from 'antd/es/tabs';
 import LoginContext, { ILoginContext } from './LoginContext';
 
 const { TabPane } = Tabs;

@@ -20,7 +20,7 @@ import {
   Typography,
   Tabs,
 } from 'antd';
-import { TabsProps } from 'antd/lib/tabs';
+import { TabsProps } from 'antd/es/tabs';
 import classNames from 'classnames';
 import DescriptionList from './DescriptionList';
 import styles from './style.less';

@@ -20,7 +20,7 @@ import {
   DatePicker,
   Select,
 } from 'antd';
-import { FormComponentProps } from 'antd/lib/form';
+import { FormComponentProps } from 'antd/es/form';
 import { IStateType } from './model';
 import { Dispatch } from 'redux';
 import { BasicListItemDataType } from './data';

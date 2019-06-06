@@ -6,7 +6,7 @@ import { Form, Input, message, Button, Select, Row, Col, Popover, Progress } fro
 import styles from './style.less';
 import { Dispatch } from 'redux';
 import { IStateType } from './model';
-import { FormComponentProps } from 'antd/lib/form';
+import { FormComponentProps } from 'antd/es/form';
 import router from 'umi/router';
 
 const FormItem = Form.Item;

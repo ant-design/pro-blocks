@@ -5,7 +5,7 @@ import LoginItem, { LoginItemType, LoginItemProps } from './LoginItem';
 import LoginTab from './LoginTab';
 import styles from './index.less';
 import LoginContext, { ILoginContext } from './LoginContext';
-import { FormComponentProps } from 'antd/lib/form';
+import { FormComponentProps } from 'antd/es/form';
 import LoginSubmit from './LoginSubmit';
 
 export interface LoginProps {

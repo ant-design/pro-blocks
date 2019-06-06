@@ -7,8 +7,8 @@ import LoginComponents from './components/Login';
 import styles from './style.less';
 import { Dispatch } from 'redux';
 import { IStateType } from './model';
-import { FormComponentProps } from 'antd/lib/form';
-import { CheckboxChangeEvent } from 'antd/lib/checkbox';
+import { FormComponentProps } from 'antd/es/form';
+import { CheckboxChangeEvent } from 'antd/es/checkbox';
 
 const { Tab, UserName, Password, Mobile, Captcha, Submit } = LoginComponents;
 

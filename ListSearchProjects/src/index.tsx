@@ -8,7 +8,7 @@ import AvatarList from './components/AvatarList';
 import styles from './style.less';
 import { IStateType } from './model';
 import { Dispatch } from 'redux';
-import { FormComponentProps } from 'antd/lib/form';
+import { FormComponentProps } from 'antd/es/form';
 import { ListItemDataType } from './data';
 const { Option } = Select;
 const FormItem = Form.Item;

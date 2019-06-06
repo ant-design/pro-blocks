@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'dva';
 import { Form, Input, Button, Alert, Divider, Statistic } from 'antd';
 import styles from './index.less';
-import { FormComponentProps } from 'antd/lib/form';
+import { FormComponentProps } from 'antd/es/form';
 import { IStateType } from '../../model';
 import { Dispatch } from 'redux';
 

@@ -1,13 +1,13 @@
 import React, { Component, Suspense } from 'react';
 import { connect } from 'dva';
 import { Row, Col, Icon, Menu, Dropdown } from 'antd';
-import { RangePickerValue } from 'antd/lib/date-picker/interface';
+import { RangePickerValue } from 'antd/es/date-picker/interface';
 import { getTimeDistance } from './utils/utils';
 import styles from './style.less';
 import PageLoading from './components/PageLoading';
 import { Dispatch } from 'redux';
 import { IAnalysisData } from './data.d';
-import { RadioChangeEvent } from 'antd/lib/radio';
+import { RadioChangeEvent } from 'antd/es/radio';
 import { GridContent } from '@ant-design/pro-layout';
 
 const IntroduceRow = React.lazy(() => import('./components/IntroduceRow'));

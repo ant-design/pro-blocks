@@ -1,7 +1,7 @@
 import React, { Fragment } from 'react';
 import { Card, Form, Input, Select } from 'antd';
 import { withPropsAPI } from 'gg-editor';
-import { FormComponentProps } from 'antd/lib/form';
+import { FormComponentProps } from 'antd/es/form';
 
 const upperFirst = (str: string) => {
   return str.toLowerCase().replace(/( |^)[a-z]/g, (l: string) => l.toUpperCase());

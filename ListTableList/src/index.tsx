@@ -18,8 +18,8 @@ import {
   Badge,
   Divider,
 } from 'antd';
-import { FormComponentProps } from 'antd/lib/form';
-import { SorterResult } from 'antd/lib/table';
+import { FormComponentProps } from 'antd/es/form';
+import { SorterResult } from 'antd/es/table';
 import StandardTable, { StandardTableColumnProps } from './components/StandardTable';
 import { TableListItem, TableListParams, TableListPagination } from './data';
 import { Dispatch } from 'redux';

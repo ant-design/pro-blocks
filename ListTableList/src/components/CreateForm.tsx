@@ -1,6 +1,6 @@
 import React from 'react';
 import { Input, Modal, Form } from 'antd';
-import { FormComponentProps } from 'antd/lib/form';
+import { FormComponentProps } from 'antd/es/form';
 
 const FormItem = Form.Item;
 

@@ -4,7 +4,7 @@ import omit from 'omit.js';
 import styles from './index.less';
 import ItemMap from './map';
 import LoginContext, { ILoginContext } from './LoginContext';
-import { FormComponentProps } from 'antd/lib/form';
+import { FormComponentProps } from 'antd/es/form';
 
 type Omit<T, K extends keyof T> = Pick<T, Exclude<keyof T, K>>;
 

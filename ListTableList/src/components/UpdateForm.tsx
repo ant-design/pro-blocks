@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Input, Select, Button, DatePicker, Form, Modal, Steps, Radio } from 'antd';
 import { TableListItem } from '../data';
-import { FormComponentProps } from 'antd/lib/form';
+import { FormComponentProps } from 'antd/es/form';
 
 export type IFormValsType = {
   target?: string;
