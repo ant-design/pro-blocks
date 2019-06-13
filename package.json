@@ -1,7 +1,8 @@
 {
   "private": true,
   "scripts": {
-    "dev": "cross-env PAGES_PATH='DashboardAnalysis/src' umi dev",
+    "dev": "cross-env PAGES_PATH='DashboardMonitor/src' umi dev",
+    "start": "umi dev",
     "lint": "npm run lint:ts && npm run lint:style && npm run lint:prettier",
     "lint-staged": "lint-staged",
     "lint-staged:ts": "tslint",
@@ -28,8 +29,13 @@
   "dependencies": {
     "@types/react-dom": "^16.8.4",
     "cross-env": "^5.2.0",
+    "execa": "^1.0.0",
+    "getnpmregistry": "^1.0.1",
     "numeral": "^2.0.6",
     "react-dom": "^16.8.6"
+  },
+  "optionalDependencies": {
+    "puppeteer": "^1.17.0"
   },
   "devDependencies": {
     "@types/classnames": "^2.2.7",
@@ -51,7 +57,7 @@
     "tslint-config-prettier": "^1.17.0",
     "tslint-eslint-rules": "^5.4.0",
     "tslint-react": "^3.6.0",
-    "typescript": "^3.4.5",
+    "typescript": "^3.5.1",
     "umi": "^2.6.17",
     "umi-plugin-block-dev": "^2.0.2",
     "umi-plugin-react": "^1.7.6",
