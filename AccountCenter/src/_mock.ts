@@ -166,7 +166,7 @@ function fakeList(count: number): ListItemDataType[] {
 function getFakeList(req: { query: any }, res: { json: (arg0: ListItemDataType[]) => void }) {
   const params = req.query;
 
-  const count = params.count * 1 || 20;
+  const count = params.count * 1 || 5;
 
   const result = fakeList(count);
   return res.json(result);
