@@ -2,7 +2,6 @@
 /* eslint-disable @typescript-eslint/no-var-requires */
 /* eslint-disable eslint-comments/no-unlimited-disable */
 const { spawn } = require('child_process');
-const { kill } = require('cross-port-killer');
 const puppeteer = require('puppeteer');
 const { join, dirname } = require('path');
 const fs = require('fs');
@@ -14,7 +13,7 @@ env.BROWSER = 'none';
 env.TEST = true;
 env.COMPRESS = 'none';
 env.PROGRESS = 'none';
-// flag to prevent multiple test
+env.BLOCK_PAGES_LAYOUT = 'blankLayout';
 
 let browser;
 
@@ -22,12 +21,9 @@ const startServer = async path => {
   let once = false;
   return new Promise(resolve => {
     env.PAGES_PATH = path + '/src';
-    const startServer = spawn(/^win/.test(process.platform) ? 'npm.cmd' : 'npm', ['start'], {
+    console.log(path);
+    const startServer = spawn(/^win/.test(process.platform) ? 'npm.cmd' : 'npm', ['run', 'start'], {
       env,
-    });
-
-    startServer.on('exit', () => {
-      kill(process.env.PORT || 8000);
     });
 
     console.log('Starting development server');
@@ -115,8 +111,6 @@ const getAllFile = async () => {
 
 getAllFile().then(async dirList => {
   const registry = await getNpmRegistry();
-
-  kill(process.env.PORT || 8000);
   const page = await openBrowser();
   const loopGetImage = async index => {
     try {
