@@ -1,7 +1,18 @@
 @import '~antd/es/style/themes/default.less';
 
+.main {
+  table {
+    table-layout: fixed;
+  }
+}
+
 .headerList {
   margin-bottom: 4px;
+  :global {
+    .ant-descriptions-row > td {
+      padding-bottom: 8px;
+    }
+  }
 }
 
 .tabsCard {

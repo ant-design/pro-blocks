@@ -1,6 +1,6 @@
 import React, { Component, Fragment } from 'react';
 import { Dispatch } from 'redux';
-import { RouteContext, GridContent } from '@ant-design/pro-layout';
+import { GridContent, PageHeaderWrapper } from '@ant-design/pro-layout';
 import { connect } from 'dva';
 import {
   Button,
@@ -12,22 +12,17 @@ import {
   Steps,
   Card,
   Popover,
-  PageHeader,
   Badge,
   Table,
   Tooltip,
   Divider,
-  Typography,
-  Tabs,
+  Descriptions,
 } from 'antd';
-import { TabsProps } from 'antd/es/tabs';
 import classNames from 'classnames';
-import DescriptionList from './DescriptionList';
 import styles from './style.less';
 import { AdvancedProfileData } from './data';
 
 const { Step } = Steps;
-const { Description } = DescriptionList;
 const ButtonGroup = Button.Group;
 
 const getWindowWidth = () => window.innerWidth || document.documentElement.clientWidth;
@@ -73,54 +68,17 @@ const extra = (
 );
 
 const description = (
-  <DescriptionList className={styles.headerList} size="small" col={2}>
-    <Description term="创建人">曲丽丽</Description>
-    <Description term="订购产品">XX 服务</Description>
-    <Description term="创建时间">2017-07-07</Description>
-    <Description term="关联单据">
+  <Descriptions className={styles.headerList} size="small" column={2}>
+    <Descriptions.Item label="创建人">曲丽丽</Descriptions.Item>
+    <Descriptions.Item label="订购产品">XX 服务</Descriptions.Item>
+    <Descriptions.Item label="创建时间">2017-07-07</Descriptions.Item>
+    <Descriptions.Item label="关联单据">
       <a href="">12421</a>
-    </Description>
-    <Description term="生效日期">2017-07-07 ~ 2017-08-08</Description>
-    <Description term="备注">请于两个工作日内确认</Description>
-  </DescriptionList>
+    </Descriptions.Item>
+    <Descriptions.Item label="生效日期">2017-07-07 ~ 2017-08-08</Descriptions.Item>
+    <Descriptions.Item label="备注">请于两个工作日内确认</Descriptions.Item>
+  </Descriptions>
 );
-
-/**
- * render Footer tabList
- * In order to be compatible with the old version of the PageHeader
- * basically all the functions are implemented.
- */
-const RenderFooter = ({
-  tabList,
-  tabActiveKey,
-  onTabChange,
-  tabBarExtraContent,
-}: {
-  tabList: Array<{
-    tab: string;
-    key: string;
-  }>;
-  tabActiveKey?: string;
-  onTabChange?: (key: string) => void;
-  tabBarExtraContent?: TabsProps['tabBarExtraContent'];
-}) => {
-  return tabList && tabList.length ? (
-    <Tabs
-      className={styles.tabs}
-      activeKey={tabActiveKey}
-      onChange={key => {
-        if (onTabChange) {
-          onTabChange(key);
-        }
-      }}
-      tabBarExtraContent={tabBarExtraContent}
-    >
-      {tabList.map(item => (
-        <Tabs.TabPane tab={item.tab} key={item.key} />
-      ))}
-    </Tabs>
-  ) : null;
-};
 
 const desc1 = (
   <div className={classNames(styles.textSecondary, styles.stepDescription)}>
@@ -236,7 +194,7 @@ const columns = [
   }),
 )
 class PAGE_NAME_UPPER_CAMEL_CASE extends Component<
-  { loading: boolean; BLOCK_NAME_CAMEL_CASE: AdvancedProfileData; dispatch: Dispatch },
+  { loading: boolean; BLOCK_NAME_CAMEL_CASE: AdvancedProfileData; dispatch: Dispatch<any> },
   {
     operationKey: string;
     stepDirection: 'horizontal' | 'vertical';
@@ -251,7 +209,7 @@ class PAGE_NAME_UPPER_CAMEL_CASE extends Component<
   };
 
   componentDidMount() {
-    const { dispatch, BLOCK_NAME_CAMEL_CASE } = this.props;
+    const { dispatch } = this.props;
     dispatch({
       type: 'BLOCK_NAME_CAMEL_CASE/fetchAdvanced',
     });
@@ -312,146 +270,111 @@ class PAGE_NAME_UPPER_CAMEL_CASE extends Component<
       ),
     };
     return (
-      <RouteContext.Consumer>
-        {value => {
-          return (
-            <>
-              <PageHeader
-                {...value}
-                title={
-                  <Typography.Title
-                    level={4}
-                    style={{
-                      margin: 0,
-                    }}
-                  >
-                    单号：234231029431
-                  </Typography.Title>
-                }
-                style={{
-                  margin: -24,
-                }}
-                extra={action}
-                footer={
-                  <RenderFooter
-                    tabList={[
-                      {
-                        key: 'detail',
-                        tab: '详情',
-                      },
-                      {
-                        key: 'rule',
-                        tab: '规则',
-                      },
-                    ]}
-                  />
-                }
-              >
-                <div
-                  style={{
-                    display: 'flex',
-                  }}
+      <PageHeaderWrapper
+        title="单号：234231029431"
+        extra={action}
+        content={description}
+        extraContent={extra}
+        tabActiveKey="detail"
+        tabList={[
+          {
+            key: 'detail',
+            tab: '详情',
+          },
+          {
+            key: 'rule',
+            tab: '规则',
+          },
+        ]}
+      >
+        <div
+          style={{
+            margin: 24,
+            marginTop: 48,
+          }}
+          className={styles.main}
+        >
+          <GridContent>
+            <Card title="流程进度" style={{ marginBottom: 24 }}>
+              <Steps direction={stepDirection} progressDot={customDot} current={1}>
+                <Step title="创建项目" description={desc1} />
+                <Step title="部门初审" description={desc2} />
+                <Step title="财务复核" />
+                <Step title="完成" />
+              </Steps>
+            </Card>
+            <Card title="用户信息" style={{ marginBottom: 24 }} bordered={false}>
+              <Descriptions style={{ marginBottom: 24 }}>
+                <Descriptions.Item label="用户姓名">付小小</Descriptions.Item>
+                <Descriptions.Item label="会员卡号">32943898021309809423</Descriptions.Item>
+                <Descriptions.Item label="身份证">3321944288191034921</Descriptions.Item>
+                <Descriptions.Item label="联系方式">18112345678</Descriptions.Item>
+                <Descriptions.Item label="联系地址">
+                  曲丽丽 18100000000 浙江省杭州市西湖区黄姑山路工专路交叉路口
+                </Descriptions.Item>
+              </Descriptions>
+              <Descriptions style={{ marginBottom: 24 }} title="信息组">
+                <Descriptions.Item label="某某数据">725</Descriptions.Item>
+                <Descriptions.Item label="该数据更新时间">2017-08-08</Descriptions.Item>
+                <Descriptions.Item
+                  label={
+                    <span>
+                      某某数据
+                      <Tooltip title="数据说明">
+                        <Icon
+                          style={{ color: 'rgba(0, 0, 0, 0.43)', marginLeft: 4 }}
+                          type="info-circle-o"
+                        />
+                      </Tooltip>
+                    </span>
+                  }
                 >
-                  {description}
-                  {extra}
-                </div>
-              </PageHeader>
-              <div
-                style={{
-                  margin: 24,
-                  marginTop: 48,
-                }}
-              >
-                <GridContent>
-                  <Card title="流程进度" style={{ marginBottom: 24 }} bordered={false}>
-                    <Steps direction={stepDirection} progressDot={customDot} current={1}>
-                      <Step title="创建项目" description={desc1} />
-                      <Step title="部门初审" description={desc2} />
-                      <Step title="财务复核" />
-                      <Step title="完成" />
-                    </Steps>
-                  </Card>
-                  <Card title="用户信息" style={{ marginBottom: 24 }} bordered={false}>
-                    <DescriptionList style={{ marginBottom: 24 }}>
-                      <Description term="用户姓名">付小小</Description>
-                      <Description term="会员卡号">32943898021309809423</Description>
-                      <Description term="身份证">3321944288191034921</Description>
-                      <Description term="联系方式">18112345678</Description>
-                      <Description term="联系地址">
-                        曲丽丽 18100000000 浙江省杭州市西湖区黄姑山路工专路交叉路口
-                      </Description>
-                    </DescriptionList>
-                    <DescriptionList style={{ marginBottom: 24 }} title="信息组">
-                      <Description term="某某数据">725</Description>
-                      <Description term="该数据更新时间">2017-08-08</Description>
-                      <Description>&nbsp;</Description>
-                      <Description
-                        term={
-                          <span>
-                            某某数据
-                            <Tooltip title="数据说明">
-                              <Icon
-                                style={{ color: 'rgba(0, 0, 0, 0.43)', marginLeft: 4 }}
-                                type="info-circle-o"
-                              />
-                            </Tooltip>
-                          </span>
-                        }
-                      >
-                        725
-                      </Description>
-                      <Description term="该数据更新时间">2017-08-08</Description>
-                    </DescriptionList>
-                    <h4 style={{ marginBottom: 16 }}>信息组</h4>
-                    <Card type="inner" title="多层级信息组">
-                      <DescriptionList size="small" style={{ marginBottom: 16 }} title="组名称">
-                        <Description term="负责人">林东东</Description>
-                        <Description term="角色码">1234567</Description>
-                        <Description term="所属部门">XX公司 - YY部</Description>
-                        <Description term="过期时间">2017-08-08</Description>
-                        <Description term="描述">
-                          这段描述很长很长很长很长很长很长很长很长很长很长很长很长很长很长...
-                        </Description>
-                      </DescriptionList>
-                      <Divider style={{ margin: '16px 0' }} />
-                      <DescriptionList
-                        size="small"
-                        style={{ marginBottom: 16 }}
-                        title="组名称"
-                        col={1}
-                      >
-                        <Description term="学名">
-                          Citrullus lanatus (Thunb.) Matsum. et
-                          Nakai一年生蔓生藤本；茎、枝粗壮，具明显的棱。卷须较粗..
-                        </Description>
-                      </DescriptionList>
-                      <Divider style={{ margin: '16px 0' }} />
-                      <DescriptionList size="small" title="组名称">
-                        <Description term="负责人">付小小</Description>
-                        <Description term="角色码">1234568</Description>
-                      </DescriptionList>
-                    </Card>
-                  </Card>
-                  <Card title="用户近半年来电记录" style={{ marginBottom: 24 }} bordered={false}>
-                    <div className={styles.noData}>
-                      <Icon type="frown-o" />
-                      暂无数据
-                    </div>
-                  </Card>
-                  <Card
-                    className={styles.tabsCard}
-                    bordered={false}
-                    tabList={operationTabList}
-                    onTabChange={this.onOperationTabChange}
-                  >
-                    {contentList[operationKey]}
-                  </Card>
-                </GridContent>
+                  725
+                </Descriptions.Item>
+                <Descriptions.Item label="该数据更新时间">2017-08-08</Descriptions.Item>
+              </Descriptions>
+              <h4 style={{ marginBottom: 16 }}>信息组</h4>
+              <Card type="inner" title="多层级信息组">
+                <Descriptions style={{ marginBottom: 16 }} title="组名称">
+                  <Descriptions.Item label="负责人">林东东</Descriptions.Item>
+                  <Descriptions.Item label="角色码">1234567</Descriptions.Item>
+                  <Descriptions.Item label="所属部门">XX公司 - YY部</Descriptions.Item>
+                  <Descriptions.Item label="过期时间">2017-08-08</Descriptions.Item>
+                  <Descriptions.Item label="描述">
+                    这段描述很长很长很长很长很长很长很长很长很长很长很长很长很长很长...
+                  </Descriptions.Item>
+                </Descriptions>
+                <Divider style={{ margin: '16px 0' }} />
+                <Descriptions style={{ marginBottom: 16 }} title="组名称" column={1}>
+                  <Descriptions.Item label="学名">
+                    Citrullus lanatus (Thunb.) Matsum. et
+                    Nakai一年生蔓生藤本；茎、枝粗壮，具明显的棱。卷须较粗..
+                  </Descriptions.Item>
+                </Descriptions>
+                <Divider style={{ margin: '16px 0' }} />
+                <Descriptions title="组名称">
+                  <Descriptions.Item label="负责人">付小小</Descriptions.Item>
+                  <Descriptions.Item label="角色码">1234568</Descriptions.Item>
+                </Descriptions>
+              </Card>
+            </Card>
+            <Card title="用户近半年来电记录" style={{ marginBottom: 24 }} bordered={false}>
+              <div className={styles.noData}>
+                <Icon type="frown-o" />
+                暂无数据
               </div>
-            </>
-          );
-        }}
-      </RouteContext.Consumer>
+            </Card>
+            <Card
+              className={styles.tabsCard}
+              bordered={false}
+              tabList={operationTabList}
+              onTabChange={this.onOperationTabChange}
+            >
+              {contentList[operationKey]}
+            </Card>
+          </GridContent>
+        </div>
+      </PageHeaderWrapper>
     );
   }
 }

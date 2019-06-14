@@ -84,7 +84,7 @@ const getImage = async (page, path) => {
 
 const openBrowser = async () => {
   browser = await puppeteer.launch({
-    headless: false,
+    headless: true,
     args: [
       '--disable-gpu',
       '--disable-dev-shm-usage',

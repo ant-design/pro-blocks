@@ -1,12 +1,10 @@
 import React, { Component } from 'react';
 import { connect } from 'dva';
-import { Card, Badge, Table, Divider } from 'antd';
-import DescriptionList from './components/DescriptionList';
+import { Card, Badge, Table, Descriptions, Divider } from 'antd';
 import { PageHeaderWrapper } from '@ant-design/pro-layout';
 import styles from './style.less';
 import { BasicProfileDataType, BasicGood } from './data';
 import { Dispatch } from 'redux';
-const { Description } = DescriptionList;
 
 const progressColumns = [
   {
@@ -169,20 +167,20 @@ class PAGE_NAME_UPPER_CAMEL_CASE extends Component<
     return (
       <PageHeaderWrapper>
         <Card bordered={false}>
-          <DescriptionList size="large" title="退款申请" style={{ marginBottom: 32 }}>
-            <Description term="取货单号">1000000000</Description>
-            <Description term="状态">已取货</Description>
-            <Description term="销售单号">1234123421</Description>
-            <Description term="子订单">3214321432</Description>
-          </DescriptionList>
+          <Descriptions title="退款申请" style={{ marginBottom: 32 }}>
+            <Descriptions.Item label="取货单号">1000000000</Descriptions.Item>
+            <Descriptions.Item label="状态">已取货</Descriptions.Item>
+            <Descriptions.Item label="销售单号">1234123421</Descriptions.Item>
+            <Descriptions.Item label="子订单">3214321432</Descriptions.Item>
+          </Descriptions>
           <Divider style={{ marginBottom: 32 }} />
-          <DescriptionList size="large" title="用户信息" style={{ marginBottom: 32 }}>
-            <Description term="用户姓名">付小小</Description>
-            <Description term="联系电话">18100000000</Description>
-            <Description term="常用快递">菜鸟仓储</Description>
-            <Description term="取货地址">浙江省杭州市西湖区万塘路18号</Description>
-            <Description term="备注">无</Description>
-          </DescriptionList>
+          <Descriptions title="用户信息" style={{ marginBottom: 32 }}>
+            <Descriptions.Item label="用户姓名">付小小</Descriptions.Item>
+            <Descriptions.Item label="联系电话">18100000000</Descriptions.Item>
+            <Descriptions.Item label="常用快递">菜鸟仓储</Descriptions.Item>
+            <Descriptions.Item label="取货地址">浙江省杭州市西湖区万塘路18号</Descriptions.Item>
+            <Descriptions.Item label="备注">无</Descriptions.Item>
+          </Descriptions>
           <Divider style={{ marginBottom: 32 }} />
           <div className={styles.title}>退货商品</div>
           <Table
