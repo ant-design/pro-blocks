@@ -125,7 +125,7 @@ getAllFile().then(async dirList => {
       });
       await getImage(page, dirList[index]);
 
-      if (dirList.length > index) {
+      if (dirList.length > index && dirList[index + 1]) {
         console.log('Screenshot ' + dirList[index]);
 
         return loopGetImage(index + 1);
