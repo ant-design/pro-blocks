@@ -27,10 +27,6 @@ interface PAGE_NAME_UPPER_CAMEL_CASEProps extends FormComponentProps {
   submitting: boolean;
   dispatch: Dispatch<any>;
 }
-
-@connect(({ loading }: { loading: { effects: { [key: string]: boolean } } }) => ({
-  submitting: loading.effects['BLOCK_NAME_CAMEL_CASE/submitRegularForm'],
-}))
 class PAGE_NAME_UPPER_CAMEL_CASE extends Component<PAGE_NAME_UPPER_CAMEL_CASEProps> {
   handleSubmit = (e: React.FormEvent) => {
     const { dispatch, form } = this.props;
@@ -250,4 +246,8 @@ class PAGE_NAME_UPPER_CAMEL_CASE extends Component<PAGE_NAME_UPPER_CAMEL_CASEPro
   }
 }
 
-export default Form.create<PAGE_NAME_UPPER_CAMEL_CASEProps>()(PAGE_NAME_UPPER_CAMEL_CASE);
+export default Form.create<PAGE_NAME_UPPER_CAMEL_CASEProps>(
+  connect(({ loading }: { loading: { effects: { [key: string]: boolean } } }) => ({
+    submitting: loading.effects['BLOCK_NAME_CAMEL_CASE/submitRegularForm'],
+  }))(PAGE_NAME_UPPER_CAMEL_CASE),
+);
