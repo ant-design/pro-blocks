@@ -7,9 +7,11 @@ const { join, dirname } = require('path');
 const fs = require('fs');
 const getNpmRegistry = require('getnpmregistry');
 const execa = require('execa');
+const { kill } = require('cross-port-killer');
 
 const env = Object.create(process.env);
 env.BROWSER = 'none';
+env.PORT = process.env.PORT || '2144';
 env.TEST = true;
 env.COMPRESS = 'none';
 env.PROGRESS = 'none';
@@ -36,6 +38,9 @@ const startServer = async path => {
         return resolve(startServer);
       }
     });
+    startServer.on('exit', () => {
+      kill(env.PORT || 8000);
+    });
   });
 };
 
@@ -58,9 +63,10 @@ const autoScroll = page => {
 };
 
 const getImage = async (page, path) => {
+  kill(env.PORT || 8000);
   const server = await startServer(path);
 
-  await page.reload('http://127.0.0.1:8000');
+  await page.reload(`http://127.0.0.1:${env.PORT}`);
 
   await page.setViewport({
     width: 1440,
@@ -73,7 +79,6 @@ const getImage = async (page, path) => {
     path: join(path, 'snapshot.png'),
     fullPage: true,
   });
-
   server.kill();
 };
 
@@ -89,7 +94,7 @@ const openBrowser = async () => {
     ],
   });
   const page = await browser.newPage();
-  page.goto('http://127.0.0.1:8000');
+  page.goto(`http://127.0.0.1:${env.PORT}`);
   return page;
 };
 
