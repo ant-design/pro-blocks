@@ -1,7 +1,7 @@
-import { fakeRegister } from './service';
-import { Reducer } from 'redux';
+import { Reducer, AnyAction } from 'redux';
 import { EffectsCommandMap } from 'dva';
-import { AnyAction } from 'redux';
+
+import { fakeRegister } from './service';
 
 export interface IStateType {
   status?: 'ok' | 'error';

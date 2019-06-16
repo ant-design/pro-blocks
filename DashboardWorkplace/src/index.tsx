@@ -5,11 +5,11 @@ import Link from 'umi/link';
 import { Row, Col, Card, List, Avatar } from 'antd';
 import { Dispatch } from 'redux';
 
+import { PageHeaderWrapper } from '@ant-design/pro-layout';
 import EditableLinkGroup from './components/EditableLinkGroup';
 import Radar from './components/Radar';
 import { ModalState } from './model';
 import { ICurrentUser, IActivities, IRadarData, INotice } from './data';
-import { PageHeaderWrapper } from '@ant-design/pro-layout';
 
 import styles from './style.less';
 
@@ -209,9 +209,7 @@ class PAGE_NAME_UPPER_CAMEL_CASE extends PureComponent<BLOCK_NAME_CAMEL_CASEProp
             >
               <List<IActivities>
                 loading={activitiesLoading}
-                renderItem={item => {
-                  return this.renderActivities(item);
-                }}
+                renderItem={item => this.renderActivities(item)}
                 dataSource={activities}
                 className={styles.activitiesList}
                 size="large"

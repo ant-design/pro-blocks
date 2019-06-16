@@ -13,9 +13,11 @@ class TableForm extends PureComponent {
       value: nextProps.value,
     };
   }
+
   index = 0;
 
   cacheOriginData = {};
+
   columns = [
     {
       title: '成员姓名',
@@ -230,6 +232,7 @@ class TableForm extends PureComponent {
     this.setState({ data: newData });
     this.clickedCancel = false;
   }
+
   render() {
     const { loading, data } = this.state;
 

@@ -4,11 +4,11 @@ import { formatMessage, FormattedMessage } from 'umi-plugin-react/locale';
 import { Row, Col, Card, Statistic, Tooltip } from 'antd';
 import numeral from 'numeral';
 import { Dispatch } from 'redux';
+import { GridContent } from '@ant-design/pro-layout';
 import { IStateType } from './model';
 import ActiveChart from './components/ActiveChart';
 import styles from './style.less';
 import Charts from './components/Charts';
-import { GridContent } from '@ant-design/pro-layout';
 
 const { Countdown } = Statistic;
 

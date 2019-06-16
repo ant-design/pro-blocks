@@ -9,11 +9,11 @@ export interface IRadarProps {
   height?: number;
   padding?: [number, number, number, number];
   hasLegend?: boolean;
-  data: Array<{
+  data: {
     name: string;
     label: string;
     value: string | number;
-  }>;
+  }[];
   colors?: string[];
   animate?: boolean;
   forceFit?: boolean;
@@ -21,20 +21,22 @@ export interface IRadarProps {
   style?: React.CSSProperties;
 }
 interface IRadarState {
-  legendData: Array<{
+  legendData: {
     checked: boolean;
     name: string;
     color: string;
     percent: number;
     value: string;
-  }>;
+  }[];
 }
 /* eslint react/no-danger:0 */
 class Radar extends Component<IRadarProps, IRadarState> {
   state: IRadarState = {
     legendData: [],
   };
+
   chart: G2.Chart | undefined;
+
   node: HTMLDivElement | undefined;
 
   componentDidMount() {
@@ -97,7 +99,7 @@ class Radar extends Component<IRadarProps, IRadarState> {
     const filteredLegendData = legendData.filter(l => l.checked).map(l => l.name);
 
     if (this.chart) {
-      this.chart.filter('name', val => filteredLegendData.indexOf(val + '') > -1);
+      this.chart.filter('name', val => filteredLegendData.indexOf(`${val}`) > -1);
       this.chart.repaint();
     }
 

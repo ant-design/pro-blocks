@@ -3,11 +3,11 @@ import { connect } from 'dva';
 import { formatMessage, FormattedMessage } from 'umi-plugin-react/locale';
 import Link from 'umi/link';
 import { Form, Input, message, Button, Select, Row, Col, Popover, Progress } from 'antd';
-import styles from './style.less';
 import { Dispatch } from 'redux';
-import { IStateType } from './model';
 import { FormComponentProps } from 'antd/es/form';
 import router from 'umi/router';
+import { IStateType } from './model';
+import styles from './style.less';
 
 const FormItem = Form.Item;
 const { Option } = Select;
@@ -90,6 +90,7 @@ class PAGE_NAME_UPPER_CAMEL_CASE extends Component<
     help: '',
     prefix: '86',
   };
+
   interval: number | undefined;
 
   componentDidUpdate() {
@@ -109,6 +110,7 @@ class PAGE_NAME_UPPER_CAMEL_CASE extends Component<
   componentWillUnmount() {
     clearInterval(this.interval);
   }
+
   onGetCaptcha = () => {
     let count = 59;
     this.setState({ count });
@@ -244,7 +246,7 @@ class PAGE_NAME_UPPER_CAMEL_CASE extends Component<
           <FormItem help={help}>
             <Popover
               getPopupContainer={node =>
-                node && node.parentNode ? (node.parentNode as HTMLElement) : node
+                (node && node.parentNode ? (node.parentNode as HTMLElement) : node)
               }
               content={
                 <div style={{ padding: '4px 0' }}>

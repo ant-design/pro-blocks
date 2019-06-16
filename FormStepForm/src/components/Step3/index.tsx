@@ -1,10 +1,10 @@
 import React, { Fragment } from 'react';
 import { connect } from 'dva';
 import { Button, Row, Col } from 'antd';
+import { Dispatch } from 'redux';
 import Result from '../Result';
 import styles from './index.less';
 import { IStateType } from '../../model';
-import { Dispatch } from 'redux';
 
 interface Step3Props {
   data?: IStateType['step'];

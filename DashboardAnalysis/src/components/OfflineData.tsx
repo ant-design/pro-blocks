@@ -5,6 +5,7 @@ import Charts from './Charts';
 import styles from '../style.less';
 import NumberInfo from './NumberInfo';
 import { IOfflineData, IOfflineChartData } from '../data';
+
 const { TimelineChart, Pie } = Charts;
 
 const CustomTab = ({
@@ -13,8 +14,7 @@ const CustomTab = ({
 }: {
   data: IOfflineData;
   currentTabKey: string;
-}) => {
-  return (
+}) => (
     <Row gutter={8} style={{ width: 138, margin: '8px 0' }}>
       <Col span={12}>
         <NumberInfo
@@ -42,7 +42,6 @@ const CustomTab = ({
       </Col>
     </Row>
   );
-};
 
 const { TabPane } = Tabs;
 

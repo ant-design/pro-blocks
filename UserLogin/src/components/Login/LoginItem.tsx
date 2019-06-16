@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 import { Form, Input, Button, Row, Col } from 'antd';
 import omit from 'omit.js';
+import { FormComponentProps } from 'antd/es/form';
 import styles from './index.less';
 import ItemMap from './map';
 import LoginContext, { ILoginContext } from './LoginContext';
-import { FormComponentProps } from 'antd/es/form';
 
 type Omit<T, K extends keyof T> = Pick<T, Exclude<keyof T, K>>;
 
@@ -43,6 +43,7 @@ class WrapFormItem extends Component<LoginItemProps, LoginItemState> {
     getCaptchaButtonText: 'captcha',
     getCaptchaSecondText: 'second',
   };
+
   interval: number | undefined;
 
   constructor(props: LoginItemProps) {
@@ -51,6 +52,7 @@ class WrapFormItem extends Component<LoginItemProps, LoginItemState> {
       count: 0,
     };
   }
+
   componentDidMount() {
     const { updateActive, name = '' } = this.props;
     if (updateActive) {
@@ -77,7 +79,7 @@ class WrapFormItem extends Component<LoginItemProps, LoginItemState> {
 
   getFormItemOptions = ({ onChange, defaultValue, customProps = {}, rules }: LoginItemProps) => {
     const options: {
-      rules?: Array<any>;
+      rules?: any[];
       onChange?: LoginItemProps['onChange'];
       initialValue?: LoginItemProps['defaultValue'];
     } = {
@@ -171,8 +173,7 @@ Object.keys(ItemMap).forEach(key => {
   const item = ItemMap[key];
   LoginItem[key] = (props: LoginItemProps) => (
     <LoginContext.Consumer>
-      {context => {
-        return (
+      {context => (
           <WrapFormItem
             customProps={item.props}
             rules={item.rules}
@@ -181,8 +182,7 @@ Object.keys(ItemMap).forEach(key => {
             {...context}
             updateActive={context.updateActive}
           />
-        );
-      }}
+        )}
     </LoginContext.Consumer>
   );
 });

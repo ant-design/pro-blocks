@@ -3,6 +3,7 @@ import Gauge from './Gauge';
 import WaterWave from './WaterWave';
 import TagCloud from './TagCloud';
 import MiniArea from './MiniArea';
+
 const Charts = {
   Pie,
   WaterWave,

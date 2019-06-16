@@ -3,8 +3,7 @@ import { Card } from 'antd';
 import { ItemPanel, Item } from 'gg-editor';
 import styles from './index.less';
 
-const KoniItemPanel = () => {
-  return (
+const KoniItemPanel = () => (
     <ItemPanel className={styles.itemPanel}>
       <Card bordered={false}>
         <Item
@@ -49,6 +48,5 @@ const KoniItemPanel = () => {
       </Card>
     </ItemPanel>
   );
-};
 
 export default KoniItemPanel;

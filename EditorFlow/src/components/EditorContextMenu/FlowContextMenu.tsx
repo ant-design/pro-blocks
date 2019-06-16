@@ -3,8 +3,7 @@ import { NodeMenu, EdgeMenu, GroupMenu, MultiMenu, CanvasMenu, ContextMenu } fro
 import MenuItem from './MenuItem';
 import styles from './index.less';
 
-const FlowContextMenu = () => {
-  return (
+const FlowContextMenu = () => (
     <ContextMenu className={styles.contextMenu}>
       <NodeMenu>
         <MenuItem command="copy" />
@@ -31,6 +30,5 @@ const FlowContextMenu = () => {
       </CanvasMenu>
     </ContextMenu>
   );
-};
 
 export default FlowContextMenu;

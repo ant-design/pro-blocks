@@ -1,6 +1,4 @@
-/* eslint-disable eslint-comments/disable-enable-pair */
-/* eslint-disable @typescript-eslint/no-var-requires */
-/* eslint-disable eslint-comments/no-unlimited-disable */
+
 const { spawn } = require('child_process');
 const puppeteer = require('puppeteer');
 const { join, dirname } = require('path');
@@ -22,7 +20,7 @@ let browser;
 const startServer = async path => {
   let once = false;
   return new Promise(resolve => {
-    env.PAGES_PATH = path + '/src';
+    env.PAGES_PATH = `${path}/src`;
     console.log(path);
     const startServer = spawn(/^win/.test(process.platform) ? 'npm.cmd' : 'npm', ['run', 'start'], {
       env,
@@ -44,13 +42,11 @@ const startServer = async path => {
   });
 };
 
-const autoScroll = page => {
-  return page.evaluate(() => {
-    return new Promise((resolve, reject) => {
-      var totalHeight = 0;
-      var distance = 100;
+const autoScroll = page => page.evaluate(() => new Promise((resolve, reject) => {
+      let totalHeight = 0;
+      const distance = 100;
       var timer = setInterval(() => {
-        var scrollHeight = document.body.scrollHeight;
+        const { scrollHeight } = document.body;
         window.scrollBy(0, distance);
         totalHeight += distance;
         if (totalHeight >= scrollHeight) {
@@ -58,9 +54,7 @@ const autoScroll = page => {
           resolve();
         }
       }, 100);
-    });
-  });
-};
+    }));
 
 const getImage = async (page, path) => {
   kill(env.PORT || 8000);
@@ -119,14 +113,14 @@ getAllFile().then(async dirList => {
   const page = await openBrowser();
   const loopGetImage = async index => {
     try {
-      console.log('install ' + dirList[index] + ' dependencies');
+      console.log(`install ${dirList[index]} dependencies`);
       await execa('yarn', ['install', `--registry=${registry}`], {
-        cwd: join(__dirname, '../' + dirList[index]),
+        cwd: join(__dirname, `../${dirList[index]}`),
       });
       await getImage(page, dirList[index]);
 
       if (dirList.length > index && dirList[index + 1]) {
-        console.log('Screenshot ' + dirList[index]);
+        console.log(`Screenshot ${dirList[index]}`);
 
         return loopGetImage(index + 1);
       }

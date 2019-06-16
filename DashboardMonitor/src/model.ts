@@ -1,8 +1,8 @@
-import { queryTags } from './service';
-import { ITag } from './data';
-import { Reducer } from 'redux';
+import { Reducer, AnyAction } from 'redux';
 import { EffectsCommandMap } from 'dva';
-import { AnyAction } from 'redux';
+
+import { ITag } from './data';
+import { queryTags } from './service';
 
 export interface IStateType {
   tags: ITag[];

@@ -122,13 +122,13 @@ const customDot = (
     status: string;
   },
 ) =>
-  status === 'process' ? (
+  (status === 'process' ? (
     <Popover placement="topLeft" arrowPointAtCenter content={popoverContent}>
       {dot}
     </Popover>
   ) : (
     dot
-  );
+  ));
 
 const operationTabList = [
   {
@@ -161,11 +161,11 @@ const columns = [
     dataIndex: 'status',
     key: 'status',
     render: (text: string) =>
-      text === 'agree' ? (
+      (text === 'agree' ? (
         <Badge status="success" text="成功" />
       ) : (
         <Badge status="error" text="驳回" />
-      ),
+      )),
   },
   {
     title: '操作时间',
@@ -225,6 +225,7 @@ class PAGE_NAME_UPPER_CAMEL_CASE extends Component<
   onOperationTabChange = (key: string) => {
     this.setState({ operationKey: key });
   };
+
   setStepDirection = () => {
     const { stepDirection } = this.state;
     const w = getWindowWidth();

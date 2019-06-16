@@ -7,6 +7,7 @@ import styles from './BaseView.less';
 import GeographicView from './GeographicView';
 import PhoneView from './PhoneView';
 import { CurrentUser } from '../data';
+
 const FormItem = Form.Item;
 const { Option } = Select;
 
@@ -71,6 +72,7 @@ interface BaseViewProps extends FormComponentProps {
 }))
 class BaseView extends Component<BaseViewProps> {
   view: HTMLDivElement | undefined;
+
   componentDidMount() {
     this.setBaseInfo();
   }

@@ -119,7 +119,7 @@ function fakeList(count: number): ListItemDataType[] {
       owner: user[i % 10],
       title: titles[i % 8],
       avatar: avatars[i % 8],
-      cover: parseInt(i / 4 + '', 10) % 2 === 0 ? covers[i % 4] : covers[3 - (i % 4)],
+      cover: parseInt(`${i / 4}`, 10) % 2 === 0 ? covers[i % 4] : covers[3 - (i % 4)],
       status: ['active', 'exception', 'normal'][i % 3] as
         | 'normal'
         | 'exception'

@@ -21,11 +21,11 @@ import {
   Select,
 } from 'antd';
 import { FormComponentProps } from 'antd/es/form';
-import { IStateType } from './model';
 import { Dispatch } from 'redux';
+import { PageHeaderWrapper } from '@ant-design/pro-layout';
+import { IStateType } from './model';
 import { BasicListItemDataType } from './data';
 import Result from './Result';
-import { PageHeaderWrapper } from '@ant-design/pro-layout';
 
 import styles from './style.less';
 
@@ -69,6 +69,7 @@ class PAGE_NAME_UPPER_CAMEL_CASE extends Component<
     labelCol: { span: 7 },
     wrapperCol: { span: 13 },
   };
+
   addBtn: HTMLButtonElement | undefined | null;
 
   componentDidMount() {

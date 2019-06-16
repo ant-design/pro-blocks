@@ -20,14 +20,14 @@ import {
 } from 'antd';
 import { FormComponentProps } from 'antd/es/form';
 import { SorterResult } from 'antd/es/table';
+import { Dispatch } from 'redux';
+import { PageHeaderWrapper } from '@ant-design/pro-layout';
 import StandardTable, { StandardTableColumnProps } from './components/StandardTable';
 import { TableListItem, TableListParams, TableListPagination } from './data';
-import { Dispatch } from 'redux';
 import { IStateType } from './model';
 import styles from './style.less';
 import UpdateForm, { IFormValsType } from './components/UpdateForm';
 import CreateForm from './components/CreateForm';
-import { PageHeaderWrapper } from '@ant-design/pro-layout';
 
 const FormItem = Form.Item;
 const { Option } = Select;
@@ -50,7 +50,7 @@ interface TableListState {
   modalVisible: boolean;
   updateModalVisible: boolean;
   expandForm: boolean;
-  selectedRows: Array<TableListItem>;
+  selectedRows: TableListItem[];
   formValues: { [key: string]: string };
   stepFormValues: Partial<TableListItem>;
 }

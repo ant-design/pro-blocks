@@ -2,8 +2,8 @@ import React from 'react';
 import { Row, Col, Card, Tabs, DatePicker } from 'antd';
 import { FormattedMessage, formatMessage } from 'umi-plugin-react/locale';
 import numeral from 'numeral';
-import Charts from './Charts';
 import { RangePickerValue } from 'antd/es/date-picker/interface';
+import Charts from './Charts';
 import { ISalesData } from '../data';
 import styles from '../style.less';
 

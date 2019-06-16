@@ -4,8 +4,7 @@ import { NodePanel, EdgePanel, GroupPanel, MultiPanel, CanvasPanel, DetailPanel 
 import DetailForm from './DetailForm';
 import styles from './index.less';
 
-const FlowDetailPanel = () => {
-  return (
+const FlowDetailPanel = () => (
     <DetailPanel className={styles.detailPanel}>
       <NodePanel>
         <DetailForm type="node" />
@@ -24,6 +23,5 @@ const FlowDetailPanel = () => {
       </CanvasPanel>
     </DetailPanel>
   );
-};
 
 export default FlowDetailPanel;

@@ -1,7 +1,7 @@
-import { fakeSubmitForm } from './service';
-import { Reducer } from 'redux';
+import { Reducer, AnyAction } from 'redux';
 import { EffectsCommandMap } from 'dva';
-import { AnyAction } from 'redux';
+
+import { fakeSubmitForm } from './service';
 
 export interface IStateType {
   current?: string;

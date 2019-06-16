@@ -3,15 +3,13 @@
   "scripts": {
     "dev": "cross-env PAGES_PATH='ProfileAdvanced/src' umi dev",
     "start": "umi dev",
-    "lint": "npm run lint:ts && npm run lint:style && npm run lint:prettier",
     "lint-staged": "lint-staged",
-    "lint-staged:ts": "tslint",
-    "lint:fix": "npm run lint:style",
-    "lint:prettier": "check-prettier write",
-    "lint:style": "stylelint --syntax less --fix **/**.less ",
-    "lint:ts": "tslint -p . -c tslint.yml",
-    "prettier": "node ./_scripts/prettier.js",
-    "tslint": "npm run tslint:fix"
+    "lint": "npm run lint:js && npm run lint:style && npm run lint:prettier",
+    "lint-staged:js": "eslint --ext .js,.jsx,.ts,.tsx",
+    "lint:fix": "eslint --fix --cache --ext .js,.jsx,.ts,.tsx --format=pretty  ./ && npm run lint:style",
+    "lint:js": "eslint --cache --ext .js,.jsx,.ts,.tsx --format=pretty ./",
+    "lint:style": "stylelint --fix \"src/**/*.less\" --syntax less",
+    "prettier": "prettier -c --write **/*"
   },
   "husky": {
     "hooks": {
@@ -20,11 +18,12 @@
   },
   "lint-staged": {
     "**/*.less": "stylelint --syntax less",
-    "**/*.{js,ts,tsx,json,jsx,less}": [
-      "node ./_scripts/lint-prettier.js",
+    "**/*.{js,jsx,tsx,ts,less,md,json}": [
+      "prettier --write",
       "git add"
     ],
-    "**/*.{ts,tsx}": "npm run lint-staged:ts"
+    "**/*.{js,jsx}": "npm run lint-staged:js",
+    "**/*.{js,ts,tsx}": "npm run lint-staged:js"
   },
   "dependencies": {
     "@types/react-dom": "^16.8.4",
@@ -38,7 +37,6 @@
   "devDependencies": {
     "@types/classnames": "^2.2.7",
     "@types/numeral": "^0.0.25",
-    "babel-eslint": "^10.0.1",
     "check-prettier": "^1.0.3",
     "cross-port-killer": "^1.1.1",
     "execa": "^1.0.0",
@@ -48,21 +46,13 @@
     "lint-staged": "^8.1.0",
     "prettier": "1.15.2",
     "stylelint": "^10.0.1",
-    "stylelint-config-css-modules": "^1.4.0",
-    "stylelint-config-prettier": "^5.1.0",
-    "stylelint-config-rational-order": "^0.1.2",
-    "stylelint-config-standard": "^18.3.0",
-    "stylelint-declaration-block-no-ignored-properties": "^2.1.0",
-    "stylelint-order": "^3.0.0",
-    "tslint": "^5.12.1",
-    "tslint-config-prettier": "^1.17.0",
-    "tslint-eslint-rules": "^5.4.0",
-    "tslint-react": "^3.6.0",
+    "eslint": "^5.16.0",
     "typescript": "^3.5.1",
     "umi": "^2.6.17",
     "umi-plugin-block-dev": "^2.1.11",
     "umi-plugin-react": "^1.7.6",
-    "umi-request": "^1.0.0"
+    "umi-request": "^1.0.0",
+    "@umijs/fabric": "^1.0.4"
   },
   "peerDependencies": {
     "antd": "^3.17.0"

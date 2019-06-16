@@ -112,7 +112,7 @@ class Gauge extends React.Component<IGaugeProps> {
           label={{
             offset: -12,
             formatter,
-            textStyle: textStyle,
+            textStyle,
           }}
         />
         <Guide>

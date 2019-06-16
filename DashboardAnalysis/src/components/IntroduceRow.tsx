@@ -1,12 +1,13 @@
 import React from 'react';
 import { Row, Col, Icon, Tooltip } from 'antd';
 import { FormattedMessage } from 'umi-plugin-react/locale';
-import Charts from './Charts';
 import numeral from 'numeral';
+import Charts from './Charts';
 import styles from '../style.less';
 import Yuan from '../utils/Yuan';
 import Trend from './Trend';
 import { IVisitData } from '../data.d';
+
 const { ChartCard, MiniArea, MiniBar, MiniProgress, Field } = Charts;
 
 const topColResponsiveProps = {
@@ -18,8 +19,7 @@ const topColResponsiveProps = {
   style: { marginBottom: 24 },
 };
 
-const IntroduceRow = ({ loading, visitData }: { loading: boolean; visitData: IVisitData[] }) => {
-  return (
+const IntroduceRow = ({ loading, visitData }: { loading: boolean; visitData: IVisitData[] }) => (
     <Row gutter={24}>
       <Col {...topColResponsiveProps}>
         <ChartCard
@@ -160,6 +160,5 @@ const IntroduceRow = ({ loading, visitData }: { loading: boolean; visitData: IVi
       </Col>
     </Row>
   );
-};
 
 export default IntroduceRow;

@@ -1,10 +1,10 @@
 import React from 'react';
 import { Row, Col, Table, Tooltip, Card, Icon } from 'antd';
 import { FormattedMessage } from 'umi-plugin-react/locale';
+import numeral from 'numeral';
 import Charts from './Charts';
 import Trend from './Trend';
 import NumberInfo from './NumberInfo';
-import numeral from 'numeral';
 import styles from '../style.less';
 import { ISearchData, IVisitData2 } from '../data';
 

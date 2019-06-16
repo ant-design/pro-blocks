@@ -1,19 +1,18 @@
 import React from 'react';
 import { Row, Col } from 'antd';
 import GGEditor, { Koni } from 'gg-editor';
+import { PageHeaderWrapper } from '@ant-design/pro-layout';
+import { formatMessage } from 'umi-plugin-react/locale';
 import EditorMinimap from './components/EditorMinimap';
 import { KoniContextMenu } from './components/EditorContextMenu';
 import { KoniToolbar } from './components/EditorToolbar';
 import { KoniItemPanel } from './components/EditorItemPanel';
 import { KoniDetailPanel } from './components/EditorDetailPanel';
 import styles from './index.less';
-import { PageHeaderWrapper } from '@ant-design/pro-layout';
-import { formatMessage } from 'umi-plugin-react/locale';
 
 GGEditor.setTrackable(false);
 
-export default () => {
-  return (
+export default () => (
     <PageHeaderWrapper
       content={formatMessage({
         id: 'BLOCK_NAME.description',
@@ -42,4 +41,3 @@ export default () => {
       </GGEditor>
     </PageHeaderWrapper>
   );
-};

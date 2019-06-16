@@ -34,6 +34,7 @@ class PAGE_NAME_UPPER_CAMEL_CASE extends Component<
   PAGE_NAME_UPPER_CAMEL_CASEState
 > {
   main: HTMLDivElement | undefined;
+
   constructor(props: PAGE_NAME_UPPER_CAMEL_CASEProps) {
     super(props);
     const menuMap = {

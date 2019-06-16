@@ -61,7 +61,7 @@ function getRule(
     status.forEach((s: string) => {
       filterDataSource = filterDataSource.concat(
         dataSource.filter(item => {
-          if (parseInt(item.status + '', 10) === parseInt(s.split('')[0], 10)) {
+          if (parseInt(`${item.status}`, 10) === parseInt(s.split('')[0], 10)) {
             return true;
           }
           return false;
@@ -75,9 +75,9 @@ function getRule(
     dataSource = dataSource.filter(data => data.name.indexOf(params.name) > -1);
   }
 
-  let pageSize: number = 10;
+  let pageSize = 10;
   if (params.pageSize) {
-    pageSize = parseInt(params.pageSize + '', 0);
+    pageSize = parseInt(`${params.pageSize}`, 0);
   }
 
   const result = {

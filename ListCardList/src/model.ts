@@ -1,8 +1,8 @@
-import { queryFakeList } from './service';
-import { CardListItemDataType } from './data';
-import { Reducer } from 'redux';
+import { Reducer, AnyAction } from 'redux';
 import { EffectsCommandMap } from 'dva';
-import { AnyAction } from 'redux';
+
+import { CardListItemDataType } from './data';
+import { queryFakeList } from './service';
 
 export interface IStateType {
   list: CardListItemDataType[];

@@ -3,9 +3,7 @@ import { Card, Form, Input, Select } from 'antd';
 import { withPropsAPI } from 'gg-editor';
 import { FormComponentProps } from 'antd/es/form';
 
-const upperFirst = (str: string) => {
-  return str.toLowerCase().replace(/( |^)[a-z]/g, (l: string) => l.toUpperCase());
-};
+const upperFirst = (str: string) => str.toLowerCase().replace(/( |^)[a-z]/g, (l: string) => l.toUpperCase());
 
 const { Item } = Form;
 const { Option } = Select;
@@ -60,15 +58,13 @@ class DetailForm extends React.Component<DetailFormProps> {
     }, 0);
   };
 
-  renderEdgeShapeSelect = () => {
-    return (
+  renderEdgeShapeSelect = () => (
       <Select onChange={this.handleSubmit}>
         <Option value="flow-smooth">Smooth</Option>
         <Option value="flow-polyline">Polyline</Option>
         <Option value="flow-polyline-round">Polyline Round</Option>
       </Select>
     );
-  };
 
   renderNodeDetail = () => {
     const { form } = this.props;

@@ -1,3 +1,5 @@
 /functions/mock/**
 /scripts
 /config
+**/node_modules/**
+_scripts

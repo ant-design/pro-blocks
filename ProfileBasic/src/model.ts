@@ -1,8 +1,8 @@
-import { queryBasicProfile } from './service';
-import { BasicGood } from './data';
-import { Reducer } from 'redux';
+import { Reducer, AnyAction } from 'redux';
 import { EffectsCommandMap } from 'dva';
-import { AnyAction } from 'redux';
+
+import { BasicGood } from './data';
+import { queryBasicProfile } from './service';
 
 export interface IStateType {
   basicGoods: BasicGood[];

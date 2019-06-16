@@ -1,10 +1,10 @@
 import React, { Fragment } from 'react';
 import { connect } from 'dva';
 import { Form, Input, Button, Select, Divider } from 'antd';
-import styles from './index.less';
 import { FormComponentProps } from 'antd/es/form';
-import { IStateType } from '../../model';
 import { Dispatch } from 'redux';
+import styles from './index.less';
+import { IStateType } from '../../model';
 
 const { Option } = Select;
 

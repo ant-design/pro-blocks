@@ -1,19 +1,18 @@
 import React from 'react';
 import { Row, Col } from 'antd';
 import GGEditor, { Mind } from 'gg-editor';
+import { PageHeaderWrapper } from '@ant-design/pro-layout';
+import { formatMessage } from 'umi-plugin-react/locale';
 import EditorMinimap from './components/EditorMinimap';
 import { MindContextMenu } from './components/EditorContextMenu';
 import { MindToolbar } from './components/EditorToolbar';
 import { MindDetailPanel } from './components/EditorDetailPanel';
 import data from './worldCup2018.json';
 import styles from './index.less';
-import { PageHeaderWrapper } from '@ant-design/pro-layout';
-import { formatMessage } from 'umi-plugin-react/locale';
 
 GGEditor.setTrackable(false);
 
-export default () => {
-  return (
+export default () => (
     <PageHeaderWrapper
       content={formatMessage({
         id: 'BLOCK_NAME.description',
@@ -39,4 +38,3 @@ export default () => {
       </GGEditor>
     </PageHeaderWrapper>
   );
-};

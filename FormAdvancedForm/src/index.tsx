@@ -13,12 +13,12 @@ import {
   Popover,
 } from 'antd';
 import { connect } from 'dva';
-import TableForm from './components/TableForm';
-import styles from './style.less';
 import { FormComponentProps } from 'antd/es/form';
 import { Dispatch } from 'redux';
-import FooterToolbar from './components/FooterToolbar';
 import { PageHeaderWrapper } from '@ant-design/pro-layout';
+import TableForm from './components/TableForm';
+import styles from './style.less';
+import FooterToolbar from './components/FooterToolbar';
 
 const { Option } = Select;
 const { RangePicker } = DatePicker;

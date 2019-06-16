@@ -1,7 +1,7 @@
 import { message } from 'antd';
-import { fakeSubmitForm } from './service';
 import { EffectsCommandMap } from 'dva';
 import { AnyAction } from 'redux';
+import { fakeSubmitForm } from './service';
 
 export interface ModalState {}
 

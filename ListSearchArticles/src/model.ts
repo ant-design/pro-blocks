@@ -1,8 +1,8 @@
-import { queryFakeList } from './service';
-import { ListItemDataType } from './data';
-import { Reducer } from 'redux';
+import { Reducer, AnyAction } from 'redux';
 import { EffectsCommandMap } from 'dva';
-import { AnyAction } from 'redux';
+
+import { ListItemDataType } from './data';
+import { queryFakeList } from './service';
 
 export interface IStateType {
   list: ListItemDataType[];

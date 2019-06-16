@@ -19,10 +19,12 @@ interface LoginTabProps extends TabPaneProps {
 
 class LoginTab extends Component<LoginTabProps> {
   uniqueId: string;
+
   constructor(props: LoginTabProps) {
     super(props);
     this.uniqueId = generateId('login-tab-');
   }
+
   componentDidMount() {
     const { tabUtil } = this.props;
     if (tabUtil) {

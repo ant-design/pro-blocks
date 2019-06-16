@@ -3,8 +3,7 @@ import { NodeMenu, CanvasMenu, ContextMenu } from 'gg-editor';
 import MenuItem from './MenuItem';
 import styles from './index.less';
 
-const MindContextMenu = () => {
-  return (
+const MindContextMenu = () => (
     <ContextMenu className={styles.contextMenu}>
       <NodeMenu>
         <MenuItem command="append" text="Topic" />
@@ -19,6 +18,5 @@ const MindContextMenu = () => {
       </CanvasMenu>
     </ContextMenu>
   );
-};
 
 export default MindContextMenu;

@@ -2,9 +2,9 @@ import React, { Component } from 'react';
 import { connect } from 'dva';
 import { Card, Badge, Table, Descriptions, Divider } from 'antd';
 import { PageHeaderWrapper } from '@ant-design/pro-layout';
+import { Dispatch } from 'redux';
 import styles from './style.less';
 import { BasicProfileDataType, BasicGood } from './data';
-import { Dispatch } from 'redux';
 
 const progressColumns = [
   {
@@ -22,11 +22,11 @@ const progressColumns = [
     dataIndex: 'status',
     key: 'status',
     render: (text: string) =>
-      text === 'success' ? (
+      (text === 'success' ? (
         <Badge status="success" text="成功" />
       ) : (
         <Badge status="processing" text="进行中" />
-      ),
+      )),
   },
   {
     title: '操作员ID',

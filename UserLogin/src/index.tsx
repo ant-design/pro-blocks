@@ -3,12 +3,12 @@ import { connect } from 'dva';
 import { formatMessage, FormattedMessage } from 'umi-plugin-react/locale';
 import Link from 'umi/link';
 import { Checkbox, Alert, Icon } from 'antd';
-import LoginComponents from './components/Login';
-import styles from './style.less';
 import { Dispatch } from 'redux';
-import { IStateType } from './model';
 import { FormComponentProps } from 'antd/es/form';
 import { CheckboxChangeEvent } from 'antd/es/checkbox';
+import LoginComponents from './components/Login';
+import styles from './style.less';
+import { IStateType } from './model';
 
 const { Tab, UserName, Password, Mobile, Captcha, Submit } = LoginComponents;
 
@@ -52,11 +52,13 @@ class PAGE_NAME_UPPER_CAMEL_CASE extends Component<
     type: 'account',
     autoLogin: true,
   };
+
   loginForm: FormComponentProps['form'] | undefined | null;
 
   onTabChange = (type: string) => {
     this.setState({ type });
   };
+
   onGetCaptcha = () =>
     new Promise((resolve, reject) => {
       if (!this.loginForm) {

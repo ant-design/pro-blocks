@@ -6,10 +6,10 @@ import styles from '../index.less';
 export interface IMiniBarProps {
   color?: string;
   height?: number;
-  data: Array<{
+  data: {
     x: number | string;
     y: number;
-  }>;
+  }[];
   forceFit?: boolean;
   style?: React.CSSProperties;
 }

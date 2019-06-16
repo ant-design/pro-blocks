@@ -4,8 +4,7 @@ import { Toolbar } from 'gg-editor';
 import ToolbarButton from './ToolbarButton';
 import styles from './index.less';
 
-const FlowToolbar = () => {
-  return (
+const FlowToolbar = () => (
     <Toolbar className={styles.toolbar}>
       <ToolbarButton command="undo" />
       <ToolbarButton command="redo" />
@@ -22,6 +21,5 @@ const FlowToolbar = () => {
       <ToolbarButton command="expand" text="Unfold" />
     </Toolbar>
   );
-};
 
 export default FlowToolbar;

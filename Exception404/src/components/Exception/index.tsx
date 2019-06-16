@@ -2,9 +2,9 @@ import { Button } from 'antd';
 import classNames from 'classnames';
 import * as H from 'history';
 import React, { createElement } from 'react';
+import Link from 'umi/link';
 import styles from './index.less';
 import config from './typeConfig';
-import Link from 'umi/link';
 
 export interface ExceptionProps<
   L = {

@@ -14,9 +14,9 @@ import {
   Tooltip,
 } from 'antd';
 import { PageHeaderWrapper } from '@ant-design/pro-layout';
-import styles from './style.less';
 import { FormComponentProps } from 'antd/es/form';
 import { Dispatch } from 'redux';
+import styles from './style.less';
 
 const FormItem = Form.Item;
 const { Option } = Select;

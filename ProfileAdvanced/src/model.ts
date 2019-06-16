@@ -1,7 +1,7 @@
-import { queryAdvancedProfile } from './service';
-import { Reducer } from 'redux';
+import { Reducer, AnyAction } from 'redux';
 import { EffectsCommandMap } from 'dva';
-import { AnyAction } from 'redux';
+
+import { queryAdvancedProfile } from './service';
 
 import { AdvancedProfileData } from './data';
 

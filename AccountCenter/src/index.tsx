@@ -138,6 +138,7 @@ class PAGE_NAME_UPPER_CAMEL_CASE extends PureComponent<
       inputValue: '',
     });
   };
+
   renderChildrenByTabKey = (tabKey: BLOCK_NAME_CAMEL_CASEState['tabKey']) => {
     if (tabKey === 'projects') {
       return <Projects />;
@@ -150,6 +151,7 @@ class PAGE_NAME_UPPER_CAMEL_CASE extends PureComponent<
     }
     return null;
   };
+
   render() {
     const { newTags, inputVisible, inputValue, tabKey } = this.state;
     const { currentUser, currentUserLoading } = this.props;
@@ -184,9 +186,7 @@ class PAGE_NAME_UPPER_CAMEL_CASE extends PureComponent<
                   <Divider dashed />
                   <div className={styles.tags}>
                     <div className={styles.tagsTitle}>标签</div>
-                    {currentUser.tags.concat(newTags).map(item => {
-                      return <Tag key={item.key}>{item.label}</Tag>;
-                    })}
+                    {currentUser.tags.concat(newTags).map(item => <Tag key={item.key}>{item.label}</Tag>)}
                     {inputVisible && (
                       <Input
                         ref={ref => this.saveInputRef(ref)}

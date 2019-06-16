@@ -4,8 +4,7 @@ import { NodePanel, CanvasPanel, DetailPanel } from 'gg-editor';
 import DetailForm from './DetailForm';
 import styles from './index.less';
 
-const MindDetailPanel = () => {
-  return (
+const MindDetailPanel = () => (
     <DetailPanel className={styles.detailPanel}>
       <NodePanel>
         <DetailForm type="node" />
@@ -15,6 +14,5 @@ const MindDetailPanel = () => {
       </CanvasPanel>
     </DetailPanel>
   );
-};
 
 export default MindDetailPanel;

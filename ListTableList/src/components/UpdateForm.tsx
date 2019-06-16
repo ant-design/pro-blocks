@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Input, Select, Button, DatePicker, Form, Modal, Steps, Radio } from 'antd';
-import { TableListItem } from '../data';
 import { FormComponentProps } from 'antd/es/form';
+import { TableListItem } from '../data';
 
 export type IFormValsType = {
   target?: string;
@@ -34,10 +34,12 @@ class UpdateForm extends Component<UpdateFormProps, UpdateFormState> {
     handleUpdateModalVisible: () => {},
     values: {},
   };
+
   formLayout = {
     labelCol: { span: 7 },
     wrapperCol: { span: 13 },
   };
+
   constructor(props: UpdateFormProps) {
     super(props);
 

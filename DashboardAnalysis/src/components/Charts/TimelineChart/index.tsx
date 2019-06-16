@@ -6,11 +6,11 @@ import autoHeight from '../autoHeight';
 import styles from './index.less';
 
 export interface ITimelineChartProps {
-  data: Array<{
+  data: {
     x: number;
     y1: number;
     y2: number;
-  }>;
+  }[];
   title?: string;
   titleMap: { y1: string; y2: string };
   padding?: [number, number, number, number];

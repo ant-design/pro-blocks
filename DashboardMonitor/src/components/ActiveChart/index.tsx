@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import Charts from '../Charts';
 import { Statistic } from 'antd';
+import Charts from '../Charts';
 import styles from './index.less';
 
 const { MiniArea } = Charts;
@@ -24,12 +24,15 @@ export default class ActiveChart extends Component {
   state = {
     activeData: getActiveData(),
   };
+
   timer: number | undefined;
+
   requestRef: number | undefined;
 
   componentDidMount() {
     this.loopData();
   }
+
   componentWillUnmount() {
     clearTimeout(this.timer);
     if (this.requestRef) {

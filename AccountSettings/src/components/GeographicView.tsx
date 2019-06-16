@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
 import { Select, Spin } from 'antd';
 import { connect } from 'dva';
-import styles from './GeographicView.less';
 import { Dispatch } from 'redux';
+import styles from './GeographicView.less';
 import { ProvinceData, CityData } from '../data';
+
 const { Option } = Select;
 
 interface SelectItem {

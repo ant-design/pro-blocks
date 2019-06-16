@@ -2,13 +2,13 @@ import React, { Component, Suspense } from 'react';
 import { connect } from 'dva';
 import { Row, Col, Icon, Menu, Dropdown } from 'antd';
 import { RangePickerValue } from 'antd/es/date-picker/interface';
+import { Dispatch } from 'redux';
+import { RadioChangeEvent } from 'antd/es/radio';
+import { GridContent } from '@ant-design/pro-layout';
 import { getTimeDistance } from './utils/utils';
 import styles from './style.less';
 import PageLoading from './components/PageLoading';
-import { Dispatch } from 'redux';
 import { IAnalysisData } from './data.d';
-import { RadioChangeEvent } from 'antd/es/radio';
-import { GridContent } from '@ant-design/pro-layout';
 
 const IntroduceRow = React.lazy(() => import('./components/IntroduceRow'));
 const SalesCard = React.lazy(() => import('./components/SalesCard'));
@@ -51,8 +51,11 @@ class PAGE_NAME_UPPER_CAMEL_CASE extends Component<
     currentTabKey: '',
     rangePickerValue: getTimeDistance('year'),
   };
+
   reqRef!: number;
+
   timeoutId!: number;
+
   componentDidMount() {
     const { dispatch } = this.props;
     this.reqRef = requestAnimationFrame(() => {

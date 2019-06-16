@@ -17,8 +17,7 @@ const MiniProgress: React.SFC<IMiniProgressProps> = ({
   color = 'rgb(19, 194, 194)',
   strokeWidth,
   percent,
-}) => {
-  return (
+}) => (
     <div className={styles.miniProgress}>
       <Tooltip title={targetLabel}>
         <div className={styles.target} style={{ left: target ? `${target}%` : undefined }}>
@@ -38,6 +37,5 @@ const MiniProgress: React.SFC<IMiniProgressProps> = ({
       </div>
     </div>
   );
-};
 
 export default MiniProgress;

@@ -1,14 +1,14 @@
-import { queryCurrent, queryFakeList } from './service';
+
+import { Reducer, AnyAction } from 'redux';
+import { EffectsCommandMap } from 'dva';
+
 import { CurrentUser, ListItemDataType } from './data';
+import { queryCurrent, queryFakeList } from './service';
 
 export interface ModalState {
   currentUser: Partial<CurrentUser>;
   list: ListItemDataType[];
 }
-
-import { Reducer } from 'redux';
-import { EffectsCommandMap } from 'dva';
-import { AnyAction } from 'redux';
 
 export type Effect = (
   action: AnyAction,

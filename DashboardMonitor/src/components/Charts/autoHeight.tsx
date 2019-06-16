@@ -7,10 +7,10 @@ export type IReactComponent<P = any> =
 
 function computeHeight(node: HTMLDivElement) {
   node.style.height = '100%';
-  const totalHeight = parseInt(getComputedStyle(node).height + '', 10);
+  const totalHeight = parseInt(`${getComputedStyle(node).height}`, 10);
   const padding =
-    parseInt(getComputedStyle(node).paddingTop + '', 10) +
-    parseInt(getComputedStyle(node).paddingBottom + '', 10);
+    parseInt(`${getComputedStyle(node).paddingTop}`, 10) +
+    parseInt(`${getComputedStyle(node).paddingBottom}`, 10);
   return totalHeight - padding;
 }
 
@@ -35,14 +35,16 @@ interface IAutoHeightProps {
 }
 
 function autoHeight() {
-  return function<P extends IAutoHeightProps>(
+  return function<P extends IAutoHeightProps> (
     WrappedComponent: React.ComponentClass<P> | React.SFC<P>,
   ): React.ComponentClass<P> {
     class AutoHeightComponent extends React.Component<P & IAutoHeightProps> {
       state = {
         computedHeight: 0,
       };
+
       root!: HTMLDivElement;
+
       componentDidMount() {
         const { height } = this.props;
         if (!height) {
@@ -54,9 +56,11 @@ function autoHeight() {
           }
         }
       }
+
       handleRoot = (node: HTMLDivElement) => {
         this.root = node;
       };
+
       render() {
         const { height } = this.props;
         const { computedHeight } = this.state;

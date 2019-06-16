@@ -1,10 +1,10 @@
 import React from 'react';
 import { Card, Radio } from 'antd';
-import Charts from './Charts';
 import { FormattedMessage } from 'umi-plugin-react/locale';
+import { RadioChangeEvent } from 'antd/es/radio';
+import Charts from './Charts';
 import styles from '../style.less';
 import Yuan from '../utils/Yuan';
-import { RadioChangeEvent } from 'antd/es/radio';
 import { ISalesData } from '../data';
 
 const { Pie } = Charts;
@@ -21,8 +21,7 @@ const ProportionSales = ({
   salesType: 'all' | 'online' | 'stores';
   salesPieData: ISalesData[];
   handleChangeSalesType?: (e: RadioChangeEvent) => void;
-}) => {
-  return (
+}) => (
     <Card
       loading={loading}
       className={styles.salesCard}
@@ -74,6 +73,5 @@ const ProportionSales = ({
       </div>
     </Card>
   );
-};
 
 export default ProportionSales;
