@@ -1,6 +1,6 @@
-import { Reducer, AnyAction } from 'redux';
-import { EffectsCommandMap } from 'dva';
+import { AnyAction, Reducer } from 'redux';
 
+import { EffectsCommandMap } from 'dva';
 import { BasicGood } from './data';
 import { queryBasicProfile } from './service';
 

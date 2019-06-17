@@ -1,10 +1,11 @@
-import React from 'react';
-import { Row, Col, Card, Tabs, DatePicker } from 'antd';
+import { Card, Col, DatePicker, Row, Tabs } from 'antd';
 import { FormattedMessage, formatMessage } from 'umi-plugin-react/locale';
-import numeral from 'numeral';
+
 import { RangePickerValue } from 'antd/es/date-picker/interface';
-import Charts from './Charts';
+import React from 'react';
+import numeral from 'numeral';
 import { ISalesData } from '../data';
+import Charts from './Charts';
 import styles from '../style.less';
 
 const { Bar } = Charts;

@@ -1,8 +1,8 @@
-import { Reducer, AnyAction } from 'redux';
+import { AnyAction, Reducer } from 'redux';
 import { EffectsCommandMap } from 'dva';
+import { addRule, queryRule, removeRule, updateRule } from './service';
 
 import { TableListDate } from './data';
-import { queryRule, removeRule, addRule, updateRule } from './service';
 
 export interface IStateType {
   data: TableListDate;

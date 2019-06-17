@@ -1,6 +1,7 @@
+import { Button, Card, Icon } from 'antd';
+import { FormattedMessage, formatMessage } from 'umi-plugin-react/locale';
 import React, { Fragment } from 'react';
-import { formatMessage, FormattedMessage } from 'umi-plugin-react/locale';
-import { Button, Icon, Card } from 'antd';
+
 import { GridContent } from '@ant-design/pro-layout';
 import Result from './Result';
 import styles from './index.less';

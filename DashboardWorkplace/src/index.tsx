@@ -1,16 +1,15 @@
+import { Avatar, Card, Col, List, Row } from 'antd';
 import React, { PureComponent } from 'react';
-import moment from 'moment';
-import { connect } from 'dva';
-import Link from 'umi/link';
-import { Row, Col, Card, List, Avatar } from 'antd';
-import { Dispatch } from 'redux';
 
+import { Dispatch } from 'redux';
+import Link from 'umi/link';
 import { PageHeaderWrapper } from '@ant-design/pro-layout';
-import EditableLinkGroup from './components/EditableLinkGroup';
+import { connect } from 'dva';
+import moment from 'moment';
 import Radar from './components/Radar';
 import { ModalState } from './model';
-import { ICurrentUser, IActivities, IRadarData, INotice } from './data';
-
+import EditableLinkGroup from './components/EditableLinkGroup';
+import { IActivities, ICurrentUser, INotice, IRadarData } from './data';
 import styles from './style.less';
 
 const links = [

@@ -1,6 +1,6 @@
-import React, { Component, Fragment } from 'react';
-import { formatMessage, FormattedMessage } from 'umi-plugin-react/locale';
+import { FormattedMessage, formatMessage } from 'umi-plugin-react/locale';
 import { Icon, List } from 'antd';
+import React, { Component, Fragment } from 'react';
 
 class BindingView extends Component {
   getData = () => [

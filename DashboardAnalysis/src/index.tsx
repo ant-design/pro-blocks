@@ -1,14 +1,15 @@
+import { Col, Dropdown, Icon, Menu, Row } from 'antd';
 import React, { Component, Suspense } from 'react';
-import { connect } from 'dva';
-import { Row, Col, Icon, Menu, Dropdown } from 'antd';
-import { RangePickerValue } from 'antd/es/date-picker/interface';
+
 import { Dispatch } from 'redux';
-import { RadioChangeEvent } from 'antd/es/radio';
 import { GridContent } from '@ant-design/pro-layout';
-import { getTimeDistance } from './utils/utils';
-import styles from './style.less';
+import { RadioChangeEvent } from 'antd/es/radio';
+import { RangePickerValue } from 'antd/es/date-picker/interface';
+import { connect } from 'dva';
 import PageLoading from './components/PageLoading';
 import { IAnalysisData } from './data.d';
+import { getTimeDistance } from './utils/utils';
+import styles from './style.less';
 
 const IntroduceRow = React.lazy(() => import('./components/IntroduceRow'));
 const SalesCard = React.lazy(() => import('./components/SalesCard'));

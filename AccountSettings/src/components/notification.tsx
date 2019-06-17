@@ -1,6 +1,7 @@
+import { List, Switch } from 'antd';
 import React, { Component, Fragment } from 'react';
+
 import { formatMessage } from 'umi-plugin-react/locale';
-import { Switch, List } from 'antd';
 
 type Unpacked<T> = T extends (infer U)[] ? U : T;
 

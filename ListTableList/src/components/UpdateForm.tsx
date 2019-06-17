@@ -1,5 +1,6 @@
+import { Button, DatePicker, Form, Input, Modal, Radio, Select, Steps } from 'antd';
 import React, { Component } from 'react';
-import { Input, Select, Button, DatePicker, Form, Modal, Steps, Radio } from 'antd';
+
 import { FormComponentProps } from 'antd/es/form';
 import { TableListItem } from '../data';
 

@@ -1,32 +1,32 @@
-import React, { Component } from 'react';
-import { findDOMNode } from 'react-dom';
-import moment from 'moment';
-import { connect } from 'dva';
 import {
-  List,
-  Card,
-  Row,
-  Col,
-  Radio,
-  Input,
-  Progress,
-  Button,
-  Icon,
-  Dropdown,
-  Menu,
   Avatar,
-  Modal,
-  Form,
+  Button,
+  Card,
+  Col,
   DatePicker,
+  Dropdown,
+  Form,
+  Icon,
+  Input,
+  List,
+  Menu,
+  Modal,
+  Progress,
+  Radio,
+  Row,
   Select,
 } from 'antd';
-import { FormComponentProps } from 'antd/es/form';
+import React, { Component } from 'react';
+
 import { Dispatch } from 'redux';
+import { FormComponentProps } from 'antd/es/form';
 import { PageHeaderWrapper } from '@ant-design/pro-layout';
+import { connect } from 'dva';
+import { findDOMNode } from 'react-dom';
+import moment from 'moment';
+import Result from './Result';
 import { IStateType } from './model';
 import { BasicListItemDataType } from './data';
-import Result from './Result';
-
 import styles from './style.less';
 
 const FormItem = Form.Item;

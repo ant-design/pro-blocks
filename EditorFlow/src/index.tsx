@@ -1,13 +1,14 @@
-import React from 'react';
-import { Row, Col } from 'antd';
+import { Col, Row } from 'antd';
 import GGEditor, { Flow } from 'gg-editor';
+
 import { PageHeaderWrapper } from '@ant-design/pro-layout';
+import React from 'react';
 import { formatMessage } from 'umi-plugin-react/locale';
 import EditorMinimap from './components/EditorMinimap';
 import { FlowContextMenu } from './components/EditorContextMenu';
-import { FlowToolbar } from './components/EditorToolbar';
-import { FlowItemPanel } from './components/EditorItemPanel';
 import { FlowDetailPanel } from './components/EditorDetailPanel';
+import { FlowItemPanel } from './components/EditorItemPanel';
+import { FlowToolbar } from './components/EditorToolbar';
 import styles from './index.less';
 
 GGEditor.setTrackable(false);

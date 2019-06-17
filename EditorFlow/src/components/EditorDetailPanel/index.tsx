@@ -1,5 +1,5 @@
 import FlowDetailPanel from './FlowDetailPanel';
-import MindDetailPanel from './MindDetailPanel';
 import KoniDetailPanel from './KoniDetailPanel';
+import MindDetailPanel from './MindDetailPanel';
 
 export { FlowDetailPanel, MindDetailPanel, KoniDetailPanel };

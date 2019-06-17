@@ -1,14 +1,15 @@
+import { Avatar, Card, Col, Dropdown, Form, Icon, List, Menu, Row, Select, Tooltip } from 'antd';
 import React, { Component } from 'react';
-import numeral from 'numeral';
-import { connect } from 'dva';
-import { Row, Col, Form, Card, Select, Icon, Avatar, List, Tooltip, Dropdown, Menu } from 'antd';
+
 import { Dispatch } from 'redux';
 import { FormComponentProps } from 'antd/es/form';
-import TagSelect from './components/TagSelect';
-import StandardFormRow from './components/StandardFormRow';
-import styles from './style.less';
+import { connect } from 'dva';
+import numeral from 'numeral';
 import { IStateType } from './model';
 import { ListItemDataType } from './data';
+import StandardFormRow from './components/StandardFormRow';
+import TagSelect from './components/TagSelect';
+import styles from './style.less';
 
 const { Option } = Select;
 const FormItem = Form.Item;

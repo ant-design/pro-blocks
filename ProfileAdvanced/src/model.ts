@@ -1,9 +1,8 @@
-import { Reducer, AnyAction } from 'redux';
+import { AnyAction, Reducer } from 'redux';
+
 import { EffectsCommandMap } from 'dva';
-
-import { queryAdvancedProfile } from './service';
-
 import { AdvancedProfileData } from './data';
+import { queryAdvancedProfile } from './service';
 
 export type Effect = (
   action: AnyAction,

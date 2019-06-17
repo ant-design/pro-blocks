@@ -1,8 +1,7 @@
-import { Reducer, AnyAction } from 'redux';
+import { AnyAction, Reducer } from 'redux';
 import { EffectsCommandMap } from 'dva';
-
-import { query as queryUsers, queryCurrent, queryProvince, queryCity } from './service';
-import { CurrentUser, City, Province } from './data';
+import { City, CurrentUser, Province } from './data';
+import { queryCity, queryCurrent, queryProvince, query as queryUsers } from './service';
 
 export interface ModalState {
   currentUser?: Partial<CurrentUser>;

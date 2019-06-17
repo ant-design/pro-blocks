@@ -1,7 +1,5 @@
-
-import { Reducer, AnyAction } from 'redux';
+import { AnyAction, Reducer } from 'redux';
 import { EffectsCommandMap } from 'dva';
-
 import { CurrentUser, ListItemDataType } from './data';
 import { queryCurrent, queryFakeList } from './service';
 

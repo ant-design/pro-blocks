@@ -1,13 +1,13 @@
+import { Chart, Coord, Geom, Tooltip } from 'bizcharts';
 import React, { Component } from 'react';
-import { Chart, Tooltip, Geom, Coord } from 'bizcharts';
-import { DataView } from '@antv/data-set';
-import { Divider } from 'antd';
-import classNames from 'classnames';
-import ReactFitText from 'react-fittext';
-import Debounce from 'lodash-decorators/debounce';
-import Bind from 'lodash-decorators/bind';
-import autoHeight from '../autoHeight';
 
+import Bind from 'lodash-decorators/bind';
+import { DataView } from '@antv/data-set';
+import Debounce from 'lodash-decorators/debounce';
+import { Divider } from 'antd';
+import ReactFitText from 'react-fittext';
+import classNames from 'classnames';
+import autoHeight from '../autoHeight';
 import styles from './index.less';
 
 export interface IPieProps {

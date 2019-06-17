@@ -1,10 +1,11 @@
+import { Button, Col, Row } from 'antd';
 import React, { Fragment } from 'react';
-import { connect } from 'dva';
-import { Button, Row, Col } from 'antd';
+
 import { Dispatch } from 'redux';
+import { connect } from 'dva';
+import { IStateType } from '../../model';
 import Result from '../Result';
 import styles from './index.less';
-import { IStateType } from '../../model';
 
 interface Step3Props {
   data?: IStateType['step'];

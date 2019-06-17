@@ -1,10 +1,11 @@
+import { Button, Col, Form, Input, Row } from 'antd';
 import React, { Component } from 'react';
-import { Form, Input, Button, Row, Col } from 'antd';
-import omit from 'omit.js';
+
 import { FormComponentProps } from 'antd/es/form';
-import styles from './index.less';
+import omit from 'omit.js';
 import ItemMap from './map';
 import LoginContext, { ILoginContext } from './LoginContext';
+import styles from './index.less';
 
 type Omit<T, K extends keyof T> = Pick<T, Exclude<keyof T, K>>;
 
@@ -174,15 +175,15 @@ Object.keys(ItemMap).forEach(key => {
   LoginItem[key] = (props: LoginItemProps) => (
     <LoginContext.Consumer>
       {context => (
-          <WrapFormItem
-            customProps={item.props}
-            rules={item.rules}
-            {...props}
-            type={key}
-            {...context}
-            updateActive={context.updateActive}
-          />
-        )}
+        <WrapFormItem
+          customProps={item.props}
+          rules={item.rules}
+          {...props}
+          type={key}
+          {...context}
+          updateActive={context.updateActive}
+        />
+      )}
     </LoginContext.Consumer>
   );
 });

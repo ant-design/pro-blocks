@@ -1,10 +1,11 @@
+import { Alert, Button, Divider, Form, Input } from 'antd';
+
+import { Dispatch } from 'redux';
+import { FormComponentProps } from 'antd/es/form';
 import React from 'react';
 import { connect } from 'dva';
-import { Form, Input, Button, Alert, Divider } from 'antd';
-import { FormComponentProps } from 'antd/es/form';
-import { Dispatch } from 'redux';
-import styles from './index.less';
 import { IStateType } from '../../model';
+import styles from './index.less';
 
 const formItemLayout = {
   labelCol: {

@@ -1,15 +1,16 @@
 import React, { Component } from 'react';
-import { connect } from 'dva';
+
 import { Dispatch } from 'redux';
 import { FormattedMessage } from 'umi-plugin-react/locale';
 import { GridContent } from '@ant-design/pro-layout';
 import { Menu } from 'antd';
-import styles from './style.less';
+import { connect } from 'dva';
 import BaseView from './components/base';
-import SecurityView from './components/security';
 import BindingView from './components/binding';
-import NotificationView from './components/notification';
 import { CurrentUser } from './data';
+import NotificationView from './components/notification';
+import SecurityView from './components/security';
+import styles from './style.less';
 
 const { Item } = Menu;
 

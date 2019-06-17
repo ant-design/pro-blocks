@@ -1,33 +1,34 @@
+import {
+  Badge,
+  Button,
+  Card,
+  Col,
+  DatePicker,
+  Divider,
+  Dropdown,
+  Form,
+  Icon,
+  Input,
+  InputNumber,
+  Menu,
+  Row,
+  Select,
+  message,
+} from 'antd';
 import React, { Component, Fragment } from 'react';
+
+import { Dispatch } from 'redux';
+import { FormComponentProps } from 'antd/es/form';
+import { PageHeaderWrapper } from '@ant-design/pro-layout';
+import { SorterResult } from 'antd/es/table';
 import { connect } from 'dva';
 import moment from 'moment';
-import {
-  Row,
-  Col,
-  Card,
-  Form,
-  Input,
-  Select,
-  Icon,
-  Button,
-  Dropdown,
-  Menu,
-  InputNumber,
-  DatePicker,
-  message,
-  Badge,
-  Divider,
-} from 'antd';
-import { FormComponentProps } from 'antd/es/form';
-import { SorterResult } from 'antd/es/table';
-import { Dispatch } from 'redux';
-import { PageHeaderWrapper } from '@ant-design/pro-layout';
-import StandardTable, { StandardTableColumnProps } from './components/StandardTable';
-import { TableListItem, TableListParams, TableListPagination } from './data';
 import { IStateType } from './model';
-import styles from './style.less';
-import UpdateForm, { IFormValsType } from './components/UpdateForm';
 import CreateForm from './components/CreateForm';
+import UpdateForm, { IFormValsType } from './components/UpdateForm';
+import { TableListItem, TableListPagination, TableListParams } from './data';
+import StandardTable, { StandardTableColumnProps } from './components/StandardTable';
+import styles from './style.less';
 
 const FormItem = Form.Item;
 const { Option } = Select;

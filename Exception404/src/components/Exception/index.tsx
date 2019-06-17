@@ -1,10 +1,12 @@
-import { Button } from 'antd';
-import classNames from 'classnames';
 import * as H from 'history';
+
 import React, { createElement } from 'react';
+
+import { Button } from 'antd';
 import Link from 'umi/link';
-import styles from './index.less';
+import classNames from 'classnames';
 import config from './typeConfig';
+import styles from './index.less';
 
 export interface ExceptionProps<
   L = {

@@ -1,16 +1,17 @@
+import { Avatar, Card, Col, Divider, Icon, Input, Row, Tag } from 'antd';
 import React, { PureComponent } from 'react';
-import { connect } from 'dva';
+
 import { Dispatch } from 'redux';
-import Link from 'umi/link';
 import { GridContent } from '@ant-design/pro-layout';
+import Link from 'umi/link';
 import { RouteChildrenProps } from 'react-router';
-import { Card, Row, Col, Icon, Avatar, Tag, Divider, Input } from 'antd';
-import styles from './Center.less';
-import { ITag, CurrentUser } from './data';
+import { connect } from 'dva';
 import { ModalState } from './model';
+import Projects from './components/Projects';
 import Articles from './components/Articles';
 import Applications from './components/Applications';
-import Projects from './components/Projects';
+import { CurrentUser, ITag } from './data';
+import styles from './Center.less';
 
 const operationTabList = [
   {
@@ -186,7 +187,9 @@ class PAGE_NAME_UPPER_CAMEL_CASE extends PureComponent<
                   <Divider dashed />
                   <div className={styles.tags}>
                     <div className={styles.tagsTitle}>标签</div>
-                    {currentUser.tags.concat(newTags).map(item => <Tag key={item.key}>{item.label}</Tag>)}
+                    {currentUser.tags.concat(newTags).map(item => (
+                      <Tag key={item.key}>{item.label}</Tag>
+                    ))}
                     {inputVisible && (
                       <Input
                         ref={ref => this.saveInputRef(ref)}

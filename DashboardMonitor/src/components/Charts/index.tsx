@@ -1,8 +1,8 @@
-import Pie from './Pie';
 import Gauge from './Gauge';
-import WaterWave from './WaterWave';
-import TagCloud from './TagCloud';
 import MiniArea from './MiniArea';
+import Pie from './Pie';
+import TagCloud from './TagCloud';
+import WaterWave from './WaterWave';
 
 const Charts = {
   Pie,

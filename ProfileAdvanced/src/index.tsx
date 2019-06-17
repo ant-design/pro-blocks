@@ -1,26 +1,27 @@
-import React, { Component, Fragment } from 'react';
-import { Dispatch } from 'redux';
-import { GridContent, PageHeaderWrapper } from '@ant-design/pro-layout';
-import { connect } from 'dva';
 import {
+  Badge,
   Button,
-  Menu,
+  Card,
+  Col,
+  Descriptions,
+  Divider,
   Dropdown,
   Icon,
-  Row,
-  Col,
-  Steps,
-  Card,
+  Menu,
   Popover,
-  Badge,
+  Row,
+  Steps,
   Table,
   Tooltip,
-  Divider,
-  Descriptions,
 } from 'antd';
+import { GridContent, PageHeaderWrapper } from '@ant-design/pro-layout';
+import React, { Component, Fragment } from 'react';
+
+import { Dispatch } from 'redux';
 import classNames from 'classnames';
-import styles from './style.less';
+import { connect } from 'dva';
 import { AdvancedProfileData } from './data';
+import styles from './style.less';
 
 const { Step } = Steps;
 const ButtonGroup = Button.Group;
@@ -122,13 +123,13 @@ const customDot = (
     status: string;
   },
 ) =>
-  (status === 'process' ? (
+  status === 'process' ? (
     <Popover placement="topLeft" arrowPointAtCenter content={popoverContent}>
       {dot}
     </Popover>
   ) : (
     dot
-  ));
+  );
 
 const operationTabList = [
   {
@@ -161,11 +162,11 @@ const columns = [
     dataIndex: 'status',
     key: 'status',
     render: (text: string) =>
-      (text === 'agree' ? (
+      text === 'agree' ? (
         <Badge status="success" text="成功" />
       ) : (
         <Badge status="error" text="驳回" />
-      )),
+      ),
   },
   {
     title: '操作时间',

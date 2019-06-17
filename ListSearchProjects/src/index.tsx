@@ -1,15 +1,16 @@
+import { Card, Col, Form, List, Row, Select, Typography } from 'antd';
 import React, { Component } from 'react';
-import moment from 'moment';
-import { connect } from 'dva';
-import { Row, Col, Form, Card, Select, List, Typography } from 'antd';
+
 import { Dispatch } from 'redux';
 import { FormComponentProps } from 'antd/es/form';
-import StandardFormRow from './components/StandardFormRow';
-import TagSelect from './components/TagSelect';
+import { connect } from 'dva';
+import moment from 'moment';
 import AvatarList from './components/AvatarList';
-import styles from './style.less';
 import { IStateType } from './model';
 import { ListItemDataType } from './data';
+import StandardFormRow from './components/StandardFormRow';
+import TagSelect from './components/TagSelect';
+import styles from './style.less';
 
 const { Option } = Select;
 const FormItem = Form.Item;

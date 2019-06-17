@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+
 import { Statistic } from 'antd';
 import Charts from '../Charts';
 import styles from './index.less';

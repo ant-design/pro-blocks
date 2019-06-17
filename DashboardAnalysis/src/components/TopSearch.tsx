@@ -1,12 +1,13 @@
-import React from 'react';
-import { Row, Col, Table, Tooltip, Card, Icon } from 'antd';
+import { Card, Col, Icon, Row, Table, Tooltip } from 'antd';
 import { FormattedMessage } from 'umi-plugin-react/locale';
+import React from 'react';
 import numeral from 'numeral';
-import Charts from './Charts';
-import Trend from './Trend';
-import NumberInfo from './NumberInfo';
-import styles from '../style.less';
 import { ISearchData, IVisitData2 } from '../data';
+
+import Charts from './Charts';
+import NumberInfo from './NumberInfo';
+import Trend from './Trend';
+import styles from '../style.less';
 
 const { MiniArea } = Charts;
 

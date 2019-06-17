@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
-import router from 'umi/router';
-import { connect } from 'dva';
+
 import { Input } from 'antd';
 import { PageHeaderWrapper } from '@ant-design/pro-layout';
+import { connect } from 'dva';
+import router from 'umi/router';
 
 interface PAGE_NAME_UPPER_CAMEL_CASEProps {
   match: {

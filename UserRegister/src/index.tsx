@@ -1,10 +1,11 @@
+import { Button, Col, Form, Input, Popover, Progress, Row, Select, message } from 'antd';
+import { FormattedMessage, formatMessage } from 'umi-plugin-react/locale';
 import React, { Component } from 'react';
-import { connect } from 'dva';
-import { formatMessage, FormattedMessage } from 'umi-plugin-react/locale';
-import Link from 'umi/link';
-import { Form, Input, message, Button, Select, Row, Col, Popover, Progress } from 'antd';
+
 import { Dispatch } from 'redux';
 import { FormComponentProps } from 'antd/es/form';
+import Link from 'umi/link';
+import { connect } from 'dva';
 import router from 'umi/router';
 import { IStateType } from './model';
 import styles from './style.less';
@@ -246,7 +247,7 @@ class PAGE_NAME_UPPER_CAMEL_CASE extends Component<
           <FormItem help={help}>
             <Popover
               getPopupContainer={node =>
-                (node && node.parentNode ? (node.parentNode as HTMLElement) : node)
+                node && node.parentNode ? (node.parentNode as HTMLElement) : node
               }
               content={
                 <div style={{ padding: '4px 0' }}>

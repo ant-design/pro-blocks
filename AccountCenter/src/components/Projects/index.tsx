@@ -1,11 +1,12 @@
+import { Card, List } from 'antd';
 import React, { Component } from 'react';
-import { List, Card } from 'antd';
-import moment from 'moment';
+
 import { connect } from 'dva';
+import moment from 'moment';
 import AvatarList from '../AvatarList';
-import styles from './index.less';
-import { ModalState } from '../../model';
 import { ListItemDataType } from '../../data';
+import { ModalState } from '../../model';
+import styles from './index.less';
 
 @connect(({ BLOCK_NAME_CAMEL_CASE }: { BLOCK_NAME_CAMEL_CASE: ModalState }) => ({
   list: BLOCK_NAME_CAMEL_CASE.list,

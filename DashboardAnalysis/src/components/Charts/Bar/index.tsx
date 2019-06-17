@@ -1,7 +1,8 @@
+import { Axis, Chart, Geom, Tooltip } from 'bizcharts';
 import React, { Component } from 'react';
-import { Chart, Axis, Tooltip, Geom } from 'bizcharts';
-import Debounce from 'lodash-decorators/debounce';
+
 import Bind from 'lodash-decorators/bind';
+import Debounce from 'lodash-decorators/debounce';
 import autoHeight from '../autoHeight';
 import styles from '../index.less';
 

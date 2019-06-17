@@ -1,12 +1,13 @@
-import React, { Component } from 'react';
 import { Form, Tabs } from 'antd';
-import classNames from 'classnames';
+import React, { Component } from 'react';
 import { FormComponentProps } from 'antd/es/form';
-import LoginItem, { LoginItemType, LoginItemProps } from './LoginItem';
+import classNames from 'classnames';
+import LoginContext, { ILoginContext } from './LoginContext';
+import LoginItem, { LoginItemProps, LoginItemType } from './LoginItem';
+
+import LoginSubmit from './LoginSubmit';
 import LoginTab from './LoginTab';
 import styles from './index.less';
-import LoginContext, { ILoginContext } from './LoginContext';
-import LoginSubmit from './LoginSubmit';
 
 export interface LoginProps {
   defaultActiveKey?: string;

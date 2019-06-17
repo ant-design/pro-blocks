@@ -1,7 +1,7 @@
+import { AnyAction, Reducer } from 'redux';
 import { EffectsCommandMap } from 'dva';
-import { Reducer, AnyAction } from 'redux';
-import { queryCurrent, queryProjectNotice, queryActivities, fakeChartData } from './service';
-import { CurrentUser, Notice, Activeties, RadarData } from './data';
+import { Activeties, CurrentUser, Notice, RadarData } from './data';
+import { fakeChartData, queryActivities, queryCurrent, queryProjectNotice } from './service';
 
 export interface ModalState {
   currentUser: Partial<CurrentUser>;

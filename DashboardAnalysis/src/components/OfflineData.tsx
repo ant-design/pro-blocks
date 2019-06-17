@@ -1,10 +1,11 @@
+import { Card, Col, Row, Tabs } from 'antd';
+import { FormattedMessage, formatMessage } from 'umi-plugin-react/locale';
 import React from 'react';
-import { Card, Tabs, Row, Col } from 'antd';
-import { formatMessage, FormattedMessage } from 'umi-plugin-react/locale';
+import { IOfflineChartData, IOfflineData } from '../data';
+
 import Charts from './Charts';
-import styles from '../style.less';
 import NumberInfo from './NumberInfo';
-import { IOfflineData, IOfflineChartData } from '../data';
+import styles from '../style.less';
 
 const { TimelineChart, Pie } = Charts;
 
@@ -15,33 +16,33 @@ const CustomTab = ({
   data: IOfflineData;
   currentTabKey: string;
 }) => (
-    <Row gutter={8} style={{ width: 138, margin: '8px 0' }}>
-      <Col span={12}>
-        <NumberInfo
-          title={data.name}
-          subTitle={
-            <FormattedMessage
-              id="BLOCK_NAME.analysis.conversion-rate"
-              defaultMessage="Conversion Rate"
-            />
-          }
-          gap={2}
-          total={`${data.cvr * 100}%`}
-          theme={currentKey !== data.name ? 'light' : undefined}
-        />
-      </Col>
-      <Col span={12} style={{ paddingTop: 36 }}>
-        <Pie
-          animate={false}
-          inner={0.55}
-          tooltip={false}
-          margin={[0, 0, 0, 0]}
-          percent={data.cvr * 100}
-          height={64}
-        />
-      </Col>
-    </Row>
-  );
+  <Row gutter={8} style={{ width: 138, margin: '8px 0' }}>
+    <Col span={12}>
+      <NumberInfo
+        title={data.name}
+        subTitle={
+          <FormattedMessage
+            id="BLOCK_NAME.analysis.conversion-rate"
+            defaultMessage="Conversion Rate"
+          />
+        }
+        gap={2}
+        total={`${data.cvr * 100}%`}
+        theme={currentKey !== data.name ? 'light' : undefined}
+      />
+    </Col>
+    <Col span={12} style={{ paddingTop: 36 }}>
+      <Pie
+        animate={false}
+        inner={0.55}
+        tooltip={false}
+        margin={[0, 0, 0, 0]}
+        percent={data.cvr * 100}
+        height={64}
+      />
+    </Col>
+  </Row>
+);
 
 const { TabPane } = Tabs;
 

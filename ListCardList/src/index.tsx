@@ -1,11 +1,11 @@
+import { Button, Card, Icon, List, Typography } from 'antd';
 import React, { Component } from 'react';
-import { connect } from 'dva';
+
 import { Dispatch } from 'redux';
-import { Card, Button, Typography, Icon, List } from 'antd';
 import { PageHeaderWrapper } from '@ant-design/pro-layout';
+import { connect } from 'dva';
 import { IStateType } from './model';
 import { CardListItemDataType } from './data';
-
 import styles from './style.less';
 
 const { Paragraph } = Typography;
@@ -96,7 +96,7 @@ class PAGE_NAME_UPPER_CAMEL_CASE extends Component<
             grid={{ gutter: 24, lg: 3, md: 2, sm: 1, xs: 1 }}
             dataSource={[nullData, ...list]}
             renderItem={item =>
-              (item && item.id ? (
+              item && item.id ? (
                 <List.Item key={item.id}>
                   <Card
                     hoverable
@@ -120,7 +120,7 @@ class PAGE_NAME_UPPER_CAMEL_CASE extends Component<
                     <Icon type="plus" /> 新增产品
                   </Button>
                 </List.Item>
-              ))
+              )
             }
           />
         </div>

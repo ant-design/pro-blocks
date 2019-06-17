@@ -1,8 +1,9 @@
+import { Chart, Coord, Geom, Shape, Tooltip } from 'bizcharts';
 import React, { Component } from 'react';
-import { Chart, Geom, Coord, Shape, Tooltip } from 'bizcharts';
+
+import Bind from 'lodash-decorators/bind';
 import DataSet from '@antv/data-set';
 import Debounce from 'lodash-decorators/debounce';
-import Bind from 'lodash-decorators/bind';
 import classNames from 'classnames';
 import autoHeight from '../autoHeight';
 import styles from './index.less';
