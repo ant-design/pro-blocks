@@ -1,7 +1,7 @@
 import { AnyAction, Reducer } from 'redux';
 
 import { EffectsCommandMap } from 'dva';
-import { AdvancedProfileData } from './data';
+import { AdvancedProfileData } from './data.d';
 import { queryAdvancedProfile } from './service';
 
 export type Effect = (

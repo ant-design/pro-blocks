@@ -1,7 +1,7 @@
 import { AnyAction, Reducer } from 'redux';
 
 import { EffectsCommandMap } from 'dva';
-import { IAnalysisData } from './data';
+import { IAnalysisData } from './data.d';
 import { fakeChartData } from './service';
 
 export type Effect = (

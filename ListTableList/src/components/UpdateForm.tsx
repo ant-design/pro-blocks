@@ -2,19 +2,19 @@ import { Button, DatePicker, Form, Input, Modal, Radio, Select, Steps } from 'an
 import React, { Component } from 'react';
 
 import { FormComponentProps } from 'antd/es/form';
-import { TableListItem } from '../data';
+import { TableListItem } from '../data.d';
 
-export type IFormValsType = {
+export interface FormValsType extends Partial<TableListItem> {
   target?: string;
   template?: string;
   type?: string;
   time?: string;
   frequency?: string;
-} & Partial<TableListItem>;
+}
 
 export interface UpdateFormProps extends FormComponentProps {
-  handleUpdateModalVisible: (flag?: boolean, formVals?: IFormValsType) => void;
-  handleUpdate: (values: IFormValsType) => void;
+  handleUpdateModalVisible: (flag?: boolean, formVals?: FormValsType) => void;
+  handleUpdate: (values: FormValsType) => void;
   updateModalVisible: boolean;
   values: Partial<TableListItem>;
 }
@@ -25,7 +25,7 @@ const { Option } = Select;
 const RadioGroup = Radio.Group;
 
 export interface UpdateFormState {
-  formVals: IFormValsType;
+  formVals: FormValsType;
   currentStep: number;
 }
 
@@ -94,7 +94,7 @@ class UpdateForm extends Component<UpdateFormProps, UpdateFormState> {
     });
   };
 
-  renderContent = (currentStep: number, formVals: IFormValsType) => {
+  renderContent = (currentStep: number, formVals: FormValsType) => {
     const { form } = this.props;
     if (currentStep === 1) {
       return [

@@ -5,8 +5,8 @@ import { Dispatch } from 'redux';
 import { FormComponentProps } from 'antd/es/form';
 import { connect } from 'dva';
 import numeral from 'numeral';
-import { IStateType } from './model';
-import { ListItemDataType } from './data';
+import { StateType } from './model';
+import { ListItemDataType } from './data.d';
 import StandardFormRow from './components/StandardFormRow';
 import TagSelect from './components/TagSelect';
 import styles from './style.less';
@@ -42,7 +42,7 @@ export function formatWan(val: number) {
 
 interface PAGE_NAME_UPPER_CAMEL_CASEProps extends FormComponentProps {
   dispatch: Dispatch<any>;
-  BLOCK_NAME_CAMEL_CASE: IStateType;
+  BLOCK_NAME_CAMEL_CASE: StateType;
   loading: boolean;
 }
 
@@ -217,7 +217,7 @@ export default connect(
     BLOCK_NAME_CAMEL_CASE,
     loading,
   }: {
-    BLOCK_NAME_CAMEL_CASE: IStateType;
+    BLOCK_NAME_CAMEL_CASE: StateType;
     loading: { models: { [key: string]: boolean } };
   }) => ({
     BLOCK_NAME_CAMEL_CASE,

@@ -1,5 +1,5 @@
 import { parse } from 'url';
-import { TableListItem, TableListParams } from './data';
+import { TableListItem, TableListParams } from './data.d';
 
 // mock tableListDataSource
 let tableListDataSource: TableListItem[] = [];
@@ -39,7 +39,8 @@ function getRule(
 ) {
   let url = u;
   if (!url || Object.prototype.toString.call(url) !== '[object String]') {
-    url = req.url; // eslint-disable-line
+    // eslint-disable-next-line prefer-destructuring
+    url = req.url;
   }
 
   const params = (parse(url, true).query as unknown) as TableListParams;
@@ -101,7 +102,8 @@ function postRule(
 ) {
   let url = u;
   if (!url || Object.prototype.toString.call(url) !== '[object String]') {
-    url = req.url; // eslint-disable-line
+    // eslint-disable-next-line prefer-destructuring
+    url = req.url;
   }
 
   const body = (b && b.body) || req.body;

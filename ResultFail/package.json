@@ -11,12 +11,14 @@
     "url": "https://github.com/umijs/umi-blocks/ant-design-pro/resultfail"
   },
   "dependencies": {
-    "react": "^16.6.3",
-    "antd": "^3.16.3"
+    "@ant-design/pro-layout": "^4.5.5",
+    "antd": "^3.16.3",
+    "classnames": "^2.2.6",
+    "umi-plugin-react": "^1.7.2",
+    "react": "^16.6.3"
   },
   "devDependencies": {
     "umi": "^2.6.9",
-    "umi-plugin-react": "^1.7.2",
     "umi-plugin-block-dev": "^1.0.0"
   },
   "license": "ISC",

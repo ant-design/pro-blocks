@@ -1,4 +1,4 @@
-import { BasicListItemDataType } from './data';
+import { BasicListItemDataType } from './data.d';
 
 const titles = [
   'Alipay',

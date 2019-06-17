@@ -1,5 +1,5 @@
 import moment from 'moment';
-import { IAnalysisData, IRadarData, IVisitData } from './data';
+import { IAnalysisData, IRadarData, IVisitData } from './data.d';
 
 // mock data
 const visitData: IVisitData[] = [];

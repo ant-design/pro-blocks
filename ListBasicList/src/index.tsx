@@ -25,7 +25,7 @@ import { connect } from 'dva';
 import { findDOMNode } from 'react-dom';
 import moment from 'moment';
 import Result from './Result';
-import { IStateType } from './model';
+import { StateType } from './model';
 import { BasicListItemDataType } from './data.d';
 import styles from './style.less';
 
@@ -36,7 +36,7 @@ const SelectOption = Select.Option;
 const { Search, TextArea } = Input;
 
 interface PAGE_NAME_UPPER_CAMEL_CASEProps extends FormComponentProps {
-  BLOCK_NAME_CAMEL_CASE: IStateType;
+  BLOCK_NAME_CAMEL_CASE: StateType;
   dispatch: Dispatch<any>;
   loading: boolean;
 }
@@ -50,7 +50,7 @@ interface PAGE_NAME_UPPER_CAMEL_CASEState {
     BLOCK_NAME_CAMEL_CASE,
     loading,
   }: {
-    BLOCK_NAME_CAMEL_CASE: IStateType;
+    BLOCK_NAME_CAMEL_CASE: StateType;
     loading: {
       models: { [key: string]: boolean };
     };
@@ -69,8 +69,6 @@ class PAGE_NAME_UPPER_CAMEL_CASE extends Component<
     labelCol: { span: 7 },
     wrapperCol: { span: 13 },
   };
-
-  addBtn: HTMLButtonElement | undefined | null;
 
   componentDidMount() {
     const { dispatch } = this.props;
@@ -137,6 +135,8 @@ class PAGE_NAME_UPPER_CAMEL_CASE extends Component<
       payload: { id },
     });
   };
+
+  addBtn: HTMLButtonElement | undefined | null;
 
   render() {
     const {
@@ -322,6 +322,7 @@ class PAGE_NAME_UPPER_CAMEL_CASE extends Component<
                 icon="plus"
                 onClick={this.showModal}
                 ref={component => {
+                  // eslint-disable-next-line  react/no-find-dom-node
                   this.addBtn = findDOMNode(component) as HTMLButtonElement;
                 }}
               >

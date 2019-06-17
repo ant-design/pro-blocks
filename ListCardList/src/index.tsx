@@ -4,14 +4,14 @@ import React, { Component } from 'react';
 import { Dispatch } from 'redux';
 import { PageHeaderWrapper } from '@ant-design/pro-layout';
 import { connect } from 'dva';
-import { IStateType } from './model';
-import { CardListItemDataType } from './data';
+import { StateType } from './model';
+import { CardListItemDataType } from './data.d';
 import styles from './style.less';
 
 const { Paragraph } = Typography;
 
 interface PAGE_NAME_UPPER_CAMEL_CASEProps {
-  BLOCK_NAME_CAMEL_CASE: IStateType;
+  BLOCK_NAME_CAMEL_CASE: StateType;
   dispatch: Dispatch<any>;
   loading: boolean;
 }
@@ -26,7 +26,7 @@ interface PAGE_NAME_UPPER_CAMEL_CASEState {
     BLOCK_NAME_CAMEL_CASE,
     loading,
   }: {
-    BLOCK_NAME_CAMEL_CASE: IStateType;
+    BLOCK_NAME_CAMEL_CASE: StateType;
     loading: {
       models: { [key: string]: boolean };
     };
@@ -86,42 +86,45 @@ class PAGE_NAME_UPPER_CAMEL_CASE extends Component<
         />
       </div>
     );
-    const nullData = {} as CardListItemDataType;
+    const nullData: Partial<CardListItemDataType> = {};
     return (
       <PageHeaderWrapper content={content} extraContent={extraContent}>
         <div className={styles.cardList}>
-          <List
+          <List<Partial<CardListItemDataType>>
             rowKey="id"
             loading={loading}
             grid={{ gutter: 24, lg: 3, md: 2, sm: 1, xs: 1 }}
             dataSource={[nullData, ...list]}
-            renderItem={item =>
-              item && item.id ? (
-                <List.Item key={item.id}>
-                  <Card
-                    hoverable
-                    className={styles.card}
-                    actions={[<a key="option1">操作一</a>, <a key="option2">操作二</a>]}
-                  >
-                    <Card.Meta
-                      avatar={<img alt="" className={styles.cardAvatar} src={item.avatar} />}
-                      title={<a>{item.title}</a>}
-                      description={
-                        <Paragraph className={styles.item} ellipsis={{ rows: 3 }}>
-                          {item.description}
-                        </Paragraph>
-                      }
-                    />
-                  </Card>
-                </List.Item>
-              ) : (
+            renderItem={item => {
+              if (item && item.id) {
+                return (
+                  <List.Item key={item.id}>
+                    <Card
+                      hoverable
+                      className={styles.card}
+                      actions={[<a key="option1">操作一</a>, <a key="option2">操作二</a>]}
+                    >
+                      <Card.Meta
+                        avatar={<img alt="" className={styles.cardAvatar} src={item.avatar} />}
+                        title={<a>{item.title}</a>}
+                        description={
+                          <Paragraph className={styles.item} ellipsis={{ rows: 3 }}>
+                            {item.description}
+                          </Paragraph>
+                        }
+                      />
+                    </Card>
+                  </List.Item>
+                );
+              }
+              return (
                 <List.Item>
                   <Button type="dashed" className={styles.newButton}>
                     <Icon type="plus" /> 新增产品
                   </Button>
                 </List.Item>
-              )
-            }
+              );
+            }}
           />
         </div>
       </PageHeaderWrapper>

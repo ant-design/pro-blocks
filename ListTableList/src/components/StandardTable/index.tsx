@@ -1,8 +1,8 @@
 import { Alert, Table } from 'antd';
-import { ColumnProps, SorterResult, TableProps } from 'antd/es/table';
+import { ColumnProps, TableRowSelection, TableProps } from 'antd/es/table';
 import React, { Component, Fragment } from 'react';
 
-import { TableListItem } from '../../data';
+import { TableListItem } from '../../data.d';
 import styles from './index.less';
 
 type Omit<T, K extends keyof T> = Pick<T, Exclude<keyof T, K>>;
@@ -17,10 +17,10 @@ export interface StandardTableProps<T> extends Omit<TableProps<T>, 'columns'> {
   onSelectRow: (rows: any) => void;
 }
 
-export type StandardTableColumnProps = ColumnProps<TableListItem> & {
+export interface StandardTableColumnProps extends ColumnProps<TableListItem> {
   needTotal?: boolean;
   total?: number;
-};
+}
 
 function initTotalList(columns: StandardTableColumnProps[]) {
   if (!columns) {
@@ -64,24 +64,28 @@ class StandardTable extends Component<StandardTableProps<TableListItem>, Standar
     };
   }
 
-  handleRowSelectChange = (selectedRowKeys: string[], selectedRows: TableListItem[]) => {
+  handleRowSelectChange: TableRowSelection<TableListItem>['onChange'] = (
+    selectedRowKeys,
+    selectedRows: TableListItem[],
+  ) => {
+    const currySelectedRowKeys = selectedRowKeys as string[];
     let { needTotalList } = this.state;
     needTotalList = needTotalList.map(item => ({
       ...item,
-      total: selectedRows.reduce((sum, val) => sum + parseFloat(val[item.dataIndex], 10), 0),
+      total: selectedRows.reduce((sum, val) => sum + parseFloat(val[item.dataIndex || 0]), 0),
     }));
     const { onSelectRow } = this.props;
     if (onSelectRow) {
       onSelectRow(selectedRows);
     }
 
-    this.setState({ selectedRowKeys, needTotalList });
+    this.setState({ selectedRowKeys: currySelectedRowKeys, needTotalList });
   };
 
-  handleTableChange = (
-    pagination: StandardTableProps<TableListItem>['pagination'],
-    filters: Record<keyof TableListItem, string[]>,
-    sorter: SorterResult<TableListItem>,
+  handleTableChange: TableProps<TableListItem>['onChange'] = (
+    pagination,
+    filters,
+    sorter,
     ...rest
   ) => {
     const { onChange } = this.props;
@@ -91,7 +95,9 @@ class StandardTable extends Component<StandardTableProps<TableListItem>, Standar
   };
 
   cleanSelectedKeys = () => {
-    this.handleRowSelectChange([], []);
+    if (this.handleRowSelectChange) {
+      this.handleRowSelectChange([], []);
+    }
   };
 
   render() {
@@ -105,7 +111,7 @@ class StandardTable extends Component<StandardTableProps<TableListItem>, Standar
       ...pagination,
     };
 
-    const rowSelection = {
+    const rowSelection: TableRowSelection<TableListItem> = {
       selectedRowKeys,
       onChange: this.handleRowSelectChange,
       getCheckboxProps: (record: TableListItem) => ({

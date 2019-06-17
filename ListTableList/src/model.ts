@@ -2,20 +2,20 @@ import { AnyAction, Reducer } from 'redux';
 import { EffectsCommandMap } from 'dva';
 import { addRule, queryRule, removeRule, updateRule } from './service';
 
-import { TableListDate } from './data';
+import { TableListDate } from './data.d';
 
-export interface IStateType {
+export interface StateType {
   data: TableListDate;
 }
 
 export type Effect = (
   action: AnyAction,
-  effects: EffectsCommandMap & { select: <T>(func: (state: IStateType) => T) => T },
+  effects: EffectsCommandMap & { select: <T>(func: (state: StateType) => T) => T },
 ) => void;
 
 export interface ModelType {
   namespace: string;
-  state: IStateType;
+  state: StateType;
   effects: {
     fetch: Effect;
     add: Effect;
@@ -23,7 +23,7 @@ export interface ModelType {
     update: Effect;
   };
   reducers: {
-    save: Reducer<IStateType>;
+    save: Reducer<StateType>;
   };
 }
 

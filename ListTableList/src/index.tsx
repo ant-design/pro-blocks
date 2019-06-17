@@ -23,11 +23,12 @@ import { PageHeaderWrapper } from '@ant-design/pro-layout';
 import { SorterResult } from 'antd/es/table';
 import { connect } from 'dva';
 import moment from 'moment';
-import { IStateType } from './model';
+import { StateType } from './model';
 import CreateForm from './components/CreateForm';
-import UpdateForm, { IFormValsType } from './components/UpdateForm';
-import { TableListItem, TableListPagination, TableListParams } from './data';
 import StandardTable, { StandardTableColumnProps } from './components/StandardTable';
+import UpdateForm, { FormValsType } from './components/UpdateForm';
+import { TableListItem, TableListPagination, TableListParams } from './data.d';
+
 import styles from './style.less';
 
 const FormItem = Form.Item;
@@ -44,7 +45,7 @@ const status = ['关闭', '运行中', '已上线', '异常'];
 interface TableListProps extends FormComponentProps {
   dispatch: Dispatch<any>;
   loading: boolean;
-  BLOCK_NAME_CAMEL_CASE: IStateType;
+  BLOCK_NAME_CAMEL_CASE: StateType;
 }
 
 interface TableListState {
@@ -62,7 +63,7 @@ interface TableListState {
     BLOCK_NAME_CAMEL_CASE,
     loading,
   }: {
-    BLOCK_NAME_CAMEL_CASE: IStateType;
+    BLOCK_NAME_CAMEL_CASE: StateType;
     loading: {
       models: {
         [key: string]: boolean;
@@ -260,7 +261,7 @@ class TableList extends Component<TableListProps, TableListState> {
     });
   };
 
-  handleUpdateModalVisible = (flag?: boolean, record?: IFormValsType) => {
+  handleUpdateModalVisible = (flag?: boolean, record?: FormValsType) => {
     this.setState({
       updateModalVisible: !!flag,
       stepFormValues: record || {},
@@ -280,7 +281,7 @@ class TableList extends Component<TableListProps, TableListState> {
     this.handleModalVisible();
   };
 
-  handleUpdate = (fields: IFormValsType) => {
+  handleUpdate = (fields: FormValsType) => {
     const { dispatch } = this.props;
     dispatch({
       type: 'BLOCK_NAME_CAMEL_CASE/update',

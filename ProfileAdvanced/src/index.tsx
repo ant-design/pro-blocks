@@ -20,7 +20,7 @@ import React, { Component, Fragment } from 'react';
 import { Dispatch } from 'redux';
 import classNames from 'classnames';
 import { connect } from 'dva';
-import { AdvancedProfileData } from './data';
+import { AdvancedProfileData } from './data.d';
 import styles from './style.less';
 
 const { Step } = Steps;
@@ -122,14 +122,16 @@ const customDot = (
   }: {
     status: string;
   },
-) =>
-  status === 'process' ? (
-    <Popover placement="topLeft" arrowPointAtCenter content={popoverContent}>
-      {dot}
-    </Popover>
-  ) : (
-    dot
-  );
+) => {
+  if (status === 'process') {
+    return (
+      <Popover placement="topLeft" arrowPointAtCenter content={popoverContent}>
+        {dot}
+      </Popover>
+    );
+  }
+  return dot;
+};
 
 const operationTabList = [
   {
@@ -161,12 +163,12 @@ const columns = [
     title: '执行结果',
     dataIndex: 'status',
     key: 'status',
-    render: (text: string) =>
-      text === 'agree' ? (
-        <Badge status="success" text="成功" />
-      ) : (
-        <Badge status="error" text="驳回" />
-      ),
+    render: (text: string) => {
+      if (text === 'agree') {
+        return <Badge status="success" text="成功" />;
+      }
+      return <Badge status="error" text="驳回" />;
+    },
   },
   {
     title: '操作时间',

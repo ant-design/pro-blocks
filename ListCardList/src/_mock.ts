@@ -1,4 +1,4 @@
-import { CardListItemDataType } from './data';
+import { CardListItemDataType } from './data.d';
 
 const titles = [
   'Alipay',
