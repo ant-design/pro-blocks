@@ -11,15 +11,16 @@
     "url": "https://github.com/umijs/umi-blocks/ant-design-pro/basicform"
   },
   "dependencies": {
+    "@ant-design/pro-layout": "^4.0.5",
     "antd": "^3.16.3",
     "dva": "^2.4.0",
     "react": "^16.6.3",
+    "redux": "^4.0.1",
     "umi-request": "^1.0.0",
-    "@ant-design/pro-layout": "^4.0.5"
+    "umi-plugin-react": "^1.7.2"
   },
   "devDependencies": {
     "umi": "^2.6.9",
-    "umi-plugin-react": "^1.7.2",
     "umi-plugin-block-dev": "^1.0.0"
   },
   "license": "ISC",

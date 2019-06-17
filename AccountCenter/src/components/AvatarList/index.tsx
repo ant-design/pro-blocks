@@ -23,7 +23,7 @@ export interface AvatarListProps {
   children: React.ReactElement<AvatarItemProps> | React.ReactElement<AvatarItemProps>[];
 }
 
-const avatarSizeToClassName = (size?: SizeType) =>
+const avatarSizeToClassName = (size?: SizeType | 'mini') =>
   classNames(styles.avatarItem, {
     [styles.avatarItemLarge]: size === 'large',
     [styles.avatarItemSmall]: size === 'small',

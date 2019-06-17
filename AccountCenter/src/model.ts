@@ -1,6 +1,6 @@
 import { AnyAction, Reducer } from 'redux';
 import { EffectsCommandMap } from 'dva';
-import { CurrentUser, ListItemDataType } from './data';
+import { CurrentUser, ListItemDataType } from './data.d';
 import { queryCurrent, queryFakeList } from './service';
 
 export interface ModalState {
@@ -54,13 +54,13 @@ const Model: ModelType = {
   reducers: {
     saveCurrentUser(state, action) {
       return {
-        ...state!,
+        ...(state as ModalState),
         currentUser: action.payload || {},
       };
     },
     queryList(state, action) {
       return {
-        ...state!,
+        ...(state as ModalState),
         list: action.payload,
       };
     },

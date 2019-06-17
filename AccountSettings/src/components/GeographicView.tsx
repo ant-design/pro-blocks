@@ -3,7 +3,7 @@ import { Select, Spin } from 'antd';
 
 import { Dispatch } from 'redux';
 import { connect } from 'dva';
-import { CityData, ProvinceData } from '../data';
+import { CityType, ProvinceType } from '../data.d';
 import styles from './GeographicView.less';
 
 const { Option } = Select;
@@ -12,15 +12,15 @@ interface SelectItem {
   label: string;
   key: string;
 }
-const nullSlectItem: SelectItem = {
+const nullSelectItem: SelectItem = {
   label: '',
   key: '',
 };
 
 interface GeographicViewProps {
   dispatch?: Dispatch<any>;
-  province?: ProvinceData[];
-  city?: CityData[];
+  province?: ProvinceType[];
+  city?: CityType[];
   value?: {
     province: SelectItem;
     city: SelectItem;
@@ -35,8 +35,8 @@ interface GeographicViewProps {
     loading,
   }: {
     BLOCK_NAME_CAMEL_CASE: {
-      province: ProvinceData[];
-      city: CityData[];
+      province: ProvinceType[];
+      city: CityType[];
     };
     loading: any;
   }) => {
@@ -87,7 +87,7 @@ class GeographicView extends Component<GeographicViewProps> {
     return [];
   };
 
-  getOption = (list: CityData[] | ProvinceData[]) => {
+  getOption = (list: CityType[] | ProvinceType[]) => {
     if (!list || list.length < 1) {
       return (
         <Option key={0} value={0}>
@@ -95,9 +95,9 @@ class GeographicView extends Component<GeographicViewProps> {
         </Option>
       );
     }
-    return (list as CityData[]).map(item => (
-      <Option key={item.id} value={item.id}>
-        {item.name}
+    return (list as CityType[]).map(item => (
+      <Option key={item.key} value={item.key}>
+        {item.label}
       </Option>
     ));
   };
@@ -114,7 +114,7 @@ class GeographicView extends Component<GeographicViewProps> {
     if (onChange) {
       onChange({
         province: item,
-        city: nullSlectItem,
+        city: nullSelectItem,
       });
     }
   };
@@ -133,14 +133,14 @@ class GeographicView extends Component<GeographicViewProps> {
     const { value } = this.props;
     if (!value) {
       return {
-        province: nullSlectItem,
-        city: nullSlectItem,
+        province: nullSelectItem,
+        city: nullSelectItem,
       };
     }
     const { province, city } = value;
     return {
-      province: province || nullSlectItem,
-      city: city || nullSlectItem,
+      province: province || nullSelectItem,
+      city: city || nullSelectItem,
     };
   }
 

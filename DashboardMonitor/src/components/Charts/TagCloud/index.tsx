@@ -1,9 +1,8 @@
 import { Chart, Coord, Geom, Shape, Tooltip } from 'bizcharts';
 import React, { Component } from 'react';
 
-import Bind from 'lodash-decorators/bind';
 import DataSet from '@antv/data-set';
-import Debounce from 'lodash-decorators/debounce';
+import Debounce from 'lodash.debounce';
 import classNames from 'classnames';
 import autoHeight from '../autoHeight';
 import styles from './index.less';
@@ -13,7 +12,7 @@ import styles from './index.less';
 
 const imgUrl = 'https://gw.alipayobjects.com/zos/rmsportal/gWyeGLCdFFRavBGIDzWk.png';
 
-export interface ITagCloudProps {
+export interface TagCloudProps {
   data: {
     name: string;
     value: string;
@@ -23,26 +22,18 @@ export interface ITagCloudProps {
   style?: React.CSSProperties;
 }
 
-interface ITagCloudState {
+interface TagCloudState {
   dv: any;
   height?: number;
   width: number;
 }
 
-class TagCloud extends Component<ITagCloudProps, ITagCloudState> {
+class TagCloud extends Component<TagCloudProps, TagCloudState> {
   state = {
     dv: null,
     height: 0,
     width: 0,
   };
-
-  isUnmount!: boolean;
-
-  requestRef!: number;
-
-  root: HTMLDivElement | undefined;
-
-  imageMask: HTMLImageElement | undefined;
 
   componentDidMount() {
     requestAnimationFrame(() => {
@@ -52,7 +43,7 @@ class TagCloud extends Component<ITagCloudProps, ITagCloudState> {
     window.addEventListener('resize', this.resize, { passive: true });
   }
 
-  componentDidUpdate(preProps?: ITagCloudProps) {
+  componentDidUpdate(preProps?: TagCloudProps) {
     const { data } = this.props;
     if (preProps && JSON.stringify(preProps.data) !== JSON.stringify(data)) {
       this.renderChart(this.props);
@@ -112,9 +103,15 @@ class TagCloud extends Component<ITagCloudProps, ITagCloudState> {
     });
   };
 
-  @Bind()
-  @Debounce(500)
-  renderChart(nextProps: ITagCloudProps) {
+  isUnmount!: boolean;
+
+  requestRef!: number;
+
+  root: HTMLDivElement | undefined;
+
+  imageMask: HTMLImageElement | undefined;
+
+  renderChart = Debounce((nextProps: TagCloudProps) => {
     // const colors = ['#1890FF', '#41D9C7', '#2FC25B', '#FACC14', '#9AE65C'];
     const { data, height } = nextProps || this.props;
     if (data.length < 1 || !this.root) {
@@ -140,8 +137,8 @@ class TagCloud extends Component<ITagCloudProps, ITagCloudState> {
           return 0;
         },
         fontSize(d: { value: number }) {
-          // eslint-disable-next-line
-          return Math.pow((d.value - min) / (max - min), 2) * (17.5 - 5) + 5;
+          const size = ((d.value - min) / (max - min)) ** 2;
+          return size * (17.5 - 5) + 5;
         },
       });
 
@@ -165,7 +162,7 @@ class TagCloud extends Component<ITagCloudProps, ITagCloudState> {
     } else {
       onload();
     }
-  }
+  }, 200);
 
   render() {
     const { className, height } = this.props;

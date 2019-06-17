@@ -6,19 +6,17 @@ import { Dispatch } from 'redux';
 import { GridContent } from '@ant-design/pro-layout';
 import { connect } from 'dva';
 import numeral from 'numeral';
-import { IStateType } from './model';
-import Charts from './components/Charts';
+import { StateType } from './model';
+import { Pie, WaterWave, Gauge, TagCloud } from './components/Charts';
 import ActiveChart from './components/ActiveChart';
 import styles from './style.less';
 
 const { Countdown } = Statistic;
 
-const { Pie, WaterWave, Gauge, TagCloud } = Charts;
-
 const targetTime = new Date().getTime() + 3900000;
 
 interface PAGE_NAME_UPPER_CAMEL_CASEProps {
-  BLOCK_NAME_CAMEL_CASE: IStateType;
+  BLOCK_NAME_CAMEL_CASE: StateType;
   dispatch: Dispatch<any>;
   loading: boolean;
 }
@@ -28,7 +26,7 @@ interface PAGE_NAME_UPPER_CAMEL_CASEProps {
     BLOCK_NAME_CAMEL_CASE,
     loading,
   }: {
-    BLOCK_NAME_CAMEL_CASE: IStateType;
+    BLOCK_NAME_CAMEL_CASE: StateType;
     loading: {
       models: { [key: string]: boolean };
     };

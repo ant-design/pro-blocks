@@ -7,7 +7,7 @@ import { Menu } from 'antd';
 import { connect } from 'dva';
 import BaseView from './components/base';
 import BindingView from './components/binding';
-import { CurrentUser } from './data';
+import { CurrentUser } from './data.d';
 import NotificationView from './components/notification';
 import SecurityView from './components/security';
 import styles from './style.less';
@@ -34,8 +34,6 @@ class PAGE_NAME_UPPER_CAMEL_CASE extends Component<
   PAGE_NAME_UPPER_CAMEL_CASEProps,
   PAGE_NAME_UPPER_CAMEL_CASEState
 > {
-  main: HTMLDivElement | undefined;
-
   constructor(props: PAGE_NAME_UPPER_CAMEL_CASEProps) {
     super(props);
     const menuMap = {
@@ -110,6 +108,8 @@ class PAGE_NAME_UPPER_CAMEL_CASE extends Component<
       });
     });
   };
+
+  main: HTMLDivElement | undefined;
 
   renderChildren = () => {
     const { selectKey } = this.state;

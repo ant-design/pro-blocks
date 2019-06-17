@@ -26,7 +26,7 @@ import { findDOMNode } from 'react-dom';
 import moment from 'moment';
 import Result from './Result';
 import { IStateType } from './model';
-import { BasicListItemDataType } from './data';
+import { BasicListItemDataType } from './data.d';
 import styles from './style.less';
 
 const FormItem = Form.Item;

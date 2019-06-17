@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 
-import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import styles from './index.less';
 
@@ -11,10 +10,6 @@ export interface FooterToolbarProps {
 }
 
 export default class FooterToolbar extends Component<FooterToolbarProps> {
-  static contextTypes = {
-    isMobile: PropTypes.bool,
-  };
-
   state = {
     width: undefined,
   };

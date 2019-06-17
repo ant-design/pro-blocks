@@ -10,7 +10,7 @@ import { ModalState } from './model';
 import Projects from './components/Projects';
 import Articles from './components/Articles';
 import Applications from './components/Applications';
-import { CurrentUser, ITag } from './data';
+import { CurrentUser, TagType } from './data.d';
 import styles from './Center.less';
 
 const operationTabList = [
@@ -46,7 +46,7 @@ interface BLOCK_NAME_CAMEL_CASEProps extends RouteChildrenProps {
   currentUserLoading: boolean;
 }
 interface BLOCK_NAME_CAMEL_CASEState {
-  newTags: ITag[];
+  newTags: TagType[];
   tabKey: 'articles' | 'applications' | 'projects';
   inputVisible: boolean;
   inputValue: string;
@@ -57,7 +57,7 @@ interface BLOCK_NAME_CAMEL_CASEState {
     loading,
     BLOCK_NAME_CAMEL_CASE,
   }: {
-    loading: { effects: any };
+    loading: { effects: { [key: string]: boolean } };
     BLOCK_NAME_CAMEL_CASE: ModalState;
   }) => ({
     currentUser: BLOCK_NAME_CAMEL_CASE.currentUser,
@@ -92,8 +92,6 @@ class PAGE_NAME_UPPER_CAMEL_CASE extends PureComponent<
     inputValue: '',
     tabKey: 'articles',
   };
-
-  input: Input | null | undefined;
 
   componentDidMount() {
     const { dispatch } = this.props;
@@ -139,6 +137,8 @@ class PAGE_NAME_UPPER_CAMEL_CASE extends PureComponent<
       inputValue: '',
     });
   };
+
+  public input: Input | null | undefined;
 
   renderChildrenByTabKey = (tabKey: BLOCK_NAME_CAMEL_CASEState['tabKey']) => {
     if (tabKey === 'projects') {

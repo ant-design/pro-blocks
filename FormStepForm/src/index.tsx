@@ -3,7 +3,7 @@ import React, { Component, Fragment } from 'react';
 
 import { PageHeaderWrapper } from '@ant-design/pro-layout';
 import { connect } from 'dva';
-import { IStateType } from './model';
+import { StateType } from './model';
 import Step1 from './components/Step1';
 import Step2 from './components/Step2';
 import Step3 from './components/Step3';
@@ -12,10 +12,10 @@ import styles from './style.less';
 const { Step } = Steps;
 
 interface PAGE_NAME_UPPER_CAMEL_CASEProps {
-  current: IStateType['current'];
+  current: StateType['current'];
 }
 
-@connect(({ BLOCK_NAME_CAMEL_CASE }: { BLOCK_NAME_CAMEL_CASE: IStateType }) => ({
+@connect(({ BLOCK_NAME_CAMEL_CASE }: { BLOCK_NAME_CAMEL_CASE: StateType }) => ({
   current: BLOCK_NAME_CAMEL_CASE.current,
 }))
 class PAGE_NAME_UPPER_CAMEL_CASE extends Component<PAGE_NAME_UPPER_CAMEL_CASEProps> {

@@ -9,8 +9,8 @@ import moment from 'moment';
 import Radar from './components/Radar';
 import { ModalState } from './model';
 import EditableLinkGroup from './components/EditableLinkGroup';
-import { IActivities, ICurrentUser, INotice, IRadarData } from './data';
 import styles from './style.less';
+import { ActivitiesType, CurrentUser, NoticeType, RadarDataType } from './data.d';
 
 const links = [
   {
@@ -40,10 +40,10 @@ const links = [
 ];
 
 interface BLOCK_NAME_CAMEL_CASEProps {
-  currentUser: ICurrentUser;
-  projectNotice: INotice[];
-  activities: IActivities[];
-  radarData: IRadarData[];
+  currentUser: CurrentUser;
+  projectNotice: NoticeType[];
+  activities: ActivitiesType[];
+  radarData: RadarDataType[];
   dispatch: Dispatch<any>;
   currentUserLoading: boolean;
   projectLoading: boolean;
@@ -82,7 +82,7 @@ class PAGE_NAME_UPPER_CAMEL_CASE extends PureComponent<BLOCK_NAME_CAMEL_CASEProp
     });
   }
 
-  renderActivities(item: IActivities) {
+  renderActivities = (item: ActivitiesType) => {
     const events = item.template.split(/@\{([^{}]*)\}/gi).map(key => {
       if (item[key]) {
         return (
@@ -112,7 +112,7 @@ class PAGE_NAME_UPPER_CAMEL_CASE extends PureComponent<BLOCK_NAME_CAMEL_CASEProp
         />
       </List.Item>
     );
-  }
+  };
 
   render() {
     const {
@@ -206,7 +206,7 @@ class PAGE_NAME_UPPER_CAMEL_CASE extends PureComponent<BLOCK_NAME_CAMEL_CASEProp
               title="动态"
               loading={activitiesLoading}
             >
-              <List<IActivities>
+              <List<ActivitiesType>
                 loading={activitiesLoading}
                 renderItem={item => this.renderActivities(item)}
                 dataSource={activities}
