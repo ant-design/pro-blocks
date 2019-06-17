@@ -7,8 +7,8 @@ import { RadioChangeEvent } from 'antd/es/radio';
 import { RangePickerValue } from 'antd/es/date-picker/interface';
 import { connect } from 'dva';
 import PageLoading from './components/PageLoading';
-import { IAnalysisData } from './data.d';
 import { getTimeDistance } from './utils/utils';
+import { AnalysisData } from './data.d';
 import styles from './style.less';
 
 const IntroduceRow = React.lazy(() => import('./components/IntroduceRow'));
@@ -18,7 +18,7 @@ const ProportionSales = React.lazy(() => import('./components/ProportionSales'))
 const OfflineData = React.lazy(() => import('./components/OfflineData'));
 
 interface BLOCK_NAME_CAMEL_CASEProps {
-  BLOCK_NAME_CAMEL_CASE: IAnalysisData;
+  BLOCK_NAME_CAMEL_CASE: AnalysisData;
   dispatch: Dispatch<any>;
   loading: boolean;
 }
@@ -53,9 +53,9 @@ class PAGE_NAME_UPPER_CAMEL_CASE extends Component<
     rangePickerValue: getTimeDistance('year'),
   };
 
-  reqRef!: number;
+  reqRef: number = 0;
 
-  timeoutId!: number;
+  timeoutId: number = 0;
 
   componentDidMount() {
     const { dispatch } = this.props;

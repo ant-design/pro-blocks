@@ -4,11 +4,9 @@ import { FormattedMessage, formatMessage } from 'umi-plugin-react/locale';
 import { RangePickerValue } from 'antd/es/date-picker/interface';
 import React from 'react';
 import numeral from 'numeral';
-import { ISalesData } from '../data';
-import Charts from './Charts';
+import { VisitDataType } from '../data.d';
+import { Bar } from './Charts';
 import styles from '../style.less';
-
-const { Bar } = Charts;
 
 const { RangePicker } = DatePicker;
 const { TabPane } = Tabs;
@@ -31,7 +29,7 @@ const SalesCard = ({
 }: {
   rangePickerValue: RangePickerValue;
   isActive: (key: 'today' | 'week' | 'month' | 'year') => string;
-  salesData: ISalesData[];
+  salesData: VisitDataType[];
   loading: boolean;
   handleRangePickerChange: (dates: RangePickerValue, dateStrings: [string, string]) => void;
   selectDate: (key: 'today' | 'week' | 'month' | 'year') => void;

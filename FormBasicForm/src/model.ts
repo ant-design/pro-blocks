@@ -3,16 +3,14 @@ import { EffectsCommandMap } from 'dva';
 import { message } from 'antd';
 import { fakeSubmitForm } from './service';
 
-export interface ModalState {}
-
 export type Effect = (
   action: AnyAction,
-  effects: EffectsCommandMap & { select: <T>(func: (state: ModalState) => T) => T },
+  effects: EffectsCommandMap & { select: <T>(func: (state: {}) => T) => T },
 ) => void;
 
 export interface ModelType {
   namespace: string;
-  state: ModalState;
+  state: {};
   effects: {
     submitRegularForm: Effect;
   };

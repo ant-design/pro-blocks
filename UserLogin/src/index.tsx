@@ -49,6 +49,8 @@ class PAGE_NAME_UPPER_CAMEL_CASE extends Component<
   PAGE_NAME_UPPER_CAMEL_CASEProps,
   PAGE_NAME_UPPER_CAMEL_CASEState
 > {
+  loginForm: FormComponentProps['form'] | undefined | null = undefined;
+
   state: PAGE_NAME_UPPER_CAMEL_CASEState = {
     type: 'account',
     autoLogin: true,
@@ -59,8 +61,6 @@ class PAGE_NAME_UPPER_CAMEL_CASE extends Component<
       autoLogin: e.target.checked,
     });
   };
-
-  loginForm: FormComponentProps['form'] | undefined | null;
 
   handleSubmit = (err: any, values: FromDataType) => {
     const { type } = this.state;

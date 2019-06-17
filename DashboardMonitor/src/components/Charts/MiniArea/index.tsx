@@ -43,8 +43,6 @@ const MiniArea: React.FC<MiniAreaProps> = props => {
     animate = true,
   } = props;
 
-  console.log(props);
-
   const padding: [number, number, number, number] = [36, 5, 30, 5];
 
   const scaleProps = {

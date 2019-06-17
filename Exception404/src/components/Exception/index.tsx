@@ -1,5 +1,3 @@
-import * as H from 'history';
-
 import React, { createElement } from 'react';
 
 import { Button } from 'antd';
@@ -10,8 +8,8 @@ import styles from './index.less';
 
 export interface ExceptionProps<
   L = {
-    to: H.LocationDescriptor;
-    href?: H.LocationDescriptor;
+    to: string;
+    href?: string;
     replace?: boolean;
     innerRef?: (node: HTMLAnchorElement | null) => void;
   }

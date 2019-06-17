@@ -15,7 +15,7 @@ function computeHeight(node: HTMLDivElement) {
   return totalHeight - padding;
 }
 
-function getAutoHeight(n: HTMLDivElement) {
+function getAutoHeight(n: HTMLDivElement | undefined) {
   if (!n) {
     return 0;
   }
@@ -44,6 +44,8 @@ function autoHeight() {
         computedHeight: 0,
       };
 
+      root: HTMLDivElement | undefined = undefined;
+
       componentDidMount() {
         const { height } = this.props;
         if (!height) {
@@ -59,8 +61,6 @@ function autoHeight() {
       handleRoot = (node: HTMLDivElement) => {
         this.root = node;
       };
-
-      root!: HTMLDivElement;
 
       render() {
         const { height } = this.props;

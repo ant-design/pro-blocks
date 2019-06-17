@@ -3,13 +3,11 @@ import { Col, Icon, Row, Tooltip } from 'antd';
 import { FormattedMessage } from 'umi-plugin-react/locale';
 import React from 'react';
 import numeral from 'numeral';
-import Charts from './Charts';
-import { IVisitData } from '../data.d';
+import { ChartCard, MiniArea, MiniBar, MiniProgress, Field } from './Charts';
+import { VisitDataType } from '../data.d';
 import Trend from './Trend';
 import Yuan from '../utils/Yuan';
 import styles from '../style.less';
-
-const { ChartCard, MiniArea, MiniBar, MiniProgress, Field } = Charts;
 
 const topColResponsiveProps = {
   xs: 24,
@@ -20,7 +18,7 @@ const topColResponsiveProps = {
   style: { marginBottom: 24 },
 };
 
-const IntroduceRow = ({ loading, visitData }: { loading: boolean; visitData: IVisitData[] }) => (
+const IntroduceRow = ({ loading, visitData }: { loading: boolean; visitData: VisitDataType[] }) => (
   <Row gutter={24}>
     <Col {...topColResponsiveProps}>
       <ChartCard

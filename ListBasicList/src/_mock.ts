@@ -126,7 +126,7 @@ function postFakeList(req: { body: any }, res: { json: (arg0: BasicListItemDataT
     case 'update':
       result.forEach((item, i) => {
         if (item.id === id) {
-          result[i] = Object.assign(item, body);
+          result[i] = { ...item, ...body };
         }
       });
       break;

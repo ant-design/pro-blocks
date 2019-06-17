@@ -34,6 +34,8 @@ class PAGE_NAME_UPPER_CAMEL_CASE extends Component<
   PAGE_NAME_UPPER_CAMEL_CASEProps,
   PAGE_NAME_UPPER_CAMEL_CASEState
 > {
+  main: HTMLDivElement | undefined = undefined;
+
   constructor(props: PAGE_NAME_UPPER_CAMEL_CASEProps) {
     super(props);
     const menuMap = {
@@ -108,8 +110,6 @@ class PAGE_NAME_UPPER_CAMEL_CASE extends Component<
       });
     });
   };
-
-  main: HTMLDivElement | undefined;
 
   renderChildren = () => {
     const { selectKey } = this.state;

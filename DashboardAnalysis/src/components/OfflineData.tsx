@@ -1,19 +1,17 @@
 import { Card, Col, Row, Tabs } from 'antd';
 import { FormattedMessage, formatMessage } from 'umi-plugin-react/locale';
 import React from 'react';
-import { IOfflineChartData, IOfflineData } from '../data';
+import { OfflineChartData, OfflineDataType } from '../data.d';
 
-import Charts from './Charts';
+import { TimelineChart, Pie } from './Charts';
 import NumberInfo from './NumberInfo';
 import styles from '../style.less';
-
-const { TimelineChart, Pie } = Charts;
 
 const CustomTab = ({
   data,
   currentTabKey: currentKey,
 }: {
-  data: IOfflineData;
+  data: OfflineDataType;
   currentTabKey: string;
 }) => (
   <Row gutter={8} style={{ width: 138, margin: '8px 0' }}>
@@ -55,8 +53,8 @@ const OfflineData = ({
 }: {
   activeKey: string;
   loading: boolean;
-  offlineData: IOfflineData[];
-  offlineChartData: IOfflineChartData[];
+  offlineData: OfflineDataType[];
+  offlineChartData: OfflineChartData[];
   handleTabChange: (activeKey: string) => void;
 }) => (
   <Card loading={loading} className={styles.offlineCard} bordered={false} style={{ marginTop: 32 }}>

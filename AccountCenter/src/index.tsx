@@ -93,6 +93,8 @@ class PAGE_NAME_UPPER_CAMEL_CASE extends PureComponent<
     tabKey: 'articles',
   };
 
+  public input: Input | null | undefined = undefined;
+
   componentDidMount() {
     const { dispatch } = this.props;
     dispatch({
@@ -137,8 +139,6 @@ class PAGE_NAME_UPPER_CAMEL_CASE extends PureComponent<
       inputValue: '',
     });
   };
-
-  public input: Input | null | undefined;
 
   renderChildrenByTabKey = (tabKey: BLOCK_NAME_CAMEL_CASEState['tabKey']) => {
     if (tabKey === 'projects') {

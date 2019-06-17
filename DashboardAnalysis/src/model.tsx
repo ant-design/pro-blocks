@@ -1,24 +1,24 @@
 import { AnyAction, Reducer } from 'redux';
 
 import { EffectsCommandMap } from 'dva';
-import { IAnalysisData } from './data.d';
+import { AnalysisData } from './data.d';
 import { fakeChartData } from './service';
 
 export type Effect = (
   action: AnyAction,
-  effects: EffectsCommandMap & { select: <T>(func: (state: IAnalysisData) => T) => T },
+  effects: EffectsCommandMap & { select: <T>(func: (state: AnalysisData) => T) => T },
 ) => void;
 
 export interface ModelType {
   namespace: string;
-  state: IAnalysisData;
+  state: AnalysisData;
   effects: {
     fetch: Effect;
     fetchSalesData: Effect;
   };
   reducers: {
-    save: Reducer<IAnalysisData>;
-    clear: Reducer<IAnalysisData>;
+    save: Reducer<AnalysisData>;
+    clear: Reducer<AnalysisData>;
   };
 }
 

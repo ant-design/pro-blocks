@@ -70,6 +70,8 @@ class PAGE_NAME_UPPER_CAMEL_CASE extends Component<
     wrapperCol: { span: 13 },
   };
 
+  addBtn: HTMLButtonElement | undefined | null = undefined;
+
   componentDidMount() {
     const { dispatch } = this.props;
     dispatch({
@@ -135,8 +137,6 @@ class PAGE_NAME_UPPER_CAMEL_CASE extends Component<
       payload: { id },
     });
   };
-
-  addBtn: HTMLButtonElement | undefined | null;
 
   render() {
     const {

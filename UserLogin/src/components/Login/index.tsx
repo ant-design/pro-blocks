@@ -2,8 +2,8 @@ import { Form, Tabs } from 'antd';
 import React, { Component } from 'react';
 import { FormComponentProps } from 'antd/es/form';
 import classNames from 'classnames';
-import LoginContext, { ILoginContext } from './LoginContext';
-import LoginItem, { LoginItemProps, LoginItemType } from './LoginItem';
+import LoginContext, { LoginContextProps } from './LoginContext';
+import LoginItem, { LoginItemProps } from './LoginItem';
 
 import LoginSubmit from './LoginSubmit';
 import LoginTab from './LoginTab';
@@ -68,7 +68,7 @@ class Login extends Component<LoginProps, LoginState> {
     );
   };
 
-  getContext: () => ILoginContext = () => {
+  getContext: () => LoginContextProps = () => {
     const { form } = this.props;
     const { tabs = [] } = this.state;
     return {

@@ -24,6 +24,10 @@ export default class ActiveChart extends Component {
     activeData: getActiveData(),
   };
 
+  timer: number | undefined = undefined;
+
+  requestRef: number | undefined = undefined;
+
   componentDidMount() {
     this.loopData();
   }
@@ -49,10 +53,6 @@ export default class ActiveChart extends Component {
       }, 1000);
     });
   };
-
-  timer: number | undefined;
-
-  requestRef: number | undefined;
 
   render() {
     const { activeData = [] } = this.state;

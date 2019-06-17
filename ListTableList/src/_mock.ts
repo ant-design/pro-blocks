@@ -137,8 +137,7 @@ function postRule(
     case 'update':
       tableListDataSource = tableListDataSource.map(item => {
         if (item.key === key) {
-          Object.assign(item, { desc, name });
-          return item;
+          return { ...item, desc, name };
         }
         return item;
       });

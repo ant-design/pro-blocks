@@ -3,7 +3,7 @@ import React from 'react';
 import classNames from 'classnames';
 import styles from './index.less';
 
-export interface ITrendProps {
+export interface TrendProps {
   colorful?: boolean;
   flag: 'up' | 'down';
   style?: React.CSSProperties;
@@ -11,7 +11,7 @@ export interface ITrendProps {
   className?: string;
 }
 
-const Trend: React.SFC<ITrendProps> = ({
+const Trend: React.SFC<TrendProps> = ({
   colorful = true,
   reverseColor = false,
   flag,

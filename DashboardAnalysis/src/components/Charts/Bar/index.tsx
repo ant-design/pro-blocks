@@ -1,12 +1,11 @@
 import { Axis, Chart, Geom, Tooltip } from 'bizcharts';
 import React, { Component } from 'react';
 
-import Bind from 'lodash-decorators/bind';
-import Debounce from 'lodash-decorators/debounce';
+import Debounce from 'lodash.debounce';
 import autoHeight from '../autoHeight';
 import styles from '../index.less';
 
-export interface IBarProps {
+export interface BarProps {
   title: React.ReactNode;
   color?: string;
   padding?: [number, number, number, number];
@@ -21,7 +20,7 @@ export interface IBarProps {
 }
 
 class Bar extends Component<
-  IBarProps,
+  BarProps,
   {
     autoHideXLabels: boolean;
   }
@@ -30,29 +29,11 @@ class Bar extends Component<
     autoHideXLabels: false,
   };
 
-  root: HTMLDivElement | undefined;
+  root: HTMLDivElement | undefined = undefined;
 
-  node: HTMLDivElement | undefined;
+  node: HTMLDivElement | undefined = undefined;
 
-  componentDidMount() {
-    window.addEventListener('resize', this.resize, { passive: true });
-  }
-
-  componentWillUnmount() {
-    window.removeEventListener('resize', this.resize);
-  }
-
-  handleRoot = (n: HTMLDivElement) => {
-    this.root = n;
-  };
-
-  handleRef = (n: HTMLDivElement) => {
-    this.node = n;
-  };
-
-  @Bind()
-  @Debounce(400)
-  resize() {
+  resize = Debounce(() => {
     if (!this.node || !this.node.parentNode) {
       return;
     }
@@ -75,7 +56,23 @@ class Bar extends Component<
         autoHideXLabels: false,
       });
     }
+  }, 500);
+
+  componentDidMount() {
+    window.addEventListener('resize', this.resize, { passive: true });
   }
+
+  componentWillUnmount() {
+    window.removeEventListener('resize', this.resize);
+  }
+
+  handleRoot = (n: HTMLDivElement) => {
+    this.root = n;
+  };
+
+  handleRef = (n: HTMLDivElement) => {
+    this.node = n;
+  };
 
   render() {
     const {
@@ -120,8 +117,8 @@ class Bar extends Component<
             <Axis
               name="x"
               title={false}
-              label={autoHideXLabels ? false : {}}
-              tickLine={autoHideXLabels ? false : {}}
+              label={autoHideXLabels ? undefined : {}}
+              tickLine={autoHideXLabels ? undefined : {}}
             />
             <Axis name="y" min={0} />
             <Tooltip showTitle={false} crosshairs={false} />

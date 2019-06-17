@@ -1,13 +1,13 @@
 import { AnyAction, Reducer } from 'redux';
 import { EffectsCommandMap } from 'dva';
-import { Activeties, CurrentUser, Notice, RadarData } from './data.d';
+import { ActivitiesType, CurrentUser, NoticeType, RadarDataType } from './data.d';
 import { fakeChartData, queryActivities, queryCurrent, queryProjectNotice } from './service';
 
 export interface ModalState {
   currentUser: Partial<CurrentUser>;
-  projectNotice: Notice[];
-  activities: Activeties[];
-  radarData: RadarData[];
+  projectNotice: NoticeType[];
+  activities: ActivitiesType[];
+  radarData: RadarDataType[];
 }
 
 export type Effect = (

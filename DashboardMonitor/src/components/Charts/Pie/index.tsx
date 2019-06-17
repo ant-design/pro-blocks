@@ -44,6 +44,12 @@ class Pie extends Component<PieProps, PieState> {
     legendBlock: false,
   };
 
+  chart: G2.Chart | undefined = undefined;
+
+  root: HTMLDivElement | undefined = undefined;
+
+  requestRef: number | undefined = 0;
+
   // for window resize auto responsive legend
   resize = Debounce(() => {
     const { hasLegend } = this.props;
@@ -148,12 +154,6 @@ class Pie extends Component<PieProps, PieState> {
       legendData,
     });
   };
-
-  root!: HTMLDivElement;
-
-  chart: G2.Chart | undefined;
-
-  requestRef: number | undefined;
 
   render() {
     const {

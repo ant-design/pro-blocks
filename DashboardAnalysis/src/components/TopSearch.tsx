@@ -2,14 +2,12 @@ import { Card, Col, Icon, Row, Table, Tooltip } from 'antd';
 import { FormattedMessage } from 'umi-plugin-react/locale';
 import React from 'react';
 import numeral from 'numeral';
-import { ISearchData, IVisitData2 } from '../data';
+import { SearchDataType, VisitDataType } from '../data.d';
 
-import Charts from './Charts';
+import { MiniArea } from './Charts';
 import NumberInfo from './NumberInfo';
 import Trend from './Trend';
 import styles from '../style.less';
-
-const { MiniArea } = Charts;
 
 const columns = [
   {
@@ -52,9 +50,9 @@ const TopSearch = ({
   dropdownGroup,
 }: {
   loading: boolean;
-  visitData2: IVisitData2[];
+  visitData2: VisitDataType[];
   dropdownGroup: React.ReactNode;
-  searchData: ISearchData[];
+  searchData: SearchDataType[];
 }) => (
   <Card
     loading={loading}

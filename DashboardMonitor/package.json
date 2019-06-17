@@ -27,11 +27,11 @@
     "umi": "^2.6.9",
     "umi-plugin-block-dev": "^1.0.0",
     "umi-plugin-react": "^1.7.2",
-    "umi-request": "^1.0.0"
+    "umi-request": "^1.0.0",
+    "mockjs": "^1.0.1-beta3"
   },
   "devDependencies": {
-    "@types/numeral": "^0.0.25",
-    "mockjs": "^1.0.1-beta3"
+    "@types/numeral": "^0.0.25"
   },
   "license": "ISC",
   "blockConfig": {

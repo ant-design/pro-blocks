@@ -72,6 +72,8 @@ interface BaseViewProps extends FormComponentProps {
   currentUser: BLOCK_NAME_CAMEL_CASE.currentUser,
 }))
 class BaseView extends Component<BaseViewProps> {
+  view: HTMLDivElement | undefined = undefined;
+
   componentDidMount() {
     this.setBaseInfo();
   }
@@ -112,8 +114,6 @@ class BaseView extends Component<BaseViewProps> {
       }
     });
   };
-
-  view: HTMLDivElement | undefined;
 
   render() {
     const {

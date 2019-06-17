@@ -92,6 +92,8 @@ class PAGE_NAME_UPPER_CAMEL_CASE extends Component<
     prefix: '86',
   };
 
+  interval: number | undefined = undefined;
+
   componentDidUpdate() {
     const { BLOCK_NAME_CAMEL_CASE, form } = this.props;
     const account = form.getFieldValue('mail');
@@ -194,8 +196,6 @@ class PAGE_NAME_UPPER_CAMEL_CASE extends Component<
       prefix: value,
     });
   };
-
-  interval: number | undefined;
 
   renderPasswordProgress = () => {
     const { form } = this.props;

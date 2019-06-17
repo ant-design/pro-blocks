@@ -5,7 +5,7 @@ import React, { Component } from 'react';
 import autoHeight from './autoHeight';
 import styles from './index.less';
 
-export interface IRadarProps {
+export interface RadarProps {
   title?: React.ReactNode;
   height?: number;
   padding?: [number, number, number, number];
@@ -21,7 +21,7 @@ export interface IRadarProps {
   tickCount?: number;
   style?: React.CSSProperties;
 }
-interface IRadarState {
+interface RadarState {
   legendData: {
     checked: boolean;
     name: string;
@@ -31,20 +31,20 @@ interface IRadarState {
   }[];
 }
 /* eslint react/no-danger:0 */
-class Radar extends Component<IRadarProps, IRadarState> {
-  state: IRadarState = {
+class Radar extends Component<RadarProps, RadarState> {
+  state: RadarState = {
     legendData: [],
   };
 
-  chart: G2.Chart | undefined;
+  chart: G2.Chart | undefined = undefined;
 
-  node: HTMLDivElement | undefined;
+  node: HTMLDivElement | undefined = undefined;
 
   componentDidMount() {
     this.getLegendData();
   }
 
-  componentDidUpdate(preProps: IRadarProps) {
+  componentDidUpdate(preProps: RadarProps) {
     const { data } = this.props;
     if (data !== preProps.data) {
       this.getLegendData();
@@ -60,10 +60,10 @@ class Radar extends Component<IRadarProps, IRadarState> {
     if (!this.chart) return;
     const geom = this.chart.getAllGeoms()[0]; // 获取所有的图形
     if (!geom) return;
-    const items = geom.get('dataArray') || []; // 获取图形对应的
+    const items = (geom as any).get('dataArray') || []; // 获取图形对应的
 
     const legendData = items.map((item: { color: any; _origin: any }[]) => {
-      // eslint-disable-next-line
+      // eslint-disable-next-line no-underscore-dangle
       const origins = item.map(t => t._origin);
       const result = {
         name: origins[0].name,

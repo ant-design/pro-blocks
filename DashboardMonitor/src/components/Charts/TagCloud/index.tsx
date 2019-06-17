@@ -35,6 +35,14 @@ class TagCloud extends Component<TagCloudProps, TagCloudState> {
     width: 0,
   };
 
+  requestRef: number = 0;
+
+  isUnmount: boolean = false;
+
+  root: HTMLDivElement | undefined = undefined;
+
+  imageMask: HTMLImageElement | undefined = undefined;
+
   componentDidMount() {
     requestAnimationFrame(() => {
       this.initTagCloud();
@@ -75,7 +83,8 @@ class TagCloud extends Component<TagCloudProps, TagCloudState> {
       origin?: any;
       color?: any;
     }) {
-      return Object.assign({}, cfg.style, {
+      return {
+        ...cfg.style,
         fillOpacity: cfg.opacity,
         fontSize: cfg.origin._origin.size,
         rotate: cfg.origin._origin.rotate,
@@ -84,7 +93,7 @@ class TagCloud extends Component<TagCloudProps, TagCloudState> {
         fontFamily: cfg.origin._origin.font,
         fill: cfg.color,
         textBaseline: 'Alphabetic',
-      });
+      };
     }
 
     (Shape as any).registerShape('point', 'cloud', {
@@ -94,22 +103,15 @@ class TagCloud extends Component<TagCloudProps, TagCloudState> {
       ) {
         const attrs = getTextAttrs(cfg);
         return container.addShape('text', {
-          attrs: Object.assign(attrs, {
+          attrs: {
+            ...attrs,
             x: cfg.x,
             y: cfg.y,
-          }),
+          },
         });
       },
     });
   };
-
-  isUnmount!: boolean;
-
-  requestRef!: number;
-
-  root: HTMLDivElement | undefined;
-
-  imageMask: HTMLImageElement | undefined;
 
   renderChart = Debounce((nextProps: TagCloudProps) => {
     // const colors = ['#1890FF', '#41D9C7', '#2FC25B', '#FACC14', '#9AE65C'];

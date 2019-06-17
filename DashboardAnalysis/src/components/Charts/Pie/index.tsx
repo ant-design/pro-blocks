@@ -1,16 +1,15 @@
 import { Chart, Coord, Geom, Tooltip } from 'bizcharts';
 import React, { Component } from 'react';
 
-import Bind from 'lodash-decorators/bind';
 import { DataView } from '@antv/data-set';
-import Debounce from 'lodash-decorators/debounce';
+import Debounce from 'lodash.debounce';
 import { Divider } from 'antd';
 import ReactFitText from 'react-fittext';
 import classNames from 'classnames';
 import autoHeight from '../autoHeight';
 import styles from './index.less';
 
-export interface IPieProps {
+export interface PieProps {
   animate?: boolean;
   color?: string;
   colors?: string[];
@@ -35,21 +34,46 @@ export interface IPieProps {
   valueFormat?: (value: string) => string | React.ReactNode;
   subTitle?: React.ReactNode;
 }
-interface IPieState {
+interface PieState {
   legendData: { checked: boolean; x: string; color: string; percent: number; y: string }[];
   legendBlock: boolean;
 }
-class Pie extends Component<IPieProps, IPieState> {
-  state: IPieState = {
+class Pie extends Component<PieProps, PieState> {
+  state: PieState = {
     legendData: [],
     legendBlock: false,
   };
 
-  requestRef: number | undefined;
+  requestRef: number | undefined = undefined;
 
-  root!: HTMLDivElement;
+  root: HTMLDivElement | undefined = undefined;
 
-  chart: G2.Chart | undefined;
+  chart: G2.Chart | undefined = undefined;
+
+  // for window resize auto responsive legend
+  resize = Debounce(() => {
+    const { hasLegend } = this.props;
+    const { legendBlock } = this.state;
+    if (!hasLegend || !this.root) {
+      window.removeEventListener('resize', this.resize);
+      return;
+    }
+    if (
+      this.root &&
+      this.root.parentNode &&
+      (this.root.parentNode as HTMLElement).clientWidth <= 380
+    ) {
+      if (!legendBlock) {
+        this.setState({
+          legendBlock: true,
+        });
+      }
+    } else if (legendBlock) {
+      this.setState({
+        legendBlock: false,
+      });
+    }
+  }, 400);
 
   componentDidMount() {
     window.addEventListener(
@@ -61,7 +85,7 @@ class Pie extends Component<IPieProps, IPieState> {
     );
   }
 
-  componentDidUpdate(preProps: IPieProps) {
+  componentDidUpdate(preProps: PieProps) {
     const { data } = this.props;
     if (data !== preProps.data) {
       // because of charts data create when rendered
@@ -93,7 +117,7 @@ class Pie extends Component<IPieProps, IPieState> {
     if (!this.chart) return;
     const geom = this.chart.getAllGeoms()[0]; // 获取所有的图形
     if (!geom) return;
-    const items = geom.get('dataArray') || []; // 获取图形对应的
+    const items = (geom as any).get('dataArray') || []; // 获取图形对应的
 
     const legendData = items.map((item: { color: any; _origin: any }[]) => {
       /* eslint no-underscore-dangle:0 */
@@ -129,33 +153,6 @@ class Pie extends Component<IPieProps, IPieState> {
       legendData,
     });
   };
-
-  // for window resize auto responsive legend
-  @Bind()
-  @Debounce(300)
-  resize() {
-    const { hasLegend } = this.props;
-    const { legendBlock } = this.state;
-    if (!hasLegend || !this.root) {
-      window.removeEventListener('resize', this.resize);
-      return;
-    }
-    if (
-      this.root &&
-      this.root.parentNode &&
-      (this.root.parentNode as HTMLElement).clientWidth <= 380
-    ) {
-      if (!legendBlock) {
-        this.setState({
-          legendBlock: true,
-        });
-      }
-    } else if (legendBlock) {
-      this.setState({
-        legendBlock: false,
-      });
-    }
-  }
 
   render() {
     const {

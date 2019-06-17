@@ -202,7 +202,7 @@ class TableForm extends PureComponent<TableFormProps, TableFormState> {
 
   handleFieldChange(e: React.ChangeEvent<HTMLInputElement>, fieldName: string, key: string) {
     const { data = [] } = this.state;
-    const newData = data.map(item => ({ ...item }));
+    const newData = [...data];
     const target = this.getRowByKey(key, newData);
     if (target) {
       target[fieldName] = e.target.value;
@@ -246,13 +246,21 @@ class TableForm extends PureComponent<TableFormProps, TableFormState> {
     this.clickedCancel = true;
     e.preventDefault();
     const { data = [] } = this.state;
-    const newData = data.map(item => ({ ...item }));
-    const target = this.getRowByKey(key, newData);
-    if (this.cacheOriginData[key]) {
-      Object.assign(target, this.cacheOriginData[key]);
-      delete this.cacheOriginData[key];
-    }
-    target.editable = false;
+    const newData = [...data];
+    newData.map(item => {
+      if (item.key === key) {
+        if (this.cacheOriginData[key]) {
+          delete this.cacheOriginData[key];
+          return {
+            ...item,
+            ...this.cacheOriginData[key],
+            editable: false,
+          };
+        }
+      }
+      return item;
+    });
+
     this.setState({ data: newData });
     this.clickedCancel = false;
   }
