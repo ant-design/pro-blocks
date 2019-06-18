@@ -28,6 +28,7 @@ interface PAGE_NAME_UPPER_CAMEL_CASEProps extends FormComponentProps {
   submitting: boolean;
   dispatch: Dispatch<any>;
 }
+
 class PAGE_NAME_UPPER_CAMEL_CASE extends Component<PAGE_NAME_UPPER_CAMEL_CASEProps> {
   handleSubmit = (e: React.FormEvent) => {
     const { dispatch, form } = this.props;
@@ -66,7 +67,6 @@ class PAGE_NAME_UPPER_CAMEL_CASE extends Component<PAGE_NAME_UPPER_CAMEL_CASEPro
         sm: { span: 10, offset: 7 },
       },
     };
-
     return (
       <PageHeaderWrapper content={<FormattedMessage id="BLOCK_NAME.basic.description" />}>
         <Card bordered={false}>
@@ -247,7 +247,7 @@ class PAGE_NAME_UPPER_CAMEL_CASE extends Component<PAGE_NAME_UPPER_CAMEL_CASEPro
   }
 }
 
-export default Form.create<PAGE_NAME_UPPER_CAMEL_CASEProps>(
+export default Form.create<PAGE_NAME_UPPER_CAMEL_CASEProps>()(
   connect(({ loading }: { loading: { effects: { [key: string]: boolean } } }) => ({
     submitting: loading.effects['BLOCK_NAME_CAMEL_CASE/submitRegularForm'],
   }))(PAGE_NAME_UPPER_CAMEL_CASE),
