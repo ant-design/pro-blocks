@@ -28,6 +28,9 @@ export interface MiniAreaProps {
   }[];
 }
 
+// g2 4.0 发布之前只能这样先修一下了
+const FixTypeAxis: any = Axis;
+
 const MiniArea: React.FC<MiniAreaProps> = props => {
   const {
     height = 1,
@@ -79,7 +82,7 @@ const MiniArea: React.FC<MiniAreaProps> = props => {
             data={data}
             padding={padding}
           >
-            <Axis
+            <FixTypeAxis
               key="axis-x"
               name="x"
               label={undefined}
@@ -88,7 +91,7 @@ const MiniArea: React.FC<MiniAreaProps> = props => {
               grid={undefined}
               {...xAxis}
             />
-            <Axis
+            <FixTypeAxis
               key="axis-y"
               name="y"
               label={undefined}
