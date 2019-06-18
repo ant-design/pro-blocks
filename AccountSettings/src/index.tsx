@@ -1,15 +1,16 @@
 import React, { Component } from 'react';
-import { connect } from 'dva';
+
 import { Dispatch } from 'redux';
 import { FormattedMessage } from 'umi-plugin-react/locale';
 import { GridContent } from '@ant-design/pro-layout';
 import { Menu } from 'antd';
-import styles from './style.less';
+import { connect } from 'dva';
 import BaseView from './components/base';
-import SecurityView from './components/security';
 import BindingView from './components/binding';
+import { CurrentUser } from './data.d';
 import NotificationView from './components/notification';
-import { CurrentUser } from './data';
+import SecurityView from './components/security';
+import styles from './style.less';
 
 const { Item } = Menu;
 
@@ -33,7 +34,8 @@ class PAGE_NAME_UPPER_CAMEL_CASE extends Component<
   PAGE_NAME_UPPER_CAMEL_CASEProps,
   PAGE_NAME_UPPER_CAMEL_CASEState
 > {
-  main: HTMLDivElement | undefined;
+  main: HTMLDivElement | undefined = undefined;
+
   constructor(props: PAGE_NAME_UPPER_CAMEL_CASEProps) {
     super(props);
     const menuMap = {

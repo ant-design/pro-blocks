@@ -1,33 +1,35 @@
+import {
+  Badge,
+  Button,
+  Card,
+  Col,
+  DatePicker,
+  Divider,
+  Dropdown,
+  Form,
+  Icon,
+  Input,
+  InputNumber,
+  Menu,
+  Row,
+  Select,
+  message,
+} from 'antd';
 import React, { Component, Fragment } from 'react';
+
+import { Dispatch } from 'redux';
+import { FormComponentProps } from 'antd/es/form';
+import { PageHeaderWrapper } from '@ant-design/pro-layout';
+import { SorterResult } from 'antd/es/table';
 import { connect } from 'dva';
 import moment from 'moment';
-import {
-  Row,
-  Col,
-  Card,
-  Form,
-  Input,
-  Select,
-  Icon,
-  Button,
-  Dropdown,
-  Menu,
-  InputNumber,
-  DatePicker,
-  message,
-  Badge,
-  Divider,
-} from 'antd';
-import { FormComponentProps } from 'antd/es/form';
-import { SorterResult } from 'antd/es/table';
-import StandardTable, { StandardTableColumnProps } from './components/StandardTable';
-import { TableListItem, TableListParams, TableListPagination } from './data';
-import { Dispatch } from 'redux';
-import { IStateType } from './model';
-import styles from './style.less';
-import UpdateForm, { IFormValsType } from './components/UpdateForm';
+import { StateType } from './model';
 import CreateForm from './components/CreateForm';
-import { PageHeaderWrapper } from '@ant-design/pro-layout';
+import StandardTable, { StandardTableColumnProps } from './components/StandardTable';
+import UpdateForm, { FormValsType } from './components/UpdateForm';
+import { TableListItem, TableListPagination, TableListParams } from './data.d';
+
+import styles from './style.less';
 
 const FormItem = Form.Item;
 const { Option } = Select;
@@ -43,14 +45,14 @@ const status = ['关闭', '运行中', '已上线', '异常'];
 interface TableListProps extends FormComponentProps {
   dispatch: Dispatch<any>;
   loading: boolean;
-  BLOCK_NAME_CAMEL_CASE: IStateType;
+  BLOCK_NAME_CAMEL_CASE: StateType;
 }
 
 interface TableListState {
   modalVisible: boolean;
   updateModalVisible: boolean;
   expandForm: boolean;
-  selectedRows: Array<TableListItem>;
+  selectedRows: TableListItem[];
   formValues: { [key: string]: string };
   stepFormValues: Partial<TableListItem>;
 }
@@ -61,7 +63,7 @@ interface TableListState {
     BLOCK_NAME_CAMEL_CASE,
     loading,
   }: {
-    BLOCK_NAME_CAMEL_CASE: IStateType;
+    BLOCK_NAME_CAMEL_CASE: StateType;
     loading: {
       models: {
         [key: string]: boolean;
@@ -259,7 +261,7 @@ class TableList extends Component<TableListProps, TableListState> {
     });
   };
 
-  handleUpdateModalVisible = (flag?: boolean, record?: IFormValsType) => {
+  handleUpdateModalVisible = (flag?: boolean, record?: FormValsType) => {
     this.setState({
       updateModalVisible: !!flag,
       stepFormValues: record || {},
@@ -279,7 +281,7 @@ class TableList extends Component<TableListProps, TableListState> {
     this.handleModalVisible();
   };
 
-  handleUpdate = (fields: IFormValsType) => {
+  handleUpdate = (fields: FormValsType) => {
     const { dispatch } = this.props;
     dispatch({
       type: 'BLOCK_NAME_CAMEL_CASE/update',

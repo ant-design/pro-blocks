@@ -5,7 +5,7 @@ export async function queryCurrent() {
 }
 
 export async function queryFakeList(params: { count: number }) {
-  return request(`/api/fake_list`, {
+  return request('/api/fake_list', {
     params,
   });
 }

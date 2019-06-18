@@ -1,8 +1,9 @@
+import { Button, Card, Col, Icon, Row, Steps } from 'antd';
+import { FormattedMessage, formatMessage } from 'umi-plugin-react/locale';
 import React, { Fragment } from 'react';
-import { formatMessage, FormattedMessage } from 'umi-plugin-react/locale';
-import { Button, Row, Col, Icon, Steps, Card } from 'antd';
-import Result from './Result';
+
 import { GridContent } from '@ant-design/pro-layout';
+import Result from './Result';
 import styles from './index.less';
 
 const { Step } = Steps;

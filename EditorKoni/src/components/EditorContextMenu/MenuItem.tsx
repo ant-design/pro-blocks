@@ -1,11 +1,10 @@
-import React from 'react';
 import { Command } from 'gg-editor';
+import React from 'react';
 import IconFont from '../../common/IconFont';
 import styles from './index.less';
 
-const upperFirst = (str: string) => {
-  return str.toLowerCase().replace(/( |^)[a-z]/g, (l: string) => l.toUpperCase());
-};
+const upperFirst = (str: string) =>
+  str.toLowerCase().replace(/( |^)[a-z]/g, (l: string) => l.toUpperCase());
 
 interface MenuItemProps {
   command: string;

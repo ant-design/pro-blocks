@@ -1,14 +1,15 @@
+import { Col, Dropdown, Icon, Menu, Row } from 'antd';
 import React, { Component, Suspense } from 'react';
-import { connect } from 'dva';
-import { Row, Col, Icon, Menu, Dropdown } from 'antd';
-import { RangePickerValue } from 'antd/es/date-picker/interface';
-import { getTimeDistance } from './utils/utils';
-import styles from './style.less';
-import PageLoading from './components/PageLoading';
+
 import { Dispatch } from 'redux';
-import { IAnalysisData } from './data.d';
-import { RadioChangeEvent } from 'antd/es/radio';
 import { GridContent } from '@ant-design/pro-layout';
+import { RadioChangeEvent } from 'antd/es/radio';
+import { RangePickerValue } from 'antd/es/date-picker/interface';
+import { connect } from 'dva';
+import PageLoading from './components/PageLoading';
+import { getTimeDistance } from './utils/utils';
+import { AnalysisData } from './data.d';
+import styles from './style.less';
 
 const IntroduceRow = React.lazy(() => import('./components/IntroduceRow'));
 const SalesCard = React.lazy(() => import('./components/SalesCard'));
@@ -17,7 +18,7 @@ const ProportionSales = React.lazy(() => import('./components/ProportionSales'))
 const OfflineData = React.lazy(() => import('./components/OfflineData'));
 
 interface BLOCK_NAME_CAMEL_CASEProps {
-  BLOCK_NAME_CAMEL_CASE: IAnalysisData;
+  BLOCK_NAME_CAMEL_CASE: AnalysisData;
   dispatch: Dispatch<any>;
   loading: boolean;
 }
@@ -51,8 +52,11 @@ class PAGE_NAME_UPPER_CAMEL_CASE extends Component<
     currentTabKey: '',
     rangePickerValue: getTimeDistance('year'),
   };
-  reqRef!: number;
-  timeoutId!: number;
+
+  reqRef: number = 0;
+
+  timeoutId: number = 0;
+
   componentDidMount() {
     const { dispatch } = this.props;
     this.reqRef = requestAnimationFrame(() => {

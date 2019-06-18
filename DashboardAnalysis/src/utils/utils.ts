@@ -1,5 +1,5 @@
-import moment from 'moment';
 import { RangePickerValue } from 'antd/es/date-picker/interface';
+import moment from 'moment';
 
 export function fixedZero(val: number) {
   return val * 1 < 10 ? `0${val}` : val;

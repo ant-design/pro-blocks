@@ -1,11 +1,11 @@
-import React, { Fragment } from 'react';
 import { Card, Form, Input, Select } from 'antd';
-import { withPropsAPI } from 'gg-editor';
-import { FormComponentProps } from 'antd/es/form';
+import React, { Fragment } from 'react';
 
-const upperFirst = (str: string) => {
-  return str.toLowerCase().replace(/( |^)[a-z]/g, (l: string) => l.toUpperCase());
-};
+import { FormComponentProps } from 'antd/es/form';
+import { withPropsAPI } from 'gg-editor';
+
+const upperFirst = (str: string) =>
+  str.toLowerCase().replace(/( |^)[a-z]/g, (l: string) => l.toUpperCase());
 
 const { Item } = Form;
 const { Option } = Select;
@@ -60,15 +60,13 @@ class DetailForm extends React.Component<DetailFormProps> {
     }, 0);
   };
 
-  renderEdgeShapeSelect = () => {
-    return (
-      <Select onChange={this.handleSubmit}>
-        <Option value="flow-smooth">Smooth</Option>
-        <Option value="flow-polyline">Polyline</Option>
-        <Option value="flow-polyline-round">Polyline Round</Option>
-      </Select>
-    );
-  };
+  renderEdgeShapeSelect = () => (
+    <Select onChange={this.handleSubmit}>
+      <Option value="flow-smooth">Smooth</Option>
+      <Option value="flow-polyline">Polyline</Option>
+      <Option value="flow-polyline-round">Polyline Round</Option>
+    </Select>
+  );
 
   renderNodeDetail = () => {
     const { form } = this.props;

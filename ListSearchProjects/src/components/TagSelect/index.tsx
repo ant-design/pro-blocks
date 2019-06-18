@@ -1,7 +1,7 @@
+import { Icon, Tag } from 'antd';
 import React, { Component } from 'react';
-import classNames from 'classnames';
-import { Tag, Icon } from 'antd';
 
+import classNames from 'classnames';
 import styles from './index.less';
 
 const { CheckableTag } = Tag;
@@ -27,7 +27,7 @@ export interface TagSelectProps {
   };
   className?: string;
   Option?: TagSelectOptionProps;
-  children?: React.ReactElement<TagSelectOption> | Array<React.ReactElement<TagSelectOption>>;
+  children?: React.ReactElement<TagSelectOption> | React.ReactElement<TagSelectOption>[];
 }
 
 const TagSelectOption: React.SFC<TagSelectOptionProps> & {
@@ -58,6 +58,7 @@ class TagSelect extends Component<TagSelectProps, TagSelectState> {
       selectAllText: '全部',
     },
   };
+
   static Option: TagSelectOption = TagSelectOption;
 
   static getDerivedStateFromProps(nextProps: TagSelectProps) {
@@ -66,6 +67,7 @@ class TagSelect extends Component<TagSelectProps, TagSelectState> {
     }
     return null;
   }
+
   constructor(props: TagSelectProps) {
     super(props);
     this.state = {

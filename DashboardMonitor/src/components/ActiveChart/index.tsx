@@ -1,9 +1,8 @@
 import React, { Component } from 'react';
-import Charts from '../Charts';
-import { Statistic } from 'antd';
-import styles from './index.less';
 
-const { MiniArea } = Charts;
+import { Statistic } from 'antd';
+import { MiniArea } from '../Charts';
+import styles from './index.less';
 
 function fixedZero(val: number) {
   return val * 1 < 10 ? `0${val}` : val;
@@ -24,12 +23,15 @@ export default class ActiveChart extends Component {
   state = {
     activeData: getActiveData(),
   };
-  timer: number | undefined;
-  requestRef: number | undefined;
+
+  timer: number | undefined = undefined;
+
+  requestRef: number | undefined = undefined;
 
   componentDidMount() {
     this.loopData();
   }
+
   componentWillUnmount() {
     clearTimeout(this.timer);
     if (this.requestRef) {

@@ -1,5 +1,6 @@
+import { Avatar, Tooltip } from 'antd';
+
 import React from 'react';
-import { Tooltip, Avatar } from 'antd';
 import classNames from 'classnames';
 import styles from './index.less';
 
@@ -19,10 +20,10 @@ export interface AvatarListProps {
   maxLength?: number;
   excessItemsStyle?: React.CSSProperties;
   style?: React.CSSProperties;
-  children: React.ReactElement<AvatarItemProps> | Array<React.ReactElement<AvatarItemProps>>;
+  children: React.ReactElement<AvatarItemProps> | React.ReactElement<AvatarItemProps>[];
 }
 
-const avatarSizeToClassName = (size?: SizeType) =>
+const avatarSizeToClassName = (size?: SizeType | 'mini') =>
   classNames(styles.avatarItem, {
     [styles.avatarItemLarge]: size === 'large',
     [styles.avatarItemSmall]: size === 'small',
@@ -54,9 +55,7 @@ const AvatarList: React.SFC<AvatarListProps> & { Item: typeof Item } = ({
 }) => {
   const numOfChildren = React.Children.count(children);
   const numToShow = maxLength >= numOfChildren ? numOfChildren : maxLength;
-  const childrenArray = React.Children.toArray(children) as Array<
-    React.ReactElement<AvatarItemProps>
-  >;
+  const childrenArray = React.Children.toArray(children) as React.ReactElement<AvatarItemProps>[];
   const childrenWithProps = childrenArray.slice(0, numToShow).map(child =>
     React.cloneElement(child, {
       size,

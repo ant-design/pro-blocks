@@ -1,24 +1,25 @@
-import React, { Component } from 'react';
 import {
+  Button,
   Card,
+  Col,
+  DatePicker,
   Form,
   Icon,
-  Button,
-  Col,
-  Row,
-  DatePicker,
-  TimePicker,
   Input,
-  Select,
   Popover,
+  Row,
+  Select,
+  TimePicker,
 } from 'antd';
+import React, { Component } from 'react';
+
+import { Dispatch } from 'redux';
+import { FormComponentProps } from 'antd/es/form';
+import { PageHeaderWrapper } from '@ant-design/pro-layout';
 import { connect } from 'dva';
 import TableForm from './components/TableForm';
-import styles from './style.less';
-import { FormComponentProps } from 'antd/es/form';
-import { Dispatch } from 'redux';
 import FooterToolbar from './components/FooterToolbar';
-import { PageHeaderWrapper } from '@ant-design/pro-layout';
+import styles from './style.less';
 
 const { Option } = Select;
 const { RangePicker } = DatePicker;

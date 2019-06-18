@@ -1,10 +1,10 @@
 export interface BasicGood {
   id: string;
-  name: string;
-  barcode: string;
-  price: string;
-  num: string | number;
-  amount: string | number;
+  name?: string;
+  barcode?: string;
+  price?: string;
+  num?: string | number;
+  amount?: string | number;
 }
 
 export interface BasicProgress {

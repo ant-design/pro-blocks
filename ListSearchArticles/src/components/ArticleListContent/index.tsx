@@ -1,6 +1,6 @@
+import { Avatar } from 'antd';
 import React from 'react';
 import moment from 'moment';
-import { Avatar } from 'antd';
 import styles from './index.less';
 
 interface ArticleListContentProps {

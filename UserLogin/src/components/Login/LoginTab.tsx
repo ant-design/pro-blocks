@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
-import { Tabs } from 'antd';
+
 import { TabPaneProps } from 'antd/es/tabs';
-import LoginContext, { ILoginContext } from './LoginContext';
+import { Tabs } from 'antd';
+import LoginContext, { LoginContextProps } from './LoginContext';
 
 const { TabPane } = Tabs;
 
@@ -14,15 +15,17 @@ const generateId = (() => {
 })();
 
 interface LoginTabProps extends TabPaneProps {
-  tabUtil: ILoginContext['tabUtil'];
+  tabUtil: LoginContextProps['tabUtil'];
 }
 
 class LoginTab extends Component<LoginTabProps> {
-  uniqueId: string;
+  uniqueId: string = '';
+
   constructor(props: LoginTabProps) {
     super(props);
     this.uniqueId = generateId('login-tab-');
   }
+
   componentDidMount() {
     const { tabUtil } = this.props;
     if (tabUtil) {

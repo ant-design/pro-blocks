@@ -1,15 +1,15 @@
+import { Button, Card, Col, Form, Icon, List, Row, Select, Tag } from 'antd';
 import React, { Component } from 'react';
-import { connect } from 'dva';
-import { Form, Card, Select, List, Tag, Icon, Row, Col, Button } from 'antd';
 
-import TagSelect from './components/TagSelect';
-import StandardFormRow from './components/StandardFormRow';
-import ArticleListContent from './components/ArticleListContent';
-import styles from './style.less';
 import { Dispatch } from 'redux';
 import { FormComponentProps } from 'antd/es/form';
-import { ListItemDataType } from './data';
-import { IStateType } from './model';
+import { connect } from 'dva';
+import ArticleListContent from './components/ArticleListContent';
+import { StateType } from './model';
+import { ListItemDataType } from './data.d';
+import StandardFormRow from './components/StandardFormRow';
+import TagSelect from './components/TagSelect';
+import styles from './style.less';
 
 const { Option } = Select;
 const FormItem = Form.Item;
@@ -18,7 +18,7 @@ const pageSize = 5;
 
 interface PAGE_NAME_UPPER_CAMEL_CASEProps extends FormComponentProps {
   dispatch: Dispatch<any>;
-  BLOCK_NAME_CAMEL_CASE: IStateType;
+  BLOCK_NAME_CAMEL_CASE: StateType;
   loading: boolean;
 }
 
@@ -235,7 +235,7 @@ class PAGE_NAME_UPPER_CAMEL_CASE extends Component<PAGE_NAME_UPPER_CAMEL_CASEPro
 }
 
 const WarpForm = Form.create<PAGE_NAME_UPPER_CAMEL_CASEProps>({
-  onValuesChange({ dispatch }: PAGE_NAME_UPPER_CAMEL_CASEProps, changedValues, allValues) {
+  onValuesChange({ dispatch }: PAGE_NAME_UPPER_CAMEL_CASEProps) {
     // 表单项变化时请求数据
     // 模拟查询表单生效
     dispatch({
@@ -252,7 +252,7 @@ export default connect(
     BLOCK_NAME_CAMEL_CASE,
     loading,
   }: {
-    BLOCK_NAME_CAMEL_CASE: IStateType;
+    BLOCK_NAME_CAMEL_CASE: StateType;
     loading: { models: { [key: string]: boolean } };
   }) => ({
     BLOCK_NAME_CAMEL_CASE,

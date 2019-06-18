@@ -1,10 +1,11 @@
+import { Icon, List, Tag } from 'antd';
 import React, { Component } from 'react';
-import { List, Icon, Tag } from 'antd';
+
 import { connect } from 'dva';
 import ArticleListContent from '../ArticleListContent';
-import styles from './index.less';
+import { ListItemDataType } from '../../data.d';
 import { ModalState } from '../../model';
-import { ListItemDataType } from '../../data';
+import styles from './index.less';
 
 @connect(({ BLOCK_NAME_CAMEL_CASE }: { BLOCK_NAME_CAMEL_CASE: ModalState }) => ({
   list: BLOCK_NAME_CAMEL_CASE.list,

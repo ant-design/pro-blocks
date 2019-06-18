@@ -1,16 +1,17 @@
+import { Avatar, Card, Col, Divider, Icon, Input, Row, Tag } from 'antd';
 import React, { PureComponent } from 'react';
-import { connect } from 'dva';
+
 import { Dispatch } from 'redux';
-import Link from 'umi/link';
 import { GridContent } from '@ant-design/pro-layout';
+import Link from 'umi/link';
 import { RouteChildrenProps } from 'react-router';
-import { Card, Row, Col, Icon, Avatar, Tag, Divider, Input } from 'antd';
-import styles from './Center.less';
-import { ITag, CurrentUser } from './data';
+import { connect } from 'dva';
 import { ModalState } from './model';
+import Projects from './components/Projects';
 import Articles from './components/Articles';
 import Applications from './components/Applications';
-import Projects from './components/Projects';
+import { CurrentUser, TagType } from './data.d';
+import styles from './Center.less';
 
 const operationTabList = [
   {
@@ -45,7 +46,7 @@ interface BLOCK_NAME_CAMEL_CASEProps extends RouteChildrenProps {
   currentUserLoading: boolean;
 }
 interface BLOCK_NAME_CAMEL_CASEState {
-  newTags: ITag[];
+  newTags: TagType[];
   tabKey: 'articles' | 'applications' | 'projects';
   inputVisible: boolean;
   inputValue: string;
@@ -56,7 +57,7 @@ interface BLOCK_NAME_CAMEL_CASEState {
     loading,
     BLOCK_NAME_CAMEL_CASE,
   }: {
-    loading: { effects: any };
+    loading: { effects: { [key: string]: boolean } };
     BLOCK_NAME_CAMEL_CASE: ModalState;
   }) => ({
     currentUser: BLOCK_NAME_CAMEL_CASE.currentUser,
@@ -92,7 +93,7 @@ class PAGE_NAME_UPPER_CAMEL_CASE extends PureComponent<
     tabKey: 'articles',
   };
 
-  input: Input | null | undefined;
+  public input: Input | null | undefined = undefined;
 
   componentDidMount() {
     const { dispatch } = this.props;
@@ -138,6 +139,7 @@ class PAGE_NAME_UPPER_CAMEL_CASE extends PureComponent<
       inputValue: '',
     });
   };
+
   renderChildrenByTabKey = (tabKey: BLOCK_NAME_CAMEL_CASEState['tabKey']) => {
     if (tabKey === 'projects') {
       return <Projects />;
@@ -150,6 +152,7 @@ class PAGE_NAME_UPPER_CAMEL_CASE extends PureComponent<
     }
     return null;
   };
+
   render() {
     const { newTags, inputVisible, inputValue, tabKey } = this.state;
     const { currentUser, currentUserLoading } = this.props;
@@ -184,9 +187,9 @@ class PAGE_NAME_UPPER_CAMEL_CASE extends PureComponent<
                   <Divider dashed />
                   <div className={styles.tags}>
                     <div className={styles.tagsTitle}>标签</div>
-                    {currentUser.tags.concat(newTags).map(item => {
-                      return <Tag key={item.key}>{item.label}</Tag>;
-                    })}
+                    {currentUser.tags.concat(newTags).map(item => (
+                      <Tag key={item.key}>{item.label}</Tag>
+                    ))}
                     {inputVisible && (
                       <Input
                         ref={ref => this.saveInputRef(ref)}

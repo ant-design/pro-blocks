@@ -6,15 +6,16 @@ export type IReactComponent<P = any> =
   | React.ClassicComponentClass<P>;
 
 function computeHeight(node: HTMLDivElement) {
-  node.style.height = '100%';
-  const totalHeight = parseInt(getComputedStyle(node).height + '', 10);
+  const { style } = node;
+  style.height = '100%';
+  const totalHeight = parseInt(`${getComputedStyle(node).height}`, 10);
   const padding =
-    parseInt(getComputedStyle(node).paddingTop + '', 10) +
-    parseInt(getComputedStyle(node).paddingBottom + '', 10);
+    parseInt(`${getComputedStyle(node).paddingTop}`, 10) +
+    parseInt(`${getComputedStyle(node).paddingBottom}`, 10);
   return totalHeight - padding;
 }
 
-function getAutoHeight(n: HTMLDivElement) {
+function getAutoHeight(n: HTMLDivElement | undefined) {
   if (!n) {
     return 0;
   }
@@ -30,24 +31,25 @@ function getAutoHeight(n: HTMLDivElement) {
   return height;
 }
 
-interface IAutoHeightProps {
+interface AutoHeightProps {
   height?: number;
 }
 
 function autoHeight() {
-  return function<P extends IAutoHeightProps>(
+  return <P extends AutoHeightProps>(
     WrappedComponent: React.ComponentClass<P> | React.SFC<P>,
-  ): React.ComponentClass<P> {
-    class AutoHeightComponent extends React.Component<P & IAutoHeightProps> {
+  ): React.ComponentClass<P> => {
+    class AutoHeightComponent extends React.Component<P & AutoHeightProps> {
       state = {
         computedHeight: 0,
       };
-      root!: HTMLDivElement;
+
+      root: HTMLDivElement | undefined = undefined;
+
       componentDidMount() {
         const { height } = this.props;
         if (!height) {
           let h = getAutoHeight(this.root);
-          // eslint-disable-next-line
           this.setState({ computedHeight: h });
           if (h < 1) {
             h = getAutoHeight(this.root);
@@ -55,9 +57,11 @@ function autoHeight() {
           }
         }
       }
+
       handleRoot = (node: HTMLDivElement) => {
         this.root = node;
       };
+
       render() {
         const { height } = this.props;
         const { computedHeight } = this.state;

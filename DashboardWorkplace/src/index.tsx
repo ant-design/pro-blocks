@@ -1,17 +1,16 @@
+import { Avatar, Card, Col, List, Row } from 'antd';
 import React, { PureComponent } from 'react';
-import moment from 'moment';
-import { connect } from 'dva';
-import Link from 'umi/link';
-import { Row, Col, Card, List, Avatar } from 'antd';
-import { Dispatch } from 'redux';
 
-import EditableLinkGroup from './components/EditableLinkGroup';
+import { Dispatch } from 'redux';
+import Link from 'umi/link';
+import { PageHeaderWrapper } from '@ant-design/pro-layout';
+import { connect } from 'dva';
+import moment from 'moment';
 import Radar from './components/Radar';
 import { ModalState } from './model';
-import { ICurrentUser, IActivities, IRadarData, INotice } from './data';
-import { PageHeaderWrapper } from '@ant-design/pro-layout';
-
+import EditableLinkGroup from './components/EditableLinkGroup';
 import styles from './style.less';
+import { ActivitiesType, CurrentUser, NoticeType, RadarDataType } from './data.d';
 
 const links = [
   {
@@ -41,10 +40,10 @@ const links = [
 ];
 
 interface BLOCK_NAME_CAMEL_CASEProps {
-  currentUser: ICurrentUser;
-  projectNotice: INotice[];
-  activities: IActivities[];
-  radarData: IRadarData[];
+  currentUser: CurrentUser;
+  projectNotice: NoticeType[];
+  activities: ActivitiesType[];
+  radarData: RadarDataType[];
   dispatch: Dispatch<any>;
   currentUserLoading: boolean;
   projectLoading: boolean;
@@ -83,7 +82,7 @@ class PAGE_NAME_UPPER_CAMEL_CASE extends PureComponent<BLOCK_NAME_CAMEL_CASEProp
     });
   }
 
-  renderActivities(item: IActivities) {
+  renderActivities = (item: ActivitiesType) => {
     const events = item.template.split(/@\{([^{}]*)\}/gi).map(key => {
       if (item[key]) {
         return (
@@ -113,7 +112,7 @@ class PAGE_NAME_UPPER_CAMEL_CASE extends PureComponent<BLOCK_NAME_CAMEL_CASEProp
         />
       </List.Item>
     );
-  }
+  };
 
   render() {
     const {
@@ -207,11 +206,9 @@ class PAGE_NAME_UPPER_CAMEL_CASE extends PureComponent<BLOCK_NAME_CAMEL_CASEProp
               title="动态"
               loading={activitiesLoading}
             >
-              <List<IActivities>
+              <List<ActivitiesType>
                 loading={activitiesLoading}
-                renderItem={item => {
-                  return this.renderActivities(item);
-                }}
+                renderItem={item => this.renderActivities(item)}
                 dataSource={activities}
                 className={styles.activitiesList}
                 size="large"

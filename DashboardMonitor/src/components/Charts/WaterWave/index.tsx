@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+
 import autoHeight from '../autoHeight';
 import styles from './index.less';
 
@@ -6,7 +7,7 @@ import styles from './index.less';
 /* eslint no-mixed-operators: 0 */
 // riddle: https://riddle.alibaba-inc.com/riddles/2d9a4b90
 
-export interface IWaterWaveProps {
+export interface WaterWaveProps {
   title: React.ReactNode;
   color?: string;
   height?: number;
@@ -14,13 +15,16 @@ export interface IWaterWaveProps {
   style?: React.CSSProperties;
 }
 
-class WaterWave extends Component<IWaterWaveProps> {
+class WaterWave extends Component<WaterWaveProps> {
   state = {
     radio: 1,
   };
+
   timer: number = 0;
-  root: HTMLDivElement | undefined | null;
-  node: HTMLCanvasElement | undefined | null;
+
+  root: HTMLDivElement | undefined | null = null;
+
+  node: HTMLCanvasElement | undefined | null = null;
 
   componentDidMount() {
     this.renderChart();
@@ -34,7 +38,7 @@ class WaterWave extends Component<IWaterWaveProps> {
     );
   }
 
-  componentDidUpdate(props: IWaterWaveProps) {
+  componentDidUpdate(props: WaterWaveProps) {
     const { percent } = this.props;
     if (props.percent !== percent) {
       // 不加这个会造成绘制缓慢
@@ -59,6 +63,7 @@ class WaterWave extends Component<IWaterWaveProps> {
       });
     }
   };
+
   renderChart(type?: string) {
     const { percent, color = '#1890FF' } = this.props;
     const data = percent / 100;
@@ -201,6 +206,7 @@ class WaterWave extends Component<IWaterWaveProps> {
     }
     render();
   }
+
   render() {
     const { radio } = this.state;
     const { percent, title, height = 1 } = this.props;

@@ -1,15 +1,15 @@
-import { Button } from 'antd';
-import classNames from 'classnames';
-import * as H from 'history';
 import React, { createElement } from 'react';
-import styles from './index.less';
-import config from './typeConfig';
+
+import { Button } from 'antd';
 import Link from 'umi/link';
+import classNames from 'classnames';
+import config from './typeConfig';
+import styles from './index.less';
 
 export interface ExceptionProps<
   L = {
-    to: H.LocationDescriptor;
-    href?: H.LocationDescriptor;
+    to: string;
+    href?: string;
     replace?: boolean;
     innerRef?: (node: HTMLAnchorElement | null) => void;
   }

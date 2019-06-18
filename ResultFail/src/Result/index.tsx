@@ -1,6 +1,6 @@
+import { Icon } from 'antd';
 import React from 'react';
 import classNames from 'classnames';
-import { Icon } from 'antd';
 import styles from './index.less';
 
 export interface ResultProps {

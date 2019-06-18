@@ -1,26 +1,27 @@
-import React, { Component, Fragment } from 'react';
-import { Dispatch } from 'redux';
-import { GridContent, PageHeaderWrapper } from '@ant-design/pro-layout';
-import { connect } from 'dva';
 import {
+  Badge,
   Button,
-  Menu,
+  Card,
+  Col,
+  Descriptions,
+  Divider,
   Dropdown,
   Icon,
-  Row,
-  Col,
-  Steps,
-  Card,
+  Menu,
   Popover,
-  Badge,
+  Row,
+  Steps,
   Table,
   Tooltip,
-  Divider,
-  Descriptions,
 } from 'antd';
+import { GridContent, PageHeaderWrapper } from '@ant-design/pro-layout';
+import React, { Component, Fragment } from 'react';
+
+import { Dispatch } from 'redux';
 import classNames from 'classnames';
+import { connect } from 'dva';
+import { AdvancedProfileData } from './data.d';
 import styles from './style.less';
-import { AdvancedProfileData } from './data';
 
 const { Step } = Steps;
 const ButtonGroup = Button.Group;
@@ -121,14 +122,16 @@ const customDot = (
   }: {
     status: string;
   },
-) =>
-  status === 'process' ? (
-    <Popover placement="topLeft" arrowPointAtCenter content={popoverContent}>
-      {dot}
-    </Popover>
-  ) : (
-    dot
-  );
+) => {
+  if (status === 'process') {
+    return (
+      <Popover placement="topLeft" arrowPointAtCenter content={popoverContent}>
+        {dot}
+      </Popover>
+    );
+  }
+  return dot;
+};
 
 const operationTabList = [
   {
@@ -160,12 +163,12 @@ const columns = [
     title: '执行结果',
     dataIndex: 'status',
     key: 'status',
-    render: (text: string) =>
-      text === 'agree' ? (
-        <Badge status="success" text="成功" />
-      ) : (
-        <Badge status="error" text="驳回" />
-      ),
+    render: (text: string) => {
+      if (text === 'agree') {
+        return <Badge status="success" text="成功" />;
+      }
+      return <Badge status="error" text="驳回" />;
+    },
   },
   {
     title: '操作时间',
@@ -225,6 +228,7 @@ class PAGE_NAME_UPPER_CAMEL_CASE extends Component<
   onOperationTabChange = (key: string) => {
     this.setState({ operationKey: key });
   };
+
   setStepDirection = () => {
     const { stepDirection } = this.state;
     const w = getWindowWidth();

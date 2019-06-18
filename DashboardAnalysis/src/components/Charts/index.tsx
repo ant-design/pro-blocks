@@ -1,15 +1,15 @@
 import numeral from 'numeral';
+import Bar from './Bar';
 import ChartCard from './ChartCard';
 import Field from './Field';
-import Bar from './Bar';
-import Pie from './Pie';
 import Gauge from './Gauge';
 import MiniArea from './MiniArea';
 import MiniBar from './MiniBar';
 import MiniProgress from './MiniProgress';
-import WaterWave from './WaterWave';
+import Pie from './Pie';
 import TagCloud from './TagCloud';
 import TimelineChart from './TimelineChart';
+import WaterWave from './WaterWave';
 
 const yuan = (val: number | string) => `¥ ${numeral(val).format('0,0')}`;
 

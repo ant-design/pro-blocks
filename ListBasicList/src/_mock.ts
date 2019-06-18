@@ -1,4 +1,4 @@
-import { BasicListItemDataType } from './data';
+import { BasicListItemDataType } from './data.d';
 
 const titles = [
   'Alipay',
@@ -56,7 +56,7 @@ function fakeList(count: number): BasicListItemDataType[] {
       owner: user[i % 10],
       title: titles[i % 8],
       avatar: avatars[i % 8],
-      cover: parseInt(i / 4 + '', 10) % 2 === 0 ? covers[i % 4] : covers[3 - (i % 4)],
+      cover: parseInt(`${i / 4}`, 10) % 2 === 0 ? covers[i % 4] : covers[3 - (i % 4)],
       status: ['active', 'exception', 'normal'][i % 3] as
         | 'normal'
         | 'exception'
@@ -100,7 +100,7 @@ function fakeList(count: number): BasicListItemDataType[] {
   return list;
 }
 
-let sourceData: Array<BasicListItemDataType> = [];
+let sourceData: BasicListItemDataType[] = [];
 
 function getFakeList(req: { query: any }, res: { json: (arg0: BasicListItemDataType[]) => void }) {
   const params = req.query;
@@ -126,7 +126,7 @@ function postFakeList(req: { body: any }, res: { json: (arg0: BasicListItemDataT
     case 'update':
       result.forEach((item, i) => {
         if (item.id === id) {
-          result[i] = Object.assign(item, body);
+          result[i] = { ...item, ...body };
         }
       });
       break;

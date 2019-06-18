@@ -1,19 +1,20 @@
+import { Button, DatePicker, Form, Input, Modal, Radio, Select, Steps } from 'antd';
 import React, { Component } from 'react';
-import { Input, Select, Button, DatePicker, Form, Modal, Steps, Radio } from 'antd';
-import { TableListItem } from '../data';
-import { FormComponentProps } from 'antd/es/form';
 
-export type IFormValsType = {
+import { FormComponentProps } from 'antd/es/form';
+import { TableListItem } from '../data.d';
+
+export interface FormValsType extends Partial<TableListItem> {
   target?: string;
   template?: string;
   type?: string;
   time?: string;
   frequency?: string;
-} & Partial<TableListItem>;
+}
 
 export interface UpdateFormProps extends FormComponentProps {
-  handleUpdateModalVisible: (flag?: boolean, formVals?: IFormValsType) => void;
-  handleUpdate: (values: IFormValsType) => void;
+  handleUpdateModalVisible: (flag?: boolean, formVals?: FormValsType) => void;
+  handleUpdate: (values: FormValsType) => void;
   updateModalVisible: boolean;
   values: Partial<TableListItem>;
 }
@@ -24,7 +25,7 @@ const { Option } = Select;
 const RadioGroup = Radio.Group;
 
 export interface UpdateFormState {
-  formVals: IFormValsType;
+  formVals: FormValsType;
   currentStep: number;
 }
 
@@ -34,10 +35,12 @@ class UpdateForm extends Component<UpdateFormProps, UpdateFormState> {
     handleUpdateModalVisible: () => {},
     values: {},
   };
+
   formLayout = {
     labelCol: { span: 7 },
     wrapperCol: { span: 13 },
   };
+
   constructor(props: UpdateFormProps) {
     super(props);
 
@@ -91,7 +94,7 @@ class UpdateForm extends Component<UpdateFormProps, UpdateFormState> {
     });
   };
 
-  renderContent = (currentStep: number, formVals: IFormValsType) => {
+  renderContent = (currentStep: number, formVals: FormValsType) => {
     const { form } = this.props;
     if (currentStep === 1) {
       return [

@@ -1,22 +1,24 @@
+import { Card, Col, Form, List, Row, Select, Typography } from 'antd';
 import React, { Component } from 'react';
-import moment from 'moment';
-import { connect } from 'dva';
-import { Row, Col, Form, Card, Select, List, Typography } from 'antd';
-import StandardFormRow from './components/StandardFormRow';
-import TagSelect from './components/TagSelect';
-import AvatarList from './components/AvatarList';
-import styles from './style.less';
-import { IStateType } from './model';
+
 import { Dispatch } from 'redux';
 import { FormComponentProps } from 'antd/es/form';
-import { ListItemDataType } from './data';
+import { connect } from 'dva';
+import moment from 'moment';
+import AvatarList from './components/AvatarList';
+import { StateType } from './model';
+import { ListItemDataType } from './data.d';
+import StandardFormRow from './components/StandardFormRow';
+import TagSelect from './components/TagSelect';
+import styles from './style.less';
+
 const { Option } = Select;
 const FormItem = Form.Item;
 const { Paragraph } = Typography;
 
 interface PAGE_NAME_UPPER_CAMEL_CASEProps extends FormComponentProps {
   dispatch: Dispatch<any>;
-  BLOCK_NAME_CAMEL_CASE: IStateType;
+  BLOCK_NAME_CAMEL_CASE: StateType;
   loading: boolean;
 }
 
@@ -64,9 +66,9 @@ class PAGE_NAME_UPPER_CAMEL_CASE extends Component<PAGE_NAME_UPPER_CAMEL_CASEPro
                 <span>{moment(item.updatedAt).fromNow()}</span>
                 <div className={styles.avatarList}>
                   <AvatarList size="small">
-                    {item.members.map((member, i) => (
+                    {item.members.map(member => (
                       <AvatarList.Item
-                        key={`${item.id}-avatar-${i}`}
+                        key={`${item.id}-avatar`}
                         src={member.avatar}
                         tips={member.name}
                       />
@@ -143,7 +145,7 @@ class PAGE_NAME_UPPER_CAMEL_CASE extends Component<PAGE_NAME_UPPER_CAMEL_CASEPro
 }
 
 const WarpForm = Form.create<PAGE_NAME_UPPER_CAMEL_CASEProps>({
-  onValuesChange({ dispatch }: PAGE_NAME_UPPER_CAMEL_CASEProps, changedValues, allValues) {
+  onValuesChange({ dispatch }: PAGE_NAME_UPPER_CAMEL_CASEProps) {
     // 表单项变化时请求数据
     // 模拟查询表单生效
     dispatch({
@@ -160,7 +162,7 @@ export default connect(
     BLOCK_NAME_CAMEL_CASE,
     loading,
   }: {
-    BLOCK_NAME_CAMEL_CASE: IStateType;
+    BLOCK_NAME_CAMEL_CASE: StateType;
     loading: { models: { [key: string]: boolean } };
   }) => ({
     BLOCK_NAME_CAMEL_CASE,

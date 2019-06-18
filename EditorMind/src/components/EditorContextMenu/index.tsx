@@ -1,5 +1,5 @@
 import FlowContextMenu from './FlowContextMenu';
-import MindContextMenu from './MindContextMenu';
 import KoniContextMenu from './KoniContextMenu';
+import MindContextMenu from './MindContextMenu';
 
 export { FlowContextMenu, MindContextMenu, KoniContextMenu };

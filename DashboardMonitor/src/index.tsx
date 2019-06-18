@@ -1,23 +1,22 @@
+import { Card, Col, Row, Statistic, Tooltip } from 'antd';
+import { FormattedMessage, formatMessage } from 'umi-plugin-react/locale';
 import React, { Component } from 'react';
-import { connect } from 'dva';
-import { formatMessage, FormattedMessage } from 'umi-plugin-react/locale';
-import { Row, Col, Card, Statistic, Tooltip } from 'antd';
-import numeral from 'numeral';
+
 import { Dispatch } from 'redux';
-import { IStateType } from './model';
+import { GridContent } from '@ant-design/pro-layout';
+import { connect } from 'dva';
+import numeral from 'numeral';
+import { StateType } from './model';
+import { Pie, WaterWave, Gauge, TagCloud } from './components/Charts';
 import ActiveChart from './components/ActiveChart';
 import styles from './style.less';
-import Charts from './components/Charts';
-import { GridContent } from '@ant-design/pro-layout';
 
 const { Countdown } = Statistic;
-
-const { Pie, WaterWave, Gauge, TagCloud } = Charts;
 
 const targetTime = new Date().getTime() + 3900000;
 
 interface PAGE_NAME_UPPER_CAMEL_CASEProps {
-  BLOCK_NAME_CAMEL_CASE: IStateType;
+  BLOCK_NAME_CAMEL_CASE: StateType;
   dispatch: Dispatch<any>;
   loading: boolean;
 }
@@ -27,7 +26,7 @@ interface PAGE_NAME_UPPER_CAMEL_CASEProps {
     BLOCK_NAME_CAMEL_CASE,
     loading,
   }: {
-    BLOCK_NAME_CAMEL_CASE: IStateType;
+    BLOCK_NAME_CAMEL_CASE: StateType;
     loading: {
       models: { [key: string]: boolean };
     };

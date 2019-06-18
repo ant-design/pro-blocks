@@ -1,13 +1,12 @@
-import React from 'react';
-import { Row, Col, Card, Tabs, DatePicker } from 'antd';
+import { Card, Col, DatePicker, Row, Tabs } from 'antd';
 import { FormattedMessage, formatMessage } from 'umi-plugin-react/locale';
-import numeral from 'numeral';
-import Charts from './Charts';
-import { RangePickerValue } from 'antd/es/date-picker/interface';
-import { ISalesData } from '../data';
-import styles from '../style.less';
 
-const { Bar } = Charts;
+import { RangePickerValue } from 'antd/es/date-picker/interface';
+import React from 'react';
+import numeral from 'numeral';
+import { VisitDataType } from '../data.d';
+import { Bar } from './Charts';
+import styles from '../style.less';
 
 const { RangePicker } = DatePicker;
 const { TabPane } = Tabs;
@@ -30,7 +29,7 @@ const SalesCard = ({
 }: {
   rangePickerValue: RangePickerValue;
   isActive: (key: 'today' | 'week' | 'month' | 'year') => string;
-  salesData: ISalesData[];
+  salesData: VisitDataType[];
   loading: boolean;
   handleRangePickerChange: (dates: RangePickerValue, dateStrings: [string, string]) => void;
   selectDate: (key: 'today' | 'week' | 'month' | 'year') => void;

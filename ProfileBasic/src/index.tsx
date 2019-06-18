@@ -1,10 +1,11 @@
+import { Badge, Card, Descriptions, Divider, Table } from 'antd';
 import React, { Component } from 'react';
-import { connect } from 'dva';
-import { Card, Badge, Table, Descriptions, Divider } from 'antd';
-import { PageHeaderWrapper } from '@ant-design/pro-layout';
-import styles from './style.less';
-import { BasicProfileDataType, BasicGood } from './data';
+
 import { Dispatch } from 'redux';
+import { PageHeaderWrapper } from '@ant-design/pro-layout';
+import { connect } from 'dva';
+import { BasicProfileDataType } from './data.d';
+import styles from './style.less';
 
 const progressColumns = [
   {
@@ -21,13 +22,14 @@ const progressColumns = [
     title: '状态',
     dataIndex: 'status',
     key: 'status',
-    render: (text: string) =>
-      text === 'success' ? (
-        <Badge status="success" text="成功" />
-      ) : (
-        <Badge status="processing" text="进行中" />
-      ),
+    render: (text: string) => {
+      if (text === 'success') {
+        return <Badge status="success" text="成功" />;
+      }
+      return <Badge status="processing" text="进行中" />;
+    },
   },
+
   {
     title: '操作员ID',
     dataIndex: 'operator',
@@ -89,14 +91,15 @@ class PAGE_NAME_UPPER_CAMEL_CASE extends Component<
         id: '总计',
         num,
         amount,
-      } as BasicGood);
+      });
     }
     const renderContent = (value: any, row: any, index: any) => {
-      const obj = {
+      const obj: {
+        children: any;
+        props: { colSpan?: number };
+      } = {
         children: value,
-        props: {} as {
-          colSpan?: number;
-        },
+        props: {},
       };
       if (index === basicGoods.length) {
         obj.props.colSpan = 0;

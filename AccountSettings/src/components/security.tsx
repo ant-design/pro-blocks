@@ -1,5 +1,6 @@
+import { FormattedMessage, formatMessage } from 'umi-plugin-react/locale';
 import React, { Component, Fragment } from 'react';
-import { formatMessage, FormattedMessage } from 'umi-plugin-react/locale';
+
 import { List } from 'antd';
 
 type Unpacked<T> = T extends (infer U)[] ? U : T;

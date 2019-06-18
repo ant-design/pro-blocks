@@ -1,12 +1,14 @@
+import { Button, Form, Input, Select, Upload, message } from 'antd';
+import { FormattedMessage, formatMessage } from 'umi-plugin-react/locale';
 import React, { Component, Fragment } from 'react';
-import { formatMessage, FormattedMessage } from 'umi-plugin-react/locale';
-import { Form, Input, Upload, Select, Button, message } from 'antd';
+
 import { FormComponentProps } from 'antd/es/form';
 import { connect } from 'dva';
-import styles from './BaseView.less';
+import { CurrentUser } from '../data.d';
 import GeographicView from './GeographicView';
 import PhoneView from './PhoneView';
-import { CurrentUser } from '../data';
+import styles from './BaseView.less';
+
 const FormItem = Form.Item;
 const { Option } = Select;
 
@@ -70,7 +72,8 @@ interface BaseViewProps extends FormComponentProps {
   currentUser: BLOCK_NAME_CAMEL_CASE.currentUser,
 }))
 class BaseView extends Component<BaseViewProps> {
-  view: HTMLDivElement | undefined;
+  view: HTMLDivElement | undefined = undefined;
+
   componentDidMount() {
     this.setBaseInfo();
   }
@@ -102,10 +105,10 @@ class BaseView extends Component<BaseViewProps> {
     this.view = ref;
   };
 
-  handlerSubmit = (event: Event) => {
+  handlerSubmit = (event: React.MouseEvent) => {
     event.preventDefault();
     const { form } = this.props;
-    form.validateFields((err, values) => {
+    form.validateFields(err => {
       if (!err) {
         message.success(formatMessage({ id: 'BLOCK_NAME.basic.update.success' }));
       }

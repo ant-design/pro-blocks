@@ -1,26 +1,26 @@
-import { queryFakeList } from './service';
-import { CardListItemDataType } from './data';
-import { Reducer } from 'redux';
-import { EffectsCommandMap } from 'dva';
-import { AnyAction } from 'redux';
+import { AnyAction, Reducer } from 'redux';
 
-export interface IStateType {
+import { EffectsCommandMap } from 'dva';
+import { CardListItemDataType } from './data.d';
+import { queryFakeList } from './service';
+
+export interface StateType {
   list: CardListItemDataType[];
 }
 
 export type Effect = (
   action: AnyAction,
-  effects: EffectsCommandMap & { select: <T>(func: (state: IStateType) => T) => T },
+  effects: EffectsCommandMap & { select: <T>(func: (state: StateType) => T) => T },
 ) => void;
 
 export interface ModelType {
   namespace: string;
-  state: IStateType;
+  state: StateType;
   effects: {
     fetch: Effect;
   };
   reducers: {
-    queryList: Reducer<IStateType>;
+    queryList: Reducer<StateType>;
   };
 }
 

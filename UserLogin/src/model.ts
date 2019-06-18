@@ -1,11 +1,10 @@
-import { routerRedux } from 'dva/router';
-import { getPageQuery, setAuthority } from './utils/utils';
-import { fakeAccountLogin, getFakeCaptcha } from './service';
-import { Reducer } from 'redux';
+import { AnyAction, Reducer } from 'redux';
 import { EffectsCommandMap } from 'dva';
-import { AnyAction } from 'redux';
+import { routerRedux } from 'dva/router';
+import { fakeAccountLogin, getFakeCaptcha } from './service';
+import { getPageQuery, setAuthority } from './utils/utils';
 
-export interface IStateType {
+export interface StateType {
   status?: 'ok' | 'error';
   type?: string;
   currentAuthority?: 'user' | 'guest' | 'admin';
@@ -13,18 +12,18 @@ export interface IStateType {
 
 export type Effect = (
   action: AnyAction,
-  effects: EffectsCommandMap & { select: <T>(func: (state: IStateType) => T) => T },
+  effects: EffectsCommandMap & { select: <T>(func: (state: StateType) => T) => T },
 ) => void;
 
 export interface ModelType {
   namespace: string;
-  state: IStateType;
+  state: StateType;
   effects: {
     login: Effect;
     getCaptcha: Effect;
   };
   reducers: {
-    changeLoginStatus: Reducer<IStateType>;
+    changeLoginStatus: Reducer<StateType>;
   };
 }
 

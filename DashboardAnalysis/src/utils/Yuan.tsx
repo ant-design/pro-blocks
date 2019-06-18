@@ -6,7 +6,8 @@ import { yuan } from '../components/Charts';
 export default class Yuan extends React.Component<{
   children: React.ReactText;
 }> {
-  main: HTMLSpanElement | undefined | null;
+  main: HTMLSpanElement | undefined | null = null;
+
   componentDidMount() {
     this.renderToHtml();
   }
@@ -14,6 +15,7 @@ export default class Yuan extends React.Component<{
   componentDidUpdate() {
     this.renderToHtml();
   }
+
   renderToHtml = () => {
     const { children } = this.props;
     if (this.main) {

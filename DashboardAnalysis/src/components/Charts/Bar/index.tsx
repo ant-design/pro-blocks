@@ -1,26 +1,26 @@
+import { Axis, Chart, Geom, Tooltip } from 'bizcharts';
 import React, { Component } from 'react';
-import { Chart, Axis, Tooltip, Geom } from 'bizcharts';
-import Debounce from 'lodash-decorators/debounce';
-import Bind from 'lodash-decorators/bind';
+
+import Debounce from 'lodash.debounce';
 import autoHeight from '../autoHeight';
 import styles from '../index.less';
 
-export interface IBarProps {
+export interface BarProps {
   title: React.ReactNode;
   color?: string;
   padding?: [number, number, number, number];
   height?: number;
-  data: Array<{
+  data: {
     x: string;
     y: number;
-  }>;
+  }[];
   forceFit?: boolean;
   autoLabel?: boolean;
   style?: React.CSSProperties;
 }
 
 class Bar extends Component<
-  IBarProps,
+  BarProps,
   {
     autoHideXLabels: boolean;
   }
@@ -28,26 +28,12 @@ class Bar extends Component<
   state = {
     autoHideXLabels: false,
   };
-  root: HTMLDivElement | undefined;
-  node: HTMLDivElement | undefined;
 
-  componentDidMount() {
-    window.addEventListener('resize', this.resize, { passive: true });
-  }
+  root: HTMLDivElement | undefined = undefined;
 
-  componentWillUnmount() {
-    window.removeEventListener('resize', this.resize);
-  }
-  handleRoot = (n: HTMLDivElement) => {
-    this.root = n;
-  };
-  handleRef = (n: HTMLDivElement) => {
-    this.node = n;
-  };
+  node: HTMLDivElement | undefined = undefined;
 
-  @Bind()
-  @Debounce(400)
-  resize() {
+  resize = Debounce(() => {
     if (!this.node || !this.node.parentNode) {
       return;
     }
@@ -70,7 +56,23 @@ class Bar extends Component<
         autoHideXLabels: false,
       });
     }
+  }, 500);
+
+  componentDidMount() {
+    window.addEventListener('resize', this.resize, { passive: true });
   }
+
+  componentWillUnmount() {
+    window.removeEventListener('resize', this.resize);
+  }
+
+  handleRoot = (n: HTMLDivElement) => {
+    this.root = n;
+  };
+
+  handleRef = (n: HTMLDivElement) => {
+    this.node = n;
+  };
 
   render() {
     const {
@@ -115,8 +117,8 @@ class Bar extends Component<
             <Axis
               name="x"
               title={false}
-              label={autoHideXLabels ? false : {}}
-              tickLine={autoHideXLabels ? false : {}}
+              label={autoHideXLabels ? undefined : {}}
+              tickLine={autoHideXLabels ? undefined : {}}
             />
             <Axis name="y" min={0} />
             <Tooltip showTitle={false} crosshairs={false} />

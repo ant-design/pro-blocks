@@ -1,26 +1,26 @@
-import { queryBasicProfile } from './service';
-import { BasicGood } from './data';
-import { Reducer } from 'redux';
-import { EffectsCommandMap } from 'dva';
-import { AnyAction } from 'redux';
+import { AnyAction, Reducer } from 'redux';
 
-export interface IStateType {
+import { EffectsCommandMap } from 'dva';
+import { BasicGood } from './data.d';
+import { queryBasicProfile } from './service';
+
+export interface StateType {
   basicGoods: BasicGood[];
 }
 
 export type Effect = (
   action: AnyAction,
-  effects: EffectsCommandMap & { select: <T>(func: (state: IStateType) => T) => T },
+  effects: EffectsCommandMap & { select: <T>(func: (state: StateType) => T) => T },
 ) => void;
 
 export interface ModelType {
   namespace: string;
-  state: IStateType;
+  state: StateType;
   effects: {
     fetchBasic: Effect;
   };
   reducers: {
-    show: Reducer<IStateType>;
+    show: Reducer<StateType>;
   };
 }
 

@@ -1,15 +1,14 @@
-import React from 'react';
 import { Card } from 'antd';
-import classNames from 'classnames';
 import { CardProps } from 'antd/es/card';
-
+import React from 'react';
+import classNames from 'classnames';
 import styles from './index.less';
 
 type totalType = () => React.ReactNode;
 
 const renderTotal = (total?: number | totalType | React.ReactNode) => {
   if (!total) {
-    return;
+    return null;
   }
   let totalDom;
   switch (typeof total) {
@@ -25,7 +24,7 @@ const renderTotal = (total?: number | totalType | React.ReactNode) => {
   return totalDom;
 };
 
-export interface IChartCardProps extends CardProps {
+export interface ChartCardProps extends CardProps {
   title: React.ReactNode;
   action?: React.ReactNode;
   total?: React.ReactNode | number | (() => React.ReactNode | number);
@@ -35,7 +34,7 @@ export interface IChartCardProps extends CardProps {
   style?: React.CSSProperties;
 }
 
-class ChartCard extends React.Component<IChartCardProps> {
+class ChartCard extends React.Component<ChartCardProps> {
   renderContent = () => {
     const { contentHeight, title, avatar, action, total, footer, children, loading } = this.props;
     if (loading) {

@@ -1,16 +1,22 @@
+import { Button, Col, Form, Input, Row } from 'antd';
 import React, { Component } from 'react';
-import { Form, Input, Button, Row, Col } from 'antd';
-import omit from 'omit.js';
-import styles from './index.less';
-import ItemMap from './map';
-import LoginContext, { ILoginContext } from './LoginContext';
+
 import { FormComponentProps } from 'antd/es/form';
+import omit from 'omit.js';
+import ItemMap from './map';
+import LoginContext, { LoginContextProps } from './LoginContext';
+import styles from './index.less';
 
 type Omit<T, K extends keyof T> = Pick<T, Exclude<keyof T, K>>;
 
 export type WrappedLoginItemProps = Omit<LoginItemProps, 'form' | 'type' | 'updateActive'>;
 export type LoginItemKeyType = keyof typeof ItemMap;
-export type LoginItemType = { [K in keyof typeof ItemMap]: React.FC<WrappedLoginItemProps> };
+export interface LoginItemType {
+  UserName: React.FC<WrappedLoginItemProps>;
+  Password: React.FC<WrappedLoginItemProps>;
+  Mobile: React.FC<WrappedLoginItemProps>;
+  Captcha: React.FC<WrappedLoginItemProps>;
+}
 
 export interface LoginItemProps {
   name?: string;
@@ -23,7 +29,7 @@ export interface LoginItemProps {
   countDown?: number;
   getCaptchaButtonText?: string;
   getCaptchaSecondText?: string;
-  updateActive?: ILoginContext['updateActive'];
+  updateActive?: LoginContextProps['updateActive'];
   type?: string;
   defaultValue?: string;
   form?: FormComponentProps['form'];
@@ -43,7 +49,8 @@ class WrapFormItem extends Component<LoginItemProps, LoginItemState> {
     getCaptchaButtonText: 'captcha',
     getCaptchaSecondText: 'second',
   };
-  interval: number | undefined;
+
+  interval: number | undefined = undefined;
 
   constructor(props: LoginItemProps) {
     super(props);
@@ -51,6 +58,7 @@ class WrapFormItem extends Component<LoginItemProps, LoginItemState> {
       count: 0,
     };
   }
+
   componentDidMount() {
     const { updateActive, name = '' } = this.props;
     if (updateActive) {
@@ -77,7 +85,7 @@ class WrapFormItem extends Component<LoginItemProps, LoginItemState> {
 
   getFormItemOptions = ({ onChange, defaultValue, customProps = {}, rules }: LoginItemProps) => {
     const options: {
-      rules?: Array<any>;
+      rules?: any[];
       onChange?: LoginItemProps['onChange'];
       initialValue?: LoginItemProps['defaultValue'];
     } = {
@@ -171,18 +179,16 @@ Object.keys(ItemMap).forEach(key => {
   const item = ItemMap[key];
   LoginItem[key] = (props: LoginItemProps) => (
     <LoginContext.Consumer>
-      {context => {
-        return (
-          <WrapFormItem
-            customProps={item.props}
-            rules={item.rules}
-            {...props}
-            type={key}
-            {...context}
-            updateActive={context.updateActive}
-          />
-        );
-      }}
+      {context => (
+        <WrapFormItem
+          customProps={item.props}
+          rules={item.rules}
+          {...props}
+          type={key}
+          {...context}
+          updateActive={context.updateActive}
+        />
+      )}
     </LoginContext.Consumer>
   );
 });

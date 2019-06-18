@@ -1,12 +1,13 @@
-import React, { Component } from 'react';
 import { Form, Tabs } from 'antd';
+import React, { Component } from 'react';
+import { FormComponentProps } from 'antd/es/form';
 import classNames from 'classnames';
-import LoginItem, { LoginItemType, LoginItemProps } from './LoginItem';
+import LoginContext, { LoginContextProps } from './LoginContext';
+import LoginItem, { LoginItemProps } from './LoginItem';
+
+import LoginSubmit from './LoginSubmit';
 import LoginTab from './LoginTab';
 import styles from './index.less';
-import LoginContext, { ILoginContext } from './LoginContext';
-import { FormComponentProps } from 'antd/es/form';
-import LoginSubmit from './LoginSubmit';
 
 export interface LoginProps {
   defaultActiveKey?: string;
@@ -21,16 +22,22 @@ export interface LoginProps {
 interface LoginState {
   tabs?: string[];
   type?: string;
-  active?: { [key: string]: Array<any> };
+  active?: { [key: string]: any[] };
 }
 
 class Login extends Component<LoginProps, LoginState> {
   public static Tab = LoginTab;
+
   public static Submit = LoginSubmit;
+
   public static UserName: React.FunctionComponent<LoginItemProps>;
+
   public static Password: React.FunctionComponent<LoginItemProps>;
+
   public static Mobile: React.FunctionComponent<LoginItemProps>;
+
   public static Captcha: React.FunctionComponent<LoginItemProps>;
+
   static defaultProps = {
     className: '',
     defaultActiveKey: '',
@@ -61,7 +68,7 @@ class Login extends Component<LoginProps, LoginState> {
     );
   };
 
-  getContext: () => ILoginContext = () => {
+  getContext: () => LoginContextProps = () => {
     const { form } = this.props;
     const { tabs = [] } = this.state;
     return {
@@ -150,7 +157,7 @@ class Login extends Component<LoginProps, LoginState> {
   }
 }
 
-(Object.keys(LoginItem) as Array<keyof LoginItemType>).forEach(item => {
+(Object.keys(LoginItem) as (keyof LoginItemType)[]).forEach(item => {
   Login[item] = LoginItem[item];
 });
 

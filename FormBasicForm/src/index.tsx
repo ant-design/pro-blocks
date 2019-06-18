@@ -1,22 +1,23 @@
-import React, { Component } from 'react';
-import { connect } from 'dva';
-import { formatMessage, FormattedMessage } from 'umi-plugin-react/locale';
 import {
-  Form,
-  Input,
-  DatePicker,
-  Select,
   Button,
   Card,
+  DatePicker,
+  Form,
+  Icon,
+  Input,
   InputNumber,
   Radio,
-  Icon,
+  Select,
   Tooltip,
 } from 'antd';
-import { PageHeaderWrapper } from '@ant-design/pro-layout';
-import styles from './style.less';
-import { FormComponentProps } from 'antd/es/form';
+import { FormattedMessage, formatMessage } from 'umi-plugin-react/locale';
+import React, { Component } from 'react';
+
 import { Dispatch } from 'redux';
+import { FormComponentProps } from 'antd/es/form';
+import { PageHeaderWrapper } from '@ant-design/pro-layout';
+import { connect } from 'dva';
+import styles from './style.less';
 
 const FormItem = Form.Item;
 const { Option } = Select;

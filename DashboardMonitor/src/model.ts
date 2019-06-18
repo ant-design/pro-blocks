@@ -1,26 +1,26 @@
-import { queryTags } from './service';
-import { ITag } from './data';
-import { Reducer } from 'redux';
-import { EffectsCommandMap } from 'dva';
-import { AnyAction } from 'redux';
+import { AnyAction, Reducer } from 'redux';
 
-export interface IStateType {
-  tags: ITag[];
+import { EffectsCommandMap } from 'dva';
+import { TagType } from './data.d';
+import { queryTags } from './service';
+
+export interface StateType {
+  tags: TagType[];
 }
 
 export type Effect = (
   action: AnyAction,
-  effects: EffectsCommandMap & { select: <T>(func: (state: IStateType) => T) => T },
+  effects: EffectsCommandMap & { select: <T>(func: (state: StateType) => T) => T },
 ) => void;
 
 export interface ModelType {
   namespace: string;
-  state: IStateType;
+  state: StateType;
   effects: {
     fetchTags: Effect;
   };
   reducers: {
-    saveTags: Reducer<IStateType>;
+    saveTags: Reducer<StateType>;
   };
 }
 

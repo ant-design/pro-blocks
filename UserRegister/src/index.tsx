@@ -1,13 +1,14 @@
+import { Button, Col, Form, Input, Popover, Progress, Row, Select, message } from 'antd';
+import { FormattedMessage, formatMessage } from 'umi-plugin-react/locale';
 import React, { Component } from 'react';
-import { connect } from 'dva';
-import { formatMessage, FormattedMessage } from 'umi-plugin-react/locale';
-import Link from 'umi/link';
-import { Form, Input, message, Button, Select, Row, Col, Popover, Progress } from 'antd';
-import styles from './style.less';
+
 import { Dispatch } from 'redux';
-import { IStateType } from './model';
 import { FormComponentProps } from 'antd/es/form';
+import Link from 'umi/link';
+import { connect } from 'dva';
 import router from 'umi/router';
+import { StateType } from './model';
+import styles from './style.less';
 
 const FormItem = Form.Item;
 const { Option } = Select;
@@ -43,7 +44,7 @@ const passwordProgressMap: {
 
 interface BLOCK_NAME_CAMEL_CASEProps extends FormComponentProps {
   dispatch: Dispatch<any>;
-  BLOCK_NAME_CAMEL_CASE: IStateType;
+  BLOCK_NAME_CAMEL_CASE: StateType;
   submitting: boolean;
 }
 interface BLOCK_NAME_CAMEL_CASEState {
@@ -54,7 +55,7 @@ interface BLOCK_NAME_CAMEL_CASEState {
   prefix: string;
 }
 
-export interface IUserRegisterParams {
+export interface UserRegisterParams {
   mail: string;
   password: string;
   confirm: string;
@@ -68,7 +69,7 @@ export interface IUserRegisterParams {
     BLOCK_NAME_CAMEL_CASE,
     loading,
   }: {
-    BLOCK_NAME_CAMEL_CASE: IStateType;
+    BLOCK_NAME_CAMEL_CASE: StateType;
     loading: {
       effects: {
         [key: string]: string;
@@ -90,7 +91,8 @@ class PAGE_NAME_UPPER_CAMEL_CASE extends Component<
     help: '',
     prefix: '86',
   };
-  interval: number | undefined;
+
+  interval: number | undefined = undefined;
 
   componentDidUpdate() {
     const { BLOCK_NAME_CAMEL_CASE, form } = this.props;
@@ -109,6 +111,7 @@ class PAGE_NAME_UPPER_CAMEL_CASE extends Component<
   componentWillUnmount() {
     clearInterval(this.interval);
   }
+
   onGetCaptcha = () => {
     let count = 59;
     this.setState({ count });
@@ -201,7 +204,6 @@ class PAGE_NAME_UPPER_CAMEL_CASE extends Component<
     return value && value.length ? (
       <div className={styles[`progress-${passwordStatus}`]}>
         <Progress
-          default={passwordProgressMap[passwordStatus]}
           status={passwordProgressMap[passwordStatus]}
           className={styles.progress}
           strokeWidth={6}
@@ -243,9 +245,12 @@ class PAGE_NAME_UPPER_CAMEL_CASE extends Component<
           </FormItem>
           <FormItem help={help}>
             <Popover
-              getPopupContainer={node =>
-                node && node.parentNode ? (node.parentNode as HTMLElement) : node
-              }
+              getPopupContainer={node => {
+                if (node && node.parentNode) {
+                  return node.parentNode as HTMLElement;
+                }
+                return node;
+              }}
               content={
                 <div style={{ padding: '4px 0' }}>
                   {passwordStatusMap[this.getPasswordStatus()]}
