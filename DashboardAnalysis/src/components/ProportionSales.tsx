@@ -31,7 +31,9 @@ const ProportionSales = ({
         defaultMessage="The Proportion of Sales"
       />
     }
-    bodyStyle={{ padding: 24 }}
+    style={{
+      height: '100%',
+    }}
     extra={
       <div className={styles.salesCardExtra}>
         {dropdownGroup}
@@ -50,13 +52,8 @@ const ProportionSales = ({
         </div>
       </div>
     }
-    style={{ marginTop: 24 }}
   >
-    <div
-      style={{
-        minHeight: 380,
-      }}
-    >
+    <div>
       <h4 style={{ marginTop: 8, marginBottom: 32 }}>
         <FormattedMessage id="BLOCK_NAME.analysis.sales" defaultMessage="Sales" />
       </h4>

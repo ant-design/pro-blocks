@@ -1,7 +1,7 @@
 {
   "private": true,
   "scripts": {
-    "dev": "cross-env PAGES_PATH='DashboardMonitor/src' umi dev",
+    "dev": "cross-env PAGES_PATH='DashboardAnalysis/src' umi dev",
     "start": "umi dev",
     "lint-staged": "lint-staged",
     "lint": "npm run lint:js && npm run lint:style",

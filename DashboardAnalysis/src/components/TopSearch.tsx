@@ -64,9 +64,11 @@ const TopSearch = ({
       />
     }
     extra={dropdownGroup}
-    style={{ marginTop: 24 }}
+    style={{
+      height: '100%',
+    }}
   >
-    <Row gutter={68}>
+    <Row gutter={68} type="flex">
       <Col sm={12} xs={24} style={{ marginBottom: 24 }}>
         <NumberInfo
           subTitle={

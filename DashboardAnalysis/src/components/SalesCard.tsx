@@ -67,7 +67,7 @@ const SalesCard = ({
           tab={<FormattedMessage id="BLOCK_NAME.analysis.sales" defaultMessage="Sales" />}
           key="sales"
         >
-          <Row>
+          <Row type="flex">
             <Col xl={16} lg={12} md={12} sm={24} xs={24}>
               <div className={styles.salesBar}>
                 <Bar
