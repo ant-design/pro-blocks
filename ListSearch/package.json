@@ -25,7 +25,7 @@
   "devDependencies": {
     "umi": "^2.6.9",
     "umi-plugin-block-dev": "^1.0.0",
-    "umi-plugin-react": "^1.7.2"
+    "umi-plugin-react": "^1.8.4"
   },
   "license": "ISC",
   "blockConfig": {

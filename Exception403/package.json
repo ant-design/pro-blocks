@@ -16,7 +16,7 @@
     "dva": "^2.4.0",
     "react": "^16.6.3",
     "umi": "^2.6.8",
-    "umi-plugin-react": "^1.7.2",
+    "umi-plugin-react": "^1.8.4",
     "umi-request": "^1.0.4"
   },
   "devDependencies": {

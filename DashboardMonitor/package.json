@@ -26,7 +26,7 @@
     "redux": "^4.0.1",
     "umi": "^2.6.9",
     "umi-plugin-block-dev": "^1.0.0",
-    "umi-plugin-react": "^1.7.2",
+    "umi-plugin-react": "^1.8.4",
     "umi-request": "^1.0.0",
     "mockjs": "^1.0.1-beta3"
   },
