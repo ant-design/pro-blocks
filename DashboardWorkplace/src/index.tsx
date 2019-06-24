@@ -1,5 +1,5 @@
-import { Avatar, Card, Col, List, Row } from 'antd';
-import React, { PureComponent } from 'react';
+import { Avatar, Card, Col, List, Skeleton, Row, Statistic } from 'antd';
+import React, { Component } from 'react';
 
 import { Dispatch } from 'redux';
 import Link from 'umi/link';
@@ -50,6 +50,44 @@ interface BLOCK_NAME_CAMEL_CASEProps {
   activitiesLoading: boolean;
 }
 
+const PageHeaderContent: React.FC<{ currentUser: CurrentUser }> = ({ currentUser }) => {
+  const loading = currentUser && Object.keys(currentUser).length;
+  if (!loading) {
+    return <Skeleton avatar paragraph={{ rows: 1 }} active />;
+  }
+  return (
+    <div className={styles.pageHeaderContent}>
+      <div className={styles.avatar}>
+        <Avatar size="large" src={currentUser.avatar} />
+      </div>
+      <div className={styles.content}>
+        <div className={styles.contentTitle}>
+          早安，
+          {currentUser.name}
+          ，祝你开心每一天！
+        </div>
+        <div>
+          {currentUser.title} |{currentUser.group}
+        </div>
+      </div>
+    </div>
+  );
+};
+
+const ExtraContent: React.FC<{}> = () => (
+  <div className={styles.extraContent}>
+    <div className={styles.statItem}>
+      <Statistic title="项目数" value={56} />
+    </div>
+    <div className={styles.statItem}>
+      <Statistic title="团队内排名" value={8} suffix="/ 24" />
+    </div>
+    <div className={styles.statItem}>
+      <Statistic title="项目访问" value={2223} />
+    </div>
+  </div>
+);
+
 @connect(
   ({
     BLOCK_NAME_CAMEL_CASE: { currentUser, projectNotice, activities, radarData },
@@ -67,7 +105,7 @@ interface BLOCK_NAME_CAMEL_CASEProps {
     activitiesLoading: loading.effects['BLOCK_NAME_CAMEL_CASE/fetchActivitiesList'],
   }),
 )
-class PAGE_NAME_UPPER_CAMEL_CASE extends PureComponent<BLOCK_NAME_CAMEL_CASEProps> {
+class PAGE_NAME_UPPER_CAMEL_CASE extends Component<BLOCK_NAME_CAMEL_CASEProps> {
   componentDidMount() {
     const { dispatch } = this.props;
     dispatch({
@@ -124,46 +162,11 @@ class PAGE_NAME_UPPER_CAMEL_CASE extends PureComponent<BLOCK_NAME_CAMEL_CASEProp
       radarData,
     } = this.props;
 
-    const pageHeaderContent =
-      currentUser && Object.keys(currentUser).length ? (
-        <div className={styles.pageHeaderContent}>
-          <div className={styles.avatar}>
-            <Avatar size="large" src={currentUser.avatar} />
-          </div>
-          <div className={styles.content}>
-            <div className={styles.contentTitle}>
-              早安，
-              {currentUser.name}
-              ，祝你开心每一天！
-            </div>
-            <div>
-              {currentUser.title} |{currentUser.group}
-            </div>
-          </div>
-        </div>
-      ) : null;
-
-    const extraContent = (
-      <div className={styles.extraContent}>
-        <div className={styles.statItem}>
-          <p>项目数</p>
-          <p>56</p>
-        </div>
-        <div className={styles.statItem}>
-          <p>团队内排名</p>
-          <p>
-            8<span> / 24</span>
-          </p>
-        </div>
-        <div className={styles.statItem}>
-          <p>项目访问</p>
-          <p>2,223</p>
-        </div>
-      </div>
-    );
-
     return (
-      <PageHeaderWrapper content={pageHeaderContent} extraContent={extraContent}>
+      <PageHeaderWrapper
+        content={<PageHeaderContent currentUser={currentUser} />}
+        extraContent={<ExtraContent />}
+      >
         <Row gutter={24}>
           <Col xl={16} lg={24} md={24} sm={24} xs={24}>
             <Card

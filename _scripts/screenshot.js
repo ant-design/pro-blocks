@@ -1,4 +1,3 @@
-
 const { spawn } = require('child_process');
 const puppeteer = require('puppeteer');
 const { join, dirname } = require('path');
@@ -42,19 +41,23 @@ const startServer = async path => {
   });
 };
 
-const autoScroll = page => page.evaluate(() => new Promise((resolve, reject) => {
-      let totalHeight = 0;
-      const distance = 100;
-      var timer = setInterval(() => {
-        const { scrollHeight } = document.body;
-        window.scrollBy(0, distance);
-        totalHeight += distance;
-        if (totalHeight >= scrollHeight) {
-          clearInterval(timer);
-          resolve();
-        }
-      }, 100);
-    }));
+const autoScroll = page =>
+  page.evaluate(
+    () =>
+      new Promise((resolve, reject) => {
+        let totalHeight = 0;
+        const distance = 100;
+        var timer = setInterval(() => {
+          const { scrollHeight } = document.body;
+          window.scrollBy(0, distance);
+          totalHeight += distance;
+          if (totalHeight >= scrollHeight) {
+            clearInterval(timer);
+            resolve();
+          }
+        }, 100);
+      }),
+  );
 
 const getImage = async (page, path) => {
   kill(env.PORT || 8000);
@@ -102,7 +105,11 @@ const getAllFile = async () => {
       return false;
     }
     if (stat.isDirectory()) {
-      return true;
+      const havePackage = fs.existsSync(join(itemPath, 'package.json'));
+
+      if (havePackage) {
+        return true;
+      }
     }
     return false;
   });
@@ -114,7 +121,7 @@ getAllFile().then(async dirList => {
   const loopGetImage = async index => {
     try {
       console.log(`install ${dirList[index]} dependencies`);
-      await execa('yarn', ['install', `--registry=${registry}`], {
+      await execa('yarn', ['install', `--registry=${registry}`, '--force'], {
         cwd: join(__dirname, `../${dirList[index]}`),
       });
       await getImage(page, dirList[index]);

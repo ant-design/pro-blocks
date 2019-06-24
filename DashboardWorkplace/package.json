@@ -19,10 +19,10 @@
     "prop-types": "^15.5.10",
     "react": "^16.6.3",
     "redux": "^4.0.1",
+    "umi": "^2.6.9",
     "umi-request": "^1.0.0"
   },
   "devDependencies": {
-    "umi": "^2.6.9",
     "umi-plugin-block-dev": "^1.0.0"
   },
   "license": "MIT",
