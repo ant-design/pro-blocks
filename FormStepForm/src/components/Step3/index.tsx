@@ -82,4 +82,4 @@ const Step3: React.FC<Step3Props> = props => {
 
 export default connect(({ BLOCK_NAME_CAMEL_CASE }: { BLOCK_NAME_CAMEL_CASE: StateType }) => ({
   data: BLOCK_NAME_CAMEL_CASE.step,
-}))((Step3));
+}))(Step3);
