@@ -80,4 +80,7 @@ const Step3: React.FC<Step3Props> = props => {
   );
 };
 
-export default Step3;
+
+export default connect(({ BLOCK_NAME_CAMEL_CASE }: { BLOCK_NAME_CAMEL_CASE: StateType }) => ({
+  data: BLOCK_NAME_CAMEL_CASE.step,
+}))((Step3));
