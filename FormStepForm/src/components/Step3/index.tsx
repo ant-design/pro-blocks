@@ -1,7 +1,7 @@
 import { Button, Col, Row } from 'antd';
 import React, { Fragment } from 'react';
-
 import { Dispatch } from 'redux';
+import { connect } from 'dva';
 import { StateType } from '../../model';
 import Result from '../Result';
 import styles from './index.less';
