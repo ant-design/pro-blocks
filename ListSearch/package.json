@@ -20,10 +20,10 @@
     "numeral": "^2.0.6",
     "nzh": "^1.0.3",
     "react": "^16.6.3",
-    "umi-request": "^1.0.0"
+    "umi-request": "^1.0.0",
+    "umi": "^2.6.9"
   },
   "devDependencies": {
-    "umi": "^2.6.9",
     "umi-plugin-block-dev": "^1.0.0",
     "umi-plugin-react": "^1.8.4"
   },

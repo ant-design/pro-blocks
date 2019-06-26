@@ -3,19 +3,14 @@ export interface TagType {
   label: string;
 }
 
-export interface ProvinceType {
-  label: string;
-  key: string;
-}
-
-export interface CityType {
-  label: string;
-  key: string;
+export interface GeographicItemType {
+  name: string;
+  id: string;
 }
 
 export interface GeographicType {
-  province: ProvinceType;
-  city: CityType;
+  province: GeographicItemType;
+  city: GeographicItemType;
 }
 
 export interface NoticeType {

@@ -1,7 +1,7 @@
 {
   "private": true,
   "scripts": {
-    "dev": "cross-env PAGES_PATH='FormStepForm/src' umi dev",
+    "dev": "cross-env PAGES_PATH='AccountCenter/src' umi dev",
     "start": "umi dev",
     "lint-staged": "lint-staged",
     "lint": "npm run lint:js && npm run lint:style",
@@ -30,7 +30,11 @@
     "@types/react-dom": "^16.8.4",
     "cross-env": "^5.2.0",
     "numeral": "^2.0.6",
-    "react-dom": "^16.8.6"
+    "react-dom": "^16.8.6",
+    "umi": "^2.6.17",
+    "umi-plugin-block-dev": "^2.1.11",
+    "umi-plugin-react": "^1.8.4",
+    "umi-request": "^1.0.0"
   },
   "optionalDependencies": {
     "puppeteer": "^1.17.0"
@@ -53,11 +57,7 @@
     "lint-staged": "^8.1.0",
     "prettier": "1.15.2",
     "stylelint": "^10.0.1",
-    "typescript": "^3.5.1",
-    "umi": "^2.6.17",
-    "umi-plugin-block-dev": "^2.1.11",
-    "umi-plugin-react": "^1.8.4",
-    "umi-request": "^1.0.0"
+    "typescript": "^3.5.1"
   },
   "peerDependencies": {
     "antd": "^3.17.0"

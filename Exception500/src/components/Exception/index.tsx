@@ -1,8 +1,8 @@
 import React, { createElement } from 'react';
-
 import { Button } from 'antd';
 import Link from 'umi/link';
 import classNames from 'classnames';
+
 import config from './typeConfig';
 import styles from './index.less';
 

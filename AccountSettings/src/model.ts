@@ -1,12 +1,12 @@
 import { AnyAction, Reducer } from 'redux';
 import { EffectsCommandMap } from 'dva';
-import { CityType, CurrentUser, ProvinceType } from './data.d';
+import { CurrentUser, GeographicItemType } from './data.d';
 import { queryCity, queryCurrent, queryProvince, query as queryUsers } from './service';
 
 export interface ModalState {
   currentUser?: Partial<CurrentUser>;
-  province?: ProvinceType[];
-  city?: CityType[];
+  province?: GeographicItemType[];
+  city?: GeographicItemType[];
   isLoading?: boolean;
 }
 

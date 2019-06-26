@@ -3,7 +3,7 @@ import { Select, Spin } from 'antd';
 
 import { Dispatch } from 'redux';
 import { connect } from 'dva';
-import { CityType, ProvinceType } from '../data.d';
+import { GeographicItemType } from '../data.d';
 import styles from './GeographicView.less';
 
 const { Option } = Select;
@@ -19,8 +19,8 @@ const nullSelectItem: SelectItem = {
 
 interface GeographicViewProps {
   dispatch?: Dispatch<any>;
-  province?: ProvinceType[];
-  city?: CityType[];
+  province?: GeographicItemType[];
+  city?: GeographicItemType[];
   value?: {
     province: SelectItem;
     city: SelectItem;
@@ -35,8 +35,8 @@ interface GeographicViewProps {
     loading,
   }: {
     BLOCK_NAME_CAMEL_CASE: {
-      province: ProvinceType[];
-      city: CityType[];
+      province: GeographicItemType[];
+      city: GeographicItemType[];
     };
     loading: any;
   }) => {
@@ -87,7 +87,7 @@ class GeographicView extends Component<GeographicViewProps> {
     return [];
   };
 
-  getOption = (list: CityType[] | ProvinceType[]) => {
+  getOption = (list: GeographicItemType[]) => {
     if (!list || list.length < 1) {
       return (
         <Option key={0} value={0}>
@@ -95,9 +95,9 @@ class GeographicView extends Component<GeographicViewProps> {
         </Option>
       );
     }
-    return (list as CityType[]).map(item => (
-      <Option key={item.key} value={item.key}>
-        {item.label}
+    return list.map(item => (
+      <Option key={item.id} value={item.id}>
+        {item.name}
       </Option>
     ));
   };

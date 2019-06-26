@@ -2,13 +2,14 @@
   "name": "@umi-block/user-register",
   "version": "0.0.1",
   "description": "UserRegister",
-  "main": "src/index.js",
-  "scripts": {
-    "dev": "umi dev"
-  },
   "repository": {
     "type": "git",
     "url": "https://github.com/umijs/umi-blocks/ant-design-pro/userregister"
+  },
+  "license": "MIT",
+  "main": "src/index.js",
+  "scripts": {
+    "dev": "umi dev"
   },
   "dependencies": {
     "antd": "^3.16.3",
@@ -18,14 +19,13 @@
     "nzh": "^1.0.3",
     "react": "^16.6.3",
     "redux": "^4.0.1",
-    "umi-request": "^1.0.0",
-    "umi-plugin-react": "^1.8.4"
+    "umi": "^2.6.9",
+    "umi-plugin-react": "^1.8.4",
+    "umi-request": "^1.0.0"
   },
   "devDependencies": {
-    "umi": "^2.6.9",
     "umi-plugin-block-dev": "^1.0.0"
   },
-  "license": "MIT",
   "blockConfig": {
     "specVersion": "0.1"
   }

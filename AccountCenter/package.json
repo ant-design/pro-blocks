@@ -20,10 +20,10 @@
     "react": "^16.6.3",
     "react-router": "^4.3.1",
     "redux": "^4.0.1",
-    "umi-request": "^1.0.0"
+    "umi-request": "^1.0.0",
+    "umi": "^2.6.9"
   },
   "devDependencies": {
-    "umi": "^2.6.9",
     "umi-plugin-block-dev": "^1.0.0",
     "umi-plugin-react": "^1.8.4"
   },
