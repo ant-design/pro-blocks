@@ -39,7 +39,7 @@ class LoginTab extends Component<LoginTabProps> {
   }
 }
 
-const WrapContext: React.SFC<TabPaneProps> & {
+const WrapContext: React.FC<TabPaneProps> & {
   typeName: string;
 } = props => (
   <LoginContext.Consumer>

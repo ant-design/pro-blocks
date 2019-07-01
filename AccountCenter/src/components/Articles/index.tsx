@@ -13,7 +13,7 @@ import styles from './index.less';
 class Articles extends Component<Partial<ModalState>> {
   render() {
     const { list } = this.props;
-    const IconText: React.SFC<{
+    const IconText: React.FC<{
       type: string;
       text: React.ReactNode;
     }> = ({ type, text }) => (

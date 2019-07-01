@@ -7,7 +7,7 @@ export interface FieldProps {
   style?: React.CSSProperties;
 }
 
-const Field: React.SFC<FieldProps> = ({ label, value, ...rest }) => (
+const Field: React.FC<FieldProps> = ({ label, value, ...rest }) => (
   <div className={styles.field} {...rest}>
     <span className={styles.label}>{label}</span>
     <span className={styles.number}>{value}</span>

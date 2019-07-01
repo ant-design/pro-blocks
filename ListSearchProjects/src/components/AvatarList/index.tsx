@@ -23,14 +23,14 @@ export interface AvatarListProps {
   children: React.ReactElement<AvatarItemProps> | React.ReactElement<AvatarItemProps>[];
 }
 
-const avatarSizeToClassName = (size?: SizeType) =>
+const avatarSizeToClassName = (size?: SizeType | 'mini') =>
   classNames(styles.avatarItem, {
     [styles.avatarItemLarge]: size === 'large',
     [styles.avatarItemSmall]: size === 'small',
     [styles.avatarItemMini]: size === 'mini',
   });
 
-const Item: React.SFC<AvatarItemProps> = ({ src, size, tips, onClick = () => {} }) => {
+const Item: React.FC<AvatarItemProps> = ({ src, size, tips, onClick = () => {} }) => {
   const cls = avatarSizeToClassName(size);
 
   return (
@@ -46,7 +46,7 @@ const Item: React.SFC<AvatarItemProps> = ({ src, size, tips, onClick = () => {} 
   );
 };
 
-const AvatarList: React.SFC<AvatarListProps> & { Item: typeof Item } = ({
+const AvatarList: React.FC<AvatarListProps> & { Item: typeof Item } = ({
   children,
   size,
   maxLength = 5,

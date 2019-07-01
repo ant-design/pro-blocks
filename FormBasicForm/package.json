@@ -12,7 +12,7 @@
   },
   "dependencies": {
     "@ant-design/pro-layout": "^4.0.5",
-    "antd": "^3.16.3",
+    "antd": "^3.20.0",
     "dva": "^2.4.0",
     "react": "^16.6.3",
     "redux": "^4.0.1",

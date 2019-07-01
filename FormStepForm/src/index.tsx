@@ -1,7 +1,7 @@
 import { Card, Steps } from 'antd';
-import React, { Component, Fragment } from 'react';
+import React, { Component } from 'react';
 
-import { PageHeaderWrapper } from '@ant-design/pro-layout';
+import { PageHeaderWrapper, RouteContext } from '@ant-design/pro-layout';
 import { connect } from 'dva';
 import { StateType } from './model';
 import Step1 from './components/Step1';
@@ -46,14 +46,14 @@ class PAGE_NAME_UPPER_CAMEL_CASE extends Component<PAGE_NAME_UPPER_CAMEL_CASEPro
     return (
       <PageHeaderWrapper content="将一个冗长或用户不熟悉的表单任务分成多个步骤，指导用户完成。">
         <Card bordered={false}>
-          <Fragment>
+          <>
             <Steps current={currentStep} className={styles.steps}>
               <Step title="填写转账信息" />
               <Step title="确认转账信息" />
               <Step title="完成" />
             </Steps>
             {stepComponent}
-          </Fragment>
+          </>
         </Card>
       </PageHeaderWrapper>
     );

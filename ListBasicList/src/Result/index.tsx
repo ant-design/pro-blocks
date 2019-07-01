@@ -13,7 +13,7 @@ export interface ResultProps {
   type: 'success' | 'error';
 }
 
-const Result: React.SFC<ResultProps> = ({
+const Result: React.FC<ResultProps> = ({
   className,
   type,
   title,

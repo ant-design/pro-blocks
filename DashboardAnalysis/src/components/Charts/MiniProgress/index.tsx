@@ -11,7 +11,7 @@ export interface MiniProgressProps {
   style?: React.CSSProperties;
 }
 
-const MiniProgress: React.SFC<MiniProgressProps> = ({
+const MiniProgress: React.FC<MiniProgressProps> = ({
   targetLabel,
   target,
   color = 'rgb(19, 194, 194)',

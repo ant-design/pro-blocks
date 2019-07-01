@@ -30,7 +30,7 @@ export interface TagSelectProps {
   children?: React.ReactElement<TagSelectOption> | React.ReactElement<TagSelectOption>[];
 }
 
-const TagSelectOption: React.SFC<TagSelectOptionProps> & {
+const TagSelectOption: React.FC<TagSelectOptionProps> & {
   isTagSelectOption: boolean;
 } = ({ children, checked, onChange, value }) => (
   <CheckableTag

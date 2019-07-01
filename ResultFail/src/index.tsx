@@ -1,12 +1,11 @@
-import { Button, Card, Icon } from 'antd';
+import { Button, Card, Icon, Result } from 'antd';
 import { FormattedMessage, formatMessage } from 'umi-plugin-react/locale';
 import React, { Fragment } from 'react';
 
 import { GridContent } from '@ant-design/pro-layout';
-import Result from './Result';
 import styles from './index.less';
 
-const extra = (
+const Content = (
   <Fragment>
     <div className={styles.title}>
       <FormattedMessage
@@ -39,23 +38,22 @@ const extra = (
   </Fragment>
 );
 
-const actions = (
-  <Button type="primary">
-    <FormattedMessage id="BLOCK_NAME.error.btn-text" defaultMessage="Return to modify" />
-  </Button>
-);
-
 export default () => (
   <GridContent>
     <Card bordered={false}>
       <Result
-        type="error"
+        status="error"
         title={formatMessage({ id: 'BLOCK_NAME.error.title' })}
-        description={formatMessage({ id: 'BLOCK_NAME.error.description' })}
-        extra={extra}
-        actions={actions}
+        subTitle={formatMessage({ id: 'BLOCK_NAME.error.description' })}
+        extra={
+          <Button type="primary">
+            <FormattedMessage id="BLOCK_NAME.error.btn-text" defaultMessage="Return to modify" />
+          </Button>
+        }
         style={{ marginTop: 48, marginBottom: 16 }}
-      />
+      >
+        {Content}
+      </Result>
     </Card>
   </GridContent>
 );

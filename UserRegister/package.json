@@ -12,7 +12,7 @@
     "dev": "umi dev"
   },
   "dependencies": {
-    "antd": "^3.16.3",
+    "antd": "^3.20.0",
     "dva": "^2.4.0",
     "hash.js": "^1.1.5",
     "moment": "^2.22.2",

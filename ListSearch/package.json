@@ -12,7 +12,7 @@
   },
   "dependencies": {
     "@ant-design/pro-layout": "^4.5.5",
-    "antd": "^3.16.3",
+    "antd": "^3.20.0",
     "classnames": "^2.2.6",
     "dva": "^2.4.0",
     "hash.js": "^1.1.5",
