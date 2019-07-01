@@ -12,24 +12,21 @@
     "dev": "umi dev"
   },
   "dependencies": {
-    "@ant-design/pro-layout": "^4.5.5",
     "@antv/data-set": "^0.10.2",
-    "antd": "^3.20.0",
     "bizcharts": "^3.5.3-beta.0",
     "bizcharts-plugin-slider": "^2.1.1-beta.1",
     "dva": "^2.4.0",
     "gg-editor": "^2.0.2",
     "moment": "^2.22.2",
     "numeral": "^2.0.6",
-    "react": "^16.6.3",
     "react-fittext": "^1.0.0",
-    "umi-plugin-react": "^1.8.4",
     "umi-request": "^1.0.0"
   },
+  "peerDependencies": {
+    "@ant-design/pro-layout": "^4.5.5"
+  },
   "devDependencies": {
-    "@types/numeral": "^0.0.25",
-    "umi": "^2.6.9",
-    "umi-plugin-block-dev": "^1.1.0"
+    "@types/numeral": "^0.0.25"
   },
   "blockConfig": {
     "specVersion": "0.1"

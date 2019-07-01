@@ -2,15 +2,15 @@
   "private": true,
   "scripts": {
     "dev": "cross-env PAGES_PATH='ListBasicList/src' umi dev",
-    "start": "umi dev",
-    "lint-staged": "lint-staged",
+    "format-imports": "import-sort --write '**/*.{js,jsx,ts,tsx}'",
     "lint": "npm run lint:js && npm run lint:style",
+    "lint-staged": "lint-staged",
     "lint-staged:js": "eslint --ext .js,.jsx,.ts,.tsx",
     "lint:fix": "eslint --fix --cache --ext .js,.jsx,.ts,.tsx --format=pretty  ./ && npm run lint:style",
     "lint:js": "eslint --cache --ext .js,.jsx,.ts,.tsx --format=pretty ./",
     "lint:style": "stylelint --fix '**/*.less' --syntax less",
     "prettier": "prettier -c --write **/*",
-    "format-imports": "import-sort --write '**/*.{js,jsx,ts,tsx}'"
+    "start": "umi dev"
   },
   "husky": {
     "hooks": {
@@ -31,14 +31,15 @@
     "antd": "3.20.0",
     "cross-env": "^5.2.0",
     "numeral": "^2.0.6",
+    "react": "^16.8.6",
     "react-dom": "^16.8.6",
     "umi": "^2.6.17",
-    "umi-plugin-block-dev": "^2.1.11",
-    "umi-plugin-react": "^1.8.4",
+    "umi-plugin-block-dev": "2.2.0-beta.0",
+    "umi-plugin-react": "^1.9.7",
     "umi-request": "^1.0.0"
   },
-  "optionalDependencies": {
-    "puppeteer": "^1.17.0"
+  "peerDependencies": {
+    "@ant-design/pro-layout": "^4.5.5"
   },
   "devDependencies": {
     "@types/classnames": "^2.2.7",
@@ -62,6 +63,9 @@
   },
   "peerDependencies": {
     "antd": "^3.17.0"
+  },
+  "optionalDependencies": {
+    "puppeteer": "^1.17.0"
   },
   "checkFiles": [
     "**/*.ts*",

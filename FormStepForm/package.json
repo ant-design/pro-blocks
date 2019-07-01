@@ -2,30 +2,25 @@
   "name": "@umi-block/step-form",
   "version": "0.0.1",
   "description": "StepForm",
-  "main": "src/index.js",
-  "scripts": {
-    "dev": "umi dev"
-  },
   "repository": {
     "type": "git",
     "url": "https://github.com/umijs/umi-blocks/ant-design-pro/stepform"
   },
+  "license": "ISC",
+  "main": "src/index.js",
+  "scripts": {
+    "dev": "umi dev"
+  },
   "dependencies": {
-    "@ant-design/pro-layout": "^4.5.5",
-    "antd": "^3.20.0",
     "classnames": "^2.2.6",
     "dva": "^2.4.0",
     "nzh": "^1.0.3",
-    "react": "^16.6.3",
     "redux": "^4.0.1",
     "umi-request": "^1.0.0"
   },
-  "devDependencies": {
-    "umi": "^2.6.9",
-    "umi-plugin-block-dev": "^1.0.0",
-    "umi-plugin-react": "^1.8.4"
+  "peerDependencies": {
+    "@ant-design/pro-layout": "^4.5.5"
   },
-  "license": "ISC",
   "blockConfig": {
     "specVersion": "0.1"
   }

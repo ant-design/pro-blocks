@@ -2,27 +2,20 @@
   "name": "@pro-blocks/exception-404",
   "version": "0.0.1",
   "description": "Exception404",
-  "main": "src/index.js",
-  "scripts": {
-    "dev": "umi dev"
-  },
   "repository": {
     "type": "git",
     "url": "https://github.com/ant-design/pro-blocks/tree/master/Exception404"
   },
+  "license": "MIT",
+  "main": "src/index.js",
+  "scripts": {
+    "dev": "umi dev"
+  },
   "dependencies": {
-    "antd": "^3.20.0",
     "classnames": "^2.2.6",
     "dva": "^2.4.0",
-    "react": "^16.6.3",
-    "umi-plugin-react": "^1.8.4",
-    "umi-request": "^1.0.8",
-    "umi": "^2.6.9"
+    "umi-request": "^1.0.8"
   },
-  "devDependencies": {
-    "umi-plugin-block-dev": "^1.0.0"
-  },
-  "license": "MIT",
   "blockConfig": {
     "specVersion": "0.1"
   }
