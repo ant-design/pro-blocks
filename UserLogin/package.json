@@ -2,32 +2,27 @@
   "name": "@umi-block/user-login",
   "version": "0.0.1",
   "description": "UserLogin",
-  "main": "src/index.js",
-  "scripts": {
-    "dev": "umi dev"
-  },
   "repository": {
     "type": "git",
     "url": "https://github.com/umijs/umi-blocks/ant-design-pro/userlogin"
   },
+  "license": "MIT",
+  "main": "src/index.js",
+  "scripts": {
+    "dev": "umi dev"
+  },
   "dependencies": {
-    "antd": "^3.16.3",
     "classnames": "^2.2.6",
     "dva": "^2.4.0",
     "moment": "^2.22.2",
     "omit.js": "^1.0.2",
     "qs": "^6.7.0",
-    "react": "^16.6.3",
     "redux": "^4.0.1",
-    "umi-plugin-react": "^1.8.4",
-    "umi": "^2.6.9",
     "umi-request": "^1.0.0"
   },
   "devDependencies": {
-    "@types/qs": "^6.5.3",
-    "umi-plugin-block-dev": "^1.0.0"
+    "@types/qs": "^6.5.3"
   },
-  "license": "MIT",
   "blockConfig": {
     "specVersion": "0.1"
   }

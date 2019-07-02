@@ -13,15 +13,8 @@
   },
   "dependencies": {
     "@types/react-router": "^5.0.2",
-    "antd": "^3.16.3",
     "classnames": "^2.2.6",
-    "react": "^16.6.3",
-    "react-router": "^4.3.1",
-    "umi": "^2.6.9",
-    "umi-plugin-react": "^1.8.4"
-  },
-  "devDependencies": {
-    "umi-plugin-block-dev": "^1.0.0"
+    "react-router": "^4.3.1"
   },
   "blockConfig": {
     "specVersion": "0.1"

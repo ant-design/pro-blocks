@@ -57,7 +57,7 @@ class Applications extends Component<Partial<ModalState>> {
         </Menu.Item>
       </Menu>
     );
-    const CardInfo: React.SFC<{
+    const CardInfo: React.FC<{
       activeUser: React.ReactNode;
       newUser: React.ReactNode;
     }> = ({ activeUser, newUser }) => (

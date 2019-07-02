@@ -81,7 +81,7 @@ class PAGE_NAME_UPPER_CAMEL_CASE extends Component<PAGE_NAME_UPPER_CAMEL_CASEPro
       },
     ];
 
-    const IconText: React.SFC<{
+    const IconText: React.FC<{
       type: string;
       text: React.ReactNode;
     }> = ({ type, text }) => (

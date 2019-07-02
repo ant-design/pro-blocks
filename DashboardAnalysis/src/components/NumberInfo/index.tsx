@@ -14,7 +14,7 @@ export interface NumberInfoProps {
   suffix?: string;
   style?: React.CSSProperties;
 }
-const NumberInfo: React.SFC<NumberInfoProps> = ({
+const NumberInfo: React.FC<NumberInfoProps> = ({
   theme,
   title,
   subTitle,

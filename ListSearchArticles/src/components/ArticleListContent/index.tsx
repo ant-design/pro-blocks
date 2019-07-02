@@ -13,7 +13,7 @@ interface ArticleListContentProps {
   };
 }
 
-const ArticleListContent: React.SFC<ArticleListContentProps> = ({
+const ArticleListContent: React.FC<ArticleListContentProps> = ({
   data: { content, updatedAt, avatar, owner, href },
 }) => (
   <div className={styles.listContent}>

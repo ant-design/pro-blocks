@@ -65,7 +65,7 @@ class PAGE_NAME_UPPER_CAMEL_CASE extends Component<PAGE_NAME_UPPER_CAMEL_CASEPro
     } = this.props;
     const { getFieldDecorator } = form;
 
-    const CardInfo: React.SFC<{
+    const CardInfo: React.FC<{
       activeUser: React.ReactNode;
       newUser: React.ReactNode;
     }> = ({ activeUser, newUser }) => (

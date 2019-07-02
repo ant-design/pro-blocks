@@ -11,7 +11,7 @@ export interface TrendProps {
   className?: string;
 }
 
-const Trend: React.SFC<TrendProps> = ({
+const Trend: React.FC<TrendProps> = ({
   colorful = true,
   reverseColor = false,
   flag,

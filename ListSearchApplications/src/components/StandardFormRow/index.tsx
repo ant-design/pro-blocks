@@ -10,7 +10,7 @@ interface StandardFormRowProps {
   style?: React.CSSProperties;
 }
 
-const StandardFormRow: React.SFC<StandardFormRowProps> = ({
+const StandardFormRow: React.FC<StandardFormRowProps> = ({
   title,
   children,
   last,

@@ -12,7 +12,7 @@ interface ToolbarButtonProps {
   icon?: string;
   text?: string;
 }
-const ToolbarButton: React.SFC<ToolbarButtonProps> = props => {
+const ToolbarButton: React.FC<ToolbarButtonProps> = props => {
   const { command, icon, text } = props;
 
   return (

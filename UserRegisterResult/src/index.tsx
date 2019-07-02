@@ -1,10 +1,9 @@
 import { FormattedMessage, formatMessage } from 'umi-plugin-react/locale';
-import { Button } from 'antd';
+import { Button, Result } from 'antd';
 import Link from 'umi/link';
 import React from 'react';
 import { RouteChildrenProps } from 'react-router';
 
-import Result from './Result';
 import styles from './style.less';
 
 const actions = (
@@ -22,10 +21,10 @@ const actions = (
   </div>
 );
 
-const PAGE_NAME_UPPER_CAMEL_CASE: React.SFC<RouteChildrenProps> = ({ location }) => (
+const PAGE_NAME_UPPER_CAMEL_CASE: React.FC<RouteChildrenProps> = ({ location }) => (
   <Result
     className={styles.registerResult}
-    type="success"
+    status="success"
     title={
       <div className={styles.title}>
         <FormattedMessage
@@ -34,9 +33,8 @@ const PAGE_NAME_UPPER_CAMEL_CASE: React.SFC<RouteChildrenProps> = ({ location })
         />
       </div>
     }
-    description={formatMessage({ id: 'BLOCK_NAME.register-result.activation-email' })}
-    actions={actions}
-    style={{ marginTop: 56 }}
+    subTitle={formatMessage({ id: 'BLOCK_NAME.register-result.activation-email' })}
+    extra={actions}
   />
 );
 

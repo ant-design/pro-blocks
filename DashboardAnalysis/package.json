@@ -12,27 +12,24 @@
     "dev": "umi dev"
   },
   "dependencies": {
-    "@ant-design/pro-layout": "^4.5.5",
     "@antv/data-set": "^0.10.2",
-    "antd": "^3.16.3",
+    "@types/lodash.debounce": "^4.0.6",
     "bizcharts": "^3.5.3-beta.0",
     "bizcharts-plugin-slider": "^2.1.1-beta.1",
     "classnames": "^2.2.6",
-    "dva": "^2.4.0", 
-    "@types/lodash.debounce": "^4.0.6",
+    "dva": "^2.4.0",
     "lodash.debounce": "^4.0.8",
     "moment": "^2.22.2",
     "numeral": "^2.0.6",
-    "react": "^16.6.3",
     "react-fittext": "^1.0.0",
     "redux": "^4.0.1",
-    "umi-plugin-react": "^1.8.4",
     "umi-request": "^1.0.0"
   },
   "devDependencies": {
-    "@types/numeral": "^0.0.25",
-    "umi": "^2.6.9",
-    "umi-plugin-block-dev": "^1.1.0"
+    "@types/numeral": "^0.0.25"
+  },
+  "peerDependencies": {
+    "@ant-design/pro-layout": "^4.5.5"
   },
   "blockConfig": {
     "specVersion": "0.1"

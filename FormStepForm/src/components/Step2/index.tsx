@@ -1,4 +1,4 @@
-import { Alert, Button, Divider, Form, Input } from 'antd';
+import { Alert, Button, Descriptions, Divider, Statistic, Form, Input } from 'antd';
 
 import { Dispatch } from 'redux';
 import { FormComponentProps } from 'antd/es/form';
@@ -51,6 +51,8 @@ const Step2: React.FC<Step2Props> = props => {
       }
     });
   };
+
+  const { payAccount, receiverAccount, receiverName, amount } = data;
   return (
     <Form layout="horizontal" className={styles.stepForm}>
       <Alert
@@ -59,18 +61,14 @@ const Step2: React.FC<Step2Props> = props => {
         message="确认转账后，资金将直接打入对方账户，无法退回。"
         style={{ marginBottom: 24 }}
       />
-      <Form.Item {...formItemLayout} className={styles.stepFormText} label="付款账户">
-        {data.payAccount}
-      </Form.Item>
-      <Form.Item {...formItemLayout} className={styles.stepFormText} label="收款账户">
-        {data.receiverAccount}
-      </Form.Item>
-      <Form.Item {...formItemLayout} className={styles.stepFormText} label="收款人姓名">
-        {data.receiverName}
-      </Form.Item>
-      <Form.Item {...formItemLayout} className={styles.stepFormText} label="转账金额">
-        <span className={styles.money}>{data.amount}</span>
-      </Form.Item>
+      <Descriptions column={1}>
+        <Descriptions.Item label="付款账户"> {payAccount}</Descriptions.Item>
+        <Descriptions.Item label="收款账户"> {receiverAccount}</Descriptions.Item>
+        <Descriptions.Item label="收款人姓名"> {receiverName}</Descriptions.Item>
+        <Descriptions.Item label="转账金额">
+          <Statistic value={amount} suffix="元" />
+        </Descriptions.Item>
+      </Descriptions>
       <Divider style={{ margin: '24px 0' }} />
       <Form.Item {...formItemLayout} label="支付密码" required={false}>
         {getFieldDecorator('password', {

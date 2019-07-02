@@ -2,26 +2,21 @@
   "name": "@umi-block/result-fail",
   "version": "0.0.1",
   "description": "ResultFail",
-  "main": "src/index.js",
-  "scripts": {
-    "dev": "umi dev"
-  },
   "repository": {
     "type": "git",
     "url": "https://github.com/umijs/umi-blocks/ant-design-pro/resultfail"
   },
-  "dependencies": {
-    "@ant-design/pro-layout": "^4.5.5",
-    "antd": "^3.16.3",
-    "classnames": "^2.2.6",
-    "umi-plugin-react": "^1.8.4",
-    "react": "^16.6.3"
-  },
-  "devDependencies": {
-    "umi": "^2.6.9",
-    "umi-plugin-block-dev": "^1.0.0"
-  },
   "license": "ISC",
+  "main": "src/index.js",
+  "scripts": {
+    "dev": "umi dev"
+  },
+  "dependencies": {
+    "classnames": "^2.2.6"
+  },
+  "peerDependencies": {
+    "@ant-design/pro-layout": "^4.5.5"
+  },
   "blockConfig": {
     "specVersion": "0.1"
   }

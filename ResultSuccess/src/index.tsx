@@ -1,9 +1,8 @@
-import { Button, Card, Col, Icon, Row, Steps } from 'antd';
+import { Button, Card, Icon, Steps, Result, Descriptions } from 'antd';
 import { FormattedMessage, formatMessage } from 'umi-plugin-react/locale';
 import React, { Fragment } from 'react';
-
 import { GridContent } from '@ant-design/pro-layout';
-import Result from './Result';
+
 import styles from './index.less';
 
 const { Step } = Steps;
@@ -19,48 +18,50 @@ const desc1 = (
 );
 
 const desc2 = (
-  <div style={{ fontSize: 12, position: 'relative', left: 42, textAlign: 'left' }}>
+  <div style={{ fontSize: 12 }} className={styles.title}>
     <div style={{ margin: '8px 0 4px' }}>
       <FormattedMessage id="BLOCK_NAME.success.step2-operator" defaultMessage="Zhou Maomao" />
-      <Icon type="dingding-o" style={{ color: '#00A0E9', marginLeft: 8 }} />
-    </div>
-    <div>
       <a href="">
+        <Icon type="dingding-o" style={{ color: '#00A0E9', marginLeft: 8 }} />
         <FormattedMessage id="BLOCK_NAME.success.step2-extra" defaultMessage="Urge" />
       </a>
     </div>
   </div>
 );
 
-const extra = (
-  <Fragment>
-    <div className={styles['head-title']}>
-      <FormattedMessage id="BLOCK_NAME.success.operate-title" defaultMessage="Project Name" />
-    </div>
-    <Row style={{ marginBottom: 16 }}>
-      <Col xs={24} sm={12} md={12} lg={12} xl={6}>
-        <span>
+const content = (
+  <>
+    <Descriptions
+      title={formatMessage({
+        id: 'BLOCK_NAME.success.operate-title',
+        defaultMessage: 'Project Name',
+      })}
+    >
+      <Descriptions.Item
+        label={
           <FormattedMessage id="BLOCK_NAME.success.operate-id" defaultMessage="Project ID：" />
-        </span>
+        }
+      >
         23421
-      </Col>
-      <Col xs={24} sm={12} md={12} lg={12} xl={6}>
-        <span>
-          <FormattedMessage id="BLOCK_NAME.success.principal" defaultMessage="Principal：" />
-        </span>
+      </Descriptions.Item>
+      <Descriptions.Item
+        label={<FormattedMessage id="BLOCK_NAME.success.principal" defaultMessage="Principal：" />}
+      >
         <FormattedMessage id="BLOCK_NAME.success.step1-operator" defaultMessage="Qu Lili" />
-      </Col>
-      <Col xs={24} sm={24} md={24} lg={24} xl={12}>
-        <span>
+      </Descriptions.Item>
+      <Descriptions.Item
+        label={
           <FormattedMessage
             id="BLOCK_NAME.success.operate-time"
             defaultMessage="Effective time："
           />
-        </span>
+        }
+      >
         2016-12-12 ~ 2017-12-12
-      </Col>
-    </Row>
-    <Steps style={{ marginLeft: -42, width: 'calc(100% + 84px)' }} progressDot current={1}>
+      </Descriptions.Item>
+    </Descriptions>
+    <br />
+    <Steps progressDot current={1}>
       <Step
         title={
           <span style={{ fontSize: 14 }}>
@@ -98,10 +99,10 @@ const extra = (
         }
       />
     </Steps>
-  </Fragment>
+  </>
 );
 
-const actions = (
+const extra = (
   <Fragment>
     <Button type="primary">
       <FormattedMessage id="BLOCK_NAME.success.btn-return" defaultMessage="Back to list" />
@@ -119,13 +120,14 @@ export default () => (
   <GridContent>
     <Card bordered={false}>
       <Result
-        type="success"
+        status="success"
         title={formatMessage({ id: 'BLOCK_NAME.success.title' })}
-        description={formatMessage({ id: 'BLOCK_NAME.success.description' })}
+        subTitle={formatMessage({ id: 'BLOCK_NAME.success.description' })}
         extra={extra}
-        actions={actions}
-        style={{ marginTop: 48, marginBottom: 16 }}
-      />
+        style={{ marginBottom: 16 }}
+      >
+        {content}
+      </Result>
     </Card>
   </GridContent>
 );
