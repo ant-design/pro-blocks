@@ -40,4 +40,4 @@ const CreateForm: React.FC<CreateFormProps> = props => {
   );
 };
 
-export default CreateForm;
+export default Form.create<CreateFormProps>()(CreateForm);
