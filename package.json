@@ -10,7 +10,8 @@
     "lint:js": "eslint --cache --ext .js,.jsx,.ts,.tsx --format=pretty ./",
     "lint:style": "stylelint --fix '**/*.less' --syntax less",
     "prettier": "prettier -c --write **/*",
-    "start": "umi dev"
+    "start": "umi dev",
+    "screenshot": "block-screenshot"
   },
   "husky": {
     "hooks": {
@@ -29,6 +30,7 @@
   "dependencies": {
     "@types/react-dom": "^16.8.4",
     "antd": "3.20.0",
+    "block-screenshot": "^1.0.0",
     "cross-env": "^5.2.0",
     "numeral": "^2.0.6",
     "react": "^16.8.6",
@@ -39,7 +41,7 @@
     "umi-request": "^1.0.0"
   },
   "peerDependencies": {
-    "@ant-design/pro-layout": "^4.5.5"
+    "antd": "^3.17.0"
   },
   "devDependencies": {
     "@types/classnames": "^2.2.7",
@@ -60,9 +62,6 @@
     "prettier": "1.15.2",
     "stylelint": "^10.0.1",
     "typescript": "^3.5.1"
-  },
-  "peerDependencies": {
-    "antd": "^3.17.0"
   },
   "optionalDependencies": {
     "puppeteer": "^1.17.0"
