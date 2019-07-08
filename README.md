@@ -1,5 +1,7 @@
 # pro-blocks
 
+![](https://badgen.net/badge/icon/Ant%20Design?icon=https://gw.alipayobjects.com/zos/antfincdn/Pp4WPgVDB3/KDpgvguMpGfqaHPjicRK.svg&label) [![Build Status](https://dev.azure.com/chenshuai2144/pro-blocks/_apis/build/status/ant-design.pro-blocks?branchName=master)](https://dev.azure.com/chenshuai2144/pro-blocks/_build/latest?definitionId=3&branchName=master)
+
 [中文 README](./README.zh-CN.md)
 
 umi blocks of Ant Design Pro.

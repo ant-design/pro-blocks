@@ -13,6 +13,10 @@ jobs:
     pool:
       vmImage: 'Ubuntu-16.04'
 
+    container:
+      image: circleci/node:latest-browsers
+      options: '-u root'
+
     steps:
       - checkout: self
         clean: false
