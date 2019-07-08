@@ -10,6 +10,6 @@ describe('Pro Block', () => {
       cwd: path.join(winPath(__dirname), '../../'),
       diff: true,
     });
-    expect(diffFileList).toBe(0);
+    expect(diffFileList.length).toBe(0);
   });
 });
