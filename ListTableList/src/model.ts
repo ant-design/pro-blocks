@@ -2,10 +2,10 @@ import { AnyAction, Reducer } from 'redux';
 import { EffectsCommandMap } from 'dva';
 import { addRule, queryRule, removeRule, updateRule } from './service';
 
-import { TableListDate } from './data.d';
+import { TableListData } from './data.d';
 
 export interface StateType {
-  data: TableListDate;
+  data: TableListData;
 }
 
 export type Effect = (
