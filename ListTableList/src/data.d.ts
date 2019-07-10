@@ -20,7 +20,7 @@ export interface TableListPagination {
   current: number;
 }
 
-export interface TableListDate {
+export interface TableListData {
   list: TableListItem[];
   pagination: Partial<TableListPagination>;
 }
