@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-import { Dispatch } from 'redux';
+import { Dispatch, AnyAction } from 'redux';
 import { FormattedMessage } from 'umi-plugin-react/locale';
 import { GridContent } from '@ant-design/pro-layout';
 import { Menu } from 'antd';
@@ -15,7 +15,7 @@ import styles from './style.less';
 const { Item } = Menu;
 
 interface PAGE_NAME_UPPER_CAMEL_CASEProps {
-  dispatch: Dispatch<any>;
+  dispatch: Dispatch<AnyAction>;
   currentUser: CurrentUser;
 }
 
