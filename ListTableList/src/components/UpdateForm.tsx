@@ -236,4 +236,4 @@ class UpdateForm extends Component<UpdateFormProps, UpdateFormState> {
   }
 }
 
-export default UpdateForm;
+export default Form.create<UpdateFormProps>()(UpdateForm);

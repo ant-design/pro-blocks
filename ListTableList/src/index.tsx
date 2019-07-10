@@ -418,7 +418,6 @@ class TableList extends Component<TableListProps, TableListState> {
     const {
       BLOCK_NAME_CAMEL_CASE: { data },
       loading,
-      form,
     } = this.props;
 
     const { selectedRows, modalVisible, updateModalVisible, stepFormValues } = this.state;
@@ -467,13 +466,12 @@ class TableList extends Component<TableListProps, TableListState> {
             />
           </div>
         </Card>
-        <CreateForm {...parentMethods} modalVisible={modalVisible} form={form} />
+        <CreateForm {...parentMethods} modalVisible={modalVisible} />
         {stepFormValues && Object.keys(stepFormValues).length ? (
           <UpdateForm
             {...updateMethods}
             updateModalVisible={updateModalVisible}
             values={stepFormValues}
-            form={form}
           />
         ) : null}
       </PageHeaderWrapper>
