@@ -1,5 +1,5 @@
 const fabric = require('@umijs/fabric');
-const path = require('path');
+
 module.exports = {
   ...fabric.default,
   rules: {
