@@ -22,21 +22,23 @@ export interface ModelType {
   };
 }
 
+const initState = {
+  visitData: [],
+  visitData2: [],
+  salesData: [],
+  searchData: [],
+  offlineData: [],
+  offlineChartData: [],
+  salesTypeData: [],
+  salesTypeDataOnline: [],
+  salesTypeDataOffline: [],
+  radarData: [],
+};
+
 const Model: ModelType = {
   namespace: 'BLOCK_NAME_CAMEL_CASE',
 
-  state: {
-    visitData: [],
-    visitData2: [],
-    salesData: [],
-    searchData: [],
-    offlineData: [],
-    offlineChartData: [],
-    salesTypeData: [],
-    salesTypeDataOnline: [],
-    salesTypeDataOffline: [],
-    radarData: [],
-  },
+  state: initState,
 
   effects: {
     *fetch(_, { call, put }) {
@@ -65,18 +67,7 @@ const Model: ModelType = {
       };
     },
     clear() {
-      return {
-        visitData: [],
-        visitData2: [],
-        salesData: [],
-        searchData: [],
-        offlineData: [],
-        offlineChartData: [],
-        salesTypeData: [],
-        salesTypeDataOnline: [],
-        salesTypeDataOffline: [],
-        radarData: [],
-      };
+      return initState;
     },
   },
 };
