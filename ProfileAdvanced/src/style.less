@@ -1,8 +1,13 @@
 @import '~antd/es/style/themes/default.less';
 
 .main {
-  table {
-    table-layout: fixed;
+  :global {
+    .ant-descriptions-row > td {
+      padding-bottom: 8px;
+    }
+    .ant-page-header-heading-extra {
+      flex-direction: column;
+    }
   }
 }
 
@@ -13,53 +18,43 @@
       padding-bottom: 8px;
     }
   }
-}
 
-.tabsCard {
-  :global {
-    .ant-card-head {
-      padding: 0 16px;
+  .stepDescription {
+    position: relative;
+    left: 38px;
+    padding-top: 8px;
+    font-size: 14px;
+    text-align: left;
+
+    > div {
+      margin-top: 8px;
+      margin-bottom: 4px;
     }
   }
 }
 
-.noData {
-  color: @disabled-color;
-  font-size: 16px;
-  line-height: 64px;
-  text-align: center;
-  i {
-    position: relative;
-    top: 3px;
-    margin-right: 16px;
-    font-size: 24px;
+.pageHeader {
+  :global {
+    .ant-page-header-heading-extra > * + * {
+      margin-left: 8px;
+    }
   }
-}
-
-.heading {
-  color: @heading-color;
-  font-size: 20px;
-}
-
-.stepDescription {
-  position: relative;
-  left: 38px;
-  padding-top: 8px;
-  font-size: 14px;
-  text-align: left;
-
-  > div {
-    margin-top: 8px;
-    margin-bottom: 4px;
+  .moreInfo {
+    display: flex;
+    justify-content: space-between;
+    width: 200px;
   }
-}
-
-.textSecondary {
-  color: @text-color-secondary;
 }
 
 @media screen and (max-width: @screen-sm) {
   .stepDescription {
     left: 8px;
+  }
+  .pageHeader {
+    :global {
+      .ant-pro-page-header-wrap-row {
+        flex-direction: column;
+      }
+    }
   }
 }

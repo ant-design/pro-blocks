@@ -2,19 +2,19 @@ import {
   Badge,
   Button,
   Card,
-  Col,
+  Statistic,
   Descriptions,
   Divider,
   Dropdown,
   Icon,
   Menu,
   Popover,
-  Row,
   Steps,
   Table,
   Tooltip,
+  Empty,
 } from 'antd';
-import { GridContent, PageHeaderWrapper } from '@ant-design/pro-layout';
+import { GridContent, PageHeaderWrapper, RouteContext } from '@ant-design/pro-layout';
 import React, { Component, Fragment } from 'react';
 
 import { Dispatch } from 'redux';
@@ -36,49 +36,71 @@ const menu = (
   </Menu>
 );
 
+const mobileMenu = (
+  <Menu>
+    <Menu.Item key="1">操作一</Menu.Item>
+    <Menu.Item key="2">操作二</Menu.Item>
+    <Menu.Item key="3">选项一</Menu.Item>
+    <Menu.Item key="4">选项二</Menu.Item>
+    <Menu.Item key="">选项三</Menu.Item>
+  </Menu>
+);
+
 const action = (
-  <Fragment>
-    <ButtonGroup>
-      <Button>操作</Button>
-      <Button>操作</Button>
-      <Dropdown overlay={menu} placement="bottomRight">
-        <Button>
-          <Icon type="ellipsis" />
-        </Button>
-      </Dropdown>
-    </ButtonGroup>
-    <Button type="primary">主操作</Button>
-  </Fragment>
+  <RouteContext.Consumer>
+    {({ isMobile }) => {
+      if (isMobile) {
+        return (
+          <Dropdown.Button
+            type="primary"
+            icon={<Icon type="down" />}
+            overlay={mobileMenu}
+            placement="bottomRight"
+          >
+            主操作
+          </Dropdown.Button>
+        );
+      }
+      return (
+        <Fragment>
+          <ButtonGroup>
+            <Button>操作一</Button>
+            <Button>操作二</Button>
+            <Dropdown overlay={menu} placement="bottomRight">
+              <Button>
+                <Icon type="ellipsis" />
+              </Button>
+            </Dropdown>
+          </ButtonGroup>
+          <Button type="primary">主操作</Button>
+        </Fragment>
+      );
+    }}
+  </RouteContext.Consumer>
 );
 
 const extra = (
-  <Row
-    style={{
-      minWidth: 400,
-    }}
-  >
-    <Col xs={24} sm={12}>
-      <div className={styles.textSecondary}>状态</div>
-      <div className={styles.heading}>待审批</div>
-    </Col>
-    <Col xs={24} sm={12}>
-      <div className={styles.textSecondary}>订单金额</div>
-      <div className={styles.heading}>¥ 568.08</div>
-    </Col>
-  </Row>
+  <div className={styles.moreInfo}>
+    <Statistic title="状态" value="待审批" />
+    <Statistic title="订单金额" value={568.08} prefix="¥" />
+  </div>
 );
 
 const description = (
-  <Descriptions className={styles.headerList} size="small" column={2}>
-    <Descriptions.Item label="创建人">曲丽丽</Descriptions.Item>
-    <Descriptions.Item label="订购产品">XX 服务</Descriptions.Item>
-    <Descriptions.Item label="创建时间">2017-07-07</Descriptions.Item>
-    <Descriptions.Item label="关联单据">
-      <a href="">12421</a>
-    </Descriptions.Item>
-    <Descriptions.Item label="生效日期">2017-07-07 ~ 2017-08-08</Descriptions.Item>
-    <Descriptions.Item label="备注">请于两个工作日内确认</Descriptions.Item>
-  </Descriptions>
+  <RouteContext.Consumer>
+    {({ isMobile }) => (
+      <Descriptions className={styles.headerList} size="small" column={isMobile ? 1 : 2}>
+        <Descriptions.Item label="创建人">曲丽丽</Descriptions.Item>
+        <Descriptions.Item label="订购产品">XX 服务</Descriptions.Item>
+        <Descriptions.Item label="创建时间">2017-07-07</Descriptions.Item>
+        <Descriptions.Item label="关联单据">
+          <a href="">12421</a>
+        </Descriptions.Item>
+        <Descriptions.Item label="生效日期">2017-07-07 ~ 2017-08-08</Descriptions.Item>
+        <Descriptions.Item label="备注">请于两个工作日内确认</Descriptions.Item>
+      </Descriptions>
+    )}
+  </RouteContext.Consumer>
 );
 
 const desc1 = (
@@ -182,6 +204,11 @@ const columns = [
   },
 ];
 
+interface PAGE_NAME_UPPER_CAMEL_CASEState {
+  operationKey: string;
+  tabActiveKey: string;
+}
+
 @connect(
   ({
     BLOCK_NAME_CAMEL_CASE,
@@ -198,17 +225,11 @@ const columns = [
 )
 class PAGE_NAME_UPPER_CAMEL_CASE extends Component<
   { loading: boolean; BLOCK_NAME_CAMEL_CASE: AdvancedProfileData; dispatch: Dispatch<any> },
-  {
-    operationKey: string;
-    stepDirection: 'horizontal' | 'vertical';
-  }
+  PAGE_NAME_UPPER_CAMEL_CASEState
 > {
-  public state: {
-    operationKey: string;
-    stepDirection: 'horizontal' | 'vertical';
-  } = {
+  public state: PAGE_NAME_UPPER_CAMEL_CASEState = {
     operationKey: 'tab1',
-    stepDirection: 'horizontal',
+    tabActiveKey: 'detail',
   };
 
   componentDidMount() {
@@ -216,35 +237,18 @@ class PAGE_NAME_UPPER_CAMEL_CASE extends Component<
     dispatch({
       type: 'BLOCK_NAME_CAMEL_CASE/fetchAdvanced',
     });
-
-    this.setStepDirection();
-    window.addEventListener('resize', this.setStepDirection, { passive: true });
-  }
-
-  componentWillUnmount() {
-    window.removeEventListener('resize', this.setStepDirection);
   }
 
   onOperationTabChange = (key: string) => {
     this.setState({ operationKey: key });
   };
 
-  setStepDirection = () => {
-    const { stepDirection } = this.state;
-    const w = getWindowWidth();
-    if (stepDirection !== 'vertical' && w <= 576) {
-      this.setState({
-        stepDirection: 'vertical',
-      });
-    } else if (stepDirection !== 'horizontal' && w > 576) {
-      this.setState({
-        stepDirection: 'horizontal',
-      });
-    }
+  onTabChange = (tabActiveKey: string) => {
+    this.setState({ tabActiveKey });
   };
 
   render() {
-    const { stepDirection, operationKey } = this.state;
+    const { operationKey, tabActiveKey } = this.state;
     const { BLOCK_NAME_CAMEL_CASE, loading } = this.props;
     const { advancedOperation1, advancedOperation2, advancedOperation3 } = BLOCK_NAME_CAMEL_CASE;
     const contentList = {
@@ -277,9 +281,11 @@ class PAGE_NAME_UPPER_CAMEL_CASE extends Component<
       <PageHeaderWrapper
         title="单号：234231029431"
         extra={action}
+        className={styles.pageHeader}
         content={description}
         extraContent={extra}
-        tabActiveKey="detail"
+        tabActiveKey={tabActiveKey}
+        onTabChange={this.onTabChange}
         tabList={[
           {
             key: 'detail',
@@ -291,21 +297,23 @@ class PAGE_NAME_UPPER_CAMEL_CASE extends Component<
           },
         ]}
       >
-        <div
-          style={{
-            margin: 24,
-            marginTop: 48,
-          }}
-          className={styles.main}
-        >
+        <div className={styles.main}>
           <GridContent>
             <Card title="流程进度" style={{ marginBottom: 24 }}>
-              <Steps direction={stepDirection} progressDot={customDot} current={1}>
-                <Step title="创建项目" description={desc1} />
-                <Step title="部门初审" description={desc2} />
-                <Step title="财务复核" />
-                <Step title="完成" />
-              </Steps>
+              <RouteContext.Consumer>
+                {({ isMobile }) => (
+                  <Steps
+                    direction={isMobile ? 'vertical' : 'horizontal'}
+                    progressDot={customDot}
+                    current={1}
+                  >
+                    <Step title="创建项目" description={desc1} />
+                    <Step title="部门初审" description={desc2} />
+                    <Step title="财务复核" />
+                    <Step title="完成" />
+                  </Steps>
+                )}
+              </RouteContext.Consumer>
             </Card>
             <Card title="用户信息" style={{ marginBottom: 24 }} bordered={false}>
               <Descriptions style={{ marginBottom: 24 }}>
@@ -363,10 +371,7 @@ class PAGE_NAME_UPPER_CAMEL_CASE extends Component<
               </Card>
             </Card>
             <Card title="用户近半年来电记录" style={{ marginBottom: 24 }} bordered={false}>
-              <div className={styles.noData}>
-                <Icon type="frown-o" />
-                暂无数据
-              </div>
+              <Empty />
             </Card>
             <Card
               className={styles.tabsCard}
