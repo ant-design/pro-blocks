@@ -1,3 +1,4 @@
+import { Request, Response } from 'express';
 import { parse } from 'url';
 import { TableListItem, TableListParams } from './data.d';
 
@@ -25,18 +26,7 @@ for (let i = 0; i < 8; i += 1) {
   });
 }
 
-function getRule(
-  req: { url: any },
-  res: {
-    json: (
-      arg0: {
-        list: TableListItem[];
-        pagination: { total: number; pageSize: number; current: number };
-      },
-    ) => void;
-  },
-  u: any,
-) {
+function getRule(req: Request, res: Response, u: string) {
   let url = u;
   if (!url || Object.prototype.toString.call(url) !== '[object String]') {
     // eslint-disable-next-line prefer-destructuring
@@ -94,12 +84,7 @@ function getRule(
   return res.json(result);
 }
 
-function postRule(
-  req: { url: any; body: any },
-  res: { json: (arg0: { list: TableListItem[]; pagination: { total: number } }) => void },
-  u: any,
-  b: { body: any },
-) {
+function postRule(req: Request, res: Response, u: string, b: Request) {
   let url = u;
   if (!url || Object.prototype.toString.call(url) !== '[object String]') {
     // eslint-disable-next-line prefer-destructuring

@@ -1,5 +1,7 @@
+import { Request, Response } from 'express';
+
 export default {
-  'POST  /api/forms': (req: any, res: { send: (arg0: { message: string }) => void }) => {
+  'POST  /api/forms': (_: Request, res: Response) => {
     res.send({ message: 'Ok' });
   },
 };

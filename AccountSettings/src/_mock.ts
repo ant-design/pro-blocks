@@ -1,14 +1,12 @@
+import { Request, Response } from 'express';
 import city from './geographic/city.json';
 import province from './geographic/province.json';
 
-function getProvince(req: any, res: { json: (arg0: { name: string; id: string }[]) => void }) {
+function getProvince(_: Request, res: Response) {
   return res.json(province);
 }
 
-function getCity(
-  req: { params: { province: string | number } },
-  res: { json: (arg: any) => void },
-) {
+function getCity(req: Request, res: Response) {
   return res.json(city[req.params.province]);
 }
 // 代码中会兼容本地 service mock 以及部署站点的静态数据

@@ -2,3 +2,5 @@
 package.json
 .umi
 .umi-production
+*.png
+*.lock

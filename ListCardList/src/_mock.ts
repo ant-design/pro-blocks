@@ -1,3 +1,4 @@
+import { Request, Response } from 'express';
 import { CardListItemDataType } from './data.d';
 
 const titles = [
@@ -100,7 +101,7 @@ function fakeList(count: number): CardListItemDataType[] {
   return list;
 }
 
-function getFakeList(req: { query: any }, res: { json: (arg0: CardListItemDataType[]) => void }) {
+function getFakeList(req: Request, res: Response) {
   const params = req.query;
 
   const count = params.count * 1 || 20;

@@ -1,3 +1,4 @@
+import { Request, Response } from 'express';
 import { BasicListItemDataType } from './data.d';
 
 const titles = [
@@ -102,7 +103,7 @@ function fakeList(count: number): BasicListItemDataType[] {
 
 let sourceData: BasicListItemDataType[] = [];
 
-function getFakeList(req: { query: any }, res: { json: (arg0: BasicListItemDataType[]) => void }) {
+function getFakeList(req: Request, res: Response) {
   const params = req.query;
 
   const count = params.count * 1 || 20;
@@ -112,7 +113,7 @@ function getFakeList(req: { query: any }, res: { json: (arg0: BasicListItemDataT
   return res.json(result);
 }
 
-function postFakeList(req: { body: any }, res: { json: (arg0: BasicListItemDataType[]) => void }) {
+function postFakeList(req: Request, res: Response) {
   const { /* url = '', */ body } = req;
   // const params = getUrlParams(url);
   const { method, id } = body;
