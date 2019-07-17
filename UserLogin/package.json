@@ -21,7 +21,8 @@
     "umi-request": "^1.0.0"
   },
   "devDependencies": {
-    "@types/qs": "^6.5.3"
+    "@types/qs": "^6.5.3",
+    "@types/express": "^4.17.0"
   },
   "blockConfig": {
     "specVersion": "0.1"
