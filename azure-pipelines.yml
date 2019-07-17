@@ -27,7 +27,3 @@ jobs:
         displayName: install
       - script: npm run lint
         displayName: lint
-      - script: npm run test
-        env:
-          PROGRESS: none
-        displayName: test

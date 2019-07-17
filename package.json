@@ -1,7 +1,7 @@
 {
   "private": true,
   "scripts": {
-    "dev": "cross-env PAGES_PATH='AccountCenter/src' umi dev",
+    "dev": "cross-env PAGES_PATH='ProfileAdvanced/src' umi dev",
     "format-imports": "import-sort --write '**/*.{js,jsx,ts,tsx}'",
     "lint": "npm run lint:js && npm run lint:style",
     "lint-staged": "lint-staged",
@@ -32,13 +32,13 @@
     "@ant-design/pro-layout": "^4.5.10",
     "@types/react-dom": "^16.8.4",
     "antd": "3.20.0",
-    "block-screenshot": "^1.0.1",
+    "block-screenshot": "^1.0.5",
     "cross-env": "^5.2.0",
     "numeral": "^2.0.6",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
     "umi": "^2.8.9",
-    "umi-plugin-block-dev": "2.2.0-beta.0",
+    "umi-plugin-block-dev": "^2.2.1",
     "umi-plugin-react": "^1.9.7",
     "umi-request": "^1.0.0",
     "umi-utils": "^1.5.1"
