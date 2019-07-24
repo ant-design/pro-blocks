@@ -105,11 +105,11 @@ class StandardTable extends Component<StandardTableProps<TableListItem>, Standar
     const { data, rowKey, ...rest } = this.props;
     const { list = [], pagination = false } = data || {};
 
-    const paginationProps = {
+    const paginationProps = pagination ? {
       showSizeChanger: true,
       showQuickJumper: true,
       ...pagination,
-    };
+    } : false;
 
     const rowSelection: TableRowSelection<TableListItem> = {
       selectedRowKeys,
