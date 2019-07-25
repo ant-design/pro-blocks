@@ -26,9 +26,17 @@ const Step2: React.FC<Step2Props> = props => {
   if (!data) {
     return null;
   }
-  const { getFieldDecorator, validateFields } = form;
+  const { getFieldDecorator, validateFields, getFieldsValue } = form;
   const onPrev = () => {
     if (dispatch) {
+      const values = getFieldsValue();
+      dispatch({
+        type: 'BLOCK_NAME_CAMEL_CASE/saveStepFormData',
+        payload: {
+          ...data,
+          ...values,
+        },
+      });
       dispatch({
         type: 'BLOCK_NAME_CAMEL_CASE/saveCurrentStep',
         payload: 'info',
