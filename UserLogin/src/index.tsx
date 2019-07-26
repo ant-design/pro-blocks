@@ -22,7 +22,7 @@ interface PAGE_NAME_UPPER_CAMEL_CASEState {
   type: string;
   autoLogin: boolean;
 }
-export interface FromDataType {
+export interface FormDataType {
   userName: string;
   password: string;
   mobile: string;
@@ -62,7 +62,7 @@ class PAGE_NAME_UPPER_CAMEL_CASE extends Component<
     });
   };
 
-  handleSubmit = (err: any, values: FromDataType) => {
+  handleSubmit = (err: any, values: FormDataType) => {
     const { type } = this.state;
     if (!err) {
       const { dispatch } = this.props;
@@ -85,7 +85,7 @@ class PAGE_NAME_UPPER_CAMEL_CASE extends Component<
       if (!this.loginForm) {
         return;
       }
-      this.loginForm.validateFields(['mobile'], {}, (err: any, values: FromDataType) => {
+      this.loginForm.validateFields(['mobile'], {}, (err: any, values: FormDataType) => {
         if (err) {
           reject(err);
         } else {
