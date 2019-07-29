@@ -20,10 +20,12 @@ You can visit umi [doc](https://umijs.org/guide/block.html) for find out more in
 
 ## Contribute
 
-Enter the block you want to dev
-
 ```shell
-cross-env PAGES_PATH='block_name' umi
+npm i
+
+# PAGES_PATH env set the block src path which you want to dev
+PAGES_PATH=DashboardWorkplace/src npm start # for mac
+npx cross-env PAGES_PATH=DashboardWorkplace/src umi dev # for windows
 ```
 
 > In complex typescript definitions, vscode may crash or tslint reports an error. You can restart the typescript service by "ctrl+shift+p > reload window"

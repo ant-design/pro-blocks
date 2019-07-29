@@ -1,7 +1,6 @@
 {
   "private": true,
   "scripts": {
-    "dev": "cross-env PAGES_PATH='DashboardWorkplace/src' umi dev",
     "format-imports": "import-sort --write '**/*.{js,jsx,ts,tsx}'",
     "lint": "npm run lint:js && npm run lint:style",
     "lint-staged": "lint-staged",
@@ -32,6 +31,7 @@
     "@ant-design/pro-layout": "^4.5.11",
     "@types/react-dom": "^16.8.4",
     "antd": "3.20.0",
+    "bizcharts": "^3.5.4",
     "block-screenshot": "^1.0.5",
     "cross-env": "^5.2.0",
     "numeral": "^2.0.6",
