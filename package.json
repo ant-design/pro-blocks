@@ -8,7 +8,7 @@
     "lint:fix": "eslint --fix --cache --ext .js,.jsx,.ts,.tsx --format=pretty  ./ && npm run lint:style",
     "lint:js": "eslint --cache --ext .js,.jsx,.ts,.tsx --format=pretty ./",
     "lint:style": "stylelint --fix '**/*.less' --syntax less",
-    "prettier": "prettier -c --write **/*",
+    "prettier": "prettier -c --write '**/*'",
     "screenshot": "block-screenshot",
     "start": "umi dev",
     "test": "umi test"

@@ -145,9 +145,9 @@ class PAGE_NAME_UPPER_CAMEL_CASE extends Component<
                 },
               ]}
               onPressEnter={e => {
-                  e.preventDefault();
-                  this.loginForm.validateFields(this.handleSubmit);
-                }}
+                e.preventDefault();
+                this.loginForm.validateFields(this.handleSubmit);
+              }}
             />
           </Tab>
           <Tab key="mobile" tab={formatMessage({ id: 'BLOCK_NAME.login.tab-login-mobile' })}>
