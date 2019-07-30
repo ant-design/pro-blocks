@@ -26,8 +26,6 @@ import styles from './style.less';
 const { Step } = Steps;
 const ButtonGroup = Button.Group;
 
-const getWindowWidth = () => window.innerWidth || document.documentElement.clientWidth;
-
 const menu = (
   <Menu>
     <Menu.Item key="1">选项一</Menu.Item>

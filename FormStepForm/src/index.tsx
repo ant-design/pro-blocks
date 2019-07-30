@@ -1,7 +1,7 @@
 import { Card, Steps } from 'antd';
 import React, { Component } from 'react';
 
-import { PageHeaderWrapper, RouteContext } from '@ant-design/pro-layout';
+import { PageHeaderWrapper } from '@ant-design/pro-layout';
 import { connect } from 'dva';
 import { StateType } from './model';
 import Step1 from './components/Step1';
