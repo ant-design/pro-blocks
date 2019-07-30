@@ -42,12 +42,12 @@ const passwordProgressMap: {
   poor: 'exception',
 };
 
-interface BLOCK_NAME_CAMEL_CASEProps extends FormComponentProps {
+interface PAGE_NAME_UPPER_CAMEL_CASEProps extends FormComponentProps {
   dispatch: Dispatch<any>;
   BLOCK_NAME_CAMEL_CASE: StateType;
   submitting: boolean;
 }
-interface BLOCK_NAME_CAMEL_CASEState {
+interface PAGE_NAME_UPPER_CAMEL_CASEState {
   count: number;
   confirmDirty: boolean;
   visible: boolean;
@@ -81,10 +81,10 @@ export interface UserRegisterParams {
   }),
 )
 class PAGE_NAME_UPPER_CAMEL_CASE extends Component<
-  BLOCK_NAME_CAMEL_CASEProps,
-  BLOCK_NAME_CAMEL_CASEState
+  PAGE_NAME_UPPER_CAMEL_CASEProps,
+  PAGE_NAME_UPPER_CAMEL_CASEState
 > {
-  state: BLOCK_NAME_CAMEL_CASEState = {
+  state: PAGE_NAME_UPPER_CAMEL_CASEState = {
     count: 0,
     confirmDirty: false,
     visible: false,
@@ -380,4 +380,4 @@ class PAGE_NAME_UPPER_CAMEL_CASE extends Component<
   }
 }
 
-export default Form.create<BLOCK_NAME_CAMEL_CASEProps>()(PAGE_NAME_UPPER_CAMEL_CASE);
+export default Form.create<PAGE_NAME_UPPER_CAMEL_CASEProps>()(PAGE_NAME_UPPER_CAMEL_CASE);

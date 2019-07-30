@@ -39,7 +39,7 @@ const links = [
   },
 ];
 
-interface BLOCK_NAME_CAMEL_CASEProps {
+interface PAGE_NAME_UPPER_CAMEL_CASEProps {
   currentUser: CurrentUser;
   projectNotice: NoticeType[];
   activities: ActivitiesType[];
@@ -105,7 +105,7 @@ const ExtraContent: React.FC<{}> = () => (
     activitiesLoading: loading.effects['BLOCK_NAME_CAMEL_CASE/fetchActivitiesList'],
   }),
 )
-class PAGE_NAME_UPPER_CAMEL_CASE extends Component<BLOCK_NAME_CAMEL_CASEProps> {
+class PAGE_NAME_UPPER_CAMEL_CASE extends Component<PAGE_NAME_UPPER_CAMEL_CASEProps> {
   componentDidMount() {
     const { dispatch } = this.props;
     dispatch({

@@ -40,12 +40,12 @@ const operationTabList = [
   },
 ];
 
-interface BLOCK_NAME_CAMEL_CASEProps extends RouteChildrenProps {
+interface PAGE_NAME_UPPER_CAMEL_CASEProps extends RouteChildrenProps {
   dispatch: Dispatch<any>;
   currentUser: CurrentUser;
   currentUserLoading: boolean;
 }
-interface BLOCK_NAME_CAMEL_CASEState {
+interface PAGE_NAME_UPPER_CAMEL_CASEState {
   newTags: TagType[];
   tabKey: 'articles' | 'applications' | 'projects';
   inputVisible: boolean;
@@ -65,8 +65,8 @@ interface BLOCK_NAME_CAMEL_CASEState {
   }),
 )
 class PAGE_NAME_UPPER_CAMEL_CASE extends PureComponent<
-  BLOCK_NAME_CAMEL_CASEProps,
-  BLOCK_NAME_CAMEL_CASEState
+  PAGE_NAME_UPPER_CAMEL_CASEProps,
+  PAGE_NAME_UPPER_CAMEL_CASEState
 > {
   // static getDerivedStateFromProps(
   //   props: BLOCK_NAME_CAMEL_CASEProps,
@@ -86,7 +86,7 @@ class PAGE_NAME_UPPER_CAMEL_CASE extends PureComponent<
   //   return null;
   // }
 
-  state: BLOCK_NAME_CAMEL_CASEState = {
+  state: PAGE_NAME_UPPER_CAMEL_CASEState = {
     newTags: [],
     inputVisible: false,
     inputValue: '',
@@ -110,7 +110,7 @@ class PAGE_NAME_UPPER_CAMEL_CASE extends PureComponent<
     // const { match } = this.props;
     // router.push(`${match.url}/${key}`);
     this.setState({
-      tabKey: key as BLOCK_NAME_CAMEL_CASEState['tabKey'],
+      tabKey: key as PAGE_NAME_UPPER_CAMEL_CASEState['tabKey'],
     });
   };
 
@@ -140,7 +140,7 @@ class PAGE_NAME_UPPER_CAMEL_CASE extends PureComponent<
     });
   };
 
-  renderChildrenByTabKey = (tabKey: BLOCK_NAME_CAMEL_CASEState['tabKey']) => {
+  renderChildrenByTabKey = (tabKey: PAGE_NAME_UPPER_CAMEL_CASEState['tabKey']) => {
     if (tabKey === 'projects') {
       return <Projects />;
     }

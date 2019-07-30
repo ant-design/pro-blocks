@@ -17,13 +17,13 @@ const TopSearch = React.lazy(() => import('./components/TopSearch'));
 const ProportionSales = React.lazy(() => import('./components/ProportionSales'));
 const OfflineData = React.lazy(() => import('./components/OfflineData'));
 
-interface BLOCK_NAME_CAMEL_CASEProps {
+interface PAGE_NAME_UPPER_CAMEL_CASEProps {
   BLOCK_NAME_CAMEL_CASE: AnalysisData;
   dispatch: Dispatch<any>;
   loading: boolean;
 }
 
-interface BLOCK_NAME_CAMEL_CASEState {
+interface PAGE_NAME_UPPER_CAMEL_CASEState {
   salesType: 'all' | 'online' | 'stores';
   currentTabKey: string;
   rangePickerValue: RangePickerValue;
@@ -44,10 +44,10 @@ interface BLOCK_NAME_CAMEL_CASEState {
   }),
 )
 class PAGE_NAME_UPPER_CAMEL_CASE extends Component<
-  BLOCK_NAME_CAMEL_CASEProps,
-  BLOCK_NAME_CAMEL_CASEState
+  PAGE_NAME_UPPER_CAMEL_CASEProps,
+  PAGE_NAME_UPPER_CAMEL_CASEState
 > {
-  state: BLOCK_NAME_CAMEL_CASEState = {
+  state: PAGE_NAME_UPPER_CAMEL_CASEState = {
     salesType: 'all',
     currentTabKey: '',
     rangePickerValue: getTimeDistance('year'),
