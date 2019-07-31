@@ -66,9 +66,9 @@ class PAGE_NAME_UPPER_CAMEL_CASE extends Component<PAGE_NAME_UPPER_CAMEL_CASEPro
                 <span>{moment(item.updatedAt).fromNow()}</span>
                 <div className={styles.avatarList}>
                   <AvatarList size="small">
-                    {item.members.map(member => (
+                    {item.members.map((member, index) => (
                       <AvatarList.Item
-                        key={`${item.id}-avatar`}
+                        key={`${item.id}-${index}`}
                         src={member.avatar}
                         tips={member.name}
                       />
