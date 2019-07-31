@@ -1,7 +1,7 @@
 import { AnyAction, Reducer } from 'redux';
 import { EffectsCommandMap } from 'dva';
 import { routerRedux } from 'dva/router';
-import { fakeAccountLogin, getFakeCaptcha } from './service';
+import { fakeLoginAccount, fakeLoginMobile, fakeGetCaptcha } from './service';
 import { getPageQuery, setAuthority } from './utils/utils';
 
 export interface StateType {
@@ -36,7 +36,13 @@ const Model: ModelType = {
 
   effects: {
     *login({ payload }, { call, put }) {
-      const response = yield call(fakeAccountLogin, payload);
+      let response;
+      if (payload.type === 'account') {
+        response = yield call(fakeLoginAccount, payload);
+      } else {
+        response = yield call(fakeLoginMobile, payload);
+      }
+      console.log('resp:', response);
       yield put({
         type: 'changeLoginStatus',
         payload: response,
@@ -63,7 +69,7 @@ const Model: ModelType = {
     },
 
     *getCaptcha({ payload }, { call }) {
-      yield call(getFakeCaptcha, payload);
+      yield call(fakeGetCaptcha, payload);
     },
   },
 
