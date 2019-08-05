@@ -247,21 +247,24 @@ class TableForm extends PureComponent<TableFormProps, TableFormState> {
     e.preventDefault();
     const { data = [] } = this.state;
     const newData = [...data];
-    newData.map(item => {
+    // 编辑前的原始数据
+    let cacheOriginData = [];
+    cacheOriginData = newData.map(item => {
       if (item.key === key) {
         if (this.cacheOriginData[key]) {
-          delete this.cacheOriginData[key];
-          return {
+          const originItem = {
             ...item,
             ...this.cacheOriginData[key],
             editable: false,
           };
+          delete this.cacheOriginData[key];
+          return originItem;
         }
       }
       return item;
     });
 
-    this.setState({ data: newData });
+    this.setState({ data: cacheOriginData });
     this.clickedCancel = false;
   }
 
