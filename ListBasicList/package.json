@@ -14,7 +14,6 @@
   "dependencies": {
     "classnames": "^2.2.6",
     "dva": "^2.4.0",
-    "hash.js": "^1.1.5",
     "moment": "^2.22.2",
     "redux": "^4.0.1",
     "umi-request": "^1.0.0"
