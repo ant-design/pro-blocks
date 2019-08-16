@@ -1,7 +1,7 @@
 import { Button, Divider, Input, Popconfirm, Table, message } from 'antd';
 import React, { Fragment, PureComponent } from 'react';
 
-import { isEqual } from 'lodash';
+import isEqual from 'lodash.isequal';
 import styles from '../style.less';
 
 interface TableFormDateType {

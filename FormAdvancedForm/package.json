@@ -12,10 +12,10 @@
     "dev": "umi dev"
   },
   "dependencies": {
-    "@types/lodash": "^4.14.134",
+    "@types/lodash.isequal": "^4.5.5",
     "classnames": "^2.2.6",
     "dva": "^2.4.0",
-    "lodash": "^4.17.10",
+    "lodash.isequal": "^4.5.0",
     "redux": "^4.0.1",
     "umi-request": "^1.0.0"
   },
