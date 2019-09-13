@@ -17,7 +17,7 @@ import {
 } from 'antd';
 import React, { Component, Fragment } from 'react';
 
-import { Dispatch } from 'redux';
+import { Dispatch, Action } from 'redux';
 import { FormComponentProps } from 'antd/es/form';
 import { PageHeaderWrapper } from '@ant-design/pro-layout';
 import { SorterResult } from 'antd/es/table';
@@ -26,7 +26,7 @@ import moment from 'moment';
 import { StateType } from './model';
 import CreateForm from './components/CreateForm';
 import StandardTable, { StandardTableColumnProps } from './components/StandardTable';
-import UpdateForm, { FormValsType } from './components/UpdateForm';
+import UpdateForm, { FormValueType } from './components/UpdateForm';
 import { TableListItem, TableListPagination, TableListParams } from './data.d';
 
 import styles from './style.less';
@@ -43,7 +43,14 @@ const statusMap = ['default', 'processing', 'success', 'error'];
 const status = ['关闭', '运行中', '已上线', '异常'];
 
 interface TableListProps extends FormComponentProps {
-  dispatch: Dispatch<any>;
+  dispatch: Dispatch<
+    Action<
+      | 'BLOCK_NAME_CAMEL_CASE/add'
+      | 'BLOCK_NAME_CAMEL_CASE/fetch'
+      | 'BLOCK_NAME_CAMEL_CASE/remove'
+      | 'BLOCK_NAME_CAMEL_CASE/update'
+    >
+  >;
   loading: boolean;
   BLOCK_NAME_CAMEL_CASE: StateType;
 }
@@ -261,7 +268,7 @@ class TableList extends Component<TableListProps, TableListState> {
     });
   };
 
-  handleUpdateModalVisible = (flag?: boolean, record?: FormValsType) => {
+  handleUpdateModalVisible = (flag?: boolean, record?: FormValueType) => {
     this.setState({
       updateModalVisible: !!flag,
       stepFormValues: record || {},
@@ -281,7 +288,7 @@ class TableList extends Component<TableListProps, TableListState> {
     this.handleModalVisible();
   };
 
-  handleUpdate = (fields: FormValsType) => {
+  handleUpdate = (fields: FormValueType) => {
     const { dispatch } = this.props;
     dispatch({
       type: 'BLOCK_NAME_CAMEL_CASE/update',

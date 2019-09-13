@@ -4,7 +4,7 @@ import React, { Component } from 'react';
 import { FormComponentProps } from 'antd/es/form';
 import { TableListItem } from '../data.d';
 
-export interface FormValsType extends Partial<TableListItem> {
+export interface FormValueType extends Partial<TableListItem> {
   target?: string;
   template?: string;
   type?: string;
@@ -13,8 +13,8 @@ export interface FormValsType extends Partial<TableListItem> {
 }
 
 export interface UpdateFormProps extends FormComponentProps {
-  handleUpdateModalVisible: (flag?: boolean, formVals?: FormValsType) => void;
-  handleUpdate: (values: FormValsType) => void;
+  handleUpdateModalVisible: (flag?: boolean, formVals?: FormValueType) => void;
+  handleUpdate: (values: FormValueType) => void;
   updateModalVisible: boolean;
   values: Partial<TableListItem>;
 }
@@ -25,7 +25,7 @@ const { Option } = Select;
 const RadioGroup = Radio.Group;
 
 export interface UpdateFormState {
-  formVals: FormValsType;
+  formVals: FormValueType;
   currentStep: number;
 }
 
@@ -94,7 +94,7 @@ class UpdateForm extends Component<UpdateFormProps, UpdateFormState> {
     });
   };
 
-  renderContent = (currentStep: number, formVals: FormValsType) => {
+  renderContent = (currentStep: number, formVals: FormValueType) => {
     const { form } = this.props;
     if (currentStep === 1) {
       return [
