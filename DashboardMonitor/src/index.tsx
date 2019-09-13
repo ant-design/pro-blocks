@@ -32,7 +32,7 @@ interface PAGE_NAME_UPPER_CAMEL_CASEProps {
     };
   }) => ({
     BLOCK_NAME_CAMEL_CASE,
-    loading: loading.models.monitor,
+    loading: loading.models.BLOCK_NAME_CAMEL_CASE,
   }),
 )
 class PAGE_NAME_UPPER_CAMEL_CASE extends Component<PAGE_NAME_UPPER_CAMEL_CASEProps> {

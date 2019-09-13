@@ -78,7 +78,7 @@ interface TableListState {
     };
   }) => ({
     BLOCK_NAME_CAMEL_CASE,
-    loading: loading.models.rule,
+    loading: loading.models.BLOCK_NAME_CAMEL_CASE,
   }),
 )
 class TableList extends Component<TableListProps, TableListState> {
