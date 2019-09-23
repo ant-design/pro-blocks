@@ -3,7 +3,7 @@
   "scripts": {
     "format-imports": "import-sort --write '**/*.{js,jsx,ts,tsx}'",
     "lint": "npm run lint:js && npm run lint:style",
-    "lint-staged": "lint-staged",
+    "lint-staged": "lint-staged && node ./.script/genBlockConfig.js&& git add ./blockList.json",
     "lint-staged:js": "eslint --ext .js,.jsx,.ts,.tsx",
     "lint:fix": "eslint --fix --cache --ext .js,.jsx,.ts,.tsx --format=pretty  ./ && npm run lint:style",
     "lint:js": "eslint --cache --ext .js,.jsx,.ts,.tsx --format=pretty ./",

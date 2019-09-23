@@ -1,7 +1,7 @@
 {
   "name": "@umi-block/search-list-articles",
   "version": "0.0.1",
-  "description": "SearchListArticles",
+  "description": "常用于陈列某一主题下的大量条目，并提供丰富的数据筛选功能帮助用户匹配出需要的数据自己。",
   "repository": {
     "type": "git",
     "url": "https://github.com/umijs/umi-blocks/ant-design-pro/searchlistarticles"

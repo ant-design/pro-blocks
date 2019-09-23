@@ -1,7 +1,7 @@
 {
   "name": "@umi-block/monitor",
   "version": "0.0.1",
-  "description": "Monitor",
+  "description": "常用于数据报表细节信息的展示，根据业务诉求可配置文本、列表、可视化图表等。",
   "repository": {
     "type": "git",
     "url": "https://github.com/umijs/umi-blocks/ant-design-pro/monitor"

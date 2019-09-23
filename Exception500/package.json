@@ -1,7 +1,7 @@
 {
   "name": "@pro-blocks/exception-500",
   "version": "0.0.1",
-  "description": "Exception500",
+  "description": "500 Internal Server Error，是表示服务器端错误的响应状态码。",
   "repository": {
     "type": "git",
     "url": "https://github.com/ant-design/pro-blocks/tree/master/Exception500"

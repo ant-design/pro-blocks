@@ -1,7 +1,7 @@
 {
   "name": "@pro-blocks/exception-404",
   "version": "0.0.1",
-  "description": "Exception404",
+  "description": "404 Not Found 代表请求失败，请求所希望得到的资源未被在服务器上发现",
   "repository": {
     "type": "git",
     "url": "https://github.com/ant-design/pro-blocks/tree/master/Exception404"

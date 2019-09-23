@@ -1,7 +1,7 @@
 {
   "name": "@umi-block/workplace",
   "version": "0.0.1",
-  "description": "Workplace",
+  "description": "工作台将应用中每个部分最关键的数据提取出来，在一个页面呈现，便于全局分析和决策。",
   "repository": {
     "type": "git",
     "url": "https://github.com/umijs/umi-blocks/ant-design-pro/workplace"

@@ -1,7 +1,7 @@
 {
   "name": "@umi-block/table-list",
   "version": "0.0.1",
-  "description": "TableList",
+  "description": "一个标准的表格增删改查页面，可以派生出百分之八十的后台页面。",
   "repository": {
     "type": "git",
     "url": "https://github.com/umijs/umi-blocks/ant-design-pro/tablelist"

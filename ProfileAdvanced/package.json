@@ -1,7 +1,7 @@
 {
   "name": "@umi-block/advanced-profile",
   "version": "0.0.1",
-  "description": "AdvancedProfile",
+  "description": "一个复杂的详情页，可以展示一个对象的基本信息和其相关的新息和操作。",
   "repository": {
     "type": "git",
     "url": "https://github.com/umijs/umi-blocks/ant-design-pro/advancedprofile"

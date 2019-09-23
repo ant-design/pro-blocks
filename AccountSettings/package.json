@@ -1,7 +1,7 @@
 {
   "name": "@umi-block/account-settings",
   "version": "0.0.1",
-  "description": "AccountSettings",
+  "description": "通常是用于用户设置名称、头像、用途、私密性等信息。",
   "repository": {
     "type": "git",
     "url": "https://github.com/umijs/umi-blocks/ant-design-pro/accountsettings"

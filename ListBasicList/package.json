@@ -1,7 +1,7 @@
 {
   "name": "@umi-block/basic-list",
   "version": "0.0.1",
-  "description": "BasicList",
+  "description": "用于陈列一类事务性主题，用户常常将这个页面当做开始事务的入口，主要以浏览方式寻找条目。",
   "repository": {
     "type": "git",
     "url": "https://github.com/umijs/umi-blocks/ant-design-pro/basiclist"

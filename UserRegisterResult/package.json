@@ -1,7 +1,7 @@
 {
   "name": "@umi-block/user-register-result",
   "version": "0.0.1",
-  "description": "UserRegisterResult",
+  "description": "用于展示注册的结果。",
   "repository": {
     "type": "git",
     "url": "https://github.com/umijs/umi-blocks/ant-design-pro/userregisterresult"

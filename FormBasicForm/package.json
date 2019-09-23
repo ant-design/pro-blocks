@@ -1,7 +1,7 @@
 {
   "name": "@umi-block/basic-form",
   "version": "0.0.1",
-  "description": "BasicForm",
+  "description": "表单页用于向用户收集或验证信息，基础表单常用于数据项较少的表单场景。",
   "main": "src/index.js",
   "scripts": {
     "dev": "umi dev"

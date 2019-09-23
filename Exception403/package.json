@@ -1,7 +1,7 @@
 {
   "name": "@pro-blocks/exception-403",
   "version": "0.0.1",
-  "description": "Exception403",
+  "description": "403 Forbidden 代表客户端错误，指的是服务器端有能力处理该请求，但是拒绝授权访问，一般是权限异常导致。",
   "repository": {
     "type": "git",
     "url": "https://github.com/ant-design/pro-blocks/tree/master/Exception403"

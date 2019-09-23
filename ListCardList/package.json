@@ -1,7 +1,7 @@
 {
   "name": "@umi-block/card-list",
   "version": "0.0.1",
-  "description": "CardList",
+  "description": "卡片组成的列表，一般用于展示有图的列表，更加美观。",
   "repository": {
     "type": "git",
     "url": "https://github.com/umijs/umi-blocks/ant-design-pro/cardlist"

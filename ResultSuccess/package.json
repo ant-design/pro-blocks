@@ -1,7 +1,7 @@
 {
   "name": "@umi-block/result-success",
   "version": "0.0.1",
-  "description": "ResultSuccess",
+  "description": "告知用户操作后所产生的成功结果，引导用户接下来的行动。",
   "repository": {
     "type": "git",
     "url": "https://github.com/umijs/umi-blocks/ant-design-pro/resultsuccess"

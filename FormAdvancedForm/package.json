@@ -1,7 +1,7 @@
 {
   "name": "@umi-block/advanced-form",
   "version": "0.0.1",
-  "description": "AdvancedForm",
+  "description": "高级表单常适用于一次性输入和提交大批量数据的场景。",
   "repository": {
     "type": "git",
     "url": "https://github.com/umijs/umi-blocks/ant-design-pro/advancedform"

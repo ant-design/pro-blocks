@@ -1,7 +1,7 @@
 {
   "name": "@umi-block/user-login",
   "version": "0.0.1",
-  "description": "UserLogin",
+  "description": "用户登录界面，支持用户名密码和手机号登录。",
   "repository": {
     "type": "git",
     "url": "https://github.com/umijs/umi-blocks/ant-design-pro/userlogin"

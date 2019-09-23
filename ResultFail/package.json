@@ -1,7 +1,7 @@
 {
   "name": "@umi-block/result-fail",
   "version": "0.0.1",
-  "description": "ResultFail",
+  "description": "告知用户操作后所产生的失败结果，引导用户接下来的行动。",
   "repository": {
     "type": "git",
     "url": "https://github.com/umijs/umi-blocks/ant-design-pro/resultfail"

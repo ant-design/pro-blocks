@@ -1,7 +1,7 @@
 {
   "name": "@umi-block/flow",
   "version": "0.0.1",
-  "description": "flow",
+  "description": "千言万语不如一张图，流程图是表示算法思路的最好方法。",
   "repository": {
     "type": "git",
     "url": "https://github.com/umijs/umi-blocks/ant-design-pro/flow"

@@ -1,7 +1,7 @@
 {
   "name": "@umi-block/search-list",
   "version": "0.0.1",
-  "description": "SearchListApplications",
+  "description": "一个基本多标签页面，用于展示搜索列表。",
   "repository": {
     "type": "git",
     "url": "https://github.com/umijs/umi-blocks/ant-design-pro/searchlistapplications"

@@ -1,7 +1,7 @@
 {
   "name": "@umi-block/account-center",
   "version": "0.0.1",
-  "description": "AccountCenter",
+  "description": "个人中心一般用于暂时用户的基本信息，已经相关的信息展示。",
   "repository": {
     "type": "git",
     "url": "https://github.com/umijs/umi-blocks/ant-design-pro/accountcenter"

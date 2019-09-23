@@ -1,7 +1,7 @@
 {
   "name": "@umi-block/analysis",
   "version": "0.0.1",
-  "description": "Analysis",
+  "description": "将同一主题下的多种下钻维度呈现在页面中，让用户能够研究多组数据并发现趋势，用户可操作数据，调整数据范围满足更精准的分析需求。",
   "repository": {
     "type": "git",
     "url": "https://github.com/umijs/umi-blocks/ant-design-pro/analysis"
