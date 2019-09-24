@@ -4,25 +4,25 @@ const gitUrl = 'https://github.com/ant-design/pro-blocks';
 const tagsKey = {
   list: '列表',
   search: '搜索',
-  articles: '文章',
+  articles: 'remove',
   table: '表格',
   form: '表单',
   step: '步骤',
   basic: '基本',
   card: '卡片',
-  applications: '应用',
-  projects: '项目',
+  applications: 'remove',
+  projects: 'remove',
   profile: '详情',
   advanced: '高级',
   result: '结果',
-  fail: '失败',
+  fail: 'remove',
   success: '成功',
   user: '用户',
   login: '登录',
   register: '注册',
-  account: '账号',
+  account: 'remove',
   center: '个人中心',
-  settings: '设置',
+  settings: '个人设置',
   dashboard: 'dashboard',
   analysis: '分析',
   monitor: '监控',
@@ -48,9 +48,9 @@ const genBlockName = name =>
  * @param {*} name
  */
 const genBlockTags = name =>
-  Array.from(new Set(name.match(/[A-Z]?[a-z]+|[0-9]+/g).map(p => p.toLowerCase()))).map(
-    key => tagsKey[key] || key,
-  );
+  Array.from(new Set(name.match(/[A-Z]?[a-z]+|[0-9]+/g).map(p => p.toLowerCase())))
+    .map(key => tagsKey[key] || key)
+    .filter(key => key !== 'remove');
 
 /**
  * 遍历文件地址

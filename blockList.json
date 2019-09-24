@@ -11,7 +11,6 @@
     "defaultPath": "/AccountCenter",
     "img": "https://github.com/ant-design/pro-blocks/raw/master/AccountCenter/snapshot.png",
     "tags": [
-      "账号",
       "个人中心"
     ],
     "name": "AccountCenter",
@@ -29,8 +28,7 @@
     "defaultPath": "/AccountSettings",
     "img": "https://github.com/ant-design/pro-blocks/raw/master/AccountSettings/snapshot.png",
     "tags": [
-      "账号",
-      "设置"
+      "个人设置"
     ],
     "name": "AccountSettings",
     "previewUrl": "https://preview.pro.ant.design/account/settings"
@@ -318,8 +316,7 @@
     "img": "https://github.com/ant-design/pro-blocks/raw/master/ListSearchApplications/snapshot.png",
     "tags": [
       "列表",
-      "搜索",
-      "应用"
+      "搜索"
     ],
     "name": "ListSearchApplications",
     "previewUrl": "https://preview.pro.ant.design/list/search/applications"
@@ -337,8 +334,7 @@
     "img": "https://github.com/ant-design/pro-blocks/raw/master/ListSearchArticles/snapshot.png",
     "tags": [
       "列表",
-      "搜索",
-      "文章"
+      "搜索"
     ],
     "name": "ListSearchArticles",
     "previewUrl": "https://preview.pro.ant.design/list/search/articles"
@@ -356,8 +352,7 @@
     "img": "https://github.com/ant-design/pro-blocks/raw/master/ListSearchProjects/snapshot.png",
     "tags": [
       "列表",
-      "搜索",
-      "项目"
+      "搜索"
     ],
     "name": "ListSearchProjects",
     "previewUrl": "https://preview.pro.ant.design/list/search/projects"
@@ -428,8 +423,7 @@
     "defaultPath": "/ResultFail",
     "img": "https://github.com/ant-design/pro-blocks/raw/master/ResultFail/snapshot.png",
     "tags": [
-      "结果",
-      "失败"
+      "结果"
     ],
     "name": "ResultFail",
     "previewUrl": "https://preview.pro.ant.design/result/fail"
