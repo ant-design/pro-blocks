@@ -171,8 +171,7 @@
     "defaultPath": "/Exception404",
     "img": "https://github.com/ant-design/pro-blocks/raw/master/Exception404/snapshot.png",
     "tags": [
-      "异常",
-      "404"
+      "异常"
     ],
     "name": "Exception404",
     "previewUrl": "https://preview.pro.ant.design/exception/404"
@@ -189,8 +188,7 @@
     "defaultPath": "/Exception500",
     "img": "https://github.com/ant-design/pro-blocks/raw/master/Exception500/snapshot.png",
     "tags": [
-      "异常",
-      "500"
+      "异常"
     ],
     "name": "Exception500",
     "previewUrl": "https://preview.pro.ant.design/exception/500"
