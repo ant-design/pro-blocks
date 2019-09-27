@@ -64,24 +64,18 @@ const getFolderTreeData = filePath => {
   return files
     .map(fileName => {
       const status = fs.statSync(join(filePath, fileName));
-      // 是文件夹 并且不已 . 开头且最深三层
       if (status.isDirectory() && fileName.indexOf('.') !== 0) {
         const absPkgPath = join(filePath, fileName, 'package.json');
         if (fs.existsSync(absPkgPath)) {
           const pkg = require(absPkgPath);
           return {
-            title: fileName,
-            value: fileName,
+            name: fileName,
             key: fileName,
             description: pkg.description,
             url: `${gitUrl}/tree/master/${fileName}`,
-            type: 'block',
             path: fileName,
-            isPage: true,
-            defaultPath: `/${fileName}`,
-            img: `https://github.com/ant-design/pro-blocks/raw/master/${fileName}/snapshot.png`,
+            img: `https://raw.githubusercontent.com/ant-design/pro-blocks/master/${fileName}/snapshot.png?raw=true`,
             tags: genBlockTags(fileName),
-            name: fileName,
             previewUrl: `https://preview.pro.ant.design/${genBlockName(fileName)}`,
           };
         }
@@ -92,6 +86,6 @@ const getFolderTreeData = filePath => {
 };
 
 fs.writeFileSync(
-  join(__dirname, '..', 'blockList.json'),
-  JSON.stringify(getFolderTreeData(join(__dirname, '../')), null, 2),
+  join(__dirname, '..', 'umi-block.json'),
+  JSON.stringify({ list: getFolderTreeData(join(__dirname, '../')) }, null, 2),
 );
