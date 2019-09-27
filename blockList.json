@@ -153,8 +153,7 @@
     "defaultPath": "/Exception403",
     "img": "https://github.com/ant-design/pro-blocks/raw/master/Exception403/snapshot.png",
     "tags": [
-      "异常",
-      "403"
+      "异常"
     ],
     "name": "Exception403",
     "previewUrl": "https://preview.pro.ant.design/exception/403"
@@ -438,8 +437,7 @@
     "defaultPath": "/ResultSuccess",
     "img": "https://github.com/ant-design/pro-blocks/raw/master/ResultSuccess/snapshot.png",
     "tags": [
-      "结果",
-      "成功"
+      "结果"
     ],
     "name": "ResultSuccess",
     "previewUrl": "https://preview.pro.ant.design/result/success"
