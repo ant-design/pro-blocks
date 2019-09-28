@@ -58,8 +58,7 @@
       "path": "DashboardWorkplace",
       "img": "https://raw.githubusercontent.com/ant-design/pro-blocks/master/DashboardWorkplace/snapshot.png?raw=true",
       "tags": [
-        "dashboard",
-        "工作台"
+        "dashboard"
       ],
       "previewUrl": "https://preview.pro.ant.design/dashboard/workplace"
     },
@@ -72,7 +71,7 @@
       "img": "https://raw.githubusercontent.com/ant-design/pro-blocks/master/EditorFlow/snapshot.png?raw=true",
       "tags": [
         "编辑器",
-        "流程图"
+        "flow"
       ],
       "previewUrl": "https://preview.pro.ant.design/editor/flow"
     },
@@ -85,7 +84,7 @@
       "img": "https://raw.githubusercontent.com/ant-design/pro-blocks/master/EditorKoni/snapshot.png?raw=true",
       "tags": [
         "编辑器",
-        "拓扑结构图"
+        "koni"
       ],
       "previewUrl": "https://preview.pro.ant.design/editor/koni"
     },
@@ -98,7 +97,7 @@
       "img": "https://raw.githubusercontent.com/ant-design/pro-blocks/master/EditorMind/snapshot.png?raw=true",
       "tags": [
         "编辑器",
-        "脑图"
+        "mind"
       ],
       "previewUrl": "https://preview.pro.ant.design/editor/mind"
     },

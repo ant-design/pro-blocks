@@ -29,11 +29,8 @@ const tagsKey = {
   dashboard: 'dashboard',
   analysis: '分析',
   monitor: '监控',
-  workplace: '工作台',
+  workplace: 'remove',
   editor: '编辑器',
-  flow: '流程图',
-  koni: '拓扑结构图',
-  mind: '脑图',
   exception: '异常',
 };
 /**
