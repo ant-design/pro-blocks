@@ -30,7 +30,10 @@ const tagsKey = {
   analysis: '分析',
   monitor: '监控',
   workplace: 'remove',
-  editor: '编辑器',
+  editor: '图形编辑',
+  flow: 'remove',
+  koni: 'remove',
+  mind: 'remove',
   exception: '异常',
 };
 /**

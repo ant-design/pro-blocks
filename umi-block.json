@@ -70,8 +70,7 @@
       "path": "EditorFlow",
       "img": "https://raw.githubusercontent.com/ant-design/pro-blocks/master/EditorFlow/snapshot.png?raw=true",
       "tags": [
-        "编辑器",
-        "flow"
+        "图形编辑"
       ],
       "previewUrl": "https://preview.pro.ant.design/editor/flow"
     },
@@ -83,8 +82,7 @@
       "path": "EditorKoni",
       "img": "https://raw.githubusercontent.com/ant-design/pro-blocks/master/EditorKoni/snapshot.png?raw=true",
       "tags": [
-        "编辑器",
-        "koni"
+        "图形编辑"
       ],
       "previewUrl": "https://preview.pro.ant.design/editor/koni"
     },
@@ -96,8 +94,7 @@
       "path": "EditorMind",
       "img": "https://raw.githubusercontent.com/ant-design/pro-blocks/master/EditorMind/snapshot.png?raw=true",
       "tags": [
-        "编辑器",
-        "mind"
+        "图形编辑"
       ],
       "previewUrl": "https://preview.pro.ant.design/editor/mind"
     },
