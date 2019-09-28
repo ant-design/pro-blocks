@@ -32,8 +32,7 @@
       "path": "DashboardAnalysis",
       "img": "https://raw.githubusercontent.com/ant-design/pro-blocks/master/DashboardAnalysis/snapshot.png?raw=true",
       "tags": [
-        "dashboard",
-        "分析"
+        "dashboard"
       ],
       "previewUrl": "https://preview.pro.ant.design/dashboard/analysis"
     },
@@ -45,8 +44,7 @@
       "path": "DashboardMonitor",
       "img": "https://raw.githubusercontent.com/ant-design/pro-blocks/master/DashboardMonitor/snapshot.png?raw=true",
       "tags": [
-        "dashboard",
-        "监控"
+        "dashboard"
       ],
       "previewUrl": "https://preview.pro.ant.design/dashboard/monitor"
     },
@@ -168,8 +166,7 @@
       "path": "FormStepForm",
       "img": "https://raw.githubusercontent.com/ant-design/pro-blocks/master/FormStepForm/snapshot.png?raw=true",
       "tags": [
-        "表单",
-        "步骤"
+        "表单"
       ],
       "previewUrl": "https://preview.pro.ant.design/form/step/form"
     },
@@ -194,8 +191,7 @@
       "path": "ListCardList",
       "img": "https://raw.githubusercontent.com/ant-design/pro-blocks/master/ListCardList/snapshot.png?raw=true",
       "tags": [
-        "列表",
-        "卡片"
+        "列表"
       ],
       "previewUrl": "https://preview.pro.ant.design/list/card/list"
     },
