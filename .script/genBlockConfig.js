@@ -105,6 +105,30 @@ const genBlockTags = name =>
     .map(key => tagsKey[key] || key)
     .filter(key => key !== 'remove');
 
+const getFeature = filePath => {
+  const feature = ['antd'];
+  const srcPath = join(filePath, 'src');
+
+  const localesPath = join(srcPath, 'locales');
+  if (fs.existsSync(localesPath)) {
+    feature.push('i18n');
+  }
+
+  const modalTsxPath = join(srcPath, 'model.tsx');
+  const modalTsPath = join(srcPath, 'model.ts');
+  const modalJsPath = join(srcPath, 'model.js');
+  const modalJsxPath = join(srcPath, 'model.jsx');
+  if (
+    fs.existsSync(modalTsxPath) ||
+    fs.existsSync(modalTsPath) ||
+    fs.existsSync(modalJsPath) ||
+    fs.existsSync(modalJsxPath)
+  ) {
+    feature.push('dva');
+  }
+  return feature;
+};
+
 /**
  * 遍历文件地址
  * @param path
@@ -124,6 +148,7 @@ const getFolderTreeData = filePath => {
             description: pkg.description,
             url: `${gitUrl}/tree/master/${fileName}`,
             path: fileName,
+            feature: getFeature(join(filePath, fileName)),
             img: `https://raw.githubusercontent.com/ant-design/pro-blocks/master/${fileName}/snapshot.png?raw=true`,
             tags: genBlockTags(fileName),
             previewUrl: `https://preview.pro.ant.design/${genBlockName(fileName)}`,
