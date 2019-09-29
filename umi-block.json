@@ -6,7 +6,7 @@
       "description": "个人中心一般用于暂时用户的基本信息，已经相关的信息展示。",
       "url": "https://github.com/ant-design/pro-blocks/tree/master/AccountCenter",
       "path": "AccountCenter",
-      "feature": [
+      "features": [
         "antd",
         "dva"
       ],
@@ -22,7 +22,7 @@
       "description": "通常是用于用户设置名称、头像、用途、私密性等信息。",
       "url": "https://github.com/ant-design/pro-blocks/tree/master/AccountSettings",
       "path": "AccountSettings",
-      "feature": [
+      "features": [
         "antd",
         "i18n",
         "dva"
@@ -39,7 +39,7 @@
       "description": "将同一主题下的多种下钻维度呈现在页面中，让用户能够研究多组数据并发现趋势，用户可操作数据，调整数据范围满足更精准的分析需求。",
       "url": "https://github.com/ant-design/pro-blocks/tree/master/DashboardAnalysis",
       "path": "DashboardAnalysis",
-      "feature": [
+      "features": [
         "antd",
         "i18n",
         "dva"
@@ -56,7 +56,7 @@
       "description": "常用于数据报表细节信息的展示，根据业务诉求可配置文本、列表、可视化图表等。",
       "url": "https://github.com/ant-design/pro-blocks/tree/master/DashboardMonitor",
       "path": "DashboardMonitor",
-      "feature": [
+      "features": [
         "antd",
         "i18n",
         "dva"
@@ -73,7 +73,7 @@
       "description": "工作台将应用中每个部分最关键的数据提取出来，在一个页面呈现，便于全局分析和决策。",
       "url": "https://github.com/ant-design/pro-blocks/tree/master/DashboardWorkplace",
       "path": "DashboardWorkplace",
-      "feature": [
+      "features": [
         "antd",
         "dva"
       ],
@@ -89,7 +89,7 @@
       "description": "千言万语不如一张图，流程图是表示算法思路的最好方法。",
       "url": "https://github.com/ant-design/pro-blocks/tree/master/EditorFlow",
       "path": "EditorFlow",
-      "feature": [
+      "features": [
         "antd",
         "i18n"
       ],
@@ -105,7 +105,7 @@
       "description": "拓扑结构图可以清晰展示网络节点和通信介质构成的网络结构。",
       "url": "https://github.com/ant-design/pro-blocks/tree/master/EditorKoni",
       "path": "EditorKoni",
-      "feature": [
+      "features": [
         "antd",
         "i18n"
       ],
@@ -121,7 +121,7 @@
       "description": "脑图是表达发散性思维的有效工具，它简单却又很有效，是一种非常实用展示工具。",
       "url": "https://github.com/ant-design/pro-blocks/tree/master/EditorMind",
       "path": "EditorMind",
-      "feature": [
+      "features": [
         "antd",
         "i18n"
       ],
@@ -137,7 +137,7 @@
       "description": "403 Forbidden 代表客户端错误，指的是服务器端有能力处理该请求，但是拒绝授权访问，一般是权限异常导致。",
       "url": "https://github.com/ant-design/pro-blocks/tree/master/Exception403",
       "path": "Exception403",
-      "feature": [
+      "features": [
         "antd",
         "i18n"
       ],
@@ -153,7 +153,7 @@
       "description": "404 Not Found 代表请求失败，请求所希望得到的资源未被在服务器上发现",
       "url": "https://github.com/ant-design/pro-blocks/tree/master/Exception404",
       "path": "Exception404",
-      "feature": [
+      "features": [
         "antd",
         "i18n"
       ],
@@ -169,7 +169,7 @@
       "description": "500 Internal Server Error，是表示服务器端错误的响应状态码。",
       "url": "https://github.com/ant-design/pro-blocks/tree/master/Exception500",
       "path": "Exception500",
-      "feature": [
+      "features": [
         "antd",
         "i18n"
       ],
@@ -185,7 +185,7 @@
       "description": "高级表单常适用于一次性输入和提交大批量数据的场景。",
       "url": "https://github.com/ant-design/pro-blocks/tree/master/FormAdvancedForm",
       "path": "FormAdvancedForm",
-      "feature": [
+      "features": [
         "antd",
         "dva"
       ],
@@ -202,7 +202,7 @@
       "description": "表单页用于向用户收集或验证信息，基础表单常用于数据项较少的表单场景。",
       "url": "https://github.com/ant-design/pro-blocks/tree/master/FormBasicForm",
       "path": "FormBasicForm",
-      "feature": [
+      "features": [
         "antd",
         "i18n",
         "dva"
@@ -220,7 +220,7 @@
       "description": "分布表单使用与将一个冗长或用户不熟悉的表单任务分成多个步骤，指导用户完成的场景。",
       "url": "https://github.com/ant-design/pro-blocks/tree/master/FormStepForm",
       "path": "FormStepForm",
-      "feature": [
+      "features": [
         "antd",
         "i18n",
         "dva"
@@ -237,7 +237,7 @@
       "description": "用于陈列一类事务性主题，用户常常将这个页面当做开始事务的入口，主要以浏览方式寻找条目。",
       "url": "https://github.com/ant-design/pro-blocks/tree/master/ListBasicList",
       "path": "ListBasicList",
-      "feature": [
+      "features": [
         "antd",
         "dva"
       ],
@@ -254,7 +254,7 @@
       "description": "卡片组成的列表，一般用于展示有图的列表，更加美观。",
       "url": "https://github.com/ant-design/pro-blocks/tree/master/ListCardList",
       "path": "ListCardList",
-      "feature": [
+      "features": [
         "antd",
         "dva"
       ],
@@ -270,7 +270,7 @@
       "description": "一个基本多标签页面，用于展示搜索列表。",
       "url": "https://github.com/ant-design/pro-blocks/tree/master/ListSearch",
       "path": "ListSearch",
-      "feature": [
+      "features": [
         "antd"
       ],
       "img": "https://raw.githubusercontent.com/ant-design/pro-blocks/master/ListSearch/snapshot.png?raw=true",
@@ -286,7 +286,7 @@
       "description": "常用于陈列某一主题下的大量条目，并提供丰富的数据筛选功能帮助用户匹配出需要的数据自己。",
       "url": "https://github.com/ant-design/pro-blocks/tree/master/ListSearchApplications",
       "path": "ListSearchApplications",
-      "feature": [
+      "features": [
         "antd",
         "dva"
       ],
@@ -303,7 +303,7 @@
       "description": "常用于陈列某一主题下的大量条目，并提供丰富的数据筛选功能帮助用户匹配出需要的数据自己。",
       "url": "https://github.com/ant-design/pro-blocks/tree/master/ListSearchArticles",
       "path": "ListSearchArticles",
-      "feature": [
+      "features": [
         "antd",
         "dva"
       ],
@@ -320,7 +320,7 @@
       "description": "常用于陈列某一主题下的大量条目，并提供丰富的数据筛选功能帮助用户匹配出需要的数据自己。",
       "url": "https://github.com/ant-design/pro-blocks/tree/master/ListSearchProjects",
       "path": "ListSearchProjects",
-      "feature": [
+      "features": [
         "antd",
         "dva"
       ],
@@ -337,7 +337,7 @@
       "description": "一个标准的表格增删改查页面，可以派生出百分之八十的后台页面。",
       "url": "https://github.com/ant-design/pro-blocks/tree/master/ListTableList",
       "path": "ListTableList",
-      "feature": [
+      "features": [
         "antd",
         "dva"
       ],
@@ -354,7 +354,7 @@
       "description": "一个复杂的详情页，可以展示一个对象的基本信息和其相关的新息和操作。",
       "url": "https://github.com/ant-design/pro-blocks/tree/master/ProfileAdvanced",
       "path": "ProfileAdvanced",
-      "feature": [
+      "features": [
         "antd",
         "dva"
       ],
@@ -371,7 +371,7 @@
       "description": "详情页可以向用户展示一个对象完整的描述信息,并且可以对一个对象进行编辑操作。",
       "url": "https://github.com/ant-design/pro-blocks/tree/master/ProfileBasic",
       "path": "ProfileBasic",
-      "feature": [
+      "features": [
         "antd",
         "dva"
       ],
@@ -388,7 +388,7 @@
       "description": "告知用户操作后所产生的失败结果，引导用户接下来的行动。",
       "url": "https://github.com/ant-design/pro-blocks/tree/master/ResultFail",
       "path": "ResultFail",
-      "feature": [
+      "features": [
         "antd",
         "i18n"
       ],
@@ -404,7 +404,7 @@
       "description": "告知用户操作后所产生的成功结果，引导用户接下来的行动。",
       "url": "https://github.com/ant-design/pro-blocks/tree/master/ResultSuccess",
       "path": "ResultSuccess",
-      "feature": [
+      "features": [
         "antd",
         "i18n"
       ],
@@ -420,7 +420,7 @@
       "description": "用户登录界面，支持用户名密码和手机号登录。",
       "url": "https://github.com/ant-design/pro-blocks/tree/master/UserLogin",
       "path": "UserLogin",
-      "feature": [
+      "features": [
         "antd",
         "i18n",
         "dva"
@@ -438,7 +438,7 @@
       "description": "用户注册是使用，用于填写基本的账号信息。",
       "url": "https://github.com/ant-design/pro-blocks/tree/master/UserRegister",
       "path": "UserRegister",
-      "feature": [
+      "features": [
         "antd",
         "i18n",
         "dva"
@@ -456,7 +456,7 @@
       "description": "用于展示注册的结果。",
       "url": "https://github.com/ant-design/pro-blocks/tree/master/UserRegisterResult",
       "path": "UserRegisterResult",
-      "feature": [
+      "features": [
         "antd",
         "i18n"
       ],

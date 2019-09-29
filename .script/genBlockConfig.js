@@ -148,7 +148,7 @@ const getFolderTreeData = filePath => {
             description: pkg.description,
             url: `${gitUrl}/tree/master/${fileName}`,
             path: fileName,
-            feature: getFeature(join(filePath, fileName)),
+            features: getFeature(join(filePath, fileName)),
             img: `https://raw.githubusercontent.com/ant-design/pro-blocks/master/${fileName}/snapshot.png?raw=true`,
             tags: genBlockTags(fileName),
             previewUrl: `https://preview.pro.ant.design/${genBlockName(fileName)}`,
