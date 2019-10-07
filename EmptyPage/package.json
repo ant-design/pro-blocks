@@ -1,0 +1,20 @@
+{
+  "name": "@umi-block/empty",
+  "version": "0.0.1",
+  "description": "一个空白的页面，一切都从这里开始！",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/umijs/umi-blocks/ant-design-pro/empty"
+  },
+  "license": "ISC",
+  "main": "src/index.js",
+  "scripts": {
+    "dev": "umi dev"
+  },
+  "peerDependencies": {
+    "@ant-design/pro-layout": "^4.5.5"
+  },
+  "blockConfig": {
+    "specVersion": "0.1"
+  }
+}

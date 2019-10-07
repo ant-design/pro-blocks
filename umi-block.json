@@ -132,6 +132,21 @@
       "previewUrl": "https://preview.pro.ant.design/editor/mind"
     },
     {
+      "key": "EmptyPage",
+      "description": "一个空白的页面，一切都从这里开始！",
+      "url": "https://github.com/ant-design/pro-blocks/tree/master/EmptyPage",
+      "path": "EmptyPage",
+      "features": [
+        "antd"
+      ],
+      "img": "https://raw.githubusercontent.com/ant-design/pro-blocks/master/EmptyPage/snapshot.png?raw=true",
+      "tags": [
+        "empty",
+        "page"
+      ],
+      "previewUrl": "https://preview.pro.ant.design/empty/page"
+    },
+    {
       "name": "403",
       "key": "Exception403",
       "description": "403 Forbidden 代表客户端错误，指的是服务器端有能力处理该请求，但是拒绝授权访问，一般是权限异常导致。",

@@ -4,6 +4,7 @@ const gitUrl = 'https://github.com/ant-design/pro-blocks';
 
 const menuData = {
   home: '首页',
+  Empty: '空白',
   login: '登录',
   register: '注册',
   'register/result': '注册结果',
@@ -142,6 +143,7 @@ const getFolderTreeData = filePath => {
         const absPkgPath = join(filePath, fileName, 'package.json');
         if (fs.existsSync(absPkgPath)) {
           const pkg = require(absPkgPath);
+
           return {
             name: menuData[genBlockName(fileName)],
             key: fileName,
