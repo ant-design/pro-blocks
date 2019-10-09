@@ -136,10 +136,10 @@ const getFeature = filePath => {
  */
 const getFolderTreeData = filePath => {
   const files = fs.readdirSync(filePath);
-  return files
+  const blockList = files
     .map(fileName => {
       const status = fs.statSync(join(filePath, fileName));
-      if (status.isDirectory() && fileName.indexOf('.') !== 0) {
+      if (status.isDirectory() && fileName.indexOf('.') !== 0 && fileName !== 'EmptyPage') {
         const absPkgPath = join(filePath, fileName, 'package.json');
         if (fs.existsSync(absPkgPath)) {
           const pkg = require(absPkgPath);
@@ -160,6 +160,20 @@ const getFolderTreeData = filePath => {
       return undefined;
     })
     .filter(obj => obj);
+
+  blockList.unshift({
+    key: 'EmptyPage',
+    description: '一个空白的页面，一切都从这里开始！',
+    url: 'https://github.com/ant-design/pro-blocks/tree/master/EmptyPage',
+    path: 'NewPage',
+    features: ['antd'],
+    img:
+      'https://raw.githubusercontent.com/ant-design/pro-blocks/master/EmptyPage/snapshot.png?raw=true',
+    tags: ['空白页'],
+    previewUrl: 'https://preview.pro.ant.design',
+  });
+
+  return blockList;
 };
 
 fs.writeFileSync(

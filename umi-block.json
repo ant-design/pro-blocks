@@ -1,6 +1,20 @@
 {
   "list": [
     {
+      "key": "EmptyPage",
+      "description": "一个空白的页面，一切都从这里开始！",
+      "url": "https://github.com/ant-design/pro-blocks/tree/master/EmptyPage",
+      "path": "NewPage",
+      "features": [
+        "antd"
+      ],
+      "img": "https://raw.githubusercontent.com/ant-design/pro-blocks/master/EmptyPage/snapshot.png?raw=true",
+      "tags": [
+        "空白页"
+      ],
+      "previewUrl": "https://preview.pro.ant.design"
+    },
+    {
       "name": "个人中心",
       "key": "AccountCenter",
       "description": "个人中心一般用于暂时用户的基本信息，已经相关的信息展示。",
@@ -130,21 +144,6 @@
         "图形编辑"
       ],
       "previewUrl": "https://preview.pro.ant.design/editor/mind"
-    },
-    {
-      "key": "EmptyPage",
-      "description": "一个空白的页面，一切都从这里开始！",
-      "url": "https://github.com/ant-design/pro-blocks/tree/master/EmptyPage",
-      "path": "EmptyPage",
-      "features": [
-        "antd"
-      ],
-      "img": "https://raw.githubusercontent.com/ant-design/pro-blocks/master/EmptyPage/snapshot.png?raw=true",
-      "tags": [
-        "empty",
-        "page"
-      ],
-      "previewUrl": "https://preview.pro.ant.design/empty/page"
     },
     {
       "name": "403",
