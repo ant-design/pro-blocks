@@ -163,6 +163,7 @@ const getFolderTreeData = filePath => {
 
   blockList.unshift({
     key: 'EmptyPage',
+    name: '空白页面',
     description: '一个空白的页面，一切都从这里开始！',
     url: 'https://github.com/ant-design/pro-blocks/tree/master/EmptyPage',
     path: 'NewPage',
