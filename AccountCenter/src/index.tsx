@@ -162,7 +162,7 @@ class PAGE_NAME_UPPER_CAMEL_CASE extends PureComponent<
         <Row gutter={24}>
           <Col lg={7} md={24}>
             <Card bordered={false} style={{ marginBottom: 24 }} loading={dataLoading}>
-              {!dataLoading ? (
+              {!dataLoading && (
                 <div>
                   <div className={styles.avatarHolder}>
                     <img alt="" src={currentUser.avatar} />
@@ -227,7 +227,7 @@ class PAGE_NAME_UPPER_CAMEL_CASE extends PureComponent<
                     </Row>
                   </div>
                 </div>
-              ) : null}
+              )}
             </Card>
           </Col>
           <Col lg={17} md={24}>

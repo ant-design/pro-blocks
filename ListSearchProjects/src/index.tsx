@@ -41,7 +41,7 @@ class PAGE_NAME_UPPER_CAMEL_CASE extends Component<PAGE_NAME_UPPER_CAMEL_CASEPro
     } = this.props;
     const { getFieldDecorator } = form;
 
-    const cardList = list ? (
+    const cardList = list && (
       <List<ListItemDataType>
         rowKey="id"
         loading={loading}
@@ -80,7 +80,7 @@ class PAGE_NAME_UPPER_CAMEL_CASE extends Component<PAGE_NAME_UPPER_CAMEL_CASEPro
           </List.Item>
         )}
       />
-    ) : null;
+    );
 
     const formItemLayout = {
       wrapperCol: {
