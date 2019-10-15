@@ -22,6 +22,8 @@ interface PAGE_NAME_UPPER_CAMEL_CASEProps extends FormComponentProps {
   loading: boolean;
 }
 
+const getKey = (id: string, index: number) => `${id}-${index}`;
+
 class PAGE_NAME_UPPER_CAMEL_CASE extends Component<PAGE_NAME_UPPER_CAMEL_CASEProps> {
   componentDidMount() {
     const { dispatch } = this.props;
@@ -66,9 +68,9 @@ class PAGE_NAME_UPPER_CAMEL_CASE extends Component<PAGE_NAME_UPPER_CAMEL_CASEPro
                 <span>{moment(item.updatedAt).fromNow()}</span>
                 <div className={styles.avatarList}>
                   <AvatarList size="small">
-                    {item.members.map((member, index) => (
+                    {item.members.map((member, i) => (
                       <AvatarList.Item
-                        key={`${item.id}-${index}`}
+                        key={getKey(item.id, i)}
                         src={member.avatar}
                         tips={member.name}
                       />
