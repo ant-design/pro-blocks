@@ -13,11 +13,10 @@ jobs:
       - name: lint
         run: npm run lint
 
-   test-js:
+  test-js:
     runs-on: ubuntu-latest
 
     steps:
-
       - name: clone
         run: git clone https://github.com/ant-design/ant-design-pro.git  --depth=1
 
