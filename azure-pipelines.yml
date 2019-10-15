@@ -27,3 +27,22 @@ jobs:
         displayName: install
       - script: npm run lint
         displayName: lint
+
+  - job: lintinJs
+    pool:
+      vmImage: 'Ubuntu-16.04'
+
+    steps:
+      - checkout: self
+        clean: false
+      - task: NodeTool@0
+        inputs:
+          versionSpec: '11.x'
+      - script: git clone https://github.com/ant-design/ant-design-pro.git  --depth=1
+      - script: cd ant-design-pro
+      - script: npm install
+        displayName: install
+      - script: npm run fetch:blocks
+        displayName: fetch-blocks
+      - script: npm run lint
+        displayName: lint
