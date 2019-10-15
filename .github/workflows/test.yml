@@ -20,11 +20,11 @@ jobs:
       - name: clone
         run: git clone https://github.com/ant-design/ant-design-pro.git  --depth=1
 
-      - name: fetch
-        run: cd ant-design-pro && npm run fetch:blocks
-
       - name: install
         run: cd ant-design-pro && npm install
+
+      - name: fetch
+        run: cd ant-design-pro && npm run fetch:blocks
 
       - name: lint
         run: cd ant-design-pro && npm run lint
