@@ -15,7 +15,7 @@ import React, { Component } from 'react';
 
 import { Dispatch } from 'redux';
 import { FormComponentProps } from 'antd/es/form';
-import { PageHeaderWrapper } from '@ant-design/pro-layout';
+import { PageHeaderWrapper, RouteContext } from '@ant-design/pro-layout';
 import { connect } from 'dva';
 import TableForm from './components/TableForm';
 import FooterToolbar from './components/FooterToolbar';
@@ -69,19 +69,6 @@ interface PAGE_NAME_UPPER_CAMEL_CASEProps extends FormComponentProps {
   submitting: loading.effects['BLOCK_NAME_CAMEL_CASE/submitAdvancedForm'],
 }))
 class PAGE_NAME_UPPER_CAMEL_CASE extends Component<PAGE_NAME_UPPER_CAMEL_CASEProps> {
-  state = {
-    width: '100%',
-  };
-
-  componentDidMount() {
-    window.addEventListener('resize', this.resizeFooterToolbar, { passive: true });
-    this.resizeFooterToolbar();
-  }
-
-  componentWillUnmount() {
-    window.removeEventListener('resize', this.resizeFooterToolbar);
-  }
-
   getErrorInfo = () => {
     const {
       form: { getFieldsError },
@@ -131,19 +118,6 @@ class PAGE_NAME_UPPER_CAMEL_CASE extends Component<PAGE_NAME_UPPER_CAMEL_CASEPro
     );
   };
 
-  resizeFooterToolbar = () => {
-    requestAnimationFrame(() => {
-      const sider = document.querySelectorAll('.ant-layout-sider')[0] as HTMLDivElement;
-      if (sider) {
-        const width = `calc(100% - ${sider.style.width})`;
-        const { width: stateWidth } = this.state;
-        if (stateWidth !== width) {
-          this.setState({ width });
-        }
-      }
-    });
-  };
-
   validate = () => {
     const {
       form: { validateFieldsAndScroll },
@@ -165,7 +139,6 @@ class PAGE_NAME_UPPER_CAMEL_CASE extends Component<PAGE_NAME_UPPER_CAMEL_CASEPro
       form: { getFieldDecorator },
       submitting,
     } = this.props;
-    const { width } = this.state;
     return (
       <>
         <PageHeaderWrapper content="高级表单常见于一次性输入和提交大批量数据的场景。">
@@ -328,12 +301,16 @@ class PAGE_NAME_UPPER_CAMEL_CASE extends Component<PAGE_NAME_UPPER_CAMEL_CASEPro
             })(<TableForm />)}
           </Card>
         </PageHeaderWrapper>
-        <FooterToolbar style={{ width }}>
-          {this.getErrorInfo()}
-          <Button type="primary" onClick={this.validate} loading={submitting}>
-            提交
-          </Button>
-        </FooterToolbar>
+        <RouteContext.Consumer>
+          {({ isMobile }) => (
+            <FooterToolbar isMobile={isMobile}>
+              {this.getErrorInfo()}
+              <Button type="primary" onClick={this.validate} loading={submitting}>
+                提交
+              </Button>
+            </FooterToolbar>
+          )}
+        </RouteContext.Consumer>
       </>
     );
   }

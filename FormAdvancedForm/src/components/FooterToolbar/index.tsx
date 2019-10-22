@@ -7,6 +7,7 @@ export interface FooterToolbarProps {
   extra?: React.ReactNode;
   style?: React.CSSProperties;
   className?: string;
+  isMobile?: boolean;
 }
 
 export default class FooterToolbar extends Component<FooterToolbarProps> {
@@ -28,7 +29,7 @@ export default class FooterToolbar extends Component<FooterToolbarProps> {
     if (sider == null) {
       return;
     }
-    const { isMobile } = this.context;
+    const { isMobile } = this.props;
     const width = isMobile ? null : `calc(100% - ${sider.style.width})`;
     const { width: stateWidth } = this.state;
     if (stateWidth !== width) {
