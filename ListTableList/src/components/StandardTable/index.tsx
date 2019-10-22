@@ -7,7 +7,11 @@ import styles from './index.less';
 
 type Omit<T, K extends keyof T> = Pick<T, Exclude<keyof T, K>>;
 
-export interface StandardTableProps<T> extends Omit<TableProps<T>, 'columns'> {
+export interface StandardTableProps<T>
+  extends Omit<
+    TableProps<T>,
+    'columns' | 'store' | 'checkboxPropsCache' | 'setCheckboxPropsCache'
+  > {
   columns: StandardTableColumnProps[];
   data: {
     list: TableListItem[];
