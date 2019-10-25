@@ -63,7 +63,7 @@
     "antd": "^3.17.0"
   },
   "optionalDependencies": {
-    "puppeteer": "^1.17.0"
+    "puppeteer": "^2.0.0"
   },
   "checkFiles": [
     "**/*.ts*",
