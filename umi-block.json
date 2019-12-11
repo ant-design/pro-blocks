@@ -353,8 +353,7 @@
       "url": "https://github.com/ant-design/pro-blocks/tree/master/ListTableList",
       "path": "ListTableList",
       "features": [
-        "antd",
-        "dva"
+        "antd"
       ],
       "img": "https://raw.githubusercontent.com/ant-design/pro-blocks/master/ListTableList/snapshot.png?raw=true",
       "tags": [

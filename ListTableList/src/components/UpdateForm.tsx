@@ -13,8 +13,8 @@ export interface FormValueType extends Partial<TableListItem> {
 }
 
 export interface UpdateFormProps extends FormComponentProps {
-  handleUpdateModalVisible: (flag?: boolean, formVals?: FormValueType) => void;
-  handleUpdate: (values: FormValueType) => void;
+  onCancel: (flag?: boolean, formVals?: FormValueType) => void;
+  onSubmit: (values: FormValueType) => void;
   updateModalVisible: boolean;
   values: Partial<TableListItem>;
 }
@@ -60,7 +60,7 @@ class UpdateForm extends Component<UpdateFormProps, UpdateFormState> {
   }
 
   handleNext = (currentStep: number) => {
-    const { form, handleUpdate } = this.props;
+    const { form, onSubmit: handleUpdate } = this.props;
     const { formVals: oldValue } = this.state;
     form.validateFields((err, fieldsValue) => {
       if (err) return;
@@ -173,7 +173,7 @@ class UpdateForm extends Component<UpdateFormProps, UpdateFormState> {
   };
 
   renderFooter = (currentStep: number) => {
-    const { handleUpdateModalVisible, values } = this.props;
+    const { onCancel: handleUpdateModalVisible, values } = this.props;
     if (currentStep === 1) {
       return [
         <Button key="back" style={{ float: 'left' }} onClick={this.backward}>
@@ -211,7 +211,7 @@ class UpdateForm extends Component<UpdateFormProps, UpdateFormState> {
   };
 
   render() {
-    const { updateModalVisible, handleUpdateModalVisible, values } = this.props;
+    const { updateModalVisible, onCancel: handleUpdateModalVisible, values } = this.props;
     const { currentStep, formVals } = this.state;
 
     return (

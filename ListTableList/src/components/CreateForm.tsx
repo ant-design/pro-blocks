@@ -7,11 +7,11 @@ const FormItem = Form.Item;
 
 interface CreateFormProps extends FormComponentProps {
   modalVisible: boolean;
-  handleAdd: (fieldsValue: { desc: string }) => void;
-  handleModalVisible: () => void;
+  onSubmit: (fieldsValue: { desc: string }) => void;
+  onCancel: () => void;
 }
 const CreateForm: React.FC<CreateFormProps> = props => {
-  const { modalVisible, form, handleAdd, handleModalVisible } = props;
+  const { modalVisible, form, onSubmit: handleAdd, onCancel: handleModalVisible } = props;
   const okHandle = () => {
     form.validateFields((err, fieldsValue) => {
       if (err) return;

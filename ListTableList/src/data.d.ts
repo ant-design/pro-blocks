@@ -26,9 +26,11 @@ export interface TableListData {
 }
 
 export interface TableListParams {
-  sorter: string;
-  status: string;
-  name: string;
-  pageSize: number;
-  currentPage: number;
+  sorter?: string;
+  status?: string;
+  name?: string;
+  desc?: string;
+  key?: number;
+  pageSize?: number;
+  currentPage?: number;
 }

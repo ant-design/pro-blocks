@@ -1,13 +1,13 @@
 import request from 'umi-request';
 import { TableListParams } from './data.d';
 
-export async function queryRule(params: TableListParams) {
+export async function queryRule(params?: TableListParams) {
   return request('/api/rule', {
     params,
   });
 }
 
-export async function removeRule(params: TableListParams) {
+export async function removeRule(params: { key: number[] }) {
   return request('/api/rule', {
     method: 'POST',
     data: {
