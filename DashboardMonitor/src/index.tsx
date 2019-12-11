@@ -13,7 +13,7 @@ import styles from './style.less';
 
 const { Countdown } = Statistic;
 
-const targetTime = new Date().getTime() + 3900000;
+const deadline = Date.now() + 1000 * 60 * 60 * 24 * 2 + 1000 * 30; // Moment is also OK
 
 interface PAGE_NAME_UPPER_CAMEL_CASEProps {
   BLOCK_NAME_CAMEL_CASE: StateType;
@@ -85,16 +85,16 @@ class PAGE_NAME_UPPER_CAMEL_CASE extends Component<PAGE_NAME_UPPER_CAMEL_CASEPro
                     />
                   </Col>
                   <Col md={6} sm={12} xs={24}>
-                    <Statistic
+                    <Countdown
                       title={
                         <FormattedMessage
                           id="BLOCK_NAME.monitor.remaining-time"
                           defaultMessage="Remaining time of activity"
                         />
                       }
-                    >
-                      <Countdown value={targetTime} />
-                    </Statistic>
+                      value={deadline}
+                      format="HH:mm:ss:SSS"
+                    />
                   </Col>
                   <Col md={6} sm={12} xs={24}>
                     <Statistic
