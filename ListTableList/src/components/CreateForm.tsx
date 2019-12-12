@@ -10,8 +10,9 @@ interface CreateFormProps extends FormComponentProps {
   onSubmit: (fieldsValue: { desc: string }) => void;
   onCancel: () => void;
 }
+
 const CreateForm: React.FC<CreateFormProps> = props => {
-  const { modalVisible, form, onSubmit: handleAdd, onCancel: handleModalVisible } = props;
+  const { modalVisible, form, onSubmit: handleAdd, onCancel } = props;
   const okHandle = () => {
     form.validateFields((err, fieldsValue) => {
       if (err) return;
@@ -25,7 +26,7 @@ const CreateForm: React.FC<CreateFormProps> = props => {
       title="新建规则"
       visible={modalVisible}
       onOk={okHandle}
-      onCancel={() => handleModalVisible()}
+      onCancel={() => onCancel()}
     >
       <FormItem labelCol={{ span: 5 }} wrapperCol={{ span: 15 }} label="描述">
         {form.getFieldDecorator('desc', {
