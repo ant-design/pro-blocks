@@ -9,8 +9,6 @@ import UpdateForm, { FormValueType } from './components/UpdateForm';
 import { TableListItem } from './data.d';
 import { queryRule, updateRule, addRule, removeRule } from './service';
 
-const status = ['关闭', '运行中', '已上线', '异常'];
-const statusMap = ['default', 'processing', 'success', 'error'];
 interface TableListProps extends FormComponentProps {}
 
 /**
@@ -101,32 +99,11 @@ const TableList: React.FC<TableListProps> = () => {
     {
       title: '状态',
       dataIndex: 'status',
-      filters: [
-        {
-          text: status[0],
-          value: '0',
-        },
-        {
-          text: status[1],
-          value: '1',
-        },
-        {
-          text: status[2],
-          value: '2',
-        },
-        {
-          text: status[3],
-          value: '3',
-        },
-      ],
       valueEnum: {
-        0: '关闭',
-        1: '运行中',
-        2: '已上线',
-        3: '异常',
-      },
-      render(text, row) {
-        return <Badge status={statusMap[row.status] as 'success'} text={text} />;
+        0: { text: '关闭', status: 'Default' },
+        1: { text: '运行中', status: 'Processing' },
+        2: { text: '已上线', status: 'Success' },
+        3: { text: '异常', status: 'Error' },
       },
     },
     {
@@ -162,7 +139,7 @@ const TableList: React.FC<TableListProps> = () => {
         headerTitle="查询表格"
         onInit={setActionRef}
         rowKey="key"
-        renderToolBar={(action, { selectedRows }) => [
+        toolBarRender={(action, { selectedRows }) => [
           <Button icon="plus" type="primary" onClick={() => handleModalVisible(true)}>
             新建
           </Button>,
@@ -189,7 +166,7 @@ const TableList: React.FC<TableListProps> = () => {
             </Dropdown>
           ),
         ]}
-        renderTableAlert={(selectedRowKeys, selectedRows) => (
+        tableAlertRender={(selectedRowKeys, selectedRows) => (
           <div>
             已选择 <a style={{ fontWeight: 600 }}>{selectedRowKeys.length}</a> 项&nbsp;&nbsp;
             <span>
