@@ -15,7 +15,6 @@ interface PAGE_NAME_UPPER_CAMEL_CASEProps {
   };
 }
 
-@connect()
 class PAGE_NAME_UPPER_CAMEL_CASE extends Component<PAGE_NAME_UPPER_CAMEL_CASEProps> {
   handleTabChange = (key: string) => {
     const { match } = this.props;
@@ -92,4 +91,4 @@ class PAGE_NAME_UPPER_CAMEL_CASE extends Component<PAGE_NAME_UPPER_CAMEL_CASEPro
   }
 }
 
-export default PAGE_NAME_UPPER_CAMEL_CASE;
+export default connect()(PAGE_NAME_UPPER_CAMEL_CASE);

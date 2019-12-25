@@ -27,9 +27,7 @@ interface PAGE_NAME_UPPER_CAMEL_CASEState {
   };
   selectKey: PAGE_NAME_UPPER_CAMEL_CASEStateKeys;
 }
-@connect(({ BLOCK_NAME_CAMEL_CASE }: { BLOCK_NAME_CAMEL_CASE: { currentUser: CurrentUser } }) => ({
-  currentUser: BLOCK_NAME_CAMEL_CASE.currentUser,
-}))
+
 class PAGE_NAME_UPPER_CAMEL_CASE extends Component<
   PAGE_NAME_UPPER_CAMEL_CASEProps,
   PAGE_NAME_UPPER_CAMEL_CASEState
@@ -164,4 +162,8 @@ class PAGE_NAME_UPPER_CAMEL_CASE extends Component<
   }
 }
 
-export default PAGE_NAME_UPPER_CAMEL_CASE;
+export default connect(
+  ({ BLOCK_NAME_CAMEL_CASE }: { BLOCK_NAME_CAMEL_CASE: { currentUser: CurrentUser } }) => ({
+    currentUser: BLOCK_NAME_CAMEL_CASE.currentUser,
+  }),
+)(PAGE_NAME_UPPER_CAMEL_CASE);

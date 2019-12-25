@@ -15,9 +15,6 @@ interface PAGE_NAME_UPPER_CAMEL_CASEProps {
   current: StateType['current'];
 }
 
-@connect(({ BLOCK_NAME_CAMEL_CASE }: { BLOCK_NAME_CAMEL_CASE: StateType }) => ({
-  current: BLOCK_NAME_CAMEL_CASE.current,
-}))
 class PAGE_NAME_UPPER_CAMEL_CASE extends Component<PAGE_NAME_UPPER_CAMEL_CASEProps> {
   getCurrentStep() {
     const { current } = this.props;
@@ -60,4 +57,6 @@ class PAGE_NAME_UPPER_CAMEL_CASE extends Component<PAGE_NAME_UPPER_CAMEL_CASEPro
   }
 }
 
-export default PAGE_NAME_UPPER_CAMEL_CASE;
+export default connect(({ BLOCK_NAME_CAMEL_CASE }: { BLOCK_NAME_CAMEL_CASE: StateType }) => ({
+  current: BLOCK_NAME_CAMEL_CASE.current,
+}))(PAGE_NAME_UPPER_CAMEL_CASE);

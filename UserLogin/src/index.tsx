@@ -29,22 +29,6 @@ export interface FormDataType {
   captcha: string;
 }
 
-@connect(
-  ({
-    BLOCK_NAME_CAMEL_CASE,
-    loading,
-  }: {
-    BLOCK_NAME_CAMEL_CASE: StateType;
-    loading: {
-      effects: {
-        [key: string]: string;
-      };
-    };
-  }) => ({
-    BLOCK_NAME_CAMEL_CASE,
-    submitting: loading.effects['BLOCK_NAME_CAMEL_CASE/login'],
-  }),
-)
 class PAGE_NAME_UPPER_CAMEL_CASE extends Component<
   PAGE_NAME_UPPER_CAMEL_CASEProps,
   PAGE_NAME_UPPER_CAMEL_CASEState
@@ -146,7 +130,9 @@ class PAGE_NAME_UPPER_CAMEL_CASE extends Component<
               ]}
               onPressEnter={e => {
                 e.preventDefault();
-                this.loginForm.validateFields(this.handleSubmit);
+                if (this.loginForm) {
+                  this.loginForm.validateFields(this.handleSubmit);
+                }
               }}
             />
           </Tab>
@@ -212,4 +198,19 @@ class PAGE_NAME_UPPER_CAMEL_CASE extends Component<
   }
 }
 
-export default PAGE_NAME_UPPER_CAMEL_CASE;
+export default connect(
+  ({
+    BLOCK_NAME_CAMEL_CASE,
+    loading,
+  }: {
+    BLOCK_NAME_CAMEL_CASE: StateType;
+    loading: {
+      effects: {
+        [key: string]: boolean;
+      };
+    };
+  }) => ({
+    BLOCK_NAME_CAMEL_CASE,
+    submitting: loading.effects['BLOCK_NAME_CAMEL_CASE/login'],
+  }),
+)(PAGE_NAME_UPPER_CAMEL_CASE);

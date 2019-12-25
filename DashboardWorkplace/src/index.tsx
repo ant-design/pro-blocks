@@ -40,7 +40,7 @@ const links = [
 ];
 
 interface PAGE_NAME_UPPER_CAMEL_CASEProps {
-  currentUser: CurrentUser;
+  currentUser?: CurrentUser;
   projectNotice: NoticeType[];
   activities: ActivitiesType[];
   radarData: RadarDataType[];
@@ -88,23 +88,6 @@ const ExtraContent: React.FC<{}> = () => (
   </div>
 );
 
-@connect(
-  ({
-    BLOCK_NAME_CAMEL_CASE: { currentUser, projectNotice, activities, radarData },
-    loading,
-  }: {
-    BLOCK_NAME_CAMEL_CASE: ModalState;
-    loading: { effects: any };
-  }) => ({
-    currentUser,
-    projectNotice,
-    activities,
-    radarData,
-    currentUserLoading: loading.effects['BLOCK_NAME_CAMEL_CASE/fetchUserCurrent'],
-    projectLoading: loading.effects['BLOCK_NAME_CAMEL_CASE/fetchProjectNotice'],
-    activitiesLoading: loading.effects['BLOCK_NAME_CAMEL_CASE/fetchActivitiesList'],
-  }),
-)
 class PAGE_NAME_UPPER_CAMEL_CASE extends Component<PAGE_NAME_UPPER_CAMEL_CASEProps> {
   componentDidMount() {
     const { dispatch } = this.props;
@@ -162,6 +145,9 @@ class PAGE_NAME_UPPER_CAMEL_CASE extends Component<PAGE_NAME_UPPER_CAMEL_CASEPro
       radarData,
     } = this.props;
 
+    if (!currentUser || !currentUser.userid) {
+      return null;
+    }
     return (
       <PageHeaderWrapper
         content={<PageHeaderContent currentUser={currentUser} />}
@@ -263,4 +249,24 @@ class PAGE_NAME_UPPER_CAMEL_CASE extends Component<PAGE_NAME_UPPER_CAMEL_CASEPro
   }
 }
 
-export default PAGE_NAME_UPPER_CAMEL_CASE;
+export default connect(
+  ({
+    BLOCK_NAME_CAMEL_CASE: { currentUser, projectNotice, activities, radarData },
+    loading,
+  }: {
+    BLOCK_NAME_CAMEL_CASE: ModalState;
+    loading: {
+      effects: {
+        [key: string]: boolean;
+      };
+    };
+  }) => ({
+    currentUser,
+    projectNotice,
+    activities,
+    radarData,
+    currentUserLoading: loading.effects['BLOCK_NAME_CAMEL_CASE/fetchUserCurrent'],
+    projectLoading: loading.effects['BLOCK_NAME_CAMEL_CASE/fetchProjectNotice'],
+    activitiesLoading: loading.effects['BLOCK_NAME_CAMEL_CASE/fetchActivitiesList'],
+  }),
+)(PAGE_NAME_UPPER_CAMEL_CASE);

@@ -42,28 +42,16 @@ const operationTabList = [
 
 interface PAGE_NAME_UPPER_CAMEL_CASEProps extends RouteChildrenProps {
   dispatch: Dispatch<any>;
-  currentUser: CurrentUser;
+  currentUser: Partial<CurrentUser>;
   currentUserLoading: boolean;
 }
 interface PAGE_NAME_UPPER_CAMEL_CASEState {
   newTags: TagType[];
-  tabKey: 'articles' | 'applications' | 'projects';
-  inputVisible: boolean;
-  inputValue: string;
+  tabKey?: 'articles' | 'applications' | 'projects';
+  inputVisible?: boolean;
+  inputValue?: string;
 }
 
-@connect(
-  ({
-    loading,
-    BLOCK_NAME_CAMEL_CASE,
-  }: {
-    loading: { effects: { [key: string]: boolean } };
-    BLOCK_NAME_CAMEL_CASE: ModalState;
-  }) => ({
-    currentUser: BLOCK_NAME_CAMEL_CASE.currentUser,
-    currentUserLoading: loading.effects['BLOCK_NAME_CAMEL_CASE/fetchCurrent'],
-  }),
-)
 class PAGE_NAME_UPPER_CAMEL_CASE extends PureComponent<
   PAGE_NAME_UPPER_CAMEL_CASEProps,
   PAGE_NAME_UPPER_CAMEL_CASEState
@@ -154,8 +142,8 @@ class PAGE_NAME_UPPER_CAMEL_CASE extends PureComponent<
   };
 
   render() {
-    const { newTags, inputVisible, inputValue, tabKey } = this.state;
-    const { currentUser, currentUserLoading } = this.props;
+    const { newTags = [], inputVisible, inputValue, tabKey } = this.state;
+    const { currentUser = {}, currentUserLoading } = this.props;
     const dataLoading = currentUserLoading || !(currentUser && Object.keys(currentUser).length);
     return (
       <GridContent>
@@ -180,14 +168,22 @@ class PAGE_NAME_UPPER_CAMEL_CASE extends PureComponent<
                     </p>
                     <p>
                       <i className={styles.address} />
-                      {currentUser.geographic.province.label}
-                      {currentUser.geographic.city.label}
+                      {(currentUser.geographic || { province: { label: '' } }).province.label}
+                      {
+                        (
+                          currentUser.geographic || {
+                            city: {
+                              label: '',
+                            },
+                          }
+                        ).city.label
+                      }
                     </p>
                   </div>
                   <Divider dashed />
                   <div className={styles.tags}>
                     <div className={styles.tagsTitle}>标签</div>
-                    {currentUser.tags.concat(newTags).map(item => (
+                    {(currentUser.tags || []).concat(newTags).map(item => (
                       <Tag key={item.key}>{item.label}</Tag>
                     ))}
                     {inputVisible && (
@@ -247,4 +243,15 @@ class PAGE_NAME_UPPER_CAMEL_CASE extends PureComponent<
   }
 }
 
-export default PAGE_NAME_UPPER_CAMEL_CASE;
+export default connect(
+  ({
+    loading,
+    BLOCK_NAME_CAMEL_CASE,
+  }: {
+    loading: { effects: { [key: string]: boolean } };
+    BLOCK_NAME_CAMEL_CASE: ModalState;
+  }) => ({
+    currentUser: BLOCK_NAME_CAMEL_CASE.currentUser,
+    currentUserLoading: loading.effects['BLOCK_NAME_CAMEL_CASE/fetchCurrent'],
+  }),
+)(PAGE_NAME_UPPER_CAMEL_CASE);

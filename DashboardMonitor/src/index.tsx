@@ -21,20 +21,6 @@ interface PAGE_NAME_UPPER_CAMEL_CASEProps {
   loading: boolean;
 }
 
-@connect(
-  ({
-    BLOCK_NAME_CAMEL_CASE,
-    loading,
-  }: {
-    BLOCK_NAME_CAMEL_CASE: StateType;
-    loading: {
-      models: { [key: string]: boolean };
-    };
-  }) => ({
-    BLOCK_NAME_CAMEL_CASE,
-    loading: loading.models.BLOCK_NAME_CAMEL_CASE,
-  }),
-)
 class PAGE_NAME_UPPER_CAMEL_CASE extends Component<PAGE_NAME_UPPER_CAMEL_CASEProps> {
   componentDidMount() {
     const { dispatch } = this.props;
@@ -269,4 +255,17 @@ class PAGE_NAME_UPPER_CAMEL_CASE extends Component<PAGE_NAME_UPPER_CAMEL_CASEPro
   }
 }
 
-export default PAGE_NAME_UPPER_CAMEL_CASE;
+export default connect(
+  ({
+    BLOCK_NAME_CAMEL_CASE,
+    loading,
+  }: {
+    BLOCK_NAME_CAMEL_CASE: StateType;
+    loading: {
+      models: { [key: string]: boolean };
+    };
+  }) => ({
+    BLOCK_NAME_CAMEL_CASE,
+    loading: loading.models.BLOCK_NAME_CAMEL_CASE,
+  }),
+)(PAGE_NAME_UPPER_CAMEL_CASE);

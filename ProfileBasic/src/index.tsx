@@ -51,20 +51,6 @@ interface PAGE_NAME_UPPER_CAMEL_CASEState {
   visible: boolean;
 }
 
-@connect(
-  ({
-    BLOCK_NAME_CAMEL_CASE,
-    loading,
-  }: {
-    BLOCK_NAME_CAMEL_CASE: BasicProfileDataType;
-    loading: {
-      effects: { [key: string]: boolean };
-    };
-  }) => ({
-    BLOCK_NAME_CAMEL_CASE,
-    loading: loading.effects['BLOCK_NAME_CAMEL_CASE/fetchBasic'],
-  }),
-)
 class PAGE_NAME_UPPER_CAMEL_CASE extends Component<
   PAGE_NAME_UPPER_CAMEL_CASEProps,
   PAGE_NAME_UPPER_CAMEL_CASEState
@@ -208,4 +194,17 @@ class PAGE_NAME_UPPER_CAMEL_CASE extends Component<
   }
 }
 
-export default PAGE_NAME_UPPER_CAMEL_CASE;
+export default connect(
+  ({
+    BLOCK_NAME_CAMEL_CASE,
+    loading,
+  }: {
+    BLOCK_NAME_CAMEL_CASE: BasicProfileDataType;
+    loading: {
+      effects: { [key: string]: boolean };
+    };
+  }) => ({
+    BLOCK_NAME_CAMEL_CASE,
+    loading: loading.effects['BLOCK_NAME_CAMEL_CASE/fetchBasic'],
+  }),
+)(PAGE_NAME_UPPER_CAMEL_CASE);

@@ -68,9 +68,6 @@ interface BaseViewProps extends FormComponentProps {
   currentUser?: CurrentUser;
 }
 
-@connect(({ BLOCK_NAME_CAMEL_CASE }: { BLOCK_NAME_CAMEL_CASE: { currentUser: CurrentUser } }) => ({
-  currentUser: BLOCK_NAME_CAMEL_CASE.currentUser,
-}))
 class BaseView extends Component<BaseViewProps> {
   view: HTMLDivElement | undefined = undefined;
 
@@ -219,4 +216,8 @@ class BaseView extends Component<BaseViewProps> {
   }
 }
 
-export default Form.create<BaseViewProps>()(BaseView);
+export default connect(
+  ({ BLOCK_NAME_CAMEL_CASE }: { BLOCK_NAME_CAMEL_CASE: { currentUser: CurrentUser } }) => ({
+    currentUser: BLOCK_NAME_CAMEL_CASE.currentUser,
+  }),
+)(Form.create<BaseViewProps>()(BaseView));

@@ -4,7 +4,7 @@ import { ActivitiesType, CurrentUser, NoticeType, RadarDataType } from './data.d
 import { fakeChartData, queryActivities, queryCurrent, queryProjectNotice } from './service';
 
 export interface ModalState {
-  currentUser: Partial<CurrentUser>;
+  currentUser?: CurrentUser;
   projectNotice: NoticeType[];
   activities: ActivitiesType[];
   radarData: RadarDataType[];
@@ -34,7 +34,7 @@ export interface ModelType {
 const Model: ModelType = {
   namespace: 'BLOCK_NAME_CAMEL_CASE',
   state: {
-    currentUser: {},
+    currentUser: undefined,
     projectNotice: [],
     activities: [],
     radarData: [],
@@ -92,7 +92,7 @@ const Model: ModelType = {
     },
     clear() {
       return {
-        currentUser: {},
+        currentUser: undefined,
         projectNotice: [],
         activities: [],
         radarData: [],

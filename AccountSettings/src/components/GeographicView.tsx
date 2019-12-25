@@ -29,25 +29,6 @@ interface GeographicViewProps {
   onChange?: (value: { province: SelectItem; city: SelectItem }) => void;
 }
 
-@connect(
-  ({
-    BLOCK_NAME_CAMEL_CASE,
-    loading,
-  }: {
-    BLOCK_NAME_CAMEL_CASE: {
-      province: GeographicItemType[];
-      city: GeographicItemType[];
-    };
-    loading: any;
-  }) => {
-    const { province, city } = BLOCK_NAME_CAMEL_CASE;
-    return {
-      province,
-      city,
-      loading: loading.models.BLOCK_NAME_CAMEL_CASE,
-    };
-  },
-)
 class GeographicView extends Component<GeographicViewProps> {
   componentDidMount = () => {
     const { dispatch } = this.props;
@@ -172,4 +153,22 @@ class GeographicView extends Component<GeographicViewProps> {
   }
 }
 
-export default GeographicView;
+export default connect(
+  ({
+    BLOCK_NAME_CAMEL_CASE,
+    loading,
+  }: {
+    BLOCK_NAME_CAMEL_CASE: {
+      province: GeographicItemType[];
+      city: GeographicItemType[];
+    };
+    loading: any;
+  }) => {
+    const { province, city } = BLOCK_NAME_CAMEL_CASE;
+    return {
+      province,
+      city,
+      loading: loading.models.BLOCK_NAME_CAMEL_CASE,
+    };
+  },
+)(GeographicView);

@@ -64,22 +64,6 @@ export interface UserRegisterParams {
   prefix: string;
 }
 
-@connect(
-  ({
-    BLOCK_NAME_CAMEL_CASE,
-    loading,
-  }: {
-    BLOCK_NAME_CAMEL_CASE: StateType;
-    loading: {
-      effects: {
-        [key: string]: string;
-      };
-    };
-  }) => ({
-    BLOCK_NAME_CAMEL_CASE,
-    submitting: loading.effects['BLOCK_NAME_CAMEL_CASE/submit'],
-  }),
-)
 class PAGE_NAME_UPPER_CAMEL_CASE extends Component<
   PAGE_NAME_UPPER_CAMEL_CASEProps,
   PAGE_NAME_UPPER_CAMEL_CASEState
@@ -380,4 +364,19 @@ class PAGE_NAME_UPPER_CAMEL_CASE extends Component<
   }
 }
 
-export default Form.create<PAGE_NAME_UPPER_CAMEL_CASEProps>()(PAGE_NAME_UPPER_CAMEL_CASE);
+export default connect(
+  ({
+    BLOCK_NAME_CAMEL_CASE,
+    loading,
+  }: {
+    BLOCK_NAME_CAMEL_CASE: StateType;
+    loading: {
+      effects: {
+        [key: string]: boolean;
+      };
+    };
+  }) => ({
+    BLOCK_NAME_CAMEL_CASE,
+    submitting: loading.effects['BLOCK_NAME_CAMEL_CASE/submit'],
+  }),
+)(Form.create<PAGE_NAME_UPPER_CAMEL_CASEProps>()(PAGE_NAME_UPPER_CAMEL_CASE));

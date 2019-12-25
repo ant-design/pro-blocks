@@ -207,20 +207,6 @@ interface PAGE_NAME_UPPER_CAMEL_CASEState {
   tabActiveKey: string;
 }
 
-@connect(
-  ({
-    BLOCK_NAME_CAMEL_CASE,
-    loading,
-  }: {
-    BLOCK_NAME_CAMEL_CASE: AdvancedProfileData;
-    loading: {
-      effects: { [key: string]: boolean };
-    };
-  }) => ({
-    BLOCK_NAME_CAMEL_CASE,
-    loading: loading.effects['BLOCK_NAME_CAMEL_CASE/fetchAdvanced'],
-  }),
-)
 class PAGE_NAME_UPPER_CAMEL_CASE extends Component<
   { loading: boolean; BLOCK_NAME_CAMEL_CASE: AdvancedProfileData; dispatch: Dispatch<any> },
   PAGE_NAME_UPPER_CAMEL_CASEState
@@ -386,4 +372,17 @@ class PAGE_NAME_UPPER_CAMEL_CASE extends Component<
   }
 }
 
-export default PAGE_NAME_UPPER_CAMEL_CASE;
+export default connect(
+  ({
+    BLOCK_NAME_CAMEL_CASE,
+    loading,
+  }: {
+    BLOCK_NAME_CAMEL_CASE: AdvancedProfileData;
+    loading: {
+      effects: { [key: string]: boolean };
+    };
+  }) => ({
+    BLOCK_NAME_CAMEL_CASE,
+    loading: loading.effects['BLOCK_NAME_CAMEL_CASE/fetchAdvanced'],
+  }),
+)(PAGE_NAME_UPPER_CAMEL_CASE);
