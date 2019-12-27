@@ -32,5 +32,5 @@ export interface TableListParams {
   desc?: string;
   key?: number;
   pageSize?: number;
-  currentPage?: number;
+  current?: number;
 }

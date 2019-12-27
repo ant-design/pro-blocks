@@ -5,7 +5,7 @@ import { TableListItem, TableListParams } from './data.d';
 // mock tableListDataSource
 let tableListDataSource: TableListItem[] = [];
 
-for (let i = 0; i < 10; i += 1) {
+for (let i = 0; i < 35; i += 1) {
   tableListDataSource.push({
     key: i,
     disabled: i % 6 === 0,
@@ -72,12 +72,21 @@ function getRule(req: Request, res: Response, u: string) {
     pageSize = parseInt(`${params.pageSize}`, 0);
   }
 
+  let current = 10;
+  if (params.current) {
+    current = parseInt(`${params.current}`, 10) || 1;
+  }
+
+  const data = dataSource.filter(
+    (_, index) => index >= current * pageSize - pageSize && index < current * pageSize,
+  );
+
   const result = {
-    data: dataSource,
+    data,
     total: dataSource.length,
     success: true,
     pageSize,
-    current: parseInt(`${params.currentPage}`, 10) || 1,
+    current,
   };
 
   return res.json(result);
