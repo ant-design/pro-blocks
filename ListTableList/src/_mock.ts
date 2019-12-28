@@ -72,7 +72,7 @@ function getRule(req: Request, res: Response, u: string) {
     pageSize = parseInt(`${params.pageSize}`, 0);
   }
 
-  let current = 10;
+  let current = 1;
   if (params.current) {
     current = parseInt(`${params.current}`, 10) || 1;
   }
