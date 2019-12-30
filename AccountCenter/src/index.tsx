@@ -1,5 +1,5 @@
 import { Avatar, Card, Col, Divider, Icon, Input, Row, Tag } from 'antd';
-import React, { PureComponent } from 'react';
+import React, { Component } from 'react';
 
 import { Dispatch } from 'redux';
 import { GridContent } from '@ant-design/pro-layout';
@@ -52,7 +52,7 @@ interface PAGE_NAME_UPPER_CAMEL_CASEState {
   inputValue?: string;
 }
 
-class PAGE_NAME_UPPER_CAMEL_CASE extends PureComponent<
+class PAGE_NAME_UPPER_CAMEL_CASE extends Component<
   PAGE_NAME_UPPER_CAMEL_CASEProps,
   PAGE_NAME_UPPER_CAMEL_CASEState
 > {

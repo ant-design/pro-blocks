@@ -27,7 +27,7 @@ export interface TagSelectProps {
   };
   className?: string;
   Option?: TagSelectOptionProps;
-  children?: React.ReactElement<TagSelectOption> | React.ReactElement<TagSelectOption>[];
+  children?: React.ReactElement<TagSelectOptionType> | React.ReactElement<TagSelectOptionType>[];
 }
 
 const TagSelectOption: React.FC<TagSelectOptionProps> & {
@@ -44,6 +44,8 @@ const TagSelectOption: React.FC<TagSelectOptionProps> & {
 
 TagSelectOption.isTagSelectOption = true;
 
+type TagSelectOptionType = typeof TagSelectOption;
+
 interface TagSelectState {
   expand: boolean;
   value: (string | number)[];
@@ -59,7 +61,7 @@ class TagSelect extends Component<TagSelectProps, TagSelectState> {
     },
   };
 
-  static Option: TagSelectOption = TagSelectOption;
+  static Option: TagSelectOptionType = TagSelectOption;
 
   static getDerivedStateFromProps(nextProps: TagSelectProps) {
     if ('value' in nextProps) {
@@ -96,7 +98,7 @@ class TagSelect extends Component<TagSelectProps, TagSelectState> {
 
   getAllTags() {
     const { children } = this.props;
-    const childrenArray = React.Children.toArray(children) as React.ReactElement<TagSelectOption>[];
+    const childrenArray = React.Children.toArray(children) as any[];
     const checkedTags = childrenArray
       .filter(child => this.isTagSelectOption(child))
       .map(child => child.props.value);
@@ -123,7 +125,7 @@ class TagSelect extends Component<TagSelectProps, TagSelectState> {
     });
   };
 
-  isTagSelectOption = (node: React.ReactElement<TagSelectOption, TagSelectOption>) =>
+  isTagSelectOption = (node: React.ReactElement<TagSelectOptionType, TagSelectOptionType>) =>
     node &&
     node.type &&
     (node.type.isTagSelectOption || node.type.displayName === 'TagSelectOption');
@@ -148,7 +150,7 @@ class TagSelect extends Component<TagSelectProps, TagSelectState> {
         )}
         {value &&
           children &&
-          React.Children.map(children, (child: React.ReactElement<TagSelectOption>) => {
+          React.Children.map(children, (child: any) => {
             if (this.isTagSelectOption(child)) {
               return React.cloneElement(child, {
                 key: `tag-select-${child.props.value}`,

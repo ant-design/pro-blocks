@@ -167,7 +167,10 @@ class PAGE_NAME_UPPER_CAMEL_CASE extends Component<PAGE_NAME_UPPER_CAMEL_CASEPro
               <Row gutter={16}>
                 <Col xl={8} lg={10} md={12} sm={24} xs={24}>
                   <FormItem {...formItemLayout} label="活跃用户">
-                    {getFieldDecorator('user', {})(
+                    {getFieldDecorator(
+                      'user',
+                      {},
+                    )(
                       <Select placeholder="不限" style={{ maxWidth: 200, width: '100%' }}>
                         <Option value="lisa">李三</Option>
                       </Select>,
@@ -176,7 +179,10 @@ class PAGE_NAME_UPPER_CAMEL_CASE extends Component<PAGE_NAME_UPPER_CAMEL_CASEPro
                 </Col>
                 <Col xl={8} lg={10} md={12} sm={24} xs={24}>
                   <FormItem {...formItemLayout} label="好评度">
-                    {getFieldDecorator('rate', {})(
+                    {getFieldDecorator(
+                      'rate',
+                      {},
+                    )(
                       <Select placeholder="不限" style={{ maxWidth: 200, width: '100%' }}>
                         <Option value="good">优秀</Option>
                       </Select>,

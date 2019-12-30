@@ -1,7 +1,7 @@
 import { Button, Divider, Input, Popconfirm, Table, message } from 'antd';
-import React, { Fragment, PureComponent } from 'react';
-
+import React, { Fragment, Component } from 'react';
 import isEqual from 'lodash.isequal';
+
 import styles from '../style.less';
 
 interface TableFormDateType {
@@ -23,7 +23,7 @@ interface TableFormState {
   value?: TableFormDateType[];
   data?: TableFormDateType[];
 }
-class TableForm extends PureComponent<TableFormProps, TableFormState> {
+class TableForm extends Component<TableFormProps, TableFormState> {
   static getDerivedStateFromProps(nextProps: TableFormProps, preState: TableFormState) {
     if (isEqual(nextProps.value, preState.value)) {
       return null;
