@@ -10,7 +10,7 @@
     "lint:style": "stylelint --fix \"**/*.less\" --syntax less",
     "prettier": "prettier -c --write \"**/*\"",
     "screenshot": "pro screenshot",
-    "start": "umi dev",
+    "start": "umi block_dev",
     "test": "umi test"
   },
   "husky": {
@@ -37,7 +37,7 @@
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
     "umi": "^2.8.9",
-    "umi-plugin-block-dev": "^2.2.1",
+    "umi-plugin-block-dev": "^3.0.0",
     "umi-plugin-react": "^1.9.7",
     "umi-request": "^1.0.0",
     "umi-utils": "^1.5.1"

@@ -2,30 +2,25 @@
 
 ![](https://badgen.net/badge/icon/Ant%20Design?icon=https://gw.alipayobjects.com/zos/antfincdn/Pp4WPgVDB3/KDpgvguMpGfqaHPjicRK.svg&label) [![Build Status](https://dev.azure.com/chenshuai2144/pro-blocks/_apis/build/status/ant-design.pro-blocks?branchName=master)](https://dev.azure.com/chenshuai2144/pro-blocks/_build/latest?definitionId=3&branchName=master)
 
-[中文 README](./README.zh-CN.md)
+Ant Design Pro for Umi blocks.
 
-umi blocks of Ant Design Pro.
+> [Ant Design Pro V4](https://github.com/ant-design/ant-design-pro/issues/3143) official blockchain
 
-A part of [Ant Design Pro V4](https://github.com/ant-design/ant-design-pro/issues/3143), still in progress.
-
-## dev
-
-## Usage
+## usage
 
 ```shell
-umi block add [the github url of block]
+umi block add [block github url]
 ```
 
-You can visit umi [doc](https://umijs.org/guide/block.html) for find out more info about umi block.
+You can visit umi [doc](https://umijs.org/guide/block.html) to learn more about umi block.
 
-## Contribute
+## contribution
+
+Enter the name of the block to be developed
 
 ```shell
-npm i
-
-# PAGES_PATH env set the block src path which you want to dev
-PAGES_PATH=DashboardWorkplace/src npm start # for mac
-npx cross-env PAGES_PATH=DashboardWorkplace/src umi dev # for windows
+npm install
+npm run start 'block_name'
 ```
 
-> In complex typescript definitions, vscode may crash or tslint reports an error. You can restart the typescript service by "ctrl+shift+p > reload window"
+In complex TypeScript definitions, vscode may crash or tslint report errors. You can restart TypeScript service by "ctrl + shift + p> reload window"
