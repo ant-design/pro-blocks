@@ -15,7 +15,7 @@ import React, { Component } from 'react';
 
 import { Dispatch } from 'redux';
 import { FormComponentProps } from 'antd/es/form';
-import { PageHeaderWrapper, RouteContext } from '@ant-design/pro-layout';
+import { PageHeaderWrapper } from '@ant-design/pro-layout';
 import { connect } from 'dva';
 import TableForm from './components/TableForm';
 import FooterToolbar from './components/FooterToolbar';
@@ -298,16 +298,12 @@ class PAGE_NAME_UPPER_CAMEL_CASE extends Component<PAGE_NAME_UPPER_CAMEL_CASEPro
             })(<TableForm />)}
           </Card>
         </PageHeaderWrapper>
-        <RouteContext.Consumer>
-          {({ isMobile }) => (
-            <FooterToolbar isMobile={isMobile}>
-              {this.getErrorInfo()}
-              <Button type="primary" onClick={this.validate} loading={submitting}>
-                提交
-              </Button>
-            </FooterToolbar>
-          )}
-        </RouteContext.Consumer>
+        <FooterToolbar>
+          {this.getErrorInfo()}
+          <Button type="primary" onClick={this.validate} loading={submitting}>
+            提交
+          </Button>
+        </FooterToolbar>
       </>
     );
   }
