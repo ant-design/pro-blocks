@@ -5,16 +5,23 @@
   margin-bottom: 16px;
   padding-bottom: 16px;
   border-bottom: 1px dashed @border-color-split;
+
   :global {
-    .ant-form-item {
+    .ant-form-item,
+    .ant-legacy-form-item {
       margin-right: 24px;
     }
-    .ant-form-item-label label {
-      margin-right: 0;
-      color: @text-color;
+    .ant-form-item-label,
+    .ant-legacy-form-item-label {
+      label {
+        margin-right: 0;
+        color: @text-color;
+      }
     }
     .ant-form-item-label,
-    .ant-form-item-control {
+    .ant-legacy-form-item-label,
+    .ant-form-item-control,
+    .ant-legacy-form-item-control {
       padding: 0;
       line-height: 32px;
     }
@@ -37,8 +44,11 @@
   .content {
     flex: 1 1 0;
     :global {
-      .ant-form-item:last-child {
-        margin-right: 0;
+      .ant-form-item,
+      .ant-legacy-form-item {
+        &:last-child {
+          margin-right: 0;
+        }
       }
     }
   }
@@ -53,7 +63,9 @@
 .standardFormRowBlock {
   :global {
     .ant-form-item,
-    div.ant-form-item-control-wrapper {
+    .ant-legacy-form-item,
+    div.ant-form-item-control-wrapper,
+    div.ant-legacy-form-item-control-wrapper {
       display: block;
     }
   }
@@ -62,10 +74,13 @@
 .standardFormRowGrid {
   :global {
     .ant-form-item,
-    div.ant-form-item-control-wrapper {
+    .ant-legacy-form-item,
+    div.ant-form-item-control-wrapper,
+    div.ant-legacy-form-item-control-wrapper {
       display: block;
     }
-    .ant-form-item-label {
+    .ant-form-item-label,
+    .ant-legacy-form-item-label {
       float: left;
     }
   }
