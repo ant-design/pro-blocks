@@ -1,4 +1,5 @@
-import { Col, Dropdown, Icon, Menu, Row } from 'antd';
+import { EllipsisOutlined } from '@ant-design/icons';
+import { Col, Dropdown, Menu, Row } from 'antd';
 import React, { Component, Suspense } from 'react';
 
 import { Dispatch } from 'redux';
@@ -140,7 +141,7 @@ class PAGE_NAME_UPPER_CAMEL_CASE extends Component<
     const dropdownGroup = (
       <span className={styles.iconGroup}>
         <Dropdown overlay={menu} placement="bottomRight">
-          <Icon type="ellipsis" />
+          <EllipsisOutlined />
         </Dropdown>
       </span>
     );

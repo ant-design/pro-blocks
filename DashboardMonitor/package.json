@@ -12,6 +12,7 @@
     "dev": "umi dev"
   },
   "dependencies": {
+    "@ant-design/icons": "^4.0.0-alpha.19",
     "@antv/data-set": "^0.10.2",
     "@types/lodash.debounce": "^4.0.6",
     "bizcharts": "^3.5.3-beta.0",

@@ -1,4 +1,4 @@
-import { Icon } from 'antd';
+import { CaretUpOutlined, CaretDownOutlined } from '@ant-design/icons';
 import React from 'react';
 import classNames from 'classnames';
 import styles from './index.less';
@@ -52,7 +52,7 @@ const NumberInfo: React.FC<NumberInfoProps> = ({
       {(status || subTotal) && (
         <span className={styles.subTotal}>
           {subTotal}
-          {status && <Icon type={`caret-${status}`} />}
+          {status && status === 'up' ? <CaretUpOutlined /> : <CaretDownOutlined />}
         </span>
       )}
     </div>

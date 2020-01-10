@@ -1,4 +1,4 @@
-import { Icon } from 'antd';
+import { CaretUpOutlined, CaretDownOutlined } from '@ant-design/icons';
 import React from 'react';
 import classNames from 'classnames';
 import styles from './index.less';
@@ -32,7 +32,7 @@ const Trend: React.FC<TrendProps> = ({
       <span>{children}</span>
       {flag && (
         <span className={styles[flag]}>
-          <Icon type={`caret-${flag}`} />
+          {flag === 'up' ? <CaretUpOutlined /> : <CaretDownOutlined />}
         </span>
       )}
     </div>

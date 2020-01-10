@@ -1,4 +1,5 @@
-import { Card, Col, Icon, Row, Table, Tooltip } from 'antd';
+import { InfoCircleOutlined } from '@ant-design/icons';
+import { Card, Col, Row, Table, Tooltip } from 'antd';
 import { FormattedMessage } from 'umi-plugin-react/locale';
 import React from 'react';
 import numeral from 'numeral';
@@ -82,7 +83,7 @@ const TopSearch = ({
                   <FormattedMessage id="BLOCK_NAME.analysis.introduce" defaultMessage="introduce" />
                 }
               >
-                <Icon style={{ marginLeft: 8 }} type="info-circle-o" />
+                <InfoCircleOutlined style={{ marginLeft: 8 }} />
               </Tooltip>
             </span>
           }
@@ -106,7 +107,7 @@ const TopSearch = ({
                   <FormattedMessage id="BLOCK_NAME.analysis.introduce" defaultMessage="introduce" />
                 }
               >
-                <Icon style={{ marginLeft: 8 }} type="info-circle-o" />
+                <InfoCircleOutlined style={{ marginLeft: 8 }} />
               </Tooltip>
             </span>
           }
