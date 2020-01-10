@@ -1,5 +1,5 @@
 /* eslint-disable no-eval */
-import { Scene, LineLayer, PointLayer, Popup } from '@antv/l7';
+import { Scene, LineLayer, PointLayer, PolygonLayer, Popup } from '@antv/l7';
 import { Mapbox } from '@antv/l7-maps';
 import * as React from 'react';
 
@@ -12,23 +12,8 @@ export default class Map extends React.Component {
       map: new Mapbox({
         pitch: 20,
         // @ts-ignore
-        style: {
-          version: 8,
-          sprite: 'https://lzxue.github.io/font-glyphs/sprite/sprite',
-          glyphs:
-            'https://gw.alipayobjects.com/os/antvdemo/assets/mapbox/glyphs/{fontstack}/{range}.pbf',
-          sources: {},
-          layers: [
-            {
-              id: 'background',
-              type: 'background',
-              paint: {
-                'background-color': '#2b2b3a',
-              },
-            },
-          ],
-        },
-        center: [3.438, 40.16797],
+        style: 'blank',
+        center: [5, 40.16797],
         zoom: 0.51329,
         minZoom: 0.2,
       }),
@@ -37,9 +22,9 @@ export default class Map extends React.Component {
 
   private addLayer() {
     Promise.all([
-      fetch('https://gw.alipayobjects.com/os/antvdemo/assets/data/world.geo.json').then(d =>
-        d.json(),
-      ),
+      fetch(
+        'https://gw.alipayobjects.com/os/basement_prod/dbd008f1-9189-461c-88aa-569357ffc07d.json',
+      ).then(d => d.json()),
       fetch(
         'https://gw.alipayobjects.com/os/basement_prod/4472780b-fea1-4fc2-9e4b-3ca716933dc7.json',
       ).then(d => d.text()),
@@ -54,9 +39,17 @@ export default class Map extends React.Component {
         const latLng2 = item.to.split(',').map((e: number) => e * 1);
         return { coord: [latLng1, latLng2] };
       });
+      const worldFill = new PolygonLayer()
+        .source(world)
+        .color('#d1e0f3')
+        .shape('fill')
+        .style({
+          opacity: 1,
+        });
+
       const worldLine = new LineLayer()
         .source(world)
-        .color('#41fc9d')
+        .color('#fff')
         .size(0.5)
         .style({
           opacity: 0.4,
@@ -70,22 +63,24 @@ export default class Map extends React.Component {
           },
         })
         .shape('circle')
-        .color('#ffed11')
-        .animate(true)
-        .size(40)
+        .color('#268edc')
+        .animate(false)
+        .size(4)
         .style({
-          opacity: 1.0,
+          opacity: 0.2,
         });
-      const flyLineLayer = new LineLayer()
+      const flyLineLayer = new LineLayer({
+        blend: 'normal',
+      })
         .source(flydata, {
           parser: {
             type: 'json',
             coordinates: 'coord',
           },
         })
-        .color('#ff6b34')
+        .color('#5b97f1')
         .shape('arc3d')
-        .size(2)
+        .size(2.6)
         .animate({
           interval: 2,
           trailLength: 2,
@@ -94,6 +89,7 @@ export default class Map extends React.Component {
         .style({
           opacity: 1,
         });
+      this.scene.addLayer(worldFill);
       this.scene.addLayer(worldLine);
       this.scene.addLayer(dotPoint);
       this.scene.addLayer(flyLineLayer);
