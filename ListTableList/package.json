@@ -12,6 +12,7 @@
     "dev": "umi dev"
   },
   "dependencies": {
+    "@ant-design/compatible": "^0.0.1-rc.0",
     "@ant-design/pro-table": "^1.0.22",
     "dva": "^2.4.0",
     "moment": "^2.22.2",
