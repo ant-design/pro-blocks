@@ -21,7 +21,7 @@ const AvatarView = ({ avatar }: { avatar: string }) => (
     <div className={styles.avatar}>
       <img src={avatar} alt="avatar" />
     </div>
-    <Upload fileList={[]}>
+    <Upload showUploadList={false}>
       <div className={styles.button_view}>
         <Button icon="upload">
           <FormattedMessage id="BLOCK_NAME.basic.change-avatar" defaultMessage="Change avatar" />
