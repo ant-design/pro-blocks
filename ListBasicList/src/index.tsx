@@ -307,13 +307,13 @@ class PAGE_NAME_UPPER_CAMEL_CASE extends Component<
               <Button
                 type="dashed"
                 style={{ width: '100%', marginBottom: 8 }}
-                icon={<PlusOutlined />}
                 onClick={this.showModal}
                 ref={component => {
                   // eslint-disable-next-line  react/no-find-dom-node
                   this.addBtn = findDOMNode(component) as HTMLButtonElement;
                 }}
               >
+                <PlusOutlined />
                 添加
               </Button>
               <List

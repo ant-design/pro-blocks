@@ -1,8 +1,8 @@
-import { Form, Icon as LegacyIcon } from '@ant-design/compatible';
-import '@ant-design/compatible/assets/index.css';
-import { LoadingOutlined } from '@ant-design/icons';
-import { Button, Card, Col, List, Row, Select, Tag } from 'antd';
 import React, { Component } from 'react';
+import { Form } from '@ant-design/compatible';
+import { Button, Card, Col, List, Row, Select, Tag } from 'antd';
+import { LoadingOutlined, StarOutlined, LikeOutlined, MessageOutlined } from '@ant-design/icons';
+import '@ant-design/compatible/assets/index.css';
 
 import { Dispatch } from 'redux';
 import { FormComponentProps } from 'antd/es/form';
@@ -87,12 +87,33 @@ class PAGE_NAME_UPPER_CAMEL_CASE extends Component<PAGE_NAME_UPPER_CAMEL_CASEPro
     const IconText: React.FC<{
       type: string;
       text: React.ReactNode;
-    }> = ({ type, text }) => (
-      <span>
-        <LegacyIcon type={type} style={{ marginRight: 8 }} />
-        {text}
-      </span>
-    );
+    }> = ({ type, text }) => {
+      switch (type) {
+        case 'star-o':
+          return (
+            <span>
+              <StarOutlined style={{ marginRight: 8 }} />
+              {text}
+            </span>
+          );
+        case 'like-o':
+          return (
+            <span>
+              <LikeOutlined style={{ marginRight: 8 }} />
+              {text}
+            </span>
+          );
+        case 'message':
+          return (
+            <span>
+              <MessageOutlined style={{ marginRight: 8 }} />
+              {text}
+            </span>
+          );
+        default:
+          return null;
+      }
+    };
 
     const formItemLayout = {
       wrapperCol: {
@@ -214,7 +235,7 @@ class PAGE_NAME_UPPER_CAMEL_CASE extends Component<PAGE_NAME_UPPER_CAMEL_CASEPro
                 actions={[
                   <IconText key="star" type="star-o" text={item.star} />,
                   <IconText key="like" type="like-o" text={item.like} />,
-                  <IconText type="message" key="message" text={item.message} />,
+                  <IconText key="message" type="message" text={item.message} />,
                 ]}
                 extra={<div className={styles.listItemExtra} />}
               >
