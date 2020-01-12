@@ -12,6 +12,8 @@
     "dev": "umi dev"
   },
   "dependencies": {
+    "@ant-design/compatible": "^0.0.1-rc.0",
+    "@ant-design/icons": "^4.0.0-alpha.19",
     "classnames": "^2.2.6",
     "dva": "^2.4.0",
     "moment": "^2.22.2",
