@@ -54,11 +54,14 @@ const action = (
     {({ isMobile }) => {
       if (isMobile) {
         return (
-          <Dropdown overlay={mobileMenu} placement="bottomRight">
-            <Button type="primary">
-              主操作 <DownOutlined />
-            </Button>
-          </Dropdown>
+          <Dropdown.Button 
+            type="primary" 
+            icon={<DownOutlined />} 
+            overlay={mobileMenu} 
+            placement="bottomRight"
+          >
+            主操作
+          </Dropdown.Button>
         );
       }
       return (
