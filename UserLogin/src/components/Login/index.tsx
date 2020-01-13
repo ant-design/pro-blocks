@@ -1,6 +1,8 @@
-import { Form, Tabs } from 'antd';
+import { Form } from '@ant-design/compatible';
+import '@ant-design/compatible/assets/index.css';
+import { Tabs } from 'antd';
 import React, { Component } from 'react';
-import { FormComponentProps } from 'antd/es/form';
+import { FormComponentProps } from '@ant-design/compatible/es/form';
 import classNames from 'classnames';
 import LoginContext, { LoginContextProps } from './LoginContext';
 import LoginItem, { LoginItemProps, LoginItemType } from './LoginItem';
