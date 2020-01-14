@@ -33,7 +33,7 @@ class DetailForm extends React.Component<DetailFormProps> {
     return propsAPI.getSelected()[0];
   }
 
-  onFieldChange = () => {
+  handleFieldChange = () => {
     const { form, propsAPI } = this.props;
     const { getSelected, executeCommand, update } = propsAPI;
 
@@ -58,8 +58,15 @@ class DetailForm extends React.Component<DetailFormProps> {
     }, 0);
   };
 
+  handleSubmit = (e: React.FormEvent) => {
+    if (e && e.preventDefault) {
+      e.preventDefault();
+    }
+    this.handleFieldChange();
+  };
+
   renderEdgeShapeSelect = () => (
-    <Select onChange={this.onFieldChange}>
+    <Select onChange={this.handleFieldChange}>
       <Option value="flow-smooth">Smooth</Option>
       <Option value="flow-polyline">Polyline</Option>
       <Option value="flow-polyline-round">Polyline Round</Option>
@@ -74,7 +81,7 @@ class DetailForm extends React.Component<DetailFormProps> {
       <Item label="Label" {...inlineFormItemLayout}>
         {form.getFieldDecorator('label', {
           initialValue: label,
-        })(<Input onBlur={this.onFieldChange} />)}
+        })(<Input onBlur={this.handleFieldChange} />)}
       </Item>
     );
   };
@@ -88,7 +95,7 @@ class DetailForm extends React.Component<DetailFormProps> {
         <Item label="Label" {...inlineFormItemLayout}>
           {form.getFieldDecorator('label', {
             initialValue: label,
-          })(<Input onBlur={this.onFieldChange} />)}
+          })(<Input onBlur={this.handleFieldChange} />)}
         </Item>
         <Item label="Shape" {...inlineFormItemLayout}>
           {form.getFieldDecorator('shape', {
@@ -107,7 +114,7 @@ class DetailForm extends React.Component<DetailFormProps> {
       <Item label="Label" {...inlineFormItemLayout}>
         {form.getFieldDecorator('label', {
           initialValue: label,
-        })(<Input onBlur={this.onFieldChange} />)}
+        })(<Input onBlur={this.handleFieldChange} />)}
       </Item>
     );
   };
@@ -121,7 +128,7 @@ class DetailForm extends React.Component<DetailFormProps> {
 
     return (
       <Card type="inner" size="small" title={upperFirst(type)} bordered={false}>
-        <Form onSubmit={this.onFieldChange}>
+        <Form onSubmit={this.handleSubmit}>
           {type === 'node' && this.renderNodeDetail()}
           {type === 'edge' && this.renderEdgeDetail()}
           {type === 'group' && this.renderGroupDetail()}
