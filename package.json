@@ -31,7 +31,7 @@
     "@ant-design/pro-cli": "^1.0.5",
     "@ant-design/pro-layout": "^4.5.11",
     "@types/react-dom": "^16.8.4",
-    "antd": "3.26.6",
+    "antd": "3.26.7",
     "bizcharts": "^3.5.4",
     "numeral": "^2.0.6",
     "react": "^16.8.6",
