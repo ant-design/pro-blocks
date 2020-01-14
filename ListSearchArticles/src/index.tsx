@@ -5,7 +5,7 @@ import { LoadingOutlined, StarOutlined, LikeOutlined, MessageOutlined } from '@a
 import '@ant-design/compatible/assets/index.css';
 
 import { Dispatch } from 'redux';
-import { FormComponentProps } from 'antd/es/form';
+import { FormComponentProps } from '@ant-design/compatible/es/form';
 import { connect } from 'dva';
 import ArticleListContent from './components/ArticleListContent';
 import { StateType } from './model';

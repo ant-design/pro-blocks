@@ -3,7 +3,7 @@ import '@ant-design/compatible/assets/index.css';
 import { Alert, Button, Descriptions, Divider, Statistic, Input } from 'antd';
 
 import { Dispatch } from 'redux';
-import { FormComponentProps } from 'antd/es/form';
+import { FormComponentProps } from '@ant-design/compatible/es/form';
 import React from 'react';
 import { connect } from 'dva';
 import { StateType } from '../../model';

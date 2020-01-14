@@ -4,7 +4,7 @@ import { Button, Divider, Input, Select } from 'antd';
 import React, { Fragment } from 'react';
 
 import { Dispatch } from 'redux';
-import { FormComponentProps } from 'antd/es/form';
+import { FormComponentProps } from '@ant-design/compatible/es/form';
 import { connect } from 'dva';
 import { StateType } from '../../model';
 import styles from './index.less';

@@ -10,7 +10,7 @@ import { Avatar, Card, Col, Dropdown, List, Menu, Row, Select, Tooltip } from 'a
 import React, { Component } from 'react';
 
 import { Dispatch } from 'redux';
-import { FormComponentProps } from 'antd/es/form';
+import { FormComponentProps } from '@ant-design/compatible/es/form';
 import { connect } from 'dva';
 import numeral from 'numeral';
 import { StateType } from './model';

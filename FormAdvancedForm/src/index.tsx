@@ -1,6 +1,6 @@
 import { Form } from '@ant-design/compatible';
 import '@ant-design/compatible/assets/index.css';
-import { ExclamationCircleOutlined, CloseCircleOutlined } from '@ant-design/icons';
+import { CloseCircleOutlined } from '@ant-design/icons';
 import { Button, Card, Col, DatePicker, Input, Popover, Row, Select, TimePicker } from 'antd';
 import React, { Component } from 'react';
 
@@ -99,7 +99,7 @@ class PAGE_NAME_UPPER_CAMEL_CASE extends Component<PAGE_NAME_UPPER_CAMEL_CASEPro
             return trigger;
           }}
         >
-          <ExclamationCircleOutlined />
+          <CloseCircleOutlined />
         </Popover>
         {errorCount}
       </span>
