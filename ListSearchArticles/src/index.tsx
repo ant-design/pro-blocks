@@ -162,30 +162,24 @@ class PAGE_NAME_UPPER_CAMEL_CASE extends Component<PAGE_NAME_UPPER_CAMEL_CASEPro
               </FormItem>
             </StandardFormRow>
             <StandardFormRow title="owner" grid>
-              <Row>
-                <Col>
-                  <FormItem {...formItemLayout}>
-                    {getFieldDecorator('owner', {
-                      initialValue: ['wjh', 'zxx'],
-                    })(
-                      <Select
-                        mode="multiple"
-                        style={{ maxWidth: 286, width: '100%' }}
-                        placeholder="选择 owner"
-                      >
-                        {owners.map(owner => (
-                          <Option key={owner.id} value={owner.id}>
-                            {owner.name}
-                          </Option>
-                        ))}
-                      </Select>,
-                    )}
-                    <a className={styles.selfTrigger} onClick={this.setOwner}>
-                      只看自己的
-                    </a>
-                  </FormItem>
-                </Col>
-              </Row>
+              {getFieldDecorator('owner', {
+                initialValue: ['wjh', 'zxx'],
+              })(
+                <Select
+                  mode="multiple"
+                  style={{ maxWidth: 286, width: '100%' }}
+                  placeholder="选择 owner"
+                >
+                  {owners.map(owner => (
+                    <Option key={owner.id} value={owner.id}>
+                      {owner.name}
+                    </Option>
+                  ))}
+                </Select>,
+              )}
+              <a className={styles.selfTrigger} onClick={this.setOwner}>
+                只看自己的
+              </a>
             </StandardFormRow>
             <StandardFormRow title="其它选项" grid last>
               <Row gutter={16}>
