@@ -33,11 +33,7 @@ class DetailForm extends React.Component<DetailFormProps> {
     return propsAPI.getSelected()[0];
   }
 
-  handleSubmit = (e?: React.FormEvent) => {
-    if (e && e.preventDefault) {
-      e.preventDefault();
-    }
-
+  handleSubmit = () => {
     const { form, propsAPI } = this.props;
     const { getSelected, executeCommand, update } = propsAPI;
 
@@ -63,7 +59,7 @@ class DetailForm extends React.Component<DetailFormProps> {
   };
 
   renderEdgeShapeSelect = () => (
-    <Select onChange={() => { this.handleSubmit() }}>
+    <Select onChange={this.handleSubmit}>
       <Option value="flow-smooth">Smooth</Option>
       <Option value="flow-polyline">Polyline</Option>
       <Option value="flow-polyline-round">Polyline Round</Option>
