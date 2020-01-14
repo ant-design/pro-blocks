@@ -33,7 +33,7 @@ class DetailForm extends React.Component<DetailFormProps> {
     return propsAPI.getSelected()[0];
   }
 
-  handleSubmit = () => {
+  onFieldChange = () => {
     const { form, propsAPI } = this.props;
     const { getSelected, executeCommand, update } = propsAPI;
 
@@ -59,7 +59,7 @@ class DetailForm extends React.Component<DetailFormProps> {
   };
 
   renderEdgeShapeSelect = () => (
-    <Select onChange={this.handleSubmit}>
+    <Select onChange={this.onFieldChange}>
       <Option value="flow-smooth">Smooth</Option>
       <Option value="flow-polyline">Polyline</Option>
       <Option value="flow-polyline-round">Polyline Round</Option>
@@ -74,7 +74,7 @@ class DetailForm extends React.Component<DetailFormProps> {
       <Item label="Label" {...inlineFormItemLayout}>
         {form.getFieldDecorator('label', {
           initialValue: label,
-        })(<Input onBlur={this.handleSubmit} />)}
+        })(<Input onBlur={this.onFieldChange} />)}
       </Item>
     );
   };
@@ -88,7 +88,7 @@ class DetailForm extends React.Component<DetailFormProps> {
         <Item label="Label" {...inlineFormItemLayout}>
           {form.getFieldDecorator('label', {
             initialValue: label,
-          })(<Input onBlur={this.handleSubmit} />)}
+          })(<Input onBlur={this.onFieldChange} />)}
         </Item>
         <Item label="Shape" {...inlineFormItemLayout}>
           {form.getFieldDecorator('shape', {
@@ -107,7 +107,7 @@ class DetailForm extends React.Component<DetailFormProps> {
       <Item label="Label" {...inlineFormItemLayout}>
         {form.getFieldDecorator('label', {
           initialValue: label,
-        })(<Input onBlur={this.handleSubmit} />)}
+        })(<Input onBlur={this.onFieldChange} />)}
       </Item>
     );
   };
@@ -121,7 +121,7 @@ class DetailForm extends React.Component<DetailFormProps> {
 
     return (
       <Card type="inner" size="small" title={upperFirst(type)} bordered={false}>
-        <Form onSubmit={this.handleSubmit}>
+        <Form onSubmit={this.onFieldChange}>
           {type === 'node' && this.renderNodeDetail()}
           {type === 'edge' && this.renderEdgeDetail()}
           {type === 'group' && this.renderGroupDetail()}
