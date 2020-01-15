@@ -137,7 +137,7 @@ class PAGE_NAME_UPPER_CAMEL_CASE extends Component<
     });
   };
 
-  checkConfirm = (rule: any, value: string, callback: (messgae?: string) => void) => {
+  checkConfirm = (rule: any, value: string, callback: (message?: string) => void) => {
     const { form } = this.props;
     if (value && value !== form.getFieldValue('password')) {
       callback(formatMessage({ id: 'BLOCK_NAME.password.twice' }));
@@ -146,7 +146,7 @@ class PAGE_NAME_UPPER_CAMEL_CASE extends Component<
     }
   };
 
-  checkPassword = (rule: any, value: string, callback: (messgae?: string) => void) => {
+  checkPassword = (rule: any, value: string, callback: (message?: string) => void) => {
     const { visible, confirmDirty } = this.state;
     if (!value) {
       this.setState({
