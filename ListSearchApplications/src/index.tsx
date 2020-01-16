@@ -1,8 +1,16 @@
-import { Avatar, Card, Col, Dropdown, Form, Icon, List, Menu, Row, Select, Tooltip } from 'antd';
+import {
+  DownloadOutlined,
+  EditOutlined,
+  EllipsisOutlined,
+  ShareAltOutlined,
+} from '@ant-design/icons';
+import { Form } from '@ant-design/compatible';
+import '@ant-design/compatible/assets/index.css';
+import { Avatar, Card, Col, Dropdown, List, Menu, Row, Select, Tooltip } from 'antd';
 import React, { Component } from 'react';
 
 import { Dispatch } from 'redux';
-import { FormComponentProps } from 'antd/es/form';
+import { FormComponentProps } from '@ant-design/compatible/es/form';
 import { connect } from 'dva';
 import numeral from 'numeral';
 import { StateType } from './model';
@@ -176,16 +184,16 @@ class PAGE_NAME_UPPER_CAMEL_CASE extends Component<PAGE_NAME_UPPER_CAMEL_CASEPro
                 bodyStyle={{ paddingBottom: 20 }}
                 actions={[
                   <Tooltip key="download" title="下载">
-                    <Icon type="download" />
+                    <DownloadOutlined />
                   </Tooltip>,
                   <Tooltip key="edit" title="编辑">
-                    <Icon type="edit" />
+                    <EditOutlined />
                   </Tooltip>,
                   <Tooltip title="分享" key="share">
-                    <Icon type="share-alt" />
+                    <ShareAltOutlined />
                   </Tooltip>,
                   <Dropdown key="ellipsis" overlay={itemMenu}>
-                    <Icon type="ellipsis" />
+                    <EllipsisOutlined />
                   </Dropdown>,
                 ]}
               >

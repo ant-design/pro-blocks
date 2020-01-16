@@ -12,6 +12,7 @@
     "dev": "umi dev"
   },
   "dependencies": {
+    "@ant-design/icons": "^4.0.0-alpha.19",
     "@antv/data-set": "^0.10.2",
     "@antv/l7": "^2.0.0",
     "@antv/l7-maps": "^2.0.0",

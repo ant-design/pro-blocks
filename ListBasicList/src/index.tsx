@@ -1,3 +1,6 @@
+import { DownOutlined, PlusOutlined } from '@ant-design/icons';
+import { Form } from '@ant-design/compatible';
+import '@ant-design/compatible/assets/index.css';
 import {
   Avatar,
   Button,
@@ -5,8 +8,6 @@ import {
   Col,
   DatePicker,
   Dropdown,
-  Form,
-  Icon,
   Input,
   List,
   Menu,
@@ -20,7 +21,7 @@ import {
 import React, { Component } from 'react';
 
 import { Dispatch } from 'redux';
-import { FormComponentProps } from 'antd/es/form';
+import { FormComponentProps } from '@ant-design/compatible/es/form';
 import { PageHeaderWrapper } from '@ant-design/pro-layout';
 import { connect } from 'dva';
 import { findDOMNode } from 'react-dom';
@@ -215,7 +216,7 @@ class PAGE_NAME_UPPER_CAMEL_CASE extends Component<
         }
       >
         <a>
-          更多 <Icon type="down" />
+          更多 <DownOutlined />
         </a>
       </Dropdown>
     );
@@ -306,13 +307,13 @@ class PAGE_NAME_UPPER_CAMEL_CASE extends Component<
               <Button
                 type="dashed"
                 style={{ width: '100%', marginBottom: 8 }}
-                icon="plus"
                 onClick={this.showModal}
                 ref={component => {
                   // eslint-disable-next-line  react/no-find-dom-node
                   this.addBtn = findDOMNode(component) as HTMLButtonElement;
                 }}
               >
+                <PlusOutlined />
                 添加
               </Button>
               <List

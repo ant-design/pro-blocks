@@ -1,20 +1,11 @@
-import {
-  Button,
-  Card,
-  Col,
-  DatePicker,
-  Form,
-  Icon,
-  Input,
-  Popover,
-  Row,
-  Select,
-  TimePicker,
-} from 'antd';
+import { Form } from '@ant-design/compatible';
+import '@ant-design/compatible/assets/index.css';
+import { CloseCircleOutlined } from '@ant-design/icons';
+import { Button, Card, Col, DatePicker, Input, Popover, Row, Select, TimePicker } from 'antd';
 import React, { Component } from 'react';
 
 import { Dispatch } from 'redux';
-import { FormComponentProps } from 'antd/es/form';
+import { FormComponentProps } from '@ant-design/compatible/es/form';
 import { PageHeaderWrapper } from '@ant-design/pro-layout';
 import { connect } from 'dva';
 import TableForm from './components/TableForm';
@@ -88,7 +79,7 @@ class PAGE_NAME_UPPER_CAMEL_CASE extends Component<PAGE_NAME_UPPER_CAMEL_CASEPro
       const errorMessage = errors[key] || [];
       return (
         <li key={key} className={styles.errorListItem} onClick={() => scrollToField(key)}>
-          <Icon type="cross-circle-o" className={styles.errorIcon} />
+          <CloseCircleOutlined className={styles.errorIcon} />
           <div className={styles.errorMessage}>{errorMessage[0]}</div>
           <div className={styles.errorField}>{fieldLabels[key]}</div>
         </li>
@@ -108,7 +99,7 @@ class PAGE_NAME_UPPER_CAMEL_CASE extends Component<PAGE_NAME_UPPER_CAMEL_CASEPro
             return trigger;
           }}
         >
-          <Icon type="exclamation-circle" />
+          <CloseCircleOutlined />
         </Popover>
         {errorCount}
       </span>

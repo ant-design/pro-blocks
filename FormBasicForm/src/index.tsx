@@ -1,20 +1,12 @@
-import {
-  Button,
-  Card,
-  DatePicker,
-  Form,
-  Icon,
-  Input,
-  InputNumber,
-  Radio,
-  Select,
-  Tooltip,
-} from 'antd';
+import { InfoCircleOutlined } from '@ant-design/icons';
+import { Form } from '@ant-design/compatible';
+import '@ant-design/compatible/assets/index.css';
+import { Button, Card, DatePicker, Input, InputNumber, Radio, Select, Tooltip } from 'antd';
 import { FormattedMessage, formatMessage } from 'umi-plugin-react/locale';
 import React, { Component } from 'react';
 
 import { Dispatch } from 'redux';
-import { FormComponentProps } from 'antd/es/form';
+import { FormComponentProps } from '@ant-design/compatible/es/form';
 import { PageHeaderWrapper } from '@ant-design/pro-layout';
 import { connect } from 'dva';
 import styles from './style.less';
@@ -142,7 +134,7 @@ class PAGE_NAME_UPPER_CAMEL_CASE extends Component<PAGE_NAME_UPPER_CAMEL_CASEPro
                   <em className={styles.optional}>
                     <FormattedMessage id="BLOCK_NAME.form.optional" />
                     <Tooltip title={<FormattedMessage id="BLOCK_NAME.label.tooltip" />}>
-                      <Icon type="info-circle-o" style={{ marginRight: 4 }} />
+                      <InfoCircleOutlined style={{ marginRight: 4 }} />
                     </Tooltip>
                   </em>
                 </span>

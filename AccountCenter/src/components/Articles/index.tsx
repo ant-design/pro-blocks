@@ -1,4 +1,5 @@
-import { Icon, List, Tag } from 'antd';
+import { StarTwoTone, LikeOutlined, MessageFilled } from '@ant-design/icons';
+import { List, Tag } from 'antd';
 import React from 'react';
 
 import { connect } from 'dva';
@@ -10,12 +11,11 @@ import styles from './index.less';
 const Articles: React.FC<Partial<ModalState>> = props => {
   const { list } = props;
   const IconText: React.FC<{
-    type: string;
+    icon: React.ReactNode;
     text: React.ReactNode;
-  }> = ({ type, text }) => (
+  }> = ({ icon, text }) => (
     <span>
-      <Icon type={type} style={{ marginRight: 8 }} />
-      {text}
+      {icon} {text}
     </span>
   );
   return (
@@ -29,9 +29,9 @@ const Articles: React.FC<Partial<ModalState>> = props => {
         <List.Item
           key={item.id}
           actions={[
-            <IconText key="star" type="star-o" text={item.star} />,
-            <IconText key="like" type="like-o" text={item.like} />,
-            <IconText key="message" type="message" text={item.message} />,
+            <IconText key="star" icon={<StarTwoTone />} text={item.star} />,
+            <IconText key="like" icon={<LikeOutlined />} text={item.like} />,
+            <IconText key="message" icon={<MessageFilled />} text={item.message} />,
           ]}
         >
           <List.Item.Meta
