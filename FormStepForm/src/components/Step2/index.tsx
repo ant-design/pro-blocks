@@ -1,9 +1,5 @@
-import { Form } from '@ant-design/compatible';
-import '@ant-design/compatible/assets/index.css';
-import { Alert, Button, Descriptions, Divider, Statistic, Input } from 'antd';
-
+import { Form, Alert, Button, Descriptions, Divider, Statistic, Input } from 'antd';
 import { Dispatch } from 'redux';
-import { FormComponentProps } from '@ant-design/compatible/es/form';
 import React from 'react';
 import { connect } from 'dva';
 import { StateType } from '../../model';
@@ -17,18 +13,19 @@ const formItemLayout = {
     span: 19,
   },
 };
-interface Step2Props extends FormComponentProps {
+interface Step2Props {
   data?: StateType['step'];
   dispatch?: Dispatch<any>;
   submitting?: boolean;
 }
 
 const Step2: React.FC<Step2Props> = props => {
-  const { form, data, dispatch, submitting } = props;
+  const [form] = Form.useForm();
+  const { data, dispatch, submitting } = props;
   if (!data) {
     return null;
   }
-  const { getFieldDecorator, validateFields, getFieldsValue } = form;
+  const { validateFields, getFieldsValue } = form;
   const onPrev = () => {
     if (dispatch) {
       const values = getFieldsValue();
@@ -47,24 +44,27 @@ const Step2: React.FC<Step2Props> = props => {
   };
   const onValidateForm = (e: React.FormEvent) => {
     e.preventDefault();
-    validateFields((err, values) => {
-      if (!err) {
-        if (dispatch) {
-          dispatch({
-            type: 'BLOCK_NAME_CAMEL_CASE/submitStepForm',
-            payload: {
-              ...data,
-              ...values,
-            },
-          });
-        }
+    validateFields().then(values => {
+      if (dispatch) {
+        dispatch({
+          type: 'BLOCK_NAME_CAMEL_CASE/submitStepForm',
+          payload: {
+            ...data,
+            ...values,
+          },
+        });
       }
     });
   };
 
   const { payAccount, receiverAccount, receiverName, amount } = data;
   return (
-    <Form layout="horizontal" className={styles.stepForm}>
+    <Form
+      form={form}
+      layout="horizontal"
+      className={styles.stepForm}
+      initialValues={{ password: '123456' }}
+    >
       <Alert
         closable
         showIcon
@@ -80,16 +80,14 @@ const Step2: React.FC<Step2Props> = props => {
         </Descriptions.Item>
       </Descriptions>
       <Divider style={{ margin: '24px 0' }} />
-      <Form.Item {...formItemLayout} label="支付密码" required={false}>
-        {getFieldDecorator('password', {
-          initialValue: '123456',
-          rules: [
-            {
-              required: true,
-              message: '需要支付密码才能进行支付',
-            },
-          ],
-        })(<Input type="password" autoComplete="off" style={{ width: '80%' }} />)}
+      <Form.Item
+        {...formItemLayout}
+        label="支付密码"
+        name="password"
+        required={false}
+        rules={[{ required: true, message: '需要支付密码才能进行支付' }]}
+      >
+        <Input type="password" autoComplete="off" style={{ width: '80%' }} />
       </Form.Item>
       <Form.Item
         style={{ marginBottom: 8 }}
@@ -125,4 +123,4 @@ export default connect(
     submitting: loading.effects['BLOCK_NAME_CAMEL_CASE/submitStepForm'],
     data: BLOCK_NAME_CAMEL_CASE.step,
   }),
-)(Form.create<Step2Props>()(Step2));
+)(Step2);
