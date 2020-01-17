@@ -28,9 +28,9 @@
     "**/*.{js,ts,tsx}": "npm run lint-staged:js"
   },
   "dependencies": {
-    "@ant-design/compatible": "^0.0.1-rc.0",
+    "@ant-design/icons": "4.0.0-alpha.19",
     "@ant-design/pro-cli": "^1.0.5",
-    "@ant-design/pro-layout": "^4.5.11",
+    "@ant-design/pro-layout": "4.11.0-1",
     "@types/react-dom": "^16.8.4",
     "antd": "^4.0.0-rc.1",
     "bizcharts": "^3.5.4",
@@ -38,7 +38,7 @@
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
     "umi": "^2.8.9",
-    "umi-plugin-block-dev": "^3.0.0",
+    "umi-plugin-block-dev": "^3.0.3",
     "umi-plugin-react": "^1.9.7",
     "umi-request": "^1.0.0",
     "umi-utils": "^1.5.1"
@@ -60,7 +60,7 @@
     "typescript": "^3.5.1"
   },
   "peerDependencies": {
-    "antd": "^3.17.0"
+    "antd": "^4.0.0-rc.1"
   },
   "optionalDependencies": {
     "puppeteer": "^2.0.0"

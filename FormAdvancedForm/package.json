@@ -12,7 +12,6 @@
     "dev": "umi dev"
   },
   "dependencies": {
-    "@ant-design/compatible": "^0.0.1-rc.0",
     "@ant-design/icons": "^4.0.0-alpha.19",
     "@types/lodash.isequal": "^4.5.5",
     "classnames": "^2.2.6",
