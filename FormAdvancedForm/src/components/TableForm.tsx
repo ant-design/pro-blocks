@@ -48,6 +48,8 @@ class TableForm extends Component<TableFormProps, TableFormState> {
       key: 'name',
       width: '20%',
       render: (text: string, record: TableFormDateType) => {
+        console.log(text);
+
         if (record.editable) {
           return (
             <Input
