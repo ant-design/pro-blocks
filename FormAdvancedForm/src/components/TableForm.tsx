@@ -1,6 +1,6 @@
 import { PlusOutlined } from '@ant-design/icons';
 import { Button, Divider, Input, Popconfirm, Table, message } from 'antd';
-import React, { Fragment, FC, useState } from 'react';
+import React, { FC, useState } from 'react';
 
 import styles from '../style.less';
 
@@ -43,7 +43,7 @@ const TableForm: FC<TableFormProps> = ({ value, onChange }) => {
     }
   };
   const newMember = () => {
-    const newData = data?.map(item => ({ ...item }));
+    const newData = data?.map(item => ({ ...item })) || [];
     // eslint-disable-next-line no-unused-expressions
     newData?.push({
       key: `NEW_TEMP_ID_${index}`,
@@ -233,7 +233,7 @@ const TableForm: FC<TableFormProps> = ({ value, onChange }) => {
   ];
 
   return (
-    <Fragment>
+    <>
       <Table<TableFormDateType>
         loading={loading}
         columns={columns}
@@ -249,7 +249,7 @@ const TableForm: FC<TableFormProps> = ({ value, onChange }) => {
         <PlusOutlined />
         新增成员
       </Button>
-    </Fragment>
+    </>
   );
 };
 

@@ -133,7 +133,7 @@ const PAGE_NAME_UPPER_CAMEL_CASE: FC<PAGE_NAME_UPPER_CAMEL_CASEProps> = ({
       onFinishFailed={onFinishFailed}
     >
       <PageHeaderWrapper content="高级表单常见于一次性输入和提交大批量数据的场景。">
-        <Card title="仓库管理" className={styles.card} bordered={false}>
+        <Card title="仓库管理" bordered={false}>
           <Row gutter={16}>
             <Col lg={6} md={12} sm={24}>
               <Form.Item
