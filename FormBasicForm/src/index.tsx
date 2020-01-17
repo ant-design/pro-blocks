@@ -2,7 +2,7 @@ import { InfoCircleOutlined } from '@ant-design/icons';
 import { Button, Card, DatePicker, Input, Form, InputNumber, Radio, Select, Tooltip } from 'antd';
 import { FormattedMessage, formatMessage } from 'umi-plugin-react/locale';
 import React, { FC } from 'react';
-import { Store } from 'rc-field-form/es/interface';
+import { Store, ValidateErrorEntity } from 'rc-field-form/es/interface';
 import { Dispatch } from 'redux';
 import { FormComponentProps } from '@ant-design/compatible/es/form';
 import { PageHeaderWrapper } from '@ant-design/pro-layout';
@@ -21,6 +21,8 @@ interface PAGE_NAME_UPPER_CAMEL_CASEProps extends FormComponentProps {
 
 const PAGE_NAME_UPPER_CAMEL_CASE: FC<PAGE_NAME_UPPER_CAMEL_CASEProps> = props => {
   const { submitting } = props;
+  const [form] = Form.useForm();
+  const [showPublicUsers, setShowPublicUsers] = React.useState(false);
   const formItemLayout = {
     labelCol: {
       xs: { span: 24 },
@@ -41,7 +43,6 @@ const PAGE_NAME_UPPER_CAMEL_CASE: FC<PAGE_NAME_UPPER_CAMEL_CASEProps> = props =>
   };
 
   const onFinish = (values: Store) => {
-    console.log('Success:', values);
     const { dispatch } = props;
     dispatch({
       type: 'BLOCK_NAME_CAMEL_CASE/submitRegularForm',
@@ -49,8 +50,13 @@ const PAGE_NAME_UPPER_CAMEL_CASE: FC<PAGE_NAME_UPPER_CAMEL_CASEProps> = props =>
     });
   };
 
-  const onFinishFailed = (errorInfo: Store) => {
+  const onFinishFailed = (errorInfo: ValidateErrorEntity) => {
     console.log('Failed:', errorInfo);
+  };
+
+  const onValuesChange = (changedValues: Store) => {
+    const { publicType } = changedValues;
+    if (publicType) setShowPublicUsers(publicType === '2');
   };
 
   return (
@@ -59,10 +65,12 @@ const PAGE_NAME_UPPER_CAMEL_CASE: FC<PAGE_NAME_UPPER_CAMEL_CASEProps> = props =>
         <Form
           hideRequiredMark
           style={{ marginTop: 8 }}
+          form={form}
           name="basic"
           initialValues={{ public: '1' }}
           onFinish={onFinish}
           onFinishFailed={onFinishFailed}
+          onValuesChange={onValuesChange}
         >
           <FormItem
             {...formItemLayout}
@@ -184,7 +192,7 @@ const PAGE_NAME_UPPER_CAMEL_CASE: FC<PAGE_NAME_UPPER_CAMEL_CASEProps> = props =>
             {...formItemLayout}
             label={<FormattedMessage id="BLOCK_NAME.public.label" />}
             help={<FormattedMessage id="BLOCK_NAME.label.help" />}
-            name="public"
+            name="publicType"
           >
             <div>
               <Radio.Group>
@@ -204,7 +212,7 @@ const PAGE_NAME_UPPER_CAMEL_CASE: FC<PAGE_NAME_UPPER_CAMEL_CASEProps> = props =>
                   placeholder={formatMessage({ id: 'BLOCK_NAME.publicUsers.placeholder' })}
                   style={{
                     margin: '8px 0',
-                    display: getFieldValue('public') === '2' ? 'block' : 'none',
+                    display: showPublicUsers ? 'block' : 'none',
                   }}
                 >
                   <Option value="1">
