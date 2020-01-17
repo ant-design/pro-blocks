@@ -66,7 +66,7 @@ const PAGE_NAME_UPPER_CAMEL_CASE: FC<PAGE_NAME_UPPER_CAMEL_CASEProps> = ({
   const [form] = Form.useForm();
   const [error, setError] = useState<ErrorField[]>([]);
   const getErrorInfo = (errors: ErrorField[]) => {
-    const errorCount = Object.keys(errors).filter(key => errors[key]).length;
+    const errorCount = errors.filter(item => item.errors.length > 0).length;
     if (!errors || errorCount === 0) {
       return null;
     }
@@ -77,7 +77,7 @@ const PAGE_NAME_UPPER_CAMEL_CASE: FC<PAGE_NAME_UPPER_CAMEL_CASEProps> = ({
       }
     };
     const errorList = errors.map(err => {
-      if (!err) {
+      if (!err || err.errors.length === 0) {
         return null;
       }
       const key = err.name[0] as string;
@@ -111,6 +111,7 @@ const PAGE_NAME_UPPER_CAMEL_CASE: FC<PAGE_NAME_UPPER_CAMEL_CASEProps> = ({
   };
 
   const onFinish = (values: Store) => {
+    setError([]);
     dispatch({
       type: 'BLOCK_NAME_CAMEL_CASE/submitAdvancedForm',
       payload: values,
@@ -121,6 +122,7 @@ const PAGE_NAME_UPPER_CAMEL_CASE: FC<PAGE_NAME_UPPER_CAMEL_CASEProps> = ({
     console.log('Failed:', errorInfo);
     setError(errorInfo.errorFields);
   };
+
   return (
     <Form
       form={form}
