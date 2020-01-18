@@ -1,6 +1,5 @@
+import React from 'react';
 import { Form, Button, Divider, Input, Select } from 'antd';
-import React, { Fragment } from 'react';
-
 import { Dispatch } from 'redux';
 import { connect } from 'dva';
 import { StateType } from '../../model';
@@ -29,36 +28,30 @@ const Step1: React.FC<Step1Props> = props => {
     return null;
   }
   const { validateFields } = form;
-  const onValidateForm = () => {
-    validateFields().then(values => {
-      if (dispatch) {
-        dispatch({
-          type: 'BLOCK_NAME_CAMEL_CASE/saveStepFormData',
-          payload: values,
-        });
-        dispatch({
-          type: 'BLOCK_NAME_CAMEL_CASE/saveCurrentStep',
-          payload: 'confirm',
-        });
-      }
-    });
+  const onValidateForm = async () => {
+    const values = await validateFields();
+    if (dispatch) {
+      dispatch({
+        type: 'BLOCK_NAME_CAMEL_CASE/saveStepFormData',
+        payload: values,
+      });
+      dispatch({
+        type: 'BLOCK_NAME_CAMEL_CASE/saveCurrentStep',
+        payload: 'confirm',
+      });
+    }
   };
   return (
-    <Fragment>
+    <>
       <Form
+        {...formItemLayout}
         form={form}
         layout="horizontal"
         className={styles.stepForm}
         hideRequiredMark
-        initialValues={{
-          payAccount: data.payAccount,
-          receiverAccount: data.receiverAccount,
-          receiverName: data.receiverName,
-          amount: data.amount,
-        }}
+        initialValues={data}
       >
         <Form.Item
-          {...formItemLayout}
           label="付款账户"
           name="payAccount"
           rules={[{ required: true, message: '请选择付款账户' }]}
@@ -67,7 +60,7 @@ const Step1: React.FC<Step1Props> = props => {
             <Option value="ant-design@alipay.com">ant-design@alipay.com</Option>
           </Select>
         </Form.Item>
-        <Form.Item {...formItemLayout} label="收款账户">
+        <Form.Item label="收款账户">
           <Input.Group compact>
             <Select defaultValue="alipay" style={{ width: 100 }}>
               <Option value="alipay">支付宝</Option>
@@ -86,7 +79,6 @@ const Step1: React.FC<Step1Props> = props => {
           </Input.Group>
         </Form.Item>
         <Form.Item
-          {...formItemLayout}
           label="收款人姓名"
           name="receiverName"
           rules={[{ required: true, message: '请输入收款人姓名' }]}
@@ -94,7 +86,6 @@ const Step1: React.FC<Step1Props> = props => {
           <Input placeholder="请输入收款人姓名" />
         </Form.Item>
         <Form.Item
-          {...formItemLayout}
           label="转账金额"
           name="amount"
           rules={[
@@ -115,7 +106,6 @@ const Step1: React.FC<Step1Props> = props => {
               offset: formItemLayout.labelCol.span,
             },
           }}
-          label=""
         >
           <Button type="primary" onClick={onValidateForm}>
             下一步
@@ -134,7 +124,7 @@ const Step1: React.FC<Step1Props> = props => {
           如果需要，这里可以放一些关于产品的常见问题说明。如果需要，这里可以放一些关于产品的常见问题说明。如果需要，这里可以放一些关于产品的常见问题说明。
         </p>
       </div>
-    </Fragment>
+    </>
   );
 };
 

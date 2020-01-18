@@ -1,6 +1,6 @@
+import React from 'react';
 import { Form, Alert, Button, Descriptions, Divider, Statistic, Input } from 'antd';
 import { Dispatch } from 'redux';
-import React from 'react';
 import { connect } from 'dva';
 import { StateType } from '../../model';
 import styles from './index.less';
@@ -42,24 +42,23 @@ const Step2: React.FC<Step2Props> = props => {
       });
     }
   };
-  const onValidateForm = (e: React.FormEvent) => {
-    e.preventDefault();
-    validateFields().then(values => {
-      if (dispatch) {
-        dispatch({
-          type: 'BLOCK_NAME_CAMEL_CASE/submitStepForm',
-          payload: {
-            ...data,
-            ...values,
-          },
-        });
-      }
-    });
+  const onValidateForm = async () => {
+    const values = await validateFields();
+    if (dispatch) {
+      dispatch({
+        type: 'BLOCK_NAME_CAMEL_CASE/submitStepForm',
+        payload: {
+          ...data,
+          ...values,
+        },
+      });
+    }
   };
 
   const { payAccount, receiverAccount, receiverName, amount } = data;
   return (
     <Form
+      {...formItemLayout}
       form={form}
       layout="horizontal"
       className={styles.stepForm}
@@ -81,7 +80,6 @@ const Step2: React.FC<Step2Props> = props => {
       </Descriptions>
       <Divider style={{ margin: '24px 0' }} />
       <Form.Item
-        {...formItemLayout}
         label="支付密码"
         name="password"
         required={false}
