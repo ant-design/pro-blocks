@@ -12,7 +12,6 @@
     "dev": "umi dev"
   },
   "dependencies": {
-    "@ant-design/compatible": "^0.0.1-rc.0",
     "@ant-design/icons": "^4.0.0-alpha.19",
     "@antv/data-set": "^0.10.2",
     "bizcharts": "^3.5.3-beta.0",
