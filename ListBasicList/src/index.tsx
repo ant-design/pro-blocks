@@ -21,7 +21,7 @@ import {
 import React, { Component } from 'react';
 
 import { Dispatch } from 'redux';
-import { FormComponentProps } from 'antd/es/form';
+import { FormComponentProps } from '@ant-design/compatible/es/form';
 import { PageHeaderWrapper } from '@ant-design/pro-layout';
 import { connect } from 'dva';
 import { findDOMNode } from 'react-dom';

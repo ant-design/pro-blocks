@@ -2,7 +2,7 @@ import { Form } from '@ant-design/compatible';
 import '@ant-design/compatible/assets/index.css';
 import { Input, Modal } from 'antd';
 
-import { FormComponentProps } from 'antd/es/form';
+import { FormComponentProps } from '@ant-design/compatible/es/form';
 import React from 'react';
 
 const FormItem = Form.Item;

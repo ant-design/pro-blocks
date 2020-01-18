@@ -1,7 +1,9 @@
-import { Card, Form, Input, Select } from 'antd';
+import { Form } from '@ant-design/compatible';
+import '@ant-design/compatible/assets/index.css';
+import { Card, Input, Select } from 'antd';
 import React, { Fragment } from 'react';
 
-import { FormComponentProps } from 'antd/es/form';
+import { FormComponentProps } from '@ant-design/compatible/es/form';
 import { withPropsAPI } from 'gg-editor';
 
 const upperFirst = (str: string) =>
@@ -31,11 +33,7 @@ class DetailForm extends React.Component<DetailFormProps> {
     return propsAPI.getSelected()[0];
   }
 
-  handleSubmit = (e: React.FormEvent) => {
-    if (e && e.preventDefault) {
-      e.preventDefault();
-    }
-
+  handleFieldChange = () => {
     const { form, propsAPI } = this.props;
     const { getSelected, executeCommand, update } = propsAPI;
 
@@ -60,8 +58,15 @@ class DetailForm extends React.Component<DetailFormProps> {
     }, 0);
   };
 
+  handleSubmit = (e: React.FormEvent) => {
+    if (e && e.preventDefault) {
+      e.preventDefault();
+    }
+    this.handleFieldChange();
+  };
+
   renderEdgeShapeSelect = () => (
-    <Select onChange={this.handleSubmit}>
+    <Select onChange={this.handleFieldChange}>
       <Option value="flow-smooth">Smooth</Option>
       <Option value="flow-polyline">Polyline</Option>
       <Option value="flow-polyline-round">Polyline Round</Option>
@@ -76,7 +81,7 @@ class DetailForm extends React.Component<DetailFormProps> {
       <Item label="Label" {...inlineFormItemLayout}>
         {form.getFieldDecorator('label', {
           initialValue: label,
-        })(<Input onBlur={this.handleSubmit} />)}
+        })(<Input onBlur={this.handleFieldChange} />)}
       </Item>
     );
   };
@@ -90,7 +95,7 @@ class DetailForm extends React.Component<DetailFormProps> {
         <Item label="Label" {...inlineFormItemLayout}>
           {form.getFieldDecorator('label', {
             initialValue: label,
-          })(<Input onBlur={this.handleSubmit} />)}
+          })(<Input onBlur={this.handleFieldChange} />)}
         </Item>
         <Item label="Shape" {...inlineFormItemLayout}>
           {form.getFieldDecorator('shape', {
@@ -109,7 +114,7 @@ class DetailForm extends React.Component<DetailFormProps> {
       <Item label="Label" {...inlineFormItemLayout}>
         {form.getFieldDecorator('label', {
           initialValue: label,
-        })(<Input onBlur={this.handleSubmit} />)}
+        })(<Input onBlur={this.handleFieldChange} />)}
       </Item>
     );
   };

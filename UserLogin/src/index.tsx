@@ -1,10 +1,11 @@
-import { Alert, Checkbox, Icon } from 'antd';
+import { AlipayCircleOutlined, TaobaoCircleOutlined, WeiboCircleOutlined } from '@ant-design/icons';
+import { Alert, Checkbox } from 'antd';
 import { FormattedMessage, formatMessage } from 'umi-plugin-react/locale';
 import React, { Component } from 'react';
 
 import { CheckboxChangeEvent } from 'antd/es/checkbox';
 import { Dispatch } from 'redux';
-import { FormComponentProps } from 'antd/es/form';
+import { FormComponentProps } from '@ant-design/compatible/es/form';
 import Link from 'umi/link';
 import { connect } from 'dva';
 import { StateType } from './model';
@@ -185,9 +186,9 @@ class PAGE_NAME_UPPER_CAMEL_CASE extends Component<
           </Submit>
           <div className={styles.other}>
             <FormattedMessage id="BLOCK_NAME.login.sign-in-with" />
-            <Icon type="alipay-circle" className={styles.icon} theme="outlined" />
-            <Icon type="taobao-circle" className={styles.icon} theme="outlined" />
-            <Icon type="weibo-circle" className={styles.icon} theme="outlined" />
+            <AlipayCircleOutlined className={styles.icon} />
+            <TaobaoCircleOutlined className={styles.icon} />
+            <WeiboCircleOutlined className={styles.icon} />
             <Link className={styles.register} to="/user/register">
               <FormattedMessage id="BLOCK_NAME.login.signup" />
             </Link>

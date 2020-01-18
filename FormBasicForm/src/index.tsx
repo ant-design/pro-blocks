@@ -1,20 +1,10 @@
-import {
-  Button,
-  Card,
-  DatePicker,
-  Form,
-  Icon,
-  Input,
-  InputNumber,
-  Radio,
-  Select,
-  Tooltip,
-} from 'antd';
+import { InfoCircleOutlined } from '@ant-design/icons';
+import { Button, Card, DatePicker, Input, Form, InputNumber, Radio, Select, Tooltip } from 'antd';
 import { FormattedMessage, formatMessage } from 'umi-plugin-react/locale';
-import React, { Component } from 'react';
-
+import React, { FC } from 'react';
+import { Store, ValidateErrorEntity } from 'rc-field-form/es/interface';
 import { Dispatch } from 'redux';
-import { FormComponentProps } from 'antd/es/form';
+import { FormComponentProps } from '@ant-design/compatible/es/form';
 import { PageHeaderWrapper } from '@ant-design/pro-layout';
 import { connect } from 'dva';
 import styles from './style.less';
@@ -29,226 +19,229 @@ interface PAGE_NAME_UPPER_CAMEL_CASEProps extends FormComponentProps {
   dispatch: Dispatch<any>;
 }
 
-class PAGE_NAME_UPPER_CAMEL_CASE extends Component<PAGE_NAME_UPPER_CAMEL_CASEProps> {
-  handleSubmit = (e: React.FormEvent) => {
-    const { dispatch, form } = this.props;
-    e.preventDefault();
-    form.validateFieldsAndScroll((err, values) => {
-      if (!err) {
-        dispatch({
-          type: 'BLOCK_NAME_CAMEL_CASE/submitRegularForm',
-          payload: values,
-        });
-      }
+const PAGE_NAME_UPPER_CAMEL_CASE: FC<PAGE_NAME_UPPER_CAMEL_CASEProps> = props => {
+  const { submitting } = props;
+  const [form] = Form.useForm();
+  const [showPublicUsers, setShowPublicUsers] = React.useState(false);
+  const formItemLayout = {
+    labelCol: {
+      xs: { span: 24 },
+      sm: { span: 7 },
+    },
+    wrapperCol: {
+      xs: { span: 24 },
+      sm: { span: 12 },
+      md: { span: 10 },
+    },
+  };
+
+  const submitFormLayout = {
+    wrapperCol: {
+      xs: { span: 24, offset: 0 },
+      sm: { span: 10, offset: 7 },
+    },
+  };
+
+  const onFinish = (values: Store) => {
+    const { dispatch } = props;
+    dispatch({
+      type: 'BLOCK_NAME_CAMEL_CASE/submitRegularForm',
+      payload: values,
     });
   };
 
-  render() {
-    const { submitting } = this.props;
-    const {
-      form: { getFieldDecorator, getFieldValue },
-    } = this.props;
+  const onFinishFailed = (errorInfo: ValidateErrorEntity) => {
+    console.log('Failed:', errorInfo);
+  };
 
-    const formItemLayout = {
-      labelCol: {
-        xs: { span: 24 },
-        sm: { span: 7 },
-      },
-      wrapperCol: {
-        xs: { span: 24 },
-        sm: { span: 12 },
-        md: { span: 10 },
-      },
-    };
+  const onValuesChange = (changedValues: Store) => {
+    const { publicType } = changedValues;
+    if (publicType) setShowPublicUsers(publicType === '2');
+  };
 
-    const submitFormLayout = {
-      wrapperCol: {
-        xs: { span: 24, offset: 0 },
-        sm: { span: 10, offset: 7 },
-      },
-    };
-    return (
-      <PageHeaderWrapper content={<FormattedMessage id="BLOCK_NAME.basic.description" />}>
-        <Card bordered={false}>
-          <Form onSubmit={this.handleSubmit} hideRequiredMark style={{ marginTop: 8 }}>
-            <FormItem {...formItemLayout} label={<FormattedMessage id="BLOCK_NAME.title.label" />}>
-              {getFieldDecorator('title', {
-                rules: [
-                  {
-                    required: true,
-                    message: formatMessage({ id: 'BLOCK_NAME.title.required' }),
-                  },
-                ],
-              })(<Input placeholder={formatMessage({ id: 'BLOCK_NAME.title.placeholder' })} />)}
-            </FormItem>
-            <FormItem {...formItemLayout} label={<FormattedMessage id="BLOCK_NAME.date.label" />}>
-              {getFieldDecorator('date', {
-                rules: [
-                  {
-                    required: true,
-                    message: formatMessage({ id: 'BLOCK_NAME.date.required' }),
-                  },
-                ],
-              })(
-                <RangePicker
-                  style={{ width: '100%' }}
-                  placeholder={[
-                    formatMessage({ id: 'BLOCK_NAME.placeholder.start' }),
-                    formatMessage({ id: 'BLOCK_NAME.placeholder.end' }),
-                  ]}
-                />,
-              )}
-            </FormItem>
-            <FormItem {...formItemLayout} label={<FormattedMessage id="BLOCK_NAME.goal.label" />}>
-              {getFieldDecorator('goal', {
-                rules: [
-                  {
-                    required: true,
-                    message: formatMessage({ id: 'BLOCK_NAME.goal.required' }),
-                  },
-                ],
-              })(
-                <TextArea
-                  style={{ minHeight: 32 }}
-                  placeholder={formatMessage({ id: 'BLOCK_NAME.goal.placeholder' })}
-                  rows={4}
-                />,
-              )}
-            </FormItem>
-            <FormItem
-              {...formItemLayout}
-              label={<FormattedMessage id="BLOCK_NAME.standard.label" />}
-            >
-              {getFieldDecorator('standard', {
-                rules: [
-                  {
-                    required: true,
-                    message: formatMessage({ id: 'BLOCK_NAME.standard.required' }),
-                  },
-                ],
-              })(
-                <TextArea
-                  style={{ minHeight: 32 }}
-                  placeholder={formatMessage({ id: 'BLOCK_NAME.standard.placeholder' })}
-                  rows={4}
-                />,
-              )}
-            </FormItem>
-            <FormItem
-              {...formItemLayout}
-              label={
-                <span>
-                  <FormattedMessage id="BLOCK_NAME.client.label" />
-                  <em className={styles.optional}>
-                    <FormattedMessage id="BLOCK_NAME.form.optional" />
-                    <Tooltip title={<FormattedMessage id="BLOCK_NAME.label.tooltip" />}>
-                      <Icon type="info-circle-o" style={{ marginRight: 4 }} />
-                    </Tooltip>
-                  </em>
-                </span>
-              }
-            >
-              {getFieldDecorator('client')(
-                <Input placeholder={formatMessage({ id: 'BLOCK_NAME.client.placeholder' })} />,
-              )}
-            </FormItem>
-            <FormItem
-              {...formItemLayout}
-              label={
-                <span>
-                  <FormattedMessage id="BLOCK_NAME.invites.label" />
-                  <em className={styles.optional}>
-                    <FormattedMessage id="BLOCK_NAME.form.optional" />
-                  </em>
-                </span>
-              }
-            >
-              {getFieldDecorator('invites')(
-                <Input placeholder={formatMessage({ id: 'BLOCK_NAME.invites.placeholder' })} />,
-              )}
-            </FormItem>
-            <FormItem
-              {...formItemLayout}
-              label={
-                <span>
-                  <FormattedMessage id="BLOCK_NAME.weight.label" />
-                  <em className={styles.optional}>
-                    <FormattedMessage id="BLOCK_NAME.form.optional" />
-                  </em>
-                </span>
-              }
-            >
-              {getFieldDecorator('weight')(
-                <InputNumber
-                  placeholder={formatMessage({ id: 'BLOCK_NAME.weight.placeholder' })}
-                  min={0}
-                  max={100}
-                />,
-              )}
-              <span className="ant-form-text">%</span>
-            </FormItem>
-            <FormItem
-              {...formItemLayout}
-              label={<FormattedMessage id="BLOCK_NAME.public.label" />}
-              help={<FormattedMessage id="BLOCK_NAME.label.help" />}
-            >
-              <div>
-                {getFieldDecorator('public', {
-                  initialValue: '1',
-                })(
-                  <Radio.Group>
-                    <Radio value="1">
-                      <FormattedMessage id="BLOCK_NAME.radio.public" />
-                    </Radio>
-                    <Radio value="2">
-                      <FormattedMessage id="BLOCK_NAME.radio.partially-public" />
-                    </Radio>
-                    <Radio value="3">
-                      <FormattedMessage id="BLOCK_NAME.radio.private" />
-                    </Radio>
-                  </Radio.Group>,
-                )}
-                <FormItem style={{ marginBottom: 0 }}>
-                  {getFieldDecorator('publicUsers')(
-                    <Select
-                      mode="multiple"
-                      placeholder={formatMessage({ id: 'BLOCK_NAME.publicUsers.placeholder' })}
-                      style={{
-                        margin: '8px 0',
-                        display: getFieldValue('public') === '2' ? 'block' : 'none',
-                      }}
-                    >
-                      <Option value="1">
-                        <FormattedMessage id="BLOCK_NAME.option.A" />
-                      </Option>
-                      <Option value="2">
-                        <FormattedMessage id="BLOCK_NAME.option.B" />
-                      </Option>
-                      <Option value="3">
-                        <FormattedMessage id="BLOCK_NAME.option.C" />
-                      </Option>
-                    </Select>,
-                  )}
-                </FormItem>
-              </div>
-            </FormItem>
-            <FormItem {...submitFormLayout} style={{ marginTop: 32 }}>
-              <Button type="primary" htmlType="submit" loading={submitting}>
-                <FormattedMessage id="BLOCK_NAME.form.submit" />
-              </Button>
-              <Button style={{ marginLeft: 8 }}>
-                <FormattedMessage id="BLOCK_NAME.form.save" />
-              </Button>
-            </FormItem>
-          </Form>
-        </Card>
-      </PageHeaderWrapper>
-    );
-  }
-}
+  return (
+    <PageHeaderWrapper content={<FormattedMessage id="BLOCK_NAME.basic.description" />}>
+      <Card bordered={false}>
+        <Form
+          hideRequiredMark
+          style={{ marginTop: 8 }}
+          form={form}
+          name="basic"
+          initialValues={{ public: '1' }}
+          onFinish={onFinish}
+          onFinishFailed={onFinishFailed}
+          onValuesChange={onValuesChange}
+        >
+          <FormItem
+            {...formItemLayout}
+            label={<FormattedMessage id="BLOCK_NAME.title.label" />}
+            name="title"
+            rules={[
+              {
+                required: true,
+                message: formatMessage({ id: 'BLOCK_NAME.title.required' }),
+              },
+            ]}
+          >
+            <Input placeholder={formatMessage({ id: 'BLOCK_NAME.title.placeholder' })} />
+          </FormItem>
+          <FormItem
+            {...formItemLayout}
+            label={<FormattedMessage id="BLOCK_NAME.date.label" />}
+            name="date"
+            rules={[
+              {
+                required: true,
+                message: formatMessage({ id: 'BLOCK_NAME.date.required' }),
+              },
+            ]}
+          >
+            <RangePicker
+              style={{ width: '100%' }}
+              placeholder={[
+                formatMessage({ id: 'BLOCK_NAME.placeholder.start' }),
+                formatMessage({ id: 'BLOCK_NAME.placeholder.end' }),
+              ]}
+            />
+          </FormItem>
+          <FormItem
+            {...formItemLayout}
+            label={<FormattedMessage id="BLOCK_NAME.goal.label" />}
+            name="goal"
+            rules={[
+              {
+                required: true,
+                message: formatMessage({ id: 'BLOCK_NAME.goal.required' }),
+              },
+            ]}
+          >
+            <TextArea
+              style={{ minHeight: 32 }}
+              placeholder={formatMessage({ id: 'BLOCK_NAME.goal.placeholder' })}
+              rows={4}
+            />
+          </FormItem>
+          <FormItem
+            {...formItemLayout}
+            label={<FormattedMessage id="BLOCK_NAME.standard.label" />}
+            name="standard"
+            rules={[
+              {
+                required: true,
+                message: formatMessage({ id: 'BLOCK_NAME.standard.required' }),
+              },
+            ]}
+          >
+            <TextArea
+              style={{ minHeight: 32 }}
+              placeholder={formatMessage({ id: 'BLOCK_NAME.standard.placeholder' })}
+              rows={4}
+            />
+          </FormItem>
+          <FormItem
+            {...formItemLayout}
+            label={
+              <span>
+                <FormattedMessage id="BLOCK_NAME.client.label" />
+                <em className={styles.optional}>
+                  <FormattedMessage id="BLOCK_NAME.form.optional" />
+                  <Tooltip title={<FormattedMessage id="BLOCK_NAME.label.tooltip" />}>
+                    <InfoCircleOutlined style={{ marginRight: 4 }} />
+                  </Tooltip>
+                </em>
+              </span>
+            }
+            name="client"
+          >
+            <Input placeholder={formatMessage({ id: 'BLOCK_NAME.client.placeholder' })} />
+          </FormItem>
+          <FormItem
+            {...formItemLayout}
+            label={
+              <span>
+                <FormattedMessage id="BLOCK_NAME.invites.label" />
+                <em className={styles.optional}>
+                  <FormattedMessage id="BLOCK_NAME.form.optional" />
+                </em>
+              </span>
+            }
+            name="invites"
+          >
+            <Input placeholder={formatMessage({ id: 'BLOCK_NAME.invites.placeholder' })} />
+          </FormItem>
+          <FormItem
+            {...formItemLayout}
+            label={
+              <span>
+                <FormattedMessage id="BLOCK_NAME.weight.label" />
+                <em className={styles.optional}>
+                  <FormattedMessage id="BLOCK_NAME.form.optional" />
+                </em>
+              </span>
+            }
+            name="weight"
+          >
+            <InputNumber
+              placeholder={formatMessage({ id: 'BLOCK_NAME.weight.placeholder' })}
+              min={0}
+              max={100}
+            />
+            <span className="ant-form-text">%</span>
+          </FormItem>
+          <FormItem
+            {...formItemLayout}
+            label={<FormattedMessage id="BLOCK_NAME.public.label" />}
+            help={<FormattedMessage id="BLOCK_NAME.label.help" />}
+            name="publicType"
+          >
+            <div>
+              <Radio.Group>
+                <Radio value="1">
+                  <FormattedMessage id="BLOCK_NAME.radio.public" />
+                </Radio>
+                <Radio value="2">
+                  <FormattedMessage id="BLOCK_NAME.radio.partially-public" />
+                </Radio>
+                <Radio value="3">
+                  <FormattedMessage id="BLOCK_NAME.radio.private" />
+                </Radio>
+              </Radio.Group>
+              <FormItem style={{ marginBottom: 0 }} name="publicUsers">
+                <Select
+                  mode="multiple"
+                  placeholder={formatMessage({ id: 'BLOCK_NAME.publicUsers.placeholder' })}
+                  style={{
+                    margin: '8px 0',
+                    display: showPublicUsers ? 'block' : 'none',
+                  }}
+                >
+                  <Option value="1">
+                    <FormattedMessage id="BLOCK_NAME.option.A" />
+                  </Option>
+                  <Option value="2">
+                    <FormattedMessage id="BLOCK_NAME.option.B" />
+                  </Option>
+                  <Option value="3">
+                    <FormattedMessage id="BLOCK_NAME.option.C" />
+                  </Option>
+                </Select>
+              </FormItem>
+            </div>
+          </FormItem>
+          <FormItem {...submitFormLayout} style={{ marginTop: 32 }}>
+            <Button type="primary" htmlType="submit" loading={submitting}>
+              <FormattedMessage id="BLOCK_NAME.form.submit" />
+            </Button>
+            <Button style={{ marginLeft: 8 }}>
+              <FormattedMessage id="BLOCK_NAME.form.save" />
+            </Button>
+          </FormItem>
+        </Form>
+      </Card>
+    </PageHeaderWrapper>
+  );
+};
 
-export default Form.create<PAGE_NAME_UPPER_CAMEL_CASEProps>()(
-  connect(({ loading }: { loading: { effects: { [key: string]: boolean } } }) => ({
-    submitting: loading.effects['BLOCK_NAME_CAMEL_CASE/submitRegularForm'],
-  }))(PAGE_NAME_UPPER_CAMEL_CASE),
-);
+export default connect(({ loading }: { loading: { effects: { [key: string]: boolean } } }) => ({
+  submitting: loading.effects['BLOCK_NAME_CAMEL_CASE/submitRegularForm'],
+}))(PAGE_NAME_UPPER_CAMEL_CASE);

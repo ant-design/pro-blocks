@@ -3,7 +3,7 @@ import '@ant-design/compatible/assets/index.css';
 import { Button, DatePicker, Input, Modal, Radio, Select, Steps } from 'antd';
 import React, { Component } from 'react';
 
-import { FormComponentProps } from 'antd/es/form';
+import { FormComponentProps } from '@ant-design/compatible/es/form';
 import { TableListItem } from '../data.d';
 
 export interface FormValueType extends Partial<TableListItem> {

@@ -2,24 +2,20 @@
 
 .card {
   margin-bottom: 24px;
-}
 
-.heading {
-  margin: 0 0 16px 0;
-  font-size: 14px;
-  line-height: 22px;
-}
-
-.steps:global(.ant-steps) {
-  max-width: 750px;
-  margin: 16px auto;
+  :global {
+    .ant-legacy-form-item .ant-legacy-form-item-control-wrapper {
+      width: 100%;
+    }
+  }
 }
 
 .errorIcon {
   margin-right: 24px;
   color: @error-color;
   cursor: pointer;
-  i {
+
+  span.anticon {
     margin-right: 4px;
   }
 }
@@ -66,25 +62,4 @@
     padding-top: 13px !important;
     padding-bottom: 12.5px !important;
   }
-}
-
-// custom footer for fixed footer toolbar
-.advancedForm + div {
-  padding-bottom: 64px;
-}
-
-.advancedForm {
-  :global {
-    .ant-form .ant-row:last-child .ant-form-item {
-      margin-bottom: 24px;
-    }
-    .ant-table td {
-      transition: none !important;
-    }
-  }
-}
-
-.optional {
-  color: @text-color-secondary;
-  font-style: normal;
 }

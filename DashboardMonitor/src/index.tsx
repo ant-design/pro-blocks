@@ -1,4 +1,4 @@
-import { Card, Col, Row, Statistic, Tooltip } from 'antd';
+import { Card, Col, Row, Statistic } from 'antd';
 import { FormattedMessage, formatMessage } from 'umi-plugin-react/locale';
 import React, { Component } from 'react';
 
@@ -7,7 +7,7 @@ import { GridContent } from '@ant-design/pro-layout';
 import { connect } from 'dva';
 import numeral from 'numeral';
 import { StateType } from './model';
-import { Pie, WaterWave, Gauge, TagCloud } from './components/Charts';
+import { Pie, WaterWave, Gauge, TagCloud, Map } from './components/Charts';
 import ActiveChart from './components/ActiveChart';
 import styles from './style.less';
 
@@ -96,19 +96,7 @@ class PAGE_NAME_UPPER_CAMEL_CASE extends Component<PAGE_NAME_UPPER_CAMEL_CASEPro
                   </Col>
                 </Row>
                 <div className={styles.mapChart}>
-                  <Tooltip
-                    title={
-                      <FormattedMessage
-                        id="BLOCK_NAME.monitor.waiting-for-implementation"
-                        defaultMessage="Waiting for implementation"
-                      />
-                    }
-                  >
-                    <img
-                      src="https://gw.alipayobjects.com/zos/rmsportal/HBWnDEUXCnGnGrRfrpKa.png"
-                      alt="map"
-                    />
-                  </Tooltip>
+                  <Map></Map>
                 </div>
               </Card>
             </Col>

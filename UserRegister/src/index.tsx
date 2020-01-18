@@ -1,8 +1,10 @@
-import { Button, Col, Form, Input, Popover, Progress, Row, Select, message } from 'antd';
+import { Form } from '@ant-design/compatible';
+import '@ant-design/compatible/assets/index.css';
+import { Button, Col, Input, Popover, Progress, Row, Select, message } from 'antd';
 import { FormattedMessage, formatMessage } from 'umi-plugin-react/locale';
 import React, { Component } from 'react';
 import { Dispatch } from 'redux';
-import { FormComponentProps } from 'antd/es/form';
+import { FormComponentProps } from '@ant-design/compatible/es/form';
 import Link from 'umi/link';
 import { connect } from 'dva';
 import router from 'umi/router';
@@ -137,7 +139,7 @@ class PAGE_NAME_UPPER_CAMEL_CASE extends Component<
     });
   };
 
-  checkConfirm = (rule: any, value: string, callback: (messgae?: string) => void) => {
+  checkConfirm = (rule: any, value: string, callback: (message?: string) => void) => {
     const { form } = this.props;
     if (value && value !== form.getFieldValue('password')) {
       callback(formatMessage({ id: 'BLOCK_NAME.password.twice' }));
@@ -146,7 +148,7 @@ class PAGE_NAME_UPPER_CAMEL_CASE extends Component<
     }
   };
 
-  checkPassword = (rule: any, value: string, callback: (messgae?: string) => void) => {
+  checkPassword = (rule: any, value: string, callback: (message?: string) => void) => {
     const { visible, confirmDirty } = this.state;
     if (!value) {
       this.setState({

@@ -28,23 +28,24 @@
     "**/*.{js,ts,tsx}": "npm run lint-staged:js"
   },
   "dependencies": {
+    "@ant-design/icons": "4.0.0-alpha.19",
     "@ant-design/pro-cli": "^1.0.5",
-    "@ant-design/pro-layout": "^4.5.11",
+    "@ant-design/pro-layout": "4.11.0-1",
     "@types/react-dom": "^16.8.4",
-    "antd": "3.26.6",
+    "antd": "^4.0.0-rc.1",
     "bizcharts": "^3.5.4",
     "numeral": "^2.0.6",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
     "umi": "^2.8.9",
-    "umi-plugin-block-dev": "^3.0.0",
+    "umi-plugin-block-dev": "^3.0.3",
     "umi-plugin-react": "^1.9.7",
     "umi-request": "^1.0.0",
     "umi-utils": "^1.5.1"
   },
   "devDependencies": {
     "@types/classnames": "^2.2.7",
-    "@types/numeral": "^0.0.25",
+    "@types/numeral": "^0.0.26",
     "@umijs/fabric": "^2.0.0",
     "cross-env": "^6.0.0",
     "eslint": "^6.8.0",
@@ -55,14 +56,14 @@
     "import-sort-style-module": "^6.0.0",
     "lint-staged": "^9.2.3",
     "prettier": "^1.18.2",
-    "stylelint": "^12.0.1",
+    "stylelint": "^13.0.0",
     "typescript": "^3.5.1"
   },
   "peerDependencies": {
-    "antd": "^3.17.0"
+    "antd": "^4.0.0-rc.1"
   },
   "optionalDependencies": {
-    "puppeteer": "^1.17.0"
+    "puppeteer": "^2.0.0"
   },
   "checkFiles": [
     "**/*.ts*",
