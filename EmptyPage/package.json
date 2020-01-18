@@ -11,7 +11,7 @@
   "scripts": {
     "dev": "umi dev"
   },
-  "dependencies": {
+  "peerDependencies": {
     "@ant-design/pro-layout": "^4.5.5"
   },
   "blockConfig": {
