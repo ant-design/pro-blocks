@@ -96,7 +96,6 @@ const Step2: React.FC<Step2Props> = props => {
             offset: formItemLayout.labelCol.span,
           },
         }}
-        label=""
       >
         <Button type="primary" onClick={onValidateForm} loading={submitting}>
           提交
