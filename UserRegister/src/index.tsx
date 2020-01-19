@@ -68,15 +68,9 @@ const PAGE_NAME_UPPER_CAMEL_CASE: FC<PAGE_NAME_UPPER_CAMEL_CASEProps> = ({
   const [prefix, setprefix]: [string, any] = useState('86');
   const [popover, setpopover]: [boolean, any] = useState(false);
   const confirmDirty = false;
-  console.log('渲染', { count, visible, prefix });
-  //
   let interval: number | undefined;
-
-  // render
   const [form] = Form.useForm();
-  //
   useEffect(() => {
-    console.log('更新', BLOCK_NAME_CAMEL_CASE);
     if (!BLOCK_NAME_CAMEL_CASE) {
       return;
     }
@@ -92,15 +86,11 @@ const PAGE_NAME_UPPER_CAMEL_CASE: FC<PAGE_NAME_UPPER_CAMEL_CASEProps> = ({
     }
   }, [BLOCK_NAME_CAMEL_CASE]);
   useEffect(() => {
-    console.log('加载');
     return () => {
-      console.log('卸载');
       clearInterval(interval);
     };
   }, []);
-  // onGetCaptcha
   const onGetCaptcha = () => {
-    console.log('onGetCaptcha');
     let counts = 59;
     setcount(counts);
     interval = window.setInterval(() => {
@@ -111,9 +101,7 @@ const PAGE_NAME_UPPER_CAMEL_CASE: FC<PAGE_NAME_UPPER_CAMEL_CASEProps> = ({
       }
     }, 1000);
   };
-  // getPasswordStatus
   const getPasswordStatus = () => {
-    console.log('getPasswordStatus');
     const value = form.getFieldValue('password');
     if (value && value.length > 9) {
       return 'ok';
@@ -123,9 +111,7 @@ const PAGE_NAME_UPPER_CAMEL_CASE: FC<PAGE_NAME_UPPER_CAMEL_CASEProps> = ({
     }
     return 'poor';
   };
-  // handleSubmit
   const onFinish = (values: Store) => {
-    console.log('onFinish');
     dispatch({
       type: 'BLOCK_NAME_CAMEL_CASE/submit',
       payload: {
@@ -134,18 +120,14 @@ const PAGE_NAME_UPPER_CAMEL_CASE: FC<PAGE_NAME_UPPER_CAMEL_CASEProps> = ({
       },
     });
   };
-  // checkConfirm
   const checkConfirm = (_: any, value: string) => {
-    console.log('checkConfirm');
     const promise = Promise;
     if (value && value !== form.getFieldValue('password')) {
       return promise.reject(formatMessage({ id: 'BLOCK_NAME.password.twice' }));
     }
     return promise.resolve();
   };
-  // checkPassword
   const checkPassword = (_: any, value: string) => {
-    console.log('checkPassword');
     const promise = Promise;
     // 没有值的情况
     if (!value) {
@@ -165,14 +147,10 @@ const PAGE_NAME_UPPER_CAMEL_CASE: FC<PAGE_NAME_UPPER_CAMEL_CASEProps> = ({
     }
     return promise.resolve();
   };
-  // changePrefix
   const changePrefix = (value: string) => {
-    console.log('changePrefix');
     setprefix(value);
   };
-  // renderPasswordProgress
   const renderPasswordProgress = () => {
-    console.log('renderPasswordProgress');
     const value = form.getFieldValue('password');
     const passwordStatus = getPasswordStatus();
     return value && value.length ? (
