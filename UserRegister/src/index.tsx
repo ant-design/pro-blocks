@@ -66,6 +66,7 @@ const PAGE_NAME_UPPER_CAMEL_CASE: FC<PAGE_NAME_UPPER_CAMEL_CASEProps> = ({
   const [count, setcount]: [number, any] = useState(0);
   const [visible, setvisible]: [boolean, any] = useState(false);
   const [prefix, setprefix]: [string, any] = useState('86');
+  const [popover, setpopover]: [boolean, any] = useState(false);
   const confirmDirty = false;
   console.log('渲染', { count, visible, prefix });
   //
@@ -155,8 +156,9 @@ const PAGE_NAME_UPPER_CAMEL_CASE: FC<PAGE_NAME_UPPER_CAMEL_CASEProps> = ({
     if (!visible) {
       setvisible(!!value);
     }
+    setpopover(!popover);
     if (value.length < 6) {
-      return promise.reject('1');
+      return promise.reject('');
     }
     if (value && confirmDirty) {
       form.validateFields(['confirm']);
