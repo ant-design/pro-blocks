@@ -62,7 +62,6 @@ const PAGE_NAME_UPPER_CAMEL_CASE: FC<PAGE_NAME_UPPER_CAMEL_CASEProps> = ({
   dispatch,
   BLOCK_NAME_CAMEL_CASE,
 }) => {
-  // state
   const [count, setcount]: [number, any] = useState(0);
   const [visible, setvisible]: [boolean, any] = useState(false);
   const [prefix, setprefix]: [string, any] = useState('86');
@@ -330,9 +329,4 @@ export default connect(
     BLOCK_NAME_CAMEL_CASE,
     submitting: loading.effects['BLOCK_NAME_CAMEL_CASE/submit'],
   }),
-)(
-  (() => {
-    console.log('xr');
-    return PAGE_NAME_UPPER_CAMEL_CASE;
-  })(),
-);
+)(PAGE_NAME_UPPER_CAMEL_CASE);
