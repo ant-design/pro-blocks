@@ -210,6 +210,7 @@ const PAGE_NAME_UPPER_CAMEL_CASE: FC<PAGE_NAME_UPPER_CAMEL_CASEProps> = ({
         >
           <FormItem
             name="password"
+            className={styles.password}
             rules={[
               {
                 validator: checkPassword,
