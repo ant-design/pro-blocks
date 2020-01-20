@@ -1,5 +1,4 @@
 import { DownOutlined, PlusOutlined } from '@ant-design/icons';
-import { Form } from '@ant-design/compatible';
 import '@ant-design/compatible/assets/index.css';
 import { Button, Divider, Dropdown, Menu, message } from 'antd';
 import React, { useState, useRef } from 'react';
@@ -179,6 +178,7 @@ const TableList: React.FC<TableListProps> = () => {
         columns={columns}
         rowSelection={{}}
       />
+
       <CreateForm
         onSubmit={async value => {
           const success = await handleAdd(value);
@@ -216,4 +216,4 @@ const TableList: React.FC<TableListProps> = () => {
   );
 };
 
-export default Form.create<TableListProps>()(TableList);
+export default TableList;
