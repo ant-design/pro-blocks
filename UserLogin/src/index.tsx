@@ -1,203 +1,137 @@
 import { AlipayCircleOutlined, TaobaoCircleOutlined, WeiboCircleOutlined } from '@ant-design/icons';
 import { Alert, Checkbox } from 'antd';
-import { FormattedMessage, formatMessage } from 'umi-plugin-react/locale';
-import React, { Component } from 'react';
-
-import { CheckboxChangeEvent } from 'antd/es/checkbox';
-import { Dispatch } from 'redux';
-import { FormComponentProps } from '@ant-design/compatible/es/form';
-import Link from 'umi/link';
+import React, { useState } from 'react';
+import { Dispatch, AnyAction } from 'redux';
+import { Link } from 'umi';
 import { connect } from 'dva';
 import { StateType } from './model';
-import LoginComponents from './components/Login';
 import styles from './style.less';
+import { LoginParamsType } from './service';
+import LoginFrom from './components/Login';
 
-const { Tab, UserName, Password, Mobile, Captcha, Submit } = LoginComponents;
-
+const { Tab, UserName, Password, Mobile, Captcha, Submit } = LoginFrom;
 interface PAGE_NAME_UPPER_CAMEL_CASEProps {
-  dispatch: Dispatch<any>;
+  dispatch: Dispatch<AnyAction>;
   BLOCK_NAME_CAMEL_CASE: StateType;
-  submitting: boolean;
-}
-interface PAGE_NAME_UPPER_CAMEL_CASEState {
-  type: string;
-  autoLogin: boolean;
-}
-export interface FormDataType {
-  userName: string;
-  password: string;
-  mobile: string;
-  captcha: string;
+  submitting?: boolean;
 }
 
-class PAGE_NAME_UPPER_CAMEL_CASE extends Component<
-  PAGE_NAME_UPPER_CAMEL_CASEProps,
-  PAGE_NAME_UPPER_CAMEL_CASEState
-> {
-  loginForm: FormComponentProps['form'] | undefined | null = undefined;
+const LoginMessage: React.FC<{
+  content: string;
+}> = ({ content }) => (
+  <Alert
+    style={{
+      marginBottom: 24,
+    }}
+    message={content}
+    type="error"
+    showIcon
+  />
+);
 
-  state: PAGE_NAME_UPPER_CAMEL_CASEState = {
-    type: 'account',
-    autoLogin: true,
-  };
+const PAGE_NAME_UPPER_CAMEL_CASE: React.FC<PAGE_NAME_UPPER_CAMEL_CASEProps> = props => {
+  const { BLOCK_NAME_CAMEL_CASE = {}, submitting } = props;
+  const { status, type: loginType } = BLOCK_NAME_CAMEL_CASE;
+  const [autoLogin, setAutoLogin] = useState(true);
+  const [type, setType] = useState<string>('account');
 
-  changeAutoLogin = (e: CheckboxChangeEvent) => {
-    this.setState({
-      autoLogin: e.target.checked,
+  const handleSubmit = (values: LoginParamsType) => {
+    const { dispatch } = props;
+    dispatch({
+      type: 'BLOCK_NAME_CAMEL_CASE/login',
+      payload: {
+        ...values,
+        type,
+      },
     });
   };
+  return (
+    <div className={styles.main}>
+      <LoginFrom activeKey={type} onTabChange={setType} onSubmit={handleSubmit}>
+        <Tab key="account" tab="账户密码登录">
+          {status === 'error' && loginType === 'account' && !submitting && (
+            <LoginMessage content="账户或密码错误（admin/ant.design）" />
+          )}
 
-  handleSubmit = (err: any, values: FormDataType) => {
-    const { type } = this.state;
-    if (!err) {
-      const { dispatch } = this.props;
-      dispatch({
-        type: 'BLOCK_NAME_CAMEL_CASE/login',
-        payload: {
-          ...values,
-          type,
-        },
-      });
-    }
-  };
-
-  onTabChange = (type: string) => {
-    this.setState({ type });
-  };
-
-  onGetCaptcha = () =>
-    new Promise((resolve, reject) => {
-      if (!this.loginForm) {
-        return;
-      }
-      this.loginForm.validateFields(['mobile'], {}, (err: any, values: FormDataType) => {
-        if (err) {
-          reject(err);
-        } else {
-          const { dispatch } = this.props;
-          ((dispatch({
-            type: 'BLOCK_NAME_CAMEL_CASE/getCaptcha',
-            payload: values.mobile,
-          }) as unknown) as Promise<any>)
-            .then(resolve)
-            .catch(reject);
-        }
-      });
-    });
-
-  renderMessage = (content: string) => (
-    <Alert style={{ marginBottom: 24 }} message={content} type="error" showIcon />
+          <UserName
+            name="userName"
+            placeholder="用户名: admin or user"
+            rules={[
+              {
+                required: true,
+                message: '请输入用户名!',
+              },
+            ]}
+          />
+          <Password
+            name="password"
+            placeholder="密码: ant.design"
+            rules={[
+              {
+                required: true,
+                message: '请输入密码！',
+              },
+            ]}
+          />
+        </Tab>
+        <Tab key="mobile" tab="手机号登录">
+          {status === 'error' && loginType === 'mobile' && !submitting && (
+            <LoginMessage content="验证码错误" />
+          )}
+          <Mobile
+            name="mobile"
+            placeholder="手机号"
+            rules={[
+              {
+                required: true,
+                message: '请输入手机号！',
+              },
+              {
+                pattern: /^1\d{10}$/,
+                message: '手机号格式错误！',
+              },
+            ]}
+          />
+          <Captcha
+            name="captcha"
+            placeholder="验证码"
+            countDown={120}
+            getCaptchaButtonText=""
+            getCaptchaSecondText="秒"
+            rules={[
+              {
+                required: true,
+                message: '请输入验证码！',
+              },
+            ]}
+          />
+        </Tab>
+        <div>
+          <Checkbox checked={autoLogin} onChange={e => setAutoLogin(e.target.checked)}>
+            自动登录
+          </Checkbox>
+          <a
+            style={{
+              float: 'right',
+            }}
+          >
+            忘记密码
+          </a>
+        </div>
+        <Submit loading={submitting}>登录</Submit>
+        <div className={styles.other}>
+          其他登录方式
+          <AlipayCircleOutlined className={styles.icon} />
+          <TaobaoCircleOutlined className={styles.icon} />
+          <WeiboCircleOutlined className={styles.icon} />
+          <Link className={styles.register} to="/user/register">
+            注册账户
+          </Link>
+        </div>
+      </LoginFrom>
+    </div>
   );
-
-  render() {
-    const { BLOCK_NAME_CAMEL_CASE, submitting } = this.props;
-    const { status, type: loginType } = BLOCK_NAME_CAMEL_CASE;
-    const { type, autoLogin } = this.state;
-    return (
-      <div className={styles.main}>
-        <LoginComponents
-          defaultActiveKey={type}
-          onTabChange={this.onTabChange}
-          onSubmit={this.handleSubmit}
-          ref={(form: any) => {
-            this.loginForm = form;
-          }}
-        >
-          <Tab key="account" tab={formatMessage({ id: 'BLOCK_NAME.login.tab-login-credentials' })}>
-            {status === 'error' &&
-              loginType === 'account' &&
-              !submitting &&
-              this.renderMessage(
-                formatMessage({ id: 'BLOCK_NAME.login.message-invalid-credentials' }),
-              )}
-            <UserName
-              name="userName"
-              placeholder={`${formatMessage({ id: 'BLOCK_NAME.login.userName' })}: admin or user`}
-              rules={[
-                {
-                  required: true,
-                  message: formatMessage({ id: 'BLOCK_NAME.userName.required' }),
-                },
-              ]}
-            />
-            <Password
-              name="password"
-              placeholder={`${formatMessage({ id: 'BLOCK_NAME.login.password' })}: ant.design`}
-              rules={[
-                {
-                  required: true,
-                  message: formatMessage({ id: 'BLOCK_NAME.password.required' }),
-                },
-              ]}
-              onPressEnter={e => {
-                e.preventDefault();
-                if (this.loginForm) {
-                  this.loginForm.validateFields(this.handleSubmit);
-                }
-              }}
-            />
-          </Tab>
-          <Tab key="mobile" tab={formatMessage({ id: 'BLOCK_NAME.login.tab-login-mobile' })}>
-            {status === 'error' &&
-              loginType === 'mobile' &&
-              !submitting &&
-              this.renderMessage(
-                formatMessage({ id: 'BLOCK_NAME.login.message-invalid-verification-code' }),
-              )}
-            <Mobile
-              name="mobile"
-              placeholder={formatMessage({ id: 'BLOCK_NAME.phone-number.placeholder' })}
-              rules={[
-                {
-                  required: true,
-                  message: formatMessage({ id: 'BLOCK_NAME.phone-number.required' }),
-                },
-                {
-                  pattern: /^1\d{10}$/,
-                  message: formatMessage({ id: 'BLOCK_NAME.phone-number.wrong-format' }),
-                },
-              ]}
-            />
-            <Captcha
-              name="captcha"
-              placeholder={formatMessage({ id: 'BLOCK_NAME.verification-code.placeholder' })}
-              countDown={120}
-              onGetCaptcha={this.onGetCaptcha}
-              getCaptchaButtonText={formatMessage({ id: 'BLOCK_NAME.form.get-captcha' })}
-              getCaptchaSecondText={formatMessage({ id: 'BLOCK_NAME.captcha.second' })}
-              rules={[
-                {
-                  required: true,
-                  message: formatMessage({ id: 'BLOCK_NAME.verification-code.required' }),
-                },
-              ]}
-            />
-          </Tab>
-          <div>
-            <Checkbox checked={autoLogin} onChange={this.changeAutoLogin}>
-              <FormattedMessage id="BLOCK_NAME.login.remember-me" />
-            </Checkbox>
-            <a style={{ float: 'right' }} href="">
-              <FormattedMessage id="BLOCK_NAME.login.forgot-password" />
-            </a>
-          </div>
-          <Submit loading={submitting}>
-            <FormattedMessage id="BLOCK_NAME.login.login" />
-          </Submit>
-          <div className={styles.other}>
-            <FormattedMessage id="BLOCK_NAME.login.sign-in-with" />
-            <AlipayCircleOutlined className={styles.icon} />
-            <TaobaoCircleOutlined className={styles.icon} />
-            <WeiboCircleOutlined className={styles.icon} />
-            <Link className={styles.register} to="/user/register">
-              <FormattedMessage id="BLOCK_NAME.login.signup" />
-            </Link>
-          </div>
-        </LoginComponents>
-      </div>
-    );
-  }
-}
+};
 
 export default connect(
   ({

@@ -1,4 +1,5 @@
 import { AnyAction, Reducer } from 'redux';
+import { message } from 'antd';
 import { EffectsCommandMap } from 'dva';
 import { routerRedux } from 'dva/router';
 import { fakeAccountLogin, getFakeCaptcha } from './service';
@@ -43,6 +44,7 @@ const Model: ModelType = {
       });
       // Login successfully
       if (response.status === 'ok') {
+        message.success('登录成功！');
         const urlParams = new URL(window.location.href);
         const params = getPageQuery();
         let { redirect } = params as { redirect: string };
