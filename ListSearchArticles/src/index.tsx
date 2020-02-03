@@ -163,24 +163,18 @@ const PAGE_NAME_UPPER_CAMEL_CASE: FC<PAGE_NAME_UPPER_CAMEL_CASEProps> = ({
             </FormItem>
           </StandardFormRow>
           <StandardFormRow title="owner" grid>
-            <Row gutter={16}>
-              <Col xl={8} lg={10} md={12} sm={24} xs={24}>
-                <FormItem name="owner" style={{ maxWidth: 286, width: '100%' }}>
-                  <Select mode="multiple" placeholder="选择 owner">
-                    {owners.map(owner => (
-                      <Option key={owner.id} value={owner.id}>
-                        {owner.name}
-                      </Option>
-                    ))}
-                  </Select>
-                </FormItem>
-              </Col>
-              <Col xl={8} lg={10} md={12} sm={24} xs={24}>
-                <a className={styles.selfTrigger} onClick={setOwner}>
-                  只看自己的
-                </a>
-              </Col>
-            </Row>
+            <FormItem name="owner" noStyle>
+              <Select mode="multiple" placeholder="选择 owner">
+                {owners.map(owner => (
+                  <Option key={owner.id} value={owner.id}>
+                    {owner.name}
+                  </Option>
+                ))}
+              </Select>
+            </FormItem>
+            <a className={styles.selfTrigger} onClick={setOwner}>
+              只看自己的
+            </a>
           </StandardFormRow>
           <StandardFormRow title="其它选项" grid last>
             <Row gutter={16}>
