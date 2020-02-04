@@ -12,7 +12,6 @@ module.exports = {
     'react/forbid-prop-types': 0,
     'react/jsx-props-no-spreading': 0,
     'react/state-in-constructor': 0,
-    'react/self-closing-comp': 0,
     'react/static-property-placement': 0,
   },
   globals: {
