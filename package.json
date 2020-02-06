@@ -46,7 +46,7 @@
   "devDependencies": {
     "@types/classnames": "^2.2.7",
     "@types/numeral": "^0.0.26",
-    "@umijs/fabric": "^2.0.0",
+    "@umijs/fabric": "^2.0.2",
     "cross-env": "^6.0.0",
     "eslint": "^6.8.0",
     "husky": "^4.0.1",
