@@ -11,7 +11,7 @@
     "url": "https://github.com/umijs/umi-blocks/ant-design-pro/basicform"
   },
   "dependencies": {
-    "@ant-design/icons": "4.0.0-alpha.19",
+    "@ant-design/icons": "^4.0.0-alpha.19",
     "dva": "^2.4.0",
     "redux": "^4.0.1",
     "umi-request": "^1.0.0"

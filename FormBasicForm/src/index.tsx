@@ -4,7 +4,6 @@ import { FormattedMessage, formatMessage } from 'umi-plugin-react/locale';
 import React, { FC } from 'react';
 import { Store, ValidateErrorEntity } from 'rc-field-form/es/interface';
 import { Dispatch } from 'redux';
-import { FormComponentProps } from '@ant-design/compatible/es/form';
 import { PageHeaderWrapper } from '@ant-design/pro-layout';
 import { connect } from 'dva';
 import styles from './style.less';
@@ -14,7 +13,7 @@ const { Option } = Select;
 const { RangePicker } = DatePicker;
 const { TextArea } = Input;
 
-interface PAGE_NAME_UPPER_CAMEL_CASEProps extends FormComponentProps {
+interface PAGE_NAME_UPPER_CAMEL_CASEProps {
   submitting: boolean;
   dispatch: Dispatch<any>;
 }

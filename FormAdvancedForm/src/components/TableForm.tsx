@@ -24,9 +24,8 @@ const TableForm: FC<TableFormProps> = ({ value, onChange }) => {
   const [cacheOriginData, setCacheOriginData] = useState({});
   const [data, setData] = useState(value);
 
-  const getRowByKey = (key: string, newData?: TableFormDateType[]) => {
-    return (newData || data)?.filter(item => item.key === key)[0];
-  };
+  const getRowByKey = (key: string, newData?: TableFormDateType[]) =>
+    (newData || data)?.filter(item => item.key === key)[0];
 
   const toggleEditable = (e: React.MouseEvent | React.KeyboardEvent, key: string) => {
     e.preventDefault();
