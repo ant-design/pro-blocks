@@ -96,7 +96,7 @@ class PAGE_NAME_UPPER_CAMEL_CASE extends Component<PAGE_NAME_UPPER_CAMEL_CASEPro
                   </Col>
                 </Row>
                 <div className={styles.mapChart}>
-                  <Map></Map>
+                  <Map />
                 </div>
               </Card>
             </Col>
