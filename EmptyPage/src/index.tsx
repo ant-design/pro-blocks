@@ -13,7 +13,7 @@ export default () => {
   return (
     <PageHeaderWrapper content="这是一个新页面，从这里进行开发！" className={styles.main}>
       <div style={{ paddingTop: 100, textAlign: 'center' }}>
-        <Spin spinning={loading} size="large"></Spin>
+        <Spin spinning={loading} size="large" />
       </div>
     </PageHeaderWrapper>
   );
