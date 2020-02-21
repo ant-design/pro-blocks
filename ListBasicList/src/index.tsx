@@ -351,7 +351,7 @@ class PAGE_NAME_UPPER_CAMEL_CASE extends Component<
         </PageHeaderWrapper>
 
         <Modal
-          title={done ? null : `任务${Object.keys(current).length === 0 ? '编辑' : '添加'}`}
+          title={done ? null : `任务${Object.keys(current).length === 0 ? '添加' : '编辑'}`}
           className={styles.standardListForm}
           width={640}
           bodyStyle={done ? { padding: '72px 0' } : { padding: '28px 0 0' }}
