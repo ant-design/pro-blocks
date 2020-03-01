@@ -32,7 +32,7 @@
     "@ant-design/pro-cli": "^1.0.5",
     "@ant-design/pro-layout": "^4.11.0-1",
     "@types/react-dom": "^16.8.4",
-    "antd": "^4.0.0-rc.1",
+    "antd": "^4.0.0",
     "bizcharts": "^3.5.4",
     "numeral": "^2.0.6",
     "react": "^16.8.6",
@@ -58,9 +58,6 @@
     "prettier": "^1.18.2",
     "stylelint": "^13.0.0",
     "typescript": "^3.5.1"
-  },
-  "peerDependencies": {
-    "antd": "^4.0.0-rc.1"
   },
   "optionalDependencies": {
     "puppeteer": "^2.0.0"
