@@ -1,6 +1,5 @@
 import { CloseCircleOutlined } from '@ant-design/icons';
 import { Button, Card, Col, DatePicker, Form, Input, Popover, Row, Select, TimePicker } from 'antd';
-import { Store, ValidateErrorEntity, InternalNamePath } from 'rc-field-form/es/interface';
 
 import React, { FC, useState } from 'react';
 import { Dispatch } from 'redux';
@@ -9,6 +8,8 @@ import { connect } from 'dva';
 import TableForm from './components/TableForm';
 import FooterToolbar from './components/FooterToolbar';
 import styles from './style.less';
+
+type InternalNamePath = (string | number)[];
 
 const { Option } = Select;
 const { RangePicker } = DatePicker;
@@ -110,7 +111,7 @@ const PAGE_NAME_UPPER_CAMEL_CASE: FC<PAGE_NAME_UPPER_CAMEL_CASEProps> = ({
     );
   };
 
-  const onFinish = (values: Store) => {
+  const onFinish = (values: { [key: string]: any }) => {
     setError([]);
     dispatch({
       type: 'BLOCK_NAME_CAMEL_CASE/submitAdvancedForm',
@@ -118,7 +119,7 @@ const PAGE_NAME_UPPER_CAMEL_CASE: FC<PAGE_NAME_UPPER_CAMEL_CASEProps> = ({
     });
   };
 
-  const onFinishFailed = (errorInfo: ValidateErrorEntity) => {
+  const onFinishFailed = (errorInfo: any) => {
     console.log('Failed:', errorInfo);
     setError(errorInfo.errorFields);
   };

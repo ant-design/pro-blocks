@@ -1,7 +1,6 @@
 import { Form, Button, Col, Input, Popover, Progress, Row, Select, message } from 'antd';
 import { FormattedMessage, formatMessage } from 'umi-plugin-react/locale';
 import React, { FC, useState, useEffect } from 'react';
-import { Store } from 'rc-field-form/es/interface';
 import { Dispatch } from 'redux';
 import Link from 'umi/link';
 import { connect } from 'dva';
@@ -110,7 +109,7 @@ const PAGE_NAME_UPPER_CAMEL_CASE: FC<PAGE_NAME_UPPER_CAMEL_CASEProps> = ({
     }
     return 'poor';
   };
-  const onFinish = (values: Store) => {
+  const onFinish = (values: { [key: string]: any }) => {
     dispatch({
       type: 'BLOCK_NAME_CAMEL_CASE/submit',
       payload: {

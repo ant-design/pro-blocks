@@ -2,7 +2,6 @@ import { InfoCircleOutlined } from '@ant-design/icons';
 import { Button, Card, DatePicker, Input, Form, InputNumber, Radio, Select, Tooltip } from 'antd';
 import { FormattedMessage, formatMessage } from 'umi-plugin-react/locale';
 import React, { FC } from 'react';
-import { Store, ValidateErrorEntity } from 'rc-field-form/es/interface';
 import { Dispatch } from 'redux';
 import { PageHeaderWrapper } from '@ant-design/pro-layout';
 import { connect } from 'dva';
@@ -41,7 +40,7 @@ const PAGE_NAME_UPPER_CAMEL_CASE: FC<PAGE_NAME_UPPER_CAMEL_CASEProps> = props =>
     },
   };
 
-  const onFinish = (values: Store) => {
+  const onFinish = (values: { [key: string]: any }) => {
     const { dispatch } = props;
     dispatch({
       type: 'BLOCK_NAME_CAMEL_CASE/submitRegularForm',
@@ -49,11 +48,11 @@ const PAGE_NAME_UPPER_CAMEL_CASE: FC<PAGE_NAME_UPPER_CAMEL_CASEProps> = props =>
     });
   };
 
-  const onFinishFailed = (errorInfo: ValidateErrorEntity) => {
+  const onFinishFailed = (errorInfo: any) => {
     console.log('Failed:', errorInfo);
   };
 
-  const onValuesChange = (changedValues: Store) => {
+  const onValuesChange = (changedValues: { [key: string]: any }) => {
     const { publicType } = changedValues;
     if (publicType) setShowPublicUsers(publicType === '2');
   };

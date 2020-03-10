@@ -1,6 +1,5 @@
 import React, { FC, useEffect } from 'react';
 import moment from 'moment';
-import { Store } from 'rc-field-form/lib/interface';
 import { Modal, Result, Button, Form, DatePicker, Input, Select } from 'antd';
 import { BasicListItemDataType } from '../data.d';
 import styles from '../style.less';
@@ -44,7 +43,7 @@ const OperationModal: FC<OperationModalProps> = props => {
     form.submit();
   };
 
-  const handleFinish = (values: Store) => {
+  const handleFinish = (values: { [key: string]: any }) => {
     if (onSubmit) {
       onSubmit(values as BasicListItemDataType);
     }

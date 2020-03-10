@@ -1,7 +1,8 @@
 import { Card, Col, DatePicker, Row, Tabs } from 'antd';
 import { FormattedMessage, formatMessage } from 'umi-plugin-react/locale';
+import { RangePickerProps } from 'antd/es/date-picker/generatePicker';
+import moment from 'moment';
 
-import { RangePickerValue } from 'antd/es/date-picker/interface';
 import React from 'react';
 import numeral from 'numeral';
 import { VisitDataType } from '../data.d';
@@ -18,6 +19,8 @@ for (let i = 0; i < 7; i += 1) {
     total: 323234,
   });
 }
+
+type RangePickerValue = RangePickerProps<moment.Moment>['value'];
 
 const SalesCard = ({
   rangePickerValue,
@@ -67,7 +70,7 @@ const SalesCard = ({
           tab={<FormattedMessage id="BLOCK_NAME.analysis.sales" defaultMessage="Sales" />}
           key="sales"
         >
-          <Row type="flex">
+          <Row>
             <Col xl={16} lg={12} md={12} sm={24} xs={24}>
               <div className={styles.salesBar}>
                 <Bar
