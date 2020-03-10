@@ -1,5 +1,4 @@
 import { AnyAction, Reducer } from 'redux';
-
 import { EffectsCommandMap } from 'dva';
 import { ListItemDataType } from './data.d';
 import { queryFakeList } from './service';

@@ -1,9 +1,5 @@
-import { Form } from '@ant-design/compatible';
-import '@ant-design/compatible/assets/index.css';
-import { Card, Input, Select } from 'antd';
-import React, { Fragment } from 'react';
-
-import { FormComponentProps } from '@ant-design/compatible/es/form';
+import React from 'react';
+import { Card, Input, Select, Form } from 'antd';
 import { withPropsAPI } from 'gg-editor';
 
 const upperFirst = (str: string) =>
@@ -21,7 +17,7 @@ const inlineFormItemLayout = {
   },
 };
 
-interface DetailFormProps extends FormComponentProps {
+interface DetailFormProps {
   type: string;
   propsAPI?: any;
 }
@@ -29,110 +25,90 @@ interface DetailFormProps extends FormComponentProps {
 class DetailForm extends React.Component<DetailFormProps> {
   get item() {
     const { propsAPI } = this.props;
-
     return propsAPI.getSelected()[0];
   }
 
-  handleSubmit = (e: React.FormEvent) => {
-    if (e && e.preventDefault) {
-      e.preventDefault();
-    }
-
-    const { form, propsAPI } = this.props;
+  handleFieldChange = (values: any) => {
+    const { propsAPI } = this.props;
     const { getSelected, executeCommand, update } = propsAPI;
 
     setTimeout(() => {
-      form.validateFieldsAndScroll((err, values) => {
-        if (err) {
-          return;
-        }
-
-        const item = getSelected()[0];
-
-        if (!item) {
-          return;
-        }
-
-        executeCommand(() => {
-          update(item, {
-            ...values,
-          });
+      const item = getSelected()[0];
+      if (!item) {
+        return;
+      }
+      executeCommand(() => {
+        update(item, {
+          ...values,
         });
       });
     }, 0);
   };
 
-  renderEdgeShapeSelect = () => (
-    <Select onChange={this.handleSubmit}>
-      <Option value="flow-smooth">Smooth</Option>
-      <Option value="flow-polyline">Polyline</Option>
-      <Option value="flow-polyline-round">Polyline Round</Option>
-    </Select>
-  );
+  handleInputBlur = (type: string) => (e: React.FormEvent<HTMLInputElement>) => {
+    e.preventDefault();
+    this.handleFieldChange({
+      [type]: e.currentTarget.value,
+    });
+  };
 
   renderNodeDetail = () => {
-    const { form } = this.props;
     const { label } = this.item.getModel();
 
     return (
-      <Item label="Label" {...inlineFormItemLayout}>
-        {form.getFieldDecorator('label', {
-          initialValue: label,
-        })(<Input onBlur={this.handleSubmit} />)}
-      </Item>
+      <Form initialValues={{ label }}>
+        <Item label="Label" name="label" {...inlineFormItemLayout}>
+          <Input onBlur={this.handleInputBlur('label')} />
+        </Item>
+      </Form>
     );
   };
 
   renderEdgeDetail = () => {
-    const { form } = this.props;
     const { label = '', shape = 'flow-smooth' } = this.item.getModel();
 
     return (
-      <Fragment>
-        <Item label="Label" {...inlineFormItemLayout}>
-          {form.getFieldDecorator('label', {
-            initialValue: label,
-          })(<Input onBlur={this.handleSubmit} />)}
+      <Form initialValues={{ label, shape }}>
+        <Item label="Label" name="label" {...inlineFormItemLayout}>
+          <Input onBlur={this.handleInputBlur('label')} />
         </Item>
-        <Item label="Shape" {...inlineFormItemLayout}>
-          {form.getFieldDecorator('shape', {
-            initialValue: shape,
-          })(this.renderEdgeShapeSelect())}
+        <Item label="Shape" name="shape" {...inlineFormItemLayout}>
+          <Select onChange={value => this.handleFieldChange({ shape: value })}>
+            <Option value="flow-smooth">Smooth</Option>
+            <Option value="flow-polyline">Polyline</Option>
+            <Option value="flow-polyline-round">Polyline Round</Option>
+          </Select>
         </Item>
-      </Fragment>
+      </Form>
     );
   };
 
   renderGroupDetail = () => {
-    const { form } = this.props;
     const { label = '新建分组' } = this.item.getModel();
 
     return (
-      <Item label="Label" {...inlineFormItemLayout}>
-        {form.getFieldDecorator('label', {
-          initialValue: label,
-        })(<Input onBlur={this.handleSubmit} />)}
-      </Item>
+      <Form initialValues={{ label }}>
+        <Item label="Label" name="label" {...inlineFormItemLayout}>
+          <Input onBlur={this.handleInputBlur('label')} />
+        </Item>
+      </Form>
     );
   };
 
   render() {
     const { type } = this.props;
-
     if (!this.item) {
       return null;
     }
 
     return (
       <Card type="inner" size="small" title={upperFirst(type)} bordered={false}>
-        <Form onSubmit={this.handleSubmit}>
-          {type === 'node' && this.renderNodeDetail()}
-          {type === 'edge' && this.renderEdgeDetail()}
-          {type === 'group' && this.renderGroupDetail()}
-        </Form>
+        {type === 'node' && this.renderNodeDetail()}
+        {type === 'edge' && this.renderEdgeDetail()}
+        {type === 'group' && this.renderGroupDetail()}
       </Card>
     );
   }
 }
 
-export default Form.create<DetailFormProps>()(withPropsAPI(DetailForm as any));
+export default withPropsAPI(DetailForm as any);

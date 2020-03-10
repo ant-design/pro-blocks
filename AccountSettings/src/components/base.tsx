@@ -1,23 +1,19 @@
 import { UploadOutlined } from '@ant-design/icons';
-import { Form } from '@ant-design/compatible';
-import '@ant-design/compatible/assets/index.css';
-import { Button, Input, Select, Upload, message } from 'antd';
+import { Button, Input, Select, Upload, Form, message } from 'antd';
 import { FormattedMessage, formatMessage } from 'umi-plugin-react/locale';
-import React, { Component, Fragment } from 'react';
+import React, { Component } from 'react';
 
-import { FormComponentProps } from '@ant-design/compatible/es/form';
 import { connect } from 'dva';
 import { CurrentUser } from '../data.d';
 import GeographicView from './GeographicView';
 import PhoneView from './PhoneView';
 import styles from './BaseView.less';
 
-const FormItem = Form.Item;
 const { Option } = Select;
 
 // 头像组件 方便以后独立，增加裁剪之类的功能
 const AvatarView = ({ avatar }: { avatar: string }) => (
-  <Fragment>
+  <>
     <div className={styles.avatar_title}>
       <FormattedMessage id="BLOCK_NAME.basic.avatar" defaultMessage="Avatar" />
     </div>
@@ -32,7 +28,7 @@ const AvatarView = ({ avatar }: { avatar: string }) => (
         </Button>
       </div>
     </Upload>
-  </Fragment>
+  </>
 );
 interface SelectItem {
   label: string;
@@ -68,27 +64,12 @@ const validatorPhone = (rule: any, value: string, callback: (message?: string) =
   callback();
 };
 
-interface BaseViewProps extends FormComponentProps {
+interface BaseViewProps {
   currentUser?: CurrentUser;
 }
 
 class BaseView extends Component<BaseViewProps> {
   view: HTMLDivElement | undefined = undefined;
-
-  componentDidMount() {
-    this.setBaseInfo();
-  }
-
-  setBaseInfo = () => {
-    const { currentUser, form } = this.props;
-    if (currentUser) {
-      Object.keys(form.getFieldsValue()).forEach(key => {
-        const obj = {};
-        obj[key] = currentUser[key] || null;
-        form.setFieldsValue(obj);
-      });
-    }
-  };
 
   getAvatarURL() {
     const { currentUser } = this.props;
@@ -106,110 +87,123 @@ class BaseView extends Component<BaseViewProps> {
     this.view = ref;
   };
 
-  handlerSubmit = (event: React.MouseEvent) => {
-    event.preventDefault();
-    const { form } = this.props;
-    form.validateFields(err => {
-      if (!err) {
-        message.success(formatMessage({ id: 'BLOCK_NAME.basic.update.success' }));
-      }
-    });
+  handleFinish = () => {
+    message.success(formatMessage({ id: 'BLOCK_NAME.basic.update.success' }));
   };
 
   render() {
-    const {
-      form: { getFieldDecorator },
-    } = this.props;
+    const { currentUser } = this.props;
+
     return (
       <div className={styles.baseView} ref={this.getViewDom}>
         <div className={styles.left}>
-          <Form layout="vertical" hideRequiredMark>
-            <FormItem label={formatMessage({ id: 'BLOCK_NAME.basic.email' })}>
-              {getFieldDecorator('email', {
-                rules: [
-                  {
-                    required: true,
-                    message: formatMessage({ id: 'BLOCK_NAME.basic.email-message' }, {}),
-                  },
-                ],
-              })(<Input />)}
-            </FormItem>
-            <FormItem label={formatMessage({ id: 'BLOCK_NAME.basic.nickname' })}>
-              {getFieldDecorator('name', {
-                rules: [
-                  {
-                    required: true,
-                    message: formatMessage({ id: 'BLOCK_NAME.basic.nickname-message' }, {}),
-                  },
-                ],
-              })(<Input />)}
-            </FormItem>
-            <FormItem label={formatMessage({ id: 'BLOCK_NAME.basic.profile' })}>
-              {getFieldDecorator('profile', {
-                rules: [
-                  {
-                    required: true,
-                    message: formatMessage({ id: 'BLOCK_NAME.basic.profile-message' }, {}),
-                  },
-                ],
-              })(
-                <Input.TextArea
-                  placeholder={formatMessage({ id: 'BLOCK_NAME.basic.profile-placeholder' })}
-                  rows={4}
-                />,
-              )}
-            </FormItem>
-            <FormItem label={formatMessage({ id: 'BLOCK_NAME.basic.country' })}>
-              {getFieldDecorator('country', {
-                rules: [
-                  {
-                    required: true,
-                    message: formatMessage({ id: 'BLOCK_NAME.basic.country-message' }, {}),
-                  },
-                ],
-              })(
-                <Select style={{ maxWidth: 220 }}>
-                  <Option value="China">中国</Option>
-                </Select>,
-              )}
-            </FormItem>
-            <FormItem label={formatMessage({ id: 'BLOCK_NAME.basic.geographic' })}>
-              {getFieldDecorator('geographic', {
-                rules: [
-                  {
-                    required: true,
-                    message: formatMessage({ id: 'BLOCK_NAME.basic.geographic-message' }, {}),
-                  },
-                  {
-                    validator: validatorGeographic,
-                  },
-                ],
-              })(<GeographicView />)}
-            </FormItem>
-            <FormItem label={formatMessage({ id: 'BLOCK_NAME.basic.address' })}>
-              {getFieldDecorator('address', {
-                rules: [
-                  {
-                    required: true,
-                    message: formatMessage({ id: 'BLOCK_NAME.basic.address-message' }, {}),
-                  },
-                ],
-              })(<Input />)}
-            </FormItem>
-            <FormItem label={formatMessage({ id: 'BLOCK_NAME.basic.phone' })}>
-              {getFieldDecorator('phone', {
-                rules: [
-                  {
-                    required: true,
-                    message: formatMessage({ id: 'BLOCK_NAME.basic.phone-message' }, {}),
-                  },
-                  { validator: validatorPhone },
-                ],
-              })(<PhoneView />)}
-            </FormItem>
-            <Button type="primary" onClick={this.handlerSubmit}>
-              <FormattedMessage id="BLOCK_NAME.basic.update" defaultMessage="Update Information" />
-            </Button>
+          <Form
+            layout="vertical"
+            onFinish={this.handleFinish}
+            initialValues={currentUser}
+            hideRequiredMark
+          >
+            <Form.Item
+              name="email"
+              label={formatMessage({ id: 'BLOCK_NAME.basic.email' })}
+              rules={[
+                {
+                  required: true,
+                  message: formatMessage({ id: 'BLOCK_NAME.basic.email-message' }, {}),
+                },
+              ]}
+            >
+              <Input />
+            </Form.Item>
+            <Form.Item
+              name="name"
+              label={formatMessage({ id: 'BLOCK_NAME.basic.nickname' })}
+              rules={[
+                {
+                  required: true,
+                  message: formatMessage({ id: 'BLOCK_NAME.basic.nickname-message' }, {}),
+                },
+              ]}
+            >
+              <Input />
+            </Form.Item>
+            <Form.Item
+              name="profile"
+              label={formatMessage({ id: 'BLOCK_NAME.basic.profile' })}
+              rules={[
+                {
+                  required: true,
+                  message: formatMessage({ id: 'BLOCK_NAME.basic.profile-message' }, {}),
+                },
+              ]}
+            >
+              <Input.TextArea
+                placeholder={formatMessage({ id: 'BLOCK_NAME.basic.profile-placeholder' })}
+                rows={4}
+              />
+            </Form.Item>
+            <Form.Item
+              name="country"
+              label={formatMessage({ id: 'BLOCK_NAME.basic.country' })}
+              rules={[
+                {
+                  required: true,
+                  message: formatMessage({ id: 'BLOCK_NAME.basic.country-message' }, {}),
+                },
+              ]}
+            >
+              <Select style={{ maxWidth: 220 }}>
+                <Option value="China">中国</Option>
+              </Select>
+            </Form.Item>
+            <Form.Item
+              name="geographic"
+              label={formatMessage({ id: 'BLOCK_NAME.basic.geographic' })}
+              rules={[
+                {
+                  required: true,
+                  message: formatMessage({ id: 'BLOCK_NAME.basic.geographic-message' }, {}),
+                },
+                {
+                  validator: validatorGeographic,
+                },
+              ]}
+            >
+              <GeographicView />
+            </Form.Item>
+            <Form.Item
+              name="address"
+              label={formatMessage({ id: 'BLOCK_NAME.basic.address' })}
+              rules={[
+                {
+                  required: true,
+                  message: formatMessage({ id: 'BLOCK_NAME.basic.address-message' }, {}),
+                },
+              ]}
+            >
+              <Input />
+            </Form.Item>
+            <Form.Item
+              name="phone"
+              label={formatMessage({ id: 'BLOCK_NAME.basic.phone' })}
+              rules={[
+                {
+                  required: true,
+                  message: formatMessage({ id: 'BLOCK_NAME.basic.phone-message' }, {}),
+                },
+                { validator: validatorPhone },
+              ]}
+            >
+              <PhoneView />
+            </Form.Item>
+            <Form.Item>
+              <Button htmlType="submit" type="primary">
+                <FormattedMessage
+                  id="BLOCK_NAME.basic.update"
+                  defaultMessage="Update Information"
+                />
+              </Button>
+            </Form.Item>
           </Form>
         </div>
         <div className={styles.right}>
@@ -224,4 +218,4 @@ export default connect(
   ({ BLOCK_NAME_CAMEL_CASE }: { BLOCK_NAME_CAMEL_CASE: { currentUser: CurrentUser } }) => ({
     currentUser: BLOCK_NAME_CAMEL_CASE.currentUser,
   }),
-)(Form.create<BaseViewProps>()(BaseView));
+)(BaseView);

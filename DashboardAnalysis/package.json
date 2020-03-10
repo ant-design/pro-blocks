@@ -13,7 +13,7 @@
   },
   "dependencies": {
     "@ant-design/icons": "^4.0.0-alpha.19",
-    "@antv/data-set": "^0.11.1",
+    "@antv/data-set": "^0.11.0",
     "@types/lodash.debounce": "^4.0.6",
     "bizcharts": "^3.5.3-beta.0",
     "bizcharts-plugin-slider": "^2.1.1-beta.1",

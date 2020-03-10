@@ -1,12 +1,13 @@
 import { EllipsisOutlined } from '@ant-design/icons';
 import { Col, Dropdown, Menu, Row } from 'antd';
 import React, { Component, Suspense } from 'react';
-
 import { Dispatch } from 'redux';
 import { GridContent } from '@ant-design/pro-layout';
 import { RadioChangeEvent } from 'antd/es/radio';
-import { RangePickerValue } from 'antd/es/date-picker/interface';
+import { RangePickerProps } from 'antd/es/date-picker/generatePicker';
+import moment from 'moment';
 import { connect } from 'dva';
+
 import PageLoading from './components/PageLoading';
 import { getTimeDistance } from './utils/utils';
 import { AnalysisData } from './data.d';
@@ -17,6 +18,8 @@ const SalesCard = React.lazy(() => import('./components/SalesCard'));
 const TopSearch = React.lazy(() => import('./components/TopSearch'));
 const ProportionSales = React.lazy(() => import('./components/ProportionSales'));
 const OfflineData = React.lazy(() => import('./components/OfflineData'));
+
+type RangePickerValue = RangePickerProps<moment.Moment>['value'];
 
 interface PAGE_NAME_UPPER_CAMEL_CASEProps {
   BLOCK_NAME_CAMEL_CASE: AnalysisData;
@@ -98,13 +101,19 @@ class PAGE_NAME_UPPER_CAMEL_CASE extends Component<
 
   isActive = (type: 'today' | 'week' | 'month' | 'year') => {
     const { rangePickerValue } = this.state;
+    if (!rangePickerValue) {
+      return '';
+    }
     const value = getTimeDistance(type);
+    if (!value) {
+      return '';
+    }
     if (!rangePickerValue[0] || !rangePickerValue[1]) {
       return '';
     }
     if (
-      rangePickerValue[0].isSame(value[0], 'day') &&
-      rangePickerValue[1].isSame(value[1], 'day')
+      rangePickerValue[0].isSame(value[0] as moment.Moment, 'day') &&
+      rangePickerValue[1].isSame(value[1] as moment.Moment, 'day')
     ) {
       return styles.currentDate;
     }
@@ -165,7 +174,6 @@ class PAGE_NAME_UPPER_CAMEL_CASE extends Component<
           </Suspense>
           <Row
             gutter={24}
-            type="flex"
             style={{
               marginTop: 24,
             }}

@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Select, Spin } from 'antd';
+import { LabeledValue } from 'antd/es/select';
 
 import { Dispatch } from 'redux';
 import { connect } from 'dva';
@@ -8,12 +9,9 @@ import styles from './GeographicView.less';
 
 const { Option } = Select;
 
-interface SelectItem {
-  label: string;
-  key: string;
-}
-const nullSelectItem: SelectItem = {
+const nullSelectItem: LabeledValue = {
   label: '',
+  value: '',
   key: '',
 };
 
@@ -22,11 +20,11 @@ interface GeographicViewProps {
   province?: GeographicItemType[];
   city?: GeographicItemType[];
   value?: {
-    province: SelectItem;
-    city: SelectItem;
+    province: LabeledValue;
+    city: LabeledValue;
   };
   loading?: boolean;
-  onChange?: (value: { province: SelectItem; city: SelectItem }) => void;
+  onChange?: (value: { province: LabeledValue; city: LabeledValue }) => void;
 }
 
 class GeographicView extends Component<GeographicViewProps> {
@@ -83,7 +81,7 @@ class GeographicView extends Component<GeographicViewProps> {
     ));
   };
 
-  selectProvinceItem = (item: SelectItem) => {
+  selectProvinceItem = (item: LabeledValue) => {
     const { dispatch, onChange } = this.props;
 
     if (dispatch) {
@@ -100,7 +98,7 @@ class GeographicView extends Component<GeographicViewProps> {
     }
   };
 
-  selectCityItem = (item: SelectItem) => {
+  selectCityItem = (item: LabeledValue) => {
     const { value, onChange } = this.props;
     if (value && onChange) {
       onChange({
@@ -128,6 +126,7 @@ class GeographicView extends Component<GeographicViewProps> {
   render() {
     const { province, city } = this.conversionObject();
     const { loading } = this.props;
+
     return (
       <Spin spinning={loading} wrapperClassName={styles.row}>
         <Select
