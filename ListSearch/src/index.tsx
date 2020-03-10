@@ -35,6 +35,7 @@ class PAGE_NAME_UPPER_CAMEL_CASE extends Component<PAGE_NAME_UPPER_CAMEL_CASEPro
   };
 
   handleFormSubmit = (value: string) => {
+    // eslint-disable-next-line no-console
     console.log(value);
   };
 
