@@ -2,7 +2,7 @@ import { Avatar, Card, Col, List, Skeleton, Row, Statistic } from 'antd';
 import React, { Component } from 'react';
 
 import { Dispatch } from 'redux';
-import Link from 'umi/link';
+import { Link } from 'umi';
 import { PageHeaderWrapper } from '@ant-design/pro-layout';
 import { connect } from 'dva';
 import moment from 'moment';
