@@ -24,10 +24,12 @@ jobs:
         run: cd ant-design-pro && npm install
 
       - name: fetch
-        run: cd ant-design-pro && npm run fetch:blocks --js
+        run: cd ant-design-pro && npm run fetch:blocks --js --branch ${GITHUB_REF##*/}
 
       - name: lint:fix
         run: cd ant-design-pro && npm run lint:fix && yarn run prettier
 
       - name: lint
         run: cd ant-design-pro && npm run lint
+      - name: build
+        run: cd ant-design-pro && npm run build
