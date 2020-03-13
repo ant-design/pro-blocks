@@ -31,3 +31,5 @@ jobs:
 
       - name: lint
         run: cd ant-design-pro && npm run lint
+      - name: build
+        run: cd ant-design-pro && npm run build
