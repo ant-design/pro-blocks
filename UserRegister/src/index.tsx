@@ -1,8 +1,6 @@
 import { Form, Button, Col, Input, Popover, Progress, Row, Select, message } from 'antd';
-import { FormattedMessage, formatMessage } from 'umi-plugin-react/locale';
 import React, { FC, useState, useEffect } from 'react';
-import { Dispatch } from 'redux';
-import { Link, router } from 'umi';
+import { Link, router, FormattedMessage, formatMessage, Dispatch } from 'umi';
 import { connect } from 'dva';
 
 import { StateType } from './model';
