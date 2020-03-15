@@ -3,7 +3,7 @@ import GGEditor, { Flow } from 'gg-editor';
 
 import { PageHeaderWrapper } from '@ant-design/pro-layout';
 import React from 'react';
-import { formatMessage } from 'umi-plugin-react/locale';
+import { formatMessage } from 'umi';
 import EditorMinimap from './components/EditorMinimap';
 import { FlowContextMenu } from './components/EditorContextMenu';
 import { FlowDetailPanel } from './components/EditorDetailPanel';
@@ -17,16 +17,16 @@ export default () => (
   <PageHeaderWrapper
     content={formatMessage({
       id: 'BLOCK_NAME.description',
-      defaultMessage: 'description',
+      defaultMessage: '',
     })}
   >
     <GGEditor className={styles.editor}>
-      <Row type="flex" className={styles.editorHd}>
+      <Row className={styles.editorHd}>
         <Col span={24}>
           <FlowToolbar />
         </Col>
       </Row>
-      <Row type="flex" className={styles.editorBd}>
+      <Row className={styles.editorBd}>
         <Col span={4} className={styles.editorSidebar}>
           <FlowItemPanel />
         </Col>

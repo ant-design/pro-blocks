@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 
 import { Dispatch } from 'redux';
-import { FormattedMessage } from 'umi-plugin-react/locale';
+import { FormattedMessage } from 'umi';
 import { GridContent } from '@ant-design/pro-layout';
 import { Menu } from 'antd';
 import { connect } from 'dva';

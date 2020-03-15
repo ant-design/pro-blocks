@@ -1,5 +1,5 @@
 import { Card, Col, Row, Tabs } from 'antd';
-import { FormattedMessage, formatMessage } from 'umi-plugin-react/locale';
+import { FormattedMessage, formatMessage } from 'umi';
 import React from 'react';
 import { OfflineChartData, OfflineDataType } from '../data.d';
 

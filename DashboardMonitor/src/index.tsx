@@ -1,5 +1,5 @@
 import { Card, Col, Row, Statistic } from 'antd';
-import { FormattedMessage, formatMessage } from 'umi-plugin-react/locale';
+import { FormattedMessage, formatMessage } from 'umi';
 import React, { Component } from 'react';
 
 import { Dispatch } from 'redux';
