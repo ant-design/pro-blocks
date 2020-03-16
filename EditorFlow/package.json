@@ -21,7 +21,7 @@
     "moment": "^2.22.2",
     "numeral": "^2.0.6",
     "react-fittext": "^1.0.0",
-    "umi": "^2.6.9",
+   
     "umi-request": "^1.0.0"
   },
   "peerDependencies": {
