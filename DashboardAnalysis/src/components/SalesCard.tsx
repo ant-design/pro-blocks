@@ -1,5 +1,5 @@
 import { Card, Col, DatePicker, Row, Tabs } from 'antd';
-import { FormattedMessage, formatMessage } from 'umi-plugin-react/locale';
+import { FormattedMessage, formatMessage } from 'umi';
 
 import { RangePickerValue } from 'antd/es/date-picker/interface';
 import React from 'react';

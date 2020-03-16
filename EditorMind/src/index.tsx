@@ -3,7 +3,7 @@ import GGEditor, { Mind } from 'gg-editor';
 
 import { PageHeaderWrapper } from '@ant-design/pro-layout';
 import React from 'react';
-import { formatMessage } from 'umi-plugin-react/locale';
+import { formatMessage } from 'umi';
 import EditorMinimap from './components/EditorMinimap';
 import { MindContextMenu } from './components/EditorContextMenu';
 import { MindDetailPanel } from './components/EditorDetailPanel';

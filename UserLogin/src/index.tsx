@@ -1,12 +1,11 @@
 import { AlipayCircleOutlined, TaobaoCircleOutlined, WeiboCircleOutlined } from '@ant-design/icons';
 import { Alert, Checkbox } from 'antd';
-import { FormattedMessage, formatMessage } from 'umi-plugin-react/locale';
 import React, { Component } from 'react';
 
 import { CheckboxChangeEvent } from 'antd/es/checkbox';
 import { Dispatch } from 'redux';
 import { FormComponentProps } from '@ant-design/compatible/es/form';
-import Link from 'umi/link';
+import { Link, FormattedMessage, formatMessage } from 'umi';
 import { connect } from 'dva';
 import { StateType } from './model';
 import LoginComponents from './components/Login';

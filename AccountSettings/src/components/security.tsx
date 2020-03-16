@@ -1,4 +1,4 @@
-import { FormattedMessage, formatMessage } from 'umi-plugin-react/locale';
+import { FormattedMessage, formatMessage } from 'umi';
 import React, { Component, Fragment } from 'react';
 
 import { List } from 'antd';
