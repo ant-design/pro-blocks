@@ -4,7 +4,7 @@ import { Button, Card, Col, DatePicker, Form, Input, Popover, Row, Select, TimeP
 import React, { FC, useState } from 'react';
 import { Dispatch } from 'redux';
 import { PageHeaderWrapper } from '@ant-design/pro-layout';
-import { connect } from 'dva';
+import { connect } from 'umi';
 import TableForm from './components/TableForm';
 import FooterToolbar from './components/FooterToolbar';
 import styles from './style.less';

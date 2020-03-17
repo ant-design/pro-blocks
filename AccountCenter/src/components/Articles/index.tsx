@@ -2,7 +2,7 @@ import { StarTwoTone, LikeOutlined, MessageFilled } from '@ant-design/icons';
 import { List, Tag } from 'antd';
 import React from 'react';
 
-import { connect } from 'dva';
+import { connect } from 'umi';
 import ArticleListContent from '../ArticleListContent';
 import { ListItemDataType } from '../../data.d';
 import { ModalState } from '../../model';

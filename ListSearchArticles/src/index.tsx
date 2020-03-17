@@ -2,7 +2,7 @@ import React, { FC, useEffect } from 'react';
 import { Button, Card, Col, Form, List, Row, Select, Tag } from 'antd';
 import { LoadingOutlined, StarOutlined, LikeOutlined, MessageOutlined } from '@ant-design/icons';
 import { Dispatch } from 'redux';
-import { connect } from 'dva';
+import { connect } from 'umi';
 import ArticleListContent from './components/ArticleListContent';
 import { StateType } from './model';
 import { ListItemDataType } from './data.d';

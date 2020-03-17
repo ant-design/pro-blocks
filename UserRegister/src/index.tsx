@@ -1,7 +1,6 @@
 import { Form, Button, Col, Input, Popover, Progress, Row, Select, message } from 'antd';
 import React, { FC, useState, useEffect } from 'react';
-import { Link, router, FormattedMessage, formatMessage, Dispatch } from 'umi';
-import { connect } from 'dva';
+import { Link, connect, router, FormattedMessage, formatMessage, Dispatch } from 'umi';
 
 import { StateType } from './model';
 import styles from './style.less';

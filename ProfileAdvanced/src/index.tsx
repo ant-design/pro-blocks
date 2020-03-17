@@ -24,7 +24,7 @@ import React, { Component, Fragment } from 'react';
 
 import { Dispatch } from 'redux';
 import classNames from 'classnames';
-import { connect } from 'dva';
+import { connect } from 'umi';
 import { AdvancedProfileData } from './data.d';
 import styles from './style.less';
 

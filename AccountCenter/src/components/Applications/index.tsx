@@ -7,7 +7,7 @@ import {
 import { Avatar, Card, Dropdown, List, Menu, Tooltip } from 'antd';
 import React from 'react';
 
-import { connect } from 'dva';
+import { connect } from 'umi';
 import numeral from 'numeral';
 import { ModalState } from '../../model';
 import stylesApplications from './index.less';

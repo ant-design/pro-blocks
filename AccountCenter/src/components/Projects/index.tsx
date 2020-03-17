@@ -1,7 +1,7 @@
 import { Card, List } from 'antd';
 import React from 'react';
 
-import { connect } from 'dva';
+import { connect } from 'umi';
 import moment from 'moment';
 import AvatarList from '../AvatarList';
 import { ListItemDataType } from '../../data.d';

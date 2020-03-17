@@ -8,7 +8,7 @@ import { Avatar, Card, Col, Dropdown, List, Menu, Row, Select, Tooltip, Form } f
 import React, { FC, useEffect } from 'react';
 
 import { Dispatch } from 'redux';
-import { connect } from 'dva';
+import { connect } from 'umi';
 import numeral from 'numeral';
 import { StateType } from './model';
 import { ListItemDataType } from './data.d';
