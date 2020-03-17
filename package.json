@@ -30,7 +30,7 @@
   "dependencies": {
     "@ant-design/icons": "^4.0.0-alpha.19",
     "@ant-design/pro-cli": "^1.0.5",
-    "@ant-design/pro-layout": "^4.11.0-1",
+    "@ant-design/pro-layout": "^5.0.6",
     "@types/react-dom": "^16.8.4",
     "antd": "^4.0.0",
     "bizcharts": "^3.5.4",
