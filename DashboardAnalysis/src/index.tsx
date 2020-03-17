@@ -6,7 +6,7 @@ import { Dispatch } from 'redux';
 import { GridContent } from '@ant-design/pro-layout';
 import { RadioChangeEvent } from 'antd/es/radio';
 import { RangePickerValue } from 'antd/es/date-picker/interface';
-import { connect } from 'dva';
+import { connect } from 'umi';
 import PageLoading from './components/PageLoading';
 import { getTimeDistance } from './utils/utils';
 import { AnalysisData } from './data.d';

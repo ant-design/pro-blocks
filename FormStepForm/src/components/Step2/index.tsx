@@ -5,7 +5,7 @@ import { Alert, Button, Descriptions, Divider, Statistic, Input } from 'antd';
 import { Dispatch } from 'redux';
 import { FormComponentProps } from '@ant-design/compatible/es/form';
 import React from 'react';
-import { connect } from 'dva';
+import { connect } from 'umi';
 import { StateType } from '../../model';
 import styles from './index.less';
 

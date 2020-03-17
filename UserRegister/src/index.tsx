@@ -1,11 +1,10 @@
 import { Form } from '@ant-design/compatible';
 import '@ant-design/compatible/assets/index.css';
 import { Button, Col, Input, Popover, Progress, Row, Select, message } from 'antd';
-import { Link, FormattedMessage, formatMessage } from 'umi';
+import { Link, connect, FormattedMessage, formatMessage } from 'umi';
 import React, { Component } from 'react';
 import { Dispatch } from 'redux';
 import { FormComponentProps } from '@ant-design/compatible/es/form';
-import { connect } from 'dva';
 import router from 'umi/router';
 
 import { StateType } from './model';

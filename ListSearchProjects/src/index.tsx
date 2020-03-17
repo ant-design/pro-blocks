@@ -5,7 +5,7 @@ import React, { Component } from 'react';
 
 import { Dispatch } from 'redux';
 import { FormComponentProps } from '@ant-design/compatible/es/form';
-import { connect } from 'dva';
+import { connect } from 'umi';
 import moment from 'moment';
 import AvatarList from './components/AvatarList';
 import { StateType } from './model';

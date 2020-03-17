@@ -1,10 +1,9 @@
 import React, { Component } from 'react';
 
 import { Dispatch } from 'redux';
-import { FormattedMessage } from 'umi';
+import { FormattedMessage, connect } from 'umi';
 import { GridContent } from '@ant-design/pro-layout';
 import { Menu } from 'antd';
-import { connect } from 'dva';
 import BaseView from './components/base';
 import BindingView from './components/binding';
 import { CurrentUser } from './data.d';

@@ -4,7 +4,7 @@ import React, { Component } from 'react';
 
 import { Dispatch } from 'redux';
 import { PageHeaderWrapper } from '@ant-design/pro-layout';
-import { connect } from 'dva';
+import { connect } from 'umi';
 import { StateType } from './model';
 import { CardListItemDataType } from './data.d';
 import styles from './style.less';

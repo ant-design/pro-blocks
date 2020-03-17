@@ -4,9 +4,8 @@ import React, { Component } from 'react';
 
 import { Dispatch } from 'redux';
 import { GridContent } from '@ant-design/pro-layout';
-import { Link } from 'umi';
+import { Link, connect } from 'umi';
 import { RouteChildrenProps } from 'react-router';
-import { connect } from 'dva';
 import { ModalState } from './model';
 import Projects from './components/Projects';
 import Articles from './components/Articles';

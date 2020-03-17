@@ -2,13 +2,12 @@ import { InfoCircleOutlined } from '@ant-design/icons';
 import { Form } from '@ant-design/compatible';
 import '@ant-design/compatible/assets/index.css';
 import { Button, Card, DatePicker, Input, InputNumber, Radio, Select, Tooltip } from 'antd';
-import { FormattedMessage, formatMessage } from 'umi';
+import { FormattedMessage, formatMessage, connect } from 'umi';
 import React, { Component } from 'react';
 
 import { Dispatch } from 'redux';
 import { FormComponentProps } from '@ant-design/compatible/es/form';
 import { PageHeaderWrapper } from '@ant-design/pro-layout';
-import { connect } from 'dva';
 import styles from './style.less';
 
 const FormItem = Form.Item;

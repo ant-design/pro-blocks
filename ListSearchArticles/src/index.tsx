@@ -6,7 +6,7 @@ import '@ant-design/compatible/assets/index.css';
 
 import { Dispatch } from 'redux';
 import { FormComponentProps } from '@ant-design/compatible/es/form';
-import { connect } from 'dva';
+import { connect } from 'umi';
 import ArticleListContent from './components/ArticleListContent';
 import { StateType } from './model';
 import { ListItemDataType } from './data.d';

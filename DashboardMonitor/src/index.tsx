@@ -1,10 +1,9 @@
 import { Card, Col, Row, Statistic } from 'antd';
-import { FormattedMessage, formatMessage } from 'umi';
+import { connect, FormattedMessage, formatMessage } from 'umi';
 import React, { Component } from 'react';
 
 import { Dispatch } from 'redux';
 import { GridContent } from '@ant-design/pro-layout';
-import { connect } from 'dva';
 import numeral from 'numeral';
 import { StateType } from './model';
 import { Pie, WaterWave, Gauge, TagCloud, Map } from './components/Charts';

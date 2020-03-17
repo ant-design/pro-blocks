@@ -5,7 +5,7 @@ import React, { Fragment } from 'react';
 
 import { Dispatch } from 'redux';
 import { FormComponentProps } from '@ant-design/compatible/es/form';
-import { connect } from 'dva';
+import { connect } from 'umi';
 import { StateType } from '../../model';
 import styles from './index.less';
 

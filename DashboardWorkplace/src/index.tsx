@@ -2,9 +2,8 @@ import { Avatar, Card, Col, List, Skeleton, Row, Statistic } from 'antd';
 import React, { Component } from 'react';
 
 import { Dispatch } from 'redux';
-import { Link } from 'umi';
+import { Link, connect } from 'umi';
 import { PageHeaderWrapper } from '@ant-design/pro-layout';
-import { connect } from 'dva';
 import moment from 'moment';
 import Radar from './components/Radar';
 import { ModalState } from './model';

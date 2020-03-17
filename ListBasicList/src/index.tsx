@@ -23,7 +23,7 @@ import React, { Component } from 'react';
 import { Dispatch } from 'redux';
 import { FormComponentProps } from '@ant-design/compatible/es/form';
 import { PageHeaderWrapper } from '@ant-design/pro-layout';
-import { connect } from 'dva';
+import { connect } from 'umi';
 import { findDOMNode } from 'react-dom';
 import moment from 'moment';
 import { StateType } from './model';

@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Select, Spin } from 'antd';
 
 import { Dispatch } from 'redux';
-import { connect } from 'dva';
+import { connect } from 'umi';
 import { GeographicItemType } from '../data.d';
 import styles from './GeographicView.less';
 

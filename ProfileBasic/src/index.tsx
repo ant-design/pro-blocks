@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 
 import { Dispatch } from 'redux';
 import { PageHeaderWrapper } from '@ant-design/pro-layout';
-import { connect } from 'dva';
+import { connect } from 'umi';
 import { BasicProfileDataType } from './data.d';
 import styles from './style.less';
 
