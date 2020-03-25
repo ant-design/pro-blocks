@@ -37,7 +37,7 @@
     "numeral": "^2.0.6",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
-    "umi": "^2.8.9",
+    "umi": "^3.0.14",
     "umi-plugin-block-dev": "^3.0.3",
     "umi-plugin-react": "^1.9.7",
     "umi-request": "^1.0.0",
