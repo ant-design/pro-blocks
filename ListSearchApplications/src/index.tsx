@@ -6,15 +6,13 @@ import {
 } from '@ant-design/icons';
 import { Avatar, Card, Col, Dropdown, List, Menu, Row, Select, Tooltip, Form } from 'antd';
 import React, { FC, useEffect } from 'react';
-
-import { Dispatch } from 'redux';
-import { connect } from 'umi';
+import { connect, Dispatch } from 'umi';
 import numeral from 'numeral';
-import { StateType } from './model';
 import { ListItemDataType } from './data.d';
 import StandardFormRow from './components/StandardFormRow';
 import TagSelect from './components/TagSelect';
 import styles from './style.less';
+import { StateType } from './model';
 
 const { Option } = Select;
 

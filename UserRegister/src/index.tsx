@@ -79,11 +79,12 @@ const PAGE_NAME_UPPER_CAMEL_CASE: FC<PAGE_NAME_UPPER_CAMEL_CASEProps> = ({
       });
     }
   }, [BLOCK_NAME_CAMEL_CASE]);
-  useEffect(() => {
-    return () => {
+  useEffect(
+    () => () => {
       clearInterval(interval);
-    };
-  }, []);
+    },
+    [],
+  );
   const onGetCaptcha = () => {
     let counts = 59;
     setcount(counts);

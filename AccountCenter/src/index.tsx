@@ -2,9 +2,8 @@ import { PlusOutlined } from '@ant-design/icons';
 import { Avatar, Card, Col, Divider, Input, Row, Tag } from 'antd';
 import React, { Component } from 'react';
 
-import { Dispatch } from 'redux';
 import { GridContent } from '@ant-design/pro-layout';
-import { Link, connect } from 'umi';
+import { Link, connect, Dispatch } from 'umi';
 import { RouteChildrenProps } from 'react-router';
 import { ModalState } from './model';
 import Projects from './components/Projects';

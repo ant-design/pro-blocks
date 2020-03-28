@@ -1,7 +1,6 @@
 import React from 'react';
 import { Form, Alert, Button, Descriptions, Divider, Statistic, Input } from 'antd';
-import { Dispatch } from 'redux';
-import { connect } from 'umi';
+import { connect, Dispatch } from 'umi';
 import { StateType } from '../../model';
 import styles from './index.less';
 

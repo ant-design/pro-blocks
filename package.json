@@ -2,9 +2,10 @@
   "private": true,
   "scripts": {
     "format-imports": "import-sort --write '**/*.{js,jsx,ts,tsx}'",
-    "lint": "npm run lint:js && npm run lint:style",
+    "lint": "umi g tmp && npm run lint:js && npm run lint:style && npm run lint:prettier",
     "lint-staged": "lint-staged && node ./.script/genBlockConfig.js&& git add ./umi-block.json",
     "lint-staged:js": "eslint --ext .js,.jsx,.ts,.tsx",
+    "lint:prettier": "prettier --check \"**/*\" --end-of-line auto",
     "lint:fix": "eslint --fix --cache --ext .js,.jsx,.ts,.tsx --format=pretty  ./ && npm run lint:style",
     "lint:js": "eslint --cache --ext .js,.jsx,.ts,.tsx --format=pretty ./",
     "lint:style": "stylelint --fix \"**/*.less\" --syntax less",
@@ -28,7 +29,7 @@
     "**/*.{js,ts,tsx}": "npm run lint-staged:js"
   },
   "dependencies": {
-    "@ant-design/icons": "^4.0.0-alpha.19",
+    "@ant-design/icons": "^4.0.0",
     "@ant-design/pro-cli": "^1.0.5",
     "@ant-design/pro-layout": "^5.0.0",
     "@types/react-dom": "^16.8.4",

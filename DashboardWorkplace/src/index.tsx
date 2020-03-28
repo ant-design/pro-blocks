@@ -1,8 +1,7 @@
 import { Avatar, Card, Col, List, Skeleton, Row, Statistic } from 'antd';
 import React, { Component } from 'react';
 
-import { Dispatch } from 'redux';
-import { Link, connect } from 'umi';
+import { Link, Dispatch, connect } from 'umi';
 import { PageHeaderWrapper } from '@ant-design/pro-layout';
 import moment from 'moment';
 import Radar from './components/Radar';

@@ -22,9 +22,8 @@ import {
 import { GridContent, PageHeaderWrapper, RouteContext } from '@ant-design/pro-layout';
 import React, { Component, Fragment } from 'react';
 
-import { Dispatch } from 'redux';
 import classNames from 'classnames';
-import { connect } from 'umi';
+import { connect, Dispatch } from 'umi';
 import { AdvancedProfileData } from './data.d';
 import styles from './style.less';
 

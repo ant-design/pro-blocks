@@ -1,8 +1,7 @@
 import { Card, Col, Row, Statistic } from 'antd';
-import { FormattedMessage, connect, formatMessage } from 'umi';
+import { FormattedMessage, connect, formatMessage, Dispatch } from 'umi';
 import React, { Component } from 'react';
 
-import { Dispatch } from 'redux';
 import { GridContent } from '@ant-design/pro-layout';
 import numeral from 'numeral';
 import { StateType } from './model';

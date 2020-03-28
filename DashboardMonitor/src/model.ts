@@ -1,17 +1,11 @@
-import { AnyAction, Reducer } from 'redux';
+import { Effect, Reducer } from 'umi';
 
-import { EffectsCommandMap } from 'dva';
 import { TagType } from './data.d';
 import { queryTags } from './service';
 
 export interface StateType {
   tags: TagType[];
 }
-
-export type Effect = (
-  action: AnyAction,
-  effects: EffectsCommandMap & { select: <T>(func: (state: StateType) => T) => T },
-) => void;
 
 export interface ModelType {
   namespace: string;

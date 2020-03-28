@@ -12,13 +12,11 @@
     "dev": "umi dev"
   },
   "dependencies": {
-    "@ant-design/icons": "^4.0.0-alpha.19",
+    "@ant-design/icons": "^4.0.0",
     "classnames": "^2.2.6",
-    "dva": "^2.4.0",
     "moment": "^2.22.2",
     "numeral": "^2.0.6",
     "nzh": "^1.0.3",
-    "redux": "^4.0.1",
     "umi-request": "^1.0.0"
   },
   "blockConfig": {

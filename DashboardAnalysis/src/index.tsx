@@ -1,12 +1,11 @@
 import { EllipsisOutlined } from '@ant-design/icons';
 import { Col, Dropdown, Menu, Row } from 'antd';
 import React, { Component, Suspense } from 'react';
-import { Dispatch } from 'redux';
 import { GridContent } from '@ant-design/pro-layout';
 import { RadioChangeEvent } from 'antd/es/radio';
 import { RangePickerProps } from 'antd/es/date-picker/generatePicker';
 import moment from 'moment';
-import { connect } from 'umi';
+import { connect, Dispatch } from 'umi';
 
 import PageLoading from './components/PageLoading';
 import { getTimeDistance } from './utils/utils';

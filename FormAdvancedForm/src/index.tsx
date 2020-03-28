@@ -2,9 +2,8 @@ import { CloseCircleOutlined } from '@ant-design/icons';
 import { Button, Card, Col, DatePicker, Form, Input, Popover, Row, Select, TimePicker } from 'antd';
 
 import React, { FC, useState } from 'react';
-import { Dispatch } from 'redux';
 import { PageHeaderWrapper } from '@ant-design/pro-layout';
-import { connect } from 'umi';
+import { connect, Dispatch } from 'umi';
 import TableForm from './components/TableForm';
 import FooterToolbar from './components/FooterToolbar';
 import styles from './style.less';

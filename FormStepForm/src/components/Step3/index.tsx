@@ -1,7 +1,6 @@
 import { Button, Result, Descriptions, Statistic } from 'antd';
 import React from 'react';
-import { Dispatch } from 'redux';
-import { connect } from 'umi';
+import { connect, Dispatch } from 'umi';
 import { StateType } from '../../model';
 import styles from './index.less';
 

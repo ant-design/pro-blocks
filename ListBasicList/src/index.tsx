@@ -16,9 +16,8 @@ import {
 } from 'antd';
 
 import { findDOMNode } from 'react-dom';
-import { Dispatch } from 'redux';
 import { PageHeaderWrapper } from '@ant-design/pro-layout';
-import { connect } from 'umi';
+import { connect, Dispatch } from 'umi';
 import moment from 'moment';
 import OperationModal from './components/OperationModal';
 import { StateType } from './model';

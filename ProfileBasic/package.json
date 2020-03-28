@@ -12,8 +12,6 @@
     "dev": "umi dev"
   },
   "dependencies": {
-    "dva": "^2.4.0",
-    "redux": "^4.0.1",
     "umi-request": "^1.0.0"
   },
   "peerDependencies": {

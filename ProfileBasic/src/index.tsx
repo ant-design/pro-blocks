@@ -1,9 +1,8 @@
 import { Badge, Card, Descriptions, Divider, Table } from 'antd';
 import React, { Component } from 'react';
 
-import { Dispatch } from 'redux';
 import { PageHeaderWrapper } from '@ant-design/pro-layout';
-import { connect } from 'umi';
+import { connect, Dispatch } from 'umi';
 import { BasicProfileDataType } from './data.d';
 import styles from './style.less';
 

@@ -1,7 +1,6 @@
 import { Card, Col, Form, List, Row, Select, Typography } from 'antd';
 import React, { FC, useEffect } from 'react';
-import { Dispatch } from 'redux';
-import { connect } from 'umi';
+import { connect, Dispatch } from 'umi';
 import moment from 'moment';
 import AvatarList from './components/AvatarList';
 import { StateType } from './model';
