@@ -1,6 +1,5 @@
-import { Effect, Reducer } from 'umi';
+import { Effect, history, Reducer } from 'umi';
 import { message } from 'antd';
-import { routerRedux } from 'dva/router';
 import { fakeAccountLogin, getFakeCaptcha } from './service';
 import { getPageQuery, setAuthority } from './utils/utils';
 
@@ -54,7 +53,7 @@ const Model: ModelType = {
             return;
           }
         }
-        yield put(routerRedux.replace(redirect || '/'));
+        history.replace(redirect || '/');
       }
     },
 
