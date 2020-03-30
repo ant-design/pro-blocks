@@ -2,14 +2,15 @@
 
 .itemPanel {
   flex: 1;
-  background: @descriptions-bg;
 
   :global {
+    .ant-card {
+      height: 100%;
+    }
     .ant-card-body {
       display: flex;
       flex-direction: column;
       align-items: center;
-
       > div {
         margin-bottom: 16px;
       }
