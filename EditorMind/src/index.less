@@ -1,10 +1,12 @@
+@import '~antd/es/style/themes/default.less';
+
 .editor {
   display: flex;
   flex: 1;
   flex-direction: column;
   width: 100%;
   height: calc(100vh - 250px);
-  background: @body-background;
+  background: @descriptions-bg;
 }
 
 .editorHd {
@@ -32,7 +34,11 @@
 
 .editorSidebar {
   background: @descriptions-bg;
-
+  :global {
+    .g6-editor-minimap-container {
+      background: none !important ;
+    }
+  }
   &:first-child {
     border-right: 1px solid @item-active-bg;
   }

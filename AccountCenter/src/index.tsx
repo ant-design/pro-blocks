@@ -165,15 +165,27 @@ class PAGE_NAME_UPPER_CAMEL_CASE extends Component<
   renderUserInfo = (currentUser: Partial<CurrentUser>) => (
     <div className={styles.detail}>
       <p>
-        <ContactsOutlined />
+        <ContactsOutlined
+          style={{
+            marginRight: 8,
+          }}
+        />
         {currentUser.title}
       </p>
       <p>
-        <ClusterOutlined />
+        <ClusterOutlined
+          style={{
+            marginRight: 8,
+          }}
+        />
         {currentUser.group}
       </p>
       <p>
-        <HomeOutlined />
+        <HomeOutlined
+          style={{
+            marginRight: 8,
+          }}
+        />
         {(currentUser.geographic || { province: { label: '' } }).province.label}
         {
           (

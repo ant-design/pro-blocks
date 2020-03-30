@@ -3,7 +3,7 @@
 .contextMenu {
   display: none;
   overflow: hidden;
-  background: @body-background;
+  background: @component-background;
   border-radius: 4px;
   box-shadow: @box-shadow-base;
   .item {
@@ -15,7 +15,7 @@
     user-select: none;
 
     &:hover {
-      background: #e6f7ff;
+      background: @select-item-selected-bg;
     }
 
     .anticon {
@@ -27,7 +27,7 @@
     .disable {
       :local {
         .item {
-          color: @text-color-secondary;
+          color: @disabled-color;
           cursor: auto;
 
           &:hover {

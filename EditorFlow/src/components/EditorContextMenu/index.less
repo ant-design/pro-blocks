@@ -1,7 +1,9 @@
+@import '~antd/es/style/themes/default.less';
+
 .contextMenu {
   display: none;
   overflow: hidden;
-  background: @body-background;
+  background: @component-background;
   border-radius: 4px;
   box-shadow: @box-shadow-base;
 
@@ -26,7 +28,7 @@
     .disable {
       :local {
         .item {
-          color: @text-color-secondary;
+          color: @disabled-color;
           cursor: auto;
 
           &:hover {
