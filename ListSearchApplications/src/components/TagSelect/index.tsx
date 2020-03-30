@@ -37,7 +37,7 @@ const TagSelectOption: React.FC<TagSelectOptionProps> & {
   <CheckableTag
     checked={!!checked}
     key={value}
-    onChange={state => onChange && onChange(value, state)}
+    onChange={(state) => onChange && onChange(value, state)}
   >
     {children}
   </CheckableTag>
@@ -59,8 +59,6 @@ class TagSelect extends Component<TagSelectProps, TagSelectState> {
       selectAllText: '全部',
     },
   };
-
-  static Option: TagSelectOption = TagSelectOption;
 
   static getDerivedStateFromProps(nextProps: TagSelectProps) {
     if ('value' in nextProps) {
@@ -99,8 +97,8 @@ class TagSelect extends Component<TagSelectProps, TagSelectState> {
     const { children } = this.props;
     const childrenArray = React.Children.toArray(children) as React.ReactElement<TagSelectOption>[];
     const checkedTags = childrenArray
-      .filter(child => this.isTagSelectOption(child))
-      .map(child => child.props.value);
+      .filter((child) => this.isTagSelectOption(child))
+      .map((child) => child.props.value);
     return checkedTags || [];
   }
 
@@ -128,6 +126,8 @@ class TagSelect extends Component<TagSelectProps, TagSelectState> {
     node &&
     node.type &&
     (node.type.isTagSelectOption || node.type.displayName === 'TagSelectOption');
+
+  static Option: TagSelectOption = TagSelectOption;
 
   render() {
     const { value, expand } = this.state;
