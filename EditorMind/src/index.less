@@ -4,12 +4,12 @@
   flex-direction: column;
   width: 100%;
   height: calc(100vh - 250px);
-  background: #fff;
+  background: @body-background;
 }
 
 .editorHd {
   padding: 8px;
-  border: 1px solid #e6e9ed;
+  border: 1px solid @item-active-bg;
 }
 
 .editorBd {
@@ -31,14 +31,14 @@
 }
 
 .editorSidebar {
-  background: #fafafa;
+  background: @descriptions-bg;
 
   &:first-child {
-    border-right: 1px solid #e6e9ed;
+    border-right: 1px solid @item-active-bg;
   }
 
   &:last-child {
-    border-left: 1px solid #e6e9ed;
+    border-left: 1px solid @item-active-bg;
   }
 }
 
