@@ -102,7 +102,7 @@ class PAGE_NAME_UPPER_CAMEL_CASE extends Component<PAGE_NAME_UPPER_CAMEL_CASEPro
   }
 
   renderActivities = (item: ActivitiesType) => {
-    const events = item.template.split(/@\{([^{}]*)\}/gi).map(key => {
+    const events = item.template.split(/@\{([^{}]*)\}/gi).map((key) => {
       if (item[key]) {
         return (
           <a href={item[key].link} key={item[key].name}>
@@ -162,7 +162,7 @@ class PAGE_NAME_UPPER_CAMEL_CASE extends Component<PAGE_NAME_UPPER_CAMEL_CASEPro
               loading={projectLoading}
               bodyStyle={{ padding: 0 }}
             >
-              {projectNotice.map(item => (
+              {projectNotice.map((item) => (
                 <Card.Grid className={styles.projectGrid} key={item.id}>
                   <Card bodyStyle={{ padding: 0 }} bordered={false}>
                     <Card.Meta
@@ -195,7 +195,7 @@ class PAGE_NAME_UPPER_CAMEL_CASE extends Component<PAGE_NAME_UPPER_CAMEL_CASEPro
             >
               <List<ActivitiesType>
                 loading={activitiesLoading}
-                renderItem={item => this.renderActivities(item)}
+                renderItem={(item) => this.renderActivities(item)}
                 dataSource={activities}
                 className={styles.activitiesList}
                 size="large"
@@ -229,7 +229,7 @@ class PAGE_NAME_UPPER_CAMEL_CASE extends Component<PAGE_NAME_UPPER_CAMEL_CASEPro
             >
               <div className={styles.members}>
                 <Row gutter={48}>
-                  {projectNotice.map(item => (
+                  {projectNotice.map((item) => (
                     <Col span={12} key={`members-item-${item.id}`}>
                       <Link to={item.href}>
                         <Avatar src={item.logo} size="small" />

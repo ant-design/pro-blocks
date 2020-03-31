@@ -18,7 +18,7 @@ interface Step2Props {
   submitting?: boolean;
 }
 
-const Step2: React.FC<Step2Props> = props => {
+const Step2: React.FC<Step2Props> = (props) => {
   const [form] = Form.useForm();
   const { data, dispatch, submitting } = props;
   if (!data) {

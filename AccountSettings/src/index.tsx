@@ -71,7 +71,7 @@ class PAGE_NAME_UPPER_CAMEL_CASE extends Component<
 
   getMenu = () => {
     const { menuMap } = this.state;
-    return Object.keys(menuMap).map(item => <Item key={item}>{menuMap[item]}</Item>);
+    return Object.keys(menuMap).map((item) => <Item key={item}>{menuMap[item]}</Item>);
   };
 
   getRightTitle = () => {
@@ -135,7 +135,7 @@ class PAGE_NAME_UPPER_CAMEL_CASE extends Component<
       <GridContent>
         <div
           className={styles.main}
-          ref={ref => {
+          ref={(ref) => {
             if (ref) {
               this.main = ref;
             }

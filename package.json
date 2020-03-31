@@ -1,13 +1,12 @@
 {
   "private": true,
   "scripts": {
-    "format-imports": "import-sort --write '**/*.{js,jsx,ts,tsx}'",
-    "lint": "umi g tmp && npm run lint:js && npm run lint:style && npm run lint:prettier",
+    "lint": "npm run lint:js && npm run lint:style && npm run lint:prettier",
     "lint-staged": "lint-staged && node ./.script/genBlockConfig.js&& git add ./umi-block.json",
     "lint-staged:js": "eslint --ext .js,.jsx,.ts,.tsx",
-    "lint:prettier": "prettier --check \"**/*\" --end-of-line auto",
     "lint:fix": "eslint --fix --cache --ext .js,.jsx,.ts,.tsx --format=pretty  ./ && npm run lint:style",
     "lint:js": "eslint --cache --ext .js,.jsx,.ts,.tsx --format=pretty ./",
+    "lint:prettier": "prettier --check \"**/*\" --end-of-line auto",
     "lint:style": "stylelint --fix \"**/*.less\" --syntax less",
     "prettier": "prettier -c --write \"**/*\"",
     "screenshot": "pro screenshot",
@@ -32,37 +31,28 @@
     "@ant-design/icons": "^4.0.0",
     "@ant-design/pro-cli": "^1.0.5",
     "@ant-design/pro-layout": "^5.0.0",
-    "@types/react-dom": "^16.8.4",
-    "@umijs/plugin-block-devtool": "^1.1.0",
-    "@umijs/preset-ant-design-pro": "^1.0.0",
-    "@umijs/preset-react": "^1.4.3",
     "antd": "^4.0.0",
     "bizcharts": "^3.5.4",
     "numeral": "^2.0.6",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
     "umi": "3.0.0",
-    "umi-request": "^1.0.0",
-    "umi-utils": "^1.5.1"
+    "umi-request": "^1.0.0"
   },
   "devDependencies": {
     "@types/classnames": "^2.2.7",
     "@types/numeral": "^0.0.26",
+    "@types/react-dom": "^16.8.4",
     "@umijs/fabric": "^2.0.0",
+    "@umijs/preset-ant-design-pro": "^1.1.2",
+    "@umijs/preset-react": "^1.4.3",
     "cross-env": "^7.0.0",
     "eslint": "^6.8.0",
     "husky": "^4.0.1",
-    "import-sort-cli": "^6.0.0",
-    "import-sort-parser-babylon": "^6.0.0",
-    "import-sort-parser-typescript": "^6.0.0",
-    "import-sort-style-module": "^6.0.0",
     "lint-staged": "^10.0.1",
-    "prettier": "^1.18.2",
+    "prettier": "^2.0.2",
     "stylelint": "^13.0.0",
     "typescript": "^3.5.1"
-  },
-  "optionalDependencies": {
-    "puppeteer": "^2.0.0"
   },
   "checkFiles": [
     "**/*.ts*",

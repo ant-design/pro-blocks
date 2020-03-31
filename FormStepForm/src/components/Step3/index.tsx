@@ -9,7 +9,7 @@ interface Step3Props {
   dispatch?: Dispatch<any>;
 }
 
-const Step3: React.FC<Step3Props> = props => {
+const Step3: React.FC<Step3Props> = (props) => {
   const { data, dispatch } = props;
   if (!data) {
     return null;

@@ -91,7 +91,7 @@ class SecurityView extends Component {
         <List<Unpacked<typeof data>>
           itemLayout="horizontal"
           dataSource={data}
-          renderItem={item => (
+          renderItem={(item) => (
             <List.Item actions={item.actions}>
               <List.Item.Meta title={item.title} description={item.description} />
             </List.Item>

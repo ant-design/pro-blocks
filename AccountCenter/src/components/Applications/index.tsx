@@ -38,7 +38,7 @@ export function formatWan(val: number) {
   return result;
 }
 
-const Applications: React.FC<Partial<ModalState>> = props => {
+const Applications: React.FC<Partial<ModalState>> = (props) => {
   const { list } = props;
   const itemMenu = (
     <Menu>
@@ -80,7 +80,7 @@ const Applications: React.FC<Partial<ModalState>> = props => {
       className={stylesApplications.filterCardList}
       grid={{ gutter: 24, xxl: 3, xl: 2, lg: 2, md: 2, sm: 2, xs: 1 }}
       dataSource={list}
-      renderItem={item => (
+      renderItem={(item) => (
         <List.Item key={item.id}>
           <Card
             hoverable

@@ -40,7 +40,7 @@ const PAGE_NAME_UPPER_CAMEL_CASE: FC<PAGE_NAME_UPPER_CAMEL_CASEProps> = ({
       loading={loading}
       grid={{ gutter: 24, xl: 4, lg: 3, md: 3, sm: 2, xs: 1 }}
       dataSource={list}
-      renderItem={item => (
+      renderItem={(item) => (
         <List.Item>
           <Card className={styles.card} hoverable cover={<img alt={item.title} src={item.cover} />}>
             <Card.Meta

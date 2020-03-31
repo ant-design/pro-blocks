@@ -68,7 +68,7 @@ class PAGE_NAME_UPPER_CAMEL_CASE extends Component<
     if (basicGoods.length) {
       let num = 0;
       let amount = 0;
-      basicGoods.forEach(item => {
+      basicGoods.forEach((item) => {
         num += Number(item.num);
         amount += Number(item.amount);
       });

@@ -183,7 +183,7 @@ const PAGE_NAME_UPPER_CAMEL_CASE: FC<PAGE_NAME_UPPER_CAMEL_CASEProps> = ({
           <Input size="large" placeholder={formatMessage({ id: 'BLOCK_NAME.email.placeholder' })} />
         </FormItem>
         <Popover
-          getPopupContainer={node => {
+          getPopupContainer={(node) => {
             if (node && node.parentNode) {
               return node.parentNode as HTMLElement;
             }

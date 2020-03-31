@@ -66,7 +66,7 @@ const ListContent = ({
   </div>
 );
 
-export const PAGE_NAME_UPPER_CAMEL_CASE: FC<PAGE_NAME_UPPER_CAMEL_CASEProps> = props => {
+export const PAGE_NAME_UPPER_CAMEL_CASE: FC<PAGE_NAME_UPPER_CAMEL_CASEProps> = (props) => {
   const addBtn = useRef(null);
   const {
     loading,
@@ -225,12 +225,12 @@ export const PAGE_NAME_UPPER_CAMEL_CASE: FC<PAGE_NAME_UPPER_CAMEL_CASEProps> = p
               loading={loading}
               pagination={paginationProps}
               dataSource={list}
-              renderItem={item => (
+              renderItem={(item) => (
                 <List.Item
                   actions={[
                     <a
                       key="edit"
-                      onClick={e => {
+                      onClick={(e) => {
                         e.preventDefault();
                         showEditModal(item);
                       }}

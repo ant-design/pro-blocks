@@ -27,7 +27,7 @@ const LoginMessage: React.FC<{
   />
 );
 
-const PAGE_NAME_UPPER_CAMEL_CASE: React.FC<PAGE_NAME_UPPER_CAMEL_CASEProps> = props => {
+const PAGE_NAME_UPPER_CAMEL_CASE: React.FC<PAGE_NAME_UPPER_CAMEL_CASEProps> = (props) => {
   const { BLOCK_NAME_CAMEL_CASE = {}, submitting } = props;
   const { status, type: loginType } = BLOCK_NAME_CAMEL_CASE;
   const [autoLogin, setAutoLogin] = useState(true);
@@ -105,7 +105,7 @@ const PAGE_NAME_UPPER_CAMEL_CASE: React.FC<PAGE_NAME_UPPER_CAMEL_CASEProps> = pr
           />
         </Tab>
         <div>
-          <Checkbox checked={autoLogin} onChange={e => setAutoLogin(e.target.checked)}>
+          <Checkbox checked={autoLogin} onChange={(e) => setAutoLogin(e.target.checked)}>
             自动登录
           </Checkbox>
           <a

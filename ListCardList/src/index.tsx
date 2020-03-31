@@ -81,7 +81,7 @@ class PAGE_NAME_UPPER_CAMEL_CASE extends Component<
             loading={loading}
             grid={{ gutter: 24, lg: 3, md: 2, sm: 1, xs: 1 }}
             dataSource={[nullData, ...list]}
-            renderItem={item => {
+            renderItem={(item) => {
               if (item && item.id) {
                 return (
                   <List.Item key={item.id}>
