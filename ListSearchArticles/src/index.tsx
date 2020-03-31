@@ -163,7 +163,7 @@ const PAGE_NAME_UPPER_CAMEL_CASE: FC<PAGE_NAME_UPPER_CAMEL_CASEProps> = ({
           <StandardFormRow title="owner" grid>
             <FormItem name="owner" noStyle>
               <Select mode="multiple" placeholder="选择 owner">
-                {owners.map(owner => (
+                {owners.map((owner) => (
                   <Option key={owner.id} value={owner.id}>
                     {owner.name}
                   </Option>
@@ -206,7 +206,7 @@ const PAGE_NAME_UPPER_CAMEL_CASE: FC<PAGE_NAME_UPPER_CAMEL_CASEProps> = ({
           itemLayout="vertical"
           loadMore={loadMore}
           dataSource={list}
-          renderItem={item => (
+          renderItem={(item) => (
             <List.Item
               key={item.id}
               actions={[

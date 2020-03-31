@@ -19,7 +19,7 @@ interface Step1Props {
   dispatch?: Dispatch<any>;
 }
 
-const Step1: React.FC<Step1Props> = props => {
+const Step1: React.FC<Step1Props> = (props) => {
   const { dispatch, data } = props;
   const [form] = Form.useForm();
 

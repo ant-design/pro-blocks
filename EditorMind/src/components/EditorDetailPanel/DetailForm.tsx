@@ -73,7 +73,7 @@ class DetailForm extends React.Component<DetailFormProps> {
           <Input onBlur={this.handleInputBlur('label')} />
         </Item>
         <Item label="Shape" name="shape" {...inlineFormItemLayout}>
-          <Select onChange={value => this.handleFieldChange({ shape: value })}>
+          <Select onChange={(value) => this.handleFieldChange({ shape: value })}>
             <Option value="flow-smooth">Smooth</Option>
             <Option value="flow-polyline">Polyline</Option>
             <Option value="flow-polyline-round">Polyline Round</Option>

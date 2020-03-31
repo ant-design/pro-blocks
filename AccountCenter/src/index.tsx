@@ -67,7 +67,7 @@ const TagList: React.FC<{ tags: CurrentUser['tags'] }> = ({ tags }) => {
 
   const handleInputConfirm = () => {
     let tempsTags = [...newTags];
-    if (inputValue && tempsTags.filter(tag => tag.label === inputValue).length === 0) {
+    if (inputValue && tempsTags.filter((tag) => tag.label === inputValue).length === 0) {
       tempsTags = [...tempsTags, { key: `new-${tempsTags.length}`, label: inputValue }];
     }
     setNewTags(tempsTags);
@@ -78,7 +78,7 @@ const TagList: React.FC<{ tags: CurrentUser['tags'] }> = ({ tags }) => {
   return (
     <div className={styles.tags}>
       <div className={styles.tagsTitle}>标签</div>
-      {(tags || []).concat(newTags).map(item => (
+      {(tags || []).concat(newTags).map((item) => (
         <Tag key={item.key}>{item.label}</Tag>
       ))}
       {inputVisible && (
@@ -224,7 +224,7 @@ class PAGE_NAME_UPPER_CAMEL_CASE extends Component<
                     <div className={styles.teamTitle}>团队</div>
                     <Row gutter={36}>
                       {currentUser.notice &&
-                        currentUser.notice.map(item => (
+                        currentUser.notice.map((item) => (
                           <Col key={item.id} lg={24} xl={12}>
                             <Link to={item.href}>
                               <Avatar size="small" src={item.logo} />

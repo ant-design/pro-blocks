@@ -66,7 +66,7 @@ const PAGE_NAME_UPPER_CAMEL_CASE: FC<PAGE_NAME_UPPER_CAMEL_CASEProps> = ({
   const [form] = Form.useForm();
   const [error, setError] = useState<ErrorField[]>([]);
   const getErrorInfo = (errors: ErrorField[]) => {
-    const errorCount = errors.filter(item => item.errors.length > 0).length;
+    const errorCount = errors.filter((item) => item.errors.length > 0).length;
     if (!errors || errorCount === 0) {
       return null;
     }
@@ -76,7 +76,7 @@ const PAGE_NAME_UPPER_CAMEL_CASE: FC<PAGE_NAME_UPPER_CAMEL_CASEProps> = ({
         labelNode.scrollIntoView(true);
       }
     };
-    const errorList = errors.map(err => {
+    const errorList = errors.map((err) => {
       if (!err || err.errors.length === 0) {
         return null;
       }
@@ -262,7 +262,7 @@ const PAGE_NAME_UPPER_CAMEL_CASE: FC<PAGE_NAME_UPPER_CAMEL_CASEProps> = ({
                 <TimePicker
                   placeholder="提醒时间"
                   style={{ width: '100%' }}
-                  getPopupContainer={trigger => {
+                  getPopupContainer={(trigger) => {
                     if (trigger && trigger.parentNode) {
                       return trigger.parentNode as HTMLElement;
                     }

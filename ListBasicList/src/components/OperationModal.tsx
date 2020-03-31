@@ -19,7 +19,7 @@ const formLayout = {
   wrapperCol: { span: 13 },
 };
 
-const OperationModal: FC<OperationModalProps> = props => {
+const OperationModal: FC<OperationModalProps> = (props) => {
   const [form] = Form.useForm();
   const { done, visible, current, onDone, onCancel, onSubmit } = props;
 

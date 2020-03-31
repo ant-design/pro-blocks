@@ -53,9 +53,7 @@ function fakeList(count: number): ListItemDataType[] {
   const list = [];
   for (let i = 0; i < count; i += 1) {
     list.push({
-      id: `fake-list-${Math.random()
-        .toString(36)
-        .slice(2, 6)}${i}`,
+      id: `fake-list-${Math.random().toString(36).slice(2, 6)}${i}`,
       owner: user[i % 10],
       title: titles[i % 8],
       avatar: avatars[i % 8],

@@ -71,7 +71,7 @@ const CardInfo: React.FC<{
   </div>
 );
 
-export const PAGE_NAME_UPPER_CAMEL_CASE: FC<PAGE_NAME_UPPER_CAMEL_CASEProps> = props => {
+export const PAGE_NAME_UPPER_CAMEL_CASE: FC<PAGE_NAME_UPPER_CAMEL_CASEProps> = (props) => {
   const {
     dispatch,
     loading,
@@ -165,7 +165,7 @@ export const PAGE_NAME_UPPER_CAMEL_CASE: FC<PAGE_NAME_UPPER_CAMEL_CASEProps> = p
         grid={{ gutter: 24, xl: 4, lg: 3, md: 3, sm: 2, xs: 1 }}
         loading={loading}
         dataSource={list}
-        renderItem={item => (
+        renderItem={(item) => (
           <List.Item key={item.id}>
             <Card
               hoverable
