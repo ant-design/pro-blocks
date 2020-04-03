@@ -1,13 +1,7 @@
-import { AnyAction, Reducer } from 'redux';
+import { Effect, Reducer } from 'umi';
 
-import { EffectsCommandMap } from 'dva';
 import { AnalysisData } from './data.d';
 import { fakeChartData } from './service';
-
-export type Effect = (
-  action: AnyAction,
-  effects: EffectsCommandMap & { select: <T>(func: (state: AnalysisData) => T) => T },
-) => void;
 
 export interface ModelType {
   namespace: string;

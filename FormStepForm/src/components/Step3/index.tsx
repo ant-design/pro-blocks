@@ -1,7 +1,6 @@
 import { Button, Result, Descriptions, Statistic } from 'antd';
 import React from 'react';
-import { Dispatch } from 'redux';
-import { connect } from 'dva';
+import { connect, Dispatch } from 'umi';
 import { StateType } from '../../model';
 import styles from './index.less';
 
@@ -10,7 +9,7 @@ interface Step3Props {
   dispatch?: Dispatch<any>;
 }
 
-const Step3: React.FC<Step3Props> = props => {
+const Step3: React.FC<Step3Props> = (props) => {
   const { data, dispatch } = props;
   if (!data) {
     return null;

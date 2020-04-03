@@ -9,7 +9,7 @@ interface CreateFormProps {
   onCancel: () => void;
 }
 
-const CreateForm: React.FC<CreateFormProps> = props => {
+const CreateForm: React.FC<CreateFormProps> = (props) => {
   const [form] = Form.useForm();
 
   const { modalVisible, onSubmit: handleAdd, onCancel } = props;

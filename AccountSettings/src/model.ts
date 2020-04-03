@@ -1,5 +1,4 @@
-import { AnyAction, Reducer } from 'redux';
-import { EffectsCommandMap } from 'dva';
+import { Effect, Reducer } from 'umi';
 import { CurrentUser, GeographicItemType } from './data.d';
 import { queryCity, queryCurrent, queryProvince, query as queryUsers } from './service';
 
@@ -9,11 +8,6 @@ export interface ModalState {
   city?: GeographicItemType[];
   isLoading?: boolean;
 }
-
-export type Effect = (
-  action: AnyAction,
-  effects: EffectsCommandMap & { select: <T>(func: (state: ModalState) => T) => T },
-) => void;
 
 export interface ModelType {
   namespace: string;

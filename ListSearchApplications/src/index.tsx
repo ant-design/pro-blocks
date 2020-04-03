@@ -6,15 +6,13 @@ import {
 } from '@ant-design/icons';
 import { Avatar, Card, Col, Dropdown, List, Menu, Row, Select, Tooltip, Form } from 'antd';
 import React, { FC, useEffect } from 'react';
-
-import { Dispatch } from 'redux';
-import { connect } from 'dva';
+import { connect, Dispatch } from 'umi';
 import numeral from 'numeral';
-import { StateType } from './model';
 import { ListItemDataType } from './data.d';
 import StandardFormRow from './components/StandardFormRow';
 import TagSelect from './components/TagSelect';
 import styles from './style.less';
+import { StateType } from './model';
 
 const { Option } = Select;
 
@@ -73,7 +71,7 @@ const CardInfo: React.FC<{
   </div>
 );
 
-export const PAGE_NAME_UPPER_CAMEL_CASE: FC<PAGE_NAME_UPPER_CAMEL_CASEProps> = props => {
+export const PAGE_NAME_UPPER_CAMEL_CASE: FC<PAGE_NAME_UPPER_CAMEL_CASEProps> = (props) => {
   const {
     dispatch,
     loading,
@@ -167,7 +165,7 @@ export const PAGE_NAME_UPPER_CAMEL_CASE: FC<PAGE_NAME_UPPER_CAMEL_CASEProps> = p
         grid={{ gutter: 24, xl: 4, lg: 3, md: 3, sm: 2, xs: 1 }}
         loading={loading}
         dataSource={list}
-        renderItem={item => (
+        renderItem={(item) => (
           <List.Item key={item.id}>
             <Card
               hoverable

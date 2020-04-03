@@ -1,7 +1,6 @@
 import React from 'react';
 import { Form, Button, Divider, Input, Select } from 'antd';
-import { Dispatch } from 'redux';
-import { connect } from 'dva';
+import { connect, Dispatch } from 'umi';
 import { StateType } from '../../model';
 import styles from './index.less';
 
@@ -20,7 +19,7 @@ interface Step1Props {
   dispatch?: Dispatch<any>;
 }
 
-const Step1: React.FC<Step1Props> = props => {
+const Step1: React.FC<Step1Props> = (props) => {
   const { dispatch, data } = props;
   const [form] = Form.useForm();
 

@@ -91,22 +91,22 @@ const tagsKey = {
  * 从文件数组映射为 pro 的路由
  * @param {*} name
  */
-const genBlockName = name =>
+const genBlockName = (name) =>
   name
     .match(/[A-Z]?[a-z]+|[0-9]+/g)
-    .map(p => p.toLowerCase())
+    .map((p) => p.toLowerCase())
     .join('/');
 
 /**
  * 从文件数组映射为 tags 列表
  * @param {*} name
  */
-const genBlockTags = name =>
-  Array.from(new Set(name.match(/[A-Z]?[a-z]+|[0-9]+/g).map(p => p.toLowerCase())))
-    .map(key => tagsKey[key] || key)
-    .filter(key => key !== 'remove');
+const genBlockTags = (name) =>
+  Array.from(new Set(name.match(/[A-Z]?[a-z]+|[0-9]+/g).map((p) => p.toLowerCase())))
+    .map((key) => tagsKey[key] || key)
+    .filter((key) => key !== 'remove');
 
-const getFeature = filePath => {
+const getFeature = (filePath) => {
   const feature = ['antd'];
   const srcPath = join(filePath, 'src');
 
@@ -134,10 +134,10 @@ const getFeature = filePath => {
  * 遍历文件地址
  * @param path
  */
-const getFolderTreeData = filePath => {
+const getFolderTreeData = (filePath) => {
   const files = fs.readdirSync(filePath);
   const blockList = files
-    .map(fileName => {
+    .map((fileName) => {
       const status = fs.statSync(join(filePath, fileName));
       if (status.isDirectory() && fileName.indexOf('.') !== 0 && fileName !== 'EmptyPage') {
         const absPkgPath = join(filePath, fileName, 'package.json');
@@ -159,7 +159,7 @@ const getFolderTreeData = filePath => {
       }
       return undefined;
     })
-    .filter(obj => obj);
+    .filter((obj) => obj);
 
   blockList.unshift({
     key: 'EmptyPage',

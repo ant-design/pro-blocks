@@ -1,6 +1,6 @@
 import { CloseCircleOutlined, RightOutlined } from '@ant-design/icons';
 import { Button, Card, Result } from 'antd';
-import { FormattedMessage, formatMessage } from 'umi-plugin-react/locale';
+import { FormattedMessage, formatMessage } from 'umi';
 import React, { Fragment } from 'react';
 
 import { GridContent } from '@ant-design/pro-layout';

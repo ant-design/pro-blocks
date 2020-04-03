@@ -1,9 +1,6 @@
 import { Form, Button, Col, Input, Popover, Progress, Row, Select, message } from 'antd';
-import { FormattedMessage, formatMessage } from 'umi-plugin-react/locale';
 import React, { FC, useState, useEffect } from 'react';
-import { Dispatch } from 'redux';
-import { Link, router } from 'umi';
-import { connect } from 'dva';
+import { Link, connect, router, FormattedMessage, formatMessage, Dispatch } from 'umi';
 
 import { StateType } from './model';
 import styles from './style.less';
@@ -82,11 +79,12 @@ const PAGE_NAME_UPPER_CAMEL_CASE: FC<PAGE_NAME_UPPER_CAMEL_CASEProps> = ({
       });
     }
   }, [BLOCK_NAME_CAMEL_CASE]);
-  useEffect(() => {
-    return () => {
+  useEffect(
+    () => () => {
       clearInterval(interval);
-    };
-  }, []);
+    },
+    [],
+  );
   const onGetCaptcha = () => {
     let counts = 59;
     setcount(counts);
@@ -185,7 +183,7 @@ const PAGE_NAME_UPPER_CAMEL_CASE: FC<PAGE_NAME_UPPER_CAMEL_CASEProps> = ({
           <Input size="large" placeholder={formatMessage({ id: 'BLOCK_NAME.email.placeholder' })} />
         </FormItem>
         <Popover
-          getPopupContainer={node => {
+          getPopupContainer={(node) => {
             if (node && node.parentNode) {
               return node.parentNode as HTMLElement;
             }

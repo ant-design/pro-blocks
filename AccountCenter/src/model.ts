@@ -1,5 +1,4 @@
-import { AnyAction, Reducer } from 'redux';
-import { EffectsCommandMap } from 'dva';
+import { Reducer, Effect } from 'umi';
 import { CurrentUser, ListItemDataType } from './data.d';
 import { queryCurrent, queryFakeList } from './service';
 
@@ -7,11 +6,6 @@ export interface ModalState {
   currentUser: Partial<CurrentUser>;
   list: ListItemDataType[];
 }
-
-export type Effect = (
-  action: AnyAction,
-  effects: EffectsCommandMap & { select: <T>(func: (state: ModalState) => T) => T },
-) => void;
 
 export interface ModelType {
   namespace: string;

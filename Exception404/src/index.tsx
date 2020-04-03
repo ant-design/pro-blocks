@@ -1,7 +1,6 @@
 import { Link } from 'umi';
 import { Result, Button } from 'antd';
 import React from 'react';
-import { formatMessage } from 'umi-plugin-react/locale';
 
 export default () => (
   <Result
@@ -10,15 +9,10 @@ export default () => (
     style={{
       background: 'none',
     }}
-    subTitle={formatMessage({
-      id: 'BLOCK_NAME.description.404',
-      defaultMessage: 'Sorry, the page you visited does not exist.',
-    })}
+    subTitle="Sorry, the page you visited does not exist."
     extra={
       <Link to="/">
-        <Button type="primary">
-          {formatMessage({ id: 'BLOCK_NAME.exception.back', defaultMessage: 'Back Home' })}
-        </Button>
+        <Button type="primary">Back Home</Button>
       </Link>
     }
   />

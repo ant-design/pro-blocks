@@ -1,10 +1,8 @@
 import { InfoCircleOutlined } from '@ant-design/icons';
 import { Button, Card, DatePicker, Input, Form, InputNumber, Radio, Select, Tooltip } from 'antd';
-import { FormattedMessage, formatMessage } from 'umi-plugin-react/locale';
+import { connect, Dispatch, FormattedMessage, formatMessage } from 'umi';
 import React, { FC } from 'react';
-import { Dispatch } from 'redux';
 import { PageHeaderWrapper } from '@ant-design/pro-layout';
-import { connect } from 'dva';
 import styles from './style.less';
 
 const FormItem = Form.Item;
@@ -17,7 +15,7 @@ interface PAGE_NAME_UPPER_CAMEL_CASEProps {
   dispatch: Dispatch<any>;
 }
 
-const PAGE_NAME_UPPER_CAMEL_CASE: FC<PAGE_NAME_UPPER_CAMEL_CASEProps> = props => {
+const PAGE_NAME_UPPER_CAMEL_CASE: FC<PAGE_NAME_UPPER_CAMEL_CASEProps> = (props) => {
   const { submitting } = props;
   const [form] = Form.useForm();
   const [showPublicUsers, setShowPublicUsers] = React.useState(false);
