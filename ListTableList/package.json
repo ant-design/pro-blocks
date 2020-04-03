@@ -13,8 +13,8 @@
   },
   "dependencies": {
     "@ant-design/icons": "^4.0.0",
-    "@ant-design/pro-layout": "^5.0.0",
     "@ant-design/pro-table": "^2.0.1",
+    "@ant-design/pro-layout": "^5.0.0",
     "dva": "^2.4.0",
     "moment": "^2.22.2",
     "umi-request": "^1.0.0"
