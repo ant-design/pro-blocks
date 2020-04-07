@@ -3,7 +3,7 @@ import GGEditor, { Koni } from 'gg-editor';
 
 import { PageHeaderWrapper } from '@ant-design/pro-layout';
 import React from 'react';
-import { formatMessage } from 'umi-plugin-react/locale';
+import { formatMessage } from 'umi';
 import EditorMinimap from './components/EditorMinimap';
 import { KoniContextMenu } from './components/EditorContextMenu';
 import { KoniDetailPanel } from './components/EditorDetailPanel';
@@ -21,12 +21,12 @@ export default () => (
     })}
   >
     <GGEditor className={styles.editor}>
-      <Row type="flex" className={styles.editorHd}>
+      <Row className={styles.editorHd}>
         <Col span={24}>
           <KoniToolbar />
         </Col>
       </Row>
-      <Row type="flex" className={styles.editorBd}>
+      <Row className={styles.editorBd}>
         <Col span={2} className={styles.editorSidebar}>
           <KoniItemPanel />
         </Col>

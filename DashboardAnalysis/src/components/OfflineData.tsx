@@ -1,5 +1,5 @@
 import { Card, Col, Row, Tabs } from 'antd';
-import { FormattedMessage, formatMessage } from 'umi-plugin-react/locale';
+import { FormattedMessage, formatMessage } from 'umi';
 import React from 'react';
 import { OfflineChartData, OfflineDataType } from '../data.d';
 
@@ -59,7 +59,7 @@ const OfflineData = ({
 }) => (
   <Card loading={loading} className={styles.offlineCard} bordered={false} style={{ marginTop: 32 }}>
     <Tabs activeKey={activeKey} onChange={handleTabChange}>
-      {offlineData.map(shop => (
+      {offlineData.map((shop) => (
         <TabPane tab={<CustomTab data={shop} currentTabKey={activeKey} />} key={shop.name}>
           <div style={{ padding: '0 24px' }}>
             <TimelineChart

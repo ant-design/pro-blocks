@@ -53,7 +53,7 @@ function getRule(req: Request, res: Response, u: string) {
     let filterDataSource: TableListItem[] = [];
     status.forEach((s: string) => {
       filterDataSource = filterDataSource.concat(
-        dataSource.filter(item => {
+        dataSource.filter((item) => {
           if (parseInt(`${item.status}`, 10) === parseInt(s.split('')[0], 10)) {
             return true;
           }
@@ -65,7 +65,7 @@ function getRule(req: Request, res: Response, u: string) {
   }
 
   if (params.name) {
-    dataSource = dataSource.filter(data => data.name.includes(params.name || ''));
+    dataSource = dataSource.filter((data) => data.name.includes(params.name || ''));
   }
 
   let pageSize = 10;
@@ -97,7 +97,7 @@ function postRule(req: Request, res: Response, u: string, b: Request) {
   switch (method) {
     /* eslint no-case-declarations:0 */
     case 'delete':
-      tableListDataSource = tableListDataSource.filter(item => key.indexOf(item.key) === -1);
+      tableListDataSource = tableListDataSource.filter((item) => key.indexOf(item.key) === -1);
       break;
     case 'post':
       const i = Math.ceil(Math.random() * 10000);
@@ -120,7 +120,7 @@ function postRule(req: Request, res: Response, u: string, b: Request) {
       });
       break;
     case 'update':
-      tableListDataSource = tableListDataSource.map(item => {
+      tableListDataSource = tableListDataSource.map((item) => {
         if (item.key === key) {
           return { ...item, desc, name };
         }

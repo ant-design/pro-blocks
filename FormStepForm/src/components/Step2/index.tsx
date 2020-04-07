@@ -1,7 +1,6 @@
 import React from 'react';
 import { Form, Alert, Button, Descriptions, Divider, Statistic, Input } from 'antd';
-import { Dispatch } from 'redux';
-import { connect } from 'dva';
+import { connect, Dispatch } from 'umi';
 import { StateType } from '../../model';
 import styles from './index.less';
 
@@ -19,7 +18,7 @@ interface Step2Props {
   submitting?: boolean;
 }
 
-const Step2: React.FC<Step2Props> = props => {
+const Step2: React.FC<Step2Props> = (props) => {
   const [form] = Form.useForm();
   const { data, dispatch, submitting } = props;
   if (!data) {

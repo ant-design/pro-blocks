@@ -2,13 +2,13 @@ import { StarTwoTone, LikeOutlined, MessageFilled } from '@ant-design/icons';
 import { List, Tag } from 'antd';
 import React from 'react';
 
-import { connect } from 'dva';
+import { connect } from 'umi';
 import ArticleListContent from '../ArticleListContent';
 import { ListItemDataType } from '../../data.d';
 import { ModalState } from '../../model';
 import styles from './index.less';
 
-const Articles: React.FC<Partial<ModalState>> = props => {
+const Articles: React.FC<Partial<ModalState>> = (props) => {
   const { list } = props;
   const IconText: React.FC<{
     icon: React.ReactNode;
@@ -25,7 +25,7 @@ const Articles: React.FC<Partial<ModalState>> = props => {
       rowKey="id"
       itemLayout="vertical"
       dataSource={list}
-      renderItem={item => (
+      renderItem={(item) => (
         <List.Item
           key={item.id}
           actions={[

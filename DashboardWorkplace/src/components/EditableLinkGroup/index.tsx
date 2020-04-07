@@ -16,11 +16,11 @@ interface EditableLinkGroupProps {
   linkElement: any;
 }
 
-const EditableLinkGroup: React.FC<EditableLinkGroupProps> = props => {
+const EditableLinkGroup: React.FC<EditableLinkGroupProps> = (props) => {
   const { links, linkElement, onAdd } = props;
   return (
     <div className={styles.linkGroup}>
-      {links.map(link =>
+      {links.map((link) =>
         createElement(
           linkElement,
           {

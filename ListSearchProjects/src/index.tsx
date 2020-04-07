@@ -1,7 +1,6 @@
 import { Card, Col, Form, List, Row, Select, Typography } from 'antd';
 import React, { FC, useEffect } from 'react';
-import { Dispatch } from 'redux';
-import { connect } from 'dva';
+import { connect, Dispatch } from 'umi';
 import moment from 'moment';
 import AvatarList from './components/AvatarList';
 import { StateType } from './model';
@@ -41,7 +40,7 @@ const PAGE_NAME_UPPER_CAMEL_CASE: FC<PAGE_NAME_UPPER_CAMEL_CASEProps> = ({
       loading={loading}
       grid={{ gutter: 24, xl: 4, lg: 3, md: 3, sm: 2, xs: 1 }}
       dataSource={list}
-      renderItem={item => (
+      renderItem={(item) => (
         <List.Item>
           <Card className={styles.card} hoverable cover={<img alt={item.title} src={item.cover} />}>
             <Card.Meta

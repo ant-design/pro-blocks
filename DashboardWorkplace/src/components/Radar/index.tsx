@@ -64,7 +64,7 @@ class Radar extends Component<RadarProps, RadarState> {
 
     const legendData = items.map((item: { color: any; _origin: any }[]) => {
       // eslint-disable-next-line no-underscore-dangle
-      const origins = item.map(t => t._origin);
+      const origins = item.map((t) => t._origin);
       const result = {
         name: origins[0].name,
         color: item[0].color,
@@ -97,10 +97,10 @@ class Radar extends Component<RadarProps, RadarState> {
     const { legendData } = this.state;
     legendData[i] = newItem;
 
-    const filteredLegendData = legendData.filter(l => l.checked).map(l => l.name);
+    const filteredLegendData = legendData.filter((l) => l.checked).map((l) => l.name);
 
     if (this.chart) {
-      this.chart.filter('name', val => filteredLegendData.indexOf(`${val}`) > -1);
+      this.chart.filter('name', (val) => filteredLegendData.indexOf(`${val}`) > -1);
       this.chart.repaint();
     }
 

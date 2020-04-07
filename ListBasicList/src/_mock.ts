@@ -123,7 +123,7 @@ function postFakeList(req: Request, res: Response) {
 
   switch (method) {
     case 'delete':
-      result = result.filter(item => item.id !== id);
+      result = result.filter((item) => item.id !== id);
       break;
     case 'update':
       result.forEach((item, i) => {

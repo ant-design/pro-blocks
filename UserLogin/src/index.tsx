@@ -1,9 +1,7 @@
 import { AlipayCircleOutlined, TaobaoCircleOutlined, WeiboCircleOutlined } from '@ant-design/icons';
 import { Alert, Checkbox } from 'antd';
 import React, { useState } from 'react';
-import { Dispatch, AnyAction } from 'redux';
-import { Link } from 'umi';
-import { connect } from 'dva';
+import { Dispatch, AnyAction, Link, connect } from 'umi';
 import { StateType } from './model';
 import styles from './style.less';
 import { LoginParamsType } from './service';
@@ -29,7 +27,7 @@ const LoginMessage: React.FC<{
   />
 );
 
-const PAGE_NAME_UPPER_CAMEL_CASE: React.FC<PAGE_NAME_UPPER_CAMEL_CASEProps> = props => {
+const PAGE_NAME_UPPER_CAMEL_CASE: React.FC<PAGE_NAME_UPPER_CAMEL_CASEProps> = (props) => {
   const { BLOCK_NAME_CAMEL_CASE = {}, submitting } = props;
   const { status, type: loginType } = BLOCK_NAME_CAMEL_CASE;
   const [autoLogin, setAutoLogin] = useState(true);
@@ -107,7 +105,7 @@ const PAGE_NAME_UPPER_CAMEL_CASE: React.FC<PAGE_NAME_UPPER_CAMEL_CASEProps> = pr
           />
         </Tab>
         <div>
-          <Checkbox checked={autoLogin} onChange={e => setAutoLogin(e.target.checked)}>
+          <Checkbox checked={autoLogin} onChange={(e) => setAutoLogin(e.target.checked)}>
             自动登录
           </Checkbox>
           <a

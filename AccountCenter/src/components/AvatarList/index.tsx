@@ -56,7 +56,7 @@ const AvatarList: React.FC<AvatarListProps> & { Item: typeof Item } = ({
   const numOfChildren = React.Children.count(children);
   const numToShow = maxLength >= numOfChildren ? numOfChildren : maxLength;
   const childrenArray = React.Children.toArray(children) as React.ReactElement<AvatarItemProps>[];
-  const childrenWithProps = childrenArray.slice(0, numToShow).map(child =>
+  const childrenWithProps = childrenArray.slice(0, numToShow).map((child) =>
     React.cloneElement(child, {
       size,
     }),

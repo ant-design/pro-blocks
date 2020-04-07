@@ -153,8 +153,7 @@
       "url": "https://github.com/ant-design/pro-blocks/tree/master/Exception403",
       "path": "Exception403",
       "features": [
-        "antd",
-        "i18n"
+        "antd"
       ],
       "img": "https://raw.githubusercontent.com/ant-design/pro-blocks/master/Exception403/snapshot.png?raw=true",
       "tags": [
@@ -169,8 +168,7 @@
       "url": "https://github.com/ant-design/pro-blocks/tree/master/Exception404",
       "path": "Exception404",
       "features": [
-        "antd",
-        "i18n"
+        "antd"
       ],
       "img": "https://raw.githubusercontent.com/ant-design/pro-blocks/master/Exception404/snapshot.png?raw=true",
       "tags": [

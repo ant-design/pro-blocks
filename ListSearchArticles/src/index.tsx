@@ -1,8 +1,7 @@
 import React, { FC, useEffect } from 'react';
 import { Button, Card, Col, Form, List, Row, Select, Tag } from 'antd';
 import { LoadingOutlined, StarOutlined, LikeOutlined, MessageOutlined } from '@ant-design/icons';
-import { Dispatch } from 'redux';
-import { connect } from 'dva';
+import { connect, Dispatch } from 'umi';
 import ArticleListContent from './components/ArticleListContent';
 import { StateType } from './model';
 import { ListItemDataType } from './data.d';
@@ -164,7 +163,7 @@ const PAGE_NAME_UPPER_CAMEL_CASE: FC<PAGE_NAME_UPPER_CAMEL_CASEProps> = ({
           <StandardFormRow title="owner" grid>
             <FormItem name="owner" noStyle>
               <Select mode="multiple" placeholder="选择 owner">
-                {owners.map(owner => (
+                {owners.map((owner) => (
                   <Option key={owner.id} value={owner.id}>
                     {owner.name}
                   </Option>
@@ -207,7 +206,7 @@ const PAGE_NAME_UPPER_CAMEL_CASE: FC<PAGE_NAME_UPPER_CAMEL_CASEProps> = ({
           itemLayout="vertical"
           loadMore={loadMore}
           dataSource={list}
-          renderItem={item => (
+          renderItem={(item) => (
             <List.Item
               key={item.id}
               actions={[

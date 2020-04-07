@@ -1,6 +1,6 @@
 import { Card, Radio } from 'antd';
 
-import { FormattedMessage } from 'umi-plugin-react/locale';
+import { FormattedMessage } from 'umi';
 import { RadioChangeEvent } from 'antd/es/radio';
 import React from 'react';
 import { VisitDataType } from '../data.d';
@@ -62,7 +62,7 @@ const ProportionSales = ({
         subTitle={<FormattedMessage id="BLOCK_NAME.analysis.sales" defaultMessage="Sales" />}
         total={() => <Yuan>{salesPieData.reduce((pre, now) => now.y + pre, 0)}</Yuan>}
         data={salesPieData}
-        valueFormat={value => <Yuan>{value}</Yuan>}
+        valueFormat={(value) => <Yuan>{value}</Yuan>}
         height={248}
         lineWidth={4}
       />

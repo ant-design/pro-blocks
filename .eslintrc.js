@@ -1,9 +1,6 @@
-const fabric = require('@umijs/fabric');
-
 module.exports = {
-  ...fabric.default,
+  extends: [require.resolve('@umijs/fabric/dist/eslint')],
   rules: {
-    ...fabric.default.rules,
     '@typescript-eslint/camelcase': 0,
     '@typescript-eslint/class-name-casing': 0,
     'import/no-extraneous-dependencies': 0,
