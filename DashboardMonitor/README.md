@@ -10,7 +10,7 @@ umi block add ant-design-pro/monitor
 
 ## SNAPSHOT
 
-![SNAPSHOT](./snapshot.png)
+![SNAPSHOT](./snapshot.jpg)
 
 ## LICENSE
 
