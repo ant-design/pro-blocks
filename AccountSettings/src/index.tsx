@@ -13,7 +13,7 @@ import styles from './style.less';
 const { Item } = Menu;
 
 interface PAGE_NAME_UPPER_CAMEL_CASEProps {
-  dispatch: Dispatch<any>;
+  dispatch: Dispatch;
   currentUser: CurrentUser;
 }
 
