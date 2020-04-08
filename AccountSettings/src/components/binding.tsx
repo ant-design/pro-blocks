@@ -1,4 +1,4 @@
-import { FormattedMessage, formatMessage } from 'umi-plugin-react/locale';
+import { FormattedMessage, formatMessage } from 'umi';
 import { AlipayOutlined, DingdingOutlined, TaobaoOutlined } from '@ant-design/icons';
 import { List } from 'antd';
 import React, { Component, Fragment } from 'react';
@@ -43,7 +43,7 @@ class BindingView extends Component {
         <List
           itemLayout="horizontal"
           dataSource={this.getData()}
-          renderItem={item => (
+          renderItem={(item) => (
             <List.Item actions={item.actions}>
               <List.Item.Meta
                 avatar={item.avatar}

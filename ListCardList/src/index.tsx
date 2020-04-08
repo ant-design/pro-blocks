@@ -2,9 +2,8 @@ import { PlusOutlined } from '@ant-design/icons';
 import { Button, Card, List, Typography } from 'antd';
 import React, { Component } from 'react';
 
-import { Dispatch } from 'redux';
 import { PageHeaderWrapper } from '@ant-design/pro-layout';
-import { connect } from 'dva';
+import { connect, Dispatch } from 'umi';
 import { StateType } from './model';
 import { CardListItemDataType } from './data.d';
 import styles from './style.less';
@@ -82,7 +81,7 @@ class PAGE_NAME_UPPER_CAMEL_CASE extends Component<
             loading={loading}
             grid={{ gutter: 24, lg: 3, md: 2, sm: 1, xs: 1 }}
             dataSource={[nullData, ...list]}
-            renderItem={item => {
+            renderItem={(item) => {
               if (item && item.id) {
                 return (
                   <List.Item key={item.id}>

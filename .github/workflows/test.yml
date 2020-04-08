@@ -1,4 +1,4 @@
-on: [push, pull_request]
+on: [push]
 jobs:
   test:
     runs-on: ubuntu-latest
@@ -24,7 +24,7 @@ jobs:
         run: cd ant-design-pro && npm install
 
       - name: fetch
-        run: cd ant-design-pro && npm run fetch:blocks --js --branch ${GITHUB_REF##*/}
+        run: cd ant-design-pro && yarn pro fetch-blocks --js --branch ${GITHUB_REF##*/}
 
       - name: lint:fix
         run: cd ant-design-pro && npm run lint:fix && yarn run prettier

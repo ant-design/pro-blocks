@@ -1,6 +1,5 @@
-import { AnyAction, Reducer } from 'redux';
+import { Effect, Reducer } from 'umi';
 
-import { EffectsCommandMap } from 'dva';
 import { fakeSubmitForm } from './service';
 
 export interface StateType {
@@ -12,11 +11,6 @@ export interface StateType {
     amount: string;
   };
 }
-
-export type Effect = (
-  action: AnyAction,
-  effects: EffectsCommandMap & { select: <T>(func: (state: StateType) => T) => T },
-) => void;
 
 export interface ModelType {
   namespace: string;

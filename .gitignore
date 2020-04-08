@@ -38,3 +38,5 @@ screenshot
 .firebase
 
 .eslintcache
+/locales/**
+/models/**

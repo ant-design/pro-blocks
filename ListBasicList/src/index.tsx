@@ -16,9 +16,8 @@ import {
 } from 'antd';
 
 import { findDOMNode } from 'react-dom';
-import { Dispatch } from 'redux';
 import { PageHeaderWrapper } from '@ant-design/pro-layout';
-import { connect } from 'dva';
+import { connect, Dispatch } from 'umi';
 import moment from 'moment';
 import OperationModal from './components/OperationModal';
 import { StateType } from './model';
@@ -67,7 +66,7 @@ const ListContent = ({
   </div>
 );
 
-export const PAGE_NAME_UPPER_CAMEL_CASE: FC<PAGE_NAME_UPPER_CAMEL_CASEProps> = props => {
+export const PAGE_NAME_UPPER_CAMEL_CASE: FC<PAGE_NAME_UPPER_CAMEL_CASEProps> = (props) => {
   const addBtn = useRef(null);
   const {
     loading,
@@ -226,12 +225,12 @@ export const PAGE_NAME_UPPER_CAMEL_CASE: FC<PAGE_NAME_UPPER_CAMEL_CASEProps> = p
               loading={loading}
               pagination={paginationProps}
               dataSource={list}
-              renderItem={item => (
+              renderItem={(item) => (
                 <List.Item
                   actions={[
                     <a
                       key="edit"
-                      onClick={e => {
+                      onClick={(e) => {
                         e.preventDefault();
                         showEditModal(item);
                       }}

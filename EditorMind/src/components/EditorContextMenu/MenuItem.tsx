@@ -11,7 +11,7 @@ interface MenuItemProps {
   icon?: string;
   text?: string;
 }
-const MenuItem: React.FC<MenuItemProps> = props => {
+const MenuItem: React.FC<MenuItemProps> = (props) => {
   const { command, icon, text } = props;
 
   return (

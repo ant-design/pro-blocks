@@ -12,9 +12,7 @@
     "dev": "umi dev"
   },
   "dependencies": {
-    "@ant-design/icons": "^4.0.0-alpha.19",
-    "dva": "^2.4.0",
-    "redux": "^4.0.1",
+    "@ant-design/icons": "^4.0.0",
     "umi-request": "^1.0.0"
   },
   "peerDependencies": {

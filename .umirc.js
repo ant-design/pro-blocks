@@ -1,22 +1,14 @@
 export default {
-  plugins: [
-    [
-      'umi-plugin-block-dev',
-      {
-        layout: 'ant-design-pro',
-        menu: {
-          name: '主页',
-          icon: 'home',
-        },
-      },
-    ],
-    [
-      'umi-plugin-react',
-      {
-        dva: true,
-        locale: true,
-        antd: true,
-      },
-    ],
-  ],
+  locale: {
+    // default zh-CN
+    default: 'zh-CN',
+    // default true, when it is true, will use `navigator.language` overwrite default
+    antd: true,
+    baseNavigator: true,
+  },
+  antd: {},
+  targets: {
+    ie: 11,
+  },
+  dva: {},
 };

@@ -6,4 +6,7 @@ export default {
     antd: true,
     baseNavigator: true,
   },
+  dva: {
+    hmr: true,
+  },
 };
