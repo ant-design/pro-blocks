@@ -6,7 +6,9 @@ export default {
     antd: true,
     baseNavigator: true,
   },
-  dva: {
-    hmr: true,
+  antd: {},
+  targets: {
+    ie: 11,
   },
+  dva: {},
 };

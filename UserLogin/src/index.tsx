@@ -1,7 +1,7 @@
 import { AlipayCircleOutlined, TaobaoCircleOutlined, WeiboCircleOutlined } from '@ant-design/icons';
 import { Alert, Checkbox } from 'antd';
 import React, { useState } from 'react';
-import { Dispatch, AnyAction, Link, connect } from 'umi';
+import { Dispatch, Link, connect } from 'umi';
 import { StateType } from './model';
 import styles from './style.less';
 import { LoginParamsType } from './service';
@@ -9,7 +9,7 @@ import LoginFrom from './components/Login';
 
 const { Tab, UserName, Password, Mobile, Captcha, Submit } = LoginFrom;
 interface PAGE_NAME_UPPER_CAMEL_CASEProps {
-  dispatch: Dispatch<AnyAction>;
+  dispatch: Dispatch;
   BLOCK_NAME_CAMEL_CASE: StateType;
   submitting?: boolean;
 }

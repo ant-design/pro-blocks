@@ -17,7 +17,7 @@ export interface LoginProps {
   style?: React.CSSProperties;
   onSubmit?: (values: LoginParamsType) => void;
   className?: string;
-  from?: FormInstance;
+  form?: FormInstance;
   children: React.ReactElement<typeof LoginTab>[];
 }
 
@@ -76,8 +76,8 @@ const Login: LoginType = (props) => {
     >
       <div className={classNames(className, styles.login)}>
         <Form
-          form={props.from}
-          onFinish={(values) => {
+          form={props.form}
+          onFinish={values => {
             if (props.onSubmit) {
               props.onSubmit(values as LoginParamsType);
             }
