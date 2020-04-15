@@ -77,7 +77,7 @@ const Login: LoginType = (props) => {
       <div className={classNames(className, styles.login)}>
         <Form
           form={props.form}
-          onFinish={values => {
+          onFinish={(values) => {
             if (props.onSubmit) {
               props.onSubmit(values as LoginParamsType);
             }
