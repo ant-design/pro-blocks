@@ -74,12 +74,12 @@ const TagSelect: FC<TagSelectProps> & { Option: typeof TagSelectOption } = (prop
     setValue(checkedTags);
   };
 
-  const handleTagChange = (v: string | number, checked: boolean) => {
+  const handleTagChange = (tag: string | number, checked: boolean) => {
     const checkedTags: (string | number)[] = [...(value || [])];
 
-    const index = checkedTags.indexOf(v);
+    const index = checkedTags.indexOf(tag);
     if (checked && index === -1) {
-      checkedTags.push(v);
+      checkedTags.push(tag);
     } else if (!checked && index > -1) {
       checkedTags.splice(index, 1);
     }

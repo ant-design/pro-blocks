@@ -65,7 +65,7 @@ const CardInfo: React.FC<{
   </div>
 );
 
-export const PAGE_NAME_UPPER_CAMEL_CASE: FC = () => {
+export const PAGE_NAME_UPPER_CAMEL_CASE: FC<{}> = () => {
   const { data, loading, run } = useRequest((values: any) => {
     console.log('form data', values);
     return queryFakeList({

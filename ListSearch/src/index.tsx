@@ -62,21 +62,19 @@ const PAGE_NAME_UPPER_CAMEL_CASE: FC<PAGE_NAME_UPPER_CAMEL_CASEProps> = (props) 
     return 'articles';
   };
 
-  const mainSearch = (
-    <div style={{ textAlign: 'center' }}>
-      <Input.Search
-        placeholder="请输入"
-        enterButton="搜索"
-        size="large"
-        onSearch={handleFormSubmit}
-        style={{ maxWidth: 522, width: '100%' }}
-      />
-    </div>
-  );
-
   return (
     <PageHeaderWrapper
-      content={mainSearch}
+      content={
+        <div style={{ textAlign: 'center' }}>
+          <Input.Search
+            placeholder="请输入"
+            enterButton="搜索"
+            size="large"
+            onSearch={handleFormSubmit}
+            style={{ maxWidth: 522, width: '100%' }}
+          />
+        </div>
+      }
       tabList={tabList}
       tabActiveKey={getTabKey()}
       onTabChange={handleTabChange}
