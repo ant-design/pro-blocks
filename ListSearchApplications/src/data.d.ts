@@ -4,7 +4,7 @@ export interface Member {
   id: string;
 }
 export interface Params {
-  count: number
+  count: number;
 }
 export interface ListItemDataType {
   id: string;

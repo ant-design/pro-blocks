@@ -17,13 +17,16 @@ const pageSize = 5;
 const PAGE_NAME_UPPER_CAMEL_CASE: FC = () => {
   const [form] = Form.useForm();
 
-  const { data, reload, loading, loadMore, loadingMore } = useRequest(() => {
-    return queryFakeList({
-      count: pageSize
-    });
-  }, {
-    loadMore: true
-  });
+  const { data, reload, loading, loadMore, loadingMore } = useRequest(
+    () => {
+      return queryFakeList({
+        count: pageSize,
+      });
+    },
+    {
+      loadMore: true,
+    },
+  );
 
   const list = data?.list || [];
 
@@ -103,8 +106,8 @@ const PAGE_NAME_UPPER_CAMEL_CASE: FC = () => {
             <LoadingOutlined /> 加载中...
           </span>
         ) : (
-            '加载更多'
-          )}
+          '加载更多'
+        )}
       </Button>
     </div>
   );

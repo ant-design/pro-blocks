@@ -84,6 +84,6 @@ const PAGE_NAME_UPPER_CAMEL_CASE: FC<PAGE_NAME_UPPER_CAMEL_CASEProps> = (props) 
       {props.children}
     </PageHeaderWrapper>
   );
-}
+};
 
 export default PAGE_NAME_UPPER_CAMEL_CASE;

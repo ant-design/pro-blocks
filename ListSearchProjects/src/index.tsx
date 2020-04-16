@@ -16,11 +16,10 @@ const { Paragraph } = Typography;
 const getKey = (id: string, index: number) => `${id}-${index}`;
 
 const PAGE_NAME_UPPER_CAMEL_CASE: FC = () => {
-
   const { data, loading, run } = useRequest((values: any) => {
     console.log('form data', values);
     return queryFakeList({
-      count: 8
+      count: 8,
     });
   });
 

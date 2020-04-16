@@ -5,7 +5,7 @@ export interface Member {
 }
 
 export interface Params {
-  count: number
+  count: number;
 }
 export interface ListItemDataType {
   id: string;

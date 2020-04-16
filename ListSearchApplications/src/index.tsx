@@ -1,4 +1,9 @@
-import { DownloadOutlined, EditOutlined, EllipsisOutlined, ShareAltOutlined } from '@ant-design/icons';
+import {
+  DownloadOutlined,
+  EditOutlined,
+  EllipsisOutlined,
+  ShareAltOutlined,
+} from '@ant-design/icons';
 import { Avatar, Card, Col, Dropdown, Form, List, Menu, Row, Select, Tooltip } from 'antd';
 import numeral from 'numeral';
 import React, { FC } from 'react';
@@ -61,11 +66,10 @@ const CardInfo: React.FC<{
 );
 
 export const PAGE_NAME_UPPER_CAMEL_CASE: FC = () => {
-
   const { data, loading, run } = useRequest((values: any) => {
     console.log('form data', values);
     return queryFakeList({
-      count: 8
+      count: 8,
     });
   });
 

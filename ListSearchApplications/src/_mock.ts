@@ -109,8 +109,8 @@ function getFakeList(req: Request, res: Response) {
   const result = fakeList(count);
   return res.json({
     data: {
-      list: result
-    }
+      list: result,
+    },
   });
 }
 

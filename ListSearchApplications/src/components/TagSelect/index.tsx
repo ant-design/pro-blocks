@@ -5,7 +5,6 @@ import classNames from 'classnames';
 import React, { FC } from 'react';
 import styles from './index.less';
 
-
 const { CheckableTag } = Tag;
 
 export interface TagSelectOptionProps {
@@ -48,14 +47,7 @@ export interface TagSelectProps {
 }
 
 const TagSelect: FC<TagSelectProps> & { Option: typeof TagSelectOption } = (props) => {
-  const {
-    children,
-    hideCheckAll = false,
-    className,
-    style,
-    expandable,
-    actionsText = {}
-  } = props;
+  const { children, hideCheckAll = false, className, style, expandable, actionsText = {} } = props;
 
   const { state: expand, toggle } = useBoolean();
 
@@ -72,7 +64,7 @@ const TagSelect: FC<TagSelectProps> & { Option: typeof TagSelectOption } = (prop
       .filter((child) => isTagSelectOption(child))
       .map((child) => child.props.value);
     return checkedTags || [];
-  }
+  };
 
   const onSelectAll = (checked: boolean) => {
     let checkedTags: (string | number)[] = [];
@@ -122,22 +114,27 @@ const TagSelect: FC<TagSelectProps> & { Option: typeof TagSelectOption } = (prop
           return child;
         })}
       {expandable && (
-        <a className={styles.trigger} onClick={() => { toggle() }}>
+        <a
+          className={styles.trigger}
+          onClick={() => {
+            toggle();
+          }}
+        >
           {expand ? (
             <>
               {collapseText} <UpOutlined />
             </>
           ) : (
-              <>
-                {expandText}
-                <DownOutlined />
-              </>
-            )}
+            <>
+              {expandText}
+              <DownOutlined />
+            </>
+          )}
         </a>
       )}
     </div>
   );
-}
+};
 
 TagSelect.Option = TagSelectOption;
 
