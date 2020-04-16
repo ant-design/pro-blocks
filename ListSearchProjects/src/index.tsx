@@ -1,39 +1,31 @@
 import { Card, Col, Form, List, Row, Select, Typography } from 'antd';
-import React, { FC, useEffect } from 'react';
-import { connect, Dispatch } from 'umi';
 import moment from 'moment';
+import React, { FC } from 'react';
+import { useRequest } from 'umi';
 import AvatarList from './components/AvatarList';
-import { StateType } from './model';
-import { ListItemDataType } from './data.d';
 import StandardFormRow from './components/StandardFormRow';
 import TagSelect from './components/TagSelect';
+import { ListItemDataType } from './data.d';
+import { queryFakeList } from './service';
 import styles from './style.less';
 
 const { Option } = Select;
 const FormItem = Form.Item;
 const { Paragraph } = Typography;
 
-interface PAGE_NAME_UPPER_CAMEL_CASEProps {
-  dispatch: Dispatch<any>;
-  BLOCK_NAME_CAMEL_CASE: StateType;
-  loading: boolean;
-}
-
 const getKey = (id: string, index: number) => `${id}-${index}`;
 
-const PAGE_NAME_UPPER_CAMEL_CASE: FC<PAGE_NAME_UPPER_CAMEL_CASEProps> = ({
-  dispatch,
-  BLOCK_NAME_CAMEL_CASE: { list = [] },
-  loading,
-}) => {
-  useEffect(() => {
-    dispatch({
-      type: 'BLOCK_NAME_CAMEL_CASE/fetch',
-      payload: {
-        count: 8,
-      },
+const PAGE_NAME_UPPER_CAMEL_CASE: FC = () => {
+
+  const { data, loading, run } = useRequest((values: any) => {
+    console.log('form data', values);
+    return queryFakeList({
+      count: 8
     });
-  }, []);
+  });
+
+  const list = data?.list || [];
+
   const cardList = list && (
     <List<ListItemDataType>
       rowKey="id"
@@ -83,15 +75,10 @@ const PAGE_NAME_UPPER_CAMEL_CASE: FC<PAGE_NAME_UPPER_CAMEL_CASEProps> = ({
       <Card bordered={false}>
         <Form
           layout="inline"
-          onValuesChange={() => {
+          onValuesChange={(_, values) => {
             // 表单项变化时请求数据
             // 模拟查询表单生效
-            dispatch({
-              type: 'BLOCK_NAME_CAMEL_CASE/fetch',
-              payload: {
-                count: 8,
-              },
-            });
+            run(values);
           }}
         >
           <StandardFormRow title="所属类目" block style={{ paddingBottom: 11 }}>
@@ -138,15 +125,4 @@ const PAGE_NAME_UPPER_CAMEL_CASE: FC<PAGE_NAME_UPPER_CAMEL_CASEProps> = ({
   );
 };
 
-export default connect(
-  ({
-    BLOCK_NAME_CAMEL_CASE,
-    loading,
-  }: {
-    BLOCK_NAME_CAMEL_CASE: StateType;
-    loading: { models: { [key: string]: boolean } };
-  }) => ({
-    BLOCK_NAME_CAMEL_CASE,
-    loading: loading.models.BLOCK_NAME_CAMEL_CASE,
-  }),
-)(PAGE_NAME_UPPER_CAMEL_CASE);
+export default PAGE_NAME_UPPER_CAMEL_CASE;

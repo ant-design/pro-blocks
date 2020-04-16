@@ -3,7 +3,9 @@ export interface Member {
   name: string;
   id: string;
 }
-
+export interface Params {
+  count: number
+}
 export interface ListItemDataType {
   id: string;
   owner: string;

@@ -1,7 +1,6 @@
-import React, { Component } from 'react';
-
-import { Input } from 'antd';
 import { PageHeaderWrapper } from '@ant-design/pro-layout';
+import { Input } from 'antd';
+import React, { FC } from 'react';
 import { history } from 'umi';
 
 interface PAGE_NAME_UPPER_CAMEL_CASEProps {
@@ -14,9 +13,24 @@ interface PAGE_NAME_UPPER_CAMEL_CASEProps {
   };
 }
 
-class PAGE_NAME_UPPER_CAMEL_CASE extends Component<PAGE_NAME_UPPER_CAMEL_CASEProps> {
-  handleTabChange = (key: string) => {
-    const { match } = this.props;
+const tabList = [
+  {
+    key: 'articles',
+    tab: '文章',
+  },
+  {
+    key: 'projects',
+    tab: '项目',
+  },
+  {
+    key: 'applications',
+    tab: '应用',
+  },
+];
+
+const PAGE_NAME_UPPER_CAMEL_CASE: FC<PAGE_NAME_UPPER_CAMEL_CASEProps> = (props) => {
+  const handleTabChange = (key: string) => {
+    const { match } = props;
     const url = match.url === '/' ? '' : match.url;
     switch (key) {
       case 'articles':
@@ -33,13 +47,13 @@ class PAGE_NAME_UPPER_CAMEL_CASE extends Component<PAGE_NAME_UPPER_CAMEL_CASEPro
     }
   };
 
-  handleFormSubmit = (value: string) => {
+  const handleFormSubmit = (value: string) => {
     // eslint-disable-next-line no-console
     console.log(value);
   };
 
-  getTabKey = () => {
-    const { match, location } = this.props;
+  const getTabKey = () => {
+    const { match, location } = props;
     const url = match.path === '/' ? '' : match.path;
     const tabKey = location.pathname.replace(`${url}/`, '');
     if (tabKey && tabKey !== '/') {
@@ -48,47 +62,28 @@ class PAGE_NAME_UPPER_CAMEL_CASE extends Component<PAGE_NAME_UPPER_CAMEL_CASEPro
     return 'articles';
   };
 
-  render() {
-    const tabList = [
-      {
-        key: 'articles',
-        tab: '文章',
-      },
-      {
-        key: 'projects',
-        tab: '项目',
-      },
-      {
-        key: 'applications',
-        tab: '应用',
-      },
-    ];
+  const mainSearch = (
+    <div style={{ textAlign: 'center' }}>
+      <Input.Search
+        placeholder="请输入"
+        enterButton="搜索"
+        size="large"
+        onSearch={handleFormSubmit}
+        style={{ maxWidth: 522, width: '100%' }}
+      />
+    </div>
+  );
 
-    const mainSearch = (
-      <div style={{ textAlign: 'center' }}>
-        <Input.Search
-          placeholder="请输入"
-          enterButton="搜索"
-          size="large"
-          onSearch={this.handleFormSubmit}
-          style={{ maxWidth: 522, width: '100%' }}
-        />
-      </div>
-    );
-
-    const { children } = this.props;
-
-    return (
-      <PageHeaderWrapper
-        content={mainSearch}
-        tabList={tabList}
-        tabActiveKey={this.getTabKey()}
-        onTabChange={this.handleTabChange}
-      >
-        {children}
-      </PageHeaderWrapper>
-    );
-  }
+  return (
+    <PageHeaderWrapper
+      content={mainSearch}
+      tabList={tabList}
+      tabActiveKey={getTabKey()}
+      onTabChange={handleTabChange}
+    >
+      {props.children}
+    </PageHeaderWrapper>
+  );
 }
 
 export default PAGE_NAME_UPPER_CAMEL_CASE;
