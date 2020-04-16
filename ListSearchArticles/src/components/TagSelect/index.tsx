@@ -15,6 +15,20 @@ export interface TagSelectOptionProps {
   onChange?: (value: string | number, state: boolean) => void;
 }
 
+const TagSelectOption: React.FC<TagSelectOptionProps> & {
+  isTagSelectOption: boolean;
+} = ({ children, checked, onChange, value }) => (
+  <CheckableTag
+    checked={!!checked}
+    key={value}
+    onChange={(state) => onChange && onChange(value, state)}
+  >
+    {children}
+  </CheckableTag>
+);
+
+TagSelectOption.isTagSelectOption = true;
+
 type TagSelectOptionElement = React.ReactElement<TagSelectOptionProps, typeof TagSelectOption>;
 export interface TagSelectProps {
   onChange?: (value: (string | number)[]) => void;
@@ -32,20 +46,6 @@ export interface TagSelectProps {
   Option?: TagSelectOptionProps;
   children?: TagSelectOptionElement | TagSelectOptionElement[];
 }
-
-const TagSelectOption: React.FC<TagSelectOptionProps> & {
-  isTagSelectOption: boolean;
-} = ({ children, checked, onChange, value }) => (
-  <CheckableTag
-    checked={!!checked}
-    key={value}
-    onChange={(state) => onChange && onChange(value, state)}
-  >
-    {children}
-  </CheckableTag>
-);
-
-TagSelectOption.isTagSelectOption = true;
 
 const TagSelect: FC<TagSelectProps> & { Option: typeof TagSelectOption } = (props) => {
   const {
@@ -67,7 +67,6 @@ const TagSelect: FC<TagSelectProps> & { Option: typeof TagSelectOption } = (prop
     (node.type.isTagSelectOption || node.type.displayName === 'TagSelectOption');
 
   const getAllTags = () => {
-    const { children } = props;
     const childrenArray = React.Children.toArray(children) as TagSelectOptionElement[];
     const checkedTags = childrenArray
       .filter((child) => isTagSelectOption(child))
