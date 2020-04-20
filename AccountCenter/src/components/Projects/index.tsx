@@ -1,15 +1,15 @@
 import { Card, List } from 'antd';
 import React from 'react';
-
-import { connect } from 'umi';
 import moment from 'moment';
 import AvatarList from '../AvatarList';
 import { ListItemDataType } from '../../data.d';
-import { ModalState } from '../../model';
 import styles from './index.less';
 
-const Projects: React.FC<Partial<ModalState>> = (props) => {
-  const { list } = props;
+export interface ProjectsProps {
+  list: ListItemDataType[];
+}
+
+const Projects: React.FC<ProjectsProps> = ({ list }) => {
   return (
     <List<ListItemDataType>
       className={styles.coverCardList}
@@ -41,6 +41,4 @@ const Projects: React.FC<Partial<ModalState>> = (props) => {
   );
 };
 
-export default connect(({ BLOCK_NAME_CAMEL_CASE }: { BLOCK_NAME_CAMEL_CASE: ModalState }) => ({
-  list: BLOCK_NAME_CAMEL_CASE.list,
-}))(Projects);
+export default Projects;

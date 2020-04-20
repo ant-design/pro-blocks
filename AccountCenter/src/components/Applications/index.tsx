@@ -6,10 +6,8 @@ import {
 } from '@ant-design/icons';
 import { Avatar, Card, Dropdown, List, Menu, Tooltip } from 'antd';
 import React from 'react';
-
-import { connect } from 'umi';
 import numeral from 'numeral';
-import { ModalState } from '../../model';
+import { ListItemDataType } from '../../data.d';
 import stylesApplications from './index.less';
 
 export function formatWan(val: number) {
@@ -38,8 +36,11 @@ export function formatWan(val: number) {
   return result;
 }
 
-const Applications: React.FC<Partial<ModalState>> = (props) => {
-  const { list } = props;
+export interface ApplicationsProps {
+  list: ListItemDataType[];
+}
+
+const Applications: React.FC<ApplicationsProps> = ({ list }) => {
   const itemMenu = (
     <Menu>
       <Menu.Item>
@@ -114,6 +115,4 @@ const Applications: React.FC<Partial<ModalState>> = (props) => {
   );
 };
 
-export default connect(({ BLOCK_NAME_CAMEL_CASE }: { BLOCK_NAME_CAMEL_CASE: ModalState }) => ({
-  list: BLOCK_NAME_CAMEL_CASE.list,
-}))(Applications);
+export default Applications;

@@ -22,8 +22,7 @@
       "url": "https://github.com/ant-design/pro-blocks/tree/master/AccountCenter",
       "path": "AccountCenter",
       "features": [
-        "antd",
-        "dva"
+        "antd"
       ],
       "img": "https://raw.githubusercontent.com/ant-design/pro-blocks/master/AccountCenter/snapshot.png?raw=true",
       "tags": [

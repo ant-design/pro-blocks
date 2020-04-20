@@ -1,15 +1,14 @@
 import { StarTwoTone, LikeOutlined, MessageFilled } from '@ant-design/icons';
 import { List, Tag } from 'antd';
 import React from 'react';
-
-import { connect } from 'umi';
 import ArticleListContent from '../ArticleListContent';
 import { ListItemDataType } from '../../data.d';
-import { ModalState } from '../../model';
 import styles from './index.less';
 
-const Articles: React.FC<Partial<ModalState>> = (props) => {
-  const { list } = props;
+export interface ArticlesProps {
+  list: ListItemDataType[];
+}
+const Articles: React.FC<ArticlesProps> = ({ list }) => {
   const IconText: React.FC<{
     icon: React.ReactNode;
     text: React.ReactNode;
@@ -55,6 +54,4 @@ const Articles: React.FC<Partial<ModalState>> = (props) => {
   );
 };
 
-export default connect(({ BLOCK_NAME_CAMEL_CASE }: { BLOCK_NAME_CAMEL_CASE: ModalState }) => ({
-  list: BLOCK_NAME_CAMEL_CASE.list,
-}))(Articles);
+export default Articles;
