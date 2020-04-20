@@ -433,9 +433,7 @@
       "url": "https://github.com/ant-design/pro-blocks/tree/master/UserLogin",
       "path": "UserLogin",
       "features": [
-        "antd",
-        "i18n",
-        "dva"
+        "antd"
       ],
       "img": "https://raw.githubusercontent.com/ant-design/pro-blocks/master/UserLogin/snapshot.png?raw=true",
       "tags": [

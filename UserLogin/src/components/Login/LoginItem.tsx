@@ -110,7 +110,7 @@ const LoginItem: React.FC<LoginItemProps> = (props) => {
   const otherProps = restProps || {};
 
   if (type === 'Captcha') {
-    const inputProps = omit(otherProps, ['onGetCaptcha', 'countDown']);
+    const inputProps = omit(otherProps, ['countDown']);
 
     return (
       <FormItem shouldUpdate>
