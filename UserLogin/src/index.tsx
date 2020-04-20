@@ -34,7 +34,7 @@ const PAGE_NAME_UPPER_CAMEL_CASE: React.FC = () => {
     submit(values);
   };
 
-  const { status, loginType } = data;
+  const { status, type: loginType } = data || { status: 'ok', type: 'account' };
   return (
     <div className={styles.main}>
       <LoginFrom activeKey={type} onTabChange={setType} onSubmit={handleSubmit}>

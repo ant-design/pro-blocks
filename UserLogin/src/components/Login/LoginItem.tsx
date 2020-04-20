@@ -76,6 +76,10 @@ const LoginItem: React.FC<LoginItemProps> = (props) => {
   } = props;
 
   const onGetCaptcha = useCallback(async (mobile: string) => {
+    if (!mobile) {
+      message.warning('请输入手机号码!');
+      return;
+    }
     const result = await getFakeCaptcha(mobile);
     if (result === false) {
       return;
