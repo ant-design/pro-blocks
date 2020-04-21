@@ -1,7 +1,7 @@
 import React from 'react';
 import { UploadOutlined } from '@ant-design/icons';
 import { Button, Input, Select, Upload, Form, message } from 'antd';
-import { FormattedMessage, formatMessage, useRequest } from 'umi';
+import { useRequest } from 'umi';
 import { queryCurrent } from '../service';
 import GeographicView from './GeographicView';
 import PhoneView from './PhoneView';
@@ -17,9 +17,7 @@ interface SelectItem {
 // 头像组件 方便以后独立，增加裁剪之类的功能
 const AvatarView = ({ avatar }: { avatar: string }) => (
   <>
-    <div className={styles.avatar_title}>
-      <FormattedMessage id="BLOCK_NAME.basic.avatar" defaultMessage="Avatar" />
-    </div>
+    <div className={styles.avatar_title}>头像</div>
     <div className={styles.avatar}>
       <img src={avatar} alt="avatar" />
     </div>
@@ -27,7 +25,7 @@ const AvatarView = ({ avatar }: { avatar: string }) => (
       <div className={styles.button_view}>
         <Button>
           <UploadOutlined />
-          <FormattedMessage id="BLOCK_NAME.basic.change-avatar" defaultMessage="Change avatar" />
+          更换头像
         </Button>
       </div>
     </Upload>
@@ -80,7 +78,7 @@ const BaseView: React.FC = () => {
   };
 
   const handleFinish = () => {
-    message.success(formatMessage({ id: 'BLOCK_NAME.basic.update.success' }));
+    message.success('更新基本信息成功');
   };
   return (
     <div className={styles.baseView}>
@@ -95,11 +93,11 @@ const BaseView: React.FC = () => {
             >
               <Form.Item
                 name="email"
-                label={formatMessage({ id: 'BLOCK_NAME.basic.email' })}
+                label="邮箱"
                 rules={[
                   {
                     required: true,
-                    message: formatMessage({ id: 'BLOCK_NAME.basic.email-message' }, {}),
+                    message: '请输入您的邮箱!',
                   },
                 ]}
               >
@@ -107,11 +105,11 @@ const BaseView: React.FC = () => {
               </Form.Item>
               <Form.Item
                 name="name"
-                label={formatMessage({ id: 'BLOCK_NAME.basic.nickname' })}
+                label="昵称"
                 rules={[
                   {
                     required: true,
-                    message: formatMessage({ id: 'BLOCK_NAME.basic.nickname-message' }, {}),
+                    message: '请输入您的昵称!',
                   },
                 ]}
               >
@@ -119,26 +117,23 @@ const BaseView: React.FC = () => {
               </Form.Item>
               <Form.Item
                 name="profile"
-                label={formatMessage({ id: 'BLOCK_NAME.basic.profile' })}
+                label="个人简介"
                 rules={[
                   {
                     required: true,
-                    message: formatMessage({ id: 'BLOCK_NAME.basic.profile-message' }, {}),
+                    message: '请输入个人简介!',
                   },
                 ]}
               >
-                <Input.TextArea
-                  placeholder={formatMessage({ id: 'BLOCK_NAME.basic.profile-placeholder' })}
-                  rows={4}
-                />
+                <Input.TextArea placeholder="个人简介" rows={4} />
               </Form.Item>
               <Form.Item
                 name="country"
-                label={formatMessage({ id: 'BLOCK_NAME.basic.country' })}
+                label="国家/地区"
                 rules={[
                   {
                     required: true,
-                    message: formatMessage({ id: 'BLOCK_NAME.basic.country-message' }, {}),
+                    message: '请输入您的国家或地区!',
                   },
                 ]}
               >
@@ -148,11 +143,11 @@ const BaseView: React.FC = () => {
               </Form.Item>
               <Form.Item
                 name="geographic"
-                label={formatMessage({ id: 'BLOCK_NAME.basic.geographic' })}
+                label="所在省市"
                 rules={[
                   {
                     required: true,
-                    message: formatMessage({ id: 'BLOCK_NAME.basic.geographic-message' }, {}),
+                    message: '请输入您的所在省市!',
                   },
                   {
                     validator: validatorGeographic,
@@ -163,11 +158,11 @@ const BaseView: React.FC = () => {
               </Form.Item>
               <Form.Item
                 name="address"
-                label={formatMessage({ id: 'BLOCK_NAME.basic.address' })}
+                label="街道地址"
                 rules={[
                   {
                     required: true,
-                    message: formatMessage({ id: 'BLOCK_NAME.basic.address-message' }, {}),
+                    message: '请输入您的街道地址!',
                   },
                 ]}
               >
@@ -175,11 +170,11 @@ const BaseView: React.FC = () => {
               </Form.Item>
               <Form.Item
                 name="phone"
-                label={formatMessage({ id: 'BLOCK_NAME.basic.phone' })}
+                label="联系电话"
                 rules={[
                   {
                     required: true,
-                    message: formatMessage({ id: 'BLOCK_NAME.basic.phone-message' }, {}),
+                    message: '请输入您的联系电话!',
                   },
                   { validator: validatorPhone },
                 ]}
@@ -188,10 +183,7 @@ const BaseView: React.FC = () => {
               </Form.Item>
               <Form.Item>
                 <Button htmlType="submit" type="primary">
-                  <FormattedMessage
-                    id="BLOCK_NAME.basic.update"
-                    defaultMessage="Update Information"
-                  />
+                  更新基本信息
                 </Button>
               </Form.Item>
             </Form>

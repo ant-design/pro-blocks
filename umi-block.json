@@ -38,7 +38,6 @@
       "path": "AccountSettings",
       "features": [
         "antd",
-        "i18n",
         "dva"
       ],
       "img": "https://raw.githubusercontent.com/ant-design/pro-blocks/master/AccountSettings/snapshot.png?raw=true",

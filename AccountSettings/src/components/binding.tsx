@@ -1,4 +1,3 @@
-import { FormattedMessage, formatMessage } from 'umi';
 import { AlipayOutlined, DingdingOutlined, TaobaoOutlined } from '@ant-design/icons';
 import { List } from 'antd';
 import React, { Fragment } from 'react';
@@ -6,33 +5,21 @@ import React, { Fragment } from 'react';
 const BindingView: React.FC = () => {
   const getData = () => [
     {
-      title: formatMessage({ id: 'BLOCK_NAME.binding.taobao' }, {}),
-      description: formatMessage({ id: 'BLOCK_NAME.binding.taobao-description' }, {}),
-      actions: [
-        <a key="Bind">
-          <FormattedMessage id="BLOCK_NAME.binding.bind" defaultMessage="Bind" />
-        </a>,
-      ],
+      title: '绑定淘宝',
+      description: '当前未绑定淘宝账号',
+      actions: [<a key="Bind">绑定</a>],
       avatar: <TaobaoOutlined className="taobao" />,
     },
     {
-      title: formatMessage({ id: 'BLOCK_NAME.binding.alipay' }, {}),
-      description: formatMessage({ id: 'BLOCK_NAME.binding.alipay-description' }, {}),
-      actions: [
-        <a key="Bind">
-          <FormattedMessage id="BLOCK_NAME.binding.bind" defaultMessage="Bind" />
-        </a>,
-      ],
+      title: '绑定支付宝',
+      description: '当前未绑定支付宝账号',
+      actions: [<a key="Bind">绑定</a>],
       avatar: <AlipayOutlined className="alipay" />,
     },
     {
-      title: formatMessage({ id: 'BLOCK_NAME.binding.dingding' }, {}),
-      description: formatMessage({ id: 'BLOCK_NAME.binding.dingding-description' }, {}),
-      actions: [
-        <a key="Bind">
-          <FormattedMessage id="BLOCK_NAME.binding.bind" defaultMessage="Bind" />
-        </a>,
-      ],
+      title: '绑定钉钉',
+      description: '当前未绑定钉钉账号',
+      actions: [<a key="Bind">绑定</a>],
       avatar: <DingdingOutlined className="dingding" />,
     },
   ];

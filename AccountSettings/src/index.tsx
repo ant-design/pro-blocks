@@ -1,5 +1,4 @@
 import React, { useState, useRef, useLayoutEffect } from 'react';
-import { FormattedMessage } from 'umi';
 import { GridContent } from '@ant-design/pro-layout';
 import { Menu } from 'antd';
 import BaseView from './components/base';
@@ -20,17 +19,10 @@ const PAGE_NAME_UPPER_CAMEL_CASE: React.FC = () => {
   const menuMap: {
     [key: string]: React.ReactNode;
   } = {
-    base: <FormattedMessage id="BLOCK_NAME.menuMap.basic" defaultMessage="Basic Settings" />,
-    security: (
-      <FormattedMessage id="BLOCK_NAME.menuMap.security" defaultMessage="Security Settings" />
-    ),
-    binding: <FormattedMessage id="BLOCK_NAME.menuMap.binding" defaultMessage="Account Binding" />,
-    notification: (
-      <FormattedMessage
-        id="BLOCK_NAME.menuMap.notification"
-        defaultMessage="New Message Notification"
-      />
-    ),
+    base: '基本设置',
+    security: '安全设置',
+    binding: '账号绑定',
+    notification: '新消息通知',
   };
 
   const [initConfig, setInitConfig] = useState<PAGE_NAME_UPPER_CAMEL_CASEState>({
