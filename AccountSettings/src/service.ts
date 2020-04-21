@@ -1,7 +1,7 @@
 import request from 'umi-request';
 
 export async function queryCurrent() {
-  return request('/api/currentUser');
+  return request('/api/accountSettingCurrentUser');
 }
 
 export async function queryProvince() {

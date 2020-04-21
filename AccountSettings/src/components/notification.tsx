@@ -1,12 +1,12 @@
 import { List, Switch } from 'antd';
-import React, { Component, Fragment } from 'react';
+import React, { Fragment } from 'react';
 
 import { formatMessage } from 'umi';
 
 type Unpacked<T> = T extends (infer U)[] ? U : T;
 
-class NotificationView extends Component {
-  getData = () => {
+const NotificationView: React.FC = () => {
+  const getData = () => {
     const Action = (
       <Switch
         checkedChildren={formatMessage({ id: 'BLOCK_NAME.settings.open' })}
@@ -33,22 +33,20 @@ class NotificationView extends Component {
     ];
   };
 
-  render() {
-    const data = this.getData();
-    return (
-      <Fragment>
-        <List<Unpacked<typeof data>>
-          itemLayout="horizontal"
-          dataSource={data}
-          renderItem={(item) => (
-            <List.Item actions={item.actions}>
-              <List.Item.Meta title={item.title} description={item.description} />
-            </List.Item>
-          )}
-        />
-      </Fragment>
-    );
-  }
-}
+  const data = getData();
+  return (
+    <Fragment>
+      <List<Unpacked<typeof data>>
+        itemLayout="horizontal"
+        dataSource={data}
+        renderItem={(item) => (
+          <List.Item actions={item.actions}>
+            <List.Item.Meta title={item.title} description={item.description} />
+          </List.Item>
+        )}
+      />
+    </Fragment>
+  );
+};
 
 export default NotificationView;

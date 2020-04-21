@@ -1,10 +1,10 @@
 import { FormattedMessage, formatMessage } from 'umi';
 import { AlipayOutlined, DingdingOutlined, TaobaoOutlined } from '@ant-design/icons';
 import { List } from 'antd';
-import React, { Component, Fragment } from 'react';
+import React, { Fragment } from 'react';
 
-class BindingView extends Component {
-  getData = () => [
+const BindingView: React.FC = () => {
+  const getData = () => [
     {
       title: formatMessage({ id: 'BLOCK_NAME.binding.taobao' }, {}),
       description: formatMessage({ id: 'BLOCK_NAME.binding.taobao-description' }, {}),
@@ -37,25 +37,23 @@ class BindingView extends Component {
     },
   ];
 
-  render() {
-    return (
-      <Fragment>
-        <List
-          itemLayout="horizontal"
-          dataSource={this.getData()}
-          renderItem={(item) => (
-            <List.Item actions={item.actions}>
-              <List.Item.Meta
-                avatar={item.avatar}
-                title={item.title}
-                description={item.description}
-              />
-            </List.Item>
-          )}
-        />
-      </Fragment>
-    );
-  }
-}
+  return (
+    <Fragment>
+      <List
+        itemLayout="horizontal"
+        dataSource={getData()}
+        renderItem={(item) => (
+          <List.Item actions={item.actions}>
+            <List.Item.Meta
+              avatar={item.avatar}
+              title={item.title}
+              description={item.description}
+            />
+          </List.Item>
+        )}
+      />
+    </Fragment>
+  );
+};
 
 export default BindingView;
