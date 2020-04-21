@@ -20,11 +20,12 @@ import {
   Empty,
 } from 'antd';
 import { GridContent, PageHeaderWrapper, RouteContext } from '@ant-design/pro-layout';
-import React, { Component, Fragment } from 'react';
+import React, { Fragment, FC, useState } from 'react';
 
 import classNames from 'classnames';
-import { connect, Dispatch } from 'umi';
+import { useRequest } from 'umi';
 import { AdvancedProfileData } from './data.d';
+import { queryAdvancedProfile } from './service';
 import styles from './style.less';
 
 const { Step } = Steps;
@@ -150,7 +151,7 @@ const customDot = (
   if (status === 'process') {
     return (
       <Popover placement="topLeft" arrowPointAtCenter content={popoverContent}>
-        {dot}
+        <>{dot}</>
       </Popover>
     );
   }
@@ -211,181 +212,159 @@ interface PAGE_NAME_UPPER_CAMEL_CASEState {
   tabActiveKey: string;
 }
 
-class PAGE_NAME_UPPER_CAMEL_CASE extends Component<
-  { loading: boolean; BLOCK_NAME_CAMEL_CASE: AdvancedProfileData; dispatch: Dispatch<any> },
-  PAGE_NAME_UPPER_CAMEL_CASEState
-> {
-  public state: PAGE_NAME_UPPER_CAMEL_CASEState = {
+const PAGE_NAME_UPPER_CAMEL_CASE: FC = () => {
+  const [tabStatus, seTabStatus] = useState<PAGE_NAME_UPPER_CAMEL_CASEState>({
     operationKey: 'tab1',
     tabActiveKey: 'detail',
+  });
+  const { data, loading } = useRequest(queryAdvancedProfile);
+  const {
+    advancedOperation1,
+    advancedOperation2,
+    advancedOperation3,
+  }: AdvancedProfileData = data || {
+    advancedOperation1: [],
+    advancedOperation2: [],
+    advancedOperation3: [],
+  };
+  const contentList = {
+    tab1: (
+      <Table
+        pagination={false}
+        loading={loading}
+        dataSource={advancedOperation1}
+        columns={columns}
+      />
+    ),
+    tab2: (
+      <Table
+        pagination={false}
+        loading={loading}
+        dataSource={advancedOperation2}
+        columns={columns}
+      />
+    ),
+    tab3: (
+      <Table
+        pagination={false}
+        loading={loading}
+        dataSource={advancedOperation3}
+        columns={columns}
+      />
+    ),
+  };
+  const onTabChange = (tabActiveKey: string) => {
+    seTabStatus({ ...tabStatus, tabActiveKey });
+  };
+  const onOperationTabChange = (key: string) => {
+    seTabStatus({ ...tabStatus, operationKey: key });
   };
 
-  componentDidMount() {
-    const { dispatch } = this.props;
-    dispatch({
-      type: 'BLOCK_NAME_CAMEL_CASE/fetchAdvanced',
-    });
-  }
-
-  onOperationTabChange = (key: string) => {
-    this.setState({ operationKey: key });
-  };
-
-  onTabChange = (tabActiveKey: string) => {
-    this.setState({ tabActiveKey });
-  };
-
-  render() {
-    const { operationKey, tabActiveKey } = this.state;
-    const { BLOCK_NAME_CAMEL_CASE, loading } = this.props;
-    const { advancedOperation1, advancedOperation2, advancedOperation3 } = BLOCK_NAME_CAMEL_CASE;
-    const contentList = {
-      tab1: (
-        <Table
-          pagination={false}
-          loading={loading}
-          dataSource={advancedOperation1}
-          columns={columns}
-        />
-      ),
-      tab2: (
-        <Table
-          pagination={false}
-          loading={loading}
-          dataSource={advancedOperation2}
-          columns={columns}
-        />
-      ),
-      tab3: (
-        <Table
-          pagination={false}
-          loading={loading}
-          dataSource={advancedOperation3}
-          columns={columns}
-        />
-      ),
-    };
-    return (
-      <PageHeaderWrapper
-        title="单号：234231029431"
-        extra={action}
-        className={styles.pageHeader}
-        content={description}
-        extraContent={extra}
-        tabActiveKey={tabActiveKey}
-        onTabChange={this.onTabChange}
-        tabList={[
-          {
-            key: 'detail',
-            tab: '详情',
-          },
-          {
-            key: 'rule',
-            tab: '规则',
-          },
-        ]}
-      >
-        <div className={styles.main}>
-          <GridContent>
-            <Card title="流程进度" style={{ marginBottom: 24 }}>
-              <RouteContext.Consumer>
-                {({ isMobile }) => (
-                  <Steps
-                    direction={isMobile ? 'vertical' : 'horizontal'}
-                    progressDot={customDot}
-                    current={1}
-                  >
-                    <Step title="创建项目" description={desc1} />
-                    <Step title="部门初审" description={desc2} />
-                    <Step title="财务复核" />
-                    <Step title="完成" />
-                  </Steps>
-                )}
-              </RouteContext.Consumer>
-            </Card>
-            <Card title="用户信息" style={{ marginBottom: 24 }} bordered={false}>
-              <Descriptions style={{ marginBottom: 24 }}>
-                <Descriptions.Item label="用户姓名">付小小</Descriptions.Item>
-                <Descriptions.Item label="会员卡号">32943898021309809423</Descriptions.Item>
-                <Descriptions.Item label="身份证">3321944288191034921</Descriptions.Item>
-                <Descriptions.Item label="联系方式">18112345678</Descriptions.Item>
-                <Descriptions.Item label="联系地址">
-                  曲丽丽 18100000000 浙江省杭州市西湖区黄姑山路工专路交叉路口
-                </Descriptions.Item>
-              </Descriptions>
-              <Descriptions style={{ marginBottom: 24 }} title="信息组">
-                <Descriptions.Item label="某某数据">725</Descriptions.Item>
-                <Descriptions.Item label="该数据更新时间">2017-08-08</Descriptions.Item>
-                <Descriptions.Item
-                  label={
-                    <span>
-                      某某数据
-                      <Tooltip title="数据说明">
-                        <InfoCircleOutlined
-                          style={{ color: 'rgba(0, 0, 0, 0.43)', marginLeft: 4 }}
-                        />
-                      </Tooltip>
-                    </span>
-                  }
+  return (
+    <PageHeaderWrapper
+      title="单号：234231029431"
+      extra={action}
+      className={styles.pageHeader}
+      content={description}
+      extraContent={extra}
+      tabActiveKey={tabStatus.tabActiveKey}
+      onTabChange={onTabChange}
+      tabList={[
+        {
+          key: 'detail',
+          tab: '详情',
+        },
+        {
+          key: 'rule',
+          tab: '规则',
+        },
+      ]}
+    >
+      <div className={styles.main}>
+        <GridContent>
+          <Card title="流程进度" style={{ marginBottom: 24 }}>
+            <RouteContext.Consumer>
+              {({ isMobile }) => (
+                <Steps
+                  direction={isMobile ? 'vertical' : 'horizontal'}
+                  progressDot={customDot}
+                  current={1}
                 >
-                  725
+                  <Step title="创建项目" description={desc1} />
+                  <Step title="部门初审" description={desc2} />
+                  <Step title="财务复核" />
+                  <Step title="完成" />
+                </Steps>
+              )}
+            </RouteContext.Consumer>
+          </Card>
+          <Card title="用户信息" style={{ marginBottom: 24 }} bordered={false}>
+            <Descriptions style={{ marginBottom: 24 }}>
+              <Descriptions.Item label="用户姓名">付小小</Descriptions.Item>
+              <Descriptions.Item label="会员卡号">32943898021309809423</Descriptions.Item>
+              <Descriptions.Item label="身份证">3321944288191034921</Descriptions.Item>
+              <Descriptions.Item label="联系方式">18112345678</Descriptions.Item>
+              <Descriptions.Item label="联系地址">
+                曲丽丽 18100000000 浙江省杭州市西湖区黄姑山路工专路交叉路口
+              </Descriptions.Item>
+            </Descriptions>
+            <Descriptions style={{ marginBottom: 24 }} title="信息组">
+              <Descriptions.Item label="某某数据">725</Descriptions.Item>
+              <Descriptions.Item label="该数据更新时间">2017-08-08</Descriptions.Item>
+              <Descriptions.Item
+                label={
+                  <span>
+                    某某数据
+                    <Tooltip title="数据说明">
+                      <InfoCircleOutlined style={{ color: 'rgba(0, 0, 0, 0.43)', marginLeft: 4 }} />
+                    </Tooltip>
+                  </span>
+                }
+              >
+                725
+              </Descriptions.Item>
+              <Descriptions.Item label="该数据更新时间">2017-08-08</Descriptions.Item>
+            </Descriptions>
+            <h4 style={{ marginBottom: 16 }}>信息组</h4>
+            <Card type="inner" title="多层级信息组">
+              <Descriptions style={{ marginBottom: 16 }} title="组名称">
+                <Descriptions.Item label="负责人">林东东</Descriptions.Item>
+                <Descriptions.Item label="角色码">1234567</Descriptions.Item>
+                <Descriptions.Item label="所属部门">XX公司 - YY部</Descriptions.Item>
+                <Descriptions.Item label="过期时间">2017-08-08</Descriptions.Item>
+                <Descriptions.Item label="描述">
+                  这段描述很长很长很长很长很长很长很长很长很长很长很长很长很长很长...
                 </Descriptions.Item>
-                <Descriptions.Item label="该数据更新时间">2017-08-08</Descriptions.Item>
               </Descriptions>
-              <h4 style={{ marginBottom: 16 }}>信息组</h4>
-              <Card type="inner" title="多层级信息组">
-                <Descriptions style={{ marginBottom: 16 }} title="组名称">
-                  <Descriptions.Item label="负责人">林东东</Descriptions.Item>
-                  <Descriptions.Item label="角色码">1234567</Descriptions.Item>
-                  <Descriptions.Item label="所属部门">XX公司 - YY部</Descriptions.Item>
-                  <Descriptions.Item label="过期时间">2017-08-08</Descriptions.Item>
-                  <Descriptions.Item label="描述">
-                    这段描述很长很长很长很长很长很长很长很长很长很长很长很长很长很长...
-                  </Descriptions.Item>
-                </Descriptions>
-                <Divider style={{ margin: '16px 0' }} />
-                <Descriptions style={{ marginBottom: 16 }} title="组名称" column={1}>
-                  <Descriptions.Item label="学名">
-                    Citrullus lanatus (Thunb.) Matsum. et
-                    Nakai一年生蔓生藤本；茎、枝粗壮，具明显的棱。卷须较粗..
-                  </Descriptions.Item>
-                </Descriptions>
-                <Divider style={{ margin: '16px 0' }} />
-                <Descriptions title="组名称">
-                  <Descriptions.Item label="负责人">付小小</Descriptions.Item>
-                  <Descriptions.Item label="角色码">1234568</Descriptions.Item>
-                </Descriptions>
-              </Card>
+              <Divider style={{ margin: '16px 0' }} />
+              <Descriptions style={{ marginBottom: 16 }} title="组名称" column={1}>
+                <Descriptions.Item label="学名">
+                  Citrullus lanatus (Thunb.) Matsum. et
+                  Nakai一年生蔓生藤本；茎、枝粗壮，具明显的棱。卷须较粗..
+                </Descriptions.Item>
+              </Descriptions>
+              <Divider style={{ margin: '16px 0' }} />
+              <Descriptions title="组名称">
+                <Descriptions.Item label="负责人">付小小</Descriptions.Item>
+                <Descriptions.Item label="角色码">1234568</Descriptions.Item>
+              </Descriptions>
             </Card>
-            <Card title="用户近半年来电记录" style={{ marginBottom: 24 }} bordered={false}>
-              <Empty />
-            </Card>
-            <Card
-              className={styles.tabsCard}
-              bordered={false}
-              tabList={operationTabList}
-              onTabChange={this.onOperationTabChange}
-            >
-              {contentList[operationKey]}
-            </Card>
-          </GridContent>
-        </div>
-      </PageHeaderWrapper>
-    );
-  }
-}
+          </Card>
+          <Card title="用户近半年来电记录" style={{ marginBottom: 24 }} bordered={false}>
+            <Empty />
+          </Card>
+          <Card
+            className={styles.tabsCard}
+            bordered={false}
+            tabList={operationTabList}
+            onTabChange={onOperationTabChange}
+          >
+            {contentList[tabStatus.operationKey]}
+          </Card>
+        </GridContent>
+      </div>
+    </PageHeaderWrapper>
+  );
+};
 
-export default connect(
-  ({
-    BLOCK_NAME_CAMEL_CASE,
-    loading,
-  }: {
-    BLOCK_NAME_CAMEL_CASE: AdvancedProfileData;
-    loading: {
-      effects: { [key: string]: boolean };
-    };
-  }) => ({
-    BLOCK_NAME_CAMEL_CASE,
-    loading: loading.effects['BLOCK_NAME_CAMEL_CASE/fetchAdvanced'],
-  }),
-)(PAGE_NAME_UPPER_CAMEL_CASE);
+export default PAGE_NAME_UPPER_CAMEL_CASE;
