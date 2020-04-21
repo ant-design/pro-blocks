@@ -449,9 +449,7 @@
       "url": "https://github.com/ant-design/pro-blocks/tree/master/UserRegister",
       "path": "UserRegister",
       "features": [
-        "antd",
-        "i18n",
-        "dva"
+        "antd"
       ],
       "img": "https://raw.githubusercontent.com/ant-design/pro-blocks/master/UserRegister/snapshot.png?raw=true",
       "tags": [
@@ -467,8 +465,7 @@
       "url": "https://github.com/ant-design/pro-blocks/tree/master/UserRegisterResult",
       "path": "UserRegisterResult",
       "features": [
-        "antd",
-        "i18n"
+        "antd"
       ],
       "img": "https://raw.githubusercontent.com/ant-design/pro-blocks/master/UserRegisterResult/snapshot.png?raw=true",
       "tags": [
