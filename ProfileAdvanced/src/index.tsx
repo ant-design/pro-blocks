@@ -148,14 +148,13 @@ const customDot = (
     status: string;
   },
 ) => {
-  if (status === 'process') {
-    return (
-      <Popover placement="topLeft" arrowPointAtCenter content={popoverContent}>
-        <>{dot}</>
-      </Popover>
-    );
-  }
-  return dot;
+  return status === 'process' ? (
+    <Popover placement="topLeft" arrowPointAtCenter content={popoverContent}>
+      <span>{dot}</span>
+    </Popover>
+  ) : (
+    dot
+  );
 };
 
 const operationTabList = [
