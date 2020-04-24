@@ -269,8 +269,7 @@
       "path": "ListCardList",
       "features": [
         "antd",
-        "i18n",
-        "dva"
+        "i18n"
       ],
       "img": "https://raw.githubusercontent.com/ant-design/pro-blocks/master/ListCardList/snapshot.png?raw=true",
       "tags": [
