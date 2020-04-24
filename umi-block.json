@@ -251,8 +251,7 @@
       "url": "https://github.com/ant-design/pro-blocks/tree/master/ListBasicList",
       "path": "ListBasicList",
       "features": [
-        "antd",
-        "i18n"
+        "antd"
       ],
       "img": "https://raw.githubusercontent.com/ant-design/pro-blocks/master/ListBasicList/snapshot.png?raw=true",
       "tags": [
@@ -268,8 +267,7 @@
       "url": "https://github.com/ant-design/pro-blocks/tree/master/ListCardList",
       "path": "ListCardList",
       "features": [
-        "antd",
-        "i18n"
+        "antd"
       ],
       "img": "https://raw.githubusercontent.com/ant-design/pro-blocks/master/ListCardList/snapshot.png?raw=true",
       "tags": [
