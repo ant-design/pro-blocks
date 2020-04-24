@@ -5,49 +5,45 @@ interface ParamsType extends Partial<BasicListItemDataType> {
   count?: number;
 }
 
-export async function queryFakeList(params: ParamsType) {
-  return request('/api/fake_list', {
+export async function queryFakeList(
+  params: ParamsType,
+): Promise<{ data: { list: BasicListItemDataType[] } }> {
+  return request('/api/get_list', {
     params,
   });
 }
 
-export async function removeFakeList(params: ParamsType) {
-  const { count = 5, ...restParams } = params;
-  return request('/api/fake_list', {
+export async function removeFakeList(
+  params: ParamsType,
+): Promise<{ data: { list: BasicListItemDataType[] } }> {
+  return request('/api/post_fake_list', {
     method: 'POST',
-    params: {
-      count,
-    },
     data: {
-      ...restParams,
+      ...params,
       method: 'delete',
     },
   });
 }
 
-export async function addFakeList(params: ParamsType) {
-  const { count = 5, ...restParams } = params;
-  return request('/api/fake_list', {
+export async function addFakeList(
+  params: ParamsType,
+): Promise<{ data: { list: BasicListItemDataType[] } }> {
+  return request('/api/post_fake_list', {
     method: 'POST',
-    params: {
-      count,
-    },
     data: {
-      ...restParams,
+      ...params,
       method: 'post',
     },
   });
 }
 
-export async function updateFakeList(params: ParamsType) {
-  const { count = 5, ...restParams } = params;
-  return request('/api/fake_list', {
+export async function updateFakeList(
+  params: ParamsType,
+): Promise<{ data: { list: BasicListItemDataType[] } }> {
+  return request('/api/post_fake_list', {
     method: 'POST',
-    params: {
-      count,
-    },
     data: {
-      ...restParams,
+      ...params,
       method: 'update',
     },
   });
