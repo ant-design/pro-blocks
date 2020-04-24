@@ -1,19 +1,16 @@
 import { Button, Result, Descriptions, Statistic } from 'antd';
-import React, { useContext } from 'react';
-import { FormContext } from '../../FormContext';
+import React from 'react';
+import { useModel } from '../../useModel';
 import styles from './index.less';
 
 const Step3: React.FC<{}> = () => {
-  const {
-    state: { step: data },
-    dispatch,
-  } = useContext(FormContext);
+  const { step: data, setCurrent } = useModel();
   if (!data) {
     return null;
   }
   const { payAccount, receiverAccount, receiverName, amount } = data;
   const onFinish = () => {
-    dispatch({ type: 'saveCurrentStep', payload: 'info' });
+    setCurrent('info');
   };
   const information = (
     <div className={styles.information}>

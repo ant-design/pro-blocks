@@ -1,7 +1,7 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import { Form, Alert, Button, Descriptions, Divider, Statistic, Input } from 'antd';
 import { useRequest } from 'umi';
-import { FormContext } from '../../FormContext';
+import { useModel } from '../../useModel';
 import { fakeSubmitForm } from '../../service';
 import styles from './index.less';
 
@@ -17,16 +17,13 @@ const formItemLayout = {
 const Step2: React.FC<{}> = () => {
   const [form] = Form.useForm();
 
-  const {
-    state: { step: data },
-    dispatch,
-  } = useContext(FormContext);
+  const { step: data, setCurrent, setStepData } = useModel();
 
   const { loading: submitting, run } = useRequest(fakeSubmitForm, {
     manual: true,
     onSuccess: (_, params) => {
-      dispatch({ type: 'saveStepFormData', payload: params[0] });
-      dispatch({ type: 'saveCurrentStep', payload: 'result' });
+      setStepData(params[0]);
+      setCurrent('result');
     },
   });
   if (!data) {
@@ -35,8 +32,8 @@ const Step2: React.FC<{}> = () => {
   const { validateFields, getFieldsValue } = form;
   const onPrev = () => {
     const values = getFieldsValue();
-    dispatch({ type: 'saveStepFormData', payload: { ...data, ...values } });
-    dispatch({ type: 'saveCurrentStep', payload: 'info' });
+    setStepData({ ...data, ...values });
+    setCurrent('info');
   };
   const onValidateForm = async () => {
     const values = await validateFields();

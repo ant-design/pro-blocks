@@ -1,4 +1,4 @@
-import { createContext } from 'react';
+import { createContext, useContext } from 'react';
 
 export interface StateType {
   current: string;
@@ -29,3 +29,19 @@ const defaultValue: FormContextType = {
 };
 // 创建 context
 export const FormContext = createContext<FormContextType>(defaultValue);
+
+export function useModel() {
+  const {
+    state: { current, step },
+    dispatch,
+  } = useContext(FormContext);
+
+  function setCurrent(curr: string) {
+    dispatch({ type: 'saveCurrentStep', payload: curr });
+  }
+  function setStepData(values: any) {
+    dispatch({ type: 'saveStepFormData', payload: values });
+  }
+
+  return { current, setCurrent, step, setStepData };
+}

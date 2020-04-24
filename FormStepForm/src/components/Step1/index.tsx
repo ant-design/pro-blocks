@@ -1,6 +1,6 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import { Form, Button, Divider, Input, Select } from 'antd';
-import { FormContext } from '../../FormContext';
+import { useModel } from '../../useModel';
 import styles from './index.less';
 
 const { Option } = Select;
@@ -14,10 +14,7 @@ const formItemLayout = {
   },
 };
 const Step1: React.FC<{}> = () => {
-  const {
-    state: { step: data },
-    dispatch,
-  } = useContext(FormContext);
+  const { step: data, setCurrent, setStepData } = useModel();
 
   const [form] = Form.useForm();
 
@@ -27,8 +24,8 @@ const Step1: React.FC<{}> = () => {
   const { validateFields } = form;
   const onValidateForm = async () => {
     const values = await validateFields();
-    dispatch({ type: 'saveStepFormData', payload: values });
-    dispatch({ type: 'saveCurrentStep', payload: 'confirm' });
+    setStepData(values);
+    setCurrent('confirm');
   };
 
   return (

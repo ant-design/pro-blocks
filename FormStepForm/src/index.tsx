@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useContext, useReducer } from 'react';
 import { Card, Steps } from 'antd';
 import { PageHeaderWrapper } from '@ant-design/pro-layout';
-import { FormContext, StateType } from './FormContext';
+import { useModel, FormContext, StateType } from './useModel';
 import Step1 from './components/Step1';
 import Step2 from './components/Step2';
 import Step3 from './components/Step3';
@@ -24,9 +24,8 @@ const getCurrentStepAndComponent = (current?: string) => {
 const FormWrap: React.FC<{}> = () => {
   const [stepComponent, setStepComponent] = useState<React.ReactNode>(<Step1 />);
   const [currentStep, setCurrentStep] = useState<number>(0);
-  const {
-    state: { current },
-  } = useContext(FormContext);
+
+  const { current } = useModel();
 
   useEffect(() => {
     const { step, component } = getCurrentStepAndComponent(current);
