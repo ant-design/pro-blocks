@@ -1,5 +1,4 @@
 import { Card, Col, Row, Tabs } from 'antd';
-import { FormattedMessage, formatMessage } from 'umi';
 import React from 'react';
 import { OfflineChartData, OfflineDataType } from '../data.d';
 
@@ -18,12 +17,7 @@ const CustomTab = ({
     <Col span={12}>
       <NumberInfo
         title={data.name}
-        subTitle={
-          <FormattedMessage
-            id="BLOCK_NAME.analysis.conversion-rate"
-            defaultMessage="Conversion Rate"
-          />
-        }
+        subTitle="转化率"
         gap={2}
         total={`${data.cvr * 100}%`}
         theme={currentKey !== data.name ? 'light' : undefined}
@@ -66,8 +60,8 @@ const OfflineData = ({
               height={400}
               data={offlineChartData}
               titleMap={{
-                y1: formatMessage({ id: 'BLOCK_NAME.analysis.traffic' }),
-                y2: formatMessage({ id: 'BLOCK_NAME.analysis.payments' }),
+                y1: '客流量',
+                y2: '支付笔数',
               }}
             />
           </div>

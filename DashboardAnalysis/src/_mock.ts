@@ -1,4 +1,5 @@
 import moment from 'moment';
+import { Request, Response } from 'express';
 import { AnalysisData, RadarData, VisitDataType } from './data.d';
 
 // mock data
@@ -192,6 +193,12 @@ const getFakeChartData: AnalysisData = {
   radarData,
 };
 
+const fakeChartData = (_: Request, res: Response) => {
+  return res.json({
+    data: getFakeChartData
+  });
+}
+
 export default {
-  'GET  /api/fake_chart_data': getFakeChartData,
+  'GET  /api/fake_analysis_chart_data': fakeChartData,
 };

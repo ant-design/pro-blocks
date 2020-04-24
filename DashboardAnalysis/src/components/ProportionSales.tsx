@@ -1,6 +1,4 @@
 import { Card, Radio } from 'antd';
-
-import { FormattedMessage } from 'umi';
 import { RadioChangeEvent } from 'antd/es/radio';
 import React from 'react';
 import { VisitDataType } from '../data.d';
@@ -25,12 +23,7 @@ const ProportionSales = ({
     loading={loading}
     className={styles.salesCard}
     bordered={false}
-    title={
-      <FormattedMessage
-        id="BLOCK_NAME.analysis.the-proportion-of-sales"
-        defaultMessage="The Proportion of Sales"
-      />
-    }
+    title="销售额类别占比"
     style={{
       height: '100%',
     }}
@@ -40,13 +33,13 @@ const ProportionSales = ({
         <div className={styles.salesTypeRadio}>
           <Radio.Group value={salesType} onChange={handleChangeSalesType}>
             <Radio.Button value="all">
-              <FormattedMessage id="BLOCK_NAME.channel.all" defaultMessage="ALL" />
+              全部渠道
             </Radio.Button>
             <Radio.Button value="online">
-              <FormattedMessage id="BLOCK_NAME.channel.online" defaultMessage="Online" />
+              线上
             </Radio.Button>
             <Radio.Button value="stores">
-              <FormattedMessage id="BLOCK_NAME.channel.stores" defaultMessage="Stores" />
+              门店
             </Radio.Button>
           </Radio.Group>
         </div>
@@ -55,11 +48,11 @@ const ProportionSales = ({
   >
     <div>
       <h4 style={{ marginTop: 8, marginBottom: 32 }}>
-        <FormattedMessage id="BLOCK_NAME.analysis.sales" defaultMessage="Sales" />
+        销售额
       </h4>
       <Pie
         hasLegend
-        subTitle={<FormattedMessage id="BLOCK_NAME.analysis.sales" defaultMessage="Sales" />}
+        subTitle="销售额"
         total={() => <Yuan>{salesPieData.reduce((pre, now) => now.y + pre, 0)}</Yuan>}
         data={salesPieData}
         valueFormat={(value) => <Yuan>{value}</Yuan>}
