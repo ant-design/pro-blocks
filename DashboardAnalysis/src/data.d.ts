@@ -1,3 +1,9 @@
+import { DataItem } from '@antv/g2plot/esm/interface/config';
+
+export {
+  DataItem
+}
+
 export interface VisitDataType {
   x: string;
   y: number;
@@ -29,7 +35,7 @@ export interface RadarData {
 }
 
 export interface AnalysisData {
-  visitData: VisitDataType[];
+  visitData: DataItem[];
   visitData2: VisitDataType[];
   salesData: VisitDataType[];
   searchData: SearchDataType[];

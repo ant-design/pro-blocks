@@ -5,7 +5,7 @@ import { Col, Row, Tooltip  } from 'antd';
 import React from 'react';
 import numeral from 'numeral';
 import { ChartCard, Field } from './Charts';
-import { VisitDataType } from '../data.d';
+import { DataItem } from '../data.d';
 import Trend from './Trend';
 import Yuan from '../utils/Yuan';
 import styles from '../style.less';
@@ -19,7 +19,7 @@ const topColResponsiveProps = {
   style: { marginBottom: 24 },
 };
 
-const IntroduceRow = ({ loading, visitData }: { loading: boolean; visitData: VisitDataType[] }) => (
+const IntroduceRow = ({ loading, visitData }: { loading: boolean; visitData: DataItem[] }) => (
   <Row gutter={24}>
     <Col {...topColResponsiveProps}>
       <ChartCard
@@ -81,7 +81,7 @@ const IntroduceRow = ({ loading, visitData }: { loading: boolean; visitData: Vis
           forceFit
           yField="y"
           smooth
-          data={visitData as any}
+          data={visitData}
         />
       </ChartCard>
     </Col>
@@ -111,7 +111,7 @@ const IntroduceRow = ({ loading, visitData }: { loading: boolean; visitData: Vis
           height={46}
           forceFit
           yField="y"
-          data={visitData as any}
+          data={visitData}
         />
       </ChartCard>
     </Col>
