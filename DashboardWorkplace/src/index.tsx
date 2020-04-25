@@ -1,10 +1,10 @@
-import { Avatar, Card, Col, List, Skeleton, Row, Statistic } from 'antd';
 import React, { FC } from 'react';
+import { Avatar, Card, Col, List, Skeleton, Row, Statistic } from 'antd';
+import { Radar } from '@ant-design/charts';
 
 import { Link, useRequest } from 'umi';
 import { PageHeaderWrapper } from '@ant-design/pro-layout';
 import moment from 'moment';
-import Radar from './components/Radar';
 import EditableLinkGroup from './components/EditableLinkGroup';
 import styles from './style.less';
 import { ActivitiesType, CurrentUser } from './data.d';
@@ -193,7 +193,22 @@ const PAGE_NAME_UPPER_CAMEL_CASE: FC = () => {
             loading={data?.radarData?.length === 0}
           >
             <div className={styles.chart}>
-              <Radar hasLegend height={343} data={data?.radarData || []} />
+              <Radar
+                height={343}
+                data={data?.radarData || []}
+                angleField="label"
+                seriesField="name"
+                radiusField="value"
+                area={{
+                  visible: false,
+                }}
+                point={{
+                  visible: true,
+                }}
+                legend={{
+                  position: 'bottom-center'
+                }}
+              />
             </div>
           </Card>
           <Card

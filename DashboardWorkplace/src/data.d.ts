@@ -1,3 +1,9 @@
+import { DataItem } from '@antv/g2plot/esm/interface/config';
+
+export {
+  DataItem
+}
+
 export interface TagType {
   key: string;
   label: string;
@@ -42,7 +48,7 @@ export interface AnalysisData {
   salesTypeData: VisitDataType[];
   salesTypeDataOnline: VisitDataType[];
   salesTypeDataOffline: VisitDataType[];
-  radarData: RadarData[];
+  radarData: DataItem[];
 }
 
 export interface GeographicType {
