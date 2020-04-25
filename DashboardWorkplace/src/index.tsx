@@ -1,14 +1,14 @@
 import { Avatar, Card, Col, List, Skeleton, Row, Statistic } from 'antd';
-import React, { Component } from 'react';
+import React, { FC } from 'react';
 
-import { Link, Dispatch, connect } from 'umi';
+import { Link, useRequest } from 'umi';
 import { PageHeaderWrapper } from '@ant-design/pro-layout';
 import moment from 'moment';
 import Radar from './components/Radar';
-import { ModalState } from './model';
 import EditableLinkGroup from './components/EditableLinkGroup';
 import styles from './style.less';
-import { ActivitiesType, CurrentUser, NoticeType, RadarDataType } from './data.d';
+import { ActivitiesType, CurrentUser } from './data.d';
+import { queryCurrent, queryProjectNotice, queryActivities, fakeChartData } from './service';
 
 const links = [
   {
@@ -37,18 +37,7 @@ const links = [
   },
 ];
 
-interface PAGE_NAME_UPPER_CAMEL_CASEProps {
-  currentUser?: CurrentUser;
-  projectNotice: NoticeType[];
-  activities: ActivitiesType[];
-  radarData: RadarDataType[];
-  dispatch: Dispatch<any>;
-  currentUserLoading: boolean;
-  projectLoading: boolean;
-  activitiesLoading: boolean;
-}
-
-const PageHeaderContent: React.FC<{ currentUser: CurrentUser }> = ({ currentUser }) => {
+const PageHeaderContent: FC<{ currentUser: CurrentUser }> = ({ currentUser }) => {
   const loading = currentUser && Object.keys(currentUser).length;
   if (!loading) {
     return <Skeleton avatar paragraph={{ rows: 1 }} active />;
@@ -72,7 +61,7 @@ const PageHeaderContent: React.FC<{ currentUser: CurrentUser }> = ({ currentUser
   );
 };
 
-const ExtraContent: React.FC<{}> = () => (
+const ExtraContent: FC<{}> = () => (
   <div className={styles.extraContent}>
     <div className={styles.statItem}>
       <Statistic title="项目数" value={56} />
@@ -86,22 +75,21 @@ const ExtraContent: React.FC<{}> = () => (
   </div>
 );
 
-class PAGE_NAME_UPPER_CAMEL_CASE extends Component<PAGE_NAME_UPPER_CAMEL_CASEProps> {
-  componentDidMount() {
-    const { dispatch } = this.props;
-    dispatch({
-      type: 'BLOCK_NAME_CAMEL_CASE/init',
-    });
-  }
+const PAGE_NAME_UPPER_CAMEL_CASE: FC = () => {
+  const {
+    data: currentUser
+  } = useRequest(queryCurrent);
+  const {
+    loading: projectLoading,
+    data: projectNotice = []
+  } = useRequest(queryProjectNotice);
+  const {
+    loading: activitiesLoading,
+    data: activities = []
+  } = useRequest(queryActivities);
+  const { data } = useRequest(fakeChartData);
 
-  componentWillUnmount() {
-    const { dispatch } = this.props;
-    dispatch({
-      type: 'BLOCK_NAME_CAMEL_CASE/clear',
-    });
-  }
-
-  renderActivities = (item: ActivitiesType) => {
+  const renderActivities = (item: ActivitiesType) => {
     const events = item.template.split(/@\{([^{}]*)\}/gi).map((key) => {
       if (item[key]) {
         return (
@@ -133,138 +121,104 @@ class PAGE_NAME_UPPER_CAMEL_CASE extends Component<PAGE_NAME_UPPER_CAMEL_CASEPro
     );
   };
 
-  render() {
-    const {
-      currentUser,
-      activities,
-      projectNotice,
-      projectLoading,
-      activitiesLoading,
-      radarData,
-    } = this.props;
-
-    if (!currentUser || !currentUser.userid) {
-      return null;
-    }
-    return (
-      <PageHeaderWrapper
-        content={<PageHeaderContent currentUser={currentUser} />}
-        extraContent={<ExtraContent />}
-      >
-        <Row gutter={24}>
-          <Col xl={16} lg={24} md={24} sm={24} xs={24}>
-            <Card
-              className={styles.projectList}
-              style={{ marginBottom: 24 }}
-              title="进行中的项目"
-              bordered={false}
-              extra={<Link to="/">全部项目</Link>}
-              loading={projectLoading}
-              bodyStyle={{ padding: 0 }}
-            >
-              {projectNotice.map((item) => (
-                <Card.Grid className={styles.projectGrid} key={item.id}>
-                  <Card bodyStyle={{ padding: 0 }} bordered={false}>
-                    <Card.Meta
-                      title={
-                        <div className={styles.cardTitle}>
-                          <Avatar size="small" src={item.logo} />
-                          <Link to={item.href}>{item.title}</Link>
-                        </div>
-                      }
-                      description={item.description}
-                    />
-                    <div className={styles.projectItemContent}>
-                      <Link to={item.memberLink}>{item.member || ''}</Link>
-                      {item.updatedAt && (
-                        <span className={styles.datetime} title={item.updatedAt}>
-                          {moment(item.updatedAt).fromNow()}
-                        </span>
-                      )}
-                    </div>
-                  </Card>
-                </Card.Grid>
-              ))}
-            </Card>
-            <Card
-              bodyStyle={{ padding: 0 }}
-              bordered={false}
-              className={styles.activeCard}
-              title="动态"
+  return (
+    <PageHeaderWrapper
+      content={<PageHeaderContent currentUser={currentUser || {} as CurrentUser} />}
+      extraContent={<ExtraContent />}
+    >
+      <Row gutter={24}>
+        <Col xl={16} lg={24} md={24} sm={24} xs={24}>
+          <Card
+            className={styles.projectList}
+            style={{ marginBottom: 24 }}
+            title="进行中的项目"
+            bordered={false}
+            extra={<Link to="/">全部项目</Link>}
+            loading={projectLoading}
+            bodyStyle={{ padding: 0 }}
+          >
+            {projectNotice.map((item) => (
+              <Card.Grid className={styles.projectGrid} key={item.id}>
+                <Card bodyStyle={{ padding: 0 }} bordered={false}>
+                  <Card.Meta
+                    title={
+                      <div className={styles.cardTitle}>
+                        <Avatar size="small" src={item.logo} />
+                        <Link to={item.href}>{item.title}</Link>
+                      </div>
+                    }
+                    description={item.description}
+                  />
+                  <div className={styles.projectItemContent}>
+                    <Link to={item.memberLink}>{item.member || ''}</Link>
+                    {item.updatedAt && (
+                      <span className={styles.datetime} title={item.updatedAt}>
+                        {moment(item.updatedAt).fromNow()}
+                      </span>
+                    )}
+                  </div>
+                </Card>
+              </Card.Grid>
+            ))}
+          </Card>
+          <Card
+            bodyStyle={{ padding: 0 }}
+            bordered={false}
+            className={styles.activeCard}
+            title="动态"
+            loading={activitiesLoading}
+          >
+            <List<ActivitiesType>
               loading={activitiesLoading}
-            >
-              <List<ActivitiesType>
-                loading={activitiesLoading}
-                renderItem={(item) => this.renderActivities(item)}
-                dataSource={activities}
-                className={styles.activitiesList}
-                size="large"
-              />
-            </Card>
-          </Col>
-          <Col xl={8} lg={24} md={24} sm={24} xs={24}>
-            <Card
-              style={{ marginBottom: 24 }}
-              title="快速开始 / 便捷导航"
-              bordered={false}
-              bodyStyle={{ padding: 0 }}
-            >
-              <EditableLinkGroup onAdd={() => {}} links={links} linkElement={Link} />
-            </Card>
-            <Card
-              style={{ marginBottom: 24 }}
-              bordered={false}
-              title="XX 指数"
-              loading={radarData.length === 0}
-            >
-              <div className={styles.chart}>
-                <Radar hasLegend height={343} data={radarData} />
-              </div>
-            </Card>
-            <Card
-              bodyStyle={{ paddingTop: 12, paddingBottom: 12 }}
-              bordered={false}
-              title="团队"
-              loading={projectLoading}
-            >
-              <div className={styles.members}>
-                <Row gutter={48}>
-                  {projectNotice.map((item) => (
-                    <Col span={12} key={`members-item-${item.id}`}>
-                      <Link to={item.href}>
-                        <Avatar src={item.logo} size="small" />
-                        <span className={styles.member}>{item.member}</span>
-                      </Link>
-                    </Col>
-                  ))}
-                </Row>
-              </div>
-            </Card>
-          </Col>
-        </Row>
-      </PageHeaderWrapper>
-    );
-  }
+              renderItem={(item) => renderActivities(item)}
+              dataSource={activities}
+              className={styles.activitiesList}
+              size="large"
+            />
+          </Card>
+        </Col>
+        <Col xl={8} lg={24} md={24} sm={24} xs={24}>
+          <Card
+            style={{ marginBottom: 24 }}
+            title="快速开始 / 便捷导航"
+            bordered={false}
+            bodyStyle={{ padding: 0 }}
+          >
+            <EditableLinkGroup onAdd={() => {}} links={links} linkElement={Link} />
+          </Card>
+          <Card
+            style={{ marginBottom: 24 }}
+            bordered={false}
+            title="XX 指数"
+            loading={data?.radarData?.length === 0}
+          >
+            <div className={styles.chart}>
+              <Radar hasLegend height={343} data={data?.radarData || []} />
+            </div>
+          </Card>
+          <Card
+            bodyStyle={{ paddingTop: 12, paddingBottom: 12 }}
+            bordered={false}
+            title="团队"
+            loading={projectLoading}
+          >
+            <div className={styles.members}>
+              <Row gutter={48}>
+                {projectNotice.map((item) => (
+                  <Col span={12} key={`members-item-${item.id}`}>
+                    <Link to={item.href}>
+                      <Avatar src={item.logo} size="small" />
+                      <span className={styles.member}>{item.member}</span>
+                    </Link>
+                  </Col>
+                ))}
+              </Row>
+            </div>
+          </Card>
+        </Col>
+      </Row>
+    </PageHeaderWrapper>
+  )
 }
 
-export default connect(
-  ({
-    BLOCK_NAME_CAMEL_CASE: { currentUser, projectNotice, activities, radarData },
-    loading,
-  }: {
-    BLOCK_NAME_CAMEL_CASE: ModalState;
-    loading: {
-      effects: {
-        [key: string]: boolean;
-      };
-    };
-  }) => ({
-    currentUser,
-    projectNotice,
-    activities,
-    radarData,
-    currentUserLoading: loading.effects['BLOCK_NAME_CAMEL_CASE/fetchUserCurrent'],
-    projectLoading: loading.effects['BLOCK_NAME_CAMEL_CASE/fetchProjectNotice'],
-    activitiesLoading: loading.effects['BLOCK_NAME_CAMEL_CASE/fetchActivitiesList'],
-  }),
-)(PAGE_NAME_UPPER_CAMEL_CASE);
+export default PAGE_NAME_UPPER_CAMEL_CASE;
