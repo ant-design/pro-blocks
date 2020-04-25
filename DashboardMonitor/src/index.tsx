@@ -1,5 +1,5 @@
 import { Card, Col, Row, Statistic } from 'antd';
-import { FormattedMessage, connect, formatMessage, Dispatch } from 'umi';
+import { connect, Dispatch } from 'umi';
 import React, { Component } from 'react';
 
 import { GridContent } from '@ant-design/pro-layout';
@@ -36,58 +36,33 @@ class PAGE_NAME_UPPER_CAMEL_CASE extends Component<PAGE_NAME_UPPER_CAMEL_CASEPro
           <Row gutter={24}>
             <Col xl={18} lg={24} md={24} sm={24} xs={24} style={{ marginBottom: 24 }}>
               <Card
-                title={
-                  <FormattedMessage
-                    id="BLOCK_NAME.monitor.trading-activity"
-                    defaultMessage="Real-Time Trading Activity"
-                  />
-                }
+                title="活动实时交易情况"
                 bordered={false}
               >
                 <Row>
                   <Col md={6} sm={12} xs={24}>
                     <Statistic
-                      title={
-                        <FormattedMessage
-                          id="BLOCK_NAME.monitor.total-transactions"
-                          defaultMessage="Total transactions today"
-                        />
-                      }
+                      title="今日交易总额"
                       suffix="元"
                       value={numeral(124543233).format('0,0')}
                     />
                   </Col>
                   <Col md={6} sm={12} xs={24}>
                     <Statistic
-                      title={
-                        <FormattedMessage
-                          id="BLOCK_NAME.monitor.sales-target"
-                          defaultMessage="Sales target completion rate"
-                        />
-                      }
+                      title="销售目标完成率"
                       value="92%"
                     />
                   </Col>
                   <Col md={6} sm={12} xs={24}>
                     <Countdown
-                      title={
-                        <FormattedMessage
-                          id="BLOCK_NAME.monitor.remaining-time"
-                          defaultMessage="Remaining time of activity"
-                        />
-                      }
+                      title="活动剩余时间"
                       value={deadline}
                       format="HH:mm:ss:SSS"
                     />
                   </Col>
                   <Col md={6} sm={12} xs={24}>
                     <Statistic
-                      title={
-                        <FormattedMessage
-                          id="BLOCK_NAME.monitor.total-transactions-per-second"
-                          defaultMessage="Total transactions per second"
-                        />
-                      }
+                      title="每秒交易总额"
                       suffix="元"
                       value={numeral(234).format('0,0')}
                     />
@@ -100,33 +75,20 @@ class PAGE_NAME_UPPER_CAMEL_CASE extends Component<PAGE_NAME_UPPER_CAMEL_CASEPro
             </Col>
             <Col xl={6} lg={24} md={24} sm={24} xs={24}>
               <Card
-                title={
-                  <FormattedMessage
-                    id="BLOCK_NAME.monitor.activity-forecast"
-                    defaultMessage="Activity forecast"
-                  />
-                }
+                title="活动情况预测"
                 style={{ marginBottom: 24 }}
                 bordered={false}
               >
                 <ActiveChart />
               </Card>
               <Card
-                title={
-                  <FormattedMessage
-                    id="BLOCK_NAME.monitor.efficiency"
-                    defaultMessage="Efficiency"
-                  />
-                }
+                title="券核效率"
                 style={{ marginBottom: 24 }}
                 bodyStyle={{ textAlign: 'center' }}
                 bordered={false}
               >
                 <Gauge
-                  title={formatMessage({
-                    id: 'BLOCK_NAME.monitor.ratio',
-                    defaultMessage: 'Ratio',
-                  })}
+                  title="跳出率"
                   height={180}
                   percent={87}
                 />
@@ -136,12 +98,7 @@ class PAGE_NAME_UPPER_CAMEL_CASE extends Component<PAGE_NAME_UPPER_CAMEL_CASEPro
           <Row gutter={24}>
             <Col xl={12} lg={24} sm={24} xs={24} style={{ marginBottom: 24 }}>
               <Card
-                title={
-                  <FormattedMessage
-                    id="BLOCK_NAME.monitor.proportion-per-category"
-                    defaultMessage="Proportion Per Category"
-                  />
-                }
+                title="各品类占比"
                 bordered={false}
                 className={styles.pieCard}
               >
@@ -150,12 +107,7 @@ class PAGE_NAME_UPPER_CAMEL_CASE extends Component<PAGE_NAME_UPPER_CAMEL_CASEPro
                     <Pie
                       animate={false}
                       percent={28}
-                      title={
-                        <FormattedMessage
-                          id="BLOCK_NAME.monitor.fast-food"
-                          defaultMessage="Fast food"
-                        />
-                      }
+                      title="中式快餐"
                       total="28%"
                       height={128}
                       lineWidth={2}
@@ -166,12 +118,7 @@ class PAGE_NAME_UPPER_CAMEL_CASE extends Component<PAGE_NAME_UPPER_CAMEL_CASEPro
                       animate={false}
                       color="#5DDECF"
                       percent={22}
-                      title={
-                        <FormattedMessage
-                          id="BLOCK_NAME.monitor.western-food"
-                          defaultMessage="Western food"
-                        />
-                      }
+                      title="西餐"
                       total="22%"
                       height={128}
                       lineWidth={2}
@@ -182,12 +129,7 @@ class PAGE_NAME_UPPER_CAMEL_CASE extends Component<PAGE_NAME_UPPER_CAMEL_CASEPro
                       animate={false}
                       color="#2FC25B"
                       percent={32}
-                      title={
-                        <FormattedMessage
-                          id="BLOCK_NAME.monitor.hot-pot"
-                          defaultMessage="Hot pot"
-                        />
-                      }
+                      title="火锅"
                       total="32%"
                       height={128}
                       lineWidth={2}
@@ -198,12 +140,7 @@ class PAGE_NAME_UPPER_CAMEL_CASE extends Component<PAGE_NAME_UPPER_CAMEL_CASEPro
             </Col>
             <Col xl={6} lg={12} sm={24} xs={24} style={{ marginBottom: 24 }}>
               <Card
-                title={
-                  <FormattedMessage
-                    id="BLOCK_NAME.monitor.popular-searches"
-                    defaultMessage="Popular Searches"
-                  />
-                }
+                title="热门搜索"
                 loading={loading}
                 bordered={false}
                 bodyStyle={{ overflow: 'hidden' }}
@@ -213,23 +150,13 @@ class PAGE_NAME_UPPER_CAMEL_CASE extends Component<PAGE_NAME_UPPER_CAMEL_CASEPro
             </Col>
             <Col xl={6} lg={12} sm={24} xs={24} style={{ marginBottom: 24 }}>
               <Card
-                title={
-                  <FormattedMessage
-                    id="BLOCK_NAME.monitor.resource-surplus"
-                    defaultMessage="Resource Surplus"
-                  />
-                }
+                title="资源剩余"
                 bodyStyle={{ textAlign: 'center', fontSize: 0 }}
                 bordered={false}
               >
                 <WaterWave
                   height={161}
-                  title={
-                    <FormattedMessage
-                      id="BLOCK_NAME.monitor.fund-surplus"
-                      defaultMessage="Fund Surplus"
-                    />
-                  }
+                  title="补贴资金剩余"
                   percent={34}
                 />
               </Card>
