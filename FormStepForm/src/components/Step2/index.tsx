@@ -1,7 +1,7 @@
 import React from 'react';
 import { Form, Alert, Button, Descriptions, Divider, Statistic, Input } from 'antd';
 import { useRequest } from 'umi';
-import { useModel } from '../../useModel';
+import { useModel } from '../../context';
 import { fakeSubmitForm } from '../../service';
 import styles from './index.less';
 

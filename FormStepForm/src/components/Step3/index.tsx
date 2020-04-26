@@ -1,6 +1,6 @@
 import { Button, Result, Descriptions, Statistic } from 'antd';
 import React from 'react';
-import { useModel } from '../../useModel';
+import { useModel } from '../../context';
 import styles from './index.less';
 
 const Step3: React.FC<{}> = () => {

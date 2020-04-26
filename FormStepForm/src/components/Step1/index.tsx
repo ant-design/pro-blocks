@@ -1,6 +1,6 @@
 import React from 'react';
 import { Form, Button, Divider, Input, Select } from 'antd';
-import { useModel } from '../../useModel';
+import { useModel } from '../../context';
 import styles from './index.less';
 
 const { Option } = Select;
@@ -24,7 +24,7 @@ const Step1: React.FC<{}> = () => {
   const { validateFields } = form;
   const onValidateForm = async () => {
     const values = await validateFields();
-    setStepData(values);
+    setStepData({ ...data, ...values });
     setCurrent('confirm');
   };
 
