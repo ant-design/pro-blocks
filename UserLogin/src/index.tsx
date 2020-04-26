@@ -4,9 +4,9 @@ import React, { useState } from 'react';
 import { Link, useRequest } from 'umi';
 import styles from './style.less';
 import { LoginParamsType, StateType, fakeAccountLogin } from './service';
-import LoginFrom from './components/Login';
+import LoginForm from './components/Login';
 
-const { Tab, UserName, Password, Mobile, Captcha, Submit } = LoginFrom;
+const { Tab, UserName, Password, Mobile, Captcha, Submit } = LoginForm;
 
 const LoginMessage: React.FC<{
   content: string;
@@ -37,7 +37,7 @@ const PAGE_NAME_UPPER_CAMEL_CASE: React.FC = () => {
   const { status, type: loginType } = data || { status: 'ok', type: 'account' };
   return (
     <div className={styles.main}>
-      <LoginFrom activeKey={type} onTabChange={setType} onSubmit={handleSubmit}>
+      <LoginForm activeKey={type} onTabChange={setType} onSubmit={handleSubmit}>
         <Tab key="account" tab="账户密码登录">
           {status === 'error' && loginType === 'account' && !loading && (
             <LoginMessage content="账户或密码错误（admin/ant.design）" />
@@ -118,7 +118,7 @@ const PAGE_NAME_UPPER_CAMEL_CASE: React.FC = () => {
             注册账户
           </Link>
         </div>
-      </LoginFrom>
+      </LoginForm>
     </div>
   );
 };
