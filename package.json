@@ -41,7 +41,7 @@
   },
   "devDependencies": {
     "@types/classnames": "^2.2.7",
-    "@types/numeral": "^0.0.26",
+    "@types/numeral": "^0.0.27",
     "@types/react-dom": "^16.8.4",
     "@umijs/fabric": "^2.0.0",
     "@umijs/preset-ant-design-pro": "^1.1.2",
