@@ -223,7 +223,7 @@ export const PAGE_NAME_UPPER_CAMEL_CASE: FC = () => {
               loading={loading}
               pagination={paginationProps}
               dataSource={list}
-              renderItem={(item: any) => (
+              renderItem={(item) => (
                 <List.Item
                   actions={[
                     <a
