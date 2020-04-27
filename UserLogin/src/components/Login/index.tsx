@@ -30,13 +30,10 @@ interface LoginType extends React.FC<LoginProps> {
   Captcha: React.FunctionComponent<LoginItemProps>;
 }
 
-type StrObj = { [key: string]: string };
-type Active = { [key: string]: (string | StrObj)[] };
-
 const Login: LoginType = (props) => {
   const { className } = props;
   const [tabs, setTabs] = useState<string[]>([]);
-  const [active, setActive] = useState<Active>();
+  const [active, setActive] = useState({});
   const [type, setType] = useMergeValue('', {
     value: props.activeKey,
     onChange: props.onTabChange,
@@ -68,12 +65,11 @@ const Login: LoginType = (props) => {
           },
         },
         updateActive: (activeItem) => {
-          if (active) {
-            if (active[type]) {
-              active[type].push(activeItem);
-            } else {
-              active[type] = [activeItem];
-            }
+          if (!active) return;
+          if (active[type]) {
+            active[type].push(activeItem);
+          } else {
+            active[type] = [activeItem];
           }
           setActive(active);
         },
