@@ -1,7 +1,7 @@
 import React from 'react';
 import { Form, Alert, Button, Descriptions, Divider, Statistic, Input } from 'antd';
 import { useRequest } from 'umi';
-import { useModel } from '../../context';
+import { StepComponentTypeProps } from '../../data.d';
 import { fakeSubmitForm } from '../../service';
 import styles from './index.less';
 
@@ -14,10 +14,10 @@ const formItemLayout = {
   },
 };
 
-const Step2: React.FC<{}> = () => {
+const Step2: React.FC<StepComponentTypeProps> = (props) => {
   const [form] = Form.useForm();
 
-  const { step: data, setCurrent, setStepData } = useModel();
+  const { setStepData, setCurrent, stepData: data } = props;
 
   const { loading: submitting, run } = useRequest(fakeSubmitForm, {
     manual: true,
@@ -33,7 +33,7 @@ const Step2: React.FC<{}> = () => {
   const onPrev = () => {
     const values = getFieldsValue();
     setStepData({ ...data, ...values });
-    setCurrent('info');
+    setCurrent('base');
   };
   const onValidateForm = async () => {
     const values = await validateFields();

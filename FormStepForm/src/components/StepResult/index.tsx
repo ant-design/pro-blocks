@@ -1,16 +1,16 @@
 import { Button, Result, Descriptions, Statistic } from 'antd';
 import React from 'react';
-import { useModel } from '../../context';
+import { StepComponentTypeProps } from '../../data.d';
 import styles from './index.less';
 
-const Step3: React.FC<{}> = () => {
-  const { step: data, setCurrent } = useModel();
+const Step3: React.FC<StepComponentTypeProps> = (props) => {
+  const { setCurrent, stepData: data } = props;
   if (!data) {
     return null;
   }
   const { payAccount, receiverAccount, receiverName, amount } = data;
   const onFinish = () => {
-    setCurrent('info');
+    setCurrent('base');
   };
   const information = (
     <div className={styles.information}>

@@ -1,6 +1,6 @@
 import React from 'react';
 import { Form, Button, Divider, Input, Select } from 'antd';
-import { useModel } from '../../context';
+import { StepComponentTypeProps } from '../../data.d';
 import styles from './index.less';
 
 const { Option } = Select;
@@ -13,8 +13,9 @@ const formItemLayout = {
     span: 19,
   },
 };
-const Step1: React.FC<{}> = () => {
-  const { step: data, setCurrent, setStepData } = useModel();
+
+const StepBaseForm: React.FC<StepComponentTypeProps> = (props) => {
+  const { setStepData, setCurrent, stepData: data } = props;
 
   const [form] = Form.useForm();
 
@@ -115,4 +116,4 @@ const Step1: React.FC<{}> = () => {
   );
 };
 
-export default Step1;
+export default StepBaseForm;
