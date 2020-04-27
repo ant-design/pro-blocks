@@ -1,4 +1,4 @@
-import React, { FC, useRef, useState } from 'react';
+import React, { FC, useState } from 'react';
 import { DownOutlined, PlusOutlined } from '@ant-design/icons';
 import {
   Avatar,
@@ -15,7 +15,6 @@ import {
   Row,
 } from 'antd';
 
-import { findDOMNode } from 'react-dom';
 import { PageHeaderWrapper } from '@ant-design/pro-layout';
 import { useRequest } from 'umi';
 import moment from 'moment';
@@ -61,7 +60,6 @@ const ListContent = ({
 );
 
 export const PAGE_NAME_UPPER_CAMEL_CASE: FC = () => {
-  const addBtn = useRef(null);
   const [done, setDone] = useState<boolean>(false);
   const [visible, setVisible] = useState<boolean>(false);
   const [current, setCurrent] = useState<Partial<BasicListItemDataType> | undefined>(undefined);
@@ -153,29 +151,17 @@ export const PAGE_NAME_UPPER_CAMEL_CASE: FC = () => {
     </Dropdown>
   );
 
-  const setAddBtnblur = () => {
-    if (addBtn.current) {
-      // eslint-disable-next-line react/no-find-dom-node
-      const addBtnDom = findDOMNode(addBtn.current) as HTMLButtonElement;
-      setTimeout(() => addBtnDom.blur(), 0);
-    }
-  };
-
   const handleDone = () => {
-    setAddBtnblur();
-
     setDone(false);
     setVisible(false);
   };
 
   const handleCancel = () => {
-    setAddBtnblur();
     setVisible(false);
   };
 
   const handleSubmit = (values: BasicListItemDataType) => {
     const id = current ? current.id : '';
-    setAddBtnblur();
     setDone(true);
     const method = id ? 'update' : 'add';
     postRun(method, { id, ...values });
@@ -207,12 +193,7 @@ export const PAGE_NAME_UPPER_CAMEL_CASE: FC = () => {
             bodyStyle={{ padding: '0 32px 40px 32px' }}
             extra={extraContent}
           >
-            <Button
-              type="dashed"
-              style={{ width: '100%', marginBottom: 8 }}
-              onClick={showModal}
-              ref={addBtn}
-            >
+            <Button type="dashed" style={{ width: '100%', marginBottom: 8 }} onClick={showModal}>
               <PlusOutlined />
               添加
             </Button>
