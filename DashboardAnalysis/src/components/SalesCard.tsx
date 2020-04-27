@@ -1,11 +1,11 @@
 import { Card, Col, DatePicker, Row, Tabs } from 'antd';
 import { RangePickerProps } from 'antd/es/date-picker/generatePicker';
 import moment from 'moment';
+import { Column } from '@ant-design/charts';
 
 import React from 'react';
 import numeral from 'numeral';
-import { VisitDataType } from '../data.d';
-import { Bar } from './Charts';
+import { DataItem } from '../data.d';
 import styles from '../style.less';
 
 type RangePickerValue = RangePickerProps<moment.Moment>['value'];
@@ -32,7 +32,7 @@ const SalesCard = ({
 }: {
   rangePickerValue: RangePickerValue;
   isActive: (key: TimeType) => string;
-  salesData: VisitDataType[];
+  salesData: DataItem[];
   loading: boolean;
   handleRangePickerChange: (dates: RangePickerValue, dateStrings: [string, string]) => void;
   selectDate: (key: TimeType) => void;
@@ -73,10 +73,36 @@ const SalesCard = ({
           <Row>
             <Col xl={16} lg={12} md={12} sm={24} xs={24}>
               <div className={styles.salesBar}>
-                <Bar
-                  height={295}
-                  title="销售趋势"
-                  data={salesData}
+                <Column
+                  height={300}
+                  forceFit
+                  data={salesData as any}
+                  xField= 'x'
+                  yField='y'
+                  xAxis={{
+                    visible: true,
+                    title: {
+                      visible: false
+                    }
+                  }}
+                  yAxis={{
+                    visible: true,
+                    title: {
+                      visible: false
+                    }
+                  }}
+                  title={{
+                    visible: true,
+                    text: '销售趋势',
+                    style: {
+                      fontSize: 14
+                    }
+                  }}
+                  meta={{
+                    y: {
+                      alias: '销售量'
+                    }
+                  }}
                 />
               </div>
             </Col>
@@ -108,10 +134,36 @@ const SalesCard = ({
           <Row>
             <Col xl={16} lg={12} md={12} sm={24} xs={24}>
               <div className={styles.salesBar}>
-                <Bar
-                  height={292}
-                  title="访问量趋势"
-                  data={salesData}
+                <Column
+                  height={300}
+                  forceFit
+                  data={salesData as any}
+                  xField= 'x'
+                  yField='y'
+                  xAxis={{
+                    visible: true,
+                    title: {
+                      visible: false
+                    }
+                  }}
+                  yAxis={{
+                    visible: true,
+                    title: {
+                      visible: false
+                    }
+                  }}
+                  title={{
+                    visible: true,
+                    text: '访问量趋势',
+                    style: {
+                      fontSize: 14
+                    }
+                  }}
+                  meta={{
+                    y: {
+                      alias: '访问量'
+                    }
+                  }}
                 />
               </div>
             </Col>
