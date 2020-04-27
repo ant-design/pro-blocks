@@ -4,10 +4,12 @@ import {
   EllipsisOutlined,
   ShareAltOutlined,
 } from '@ant-design/icons';
+import { useRequest } from 'umi';
 import { Avatar, Card, Dropdown, List, Menu, Tooltip } from 'antd';
 import React from 'react';
 import numeral from 'numeral';
 import { ListItemDataType } from '../../data.d';
+import { queryFakeList } from '../../service';
 import stylesApplications from './index.less';
 
 export function formatWan(val: number) {
@@ -36,11 +38,14 @@ export function formatWan(val: number) {
   return result;
 }
 
-export interface ApplicationsProps {
-  list: ListItemDataType[];
-}
+const Applications: React.FC = () => {
+  // 获取tab列表数据
+  const { data: listData } = useRequest(() => {
+    return queryFakeList({
+      count: 30,
+    });
+  });
 
-const Applications: React.FC<ApplicationsProps> = ({ list }) => {
   const itemMenu = (
     <Menu>
       <Menu.Item>
@@ -76,11 +81,11 @@ const Applications: React.FC<ApplicationsProps> = ({ list }) => {
     </div>
   );
   return (
-    <List
+    <List<ListItemDataType>
       rowKey="id"
       className={stylesApplications.filterCardList}
       grid={{ gutter: 24, xxl: 3, xl: 2, lg: 2, md: 2, sm: 2, xs: 1 }}
-      dataSource={list}
+      dataSource={listData?.list || []}
       renderItem={(item) => (
         <List.Item key={item.id}>
           <Card

@@ -8,7 +8,7 @@ import Projects from './components/Projects';
 import Articles from './components/Articles';
 import Applications from './components/Applications';
 import { CurrentUser, TagType, tabKeyType } from './data.d';
-import { queryCurrent, queryFakeList } from './service';
+import { queryCurrent } from './service';
 import styles from './Center.less';
 
 const operationTabList = [
@@ -101,15 +101,8 @@ const PAGE_NAME_UPPER_CAMEL_CASE: React.FC<RouteChildrenProps> = () => {
     return queryCurrent();
   });
 
-  // 获取tab列表数据
-  const { data: listData } = useRequest(() => {
-    return queryFakeList({
-      count: 30,
-    });
-  });
-
   //  渲染用户信息
-  const renderUserInfo = (_currentUser: Partial<CurrentUser>) => {
+  const renderUserInfo = ({ title, group, geographic }: Partial<CurrentUser>) => {
     return (
       <div className={styles.detail}>
         <p>
@@ -118,7 +111,7 @@ const PAGE_NAME_UPPER_CAMEL_CASE: React.FC<RouteChildrenProps> = () => {
               marginRight: 8,
             }}
           />
-          {_currentUser.title}
+          {title}
         </p>
         <p>
           <ClusterOutlined
@@ -126,7 +119,7 @@ const PAGE_NAME_UPPER_CAMEL_CASE: React.FC<RouteChildrenProps> = () => {
               marginRight: 8,
             }}
           />
-          {_currentUser.group}
+          {group}
         </p>
         <p>
           <HomeOutlined
@@ -134,10 +127,10 @@ const PAGE_NAME_UPPER_CAMEL_CASE: React.FC<RouteChildrenProps> = () => {
               marginRight: 8,
             }}
           />
-          {(_currentUser.geographic || { province: { label: '' } }).province.label}
+          {(geographic || { province: { label: '' } }).province.label}
           {
             (
-              _currentUser.geographic || {
+              geographic || {
                 city: {
                   label: '',
                 },
@@ -150,16 +143,15 @@ const PAGE_NAME_UPPER_CAMEL_CASE: React.FC<RouteChildrenProps> = () => {
   };
 
   // 渲染tab切换
-  const renderChildrenByTabKey = (_tabKey: tabKeyType) => {
-    const list = (listData && listData.list) || [];
-    if (_tabKey === 'projects') {
-      return <Projects list={list} />;
+  const renderChildrenByTabKey = (tabValue: tabKeyType) => {
+    if (tabValue === 'projects') {
+      return <Projects />;
     }
-    if (_tabKey === 'applications') {
-      return <Applications list={list} />;
+    if (tabValue === 'applications') {
+      return <Applications />;
     }
-    if (_tabKey === 'articles') {
-      return <Articles list={list} />;
+    if (tabValue === 'articles') {
+      return <Articles />;
     }
     return null;
   };

@@ -1,14 +1,13 @@
-import { StarTwoTone, LikeOutlined, MessageFilled } from '@ant-design/icons';
-import { List, Tag } from 'antd';
 import React from 'react';
+import { StarTwoTone, LikeOutlined, MessageFilled } from '@ant-design/icons';
+import { useRequest } from 'umi';
+import { List, Tag } from 'antd';
 import ArticleListContent from '../ArticleListContent';
 import { ListItemDataType } from '../../data.d';
+import { queryFakeList } from '../../service';
 import styles from './index.less';
 
-export interface ArticlesProps {
-  list: ListItemDataType[];
-}
-const Articles: React.FC<ArticlesProps> = ({ list }) => {
+const Articles: React.FC = () => {
   const IconText: React.FC<{
     icon: React.ReactNode;
     text: React.ReactNode;
@@ -17,13 +16,20 @@ const Articles: React.FC<ArticlesProps> = ({ list }) => {
       {icon} {text}
     </span>
   );
+
+  // 获取tab列表数据
+  const { data: listData } = useRequest(() => {
+    return queryFakeList({
+      count: 30,
+    });
+  });
   return (
     <List<ListItemDataType>
       size="large"
       className={styles.articleList}
       rowKey="id"
       itemLayout="vertical"
-      dataSource={list}
+      dataSource={listData?.list || []}
       renderItem={(item) => (
         <List.Item
           key={item.id}
