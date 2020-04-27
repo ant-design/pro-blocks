@@ -131,16 +131,16 @@ const PAGE_NAME_UPPER_CAMEL_CASE: FC<PAGE_NAME_UPPER_CAMEL_CASEProps> = () => {
             </Suspense>
           </Col>
           <Col xl={12} lg={24} md={24} sm={24} xs={24}>
-              <Suspense fallback={null}>
-                <ProportionSales
-                  dropdownGroup={dropdownGroup}
-                  salesType={salesType}
-                  loading={loading}
-                  salesPieData={salesPieData || []}
-                  handleChangeSalesType={handleChangeSalesType}
-                />
-              </Suspense>
-            </Col>
+            <Suspense fallback={null}>
+              <ProportionSales
+                dropdownGroup={dropdownGroup}
+                salesType={salesType}
+                loading={loading}
+                salesPieData={salesPieData || []}
+                handleChangeSalesType={handleChangeSalesType}
+              />
+            </Suspense>
+          </Col>
         </Row>
 
         <Suspense fallback={null}>

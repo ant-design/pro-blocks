@@ -1,8 +1,8 @@
 import { Card, Col, Row, Tabs } from 'antd';
 import React from 'react';
-import { OfflineChartData, OfflineDataType } from '../data.d';
+import { RingProgress, Line } from '@ant-design/charts';
+import { OfflineDataType, DataItem } from '../data.d';
 
-import { TimelineChart, Pie } from './Charts';
 import NumberInfo from './NumberInfo';
 import styles from '../style.less';
 
@@ -13,7 +13,7 @@ const CustomTab = ({
   data: OfflineDataType;
   currentTabKey: string;
 }) => (
-  <Row gutter={8} style={{ width: 138, margin: '8px 0' }} type="flex">
+  <Row gutter={8} style={{ width: 138, margin: '8px 0' }}>
     <Col span={12}>
       <NumberInfo
         title={data.name}
@@ -24,14 +24,7 @@ const CustomTab = ({
       />
     </Col>
     <Col span={12} style={{ paddingTop: 36 }}>
-      <Pie
-        animate={false}
-        inner={0.55}
-        tooltip={false}
-        margin={[0, 0, 0, 0]}
-        percent={data.cvr * 100}
-        height={64}
-      />
+      <RingProgress forceFit height={60} width={60} percent={data.cvr} />
     </Col>
   </Row>
 );
@@ -48,7 +41,7 @@ const OfflineData = ({
   activeKey: string;
   loading: boolean;
   offlineData: OfflineDataType[];
-  offlineChartData: OfflineChartData[];
+  offlineChartData: DataItem[];
   handleTabChange: (activeKey: string) => void;
 }) => (
   <Card loading={loading} className={styles.offlineCard} bordered={false} style={{ marginTop: 32 }}>
@@ -56,12 +49,22 @@ const OfflineData = ({
       {offlineData.map((shop) => (
         <TabPane tab={<CustomTab data={shop} currentTabKey={activeKey} />} key={shop.name}>
           <div style={{ padding: '0 24px' }}>
-            <TimelineChart
+            <Line
+              forceFit
               height={400}
               data={offlineChartData}
-              titleMap={{
-                y1: '客流量',
-                y2: '支付笔数',
+              responsive
+              xField="date"
+              yField="value"
+              seriesField="type"
+              interactions={[
+                {
+                  type: 'slider',
+                  cfg: {}
+                },
+              ]}
+              legend={{
+                position: 'top-center'
               }}
             />
           </div>

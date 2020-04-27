@@ -1,10 +1,10 @@
 import { InfoCircleOutlined } from '@ant-design/icons';
 import { Card, Col, Row, Table, Tooltip } from 'antd';
+import { TinyArea } from '@ant-design/charts';
 import React from 'react';
 import numeral from 'numeral';
-import { SearchDataType, VisitDataType } from '../data.d';
+import { SearchDataType, DataItem } from '../data.d';
 
-import { MiniArea } from './Charts';
 import NumberInfo from './NumberInfo';
 import Trend from './Trend';
 import styles from '../style.less';
@@ -48,9 +48,9 @@ const TopSearch = ({
   dropdownGroup,
 }: {
   loading: boolean;
-  visitData2: VisitDataType[];
+  visitData2: DataItem[];
   dropdownGroup: React.ReactNode;
-  searchData: SearchDataType[];
+  searchData: DataItem[];
 }) => (
   <Card
     loading={loading}
@@ -79,7 +79,14 @@ const TopSearch = ({
           status="up"
           subTotal={17.1}
         />
-        <MiniArea line height={45} data={visitData2} />
+        <TinyArea
+          xField="x"
+          height={45}
+          forceFit
+          yField="y"
+          smooth
+          data={visitData2}
+        />
       </Col>
       <Col sm={12} xs={24} style={{ marginBottom: 24 }}>
         <NumberInfo
@@ -98,7 +105,14 @@ const TopSearch = ({
           subTotal={26.2}
           gap={8}
         />
-        <MiniArea line height={45} data={visitData2} />
+        <TinyArea
+          xField="x"
+          height={45}
+          forceFit
+          yField="y"
+          smooth
+          data={visitData2}
+        />
       </Col>
     </Row>
     <Table<any>

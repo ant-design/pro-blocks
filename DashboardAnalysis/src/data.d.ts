@@ -23,9 +23,9 @@ export interface OfflineDataType {
 }
 
 export interface OfflineChartData {
-  x: any;
-  y1: number;
-  y2: number;
+  date: number;
+  type: number;
+  value: number;
 }
 
 export interface RadarData {
@@ -36,13 +36,13 @@ export interface RadarData {
 
 export interface AnalysisData {
   visitData: DataItem[];
-  visitData2: VisitDataType[];
-  salesData: VisitDataType[];
+  visitData2: DataItem[];
+  salesData: DataItem[];
   searchData: SearchDataType[];
   offlineData: OfflineDataType[];
-  offlineChartData: OfflineChartData[];
-  salesTypeData: VisitDataType[];
-  salesTypeDataOnline: VisitDataType[];
-  salesTypeDataOffline: VisitDataType[];
+  offlineChartData: DataItem[];
+  salesTypeData: DataItem[];
+  salesTypeDataOnline: DataItem[];
+  salesTypeDataOffline: DataItem[];
   radarData: RadarData[];
 }
