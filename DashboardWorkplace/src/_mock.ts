@@ -1,9 +1,9 @@
 import moment from 'moment';
 import { Request, Response } from 'express';
-import { VisitDataType, SearchDataType, OfflineDataType, OfflineChartData } from './data.d';
+import { SearchDataType, OfflineDataType, OfflineChartData, DataItem } from './data.d';
 
 // mock data
-const visitData: VisitDataType[] = [];
+const visitData: DataItem[] = [];
 const beginDay = new Date().getTime();
 
 const fakeY = [7, 5, 4, 2, 4, 7, 5, 6, 5, 9, 6, 3, 1, 5, 3, 6, 5];
@@ -14,7 +14,7 @@ for (let i = 0; i < fakeY.length; i += 1) {
   });
 }
 
-const visitData2: VisitDataType[] = [];
+const visitData2: DataItem[] = [];
 const fakeY2 = [1, 6, 4, 8, 3, 7, 2];
 for (let i = 0; i < fakeY2.length; i += 1) {
   visitData2.push({
@@ -23,7 +23,7 @@ for (let i = 0; i < fakeY2.length; i += 1) {
   });
 }
 
-const salesData: VisitDataType[] = [];
+const salesData: DataItem[] = [];
 for (let i = 0; i < 12; i += 1) {
   salesData.push({
     x: `${i + 1}月`,

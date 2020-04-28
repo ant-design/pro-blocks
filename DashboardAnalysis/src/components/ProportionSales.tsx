@@ -1,9 +1,10 @@
 import { Card, Radio } from 'antd';
+import numeral from 'numeral';
 import { RadioChangeEvent } from 'antd/es/radio';
+import { Donut } from '@ant-design/charts';
+import { DonutConfig } from '@ant-design/charts/es/donut'
 import React from 'react';
-import { VisitDataType } from '../data.d';
-import { Pie } from './Charts';
-import Yuan from '../utils/Yuan';
+import { DataItem } from '../data.d';
 import styles from '../style.less';
 
 const ProportionSales = ({
@@ -16,7 +17,7 @@ const ProportionSales = ({
   loading: boolean;
   dropdownGroup: React.ReactNode;
   salesType: 'all' | 'online' | 'stores';
-  salesPieData: VisitDataType[];
+  salesPieData: DataItem[];
   handleChangeSalesType?: (e: RadioChangeEvent) => void;
 }) => (
   <Card
@@ -50,14 +51,27 @@ const ProportionSales = ({
       <h4 style={{ marginTop: 8, marginBottom: 32 }}>
         销售额
       </h4>
-      <Pie
-        hasLegend
-        subTitle="销售额"
-        total={() => <Yuan>{salesPieData.reduce((pre, now) => now.y + pre, 0)}</Yuan>}
-        data={salesPieData}
-        valueFormat={(value) => <Yuan>{value}</Yuan>}
-        height={248}
-        lineWidth={4}
+      <Donut
+        forceFit
+        height={340}
+        radius={0.8}
+        angleField="y"
+        colorField="x"
+        data={salesPieData as any}
+        legend={{
+          visible: false
+        }}
+        label={{
+          visible: true,
+          type: 'outer',
+          formatter: (text: string, item: any) => {
+            // eslint-disable-next-line no-underscore-dangle
+            return `${item._origin.x}: ${numeral(item._origin.y).format('0,0')}`;
+          }
+        }}
+        statistic={{
+          totalLabel: '销售额'
+        } as DonutConfig['statistic']}
       />
     </div>
   </Card>

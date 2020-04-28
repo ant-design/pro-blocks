@@ -38,7 +38,7 @@ export interface AnalysisData {
   visitData: DataItem[];
   visitData2: DataItem[];
   salesData: DataItem[];
-  searchData: SearchDataType[];
+  searchData: DataItem[];
   offlineData: OfflineDataType[];
   offlineChartData: DataItem[];
   salesTypeData: DataItem[];

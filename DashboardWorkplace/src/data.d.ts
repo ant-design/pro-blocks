@@ -8,10 +8,6 @@ export interface TagType {
   key: string;
   label: string;
 }
-export interface VisitDataType {
-  x: string;
-  y: number;
-}
 
 export interface SearchDataType {
   index: number;
@@ -24,12 +20,6 @@ export interface SearchDataType {
 export interface OfflineDataType {
   name: string;
   cvr: number;
-}
-
-export interface OfflineChartData {
-  x: any;
-  y1: number;
-  y2: number;
 }
 
 export interface RadarData {
