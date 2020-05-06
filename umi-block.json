@@ -367,7 +367,8 @@
       "url": "https://github.com/ant-design/pro-blocks/tree/master/ProfileAdvanced",
       "path": "ProfileAdvanced",
       "features": [
-        "antd"
+        "antd",
+        "i18n"
       ],
       "img": "https://raw.githubusercontent.com/ant-design/pro-blocks/master/ProfileAdvanced/snapshot.png?raw=true",
       "tags": [

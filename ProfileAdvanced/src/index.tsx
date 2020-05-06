@@ -140,21 +140,15 @@ const popoverContent = (
   </div>
 );
 
-const customDot = (
-  dot: React.ReactNode,
-  {
-    status,
-  }: {
-    status: string;
-  },
-) => {
-  return status === 'process' ? (
-    <Popover placement="topLeft" arrowPointAtCenter content={popoverContent}>
-      <span>{dot}</span>
-    </Popover>
-  ) : (
-    dot
-  );
+const customDot = (dot: React.ReactNode, { status }: { status: string }) => {
+  if (status === 'process') {
+    return (
+      <Popover placement="topLeft" arrowPointAtCenter content={popoverContent}>
+        <span>{dot}</span>
+      </Popover>
+    );
+  }
+  return dot;
 };
 
 const operationTabList = [
@@ -216,16 +210,8 @@ const PAGE_NAME_UPPER_CAMEL_CASE: FC = () => {
     operationKey: 'tab1',
     tabActiveKey: 'detail',
   });
-  const { data, loading } = useRequest(queryAdvancedProfile);
-  const {
-    advancedOperation1,
-    advancedOperation2,
-    advancedOperation3,
-  }: AdvancedProfileData = data || {
-    advancedOperation1: [],
-    advancedOperation2: [],
-    advancedOperation3: [],
-  };
+  const { data = {}, loading } = useRequest<{ data: AdvancedProfileData }>(queryAdvancedProfile);
+  const { advancedOperation1, advancedOperation2, advancedOperation3 } = data;
   const contentList = {
     tab1: (
       <Table
