@@ -48,7 +48,7 @@
     "@umijs/preset-react": "^1.4.3",
     "@umijs/plugin-block-devtool": "^1.1.1",
     "cross-env": "^7.0.0",
-    "eslint": "^6.8.0",
+    "eslint": "^7.0.0",
     "husky": "^4.0.1",
     "lint-staged": "^10.0.1",
     "mockjs": "^1.1.0",
