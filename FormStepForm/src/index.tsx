@@ -1,57 +1,52 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useMemo } from 'react';
 import { Card, Steps } from 'antd';
 import { PageHeaderWrapper } from '@ant-design/pro-layout';
-import { connect } from 'umi';
-import { StateType } from './model';
-import Step1 from './components/Step1';
-import Step2 from './components/Step2';
-import Step3 from './components/Step3';
+import StepBaseForm from './components/StepBaseForm';
+import StepConfirmForm from './components/StepConfirmForm';
+import StepResult from './components/StepResult';
+import { StepComponentTypeProps, StepDataType, CurrentTypes } from './data.d';
 import styles from './style.less';
 
 const { Step } = Steps;
 
-interface PAGE_NAME_UPPER_CAMEL_CASEProps {
-  current: StateType['current'];
-}
+const PAGE_NAME_UPPER_CAMEL_CASE: React.FC<{}> = () => {
+  const [current, setCurrent] = useState<CurrentTypes>('base');
+  const [stepData, setStepData] = useState<StepDataType>({
+    payAccount: 'ant-design@alipay.com',
+    receiverAccount: 'test@example.com',
+    receiverName: 'Alex',
+    amount: '500',
+  });
 
-const getCurrentStepAndComponent = (current?: string) => {
-  switch (current) {
-    case 'confirm':
-      return { step: 1, component: <Step2 /> };
-    case 'result':
-      return { step: 2, component: <Step3 /> };
-    case 'info':
-    default:
-      return { step: 0, component: <Step1 /> };
-  }
-};
+  const stepComponentProps: StepComponentTypeProps = { current, setCurrent, stepData, setStepData };
 
-const PAGE_NAME_UPPER_CAMEL_CASE: React.FC<PAGE_NAME_UPPER_CAMEL_CASEProps> = ({ current }) => {
-  const [stepComponent, setStepComponent] = useState<React.ReactNode>(<Step1 />);
-  const [currentStep, setCurrentStep] = useState<number>(0);
+  const { step, component } = useMemo(() => {
+    const getCurrentStepAndComponent = (curr = 'base') => {
+      const stepAndComponent = {
+        base: { step: 0, component: <StepBaseForm {...stepComponentProps} /> },
+        confirm: { step: 1, component: <StepConfirmForm {...stepComponentProps} /> },
+        result: { step: 2, component: <StepResult {...stepComponentProps} /> },
+      };
+      return stepAndComponent[curr];
+    };
 
-  useEffect(() => {
-    const { step, component } = getCurrentStepAndComponent(current);
-    setCurrentStep(step);
-    setStepComponent(component);
+    return getCurrentStepAndComponent(current);
   }, [current]);
 
   return (
     <PageHeaderWrapper content="将一个冗长或用户不熟悉的表单任务分成多个步骤，指导用户完成。">
       <Card bordered={false}>
         <>
-          <Steps current={currentStep} className={styles.steps}>
+          <Steps current={step} className={styles.steps}>
             <Step title="填写转账信息" />
             <Step title="确认转账信息" />
             <Step title="完成" />
           </Steps>
-          {stepComponent}
+          {component}
         </>
       </Card>
     </PageHeaderWrapper>
   );
 };
 
-export default connect(({ BLOCK_NAME_CAMEL_CASE }: { BLOCK_NAME_CAMEL_CASE: StateType }) => ({
-  current: BLOCK_NAME_CAMEL_CASE.current,
-}))(PAGE_NAME_UPPER_CAMEL_CASE);
+export default PAGE_NAME_UPPER_CAMEL_CASE;

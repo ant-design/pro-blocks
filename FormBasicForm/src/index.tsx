@@ -1,8 +1,20 @@
 import { InfoCircleOutlined } from '@ant-design/icons';
-import { Button, Card, DatePicker, Input, Form, InputNumber, Radio, Select, Tooltip } from 'antd';
-import { connect, Dispatch, FormattedMessage, formatMessage } from 'umi';
+import {
+  Button,
+  Card,
+  DatePicker,
+  Input,
+  Form,
+  InputNumber,
+  Radio,
+  Select,
+  Tooltip,
+  message,
+} from 'antd';
+import { useRequest } from 'umi';
 import React, { FC } from 'react';
 import { PageHeaderWrapper } from '@ant-design/pro-layout';
+import { fakeSubmitForm } from './service';
 import styles from './style.less';
 
 const FormItem = Form.Item;
@@ -10,13 +22,13 @@ const { Option } = Select;
 const { RangePicker } = DatePicker;
 const { TextArea } = Input;
 
-interface PAGE_NAME_UPPER_CAMEL_CASEProps {
-  submitting: boolean;
-  dispatch: Dispatch<any>;
-}
-
-const PAGE_NAME_UPPER_CAMEL_CASE: FC<PAGE_NAME_UPPER_CAMEL_CASEProps> = (props) => {
-  const { submitting } = props;
+const PAGE_NAME_UPPER_CAMEL_CASE: FC<{}> = () => {
+  const { loading: submitting, run } = useRequest(fakeSubmitForm, {
+    manual: true,
+    onSuccess: () => {
+      message.success('提交成功');
+    },
+  });
   const [form] = Form.useForm();
   const [showPublicUsers, setShowPublicUsers] = React.useState(false);
   const formItemLayout = {
@@ -39,11 +51,7 @@ const PAGE_NAME_UPPER_CAMEL_CASE: FC<PAGE_NAME_UPPER_CAMEL_CASEProps> = (props) 
   };
 
   const onFinish = (values: { [key: string]: any }) => {
-    const { dispatch } = props;
-    dispatch({
-      type: 'BLOCK_NAME_CAMEL_CASE/submitRegularForm',
-      payload: values,
-    });
+    run(values);
   };
 
   const onFinishFailed = (errorInfo: any) => {
@@ -56,7 +64,7 @@ const PAGE_NAME_UPPER_CAMEL_CASE: FC<PAGE_NAME_UPPER_CAMEL_CASEProps> = (props) 
   };
 
   return (
-    <PageHeaderWrapper content={<FormattedMessage id="BLOCK_NAME.basic.description" />}>
+    <PageHeaderWrapper content="表单页用于向用户收集或验证信息，基础表单常见于数据项较少的表单场景。">
       <Card bordered={false}>
         <Form
           hideRequiredMark
@@ -70,78 +78,64 @@ const PAGE_NAME_UPPER_CAMEL_CASE: FC<PAGE_NAME_UPPER_CAMEL_CASEProps> = (props) 
         >
           <FormItem
             {...formItemLayout}
-            label={<FormattedMessage id="BLOCK_NAME.title.label" />}
+            label="标题"
             name="title"
             rules={[
               {
                 required: true,
-                message: formatMessage({ id: 'BLOCK_NAME.title.required' }),
+                message: '请输入标题',
               },
             ]}
           >
-            <Input placeholder={formatMessage({ id: 'BLOCK_NAME.title.placeholder' })} />
+            <Input placeholder="给目标起个名字" />
           </FormItem>
           <FormItem
             {...formItemLayout}
-            label={<FormattedMessage id="BLOCK_NAME.date.label" />}
+            label="起止日期"
             name="date"
             rules={[
               {
                 required: true,
-                message: formatMessage({ id: 'BLOCK_NAME.date.required' }),
+                message: '请选择起止日期',
               },
             ]}
           >
-            <RangePicker
-              style={{ width: '100%' }}
-              placeholder={[
-                formatMessage({ id: 'BLOCK_NAME.placeholder.start' }),
-                formatMessage({ id: 'BLOCK_NAME.placeholder.end' }),
-              ]}
-            />
+            <RangePicker style={{ width: '100%' }} placeholder={['开始日期', '结束日期']} />
           </FormItem>
           <FormItem
             {...formItemLayout}
-            label={<FormattedMessage id="BLOCK_NAME.goal.label" />}
+            label="目标描述"
             name="goal"
             rules={[
               {
                 required: true,
-                message: formatMessage({ id: 'BLOCK_NAME.goal.required' }),
+                message: '请输入目标描述',
               },
             ]}
           >
-            <TextArea
-              style={{ minHeight: 32 }}
-              placeholder={formatMessage({ id: 'BLOCK_NAME.goal.placeholder' })}
-              rows={4}
-            />
+            <TextArea style={{ minHeight: 32 }} placeholder="请输入你的阶段性工作目标" rows={4} />
           </FormItem>
           <FormItem
             {...formItemLayout}
-            label={<FormattedMessage id="BLOCK_NAME.standard.label" />}
+            label="衡量标准"
             name="standard"
             rules={[
               {
                 required: true,
-                message: formatMessage({ id: 'BLOCK_NAME.standard.required' }),
+                message: '请输入衡量标准',
               },
             ]}
           >
-            <TextArea
-              style={{ minHeight: 32 }}
-              placeholder={formatMessage({ id: 'BLOCK_NAME.standard.placeholder' })}
-              rows={4}
-            />
+            <TextArea style={{ minHeight: 32 }} placeholder="请输入衡量标准" rows={4} />
           </FormItem>
           <FormItem
             {...formItemLayout}
             label={
               <span>
-                <FormattedMessage id="BLOCK_NAME.client.label" />
+                客户
                 <em className={styles.optional}>
-                  <FormattedMessage id="BLOCK_NAME.form.optional" />
-                  <Tooltip title={<FormattedMessage id="BLOCK_NAME.label.tooltip" />}>
+                  （选填）
+                  <Tooltip title="目标的服务对象">
                     <InfoCircleOutlined style={{ marginRight: 4 }} />
                   </Tooltip>
                 </em>
@@ -149,88 +143,71 @@ const PAGE_NAME_UPPER_CAMEL_CASE: FC<PAGE_NAME_UPPER_CAMEL_CASEProps> = (props) 
             }
             name="client"
           >
-            <Input placeholder={formatMessage({ id: 'BLOCK_NAME.client.placeholder' })} />
+            <Input placeholder="请描述你服务的客户，内部客户直接 @姓名／工号" />
           </FormItem>
           <FormItem
             {...formItemLayout}
             label={
               <span>
-                <FormattedMessage id="BLOCK_NAME.invites.label" />
-                <em className={styles.optional}>
-                  <FormattedMessage id="BLOCK_NAME.form.optional" />
-                </em>
+                邀评人
+                <em className={styles.optional}>（选填）</em>
               </span>
             }
             name="invites"
           >
-            <Input placeholder={formatMessage({ id: 'BLOCK_NAME.invites.placeholder' })} />
+            <Input placeholder="请直接 @姓名／工号，最多可邀请 5 人" />
           </FormItem>
           <FormItem
             {...formItemLayout}
             label={
               <span>
-                <FormattedMessage id="BLOCK_NAME.weight.label" />
-                <em className={styles.optional}>
-                  <FormattedMessage id="BLOCK_NAME.form.optional" />
-                </em>
+                权重
+                <em className={styles.optional}>（选填）</em>
               </span>
             }
             name="weight"
           >
             <InputNumber
-              placeholder={formatMessage({ id: 'BLOCK_NAME.weight.placeholder' })}
+              placeholder="请输入"
               min={0}
               max={100}
+              formatter={(value) => `${value || 0}%`}
+              parser={(value) => (value ? value.replace('%', '') : '0')}
             />
-            <span className="ant-form-text">%</span>
           </FormItem>
           <FormItem
             {...formItemLayout}
-            label={<FormattedMessage id="BLOCK_NAME.public.label" />}
-            help={<FormattedMessage id="BLOCK_NAME.label.help" />}
+            label="目标公开"
+            help="客户、邀评人默认被分享"
             name="publicType"
           >
             <div>
               <Radio.Group>
-                <Radio value="1">
-                  <FormattedMessage id="BLOCK_NAME.radio.public" />
-                </Radio>
-                <Radio value="2">
-                  <FormattedMessage id="BLOCK_NAME.radio.partially-public" />
-                </Radio>
-                <Radio value="3">
-                  <FormattedMessage id="BLOCK_NAME.radio.private" />
-                </Radio>
+                <Radio value="1">公开</Radio>
+                <Radio value="2">部分公开</Radio>
+                <Radio value="3">不公开</Radio>
               </Radio.Group>
               <FormItem style={{ marginBottom: 0 }} name="publicUsers">
                 <Select
                   mode="multiple"
-                  placeholder={formatMessage({ id: 'BLOCK_NAME.publicUsers.placeholder' })}
+                  placeholder="公开给"
                   style={{
                     margin: '8px 0',
                     display: showPublicUsers ? 'block' : 'none',
                   }}
                 >
-                  <Option value="1">
-                    <FormattedMessage id="BLOCK_NAME.option.A" />
-                  </Option>
-                  <Option value="2">
-                    <FormattedMessage id="BLOCK_NAME.option.B" />
-                  </Option>
-                  <Option value="3">
-                    <FormattedMessage id="BLOCK_NAME.option.C" />
-                  </Option>
+                  <Option value="1">同事甲</Option>
+                  <Option value="2">同事乙</Option>
+                  <Option value="3">同事丙</Option>
                 </Select>
               </FormItem>
             </div>
           </FormItem>
           <FormItem {...submitFormLayout} style={{ marginTop: 32 }}>
             <Button type="primary" htmlType="submit" loading={submitting}>
-              <FormattedMessage id="BLOCK_NAME.form.submit" />
+              提交
             </Button>
-            <Button style={{ marginLeft: 8 }}>
-              <FormattedMessage id="BLOCK_NAME.form.save" />
-            </Button>
+            <Button style={{ marginLeft: 8 }}>保存</Button>
           </FormItem>
         </Form>
       </Card>
@@ -238,6 +215,4 @@ const PAGE_NAME_UPPER_CAMEL_CASE: FC<PAGE_NAME_UPPER_CAMEL_CASEProps> = (props) 
   );
 };
 
-export default connect(({ loading }: { loading: { effects: { [key: string]: boolean } } }) => ({
-  submitting: loading.effects['BLOCK_NAME_CAMEL_CASE/submitRegularForm'],
-}))(PAGE_NAME_UPPER_CAMEL_CASE);
+export default PAGE_NAME_UPPER_CAMEL_CASE;

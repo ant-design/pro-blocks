@@ -193,8 +193,7 @@
       "url": "https://github.com/ant-design/pro-blocks/tree/master/FormAdvancedForm",
       "path": "FormAdvancedForm",
       "features": [
-        "antd",
-        "dva"
+        "antd"
       ],
       "img": "https://raw.githubusercontent.com/ant-design/pro-blocks/master/FormAdvancedForm/snapshot.png?raw=true",
       "tags": [
@@ -210,9 +209,7 @@
       "url": "https://github.com/ant-design/pro-blocks/tree/master/FormBasicForm",
       "path": "FormBasicForm",
       "features": [
-        "antd",
-        "i18n",
-        "dva"
+        "antd"
       ],
       "img": "https://raw.githubusercontent.com/ant-design/pro-blocks/master/FormBasicForm/snapshot.png?raw=true",
       "tags": [
@@ -228,9 +225,7 @@
       "url": "https://github.com/ant-design/pro-blocks/tree/master/FormStepForm",
       "path": "FormStepForm",
       "features": [
-        "antd",
-        "i18n",
-        "dva"
+        "antd"
       ],
       "img": "https://raw.githubusercontent.com/ant-design/pro-blocks/master/FormStepForm/snapshot.png?raw=true",
       "tags": [

@@ -2,7 +2,7 @@
 import { Request, Response } from 'express';
 
 export default {
-  'POST  /api/forms': (_: Request, res: Response) => {
-    res.send({ message: 'Ok' });
+  'POST  /api/advancedForm': (_: Request, res: Response) => {
+    res.send({ data: { message: 'Ok' } });
   },
 };
