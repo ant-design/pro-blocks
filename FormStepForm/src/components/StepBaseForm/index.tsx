@@ -1,7 +1,6 @@
 import React from 'react';
 import { Form, Button, Divider, Input, Select } from 'antd';
-import { connect, Dispatch } from 'umi';
-import { StateType } from '../../model';
+import { StepComponentTypeProps } from '../../data.d';
 import styles from './index.less';
 
 const { Option } = Select;
@@ -14,13 +13,10 @@ const formItemLayout = {
     span: 19,
   },
 };
-interface Step1Props {
-  data?: StateType['step'];
-  dispatch?: Dispatch<any>;
-}
 
-const Step1: React.FC<Step1Props> = (props) => {
-  const { dispatch, data } = props;
+const StepBaseForm: React.FC<StepComponentTypeProps> = (props) => {
+  const { setStepData, setCurrent, stepData: data } = props;
+
   const [form] = Form.useForm();
 
   if (!data) {
@@ -29,17 +25,10 @@ const Step1: React.FC<Step1Props> = (props) => {
   const { validateFields } = form;
   const onValidateForm = async () => {
     const values = await validateFields();
-    if (dispatch) {
-      dispatch({
-        type: 'BLOCK_NAME_CAMEL_CASE/saveStepFormData',
-        payload: values,
-      });
-      dispatch({
-        type: 'BLOCK_NAME_CAMEL_CASE/saveCurrentStep',
-        payload: 'confirm',
-      });
-    }
+    setStepData({ ...data, ...values });
+    setCurrent('confirm');
   };
+
   return (
     <>
       <Form
@@ -127,6 +116,4 @@ const Step1: React.FC<Step1Props> = (props) => {
   );
 };
 
-export default connect(({ BLOCK_NAME_CAMEL_CASE }: { BLOCK_NAME_CAMEL_CASE: StateType }) => ({
-  data: BLOCK_NAME_CAMEL_CASE.step,
-}))(Step1);
+export default StepBaseForm;

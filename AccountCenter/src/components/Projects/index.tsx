@@ -1,21 +1,26 @@
 import { Card, List } from 'antd';
+import { useRequest } from 'umi';
 import React from 'react';
-
-import { connect } from 'umi';
 import moment from 'moment';
+import { queryFakeList } from '../../service';
 import AvatarList from '../AvatarList';
 import { ListItemDataType } from '../../data.d';
-import { ModalState } from '../../model';
 import styles from './index.less';
 
-const Projects: React.FC<Partial<ModalState>> = (props) => {
-  const { list } = props;
+const Projects: React.FC = () => {
+  // 获取tab列表数据
+  const { data: listData } = useRequest(() => {
+    return queryFakeList({
+      count: 30,
+    });
+  });
+
   return (
     <List<ListItemDataType>
       className={styles.coverCardList}
       rowKey="id"
       grid={{ gutter: 24, xxl: 3, xl: 2, lg: 2, md: 2, sm: 2, xs: 1 }}
-      dataSource={list}
+      dataSource={listData?.list || []}
       renderItem={(item) => (
         <List.Item>
           <Card className={styles.card} hoverable cover={<img alt={item.title} src={item.cover} />}>
@@ -41,6 +46,4 @@ const Projects: React.FC<Partial<ModalState>> = (props) => {
   );
 };
 
-export default connect(({ BLOCK_NAME_CAMEL_CASE }: { BLOCK_NAME_CAMEL_CASE: ModalState }) => ({
-  list: BLOCK_NAME_CAMEL_CASE.list,
-}))(Projects);
+export default Projects;
