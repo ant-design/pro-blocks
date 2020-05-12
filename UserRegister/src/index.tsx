@@ -3,6 +3,7 @@ import { Form, Button, Col, Input, Popover, Progress, Row, Select, message } fro
 import { Store } from 'antd/es/form/interface';
 import { Link, useRequest, history } from 'umi';
 import { fakeRegister, StateType } from './service';
+
 import styles from './style.less';
 
 const FormItem = Form.Item;
