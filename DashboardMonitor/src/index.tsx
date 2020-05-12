@@ -1,10 +1,11 @@
 import { Card, Col, Row, Statistic } from 'antd';
 import { useRequest } from 'umi';
 import React, { FC } from 'react';
+import { Gauge } from '@ant-design/charts';
 
 import { GridContent } from '@ant-design/pro-layout';
 import numeral from 'numeral';
-import { Pie, WaterWave, Gauge, TagCloud, Map } from './components/Charts';
+import { Pie, WaterWave, TagCloud, Map } from './components/Charts';
 import ActiveChart from './components/ActiveChart';
 import { queryTags } from './service';
 import styles from './style.less';
@@ -74,9 +75,17 @@ const PAGE_NAME_UPPER_CAMEL_CASE: FC = () => {
               bordered={false}
             >
               <Gauge
-                title="跳出率"
                 height={180}
-                percent={87}
+                min={0}
+                max={100}
+                forceFit
+                value={87}
+                range={[0, 25, 50, 75, 100]}
+                statistic={{
+                  visible: true,
+                  text: '优',
+                  color: '#30bf78',
+                }}
               />
             </Card>
           </Col>
