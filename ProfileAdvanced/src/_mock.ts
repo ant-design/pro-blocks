@@ -1,3 +1,5 @@
+import { Request, Response } from 'express';
+
 const advancedOperation1 = [
   {
     key: 'op1',
@@ -63,11 +65,16 @@ const advancedOperation3 = [
   },
 ];
 
-const getProfileAdvancedData = {
-  advancedOperation1,
-  advancedOperation2,
-  advancedOperation3,
-};
+function getProfileAdvancedData(req: Request, res: Response) {
+  const result = {
+    data: {
+      advancedOperation1,
+      advancedOperation2,
+      advancedOperation3,
+    },
+  };
+  return res.json(result);
+}
 
 export default {
   'GET  /api/profile/advanced': getProfileAdvancedData,
