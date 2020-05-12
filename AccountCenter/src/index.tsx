@@ -1,14 +1,14 @@
 import { PlusOutlined, HomeOutlined, ContactsOutlined, ClusterOutlined } from '@ant-design/icons';
 import { Avatar, Card, Col, Divider, Input, Row, Tag } from 'antd';
-import React, { Component, useState, useRef } from 'react';
+import React, { useState, useRef } from 'react';
 import { GridContent } from '@ant-design/pro-layout';
-import { Link, connect, Dispatch } from 'umi';
+import { Link, useRequest } from 'umi';
 import { RouteChildrenProps } from 'react-router';
-import { ModalState } from './model';
 import Projects from './components/Projects';
 import Articles from './components/Articles';
 import Applications from './components/Applications';
-import { CurrentUser, TagType } from './data.d';
+import { CurrentUser, TagType, tabKeyType } from './data.d';
+import { queryCurrent } from './service';
 import styles from './Center.less';
 
 const operationTabList = [
@@ -37,15 +37,6 @@ const operationTabList = [
     ),
   },
 ];
-
-interface PAGE_NAME_UPPER_CAMEL_CASEProps extends RouteChildrenProps {
-  dispatch: Dispatch<any>;
-  currentUser: Partial<CurrentUser>;
-  currentUserLoading: boolean;
-}
-interface PAGE_NAME_UPPER_CAMEL_CASEState {
-  tabKey?: 'articles' | 'applications' | 'projects';
-}
 
 const TagList: React.FC<{ tags: CurrentUser['tags'] }> = ({ tags }) => {
   const ref = useRef<Input | null>(null);
@@ -102,168 +93,118 @@ const TagList: React.FC<{ tags: CurrentUser['tags'] }> = ({ tags }) => {
   );
 };
 
-class PAGE_NAME_UPPER_CAMEL_CASE extends Component<
-  PAGE_NAME_UPPER_CAMEL_CASEProps,
-  PAGE_NAME_UPPER_CAMEL_CASEState
-> {
-  // static getDerivedStateFromProps(
-  //   props: BLOCK_NAME_CAMEL_CASEProps,
-  //   state: BLOCK_NAME_CAMEL_CASEState,
-  // ) {
-  //   const { match, location } = props;
-  //   const { tabKey } = state;
-  //   const path = match && match.path;
+const PAGE_NAME_UPPER_CAMEL_CASE: React.FC<RouteChildrenProps> = () => {
+  const [tabKey, setTabKey] = useState<tabKeyType>('articles');
 
-  //   const urlTabKey = location.pathname.replace(`${path}/`, '');
-  //   if (urlTabKey && urlTabKey !== '/' && tabKey !== urlTabKey) {
-  //     return {
-  //       tabKey: urlTabKey,
-  //     };
-  //   }
+  //  获取用户信息
+  const { data: currentUser, loading } = useRequest(() => {
+    return queryCurrent();
+  });
 
-  //   return null;
-  // }
-
-  state: PAGE_NAME_UPPER_CAMEL_CASEState = {
-    tabKey: 'articles',
+  //  渲染用户信息
+  const renderUserInfo = ({ title, group, geographic }: Partial<CurrentUser>) => {
+    return (
+      <div className={styles.detail}>
+        <p>
+          <ContactsOutlined
+            style={{
+              marginRight: 8,
+            }}
+          />
+          {title}
+        </p>
+        <p>
+          <ClusterOutlined
+            style={{
+              marginRight: 8,
+            }}
+          />
+          {group}
+        </p>
+        <p>
+          <HomeOutlined
+            style={{
+              marginRight: 8,
+            }}
+          />
+          {(geographic || { province: { label: '' } }).province.label}
+          {
+            (
+              geographic || {
+                city: {
+                  label: '',
+                },
+              }
+            ).city.label
+          }
+        </p>
+      </div>
+    );
   };
 
-  public input: Input | null | undefined = undefined;
-
-  componentDidMount() {
-    const { dispatch } = this.props;
-    dispatch({
-      type: 'BLOCK_NAME_CAMEL_CASE/fetchCurrent',
-    });
-    dispatch({
-      type: 'BLOCK_NAME_CAMEL_CASE/fetch',
-    });
-  }
-
-  onTabChange = (key: string) => {
-    // If you need to sync state to url
-    // const { match } = this.props;
-    // router.push(`${match.url}/${key}`);
-    this.setState({
-      tabKey: key as PAGE_NAME_UPPER_CAMEL_CASEState['tabKey'],
-    });
-  };
-
-  renderChildrenByTabKey = (tabKey: PAGE_NAME_UPPER_CAMEL_CASEState['tabKey']) => {
-    if (tabKey === 'projects') {
+  // 渲染tab切换
+  const renderChildrenByTabKey = (tabValue: tabKeyType) => {
+    if (tabValue === 'projects') {
       return <Projects />;
     }
-    if (tabKey === 'applications') {
+    if (tabValue === 'applications') {
       return <Applications />;
     }
-    if (tabKey === 'articles') {
+    if (tabValue === 'articles') {
       return <Articles />;
     }
     return null;
   };
 
-  renderUserInfo = (currentUser: Partial<CurrentUser>) => (
-    <div className={styles.detail}>
-      <p>
-        <ContactsOutlined
-          style={{
-            marginRight: 8,
-          }}
-        />
-        {currentUser.title}
-      </p>
-      <p>
-        <ClusterOutlined
-          style={{
-            marginRight: 8,
-          }}
-        />
-        {currentUser.group}
-      </p>
-      <p>
-        <HomeOutlined
-          style={{
-            marginRight: 8,
-          }}
-        />
-        {(currentUser.geographic || { province: { label: '' } }).province.label}
-        {
-          (
-            currentUser.geographic || {
-              city: {
-                label: '',
-              },
-            }
-          ).city.label
-        }
-      </p>
-    </div>
-  );
-
-  render() {
-    const { tabKey } = this.state;
-    const { currentUser = {}, currentUserLoading } = this.props;
-    const dataLoading = currentUserLoading || !(currentUser && Object.keys(currentUser).length);
-    return (
-      <GridContent>
-        <Row gutter={24}>
-          <Col lg={7} md={24}>
-            <Card bordered={false} style={{ marginBottom: 24 }} loading={dataLoading}>
-              {!dataLoading && (
-                <div>
-                  <div className={styles.avatarHolder}>
-                    <img alt="" src={currentUser.avatar} />
-                    <div className={styles.name}>{currentUser.name}</div>
-                    <div>{currentUser.signature}</div>
-                  </div>
-                  {this.renderUserInfo(currentUser)}
-                  <Divider dashed />
-                  <TagList tags={currentUser.tags || []} />
-                  <Divider style={{ marginTop: 16 }} dashed />
-                  <div className={styles.team}>
-                    <div className={styles.teamTitle}>团队</div>
-                    <Row gutter={36}>
-                      {currentUser.notice &&
-                        currentUser.notice.map((item) => (
-                          <Col key={item.id} lg={24} xl={12}>
-                            <Link to={item.href}>
-                              <Avatar size="small" src={item.logo} />
-                              {item.member}
-                            </Link>
-                          </Col>
-                        ))}
-                    </Row>
-                  </div>
+  return (
+    <GridContent>
+      <Row gutter={24}>
+        <Col lg={7} md={24}>
+          <Card bordered={false} style={{ marginBottom: 24 }} loading={loading}>
+            {!loading && currentUser && (
+              <div>
+                <div className={styles.avatarHolder}>
+                  <img alt="" src={currentUser.avatar} />
+                  <div className={styles.name}>{currentUser.name}</div>
+                  <div>{currentUser?.signature}</div>
                 </div>
-              )}
-            </Card>
-          </Col>
-          <Col lg={17} md={24}>
-            <Card
-              className={styles.tabsCard}
-              bordered={false}
-              tabList={operationTabList}
-              activeTabKey={tabKey}
-              onTabChange={this.onTabChange}
-            >
-              {this.renderChildrenByTabKey(tabKey)}
-            </Card>
-          </Col>
-        </Row>
-      </GridContent>
-    );
-  }
-}
-
-export default connect(
-  ({
-    loading,
-    BLOCK_NAME_CAMEL_CASE,
-  }: {
-    loading: { effects: { [key: string]: boolean } };
-    BLOCK_NAME_CAMEL_CASE: ModalState;
-  }) => ({
-    currentUser: BLOCK_NAME_CAMEL_CASE.currentUser,
-    currentUserLoading: loading.effects['BLOCK_NAME_CAMEL_CASE/fetchCurrent'],
-  }),
-)(PAGE_NAME_UPPER_CAMEL_CASE);
+                {renderUserInfo(currentUser)}
+                <Divider dashed />
+                <TagList tags={currentUser.tags || []} />
+                <Divider style={{ marginTop: 16 }} dashed />
+                <div className={styles.team}>
+                  <div className={styles.teamTitle}>团队</div>
+                  <Row gutter={36}>
+                    {currentUser.notice &&
+                      currentUser.notice.map((item) => (
+                        <Col key={item.id} lg={24} xl={12}>
+                          <Link to={item.href}>
+                            <Avatar size="small" src={item.logo} />
+                            {item.member}
+                          </Link>
+                        </Col>
+                      ))}
+                  </Row>
+                </div>
+              </div>
+            )}
+          </Card>
+        </Col>
+        <Col lg={17} md={24}>
+          <Card
+            className={styles.tabsCard}
+            bordered={false}
+            tabList={operationTabList}
+            activeTabKey={tabKey}
+            onTabChange={(_tabKey: string) => {
+              setTabKey(_tabKey as tabKeyType);
+            }}
+          >
+            {renderChildrenByTabKey(tabKey)}
+          </Card>
+        </Col>
+      </Row>
+    </GridContent>
+  );
+};
+export default PAGE_NAME_UPPER_CAMEL_CASE;
