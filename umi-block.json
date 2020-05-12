@@ -300,8 +300,7 @@
       "url": "https://github.com/ant-design/pro-blocks/tree/master/ListSearchApplications",
       "path": "ListSearchApplications",
       "features": [
-        "antd",
-        "dva"
+        "antd"
       ],
       "img": "https://raw.githubusercontent.com/ant-design/pro-blocks/master/ListSearchApplications/snapshot.png?raw=true",
       "tags": [
@@ -317,8 +316,7 @@
       "url": "https://github.com/ant-design/pro-blocks/tree/master/ListSearchArticles",
       "path": "ListSearchArticles",
       "features": [
-        "antd",
-        "dva"
+        "antd"
       ],
       "img": "https://raw.githubusercontent.com/ant-design/pro-blocks/master/ListSearchArticles/snapshot.png?raw=true",
       "tags": [
@@ -334,8 +332,7 @@
       "url": "https://github.com/ant-design/pro-blocks/tree/master/ListSearchProjects",
       "path": "ListSearchProjects",
       "features": [
-        "antd",
-        "dva"
+        "antd"
       ],
       "img": "https://raw.githubusercontent.com/ant-design/pro-blocks/master/ListSearchProjects/snapshot.png?raw=true",
       "tags": [

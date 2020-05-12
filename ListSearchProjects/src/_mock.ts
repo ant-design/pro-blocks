@@ -101,12 +101,16 @@ function fakeList(count: number): ListItemDataType[] {
 }
 
 function getFakeList(req: Request, res: Response) {
-  const params = req.query;
+  const params: any = req.query;
 
   const count = params.count * 1 || 20;
 
   const result = fakeList(count);
-  return res.json(result);
+  return res.json({
+    data: {
+      list: result,
+    },
+  });
 }
 
 export default {
