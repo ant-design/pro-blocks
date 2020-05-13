@@ -1,8 +1,9 @@
-import { Form, Button, Col, Input, Popover, Progress, Row, Select, message } from 'antd';
 import React, { FC, useState, useEffect } from 'react';
-import { Link, connect, history, FormattedMessage, formatMessage, Dispatch } from 'umi';
+import { Form, Button, Col, Input, Popover, Progress, Row, Select, message } from 'antd';
+import { Store } from 'antd/es/form/interface';
+import { Link, useRequest, history } from 'umi';
+import { fakeRegister, StateType } from './service';
 
-import { StateType } from './model';
 import styles from './style.less';
 
 const FormItem = Form.Item;
@@ -12,17 +13,17 @@ const InputGroup = Input.Group;
 const passwordStatusMap = {
   ok: (
     <div className={styles.success}>
-      <FormattedMessage id="BLOCK_NAME.strength.strong" />
+      <span>强度：强</span>
     </div>
   ),
   pass: (
     <div className={styles.warning}>
-      <FormattedMessage id="BLOCK_NAME.strength.medium" />
+      <span>强度：中</span>
     </div>
   ),
   poor: (
     <div className={styles.error}>
-      <FormattedMessage id="BLOCK_NAME.strength.short" />
+      <span>强度：太短</span>
     </div>
   ),
 };
@@ -37,65 +38,34 @@ const passwordProgressMap: {
   poor: 'exception',
 };
 
-interface PAGE_NAME_UPPER_CAMEL_CASEProps {
-  dispatch: Dispatch<any>;
-  BLOCK_NAME_CAMEL_CASE: StateType;
-  submitting: boolean;
-}
-
-export interface UserRegisterParams {
-  mail: string;
-  password: string;
-  confirm: string;
-  mobile: string;
-  captcha: string;
-  prefix: string;
-}
-
-const PAGE_NAME_UPPER_CAMEL_CASE: FC<PAGE_NAME_UPPER_CAMEL_CASEProps> = ({
-  submitting,
-  dispatch,
-  BLOCK_NAME_CAMEL_CASE,
-}) => {
-  const [count, setcount]: [number, any] = useState(0);
-  const [visible, setvisible]: [boolean, any] = useState(false);
-  const [prefix, setprefix]: [string, any] = useState('86');
-  const [popover, setpopover]: [boolean, any] = useState(false);
+const PAGE_NAME_UPPER_CAMEL_CASE: FC = () => {
+  const [count, setCount]: [number, any] = useState(0);
+  const [visible, setVisible]: [boolean, any] = useState(false);
+  const [prefix, setPrefix]: [string, any] = useState('86');
+  const [popover, setPopover]: [boolean, any] = useState(false);
   const confirmDirty = false;
   let interval: number | undefined;
   const [form] = Form.useForm();
-  useEffect(() => {
-    if (!BLOCK_NAME_CAMEL_CASE) {
-      return;
-    }
-    const account = form.getFieldValue('mail');
-    if (BLOCK_NAME_CAMEL_CASE.status === 'ok') {
-      message.success('注册成功！');
-      history.push({
-        pathname: '/user/register-result',
-        state: {
-          account,
-        },
-      });
-    }
-  }, [BLOCK_NAME_CAMEL_CASE]);
+
   useEffect(
     () => () => {
       clearInterval(interval);
     },
     [],
   );
+
   const onGetCaptcha = () => {
     let counts = 59;
-    setcount(counts);
+    setCount(counts);
     interval = window.setInterval(() => {
       counts -= 1;
-      setcount(counts);
+      setCount(counts);
       if (counts === 0) {
         clearInterval(interval);
       }
     }, 1000);
   };
+
   const getPasswordStatus = () => {
     const value = form.getFieldValue('password');
     if (value && value.length > 9) {
@@ -106,34 +76,45 @@ const PAGE_NAME_UPPER_CAMEL_CASE: FC<PAGE_NAME_UPPER_CAMEL_CASEProps> = ({
     }
     return 'poor';
   };
-  const onFinish = (values: { [key: string]: any }) => {
-    dispatch({
-      type: 'BLOCK_NAME_CAMEL_CASE/submit',
-      payload: {
-        ...values,
-        prefix,
-      },
-    });
+
+  const { loading: submitting, run: register } = useRequest<{ data: StateType }>(fakeRegister, {
+    manual: true,
+    onSuccess: (data, params) => {
+      if (data.status === 'ok') {
+        message.success('注册成功！');
+        history.push({
+          pathname: '/user/register-result',
+          state: {
+            account: params.email,
+          },
+        });
+      }
+    },
+  });
+  const onFinish = (values: Store) => {
+    register(values);
   };
+
   const checkConfirm = (_: any, value: string) => {
     const promise = Promise;
     if (value && value !== form.getFieldValue('password')) {
-      return promise.reject(formatMessage({ id: 'BLOCK_NAME.password.twice' }));
+      return promise.reject('两次输入的密码不匹配!');
     }
     return promise.resolve();
   };
+
   const checkPassword = (_: any, value: string) => {
     const promise = Promise;
     // 没有值的情况
     if (!value) {
-      setvisible(!!value);
-      return promise.reject(formatMessage({ id: 'BLOCK_NAME.password.required' }));
+      setVisible(!!value);
+      return promise.reject('请输入密码!');
     }
     // 有值的情况
     if (!visible) {
-      setvisible(!!value);
+      setVisible(!!value);
     }
-    setpopover(!popover);
+    setPopover(!popover);
     if (value.length < 6) {
       return promise.reject('');
     }
@@ -142,9 +123,11 @@ const PAGE_NAME_UPPER_CAMEL_CASE: FC<PAGE_NAME_UPPER_CAMEL_CASEProps> = ({
     }
     return promise.resolve();
   };
+
   const changePrefix = (value: string) => {
-    setprefix(value);
+    setPrefix(value);
   };
+
   const renderPasswordProgress = () => {
     const value = form.getFieldValue('password');
     const passwordStatus = getPasswordStatus();
@@ -163,24 +146,22 @@ const PAGE_NAME_UPPER_CAMEL_CASE: FC<PAGE_NAME_UPPER_CAMEL_CASEProps> = ({
 
   return (
     <div className={styles.main}>
-      <h3>
-        <FormattedMessage id="BLOCK_NAME.register.register" />
-      </h3>
+      <h3>注册</h3>
       <Form form={form} name="UserRegister" onFinish={onFinish}>
         <FormItem
           name="mail"
           rules={[
             {
               required: true,
-              message: formatMessage({ id: 'BLOCK_NAME.email.required' }),
+              message: '请输入邮箱地址!',
             },
             {
               type: 'email',
-              message: formatMessage({ id: 'BLOCK_NAME.email.wrong-format' }),
+              message: '邮箱地址格式错误!',
             },
           ]}
         >
-          <Input size="large" placeholder={formatMessage({ id: 'BLOCK_NAME.email.placeholder' })} />
+          <Input size="large" placeholder="邮箱" />
         </FormItem>
         <Popover
           getPopupContainer={(node) => {
@@ -195,7 +176,7 @@ const PAGE_NAME_UPPER_CAMEL_CASE: FC<PAGE_NAME_UPPER_CAMEL_CASEProps> = ({
                 {passwordStatusMap[getPasswordStatus()]}
                 {renderPasswordProgress()}
                 <div style={{ marginTop: 10 }}>
-                  <FormattedMessage id="BLOCK_NAME.strength.msg" />
+                  <span>请至少输入 6 个字符。请不要使用容易被猜到的密码。</span>
                 </div>
               </div>
             )
@@ -217,11 +198,7 @@ const PAGE_NAME_UPPER_CAMEL_CASE: FC<PAGE_NAME_UPPER_CAMEL_CASEProps> = ({
               },
             ]}
           >
-            <Input
-              size="large"
-              type="password"
-              placeholder={formatMessage({ id: 'BLOCK_NAME.password.placeholder' })}
-            />
+            <Input size="large" type="password" placeholder="至少6位密码，区分大小写" />
           </FormItem>
         </Popover>
         <FormItem
@@ -229,18 +206,14 @@ const PAGE_NAME_UPPER_CAMEL_CASE: FC<PAGE_NAME_UPPER_CAMEL_CASEProps> = ({
           rules={[
             {
               required: true,
-              message: formatMessage({ id: 'BLOCK_NAME.confirm-password.required' }),
+              message: '确认密码',
             },
             {
               validator: checkConfirm,
             },
           ]}
         >
-          <Input
-            size="large"
-            type="password"
-            placeholder={formatMessage({ id: 'BLOCK_NAME.confirm-password.placeholder' })}
-          />
+          <Input size="large" type="password" placeholder="确认密码" />
         </FormItem>
         <InputGroup compact>
           <Select size="large" value={prefix} onChange={changePrefix} style={{ width: '20%' }}>
@@ -253,18 +226,15 @@ const PAGE_NAME_UPPER_CAMEL_CASE: FC<PAGE_NAME_UPPER_CAMEL_CASEProps> = ({
             rules={[
               {
                 required: true,
-                message: formatMessage({ id: 'BLOCK_NAME.phone-number.required' }),
+                message: '请输入手机号!',
               },
               {
                 pattern: /^\d{11}$/,
-                message: formatMessage({ id: 'BLOCK_NAME.phone-number.wrong-format' }),
+                message: '手机号格式错误!',
               },
             ]}
           >
-            <Input
-              size="large"
-              placeholder={formatMessage({ id: 'BLOCK_NAME.phone-number.placeholder' })}
-            />
+            <Input size="large" placeholder="手机号" />
           </FormItem>
         </InputGroup>
         <Row gutter={8}>
@@ -274,14 +244,11 @@ const PAGE_NAME_UPPER_CAMEL_CASE: FC<PAGE_NAME_UPPER_CAMEL_CASEProps> = ({
               rules={[
                 {
                   required: true,
-                  message: formatMessage({ id: 'BLOCK_NAME.verification-code.required' }),
+                  message: '请输入验证码!',
                 },
               ]}
             >
-              <Input
-                size="large"
-                placeholder={formatMessage({ id: 'BLOCK_NAME.verification-code.placeholder' })}
-              />
+              <Input size="large" placeholder="验证码" />
             </FormItem>
           </Col>
           <Col span={8}>
@@ -291,9 +258,7 @@ const PAGE_NAME_UPPER_CAMEL_CASE: FC<PAGE_NAME_UPPER_CAMEL_CASEProps> = ({
               className={styles.getCaptcha}
               onClick={onGetCaptcha}
             >
-              {count
-                ? `${count} s`
-                : formatMessage({ id: 'BLOCK_NAME.register.get-verification-code' })}
+              {count ? `${count} s` : '获取验证码'}
             </Button>
           </Col>
         </Row>
@@ -305,29 +270,14 @@ const PAGE_NAME_UPPER_CAMEL_CASE: FC<PAGE_NAME_UPPER_CAMEL_CASEProps> = ({
             type="primary"
             htmlType="submit"
           >
-            <FormattedMessage id="BLOCK_NAME.register.register" />
+            <span>注册</span>
           </Button>
           <Link className={styles.login} to="/user/login">
-            <FormattedMessage id="BLOCK_NAME.register.sign-in" />
+            <span>使用已有账户登录</span>
           </Link>
         </FormItem>
       </Form>
     </div>
   );
 };
-export default connect(
-  ({
-    BLOCK_NAME_CAMEL_CASE,
-    loading,
-  }: {
-    BLOCK_NAME_CAMEL_CASE: StateType;
-    loading: {
-      effects: {
-        [key: string]: boolean;
-      };
-    };
-  }) => ({
-    BLOCK_NAME_CAMEL_CASE,
-    submitting: loading.effects['BLOCK_NAME_CAMEL_CASE/submit'],
-  }),
-)(PAGE_NAME_UPPER_CAMEL_CASE);
+export default PAGE_NAME_UPPER_CAMEL_CASE;
