@@ -1,11 +1,12 @@
 import { PageHeaderWrapper } from '@ant-design/pro-layout';
-import { Badge, Card, Descriptions, Divider, Table } from 'antd';
+import ProTable, { ProColumns } from '@ant-design/pro-table';
+import { Badge, Card, Descriptions, Divider } from 'antd';
 import React, { FC } from 'react';
 import { useRequest } from 'umi';
 import { queryBasicProfile } from './service';
 import styles from './style.less';
 
-const progressColumns = [
+const progressColumns: ProColumns<{}>[] = [
   {
     title: '时间',
     dataIndex: 'time',
@@ -20,7 +21,7 @@ const progressColumns = [
     title: '状态',
     dataIndex: 'status',
     key: 'status',
-    render: (text: string) => {
+    render: (text: React.ReactNode) => {
       if (text === 'success') {
         return <Badge status="success" text="成功" />;
       }
@@ -63,7 +64,7 @@ const PAGE_NAME_UPPER_CAMEL_CASE: FC = () => {
       amount,
     });
   }
-  const renderContent = (value: any, row: any, index: any) => {
+  const renderContent = (value: any, _: any, index: any) => {
     const obj: {
       children: any;
       props: { colSpan?: number };
@@ -77,14 +78,14 @@ const PAGE_NAME_UPPER_CAMEL_CASE: FC = () => {
     return obj;
   };
 
-  const goodsColumns = [
+  const goodsColumns: ProColumns<{}>[] = [
     {
       title: '商品编号',
       dataIndex: 'id',
       key: 'id',
       render: (text: React.ReactNode, row: any, index: number) => {
         if (index < basicGoods.length) {
-          return <a href="">{text}</a>;
+          return <span>{text}</span>;
         }
         return {
           children: <span style={{ fontWeight: 600 }}>总计</span>,
@@ -158,19 +159,25 @@ const PAGE_NAME_UPPER_CAMEL_CASE: FC = () => {
         </Descriptions>
         <Divider style={{ marginBottom: 32 }} />
         <div className={styles.title}>退货商品</div>
-        <Table
+        <ProTable
           style={{ marginBottom: 24 }}
           pagination={false}
+          search={false}
           loading={loading}
+          options={false}
+          toolBarRender={false}
           dataSource={goodsData}
           columns={goodsColumns}
           rowKey="id"
         />
         <div className={styles.title}>退货进度</div>
-        <Table
+        <ProTable
           style={{ marginBottom: 16 }}
           pagination={false}
           loading={loading}
+          search={false}
+          options={false}
+          toolBarRender={false}
           dataSource={basicProgress}
           columns={progressColumns}
         />

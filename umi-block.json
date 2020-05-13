@@ -350,8 +350,7 @@
       "url": "https://github.com/ant-design/pro-blocks/tree/master/ProfileAdvanced",
       "path": "ProfileAdvanced",
       "features": [
-        "antd",
-        "i18n"
+        "antd"
       ],
       "img": "https://raw.githubusercontent.com/ant-design/pro-blocks/master/ProfileAdvanced/snapshot.png?raw=true",
       "tags": [
@@ -383,8 +382,7 @@
       "url": "https://github.com/ant-design/pro-blocks/tree/master/ResultFail",
       "path": "ResultFail",
       "features": [
-        "antd",
-        "i18n"
+        "antd"
       ],
       "img": "https://raw.githubusercontent.com/ant-design/pro-blocks/master/ResultFail/snapshot.png?raw=true",
       "tags": [
@@ -399,8 +397,7 @@
       "url": "https://github.com/ant-design/pro-blocks/tree/master/ResultSuccess",
       "path": "ResultSuccess",
       "features": [
-        "antd",
-        "i18n"
+        "antd"
       ],
       "img": "https://raw.githubusercontent.com/ant-design/pro-blocks/master/ResultSuccess/snapshot.png?raw=true",
       "tags": [
