@@ -1,5 +1,5 @@
 import { Button, Result } from 'antd';
-import { FormattedMessage, formatMessage, Link } from 'umi';
+import { Link } from 'umi';
 import React from 'react';
 import { RouteChildrenProps } from 'react-router';
 
@@ -9,32 +9,36 @@ const actions = (
   <div className={styles.actions}>
     <a href="">
       <Button size="large" type="primary">
-        <FormattedMessage id="BLOCK_NAME.register-result.view-mailbox" />
+        <span>查看邮箱</span>
       </Button>
     </a>
     <Link to="/">
-      <Button size="large">
-        <FormattedMessage id="BLOCK_NAME.register-result.back-home" />
-      </Button>
+      <Button size="large">返回首页</Button>
     </Link>
   </div>
 );
 
-const PAGE_NAME_UPPER_CAMEL_CASE: React.FC<RouteChildrenProps> = ({ location }) => (
-  <Result
-    className={styles.registerResult}
-    status="success"
-    title={
-      <div className={styles.title}>
-        <FormattedMessage
-          id="BLOCK_NAME.register-result.msg"
-          values={{ email: location.state ? location.state.account : 'AntDesign@example.com' }}
-        />
-      </div>
-    }
-    subTitle={formatMessage({ id: 'BLOCK_NAME.register-result.activation-email' })}
-    extra={actions}
-  />
-);
+export interface LocationState {
+  [key: string]: unknown;
+}
+
+const PAGE_NAME_UPPER_CAMEL_CASE: React.FC<RouteChildrenProps> = ({ location }) => {
+  const email = location.state
+    ? (location.state as LocationState).account
+    : 'AntDesign@example.com';
+  return (
+    <Result
+      className={styles.registerResult}
+      status="success"
+      title={
+        <div className={styles.title}>
+          <span>你的账户：{email} 注册成功</span>
+        </div>
+      }
+      subTitle="激活邮件已发送到你的邮箱中，邮件有效期为24小时。请及时登录邮箱，点击邮件中的链接激活帐户。"
+      extra={actions}
+    />
+  );
+};
 
 export default PAGE_NAME_UPPER_CAMEL_CASE;
