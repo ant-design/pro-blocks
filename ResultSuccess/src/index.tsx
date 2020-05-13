@@ -1,6 +1,5 @@
 import { DingdingOutlined } from '@ant-design/icons';
 import { Button, Card, Steps, Result, Descriptions } from 'antd';
-import { FormattedMessage, formatMessage } from 'umi';
 import React, { Fragment } from 'react';
 import { GridContent } from '@ant-design/pro-layout';
 
@@ -11,7 +10,7 @@ const { Step } = Steps;
 const desc1 = (
   <div className={styles.title}>
     <div style={{ margin: '8px 0 4px' }}>
-      <FormattedMessage id="BLOCK_NAME.success.step1-operator" defaultMessage="Qu Lili" />
+      <span>曲丽丽</span>
       <DingdingOutlined style={{ marginLeft: 8, color: '#00A0E9' }} />
     </div>
     <div>2016-12-12 12:32</div>
@@ -21,10 +20,10 @@ const desc1 = (
 const desc2 = (
   <div style={{ fontSize: 12 }} className={styles.title}>
     <div style={{ margin: '8px 0 4px' }}>
-      <FormattedMessage id="BLOCK_NAME.success.step2-operator" defaultMessage="Zhou Maomao" />
+      <span>周毛毛</span>
       <a href="">
         <DingdingOutlined style={{ color: '#00A0E9', marginLeft: 8 }} />
-        <FormattedMessage id="BLOCK_NAME.success.step2-extra" defaultMessage="Urge" />
+        <span>催一下</span>
       </a>
     </div>
   </div>
@@ -32,88 +31,26 @@ const desc2 = (
 
 const content = (
   <>
-    <Descriptions
-      title={formatMessage({
-        id: 'BLOCK_NAME.success.operate-title',
-        defaultMessage: 'Project Name',
-      })}
-    >
-      <Descriptions.Item
-        label={
-          <FormattedMessage id="BLOCK_NAME.success.operate-id" defaultMessage="Project ID：" />
-        }
-      >
-        23421
-      </Descriptions.Item>
-      <Descriptions.Item
-        label={<FormattedMessage id="BLOCK_NAME.success.principal" defaultMessage="Principal：" />}
-      >
-        <FormattedMessage id="BLOCK_NAME.success.step1-operator" defaultMessage="Qu Lili" />
-      </Descriptions.Item>
-      <Descriptions.Item
-        label={
-          <FormattedMessage
-            id="BLOCK_NAME.success.operate-time"
-            defaultMessage="Effective time："
-          />
-        }
-      >
-        2016-12-12 ~ 2017-12-12
-      </Descriptions.Item>
+    <Descriptions title="项目名称">
+      <Descriptions.Item label="项目 ID">23421</Descriptions.Item>
+      <Descriptions.Item label="负责人">曲丽丽</Descriptions.Item>
+      <Descriptions.Item label="生效时间">2016-12-12 ~ 2017-12-12</Descriptions.Item>
     </Descriptions>
     <br />
     <Steps progressDot current={1}>
-      <Step
-        title={
-          <span style={{ fontSize: 14 }}>
-            <FormattedMessage id="BLOCK_NAME.success.step1-title" defaultMessage="Create project" />
-          </span>
-        }
-        description={desc1}
-      />
-      <Step
-        title={
-          <span style={{ fontSize: 14 }}>
-            <FormattedMessage
-              id="BLOCK_NAME.success.step2-title"
-              defaultMessage="Departmental preliminary review"
-            />
-          </span>
-        }
-        description={desc2}
-      />
-      <Step
-        title={
-          <span style={{ fontSize: 14 }}>
-            <FormattedMessage
-              id="BLOCK_NAME.success.step3-title"
-              defaultMessage="Financial review"
-            />
-          </span>
-        }
-      />
-      <Step
-        title={
-          <span style={{ fontSize: 14 }}>
-            <FormattedMessage id="BLOCK_NAME.success.step4-title" defaultMessage="Finish" />
-          </span>
-        }
-      />
+      <Step title={<span style={{ fontSize: 14 }}>创建项目</span>} description={desc1} />
+      <Step title={<span style={{ fontSize: 14 }}>部门初审</span>} description={desc2} />
+      <Step title={<span style={{ fontSize: 14 }}>财务复核</span>} />
+      <Step title={<span style={{ fontSize: 14 }}>完成</span>} />
     </Steps>
   </>
 );
 
 const extra = (
   <Fragment>
-    <Button type="primary">
-      <FormattedMessage id="BLOCK_NAME.success.btn-return" defaultMessage="Back to list" />
-    </Button>
-    <Button>
-      <FormattedMessage id="BLOCK_NAME.success.btn-project" defaultMessage="View project" />
-    </Button>
-    <Button>
-      <FormattedMessage id="BLOCK_NAME.success.btn-print" defaultMessage="Print" />
-    </Button>
+    <Button type="primary">返回列表</Button>
+    <Button>查看项目</Button>
+    <Button>打印</Button>
   </Fragment>
 );
 
@@ -122,8 +59,8 @@ export default () => (
     <Card bordered={false}>
       <Result
         status="success"
-        title={formatMessage({ id: 'BLOCK_NAME.success.title' })}
-        subTitle={formatMessage({ id: 'BLOCK_NAME.success.description' })}
+        title="提交成功"
+        subTitle="提交结果页用于反馈一系列操作任务的处理结果， 如果仅是简单操作，使用 Message 全局提示反馈即可。 本文字区域可以展示简单的补充说明，如果有类似展示 “单据”的需求，下面这个灰色区域可以呈现比较复杂的内容。"
         extra={extra}
         style={{ marginBottom: 16 }}
       >

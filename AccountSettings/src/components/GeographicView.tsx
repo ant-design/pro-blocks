@@ -1,7 +1,8 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { Select, Spin } from 'antd';
+import { useRequest } from 'umi';
 import { LabeledValue } from 'antd/es/select';
-import { connect, Dispatch } from 'umi';
+import { queryProvince, queryCity } from '../service';
 import { GeographicItemType } from '../data.d';
 import styles from './GeographicView.less';
 
@@ -14,57 +15,37 @@ const nullSelectItem: LabeledValue = {
 };
 
 interface GeographicViewProps {
-  dispatch?: Dispatch<any>;
-  province?: GeographicItemType[];
-  city?: GeographicItemType[];
   value?: {
     province: LabeledValue;
     city: LabeledValue;
   };
-  loading?: boolean;
   onChange?: (value: { province: LabeledValue; city: LabeledValue }) => void;
 }
 
-class GeographicView extends Component<GeographicViewProps> {
-  componentDidMount = () => {
-    const { dispatch } = this.props;
-    if (dispatch) {
-      dispatch({
-        type: 'BLOCK_NAME_CAMEL_CASE/fetchProvince',
-      });
-    }
-  };
+const GeographicView: React.FC<GeographicViewProps> = ({ value, onChange }) => {
+  // 获取省份列表
+  const { data: provinceList, loading } = useRequest(() => {
+    return queryProvince();
+  });
 
-  componentDidUpdate(props: GeographicViewProps) {
-    const { dispatch, value } = this.props;
-
-    if (!props.value && !!value && !!value.province) {
-      if (dispatch) {
-        dispatch({
-          type: 'BLOCK_NAME_CAMEL_CASE/fetchCity',
-          payload: value.province.key,
-        });
+  // 根据省份的变化更新对应的城市列表
+  const { data: cityList, loading: cityLoading } = useRequest(
+    () => {
+      if (value?.province) {
+        return queryCity(value?.province.key || '');
       }
-    }
-  }
+      return {
+        data: [],
+        loading: false,
+      };
+    },
+    {
+      refreshDeps: [value?.province],
+    },
+  );
 
-  getProvinceOption() {
-    const { province } = this.props;
-    if (province) {
-      return this.getOption(province);
-    }
-    return [];
-  }
-
-  getCityOption = () => {
-    const { city } = this.props;
-    if (city) {
-      return this.getOption(city);
-    }
-    return [];
-  };
-
-  getOption = (list: GeographicItemType[]) => {
+  // 展示对应的select的Options
+  const getOption = (list: GeographicItemType[]) => {
     if (!list || list.length < 1) {
       return (
         <Option key={0} value={0}>
@@ -79,15 +60,15 @@ class GeographicView extends Component<GeographicViewProps> {
     ));
   };
 
-  selectProvinceItem = (item: LabeledValue) => {
-    const { dispatch, onChange } = this.props;
-
-    if (dispatch) {
-      dispatch({
-        type: 'BLOCK_NAME_CAMEL_CASE/fetchCity',
-        payload: item.key,
-      });
+  // 获取省份对应的展示
+  const getProvinceOption = () => {
+    if (provinceList) {
+      return getOption(provinceList);
     }
+    return [];
+  };
+
+  const selectProvinceItem = (item: LabeledValue) => {
     if (onChange) {
       onChange({
         province: item,
@@ -96,8 +77,7 @@ class GeographicView extends Component<GeographicViewProps> {
     }
   };
 
-  selectCityItem = (item: LabeledValue) => {
-    const { value, onChange } = this.props;
+  const selectCityItem = (item: LabeledValue) => {
     if (value && onChange) {
       onChange({
         province: value.province,
@@ -106,66 +86,35 @@ class GeographicView extends Component<GeographicViewProps> {
     }
   };
 
-  conversionObject() {
-    const { value } = this.props;
-    if (!value) {
-      return {
-        province: nullSelectItem,
-        city: nullSelectItem,
-      };
+  const getCityOption = () => {
+    if (cityList) {
+      return getOption(cityList);
     }
-    const { province, city } = value;
-    return {
-      province: province || nullSelectItem,
-      city: city || nullSelectItem,
-    };
-  }
+    return [];
+  };
 
-  render() {
-    const { province, city } = this.conversionObject();
-    const { loading } = this.props;
+  return (
+    <Spin spinning={loading || cityLoading} wrapperClassName={styles.row}>
+      <Select
+        className={styles.item}
+        value={value?.province}
+        labelInValue
+        showSearch
+        onSelect={selectProvinceItem}
+      >
+        {getProvinceOption()}
+      </Select>
+      <Select
+        className={styles.item}
+        value={value?.city}
+        labelInValue
+        showSearch
+        onSelect={selectCityItem}
+      >
+        {getCityOption()}
+      </Select>
+    </Spin>
+  );
+};
 
-    return (
-      <Spin spinning={loading} wrapperClassName={styles.row}>
-        <Select
-          className={styles.item}
-          value={province}
-          labelInValue
-          showSearch
-          onSelect={this.selectProvinceItem}
-        >
-          {this.getProvinceOption()}
-        </Select>
-        <Select
-          className={styles.item}
-          value={city}
-          labelInValue
-          showSearch
-          onSelect={this.selectCityItem}
-        >
-          {this.getCityOption()}
-        </Select>
-      </Spin>
-    );
-  }
-}
-
-export default connect(
-  ({
-    BLOCK_NAME_CAMEL_CASE,
-    loading,
-  }: {
-    BLOCK_NAME_CAMEL_CASE: {
-      province: GeographicItemType[];
-      city: GeographicItemType[];
-    };
-    loading: any;
-  }) => {
-    const { province, city } = BLOCK_NAME_CAMEL_CASE;
-    return {
-      province,
-      city,
-      loading: loading.models.BLOCK_NAME_CAMEL_CASE,
-    };
-  },
-)(GeographicView);
+export default GeographicView;

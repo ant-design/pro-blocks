@@ -1,6 +1,6 @@
 import { Form, Button, Col, Input, Popover, Progress, Row, Select, message } from 'antd';
 import React, { FC, useState, useEffect } from 'react';
-import { Link, connect, router, FormattedMessage, formatMessage, Dispatch } from 'umi';
+import { Link, connect, history, FormattedMessage, formatMessage, Dispatch } from 'umi';
 
 import { StateType } from './model';
 import styles from './style.less';
@@ -71,7 +71,7 @@ const PAGE_NAME_UPPER_CAMEL_CASE: FC<PAGE_NAME_UPPER_CAMEL_CASEProps> = ({
     const account = form.getFieldValue('mail');
     if (BLOCK_NAME_CAMEL_CASE.status === 'ok') {
       message.success('注册成功！');
-      router.push({
+      history.push({
         pathname: '/user/register-result',
         state: {
           account,

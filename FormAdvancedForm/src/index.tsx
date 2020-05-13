@@ -1,11 +1,24 @@
 import { CloseCircleOutlined } from '@ant-design/icons';
-import { Button, Card, Col, DatePicker, Form, Input, Popover, Row, Select, TimePicker } from 'antd';
+import {
+  Button,
+  Card,
+  Col,
+  DatePicker,
+  Form,
+  Input,
+  Popover,
+  Row,
+  Select,
+  TimePicker,
+  message,
+} from 'antd';
 
 import React, { FC, useState } from 'react';
 import { PageHeaderWrapper } from '@ant-design/pro-layout';
-import { connect, Dispatch } from 'umi';
+import { useRequest } from 'umi';
 import TableForm from './components/TableForm';
 import FooterToolbar from './components/FooterToolbar';
+import { fakeSubmitForm } from './service';
 import styles from './style.less';
 
 type InternalNamePath = (string | number)[];
@@ -49,20 +62,18 @@ const tableData = [
   },
 ];
 
-interface PAGE_NAME_UPPER_CAMEL_CASEProps {
-  dispatch: Dispatch<any>;
-  submitting: boolean;
-}
-
 interface ErrorField {
   name: InternalNamePath;
   errors: string[];
 }
 
-const PAGE_NAME_UPPER_CAMEL_CASE: FC<PAGE_NAME_UPPER_CAMEL_CASEProps> = ({
-  submitting,
-  dispatch,
-}) => {
+const PAGE_NAME_UPPER_CAMEL_CASE: FC<{}> = () => {
+  const { loading: submitting, run } = useRequest(fakeSubmitForm, {
+    manual: true,
+    onSuccess: () => {
+      message.success('提交成功');
+    },
+  });
   const [form] = Form.useForm();
   const [error, setError] = useState<ErrorField[]>([]);
   const getErrorInfo = (errors: ErrorField[]) => {
@@ -112,10 +123,7 @@ const PAGE_NAME_UPPER_CAMEL_CASE: FC<PAGE_NAME_UPPER_CAMEL_CASEProps> = ({
 
   const onFinish = (values: { [key: string]: any }) => {
     setError([]);
-    dispatch({
-      type: 'BLOCK_NAME_CAMEL_CASE/submitAdvancedForm',
-      payload: values,
-    });
+    run(values);
   };
 
   const onFinishFailed = (errorInfo: any) => {
@@ -301,6 +309,4 @@ const PAGE_NAME_UPPER_CAMEL_CASE: FC<PAGE_NAME_UPPER_CAMEL_CASEProps> = ({
   );
 };
 
-export default connect(({ loading }: { loading: { effects: { [key: string]: boolean } } }) => ({
-  submitting: loading.effects['BLOCK_NAME_CAMEL_CASE/submitAdvancedForm'],
-}))(PAGE_NAME_UPPER_CAMEL_CASE);
+export default PAGE_NAME_UPPER_CAMEL_CASE;
