@@ -177,8 +177,7 @@
       "url": "https://github.com/ant-design/pro-blocks/tree/master/Exception500",
       "path": "Exception500",
       "features": [
-        "antd",
-        "i18n"
+        "antd"
       ],
       "img": "https://raw.githubusercontent.com/ant-design/pro-blocks/master/Exception500/snapshot.png?raw=true",
       "tags": [
@@ -367,8 +366,7 @@
       "url": "https://github.com/ant-design/pro-blocks/tree/master/ProfileBasic",
       "path": "ProfileBasic",
       "features": [
-        "antd",
-        "dva"
+        "antd"
       ],
       "img": "https://raw.githubusercontent.com/ant-design/pro-blocks/master/ProfileBasic/snapshot.png?raw=true",
       "tags": [
