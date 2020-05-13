@@ -15,8 +15,3 @@ export interface BasicProgress {
   operator: string;
   cost: string;
 }
-
-export interface BasicProfileDataType {
-  basicGoods: BasicGood[];
-  basicProgress: BasicProgress[];
-}

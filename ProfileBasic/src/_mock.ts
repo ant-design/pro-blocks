@@ -76,11 +76,15 @@ const basicProgress = [
   },
 ];
 
-const getProfileBasicData = {
-  basicGoods,
-  basicProgress,
-};
+function getProfileBasic(_: Request, res: Response) {
+  return res.json({
+    data: {
+      basicProgress,
+      basicGoods,
+    },
+  });
+}
 
 export default {
-  'GET  /api/profile/basic': getProfileBasicData,
+  'GET  /api/profile/basic': getProfileBasic,
 };

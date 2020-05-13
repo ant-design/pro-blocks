@@ -1,7 +1,8 @@
 import React from 'react';
 import { Form, Alert, Button, Descriptions, Divider, Statistic, Input } from 'antd';
-import { connect, Dispatch } from 'umi';
-import { StateType } from '../../model';
+import { useRequest } from 'umi';
+import { StepComponentTypeProps } from '../../data.d';
+import { fakeSubmitForm } from '../../service';
 import styles from './index.less';
 
 const formItemLayout = {
@@ -12,46 +13,31 @@ const formItemLayout = {
     span: 19,
   },
 };
-interface Step2Props {
-  data?: StateType['step'];
-  dispatch?: Dispatch<any>;
-  submitting?: boolean;
-}
 
-const Step2: React.FC<Step2Props> = (props) => {
+const Step2: React.FC<StepComponentTypeProps> = (props) => {
   const [form] = Form.useForm();
-  const { data, dispatch, submitting } = props;
+
+  const { setStepData, setCurrent, stepData: data } = props;
+
+  const { loading: submitting, run } = useRequest(fakeSubmitForm, {
+    manual: true,
+    onSuccess: (_, params) => {
+      setStepData(params[0]);
+      setCurrent('result');
+    },
+  });
   if (!data) {
     return null;
   }
   const { validateFields, getFieldsValue } = form;
   const onPrev = () => {
-    if (dispatch) {
-      const values = getFieldsValue();
-      dispatch({
-        type: 'BLOCK_NAME_CAMEL_CASE/saveStepFormData',
-        payload: {
-          ...data,
-          ...values,
-        },
-      });
-      dispatch({
-        type: 'BLOCK_NAME_CAMEL_CASE/saveCurrentStep',
-        payload: 'info',
-      });
-    }
+    const values = getFieldsValue();
+    setStepData({ ...data, ...values });
+    setCurrent('base');
   };
   const onValidateForm = async () => {
     const values = await validateFields();
-    if (dispatch) {
-      dispatch({
-        type: 'BLOCK_NAME_CAMEL_CASE/submitStepForm',
-        payload: {
-          ...data,
-          ...values,
-        },
-      });
-    }
+    run({ ...data, ...values });
   };
 
   const { payAccount, receiverAccount, receiverName, amount } = data;
@@ -106,17 +92,4 @@ const Step2: React.FC<Step2Props> = (props) => {
     </Form>
   );
 };
-export default connect(
-  ({
-    BLOCK_NAME_CAMEL_CASE,
-    loading,
-  }: {
-    BLOCK_NAME_CAMEL_CASE: StateType;
-    loading: {
-      effects: { [key: string]: boolean };
-    };
-  }) => ({
-    submitting: loading.effects['BLOCK_NAME_CAMEL_CASE/submitStepForm'],
-    data: BLOCK_NAME_CAMEL_CASE.step,
-  }),
-)(Step2);
+export default Step2;

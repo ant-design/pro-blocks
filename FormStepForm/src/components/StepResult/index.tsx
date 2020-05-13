@@ -1,27 +1,16 @@
 import { Button, Result, Descriptions, Statistic } from 'antd';
 import React from 'react';
-import { connect, Dispatch } from 'umi';
-import { StateType } from '../../model';
+import { StepComponentTypeProps } from '../../data.d';
 import styles from './index.less';
 
-interface Step3Props {
-  data?: StateType['step'];
-  dispatch?: Dispatch<any>;
-}
-
-const Step3: React.FC<Step3Props> = (props) => {
-  const { data, dispatch } = props;
+const Step3: React.FC<StepComponentTypeProps> = (props) => {
+  const { setCurrent, stepData: data } = props;
   if (!data) {
     return null;
   }
   const { payAccount, receiverAccount, receiverName, amount } = data;
   const onFinish = () => {
-    if (dispatch) {
-      dispatch({
-        type: 'BLOCK_NAME_CAMEL_CASE/saveCurrentStep',
-        payload: 'info',
-      });
-    }
+    setCurrent('base');
   };
   const information = (
     <div className={styles.information}>
@@ -56,6 +45,4 @@ const Step3: React.FC<Step3Props> = (props) => {
   );
 };
 
-export default connect(({ BLOCK_NAME_CAMEL_CASE }: { BLOCK_NAME_CAMEL_CASE: StateType }) => ({
-  data: BLOCK_NAME_CAMEL_CASE.step,
-}))(Step3);
+export default Step3;
