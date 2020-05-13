@@ -1,11 +1,13 @@
 import { Card, Col, Row, Statistic } from 'antd';
 import { useRequest } from 'umi';
 import React, { FC } from 'react';
-import { Gauge } from '@ant-design/charts';
+import { uniqueId } from 'lodash';
+import { Gauge, WordCloud, Liquid, RingProgress } from '@ant-design/charts';
+import { WordCloudData } from '@antv/g2plot/esm/plots/word-cloud/layer';
 
 import { GridContent } from '@ant-design/pro-layout';
 import numeral from 'numeral';
-import { Pie, WaterWave, TagCloud, Map } from './components/Charts';
+import Map from './components/Map';
 import ActiveChart from './components/ActiveChart';
 import { queryTags } from './service';
 import styles from './style.less';
@@ -16,6 +18,14 @@ const deadline = Date.now() + 1000 * 60 * 60 * 24 * 2 + 1000 * 30; // Moment is 
 
 const PAGE_NAME_UPPER_CAMEL_CASE: FC = () => {
   const { loading, data } = useRequest(queryTags);
+
+  const wordCloudData: WordCloudData[] = (data?.list || []).map(item => {
+    return {
+      id: +uniqueId(),
+      word: item.name,
+      weight: item.value
+    }
+  });
 
   return (
     <GridContent>
@@ -99,35 +109,30 @@ const PAGE_NAME_UPPER_CAMEL_CASE: FC = () => {
             >
               <Row style={{ padding: '16px 0' }}>
                 <Col span={8}>
-                  <Pie
+                  <RingProgress forceFit height={128} percent={0.28} />
+                  {/* <Pie
                     animate={false}
                     percent={28}
                     title="中式快餐"
                     total="28%"
                     height={128}
                     lineWidth={2}
-                  />
+                  /> */}
                 </Col>
                 <Col span={8}>
-                  <Pie
-                    animate={false}
+                  <RingProgress
                     color="#5DDECF"
-                    percent={22}
-                    title="西餐"
-                    total="22%"
+                    forceFit
                     height={128}
-                    lineWidth={2}
+                    percent={0.22}
                   />
                 </Col>
                 <Col span={8}>
-                  <Pie
-                    animate={false}
+                  <RingProgress
                     color="#2FC25B"
-                    percent={32}
-                    title="火锅"
-                    total="32%"
+                    forceFit
                     height={128}
-                    lineWidth={2}
+                    percent={0.32}
                   />
                 </Col>
               </Row>
@@ -140,7 +145,16 @@ const PAGE_NAME_UPPER_CAMEL_CASE: FC = () => {
               bordered={false}
               bodyStyle={{ overflow: 'hidden' }}
             >
-              <TagCloud data={data?.list || []} height={161} />
+              <WordCloud
+                data={wordCloudData}
+                forceFit
+                height={162}
+                wordStyle={{
+                  fontSize: [10, 20],
+                }}
+                shape="triangle"
+              />
+              {/* <TagCloud data={data?.list || []} height={161} /> */}
             </Card>
           </Col>
           <Col xl={6} lg={12} sm={24} xs={24} style={{ marginBottom: 24 }}>
@@ -149,10 +163,16 @@ const PAGE_NAME_UPPER_CAMEL_CASE: FC = () => {
               bodyStyle={{ textAlign: 'center', fontSize: 0 }}
               bordered={false}
             >
-              <WaterWave
+              <Liquid
                 height={161}
-                title="补贴资金剩余"
-                percent={34}
+                min={0}
+                max={10000}
+                value={5639}
+                forceFit
+                padding={[0, 0, 0, 0]}
+                statistic={{
+                  formatter: (value) => `${((100 * value) / 10000).toFixed(1)}%`,
+                }}
               />
             </Card>
           </Col>
