@@ -3,10 +3,11 @@ import ProTable, { ProColumns } from '@ant-design/pro-table';
 import { Badge, Card, Descriptions, Divider } from 'antd';
 import React, { FC } from 'react';
 import { useRequest } from 'umi';
+import { BasicGood, BasicProgress } from './data.d';
 import { queryBasicProfile } from './service';
 import styles from './style.less';
 
-const progressColumns: ProColumns<{}>[] = [
+const progressColumns: ProColumns<BasicProgress>[] = [
   {
     title: '时间',
     dataIndex: 'time',
@@ -78,12 +79,12 @@ const PAGE_NAME_UPPER_CAMEL_CASE: FC = () => {
     return obj;
   };
 
-  const goodsColumns: ProColumns<{}>[] = [
+  const goodsColumns: ProColumns<BasicGood>[] = [
     {
       title: '商品编号',
       dataIndex: 'id',
       key: 'id',
-      render: (text: React.ReactNode, row: any, index: number) => {
+      render: (text: React.ReactNode, _: any, index: number) => {
         if (index < basicGoods.length) {
           return <span>{text}</span>;
         }
@@ -119,7 +120,7 @@ const PAGE_NAME_UPPER_CAMEL_CASE: FC = () => {
       dataIndex: 'num',
       key: 'num',
       align: 'right' as 'left' | 'right' | 'center',
-      render: (text: React.ReactNode, row: any, index: number) => {
+      render: (text: React.ReactNode, _: any, index: number) => {
         if (index < basicGoods.length) {
           return text;
         }
@@ -131,7 +132,7 @@ const PAGE_NAME_UPPER_CAMEL_CASE: FC = () => {
       dataIndex: 'amount',
       key: 'amount',
       align: 'right' as 'left' | 'right' | 'center',
-      render: (text: React.ReactNode, row: any, index: number) => {
+      render: (text: React.ReactNode, _: any, index: number) => {
         if (index < basicGoods.length) {
           return text;
         }
