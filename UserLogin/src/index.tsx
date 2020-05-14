@@ -1,18 +1,12 @@
 import { AlipayCircleOutlined, TaobaoCircleOutlined, WeiboCircleOutlined } from '@ant-design/icons';
 import { Alert, Checkbox } from 'antd';
 import React, { useState } from 'react';
-import { Dispatch, Link, connect } from 'umi';
-import { StateType } from './model';
+import { Link, useRequest } from 'umi';
 import styles from './style.less';
-import { LoginParamsType } from './service';
-import LoginFrom from './components/Login';
+import { LoginParamsType, StateType, fakeAccountLogin } from './service';
+import LoginForm from './components/Login';
 
-const { Tab, UserName, Password, Mobile, Captcha, Submit } = LoginFrom;
-interface PAGE_NAME_UPPER_CAMEL_CASEProps {
-  dispatch: Dispatch;
-  BLOCK_NAME_CAMEL_CASE: StateType;
-  submitting?: boolean;
-}
+const { Tab, UserName, Password, Mobile, Captcha, Submit } = LoginForm;
 
 const LoginMessage: React.FC<{
   content: string;
@@ -27,27 +21,25 @@ const LoginMessage: React.FC<{
   />
 );
 
-const PAGE_NAME_UPPER_CAMEL_CASE: React.FC<PAGE_NAME_UPPER_CAMEL_CASEProps> = (props) => {
-  const { BLOCK_NAME_CAMEL_CASE = {}, submitting } = props;
-  const { status, type: loginType } = BLOCK_NAME_CAMEL_CASE;
+const PAGE_NAME_UPPER_CAMEL_CASE: React.FC = () => {
   const [autoLogin, setAutoLogin] = useState(true);
   const [type, setType] = useState<string>('account');
 
+  const { loading, data, run: submit } = useRequest<{ data: StateType }>(fakeAccountLogin, {
+    manual: true,
+    formatResult: (result) => result?.data,
+  });
+
   const handleSubmit = (values: LoginParamsType) => {
-    const { dispatch } = props;
-    dispatch({
-      type: 'BLOCK_NAME_CAMEL_CASE/login',
-      payload: {
-        ...values,
-        type,
-      },
-    });
+    submit(values);
   };
+
+  const { status, type: loginType } = data || { status: 'ok', type: 'account' };
   return (
     <div className={styles.main}>
-      <LoginFrom activeKey={type} onTabChange={setType} onSubmit={handleSubmit}>
+      <LoginForm activeKey={type} onTabChange={setType} onSubmit={handleSubmit}>
         <Tab key="account" tab="账户密码登录">
-          {status === 'error' && loginType === 'account' && !submitting && (
+          {status === 'error' && loginType === 'account' && !loading && (
             <LoginMessage content="账户或密码错误（admin/ant.design）" />
           )}
 
@@ -73,7 +65,7 @@ const PAGE_NAME_UPPER_CAMEL_CASE: React.FC<PAGE_NAME_UPPER_CAMEL_CASEProps> = (p
           />
         </Tab>
         <Tab key="mobile" tab="手机号登录">
-          {status === 'error' && loginType === 'mobile' && !submitting && (
+          {status === 'error' && loginType === 'mobile' && !loading && (
             <LoginMessage content="验证码错误" />
           )}
           <Mobile
@@ -116,7 +108,7 @@ const PAGE_NAME_UPPER_CAMEL_CASE: React.FC<PAGE_NAME_UPPER_CAMEL_CASEProps> = (p
             忘记密码
           </a>
         </div>
-        <Submit loading={submitting}>登录</Submit>
+        <Submit loading={loading}>登录</Submit>
         <div className={styles.other}>
           其他登录方式
           <AlipayCircleOutlined className={styles.icon} />
@@ -126,24 +118,9 @@ const PAGE_NAME_UPPER_CAMEL_CASE: React.FC<PAGE_NAME_UPPER_CAMEL_CASEProps> = (p
             注册账户
           </Link>
         </div>
-      </LoginFrom>
+      </LoginForm>
     </div>
   );
 };
 
-export default connect(
-  ({
-    BLOCK_NAME_CAMEL_CASE,
-    loading,
-  }: {
-    BLOCK_NAME_CAMEL_CASE: StateType;
-    loading: {
-      effects: {
-        [key: string]: boolean;
-      };
-    };
-  }) => ({
-    BLOCK_NAME_CAMEL_CASE,
-    submitting: loading.effects['BLOCK_NAME_CAMEL_CASE/login'],
-  }),
-)(PAGE_NAME_UPPER_CAMEL_CASE);
+export default PAGE_NAME_UPPER_CAMEL_CASE;

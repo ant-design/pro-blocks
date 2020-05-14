@@ -65,6 +65,7 @@ const PAGE_NAME_UPPER_CAMEL_CASE: FC = () => {
       amount,
     });
   }
+  
   const renderContent = (value: any, _: any, index: any) => {
     const obj: {
       children: any;
