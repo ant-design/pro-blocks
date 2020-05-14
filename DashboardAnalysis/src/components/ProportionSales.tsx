@@ -1,4 +1,4 @@
-import { Card, Radio } from 'antd';
+import { Card, Radio, Typography } from 'antd';
 import numeral from 'numeral';
 import { RadioChangeEvent } from 'antd/es/radio';
 import { Donut } from '@ant-design/charts';
@@ -6,6 +6,8 @@ import { DonutConfig } from '@ant-design/charts/es/donut'
 import React from 'react';
 import { DataItem } from '../data.d';
 import styles from '../style.less';
+
+const { Text } = Typography;
 
 const ProportionSales = ({
   dropdownGroup,
@@ -48,9 +50,7 @@ const ProportionSales = ({
     }
   >
     <div>
-      <h4 style={{ marginTop: 8, marginBottom: 32 }}>
-        销售额
-      </h4>
+      <Text>销售额</Text>
       <Donut
         forceFit
         height={340}
