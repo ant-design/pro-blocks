@@ -1,7 +1,7 @@
 {
   "name": "@umi-block/user-register",
   "version": "0.0.1",
-  "description": "用户注册是使用，用于填写基本的账号信息。",
+  "description": "用户注册时使用，用于填写基本的账号信息。",
   "repository": {
     "type": "git",
     "url": "https://github.com/umijs/umi-blocks/ant-design-pro/userregister"
