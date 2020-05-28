@@ -12,17 +12,9 @@
     "dev": "umi dev"
   },
   "dependencies": {
-    "@ant-design/icons": "^4.0.0",
-    "@antv/data-set": "^0.11.0",
+    "@ant-design/charts": "^0.9.4",
     "@antv/l7-react": "^2.1.9",
-    "@types/lodash.debounce": "^4.0.6",
-    "bizcharts": "^3.5.3-beta.0",
-    "bizcharts-plugin-slider": "^2.1.1-beta.1",
-    "classnames": "^2.2.6",
-    "lodash.debounce": "^4.0.8",
-    "mockjs": "^1.0.1-beta3",
     "numeral": "^2.0.6",
-    "react-fittext": "^1.0.0",
     "umi-request": "^1.0.0"
   },
   "devDependencies": {

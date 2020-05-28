@@ -1,13 +1,15 @@
 import { Card, Col, DatePicker, Row, Tabs } from 'antd';
-import { FormattedMessage, formatMessage } from 'umi';
 import { RangePickerProps } from 'antd/es/date-picker/generatePicker';
 import moment from 'moment';
+import { Column } from '@ant-design/charts';
 
 import React from 'react';
 import numeral from 'numeral';
-import { VisitDataType } from '../data.d';
-import { Bar } from './Charts';
+import { DataItem } from '../data.d';
 import styles from '../style.less';
+
+type RangePickerValue = RangePickerProps<moment.Moment>['value'];
+export type TimeType = 'today' | 'week' | 'month' | 'year';
 
 const { RangePicker } = DatePicker;
 const { TabPane } = Tabs;
@@ -15,12 +17,10 @@ const { TabPane } = Tabs;
 const rankingListData: { title: string; total: number }[] = [];
 for (let i = 0; i < 7; i += 1) {
   rankingListData.push({
-    title: formatMessage({ id: 'BLOCK_NAME.analysis.test' }, { no: i }),
+    title: `工专路 ${i} 号店`,
     total: 323234,
   });
 }
-
-type RangePickerValue = RangePickerProps<moment.Moment>['value'];
 
 const SalesCard = ({
   rangePickerValue,
@@ -31,11 +31,11 @@ const SalesCard = ({
   selectDate,
 }: {
   rangePickerValue: RangePickerValue;
-  isActive: (key: 'today' | 'week' | 'month' | 'year') => string;
-  salesData: VisitDataType[];
+  isActive: (key: TimeType) => string;
+  salesData: DataItem[];
   loading: boolean;
   handleRangePickerChange: (dates: RangePickerValue, dateStrings: [string, string]) => void;
-  selectDate: (key: 'today' | 'week' | 'month' | 'year') => void;
+  selectDate: (key: TimeType) => void;
 }) => (
   <Card loading={loading} bordered={false} bodyStyle={{ padding: 0 }}>
     <div className={styles.salesCard}>
@@ -44,16 +44,16 @@ const SalesCard = ({
           <div className={styles.salesExtraWrap}>
             <div className={styles.salesExtra}>
               <a className={isActive('today')} onClick={() => selectDate('today')}>
-                <FormattedMessage id="BLOCK_NAME.analysis.all-day" defaultMessage="All Day" />
+                今日
               </a>
               <a className={isActive('week')} onClick={() => selectDate('week')}>
-                <FormattedMessage id="BLOCK_NAME.analysis.all-week" defaultMessage="All Week" />
+                本周
               </a>
               <a className={isActive('month')} onClick={() => selectDate('month')}>
-                <FormattedMessage id="BLOCK_NAME.analysis.all-month" defaultMessage="All Month" />
+                本月
               </a>
               <a className={isActive('year')} onClick={() => selectDate('year')}>
-                <FormattedMessage id="BLOCK_NAME.analysis.all-year" defaultMessage="All Year" />
+                本年
               </a>
             </div>
             <RangePicker
@@ -67,31 +67,49 @@ const SalesCard = ({
         tabBarStyle={{ marginBottom: 24 }}
       >
         <TabPane
-          tab={<FormattedMessage id="BLOCK_NAME.analysis.sales" defaultMessage="Sales" />}
+          tab="销售额"
           key="sales"
         >
           <Row>
             <Col xl={16} lg={12} md={12} sm={24} xs={24}>
               <div className={styles.salesBar}>
-                <Bar
-                  height={295}
-                  title={
-                    <FormattedMessage
-                      id="BLOCK_NAME.analysis.sales-trend"
-                      defaultMessage="Sales Trend"
-                    />
-                  }
-                  data={salesData}
+                <Column
+                  height={300}
+                  forceFit
+                  data={salesData as any}
+                  xField= 'x'
+                  yField='y'
+                  xAxis={{
+                    visible: true,
+                    title: {
+                      visible: false
+                    }
+                  }}
+                  yAxis={{
+                    visible: true,
+                    title: {
+                      visible: false
+                    }
+                  }}
+                  title={{
+                    visible: true,
+                    text: '销售趋势',
+                    style: {
+                      fontSize: 14
+                    }
+                  }}
+                  meta={{
+                    y: {
+                      alias: '销售量'
+                    }
+                  }}
                 />
               </div>
             </Col>
             <Col xl={8} lg={12} md={12} sm={24} xs={24}>
               <div className={styles.salesRank}>
                 <h4 className={styles.rankingTitle}>
-                  <FormattedMessage
-                    id="BLOCK_NAME.analysis.sales-ranking"
-                    defaultMessage="Sales Ranking"
-                  />
+                  门店销售额排名
                 </h4>
                 <ul className={styles.rankingList}>
                   {rankingListData.map((item, i) => (
@@ -112,32 +130,47 @@ const SalesCard = ({
             </Col>
           </Row>
         </TabPane>
-        <TabPane
-          tab={<FormattedMessage id="BLOCK_NAME.analysis.visits" defaultMessage="Visits" />}
-          key="views"
-        >
+        <TabPane tab="访问量" key="views">
           <Row>
             <Col xl={16} lg={12} md={12} sm={24} xs={24}>
               <div className={styles.salesBar}>
-                <Bar
-                  height={292}
-                  title={
-                    <FormattedMessage
-                      id="BLOCK_NAME.analysis.visits-trend"
-                      defaultMessage="Visits Trend"
-                    />
-                  }
-                  data={salesData}
+                <Column
+                  height={300}
+                  forceFit
+                  data={salesData as any}
+                  xField= 'x'
+                  yField='y'
+                  xAxis={{
+                    visible: true,
+                    title: {
+                      visible: false
+                    }
+                  }}
+                  yAxis={{
+                    visible: true,
+                    title: {
+                      visible: false
+                    }
+                  }}
+                  title={{
+                    visible: true,
+                    text: '访问量趋势',
+                    style: {
+                      fontSize: 14
+                    }
+                  }}
+                  meta={{
+                    y: {
+                      alias: '访问量'
+                    }
+                  }}
                 />
               </div>
             </Col>
             <Col xl={8} lg={12} md={12} sm={24} xs={24}>
               <div className={styles.salesRank}>
                 <h4 className={styles.rankingTitle}>
-                  <FormattedMessage
-                    id="BLOCK_NAME.analysis.visits-ranking"
-                    defaultMessage="Visits Ranking"
-                  />
+                  门店访问量排名
                 </h4>
                 <ul className={styles.rankingList}>
                   {rankingListData.map((item, i) => (

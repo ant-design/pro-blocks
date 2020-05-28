@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
+import { TinyArea } from '@ant-design/charts';
 
 import { Statistic } from 'antd';
-import { MiniArea } from '../Charts';
 import styles from './index.less';
 
 function fixedZero(val: number) {
@@ -61,23 +61,12 @@ export default class ActiveChart extends Component {
       <div className={styles.activeChart}>
         <Statistic title="目标评估" value="有望达到预期" />
         <div style={{ marginTop: 32 }}>
-          <MiniArea
-            animate={false}
-            line
-            borderWidth={2}
-            height={84}
-            scale={{
-              y: {
-                tickCount: 3,
-              },
-            }}
-            yAxis={{
-              tickLine: undefined,
-              label: undefined,
-              title: undefined,
-              line: undefined,
-            }}
+          <TinyArea
             data={activeData}
+            xField="x"
+            forceFit
+            yField="y"
+            height={84}
           />
         </div>
         {activeData && (

@@ -1,13 +1,15 @@
+import React, { FC, Suspense, useState } from 'react';
 import { EllipsisOutlined } from '@ant-design/icons';
 import { Col, Dropdown, Menu, Row } from 'antd';
-import React, { Component, Suspense } from 'react';
 import { GridContent } from '@ant-design/pro-layout';
 import { RadioChangeEvent } from 'antd/es/radio';
 import { RangePickerProps } from 'antd/es/date-picker/generatePicker';
 import moment from 'moment';
-import { connect, Dispatch } from 'umi';
+import { useRequest } from 'umi';
 
+import { fakeChartData } from './service';
 import PageLoading from './components/PageLoading';
+import { TimeType } from './components/SalesCard';
 import { getTimeDistance } from './utils/utils';
 import { AnalysisData } from './data.d';
 import styles from './style.less';
@@ -22,84 +24,27 @@ type RangePickerValue = RangePickerProps<moment.Moment>['value'];
 
 interface PAGE_NAME_UPPER_CAMEL_CASEProps {
   BLOCK_NAME_CAMEL_CASE: AnalysisData;
-  dispatch: Dispatch<any>;
   loading: boolean;
 }
 
-interface PAGE_NAME_UPPER_CAMEL_CASEState {
-  salesType: 'all' | 'online' | 'stores';
-  currentTabKey: string;
-  rangePickerValue: RangePickerValue;
-}
+type SalesType = 'all' | 'online' | 'stores';
 
-class PAGE_NAME_UPPER_CAMEL_CASE extends Component<
-  PAGE_NAME_UPPER_CAMEL_CASEProps,
-  PAGE_NAME_UPPER_CAMEL_CASEState
-> {
-  state: PAGE_NAME_UPPER_CAMEL_CASEState = {
-    salesType: 'all',
-    currentTabKey: '',
-    rangePickerValue: getTimeDistance('year'),
+const PAGE_NAME_UPPER_CAMEL_CASE: FC<PAGE_NAME_UPPER_CAMEL_CASEProps> = () => {
+  const [salesType, setSalesType] = useState<SalesType>('all');
+  const [currentTabKey, setCurrentTabKey] = useState<string>('');
+  const [rangePickerValue, setRangePickerValue] = useState<RangePickerValue>(getTimeDistance('year'));
+
+  const { loading, data } = useRequest(fakeChartData);
+
+  const selectDate = (type: TimeType) => {
+    setRangePickerValue(getTimeDistance(type));
   };
 
-  reqRef: number = 0;
-
-  timeoutId: number = 0;
-
-  componentDidMount() {
-    const { dispatch } = this.props;
-    this.reqRef = requestAnimationFrame(() => {
-      dispatch({
-        type: 'BLOCK_NAME_CAMEL_CASE/fetch',
-      });
-    });
-  }
-
-  componentWillUnmount() {
-    const { dispatch } = this.props;
-    dispatch({
-      type: 'BLOCK_NAME_CAMEL_CASE/clear',
-    });
-    cancelAnimationFrame(this.reqRef);
-    clearTimeout(this.timeoutId);
-  }
-
-  handleChangeSalesType = (e: RadioChangeEvent) => {
-    this.setState({
-      salesType: e.target.value,
-    });
+  const handleRangePickerChange = (value: RangePickerValue) => {
+    setRangePickerValue(value);
   };
 
-  handleTabChange = (key: string) => {
-    this.setState({
-      currentTabKey: key,
-    });
-  };
-
-  handleRangePickerChange = (rangePickerValue: RangePickerValue) => {
-    const { dispatch } = this.props;
-    this.setState({
-      rangePickerValue,
-    });
-
-    dispatch({
-      type: 'BLOCK_NAME_CAMEL_CASE/fetchSalesData',
-    });
-  };
-
-  selectDate = (type: 'today' | 'week' | 'month' | 'year') => {
-    const { dispatch } = this.props;
-    this.setState({
-      rangePickerValue: getTimeDistance(type),
-    });
-
-    dispatch({
-      type: 'BLOCK_NAME_CAMEL_CASE/fetchSalesData',
-    });
-  };
-
-  isActive = (type: 'today' | 'week' | 'month' | 'year') => {
-    const { rangePickerValue } = this.state;
+  const isActive = (type: TimeType) => {
     if (!rangePickerValue) {
       return '';
     }
@@ -119,112 +64,97 @@ class PAGE_NAME_UPPER_CAMEL_CASE extends Component<
     return '';
   };
 
-  render() {
-    const { rangePickerValue, salesType, currentTabKey } = this.state;
-    const { BLOCK_NAME_CAMEL_CASE, loading } = this.props;
-    const {
-      visitData,
-      visitData2,
-      salesData,
-      searchData,
-      offlineData,
-      offlineChartData,
-      salesTypeData,
-      salesTypeDataOnline,
-      salesTypeDataOffline,
-    } = BLOCK_NAME_CAMEL_CASE;
-    let salesPieData;
+  let salesPieData;
     if (salesType === 'all') {
-      salesPieData = salesTypeData;
+      salesPieData = data?.salesTypeData;
     } else {
-      salesPieData = salesType === 'online' ? salesTypeDataOnline : salesTypeDataOffline;
+      salesPieData = salesType === 'online' ? data?.salesTypeDataOnline : data?.salesTypeDataOffline;
     }
-    const menu = (
-      <Menu>
-        <Menu.Item>操作一</Menu.Item>
-        <Menu.Item>操作二</Menu.Item>
-      </Menu>
-    );
 
-    const dropdownGroup = (
-      <span className={styles.iconGroup}>
-        <Dropdown overlay={menu} placement="bottomRight">
-          <EllipsisOutlined />
-        </Dropdown>
-      </span>
-    );
+  const menu = (
+    <Menu>
+      <Menu.Item>操作一</Menu.Item>
+      <Menu.Item>操作二</Menu.Item>
+    </Menu>
+  );
 
-    const activeKey = currentTabKey || (offlineData[0] && offlineData[0].name);
-    return (
-      <GridContent>
-        <React.Fragment>
-          <Suspense fallback={<PageLoading />}>
-            <IntroduceRow loading={loading} visitData={visitData} />
-          </Suspense>
-          <Suspense fallback={null}>
-            <SalesCard
-              rangePickerValue={rangePickerValue}
-              salesData={salesData}
-              isActive={this.isActive}
-              handleRangePickerChange={this.handleRangePickerChange}
-              loading={loading}
-              selectDate={this.selectDate}
-            />
-          </Suspense>
-          <Row
-            gutter={24}
-            style={{
-              marginTop: 24,
-            }}
-          >
-            <Col xl={12} lg={24} md={24} sm={24} xs={24}>
-              <Suspense fallback={null}>
-                <TopSearch
-                  loading={loading}
-                  visitData2={visitData2}
-                  searchData={searchData}
-                  dropdownGroup={dropdownGroup}
-                />
-              </Suspense>
-            </Col>
-            <Col xl={12} lg={24} md={24} sm={24} xs={24}>
-              <Suspense fallback={null}>
-                <ProportionSales
-                  dropdownGroup={dropdownGroup}
-                  salesType={salesType}
-                  loading={loading}
-                  salesPieData={salesPieData}
-                  handleChangeSalesType={this.handleChangeSalesType}
-                />
-              </Suspense>
-            </Col>
-          </Row>
-          <Suspense fallback={null}>
-            <OfflineData
-              activeKey={activeKey}
-              loading={loading}
-              offlineData={offlineData}
-              offlineChartData={offlineChartData}
-              handleTabChange={this.handleTabChange}
-            />
-          </Suspense>
-        </React.Fragment>
-      </GridContent>
-    );
-  }
+  const dropdownGroup = (
+    <span className={styles.iconGroup}>
+      <Dropdown overlay={menu} placement="bottomRight">
+        <EllipsisOutlined />
+      </Dropdown>
+    </span>
+  );
+
+  const handleChangeSalesType = (e: RadioChangeEvent) => {
+    setSalesType(e.target.value);
+  };
+
+  const handleTabChange = (key: string) => {
+    setCurrentTabKey(key);
+  };
+
+  const activeKey = currentTabKey || (data?.offlineData[0] && data?.offlineData[0].name) || '';
+
+  return (
+    <GridContent>
+      <>
+        <Suspense fallback={<PageLoading />}>
+          <IntroduceRow loading={loading} visitData={data?.visitData || []} />
+        </Suspense>
+
+        <Suspense fallback={null}>
+          <SalesCard
+            rangePickerValue={rangePickerValue}
+            salesData={data?.salesData || []}
+            isActive={isActive}
+            handleRangePickerChange={handleRangePickerChange}
+            loading={loading}
+            selectDate={selectDate}
+          />
+        </Suspense>
+
+        <Row
+          gutter={24}
+          style={{
+            marginTop: 24,
+          }}
+        >
+          <Col xl={12} lg={24} md={24} sm={24} xs={24}>
+            <Suspense fallback={null}>
+              <TopSearch
+                loading={loading}
+                visitData2={data?.visitData2 || []}
+                searchData={data?.searchData || []}
+                dropdownGroup={dropdownGroup}
+              />
+            </Suspense>
+          </Col>
+          <Col xl={12} lg={24} md={24} sm={24} xs={24}>
+            <Suspense fallback={null}>
+              <ProportionSales
+                dropdownGroup={dropdownGroup}
+                salesType={salesType}
+                loading={loading}
+                salesPieData={salesPieData || []}
+                handleChangeSalesType={handleChangeSalesType}
+              />
+            </Suspense>
+          </Col>
+        </Row>
+
+        <Suspense fallback={null}>
+          <OfflineData
+            activeKey={activeKey}
+            loading={loading}
+            offlineData={data?.offlineData || []}
+            offlineChartData={data?.offlineChartData || []}
+            handleTabChange={handleTabChange}
+          />
+        </Suspense>
+      </>
+    </GridContent>
+  )
 }
 
-export default connect(
-  ({
-    BLOCK_NAME_CAMEL_CASE,
-    loading,
-  }: {
-    BLOCK_NAME_CAMEL_CASE: any;
-    loading: {
-      effects: { [key: string]: boolean };
-    };
-  }) => ({
-    BLOCK_NAME_CAMEL_CASE,
-    loading: loading.effects['BLOCK_NAME_CAMEL_CASE/fetch'],
-  }),
-)(PAGE_NAME_UPPER_CAMEL_CASE);
+export default PAGE_NAME_UPPER_CAMEL_CASE;
