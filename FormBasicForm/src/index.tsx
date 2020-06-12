@@ -47,6 +47,7 @@ const PAGE_NAME_UPPER_CAMEL_CASE: FC<PAGE_NAME_UPPER_CAMEL_CASEProps> = (props) 
   };
 
   const onFinishFailed = (errorInfo: any) => {
+    // eslint-disable-next-line no-console
     console.log('Failed:', errorInfo);
   };
 
