@@ -1,5 +1,5 @@
 import { DownOutlined, UpOutlined } from '@ant-design/icons';
-import { useBoolean, useControllableValue } from '@umijs/hooks';
+import { useBoolean, useControllableValue } from 'ahooks';
 import { Tag } from 'antd';
 import classNames from 'classnames';
 import React, { FC } from 'react';
@@ -49,7 +49,7 @@ export interface TagSelectProps {
 const TagSelect: FC<TagSelectProps> & { Option: typeof TagSelectOption } = (props) => {
   const { children, hideCheckAll = false, className, style, expandable, actionsText = {} } = props;
 
-  const { state: expand, toggle } = useBoolean();
+  const [expand, { toggle }] = useBoolean();
 
   const [value, setValue] = useControllableValue<(string | number)[]>(props);
 

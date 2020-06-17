@@ -13,7 +13,7 @@
   },
   "dependencies": {
     "@ant-design/icons": "^4.0.0",
-    "@umijs/hooks": "^1.9.1",
+    "ahooks": "^2.0.0",
     "umi-request": "^1.0.0"
   },
   "peerDependencies": {
