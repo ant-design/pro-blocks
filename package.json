@@ -34,7 +34,7 @@
     "@ant-design/icons": "^4.0.0",
     "@ant-design/pro-cli": "^1.0.5",
     "antd": "^4.0.0",
-    "bizcharts": "^3.5.4",
+    "bizcharts": "^4.0.7",
     "numeral": "^2.0.6",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
