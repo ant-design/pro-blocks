@@ -19,7 +19,7 @@
     "umi-request": "^1.0.0"
   },
   "peerDependencies": {
-    "@ant-design/pro-layout": "^4.5.5"
+    "@ant-design/pro-layout": "^6.0.0"
   },
   "blockConfig": {
     "specVersion": "0.1"
