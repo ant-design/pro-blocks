@@ -3,13 +3,13 @@ import React, { useState } from 'react';
 import useMergeValue from 'use-merge-value';
 import classNames from 'classnames';
 import { FormInstance } from 'antd/es/form';
+import { LoginParamsType } from '../../service';
+
 import LoginContext from './LoginContext';
 import LoginItem, { LoginItemProps } from './LoginItem';
-
 import LoginSubmit from './LoginSubmit';
 import LoginTab from './LoginTab';
 import styles from './index.less';
-import { LoginParamsType } from '../../service';
 
 export interface LoginProps {
   activeKey?: string;
@@ -17,14 +17,14 @@ export interface LoginProps {
   style?: React.CSSProperties;
   onSubmit?: (values: LoginParamsType) => void;
   className?: string;
-  form?: FormInstance;
+  from?: FormInstance;
   children: React.ReactElement<typeof LoginTab>[];
 }
 
 interface LoginType extends React.FC<LoginProps> {
   Tab: typeof LoginTab;
   Submit: typeof LoginSubmit;
-  UserName: React.FunctionComponent<LoginItemProps>;
+  Username: React.FunctionComponent<LoginItemProps>;
   Password: React.FunctionComponent<LoginItemProps>;
   Mobile: React.FunctionComponent<LoginItemProps>;
   Captcha: React.FunctionComponent<LoginItemProps>;
@@ -32,9 +32,10 @@ interface LoginType extends React.FC<LoginProps> {
 
 const Login: LoginType = (props) => {
   const { className } = props;
+  const [form] = Form.useForm();
   const [tabs, setTabs] = useState<string[]>([]);
   const [active, setActive] = useState({});
-  const [type, setType] = useMergeValue('', {
+  const [tabActiveType, setType] = useMergeValue('', {
     value: props.activeKey,
     onChange: props.onTabChange,
   });
@@ -66,10 +67,10 @@ const Login: LoginType = (props) => {
         },
         updateActive: (activeItem) => {
           if (!active) return;
-          if (active[type]) {
-            active[type].push(activeItem);
+          if (active[tabActiveType]) {
+            active[tabActiveType].push(activeItem);
           } else {
-            active[type] = [activeItem];
+            active[tabActiveType] = [activeItem];
           }
           setActive(active);
         },
@@ -77,7 +78,7 @@ const Login: LoginType = (props) => {
     >
       <div className={classNames(className, styles.login)}>
         <Form
-          form={props.form}
+          form={props.from || form}
           onFinish={(values) => {
             if (props.onSubmit) {
               props.onSubmit(values as LoginParamsType);
@@ -87,9 +88,10 @@ const Login: LoginType = (props) => {
           {tabs.length ? (
             <React.Fragment>
               <Tabs
+                destroyInactiveTabPane
                 animated={false}
                 className={styles.tabs}
-                activeKey={type}
+                activeKey={tabActiveType}
                 onChange={(activeKey) => {
                   setType(activeKey);
                 }}
@@ -110,7 +112,7 @@ const Login: LoginType = (props) => {
 Login.Tab = LoginTab;
 Login.Submit = LoginSubmit;
 
-Login.UserName = LoginItem.UserName;
+Login.Username = LoginItem.Username;
 Login.Password = LoginItem.Password;
 Login.Mobile = LoginItem.Mobile;
 Login.Captcha = LoginItem.Captcha;

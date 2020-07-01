@@ -2,14 +2,15 @@
 
 .login {
   :global {
-    .ant-tabs .ant-tabs-bar {
-      margin-bottom: 24px;
-      text-align: center;
-      border-bottom: 0;
-    }
-
-    .ant-form-item .ant-form-item {
-      margin-bottom: 0;
+    .ant-tabs {
+      .ant-tabs-nav-list {
+        margin: auto;
+      }
+      .ant-tabs-bar {
+        margin-bottom: 24px;
+        text-align: center;
+        border-bottom: 0;
+      }
     }
   }
 
@@ -20,7 +21,7 @@
 
   .icon {
     margin-left: 16px;
-    color: @text-color-secondary;
+    color: rgba(0, 0, 0, 0.2);
     font-size: 24px;
     vertical-align: middle;
     cursor: pointer;

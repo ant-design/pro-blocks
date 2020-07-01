@@ -11,7 +11,7 @@ import styles from './index.less';
 export type WrappedLoginItemProps = LoginItemProps;
 export type LoginItemKeyType = keyof typeof ItemMap;
 export interface LoginItemType {
-  UserName: React.FC<WrappedLoginItemProps>;
+  Username: React.FC<WrappedLoginItemProps>;
   Password: React.FC<WrappedLoginItemProps>;
   Mobile: React.FC<WrappedLoginItemProps>;
   Captcha: React.FC<WrappedLoginItemProps>;
@@ -76,10 +76,6 @@ const LoginItem: React.FC<LoginItemProps> = (props) => {
   } = props;
 
   const onGetCaptcha = useCallback(async (mobile: string) => {
-    if (!mobile) {
-      message.warning('请输入手机号码!');
-      return;
-    }
     const result = await getFakeCaptcha(mobile);
     if (result === false) {
       return;
@@ -106,6 +102,7 @@ const LoginItem: React.FC<LoginItemProps> = (props) => {
     }
     return () => clearInterval(interval);
   }, [timing]);
+
   if (!name) {
     return null;
   }
