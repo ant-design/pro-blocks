@@ -38,7 +38,7 @@
     "numeral": "^2.0.6",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
-    "umi": "3.2.3",
+    "umi": "3.2.10",
     "umi-request": "^1.0.0"
   },
   "devDependencies": {
