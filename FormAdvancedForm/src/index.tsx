@@ -1,11 +1,9 @@
 import { CloseCircleOutlined } from '@ant-design/icons';
 import { Button, Card, Col, DatePicker, Form, Input, Popover, Row, Select, TimePicker } from 'antd';
-
 import React, { FC, useState } from 'react';
-import { PageHeaderWrapper } from '@ant-design/pro-layout';
+import { PageContainer, FooterToolbar } from '@ant-design/pro-layout';
 import { connect, Dispatch } from 'umi';
 import TableForm from './components/TableForm';
-import FooterToolbar from './components/FooterToolbar';
 import styles from './style.less';
 
 type InternalNamePath = (string | number)[];
@@ -131,7 +129,7 @@ const PAGE_NAME_UPPER_CAMEL_CASE: FC<PAGE_NAME_UPPER_CAMEL_CASEProps> = ({
       onFinish={onFinish}
       onFinishFailed={onFinishFailed}
     >
-      <PageHeaderWrapper content="高级表单常见于一次性输入和提交大批量数据的场景。">
+      <PageContainer content="高级表单常见于一次性输入和提交大批量数据的场景。">
         <Card title="仓库管理" className={styles.card} bordered={false}>
           <Row gutter={16}>
             <Col lg={6} md={12} sm={24}>
@@ -289,7 +287,7 @@ const PAGE_NAME_UPPER_CAMEL_CASE: FC<PAGE_NAME_UPPER_CAMEL_CASEProps> = ({
             <TableForm />
           </Form.Item>
         </Card>
-      </PageHeaderWrapper>
+      </PageContainer>
       <FooterToolbar>
         {getErrorInfo(error)}
         <Button type="primary" onClick={() => form?.submit()} loading={submitting}>

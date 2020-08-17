@@ -2,7 +2,7 @@ import { PlusOutlined } from '@ant-design/icons';
 import { Button, Card, List, Typography } from 'antd';
 import React, { Component } from 'react';
 
-import { PageHeaderWrapper } from '@ant-design/pro-layout';
+import { PageContainer } from '@ant-design/pro-layout';
 import { connect, Dispatch } from 'umi';
 import { StateType } from './model';
 import { CardListItemDataType } from './data.d';
@@ -74,7 +74,7 @@ class PAGE_NAME_UPPER_CAMEL_CASE extends Component<
     );
     const nullData: Partial<CardListItemDataType> = {};
     return (
-      <PageHeaderWrapper content={content} extraContent={extraContent}>
+      <PageContainer content={content} extraContent={extraContent}>
         <div className={styles.cardList}>
           <List<Partial<CardListItemDataType>>
             rowKey="id"
@@ -121,7 +121,7 @@ class PAGE_NAME_UPPER_CAMEL_CASE extends Component<
             }}
           />
         </div>
-      </PageHeaderWrapper>
+      </PageContainer>
     );
   }
 }

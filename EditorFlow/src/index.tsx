@@ -1,7 +1,7 @@
 import { Col, Row } from 'antd';
 import GGEditor, { Flow } from 'gg-editor';
 
-import { PageHeaderWrapper } from '@ant-design/pro-layout';
+import { PageContainer } from '@ant-design/pro-layout';
 import React from 'react';
 import { formatMessage } from 'umi';
 import EditorMinimap from './components/EditorMinimap';
@@ -14,7 +14,7 @@ import styles from './index.less';
 GGEditor.setTrackable(false);
 
 export default () => (
-  <PageHeaderWrapper
+  <PageContainer
     content={formatMessage({
       id: 'BLOCK_NAME.description',
       defaultMessage: '',
@@ -40,5 +40,5 @@ export default () => (
       </Row>
       <FlowContextMenu />
     </GGEditor>
-  </PageHeaderWrapper>
+  </PageContainer>
 );

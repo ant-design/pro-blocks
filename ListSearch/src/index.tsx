@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 
 import { Input } from 'antd';
-import { PageHeaderWrapper } from '@ant-design/pro-layout';
+import { PageContainer } from '@ant-design/pro-layout';
 import { history } from 'umi';
 
 interface PAGE_NAME_UPPER_CAMEL_CASEProps {
@@ -79,14 +79,14 @@ class PAGE_NAME_UPPER_CAMEL_CASE extends Component<PAGE_NAME_UPPER_CAMEL_CASEPro
     const { children } = this.props;
 
     return (
-      <PageHeaderWrapper
+      <PageContainer
         content={mainSearch}
         tabList={tabList}
         tabActiveKey={this.getTabKey()}
         onTabChange={this.handleTabChange}
       >
         {children}
-      </PageHeaderWrapper>
+      </PageContainer>
     );
   }
 }

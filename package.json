@@ -27,10 +27,8 @@
     "**/*.{js,jsx}": "npm run lint-staged:js",
     "**/*.{js,ts,tsx}": "npm run lint-staged:js"
   },
-  "peerDependencies": {
-    "@ant-design/pro-layout": "^6.0.0"
-  },
   "dependencies": {
+    "@ant-design/pro-layout": "^6.0.0",
     "@ant-design/icons": "^4.0.0",
     "@ant-design/pro-cli": "^1.0.5",
     "antd": "^4.0.0",

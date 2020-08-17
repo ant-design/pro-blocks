@@ -2,7 +2,7 @@ import { Avatar, Card, Col, List, Skeleton, Row, Statistic } from 'antd';
 import React, { Component } from 'react';
 
 import { Link, Dispatch, connect } from 'umi';
-import { PageHeaderWrapper } from '@ant-design/pro-layout';
+import { PageContainer } from '@ant-design/pro-layout';
 import moment from 'moment';
 import Radar from './components/Radar';
 import { ModalState } from './model';
@@ -147,7 +147,7 @@ class PAGE_NAME_UPPER_CAMEL_CASE extends Component<PAGE_NAME_UPPER_CAMEL_CASEPro
       return null;
     }
     return (
-      <PageHeaderWrapper
+      <PageContainer
         content={<PageHeaderContent currentUser={currentUser} />}
         extraContent={<ExtraContent />}
       >
@@ -242,7 +242,7 @@ class PAGE_NAME_UPPER_CAMEL_CASE extends Component<PAGE_NAME_UPPER_CAMEL_CASEPro
             </Card>
           </Col>
         </Row>
-      </PageHeaderWrapper>
+      </PageContainer>
     );
   }
 }

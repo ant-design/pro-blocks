@@ -16,7 +16,7 @@ import {
 } from 'antd';
 
 import { findDOMNode } from 'react-dom';
-import { PageHeaderWrapper } from '@ant-design/pro-layout';
+import { PageContainer } from '@ant-design/pro-layout';
 import { connect, Dispatch } from 'umi';
 import moment from 'moment';
 import OperationModal from './components/OperationModal';
@@ -185,7 +185,7 @@ export const PAGE_NAME_UPPER_CAMEL_CASE: FC<PAGE_NAME_UPPER_CAMEL_CASEProps> = (
 
   return (
     <div>
-      <PageHeaderWrapper>
+      <PageContainer>
         <div className={styles.standardList}>
           <Card bordered={false}>
             <Row>
@@ -251,7 +251,7 @@ export const PAGE_NAME_UPPER_CAMEL_CASE: FC<PAGE_NAME_UPPER_CAMEL_CASEProps> = (
             />
           </Card>
         </div>
-      </PageHeaderWrapper>
+      </PageContainer>
 
       <OperationModal
         done={done}

@@ -19,7 +19,7 @@ import {
   Tooltip,
   Empty,
 } from 'antd';
-import { GridContent, PageHeaderWrapper, RouteContext } from '@ant-design/pro-layout';
+import { GridContent, PageContainer, RouteContext } from '@ant-design/pro-layout';
 import React, { Component, Fragment } from 'react';
 
 import classNames from 'classnames';
@@ -266,7 +266,7 @@ class PAGE_NAME_UPPER_CAMEL_CASE extends Component<
       ),
     };
     return (
-      <PageHeaderWrapper
+      <PageContainer
         title="单号：234231029431"
         extra={action}
         className={styles.pageHeader}
@@ -370,7 +370,7 @@ class PAGE_NAME_UPPER_CAMEL_CASE extends Component<
             </Card>
           </GridContent>
         </div>
-      </PageHeaderWrapper>
+      </PageContainer>
     );
   }
 }
