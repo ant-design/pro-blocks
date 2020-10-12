@@ -33,6 +33,7 @@
     "src/setupTests.ts"
   ],
   "include": [
+    "typings.d.ts",
     "**/src/**/*",
     "tests/**/*",
     "test/**/*",
