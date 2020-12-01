@@ -30,7 +30,7 @@
   "dependencies": {
     "@ant-design/pro-layout": "^6.0.0",
     "@ant-design/icons": "^4.0.0",
-    "@ant-design/pro-cli": "^1.0.5",
+    "@ant-design/pro-cli": "^2.0.3",
     "antd": "^4.0.0",
     "bizcharts": "^3.5.4",
     "numeral": "^2.0.6",
