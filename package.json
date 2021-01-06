@@ -42,7 +42,7 @@
   "devDependencies": {
     "@types/classnames": "^2.2.7",
     "@types/numeral": "^0.0.28",
-    "@types/react-dom": "^16.8.4",
+    "@types/react-dom": "^17.0.0",
     "@umijs/fabric": "^2.0.0",
     "@umijs/plugin-block-devtool": "^1.1.1",
     "@umijs/preset-ant-design-pro": "^1.1.2",
