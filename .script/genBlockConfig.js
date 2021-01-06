@@ -89,7 +89,8 @@ const tagsKey = {
 };
 /**
  * 从文件数组映射为 pro 的路由
- * @param {*} name
+ *
+ * @param {any} name
  */
 const genBlockName = (name) =>
   name
@@ -99,7 +100,8 @@ const genBlockName = (name) =>
 
 /**
  * 从文件数组映射为 tags 列表
- * @param {*} name
+ *
+ * @param {any} name
  */
 const genBlockTags = (name) =>
   Array.from(new Set(name.match(/[A-Z]?[a-z]+|[0-9]+/g).map((p) => p.toLowerCase())))
@@ -132,6 +134,7 @@ const getFeature = (filePath) => {
 
 /**
  * 遍历文件地址
+ *
  * @param path
  */
 const getFolderTreeData = (filePath) => {
