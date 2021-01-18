@@ -142,8 +142,7 @@ const TableList: React.FC<{}> = () => {
       title: '操作',
       dataIndex: 'option',
       valueType: 'option',
-      render: (_, record) => (
-        <>
+      render: (_, record) => [
           <a
             onClick={() => {
               handleUpdateModalVisible(true);
@@ -151,11 +150,10 @@ const TableList: React.FC<{}> = () => {
             }}
           >
             配置
-          </a>
-          <Divider type="vertical" />
-          <a href="">订阅警报</a>
-        </>
-      ),
+          </a>,
+          <Divider type="vertical" />,
+          <a href="">订阅警报</a>,
+      ],
     },
   ];
 
