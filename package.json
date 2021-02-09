@@ -49,7 +49,7 @@
     "@umijs/preset-react": "^1.4.3",
     "cross-env": "^7.0.0",
     "eslint": "^7.2.0",
-    "husky": "^4.0.1",
+    "husky": "^5.0.9",
     "lint-staged": "^10.0.1",
     "mockjs": "^1.1.0",
     "prettier": "^2.0.2",
