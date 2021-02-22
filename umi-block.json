@@ -52,9 +52,7 @@
       "url": "https://github.com/ant-design/pro-blocks/tree/master/DashboardAnalysis",
       "path": "DashboardAnalysis",
       "features": [
-        "antd",
-        "i18n",
-        "dva"
+        "antd"
       ],
       "img": "https://raw.githubusercontent.com/ant-design/pro-blocks/master/DashboardAnalysis/snapshot.png?raw=true",
       "tags": [
@@ -69,9 +67,7 @@
       "url": "https://github.com/ant-design/pro-blocks/tree/master/DashboardMonitor",
       "path": "DashboardMonitor",
       "features": [
-        "antd",
-        "i18n",
-        "dva"
+        "antd"
       ],
       "img": "https://raw.githubusercontent.com/ant-design/pro-blocks/master/DashboardMonitor/snapshot.png?raw=true",
       "tags": [
@@ -86,8 +82,7 @@
       "url": "https://github.com/ant-design/pro-blocks/tree/master/DashboardWorkplace",
       "path": "DashboardWorkplace",
       "features": [
-        "antd",
-        "dva"
+        "antd"
       ],
       "img": "https://raw.githubusercontent.com/ant-design/pro-blocks/master/DashboardWorkplace/snapshot.png?raw=true",
       "tags": [
