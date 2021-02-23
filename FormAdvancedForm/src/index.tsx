@@ -1,30 +1,27 @@
 import { CloseCircleOutlined } from '@ant-design/icons';
-import {
-  Button,
-  Card,
-  Col,
-  DatePicker,
-  Form,
-  Input,
-  Popover,
-  Row,
-  Select,
-  TimePicker,
-  message,
-} from 'antd';
+import { Card, Col, Popover, Row, message, Popconfirm } from 'antd';
 
 import React, { FC, useState } from 'react';
-import { PageHeaderWrapper } from '@ant-design/pro-layout';
-import { useRequest } from 'umi';
-import TableForm from './components/TableForm';
-import FooterToolbar from './components/FooterToolbar';
+import ProForm, {
+  ProFormDateRangePicker,
+  ProFormSelect,
+  ProFormText,
+  ProFormTimePicker,
+} from '@ant-design/pro-form';
+import { EditableProTable, ProColumnType } from '@ant-design/pro-table';
+import { PageContainer, FooterToolbar } from '@ant-design/pro-layout';
 import { fakeSubmitForm } from './service';
 import styles from './style.less';
 
+interface TableFormDateType {
+  key: string;
+  workId?: string;
+  name?: string;
+  department?: string;
+  isNew?: boolean;
+  editable?: boolean;
+}
 type InternalNamePath = (string | number)[];
-
-const { Option } = Select;
-const { RangePicker } = DatePicker;
 
 const fieldLabels = {
   name: '仓库名',
@@ -68,13 +65,6 @@ interface ErrorField {
 }
 
 const PAGE_NAME_UPPER_CAMEL_CASE: FC<{}> = () => {
-  const { loading: submitting, run } = useRequest(fakeSubmitForm, {
-    manual: true,
-    onSuccess: () => {
-      message.success('提交成功');
-    },
-  });
-  const [form] = Form.useForm();
   const [error, setError] = useState<ErrorField[]>([]);
   const getErrorInfo = (errors: ErrorField[]) => {
     const errorCount = errors.filter((item) => item.errors.length > 0).length;
@@ -121,191 +111,271 @@ const PAGE_NAME_UPPER_CAMEL_CASE: FC<{}> = () => {
     );
   };
 
-  const onFinish = (values: { [key: string]: any }) => {
+  const onFinish = async (values: { [key: string]: any }) => {
     setError([]);
-    run(values);
+    try {
+      await fakeSubmitForm(values);
+      message.success('提交成功');
+    } catch (error) {}
   };
 
   const onFinishFailed = (errorInfo: any) => {
-    console.log('Failed:', errorInfo);
     setError(errorInfo.errorFields);
   };
 
+  const columns: ProColumnType<TableFormDateType>[] = [
+    {
+      title: '成员姓名',
+      dataIndex: 'name',
+      key: 'name',
+      width: '20%',
+    },
+    {
+      title: '工号',
+      dataIndex: 'workId',
+      key: 'workId',
+      width: '20%',
+    },
+    {
+      title: '所属部门',
+      dataIndex: 'department',
+      key: 'department',
+      width: '40%',
+    },
+    {
+      title: '操作',
+      key: 'action',
+      valueType: 'option',
+      render: (_, record: TableFormDateType, index, action) => {
+        return [
+          <a
+            key="eidit"
+            onClick={() => {
+              action.startEditable(record.key);
+            }}
+          >
+            编辑
+          </a>,
+        ];
+      },
+    },
+  ];
+
   return (
-    <Form
-      form={form}
+    <ProForm
       layout="vertical"
       hideRequiredMark
+      submitter={{
+        render: (props, dom) => {
+          return (
+            <FooterToolbar>
+              {getErrorInfo(error)}
+              {dom}
+            </FooterToolbar>
+          );
+        },
+      }}
       initialValues={{ members: tableData }}
       onFinish={onFinish}
       onFinishFailed={onFinishFailed}
     >
-      <PageHeaderWrapper content="高级表单常见于一次性输入和提交大批量数据的场景。">
+      <PageContainer content="高级表单常见于一次性输入和提交大批量数据的场景。">
         <Card title="仓库管理" className={styles.card} bordered={false}>
           <Row gutter={16}>
             <Col lg={6} md={12} sm={24}>
-              <Form.Item
+              <ProFormText
                 label={fieldLabels.name}
                 name="name"
                 rules={[{ required: true, message: '请输入仓库名称' }]}
-              >
-                <Input placeholder="请输入仓库名称" />
-              </Form.Item>
+                placeholder="请输入仓库名称"
+              />
             </Col>
             <Col xl={{ span: 6, offset: 2 }} lg={{ span: 8 }} md={{ span: 12 }} sm={24}>
-              <Form.Item
+              <ProFormText
                 label={fieldLabels.url}
                 name="url"
                 rules={[{ required: true, message: '请选择' }]}
-              >
-                <Input
-                  style={{ width: '100%' }}
-                  addonBefore="http://"
-                  addonAfter=".com"
-                  placeholder="请输入"
-                />
-              </Form.Item>
+                fieldProps={{
+                  style: { width: '100%' },
+                  addonBefore: 'http://',
+                  addonAfter: '.com',
+                }}
+                placeholder="请输入"
+              />
             </Col>
             <Col xl={{ span: 8, offset: 2 }} lg={{ span: 10 }} md={{ span: 24 }} sm={24}>
-              <Form.Item
+              <ProFormSelect
                 label={fieldLabels.owner}
                 name="owner"
                 rules={[{ required: true, message: '请选择管理员' }]}
-              >
-                <Select placeholder="请选择管理员">
-                  <Option value="xiao">付晓晓</Option>
-                  <Option value="mao">周毛毛</Option>
-                </Select>
-              </Form.Item>
+                options={[
+                  {
+                    label: '付晓晓',
+                    value: 'xiao',
+                  },
+                  {
+                    label: '周毛毛',
+                    value: 'mao',
+                  },
+                ]}
+                placeholder="请选择管理员"
+              />
             </Col>
           </Row>
           <Row gutter={16}>
             <Col lg={6} md={12} sm={24}>
-              <Form.Item
+              <ProFormSelect
                 label={fieldLabels.approver}
                 name="approver"
                 rules={[{ required: true, message: '请选择审批员' }]}
-              >
-                <Select placeholder="请选择审批员">
-                  <Option value="xiao">付晓晓</Option>
-                  <Option value="mao">周毛毛</Option>
-                </Select>
-              </Form.Item>
+                options={[
+                  {
+                    label: '付晓晓',
+                    value: 'xiao',
+                  },
+                  {
+                    label: '周毛毛',
+                    value: 'mao',
+                  },
+                ]}
+                placeholder="请选择管理员"
+              />
             </Col>
             <Col xl={{ span: 6, offset: 2 }} lg={{ span: 8 }} md={{ span: 12 }} sm={24}>
-              <Form.Item
+              <ProFormDateRangePicker
                 label={fieldLabels.dateRange}
                 name="dateRange"
+                fieldProps={{
+                  style: {
+                    width: '100%',
+                  },
+                }}
                 rules={[{ required: true, message: '请选择生效日期' }]}
-              >
-                <RangePicker placeholder={['开始日期', '结束日期']} style={{ width: '100%' }} />
-              </Form.Item>
+              />
             </Col>
             <Col xl={{ span: 8, offset: 2 }} lg={{ span: 10 }} md={{ span: 24 }} sm={24}>
-              <Form.Item
+              <ProFormSelect
                 label={fieldLabels.type}
                 name="type"
                 rules={[{ required: true, message: '请选择仓库类型' }]}
-              >
-                <Select placeholder="请选择仓库类型">
-                  <Option value="private">私密</Option>
-                  <Option value="public">公开</Option>
-                </Select>
-              </Form.Item>
+                options={[
+                  {
+                    label: '私密',
+                    value: 'private',
+                  },
+                  {
+                    label: '公开',
+                    value: 'public',
+                  },
+                ]}
+                placeholder="请选择仓库类型"
+              />
             </Col>
           </Row>
         </Card>
         <Card title="任务管理" className={styles.card} bordered={false}>
           <Row gutter={16}>
             <Col lg={6} md={12} sm={24}>
-              <Form.Item
+              <ProFormText
                 label={fieldLabels.name2}
                 name="name2"
                 rules={[{ required: true, message: '请输入' }]}
-              >
-                <Input placeholder="请输入" />
-              </Form.Item>
+              />
             </Col>
             <Col xl={{ span: 6, offset: 2 }} lg={{ span: 8 }} md={{ span: 12 }} sm={24}>
-              <Form.Item
+              <ProFormText
                 label={fieldLabels.url2}
                 name="url2"
                 rules={[{ required: true, message: '请选择' }]}
-              >
-                <Input placeholder="请输入" />
-              </Form.Item>
+              />
             </Col>
             <Col xl={{ span: 8, offset: 2 }} lg={{ span: 10 }} md={{ span: 24 }} sm={24}>
-              <Form.Item
+              <ProFormSelect
                 label={fieldLabels.owner2}
                 name="owner2"
                 rules={[{ required: true, message: '请选择管理员' }]}
-              >
-                <Select placeholder="请选择管理员">
-                  <Option value="xiao">付晓晓</Option>
-                  <Option value="mao">周毛毛</Option>
-                </Select>
-              </Form.Item>
+                options={[
+                  {
+                    label: '付晓晓',
+                    value: 'xiao',
+                  },
+                  {
+                    label: '周毛毛',
+                    value: 'mao',
+                  },
+                ]}
+              />
             </Col>
           </Row>
           <Row gutter={16}>
             <Col lg={6} md={12} sm={24}>
-              <Form.Item
+              <ProFormSelect
                 label={fieldLabels.approver2}
                 name="approver2"
                 rules={[{ required: true, message: '请选择审批员' }]}
-              >
-                <Select placeholder="请选择审批员">
-                  <Option value="xiao">付晓晓</Option>
-                  <Option value="mao">周毛毛</Option>
-                </Select>
-              </Form.Item>
+                options={[
+                  {
+                    label: '付晓晓',
+                    value: 'xiao',
+                  },
+                  {
+                    label: '周毛毛',
+                    value: 'mao',
+                  },
+                ]}
+                placeholder="请选择审批员"
+              />
             </Col>
             <Col xl={{ span: 6, offset: 2 }} lg={{ span: 8 }} md={{ span: 12 }} sm={24}>
-              <Form.Item
+              <ProFormTimePicker
                 label={fieldLabels.dateRange2}
                 name="dateRange2"
                 rules={[{ required: true, message: '请输入' }]}
-              >
-                <TimePicker
-                  placeholder="提醒时间"
-                  style={{ width: '100%' }}
-                  getPopupContainer={(trigger) => {
-                    if (trigger && trigger.parentNode) {
-                      return trigger.parentNode as HTMLElement;
-                    }
-                    return trigger;
-                  }}
-                />
-              </Form.Item>
+                placeholder="提醒时间"
+                fieldProps={{
+                  style: {
+                    width: '100%',
+                  },
+                }}
+              />
             </Col>
             <Col xl={{ span: 8, offset: 2 }} lg={{ span: 10 }} md={{ span: 24 }} sm={24}>
-              <Form.Item
+              <ProFormSelect
                 label={fieldLabels.type2}
                 name="type2"
                 rules={[{ required: true, message: '请选择仓库类型' }]}
-              >
-                <Select placeholder="请选择仓库类型">
-                  <Option value="private">私密</Option>
-                  <Option value="public">公开</Option>
-                </Select>
-              </Form.Item>
+                options={[
+                  {
+                    label: '私密',
+                    value: 'private',
+                  },
+                  {
+                    label: '公开',
+                    value: 'public',
+                  },
+                ]}
+                placeholder="请选择仓库类型"
+              />
             </Col>
           </Row>
         </Card>
         <Card title="成员管理" bordered={false}>
-          <Form.Item name="members">
-            <TableForm />
-          </Form.Item>
+          <ProForm.Item name="members">
+            <EditableProTable<TableFormDateType>
+              recordCreatorProps={{
+                record: () => {
+                  return {
+                    key: `0${Date.now()}`,
+                  };
+                },
+              }}
+              columns={columns}
+              rowKey="key"
+            />
+          </ProForm.Item>
         </Card>
-      </PageHeaderWrapper>
-      <FooterToolbar>
-        {getErrorInfo(error)}
-        <Button type="primary" onClick={() => form?.submit()} loading={submitting}>
-          提交
-        </Button>
-      </FooterToolbar>
-    </Form>
+      </PageContainer>
+    </ProForm>
   );
 };
 
