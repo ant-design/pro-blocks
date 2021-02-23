@@ -17,8 +17,7 @@
     "@ant-design/pro-form": "^1.16.0",
     "@ant-design/pro-layout": "^6.0.0",
     "@ant-design/pro-table": "^2.30.0",
-    "moment": "^2.22.2",
-    "umi-request": "^1.0.0"
+    "moment": "^2.22.2"
   },
   "devDependencies": {
     "@types/express": "^4.17.0"

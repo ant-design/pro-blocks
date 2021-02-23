@@ -12,8 +12,7 @@
     "dev": "umi dev"
   },
   "dependencies": {
-    "classnames": "^2.2.6",
-    "umi-request": "^1.0.4"
+    "classnames": "^2.2.6"
   },
   "blockConfig": {
     "specVersion": "0.1"

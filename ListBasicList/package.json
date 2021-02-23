@@ -15,8 +15,7 @@
     "@ant-design/icons": "^4.0.0",
     "ahooks": "^2.0.0",
     "classnames": "^2.2.6",
-    "moment": "^2.22.2",
-    "umi-request": "^1.0.0"
+    "moment": "^2.22.2"
   },
   "peerDependencies": {
     "@ant-design/pro-layout": "^6.0.0"

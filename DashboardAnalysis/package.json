@@ -16,8 +16,7 @@
     "@ant-design/icons": "^4.0.0",
     "classnames": "^2.2.6",
     "moment": "^2.22.2",
-    "numeral": "^2.0.6",
-    "umi-request": "^1.0.0"
+    "numeral": "^2.0.6"
   },
   "devDependencies": {
     "@types/numeral": "^0.0.25"

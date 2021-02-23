@@ -14,8 +14,7 @@
   "dependencies": {
     "ahooks": "^2.0.0",
     "classnames": "^2.2.6",
-    "moment": "^2.22.2",
-    "umi-request": "^1.0.0"
+    "moment": "^2.22.2"
   },
   "blockConfig": {
     "specVersion": "0.1"

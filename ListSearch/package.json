@@ -15,8 +15,7 @@
     "classnames": "^2.2.6",
     "moment": "^2.22.2",
     "numeral": "^2.0.6",
-    "nzh": "^1.0.3",
-    "umi-request": "^1.0.0"
+    "nzh": "^1.0.3"
   },
   "peerDependencies": {
     "@ant-design/pro-layout": "^6.0.0"

@@ -18,8 +18,7 @@
     "gg-editor": "^2.0.2",
     "moment": "^2.22.2",
     "numeral": "^2.0.6",
-    "react-fittext": "^1.0.0",
-    "umi-request": "^1.0.0"
+    "react-fittext": "^1.0.0"
   },
   "devDependencies": {
     "@types/numeral": "^0.0.25"

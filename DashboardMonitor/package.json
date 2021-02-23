@@ -16,8 +16,7 @@
     "@antv/l7": "^2.3.7",
     "@antv/l7-maps": "^2.3.7",
     "@antv/l7-react": "^2.1.9",
-    "numeral": "^2.0.6",
-    "umi-request": "^1.0.0"
+    "numeral": "^2.0.6"
   },
   "devDependencies": {
     "@types/numeral": "^0.0.25"

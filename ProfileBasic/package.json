@@ -12,8 +12,7 @@
     "dev": "umi dev"
   },
   "dependencies": {
-    "@ant-design/pro-table": "^2.2.7",
-    "umi-request": "^1.0.0"
+    "@ant-design/pro-table": "^2.2.7"
   },
   "peerDependencies": {
     "@ant-design/pro-layout": "^6.0.0"

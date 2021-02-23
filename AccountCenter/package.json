@@ -16,8 +16,7 @@
     "classnames": "^2.2.6",
     "moment": "^2.24.0",
     "numeral": "^2.0.6",
-    "react-router": "^4.3.1",
-    "umi-request": "^1.0.0"
+    "react-router": "^4.3.1"
   },
   "peerDependencies": {
     "@ant-design/pro-layout": "^6.0.0"
