@@ -1,19 +1,29 @@
 import React from 'react';
 import { UploadOutlined } from '@ant-design/icons';
-import { Button, Input, Select, Upload, Form, message } from 'antd';
+import { Button, Input, Upload, Form, message } from 'antd';
+import ProForm, {
+  ProFormDependency,
+  ProFormFieldSet,
+  ProFormSelect,
+  ProFormText,
+  ProFormTextArea,
+} from '@ant-design/pro-form';
 import { useRequest } from 'umi';
 import { queryCurrent } from '../service';
-import GeographicView from './GeographicView';
-import PhoneView from './PhoneView';
+import { queryProvince, queryCity } from '../service';
+
 import styles from './BaseView.less';
 
-const { Option } = Select;
-
-interface SelectItem {
-  label: string;
-  key: string;
-}
-
+const validatorPhone = (rule: any, value: string, callback: (message?: string) => void) => {
+  const values = value.split('-');
+  if (!values[0]) {
+    callback('Please input your area code!');
+  }
+  if (!values[1]) {
+    callback('Please input your phone number!');
+  }
+  callback();
+};
 // 头像组件 方便以后独立，增加裁剪之类的功能
 const AvatarView = ({ avatar }: { avatar: string }) => (
   <>
@@ -32,35 +42,6 @@ const AvatarView = ({ avatar }: { avatar: string }) => (
   </>
 );
 
-const validatorGeographic = (
-  _: any,
-  value: {
-    province: SelectItem;
-    city: SelectItem;
-  },
-  callback: (message?: string) => void,
-) => {
-  const { province, city } = value;
-  if (!province.key) {
-    callback('Please input your province!');
-  }
-  if (!city.key) {
-    callback('Please input your city!');
-  }
-  callback();
-};
-
-const validatorPhone = (rule: any, value: string, callback: (message?: string) => void) => {
-  const values = value.split('-');
-  if (!values[0]) {
-    callback('Please input your area code!');
-  }
-  if (!values[1]) {
-    callback('Please input your phone number!');
-  }
-  callback();
-};
-
 const BaseView: React.FC = () => {
   const { data: currentUser, loading } = useRequest(() => {
     return queryCurrent();
@@ -77,7 +58,7 @@ const BaseView: React.FC = () => {
     return '';
   };
 
-  const handleFinish = () => {
+  const handleFinish = async () => {
     message.success('更新基本信息成功');
   };
   return (
@@ -85,13 +66,27 @@ const BaseView: React.FC = () => {
       {loading ? null : (
         <>
           <div className={styles.left}>
-            <Form
+            <ProForm
               layout="vertical"
               onFinish={handleFinish}
-              initialValues={currentUser}
+              submitter={{
+                resetButtonProps: {
+                  style: {
+                    display: 'none',
+                  },
+                },
+                submitButtonProps: {
+                  children: '更新基本信息',
+                },
+              }}
+              initialValues={{
+                ...currentUser,
+                phone: currentUser?.phone.split('-'),
+              }}
               hideRequiredMark
             >
-              <Form.Item
+              <ProFormText
+                width="md"
                 name="email"
                 label="邮箱"
                 rules={[
@@ -100,10 +95,9 @@ const BaseView: React.FC = () => {
                     message: '请输入您的邮箱!',
                   },
                 ]}
-              >
-                <Input />
-              </Form.Item>
-              <Form.Item
+              />
+              <ProFormText
+                width="md"
                 name="name"
                 label="昵称"
                 rules={[
@@ -112,10 +106,8 @@ const BaseView: React.FC = () => {
                     message: '请输入您的昵称!',
                   },
                 ]}
-              >
-                <Input />
-              </Form.Item>
-              <Form.Item
+              />
+              <ProFormTextArea
                 name="profile"
                 label="个人简介"
                 rules={[
@@ -124,10 +116,10 @@ const BaseView: React.FC = () => {
                     message: '请输入个人简介!',
                   },
                 ]}
-              >
-                <Input.TextArea placeholder="个人简介" rows={4} />
-              </Form.Item>
-              <Form.Item
+                placeholder="个人简介"
+              />
+              <ProFormSelect
+                width="sm"
                 name="country"
                 label="国家/地区"
                 rules={[
@@ -136,27 +128,76 @@ const BaseView: React.FC = () => {
                     message: '请输入您的国家或地区!',
                   },
                 ]}
-              >
-                <Select style={{ maxWidth: 220 }}>
-                  <Option value="China">中国</Option>
-                </Select>
-              </Form.Item>
-              <Form.Item
-                name="geographic"
-                label="所在省市"
-                rules={[
+                options={[
                   {
-                    required: true,
-                    message: '请输入您的所在省市!',
-                  },
-                  {
-                    validator: validatorGeographic,
+                    label: '中国',
+                    value: 'China',
                   },
                 ]}
-              >
-                <GeographicView />
-              </Form.Item>
-              <Form.Item
+              />
+
+              <ProForm.Group title="所在省市" size={8}>
+                <ProFormSelect
+                  rules={[
+                    {
+                      required: true,
+                      message: '请输入您的所在省!',
+                    },
+                  ]}
+                  width="sm"
+                  fieldProps={{
+                    labelInValue: true,
+                  }}
+                  name="province"
+                  className={styles.item}
+                  request={async () => {
+                    return queryProvince().then(({ data }) => {
+                      return data.map((item) => {
+                        return {
+                          label: item.name,
+                          value: item.id,
+                        };
+                      });
+                    });
+                  }}
+                />
+                <ProFormDependency name={['province']}>
+                  {({ province }) => {
+                    return (
+                      <ProFormSelect
+                        params={{
+                          key: province?.value,
+                        }}
+                        name="city"
+                        width="sm"
+                        rules={[
+                          {
+                            required: true,
+                            message: '请输入您的所在城市!',
+                          },
+                        ]}
+                        disabled={!province}
+                        className={styles.item}
+                        request={async () => {
+                          if (!province?.key) {
+                            return [];
+                          }
+                          return queryCity(province.key || '').then(({ data }) => {
+                            return data.map((item) => {
+                              return {
+                                label: item.name,
+                                value: item.id,
+                              };
+                            });
+                          });
+                        }}
+                      />
+                    );
+                  }}
+                </ProFormDependency>
+              </ProForm.Group>
+              <ProFormText
+                width="md"
                 name="address"
                 label="街道地址"
                 rules={[
@@ -165,10 +206,8 @@ const BaseView: React.FC = () => {
                     message: '请输入您的街道地址!',
                   },
                 ]}
-              >
-                <Input />
-              </Form.Item>
-              <Form.Item
+              />
+              <ProFormFieldSet
                 name="phone"
                 label="联系电话"
                 rules={[
@@ -179,14 +218,10 @@ const BaseView: React.FC = () => {
                   { validator: validatorPhone },
                 ]}
               >
-                <PhoneView />
-              </Form.Item>
-              <Form.Item>
-                <Button htmlType="submit" type="primary">
-                  更新基本信息
-                </Button>
-              </Form.Item>
-            </Form>
+                <Input className={styles.area_code} />
+                <Input className={styles.phone_number} />
+              </ProFormFieldSet>
+            </ProForm>
           </div>
           <div className={styles.right}>
             <AvatarView avatar={getAvatarURL()} />
