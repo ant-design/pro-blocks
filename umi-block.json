@@ -401,22 +401,6 @@
       "previewUrl": "https://preview.pro.ant.design/result/success"
     },
     {
-      "name": "登录页",
-      "key": "UserLogin",
-      "description": "用户登录界面，支持用户名密码和手机号登录。",
-      "url": "https://github.com/ant-design/pro-blocks/tree/master/UserLogin",
-      "path": "UserLogin",
-      "features": [
-        "antd"
-      ],
-      "img": "https://raw.githubusercontent.com/ant-design/pro-blocks/master/UserLogin/snapshot.png?raw=true",
-      "tags": [
-        "用户",
-        "登录"
-      ],
-      "previewUrl": "https://preview.pro.ant.design/user/login"
-    },
-    {
       "name": "注册页",
       "key": "UserRegister",
       "description": "用户注册是使用，用于填写基本的账号信息。",
