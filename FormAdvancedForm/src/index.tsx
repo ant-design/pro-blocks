@@ -1,14 +1,16 @@
 import { CloseCircleOutlined } from '@ant-design/icons';
-import { Card, Col, Popover, Row, message, Popconfirm } from 'antd';
+import { Card, Col, Popover, Row, message } from 'antd';
 
-import React, { FC, useState } from 'react';
+import type { FC } from 'react';
+import React, { useState } from 'react';
 import ProForm, {
   ProFormDateRangePicker,
   ProFormSelect,
   ProFormText,
   ProFormTimePicker,
 } from '@ant-design/pro-form';
-import { EditableProTable, ProColumnType } from '@ant-design/pro-table';
+import type { ProColumnType } from '@ant-design/pro-table';
+import { EditableProTable } from '@ant-design/pro-table';
 import { PageContainer, FooterToolbar } from '@ant-design/pro-layout';
 import { fakeSubmitForm } from './service';
 import styles from './style.less';
@@ -64,7 +66,7 @@ interface ErrorField {
   errors: string[];
 }
 
-const PAGE_NAME_UPPER_CAMEL_CASE: FC<{}> = () => {
+const PAGE_NAME_UPPER_CAMEL_CASE: FC<Record<string, any>> = () => {
   const [error, setError] = useState<ErrorField[]>([]);
   const getErrorInfo = (errors: ErrorField[]) => {
     const errorCount = errors.filter((item) => item.errors.length > 0).length;
@@ -111,12 +113,14 @@ const PAGE_NAME_UPPER_CAMEL_CASE: FC<{}> = () => {
     );
   };
 
-  const onFinish = async (values: { [key: string]: any }) => {
+  const onFinish = async (values: Record<string, any>) => {
     setError([]);
     try {
       await fakeSubmitForm(values);
       message.success('提交成功');
-    } catch (error) {}
+    } catch {
+      // console.log
+    }
   };
 
   const onFinishFailed = (errorInfo: any) => {

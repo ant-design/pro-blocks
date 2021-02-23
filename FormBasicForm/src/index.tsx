@@ -9,12 +9,13 @@ import ProForm, {
   ProFormTextArea,
 } from '@ant-design/pro-form';
 import { useRequest } from 'umi';
-import React, { FC } from 'react';
-import { PageHeaderWrapper } from '@ant-design/pro-layout';
+import type { FC } from 'react';
+import React from 'react';
+import { PageContainer } from '@ant-design/pro-layout';
 import { fakeSubmitForm } from './service';
 import styles from './style.less';
 
-const PAGE_NAME_UPPER_CAMEL_CASE: FC<{}> = () => {
+const PAGE_NAME_UPPER_CAMEL_CASE: FC<Record<string, any>> = () => {
   const { run } = useRequest(fakeSubmitForm, {
     manual: true,
     onSuccess: () => {
@@ -22,12 +23,12 @@ const PAGE_NAME_UPPER_CAMEL_CASE: FC<{}> = () => {
     },
   });
 
-  const onFinish = async (values: { [key: string]: any }) => {
+  const onFinish = async (values: Record<string, any>) => {
     run(values);
   };
 
   return (
-    <PageHeaderWrapper content="表单页用于向用户收集或验证信息，基础表单常见于数据项较少的表单场景。">
+    <PageContainer content="表单页用于向用户收集或验证信息，基础表单常见于数据项较少的表单场景。">
       <Card bordered={false}>
         <ProForm
           hideRequiredMark
@@ -181,7 +182,7 @@ const PAGE_NAME_UPPER_CAMEL_CASE: FC<{}> = () => {
           </ProFormDependency>
         </ProForm>
       </Card>
-    </PageHeaderWrapper>
+    </PageContainer>
   );
 };
 

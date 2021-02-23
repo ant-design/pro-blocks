@@ -15,10 +15,3 @@ export interface BasicProgress {
   operator: string;
   cost: string;
 }
-
-export interface ColumnProps {
-  title: string;
-  dataIndex: string;
-  key: string;
-  render: () => {};
-}

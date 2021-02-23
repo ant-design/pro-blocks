@@ -1,17 +1,18 @@
-import React, { FC, Suspense, useState } from 'react';
+import type { FC} from 'react';
+import React, { Suspense, useState } from 'react';
 import { EllipsisOutlined } from '@ant-design/icons';
 import { Col, Dropdown, Menu, Row } from 'antd';
 import { GridContent } from '@ant-design/pro-layout';
-import { RadioChangeEvent } from 'antd/es/radio';
-import { RangePickerProps } from 'antd/es/date-picker/generatePicker';
-import moment from 'moment';
+import type { RadioChangeEvent } from 'antd/es/radio';
+import type { RangePickerProps } from 'antd/es/date-picker/generatePicker';
+import type moment from 'moment';
 import { useRequest } from 'umi';
 
 import { fakeChartData } from './service';
 import PageLoading from './components/PageLoading';
-import { TimeType } from './components/SalesCard';
+import type { TimeType } from './components/SalesCard';
 import { getTimeDistance } from './utils/utils';
-import { AnalysisData } from './data.d';
+import type { AnalysisData } from './data.d';
 import styles from './style.less';
 
 const IntroduceRow = React.lazy(() => import('./components/IntroduceRow'));

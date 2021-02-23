@@ -16,9 +16,7 @@ interface PAGE_NAME_UPPER_CAMEL_CASEState {
 }
 
 const PAGE_NAME_UPPER_CAMEL_CASE: React.FC = () => {
-  const menuMap: {
-    [key: string]: React.ReactNode;
-  } = {
+  const menuMap: Record<string, React.ReactNode> = {
     base: '基本设置',
     security: '安全设置',
     binding: '账号绑定',
@@ -44,9 +42,7 @@ const PAGE_NAME_UPPER_CAMEL_CASE: React.FC = () => {
       if (window.innerWidth < 768 && offsetWidth > 400) {
         mode = 'horizontal';
       }
-      setInitConfig(
-        Object.assign({}, initConfig, { mode: mode as PAGE_NAME_UPPER_CAMEL_CASEState['mode'] }),
-      );
+      setInitConfig({ ...initConfig, mode: mode as PAGE_NAME_UPPER_CAMEL_CASEState['mode'] });
     });
   };
 
@@ -95,11 +91,10 @@ const PAGE_NAME_UPPER_CAMEL_CASE: React.FC = () => {
             mode={initConfig.mode}
             selectedKeys={[initConfig.selectKey]}
             onClick={({ key }) => {
-              setInitConfig(
-                Object.assign({}, initConfig, {
-                  selectKey: key as PAGE_NAME_UPPER_CAMEL_CASEStateKeys,
-                }),
-              );
+              setInitConfig({
+                ...initConfig,
+                selectKey: key as PAGE_NAME_UPPER_CAMEL_CASEStateKeys,
+              });
             }}
           >
             {getMenu()}

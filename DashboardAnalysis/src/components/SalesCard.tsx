@@ -1,11 +1,11 @@
 import { Card, Col, DatePicker, Row, Tabs } from 'antd';
-import { RangePickerProps } from 'antd/es/date-picker/generatePicker';
-import moment from 'moment';
+import type { RangePickerProps } from 'antd/es/date-picker/generatePicker';
+import type moment from 'moment';
 import { Column } from '@ant-design/charts';
 
 import React from 'react';
 import numeral from 'numeral';
-import { DataItem } from '../data.d';
+import type { DataItem } from '../data.d';
 import styles from '../style.less';
 
 type RangePickerValue = RangePickerProps<moment.Moment>['value'];

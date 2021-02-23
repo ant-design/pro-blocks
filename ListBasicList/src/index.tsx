@@ -1,4 +1,5 @@
-import React, { FC, useState } from 'react';
+import type { FC} from 'react';
+import React, { useState } from 'react';
 import { DownOutlined, PlusOutlined } from '@ant-design/icons';
 import {
   Avatar,
@@ -15,12 +16,12 @@ import {
   Row,
 } from 'antd';
 
-import { PageHeaderWrapper } from '@ant-design/pro-layout';
+import { PageContainer } from '@ant-design/pro-layout';
 import { useRequest } from 'umi';
 import moment from 'moment';
 import OperationModal from './components/OperationModal';
 import { addFakeList, queryFakeList, removeFakeList, updateFakeList } from './service';
-import { BasicListItemDataType } from './data.d';
+import type { BasicListItemDataType } from './data.d';
 import styles from './style.less';
 
 const RadioButton = Radio.Button;
@@ -169,7 +170,7 @@ export const PAGE_NAME_UPPER_CAMEL_CASE: FC = () => {
 
   return (
     <div>
-      <PageHeaderWrapper>
+      <PageContainer>
         <div className={styles.standardList}>
           <Card bordered={false}>
             <Row>
@@ -230,7 +231,7 @@ export const PAGE_NAME_UPPER_CAMEL_CASE: FC = () => {
             />
           </Card>
         </div>
-      </PageHeaderWrapper>
+      </PageContainer>
 
       <OperationModal
         done={done}

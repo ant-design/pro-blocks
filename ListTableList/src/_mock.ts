@@ -1,7 +1,7 @@
 // eslint-disable-next-line import/no-extraneous-dependencies
-import { Request, Response } from 'express';
+import type { Request, Response } from 'express';
 import { parse } from 'url';
-import { TableListItem, TableListParams } from './data.d';
+import type { TableListItem, TableListParams } from './data.d';
 
 // mock tableListDataSource
 let tableListDataSource: TableListItem[] = [];
@@ -70,7 +70,7 @@ function getRule(req: Request, res: Response, u: string) {
 
   let pageSize = 10;
   if (params.pageSize) {
-    pageSize = parseInt(`${params.pageSize}`, 0);
+    pageSize = parseInt(`${params.pageSize}`, 10);
   }
 
   const result = {

@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Form, Button, DatePicker, Input, Modal, Radio, Select, Steps } from 'antd';
 
-import { TableListItem } from '../data.d';
+import type { TableListItem } from '../data.d';
 
 export interface FormValueType extends Partial<TableListItem> {
   target?: string;

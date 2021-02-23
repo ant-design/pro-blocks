@@ -1,7 +1,7 @@
 import { Button, Result } from 'antd';
 import { Link } from 'umi';
 import React from 'react';
-import { RouteChildrenProps } from 'react-router';
+import type { RouteChildrenProps } from 'react-router';
 
 import styles from './style.less';
 
@@ -18,9 +18,7 @@ const actions = (
   </div>
 );
 
-export interface LocationState {
-  [key: string]: unknown;
-}
+export type LocationState = Record<string, unknown>;
 
 const PAGE_NAME_UPPER_CAMEL_CASE: React.FC<RouteChildrenProps> = ({ location }) => {
   const email = location.state

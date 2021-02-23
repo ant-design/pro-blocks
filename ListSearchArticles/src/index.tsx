@@ -1,11 +1,12 @@
 import { LikeOutlined, LoadingOutlined, MessageOutlined, StarOutlined } from '@ant-design/icons';
 import { Button, Card, Col, Form, List, Row, Select, Tag } from 'antd';
-import React, { FC } from 'react';
+import type { FC } from 'react';
+import React from 'react';
 import { useRequest } from 'umi';
 import ArticleListContent from './components/ArticleListContent';
 import StandardFormRow from './components/StandardFormRow';
 import TagSelect from './components/TagSelect';
-import { ListItemDataType } from './data.d';
+import type { ListItemDataType } from './data.d';
 import { queryFakeList } from './service';
 import styles from './style.less';
 

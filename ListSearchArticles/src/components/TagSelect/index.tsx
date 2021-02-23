@@ -2,7 +2,8 @@ import { DownOutlined, UpOutlined } from '@ant-design/icons';
 import { useBoolean, useControllableValue } from 'ahooks';
 import { Tag } from 'antd';
 import classNames from 'classnames';
-import React, { FC } from 'react';
+import type { FC } from 'react';
+import React from 'react';
 import styles from './index.less';
 
 const { CheckableTag } = Tag;

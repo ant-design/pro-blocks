@@ -1,6 +1,6 @@
 import React from 'react';
 import { UploadOutlined } from '@ant-design/icons';
-import { Button, Input, Upload, Form, message } from 'antd';
+import { Button, Input, Upload, message } from 'antd';
 import ProForm, {
   ProFormDependency,
   ProFormFieldSet,

@@ -1,6 +1,7 @@
-import { PageHeaderWrapper } from '@ant-design/pro-layout';
+import { PageContainer } from '@ant-design/pro-layout';
 import { Input } from 'antd';
-import React, { FC } from 'react';
+import type { FC } from 'react';
+import React from 'react';
 import { history } from 'umi';
 
 interface PAGE_NAME_UPPER_CAMEL_CASEProps {
@@ -63,7 +64,7 @@ const PAGE_NAME_UPPER_CAMEL_CASE: FC<PAGE_NAME_UPPER_CAMEL_CASEProps> = (props) 
   };
 
   return (
-    <PageHeaderWrapper
+    <PageContainer
       content={
         <div style={{ textAlign: 'center' }}>
           <Input.Search
@@ -80,7 +81,7 @@ const PAGE_NAME_UPPER_CAMEL_CASE: FC<PAGE_NAME_UPPER_CAMEL_CASEProps> = (props) 
       onTabChange={handleTabChange}
     >
       {props.children}
-    </PageHeaderWrapper>
+    </PageContainer>
   );
 };
 

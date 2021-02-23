@@ -4,7 +4,7 @@ import React from 'react';
 import moment from 'moment';
 import { queryFakeList } from '../../service';
 import AvatarList from '../AvatarList';
-import { ListItemDataType } from '../../data.d';
+import type { ListItemDataType } from '../../data.d';
 import styles from './index.less';
 
 const Projects: React.FC = () => {

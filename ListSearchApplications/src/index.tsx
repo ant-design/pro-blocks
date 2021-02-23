@@ -6,11 +6,12 @@ import {
 } from '@ant-design/icons';
 import { Avatar, Card, Col, Dropdown, Form, List, Menu, Row, Select, Tooltip } from 'antd';
 import numeral from 'numeral';
-import React, { FC } from 'react';
+import type { FC } from 'react';
+import React from 'react';
 import { useRequest } from 'umi';
 import StandardFormRow from './components/StandardFormRow';
 import TagSelect from './components/TagSelect';
-import { ListItemDataType } from './data.d';
+import type { ListItemDataType } from './data.d';
 import { queryFakeList } from './service';
 import styles from './style.less';
 
@@ -65,7 +66,7 @@ const CardInfo: React.FC<{
   </div>
 );
 
-export const PAGE_NAME_UPPER_CAMEL_CASE: FC<{}> = () => {
+export const PAGE_NAME_UPPER_CAMEL_CASE: FC<Record<string, any>> = () => {
   const { data, loading, run } = useRequest((values: any) => {
     console.log('form data', values);
     return queryFakeList({

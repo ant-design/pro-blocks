@@ -1,7 +1,7 @@
 import { Col, Row } from 'antd';
 import GGEditor, { Mind } from 'gg-editor';
 
-import { PageHeaderWrapper } from '@ant-design/pro-layout';
+import { PageContainer } from '@ant-design/pro-layout';
 import React from 'react';
 import EditorMinimap from './components/EditorMinimap';
 import { MindContextMenu } from './components/EditorContextMenu';
@@ -13,7 +13,7 @@ import styles from './index.less';
 GGEditor.setTrackable(false);
 
 export default () => (
-  <PageHeaderWrapper content="脑图是表达发散性思维的有效图形思维工具 ，它简单却又很有效，是一种实用性的思维工具">
+  <PageContainer content="脑图是表达发散性思维的有效图形思维工具 ，它简单却又很有效，是一种实用性的思维工具">
     <GGEditor className={styles.editor}>
       <Row className={styles.editorHd}>
         <Col span={24}>
@@ -31,5 +31,5 @@ export default () => (
       </Row>
       <MindContextMenu />
     </GGEditor>
-  </PageHeaderWrapper>
+  </PageContainer>
 );

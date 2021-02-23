@@ -1,8 +1,10 @@
-import React, { FC, useState, useEffect } from 'react';
+import type { FC } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Form, Button, Col, Input, Popover, Progress, Row, Select, message } from 'antd';
-import { Store } from 'antd/es/form/interface';
+import type { Store } from 'antd/es/form/interface';
 import { Link, useRequest, history } from 'umi';
-import { fakeRegister, StateType } from './service';
+import type { StateType } from './service';
+import { fakeRegister } from './service';
 
 import styles from './style.less';
 
@@ -51,7 +53,7 @@ const PAGE_NAME_UPPER_CAMEL_CASE: FC = () => {
     () => () => {
       clearInterval(interval);
     },
-    [],
+    [interval],
   );
 
   const onGetCaptcha = () => {

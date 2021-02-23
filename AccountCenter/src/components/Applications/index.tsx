@@ -8,7 +8,7 @@ import { useRequest } from 'umi';
 import { Avatar, Card, Dropdown, List, Menu, Tooltip } from 'antd';
 import React from 'react';
 import numeral from 'numeral';
-import { ListItemDataType } from '../../data.d';
+import type { ListItemDataType } from '../../data.d';
 import { queryFakeList } from '../../service';
 import stylesApplications from './index.less';
 

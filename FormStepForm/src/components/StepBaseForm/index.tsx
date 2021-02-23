@@ -1,6 +1,6 @@
 import React from 'react';
 import { Form, Button, Divider, Input, Select } from 'antd';
-import { StepComponentTypeProps } from '../../data.d';
+import type { StepComponentTypeProps } from '../../data.d';
 import styles from './index.less';
 
 const { Option } = Select;

@@ -5,7 +5,7 @@ import { Col, Row, Tooltip  } from 'antd';
 import React from 'react';
 import numeral from 'numeral';
 import { ChartCard, Field } from './Charts';
-import { DataItem } from '../data.d';
+import type { DataItem } from '../data.d';
 import Trend from './Trend';
 import Yuan from '../utils/Yuan';
 import styles from '../style.less';

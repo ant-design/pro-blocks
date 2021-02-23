@@ -1,7 +1,7 @@
 import { Card, Col, Row, Tabs } from 'antd';
 import React from 'react';
 import { RingProgress, Line } from '@ant-design/charts';
-import { OfflineDataType, DataItem } from '../data.d';
+import type { OfflineDataType, DataItem } from '../data.d';
 
 import NumberInfo from './NumberInfo';
 import styles from '../style.less';

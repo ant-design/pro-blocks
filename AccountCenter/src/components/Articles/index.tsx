@@ -3,7 +3,7 @@ import { StarTwoTone, LikeOutlined, MessageFilled } from '@ant-design/icons';
 import { useRequest } from 'umi';
 import { List, Tag } from 'antd';
 import ArticleListContent from '../ArticleListContent';
-import { ListItemDataType } from '../../data.d';
+import type { ListItemDataType } from '../../data.d';
 import { queryFakeList } from '../../service';
 import styles from './index.less';
 

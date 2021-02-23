@@ -1,9 +1,11 @@
-import { PageHeaderWrapper } from '@ant-design/pro-layout';
-import ProTable, { ProColumns } from '@ant-design/pro-table';
+import { PageContainer } from '@ant-design/pro-layout';
+import type { ProColumns } from '@ant-design/pro-table';
+import ProTable from '@ant-design/pro-table';
 import { Badge, Card, Descriptions, Divider } from 'antd';
-import React, { FC } from 'react';
+import type { FC } from 'react';
+import React from 'react';
 import { useRequest } from 'umi';
-import { BasicGood, BasicProgress } from './data.d';
+import type { BasicGood, BasicProgress } from './data.d';
 import { queryBasicProfile } from './service';
 import styles from './style.less';
 
@@ -65,7 +67,7 @@ const PAGE_NAME_UPPER_CAMEL_CASE: FC = () => {
       amount,
     });
   }
-  
+
   const renderContent = (value: any, _: any, index: any) => {
     const obj: {
       children: any;
@@ -143,7 +145,7 @@ const PAGE_NAME_UPPER_CAMEL_CASE: FC = () => {
   ];
 
   return (
-    <PageHeaderWrapper>
+    <PageContainer>
       <Card bordered={false}>
         <Descriptions title="退款申请" style={{ marginBottom: 32 }}>
           <Descriptions.Item label="取货单号">1000000000</Descriptions.Item>
@@ -184,7 +186,7 @@ const PAGE_NAME_UPPER_CAMEL_CASE: FC = () => {
           columns={progressColumns}
         />
       </Card>
-    </PageHeaderWrapper>
+    </PageContainer>
   );
 };
 

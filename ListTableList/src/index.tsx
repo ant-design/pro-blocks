@@ -1,11 +1,13 @@
 import { DownOutlined, PlusOutlined } from '@ant-design/icons';
-import { PageHeaderWrapper } from '@ant-design/pro-layout';
-import ProTable, { ActionType, ProColumns } from '@ant-design/pro-table';
+import { PageContainer } from '@ant-design/pro-layout';
+import type { ActionType, ProColumns } from '@ant-design/pro-table';
+import ProTable from '@ant-design/pro-table';
 import { Button, Divider, Dropdown, Menu, message } from 'antd';
 import React, { useRef, useState } from 'react';
 import CreateForm from './components/CreateForm';
-import UpdateForm, { FormValueType } from './components/UpdateForm';
-import { TableListItem } from './data.d';
+import type { FormValueType } from './components/UpdateForm';
+import UpdateForm from './components/UpdateForm';
+import type { TableListItem } from './data.d';
 import { addRule, queryRule, removeRule, updateRule } from './service';
 
 /**
@@ -72,7 +74,7 @@ const handleRemove = async (selectedRows: TableListItem[]) => {
   }
 };
 
-const TableList: React.FC<{}> = () => {
+const TableList: React.FC<Record<string, any>> = () => {
   const [createModalVisible, handleModalVisible] = useState<boolean>(false);
   const [updateModalVisible, handleUpdateModalVisible] = useState<boolean>(false);
   const [stepFormValues, setStepFormValues] = useState({});
@@ -130,7 +132,7 @@ const TableList: React.FC<{}> = () => {
   ];
 
   return (
-    <PageHeaderWrapper>
+    <PageContainer>
       <ProTable<TableListItem>
         headerTitle="查询表格"
         actionRef={actionRef}
@@ -207,7 +209,7 @@ const TableList: React.FC<{}> = () => {
           values={stepFormValues}
         />
       ) : null}
-    </PageHeaderWrapper>
+    </PageContainer>
   );
 };
 

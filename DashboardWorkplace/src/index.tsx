@@ -1,13 +1,14 @@
-import React, { FC } from 'react';
+import type { FC } from 'react';
+import React from 'react';
 import { Avatar, Card, Col, List, Skeleton, Row, Statistic } from 'antd';
 import { Radar } from '@ant-design/charts';
 
 import { Link, useRequest } from 'umi';
-import { PageHeaderWrapper } from '@ant-design/pro-layout';
+import { PageContainer } from '@ant-design/pro-layout';
 import moment from 'moment';
 import EditableLinkGroup from './components/EditableLinkGroup';
 import styles from './style.less';
-import { ActivitiesType, CurrentUser } from './data.d';
+import type { ActivitiesType, CurrentUser } from './data.d';
 import { queryCurrent, queryProjectNotice, queryActivities, fakeChartData } from './service';
 
 const links = [
@@ -61,7 +62,7 @@ const PageHeaderContent: FC<{ currentUser: CurrentUser }> = ({ currentUser }) =>
   );
 };
 
-const ExtraContent: FC<{}> = () => (
+const ExtraContent: FC<Record<string, any>> = () => (
   <div className={styles.extraContent}>
     <div className={styles.statItem}>
       <Statistic title="项目数" value={56} />
@@ -76,17 +77,9 @@ const ExtraContent: FC<{}> = () => (
 );
 
 const PAGE_NAME_UPPER_CAMEL_CASE: FC = () => {
-  const {
-    data: currentUser
-  } = useRequest(queryCurrent);
-  const {
-    loading: projectLoading,
-    data: projectNotice = []
-  } = useRequest(queryProjectNotice);
-  const {
-    loading: activitiesLoading,
-    data: activities = []
-  } = useRequest(queryActivities);
+  const { data: currentUser } = useRequest(queryCurrent);
+  const { loading: projectLoading, data: projectNotice = [] } = useRequest(queryProjectNotice);
+  const { loading: activitiesLoading, data: activities = [] } = useRequest(queryActivities);
   const { data } = useRequest(fakeChartData);
 
   const renderActivities = (item: ActivitiesType) => {
@@ -122,8 +115,8 @@ const PAGE_NAME_UPPER_CAMEL_CASE: FC = () => {
   };
 
   return (
-    <PageHeaderWrapper
-      content={<PageHeaderContent currentUser={currentUser || {} as CurrentUser} />}
+    <PageContainer
+      content={<PageHeaderContent currentUser={currentUser || ({} as CurrentUser)} />}
       extraContent={<ExtraContent />}
     >
       <Row gutter={24}>
@@ -206,7 +199,7 @@ const PAGE_NAME_UPPER_CAMEL_CASE: FC = () => {
                   visible: true,
                 }}
                 legend={{
-                  position: 'bottom-center'
+                  position: 'bottom-center',
                 }}
               />
             </div>
@@ -232,8 +225,8 @@ const PAGE_NAME_UPPER_CAMEL_CASE: FC = () => {
           </Card>
         </Col>
       </Row>
-    </PageHeaderWrapper>
-  )
-}
+    </PageContainer>
+  );
+};
 
 export default PAGE_NAME_UPPER_CAMEL_CASE;

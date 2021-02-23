@@ -1,7 +1,7 @@
 import React from 'react';
 import { Form, Alert, Button, Descriptions, Divider, Statistic, Input } from 'antd';
 import { useRequest } from 'umi';
-import { StepComponentTypeProps } from '../../data.d';
+import type { StepComponentTypeProps } from '../../data.d';
 import { fakeSubmitForm } from '../../service';
 import styles from './index.less';
 

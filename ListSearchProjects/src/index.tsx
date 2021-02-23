@@ -1,11 +1,12 @@
 import { Card, Col, Form, List, Row, Select, Typography } from 'antd';
 import moment from 'moment';
-import React, { FC } from 'react';
+import type { FC } from 'react';
+import React from 'react';
 import { useRequest } from 'umi';
 import AvatarList from './components/AvatarList';
 import StandardFormRow from './components/StandardFormRow';
 import TagSelect from './components/TagSelect';
-import { ListItemDataType } from './data.d';
+import type { ListItemDataType } from './data.d';
 import { queryFakeList } from './service';
 import styles from './style.less';
 

@@ -1,10 +1,10 @@
 import { PlusOutlined } from '@ant-design/icons';
 import { Button, Card, List, Typography } from 'antd';
 import React from 'react';
-import { PageHeaderWrapper } from '@ant-design/pro-layout';
+import { PageContainer } from '@ant-design/pro-layout';
 import { useRequest } from 'umi';
 import { queryFakeList } from './service';
-import { CardListItemDataType } from './data.d';
+import type { CardListItemDataType } from './data.d';
 import styles from './style.less';
 
 const { Paragraph } = Typography;
@@ -51,7 +51,7 @@ const PAGE_NAME_UPPER_CAMEL_CASE = () => {
   );
   const nullData: Partial<CardListItemDataType> = {};
   return (
-    <PageHeaderWrapper content={content} extraContent={extraContent}>
+    <PageContainer content={content} extraContent={extraContent}>
       <div className={styles.cardList}>
         <List<Partial<CardListItemDataType>>
           rowKey="id"
@@ -98,7 +98,7 @@ const PAGE_NAME_UPPER_CAMEL_CASE = () => {
           }}
         />
       </div>
-    </PageHeaderWrapper>
+    </PageContainer>
   );
 };
 

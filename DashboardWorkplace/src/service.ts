@@ -1,5 +1,5 @@
 import request from 'umi-request';
-import { CurrentUser, NoticeType, ActivitiesType, AnalysisData } from './data';
+import type { CurrentUser, NoticeType, ActivitiesType, AnalysisData } from './data';
 
 export async function queryProjectNotice(): Promise<{ data: NoticeType[] }> {
   return request('/api/project/notice');

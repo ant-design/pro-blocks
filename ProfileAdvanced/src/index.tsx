@@ -19,12 +19,13 @@ import {
   Tooltip,
   Empty,
 } from 'antd';
-import { GridContent, PageHeaderWrapper, RouteContext } from '@ant-design/pro-layout';
-import React, { Fragment, FC, useState } from 'react';
+import { GridContent, PageContainer, RouteContext } from '@ant-design/pro-layout';
+import type { FC} from 'react';
+import React, { Fragment, useState } from 'react';
 
 import classNames from 'classnames';
 import { useRequest } from 'umi';
-import { AdvancedProfileData } from './data.d';
+import type { AdvancedProfileData } from './data.d';
 import { queryAdvancedProfile } from './service';
 import styles from './style.less';
 
@@ -246,7 +247,7 @@ const PAGE_NAME_UPPER_CAMEL_CASE: FC = () => {
   };
 
   return (
-    <PageHeaderWrapper
+    <PageContainer
       title="单号：234231029431"
       extra={action}
       className={styles.pageHeader}
@@ -348,7 +349,7 @@ const PAGE_NAME_UPPER_CAMEL_CASE: FC = () => {
           </Card>
         </GridContent>
       </div>
-    </PageHeaderWrapper>
+    </PageContainer>
   );
 };
 

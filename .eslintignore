@@ -3,3 +3,6 @@
 _scripts
 /lambda/mock/**
 _test_
+.eslintrc.js
+
+node_modules

@@ -1,6 +1,6 @@
 import { Button, Result, Descriptions, Statistic } from 'antd';
 import React from 'react';
-import { StepComponentTypeProps } from '../../data.d';
+import type { StepComponentTypeProps } from '../../data.d';
 import styles from './index.less';
 
 const Step3: React.FC<StepComponentTypeProps> = (props) => {

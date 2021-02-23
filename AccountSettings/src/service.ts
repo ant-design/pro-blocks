@@ -1,5 +1,5 @@
 import request from 'umi-request';
-import { CurrentUser, GeographicItemType } from './data';
+import type { CurrentUser, GeographicItemType } from './data';
 
 export async function queryCurrent(): Promise<{ data: CurrentUser }> {
   return request('/api/accountSettingCurrentUser');

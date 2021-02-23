@@ -3,11 +3,11 @@ import { Avatar, Card, Col, Divider, Input, Row, Tag } from 'antd';
 import React, { useState, useRef } from 'react';
 import { GridContent } from '@ant-design/pro-layout';
 import { Link, useRequest } from 'umi';
-import { RouteChildrenProps } from 'react-router';
+import type { RouteChildrenProps } from 'react-router';
 import Projects from './components/Projects';
 import Articles from './components/Articles';
 import Applications from './components/Applications';
-import { CurrentUser, TagType, tabKeyType } from './data.d';
+import type { CurrentUser, TagType, tabKeyType } from './data.d';
 import { queryCurrent } from './service';
 import styles from './Center.less';
 

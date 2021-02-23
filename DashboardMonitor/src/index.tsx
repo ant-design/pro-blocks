@@ -1,9 +1,10 @@
 import { Card, Col, Row, Statistic } from 'antd';
 import { useRequest } from 'umi';
-import React, { FC } from 'react';
+import type { FC } from 'react';
+import React from 'react';
 import { uniqueId } from 'lodash';
 import { Gauge, WordCloud, Liquid, RingProgress } from '@ant-design/charts';
-import { WordCloudData } from '@antv/g2plot/esm/plots/word-cloud/layer';
+import type { WordCloudData } from '@antv/g2plot/esm/plots/word-cloud/layer';
 
 import { GridContent } from '@ant-design/pro-layout';
 import numeral from 'numeral';
