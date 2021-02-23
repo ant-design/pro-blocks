@@ -135,7 +135,7 @@ for (let i = 0; i < 20; i += 1) {
   offlineChartData.push({
     date,
     type: '支付笔数',
-    value: Math.floor(Math.random() * 100) + 10
+    value: Math.floor(Math.random() * 100) + 10,
   });
 }
 
@@ -201,9 +201,9 @@ const getFakeChartData: AnalysisData = {
 
 const fakeChartData = (_: Request, res: Response) => {
   return res.json({
-    data: getFakeChartData
+    data: getFakeChartData,
   });
-}
+};
 
 export default {
   'GET  /api/fake_analysis_chart_data': fakeChartData,

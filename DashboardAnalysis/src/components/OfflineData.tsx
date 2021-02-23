@@ -60,11 +60,11 @@ const OfflineData = ({
               interactions={[
                 {
                   type: 'slider',
-                  cfg: {}
+                  cfg: {},
                 },
               ]}
               legend={{
-                position: 'top-center'
+                position: 'top-center',
               }}
             />
           </div>

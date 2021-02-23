@@ -67,9 +67,7 @@ const TopSearch = ({
           subTitle={
             <span>
               搜索用户数
-              <Tooltip
-                title="指标说明"
-              >
+              <Tooltip title="指标说明">
                 <InfoCircleOutlined style={{ marginLeft: 8 }} />
               </Tooltip>
             </span>
@@ -79,23 +77,14 @@ const TopSearch = ({
           status="up"
           subTotal={17.1}
         />
-        <TinyArea
-          xField="x"
-          height={45}
-          forceFit
-          yField="y"
-          smooth
-          data={visitData2}
-        />
+        <TinyArea xField="x" height={45} forceFit yField="y" smooth data={visitData2} />
       </Col>
       <Col sm={12} xs={24} style={{ marginBottom: 24 }}>
         <NumberInfo
           subTitle={
             <span>
               人均搜索次数
-              <Tooltip
-                title="指标说明"
-              >
+              <Tooltip title="指标说明">
                 <InfoCircleOutlined style={{ marginLeft: 8 }} />
               </Tooltip>
             </span>
@@ -105,14 +94,7 @@ const TopSearch = ({
           subTotal={26.2}
           gap={8}
         />
-        <TinyArea
-          xField="x"
-          height={45}
-          forceFit
-          yField="y"
-          smooth
-          data={visitData2}
-        />
+        <TinyArea xField="x" height={45} forceFit yField="y" smooth data={visitData2} />
       </Col>
     </Row>
     <Table<any>

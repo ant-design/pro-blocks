@@ -61,13 +61,7 @@ export default class ActiveChart extends Component {
       <div className={styles.activeChart}>
         <Statistic title="目标评估" value="有望达到预期" />
         <div style={{ marginTop: 32 }}>
-          <TinyArea
-            data={activeData}
-            xField="x"
-            forceFit
-            yField="y"
-            height={84}
-          />
+          <TinyArea data={activeData} xField="x" forceFit yField="y" height={84} />
         </div>
         {activeData && (
           <div>

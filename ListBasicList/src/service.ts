@@ -1,4 +1,4 @@
-import request from 'umi-request';
+import { request } from 'umi';
 import type { BasicListItemDataType } from './data.d';
 
 interface ParamsType extends Partial<BasicListItemDataType> {

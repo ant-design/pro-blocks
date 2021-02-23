@@ -20,7 +20,7 @@ import {
   Empty,
 } from 'antd';
 import { GridContent, PageContainer, RouteContext } from '@ant-design/pro-layout';
-import type { FC} from 'react';
+import type { FC } from 'react';
 import React, { Fragment, useState } from 'react';
 
 import classNames from 'classnames';

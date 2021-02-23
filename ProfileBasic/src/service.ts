@@ -1,4 +1,4 @@
-import request from 'umi-request';
+import { request } from 'umi';
 import type { BasicGood, BasicProgress } from './data.d';
 
 export async function queryBasicProfile(): Promise<{

@@ -2,7 +2,7 @@ import { Card, Radio, Typography } from 'antd';
 import numeral from 'numeral';
 import type { RadioChangeEvent } from 'antd/es/radio';
 import { Donut } from '@ant-design/charts';
-import type { DonutConfig } from '@ant-design/charts/es/donut'
+import type { DonutConfig } from '@ant-design/charts/es/donut';
 import React from 'react';
 import type { DataItem } from '../data.d';
 import styles from '../style.less';
@@ -35,15 +35,9 @@ const ProportionSales = ({
         {dropdownGroup}
         <div className={styles.salesTypeRadio}>
           <Radio.Group value={salesType} onChange={handleChangeSalesType}>
-            <Radio.Button value="all">
-              全部渠道
-            </Radio.Button>
-            <Radio.Button value="online">
-              线上
-            </Radio.Button>
-            <Radio.Button value="stores">
-              门店
-            </Radio.Button>
+            <Radio.Button value="all">全部渠道</Radio.Button>
+            <Radio.Button value="online">线上</Radio.Button>
+            <Radio.Button value="stores">门店</Radio.Button>
           </Radio.Group>
         </div>
       </div>
@@ -59,7 +53,7 @@ const ProportionSales = ({
         colorField="x"
         data={salesPieData as any}
         legend={{
-          visible: false
+          visible: false,
         }}
         label={{
           visible: true,
@@ -67,11 +61,13 @@ const ProportionSales = ({
           formatter: (text, item) => {
             // eslint-disable-next-line no-underscore-dangle
             return `${item._origin.x}: ${numeral(item._origin.y).format('0,0')}`;
-          }
+          },
         }}
-        statistic={{
-          totalLabel: '销售额'
-        } as DonutConfig['statistic']}
+        statistic={
+          {
+            totalLabel: '销售额',
+          } as DonutConfig['statistic']
+        }
       />
     </div>
   </Card>

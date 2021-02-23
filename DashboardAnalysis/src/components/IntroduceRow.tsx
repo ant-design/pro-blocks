@@ -1,6 +1,6 @@
 import { InfoCircleOutlined } from '@ant-design/icons';
 import { TinyArea, TinyColumn, Progress } from '@ant-design/charts';
-import { Col, Row, Tooltip  } from 'antd';
+import { Col, Row, Tooltip } from 'antd';
 
 import React from 'react';
 import numeral from 'numeral';
@@ -26,20 +26,13 @@ const IntroduceRow = ({ loading, visitData }: { loading: boolean; visitData: Dat
         bordered={false}
         title="总销售额"
         action={
-          <Tooltip
-            title="指标说明"
-          >
+          <Tooltip title="指标说明">
             <InfoCircleOutlined />
           </Tooltip>
         }
         loading={loading}
         total={() => <Yuan>126560</Yuan>}
-        footer={
-          <Field
-            label="日销售额"
-            value={`￥${numeral(12423).format('0,0')}`}
-          />
-        }
+        footer={<Field label="日销售额" value={`￥${numeral(12423).format('0,0')}`} />}
         contentHeight={46}
       >
         <Trend flag="up" style={{ marginRight: 16 }}>
@@ -59,19 +52,12 @@ const IntroduceRow = ({ loading, visitData }: { loading: boolean; visitData: Dat
         loading={loading}
         title="访问量"
         action={
-          <Tooltip
-            title="指标说明"
-          >
+          <Tooltip title="指标说明">
             <InfoCircleOutlined />
           </Tooltip>
         }
         total={numeral(8846).format('0,0')}
-        footer={
-          <Field
-            label="日访问量"
-            value={numeral(1234).format('0,0')}
-          />
-        }
+        footer={<Field label="日访问量" value={numeral(1234).format('0,0')} />}
         contentHeight={46}
       >
         <TinyArea
@@ -91,28 +77,15 @@ const IntroduceRow = ({ loading, visitData }: { loading: boolean; visitData: Dat
         loading={loading}
         title="支付笔数"
         action={
-          <Tooltip
-            title="指标说明"
-          >
+          <Tooltip title="指标说明">
             <InfoCircleOutlined />
           </Tooltip>
         }
         total={numeral(6560).format('0,0')}
-        footer={
-          <Field
-            label="转化率"
-            value="60%"
-          />
-        }
+        footer={<Field label="转化率" value="60%" />}
         contentHeight={46}
       >
-        <TinyColumn
-          xField="x"
-          height={46}
-          forceFit
-          yField="y"
-          data={visitData}
-        />
+        <TinyColumn xField="x" height={46} forceFit yField="y" data={visitData} />
       </ChartCard>
     </Col>
     <Col {...topColResponsiveProps}>
@@ -121,9 +94,7 @@ const IntroduceRow = ({ loading, visitData }: { loading: boolean; visitData: Dat
         bordered={false}
         title="运营活动效果"
         action={
-          <Tooltip
-            title="指标说明"
-          >
+          <Tooltip title="指标说明">
             <InfoCircleOutlined />
           </Tooltip>
         }
@@ -154,7 +125,7 @@ const IntroduceRow = ({ loading, visitData }: { loading: boolean; visitData: Dat
               style: {
                 stroke: '#13C2C2',
               },
-            }
+            },
           ]}
         />
       </ChartCard>

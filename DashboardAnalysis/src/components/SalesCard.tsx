@@ -66,10 +66,7 @@ const SalesCard = ({
         size="large"
         tabBarStyle={{ marginBottom: 24 }}
       >
-        <TabPane
-          tab="销售额"
-          key="sales"
-        >
+        <TabPane tab="销售额" key="sales">
           <Row>
             <Col xl={16} lg={12} md={12} sm={24} xs={24}>
               <div className={styles.salesBar}>
@@ -77,40 +74,38 @@ const SalesCard = ({
                   height={300}
                   forceFit
                   data={salesData as any}
-                  xField= 'x'
-                  yField='y'
+                  xField="x"
+                  yField="y"
                   xAxis={{
                     visible: true,
                     title: {
-                      visible: false
-                    }
+                      visible: false,
+                    },
                   }}
                   yAxis={{
                     visible: true,
                     title: {
-                      visible: false
-                    }
+                      visible: false,
+                    },
                   }}
                   title={{
                     visible: true,
                     text: '销售趋势',
                     style: {
-                      fontSize: 14
-                    }
+                      fontSize: 14,
+                    },
                   }}
                   meta={{
                     y: {
-                      alias: '销售量'
-                    }
+                      alias: '销售量',
+                    },
                   }}
                 />
               </div>
             </Col>
             <Col xl={8} lg={12} md={12} sm={24} xs={24}>
               <div className={styles.salesRank}>
-                <h4 className={styles.rankingTitle}>
-                  门店销售额排名
-                </h4>
+                <h4 className={styles.rankingTitle}>门店销售额排名</h4>
                 <ul className={styles.rankingList}>
                   {rankingListData.map((item, i) => (
                     <li key={item.title}>
@@ -138,40 +133,38 @@ const SalesCard = ({
                   height={300}
                   forceFit
                   data={salesData as any}
-                  xField= 'x'
-                  yField='y'
+                  xField="x"
+                  yField="y"
                   xAxis={{
                     visible: true,
                     title: {
-                      visible: false
-                    }
+                      visible: false,
+                    },
                   }}
                   yAxis={{
                     visible: true,
                     title: {
-                      visible: false
-                    }
+                      visible: false,
+                    },
                   }}
                   title={{
                     visible: true,
                     text: '访问量趋势',
                     style: {
-                      fontSize: 14
-                    }
+                      fontSize: 14,
+                    },
                   }}
                   meta={{
                     y: {
-                      alias: '访问量'
-                    }
+                      alias: '访问量',
+                    },
                   }}
                 />
               </div>
             </Col>
             <Col xl={8} lg={12} md={12} sm={24} xs={24}>
               <div className={styles.salesRank}>
-                <h4 className={styles.rankingTitle}>
-                  门店访问量排名
-                </h4>
+                <h4 className={styles.rankingTitle}>门店访问量排名</h4>
                 <ul className={styles.rankingList}>
                   {rankingListData.map((item, i) => (
                     <li key={item.title}>

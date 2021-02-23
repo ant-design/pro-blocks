@@ -230,9 +230,9 @@ const getNotice = (_: Request, res: Response) => {
         href: '',
         memberLink: '',
       },
-    ]
-  })
-}
+    ],
+  });
+};
 
 const getActivities = (_: Request, res: Response) => {
   res.json({
@@ -335,9 +335,9 @@ const getActivities = (_: Request, res: Response) => {
         },
         template: '在 @{group} 新建项目 @{project}',
       },
-    ]
-  })
-}
+    ],
+  });
+};
 
 const radarOriginData = [
   {
@@ -439,7 +439,7 @@ const getCurrentUser = (_: Request, res: Response) => {
       phone: '0752-268888888',
     },
   });
-}
+};
 
 const getChartData = (_: Request, res: Response) => {
   res.json({
@@ -454,13 +454,13 @@ const getChartData = (_: Request, res: Response) => {
       salesTypeDataOnline,
       salesTypeDataOffline,
       radarData,
-    }
-  })
-}
+    },
+  });
+};
 
 export default {
   'GET  /api/project/notice': getNotice,
   'GET  /api/activities': getActivities,
   'GET  /api/fake_workplace_chart_data': getChartData,
-  'GET  /api/currentUser': getCurrentUser
+  'GET  /api/currentUser': getCurrentUser,
 };

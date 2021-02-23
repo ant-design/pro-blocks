@@ -1,4 +1,4 @@
-import type { FC} from 'react';
+import type { FC } from 'react';
 import React, { Suspense, useState } from 'react';
 import { EllipsisOutlined } from '@ant-design/icons';
 import { Col, Dropdown, Menu, Row } from 'antd';
@@ -33,7 +33,9 @@ type SalesType = 'all' | 'online' | 'stores';
 const PAGE_NAME_UPPER_CAMEL_CASE: FC<PAGE_NAME_UPPER_CAMEL_CASEProps> = () => {
   const [salesType, setSalesType] = useState<SalesType>('all');
   const [currentTabKey, setCurrentTabKey] = useState<string>('');
-  const [rangePickerValue, setRangePickerValue] = useState<RangePickerValue>(getTimeDistance('year'));
+  const [rangePickerValue, setRangePickerValue] = useState<RangePickerValue>(
+    getTimeDistance('year'),
+  );
 
   const { loading, data } = useRequest(fakeChartData);
 
@@ -66,11 +68,11 @@ const PAGE_NAME_UPPER_CAMEL_CASE: FC<PAGE_NAME_UPPER_CAMEL_CASEProps> = () => {
   };
 
   let salesPieData;
-    if (salesType === 'all') {
-      salesPieData = data?.salesTypeData;
-    } else {
-      salesPieData = salesType === 'online' ? data?.salesTypeDataOnline : data?.salesTypeDataOffline;
-    }
+  if (salesType === 'all') {
+    salesPieData = data?.salesTypeData;
+  } else {
+    salesPieData = salesType === 'online' ? data?.salesTypeDataOnline : data?.salesTypeDataOffline;
+  }
 
   const menu = (
     <Menu>
@@ -155,7 +157,7 @@ const PAGE_NAME_UPPER_CAMEL_CASE: FC<PAGE_NAME_UPPER_CAMEL_CASEProps> = () => {
         </Suspense>
       </>
     </GridContent>
-  )
-}
+  );
+};
 
 export default PAGE_NAME_UPPER_CAMEL_CASE;
