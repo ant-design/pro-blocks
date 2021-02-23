@@ -21,7 +21,9 @@ interface OperationModalProps {
 
 const OperationModal: FC<OperationModalProps> = (props) => {
   const { done, visible, current, onDone, onSubmit, children } = props;
-
+  if (!visible) {
+    return null;
+  }
   return (
     <ModalForm<BasicListItemDataType>
       visible={visible}
@@ -31,6 +33,7 @@ const OperationModal: FC<OperationModalProps> = (props) => {
       onFinish={async (values) => {
         onSubmit(values);
       }}
+      initialValues={current}
       submitter={{
         render: (_, dom) => (done ? null : dom),
       }}

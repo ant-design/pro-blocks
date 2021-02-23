@@ -150,6 +150,7 @@ export const PAGE_NAME_UPPER_CAMEL_CASE: FC = () => {
   const handleDone = () => {
     setDone(false);
     setVisible(false);
+    setCurrent({});
   };
 
   const handleSubmit = (values: BasicListItemDataType) => {
