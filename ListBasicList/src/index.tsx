@@ -97,11 +97,6 @@ export const PAGE_NAME_UPPER_CAMEL_CASE: FC = () => {
     total: list.length,
   };
 
-  const showModal = () => {
-    setVisible(true);
-    setCurrent(undefined);
-  };
-
   const showEditModal = (item: BasicListItemDataType) => {
     setVisible(true);
     setCurrent(item);
@@ -111,7 +106,7 @@ export const PAGE_NAME_UPPER_CAMEL_CASE: FC = () => {
     postRun('remove', { id });
   };
 
-  const editAndDelete = (key: string, currentItem: BasicListItemDataType) => {
+  const editAndDelete = (key: string | number, currentItem: BasicListItemDataType) => {
     if (key === 'edit') showEditModal(currentItem);
     else if (key === 'delete') {
       Modal.confirm({
@@ -157,15 +152,10 @@ export const PAGE_NAME_UPPER_CAMEL_CASE: FC = () => {
     setVisible(false);
   };
 
-  const handleCancel = () => {
-    setVisible(false);
-  };
-
   const handleSubmit = (values: BasicListItemDataType) => {
-    const id = current ? current.id : '';
     setDone(true);
-    const method = id ? 'update' : 'add';
-    postRun(method, { id, ...values });
+    const method = values?.id ? 'update' : 'add';
+    postRun(method, values);
   };
 
   return (
@@ -194,11 +184,6 @@ export const PAGE_NAME_UPPER_CAMEL_CASE: FC = () => {
             bodyStyle={{ padding: '0 32px 40px 32px' }}
             extra={extraContent}
           >
-            <Button type="dashed" style={{ width: '100%', marginBottom: 8 }} onClick={showModal}>
-              <PlusOutlined />
-              添加
-            </Button>
-
             <List
               size="large"
               rowKey="id"
@@ -232,13 +217,21 @@ export const PAGE_NAME_UPPER_CAMEL_CASE: FC = () => {
           </Card>
         </div>
       </PageContainer>
-
+      <Button
+        type="dashed"
+        onClick={() => {
+          setVisible(true);
+        }}
+        style={{ width: '100%', marginBottom: 8 }}
+      >
+        <PlusOutlined />
+        添加
+      </Button>
       <OperationModal
         done={done}
-        current={current}
         visible={visible}
+        current={current}
         onDone={handleDone}
-        onCancel={handleCancel}
         onSubmit={handleSubmit}
       />
     </div>

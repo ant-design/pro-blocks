@@ -250,10 +250,8 @@ const TableList: React.FC = () => {
         onVisibleChange={handleModalVisible}
         onFinish={async (value) => {
           const success = await handleAdd(value as TableListItem);
-
           if (success) {
             handleModalVisible(false);
-
             if (actionRef.current) {
               actionRef.current.reload();
             }
