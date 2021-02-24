@@ -9,7 +9,7 @@ import React from 'react';
 
 import { connect } from 'umi';
 import numeral from 'numeral';
-import { ModalState } from '../../model';
+import type { ModalState } from '../../model';
 import stylesApplications from './index.less';
 
 export function formatWan(val: number) {

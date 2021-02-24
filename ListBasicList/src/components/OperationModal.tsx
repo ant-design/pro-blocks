@@ -1,17 +1,18 @@
-import React, { FC, useEffect } from 'react';
+import type { FC } from 'react';
+import React, { useEffect } from 'react';
 import moment from 'moment';
 import { Modal, Result, Button, Form, DatePicker, Input, Select } from 'antd';
-import { BasicListItemDataType } from '../data.d';
+import type { BasicListItemDataType } from '../data.d';
 import styles from '../style.less';
 
-interface OperationModalProps {
+type OperationModalProps = {
   done: boolean;
   visible: boolean;
   current: Partial<BasicListItemDataType> | undefined;
   onDone: () => void;
   onSubmit: (values: BasicListItemDataType) => void;
   onCancel: () => void;
-}
+};
 
 const { TextArea } = Input;
 const formLayout = {
@@ -43,7 +44,7 @@ const OperationModal: FC<OperationModalProps> = (props) => {
     form.submit();
   };
 
-  const handleFinish = (values: { [key: string]: any }) => {
+  const handleFinish = (values: Record<string, any>) => {
     if (onSubmit) {
       onSubmit(values as BasicListItemDataType);
     }

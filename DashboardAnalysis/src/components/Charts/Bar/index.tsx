@@ -5,7 +5,7 @@ import Debounce from 'lodash.debounce';
 import autoHeight from '../autoHeight';
 import styles from '../index.less';
 
-export interface BarProps {
+export type BarProps = {
   title: React.ReactNode;
   color?: string;
   padding?: [number, number, number, number];
@@ -17,7 +17,7 @@ export interface BarProps {
   forceFit?: boolean;
   autoLabel?: boolean;
   style?: React.CSSProperties;
-}
+};
 
 class Bar extends Component<
   BarProps,

@@ -23,8 +23,9 @@ import { GridContent, PageContainer, RouteContext } from '@ant-design/pro-layout
 import React, { Component, Fragment } from 'react';
 
 import classNames from 'classnames';
-import { connect, Dispatch } from 'umi';
-import { AdvancedProfileData } from './data.d';
+import type { Dispatch } from 'umi';
+import { connect } from 'umi';
+import type { AdvancedProfileData } from './data.d';
 import styles from './style.less';
 
 const { Step } = Steps;
@@ -206,13 +207,13 @@ const columns = [
   },
 ];
 
-interface PAGE_NAME_UPPER_CAMEL_CASEState {
+type PAGE_NAME_UPPER_CAMEL_CASEState = {
   operationKey: string;
   tabActiveKey: string;
-}
+};
 
 class PAGE_NAME_UPPER_CAMEL_CASE extends Component<
-  { loading: boolean; BLOCK_NAME_CAMEL_CASE: AdvancedProfileData; dispatch: Dispatch<any> },
+  { loading: boolean; BLOCK_NAME_CAMEL_CASE: AdvancedProfileData; dispatch: Dispatch },
   PAGE_NAME_UPPER_CAMEL_CASEState
 > {
   public state: PAGE_NAME_UPPER_CAMEL_CASEState = {
@@ -382,7 +383,7 @@ export default connect(
   }: {
     BLOCK_NAME_CAMEL_CASE: AdvancedProfileData;
     loading: {
-      effects: { [key: string]: boolean };
+      effects: Record<string, boolean>;
     };
   }) => ({
     BLOCK_NAME_CAMEL_CASE,

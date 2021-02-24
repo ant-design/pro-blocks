@@ -1,7 +1,8 @@
 import React from 'react';
 import { Form, Button, Divider, Input, Select } from 'antd';
-import { connect, Dispatch } from 'umi';
-import { StateType } from '../../model';
+import type { Dispatch } from 'umi';
+import { connect } from 'umi';
+import type { StateType } from '../../model';
 import styles from './index.less';
 
 const { Option } = Select;
@@ -14,10 +15,10 @@ const formItemLayout = {
     span: 19,
   },
 };
-interface Step1Props {
+type Step1Props = {
   data?: StateType['step'];
-  dispatch?: Dispatch<any>;
-}
+  dispatch?: Dispatch;
+};
 
 const Step1: React.FC<Step1Props> = (props) => {
   const { dispatch, data } = props;

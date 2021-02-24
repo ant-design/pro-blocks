@@ -1,4 +1,5 @@
-import React, { FC, useRef, useState, useEffect } from 'react';
+import type { FC } from 'react';
+import React, { useRef, useState, useEffect } from 'react';
 import { DownOutlined, PlusOutlined } from '@ant-design/icons';
 import {
   Avatar,
@@ -17,22 +18,23 @@ import {
 
 import { findDOMNode } from 'react-dom';
 import { PageContainer } from '@ant-design/pro-layout';
-import { connect, Dispatch } from 'umi';
+import type { Dispatch } from 'umi';
+import { connect } from 'umi';
 import moment from 'moment';
 import OperationModal from './components/OperationModal';
-import { StateType } from './model';
-import { BasicListItemDataType } from './data.d';
+import type { StateType } from './model';
+import type { BasicListItemDataType } from './data.d';
 import styles from './style.less';
 
 const RadioButton = Radio.Button;
 const RadioGroup = Radio.Group;
 const { Search } = Input;
 
-interface PAGE_NAME_UPPER_CAMEL_CASEProps {
+type PAGE_NAME_UPPER_CAMEL_CASEProps = {
   BLOCK_NAME_CAMEL_CASE: StateType;
-  dispatch: Dispatch<any>;
+  dispatch: Dispatch;
   loading: boolean;
-}
+};
 
 const Info: FC<{
   title: React.ReactNode;
@@ -272,7 +274,7 @@ export default connect(
   }: {
     BLOCK_NAME_CAMEL_CASE: StateType;
     loading: {
-      models: { [key: string]: boolean };
+      models: Record<string, boolean>;
     };
   }) => ({
     BLOCK_NAME_CAMEL_CASE,

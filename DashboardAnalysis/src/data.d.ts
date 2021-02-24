@@ -1,34 +1,34 @@
-export interface VisitDataType {
+export type VisitDataType = {
   x: string;
   y: number;
-}
+};
 
-export interface SearchDataType {
+export type SearchDataType = {
   index: number;
   keyword: string;
   count: number;
   range: number;
   status: number;
-}
+};
 
-export interface OfflineDataType {
+export type OfflineDataType = {
   name: string;
   cvr: number;
-}
+};
 
-export interface OfflineChartData {
+export type OfflineChartData = {
   x: any;
   y1: number;
   y2: number;
-}
+};
 
-export interface RadarData {
+export type RadarData = {
   name: string;
   label: string;
   value: number;
-}
+};
 
-export interface AnalysisData {
+export type AnalysisData = {
   visitData: VisitDataType[];
   visitData2: VisitDataType[];
   salesData: VisitDataType[];
@@ -39,4 +39,4 @@ export interface AnalysisData {
   salesTypeDataOnline: VisitDataType[];
   salesTypeDataOffline: VisitDataType[];
   radarData: RadarData[];
-}
+};

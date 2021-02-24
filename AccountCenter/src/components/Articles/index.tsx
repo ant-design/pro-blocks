@@ -4,8 +4,8 @@ import React from 'react';
 
 import { connect } from 'umi';
 import ArticleListContent from '../ArticleListContent';
-import { ListItemDataType } from '../../data.d';
-import { ModalState } from '../../model';
+import type { ListItemDataType } from '../../data.d';
+import type { ModalState } from '../../model';
 import styles from './index.less';
 
 const Articles: React.FC<Partial<ModalState>> = (props) => {

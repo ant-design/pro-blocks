@@ -1,7 +1,7 @@
 import { Card, Col, Row, Tabs } from 'antd';
 import { FormattedMessage, formatMessage } from 'umi';
 import React from 'react';
-import { OfflineChartData, OfflineDataType } from '../data.d';
+import type { OfflineChartData, OfflineDataType } from '../data.d';
 
 import { TimelineChart, Pie } from './Charts';
 import NumberInfo from './NumberInfo';
@@ -14,7 +14,7 @@ const CustomTab = ({
   data: OfflineDataType;
   currentTabKey: string;
 }) => (
-  <Row gutter={8} style={{ width: 138, margin: '8px 0' }} type="flex">
+  <Row gutter={8} style={{ width: 138, margin: '8px 0' }}>
     <Col span={12}>
       <NumberInfo
         title={data.name}

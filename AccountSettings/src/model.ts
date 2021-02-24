@@ -1,15 +1,15 @@
-import { Effect, Reducer } from 'umi';
-import { CurrentUser, GeographicItemType } from './data.d';
+import type { Effect, Reducer } from 'umi';
+import type { CurrentUser, GeographicItemType } from './data.d';
 import { queryCity, queryCurrent, queryProvince, query as queryUsers } from './service';
 
-export interface ModalState {
+export type ModalState = {
   currentUser?: Partial<CurrentUser>;
   province?: GeographicItemType[];
   city?: GeographicItemType[];
   isLoading?: boolean;
-}
+};
 
-export interface ModelType {
+export type ModelType = {
   namespace: string;
   state: ModalState;
   effects: {
@@ -25,7 +25,7 @@ export interface ModelType {
     setCity: Reducer<ModalState>;
     changeLoading: Reducer<ModalState>;
   };
-}
+};
 
 const Model: ModelType = {
   namespace: 'BLOCK_NAME_CAMEL_CASE',

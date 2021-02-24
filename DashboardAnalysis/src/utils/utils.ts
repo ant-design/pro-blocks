@@ -1,5 +1,5 @@
 import moment from 'moment';
-import { RangePickerProps } from 'antd/es/date-picker/generatePicker';
+import type { RangePickerProps } from 'antd/es/date-picker/generatePicker';
 
 type RangePickerValue = RangePickerProps<moment.Moment>['value'];
 

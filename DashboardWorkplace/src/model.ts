@@ -1,15 +1,15 @@
-import { Effect, Reducer } from 'umi';
-import { ActivitiesType, CurrentUser, NoticeType, RadarDataType } from './data.d';
+import type { Effect, Reducer } from 'umi';
+import type { ActivitiesType, CurrentUser, NoticeType, RadarDataType } from './data.d';
 import { fakeChartData, queryActivities, queryCurrent, queryProjectNotice } from './service';
 
-export interface ModalState {
+export type ModalState = {
   currentUser?: CurrentUser;
   projectNotice: NoticeType[];
   activities: ActivitiesType[];
   radarData: RadarDataType[];
-}
+};
 
-export interface ModelType {
+export type ModelType = {
   namespace: string;
   state: ModalState;
   reducers: {
@@ -23,7 +23,7 @@ export interface ModelType {
     fetchActivitiesList: Effect;
     fetchChart: Effect;
   };
-}
+};
 
 const Model: ModelType = {
   namespace: 'BLOCK_NAME_CAMEL_CASE',

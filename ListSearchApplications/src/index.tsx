@@ -5,14 +5,16 @@ import {
   ShareAltOutlined,
 } from '@ant-design/icons';
 import { Avatar, Card, Col, Dropdown, List, Menu, Row, Select, Tooltip, Form } from 'antd';
-import React, { FC, useEffect } from 'react';
-import { connect, Dispatch } from 'umi';
+import type { FC } from 'react';
+import React, { useEffect } from 'react';
+import type { Dispatch } from 'umi';
+import { connect } from 'umi';
 import numeral from 'numeral';
-import { ListItemDataType } from './data.d';
+import type { ListItemDataType } from './data.d';
 import StandardFormRow from './components/StandardFormRow';
 import TagSelect from './components/TagSelect';
 import styles from './style.less';
-import { StateType } from './model';
+import type { StateType } from './model';
 
 const { Option } = Select;
 
@@ -42,11 +44,11 @@ export function formatWan(val: number) {
   return result;
 }
 
-interface PAGE_NAME_UPPER_CAMEL_CASEProps {
-  dispatch: Dispatch<any>;
+type PAGE_NAME_UPPER_CAMEL_CASEProps = {
+  dispatch: Dispatch;
   BLOCK_NAME_CAMEL_CASE: StateType;
   loading: boolean;
-}
+};
 
 const formItemLayout = {
   wrapperCol: {
@@ -214,7 +216,7 @@ export default connect(
     loading,
   }: {
     BLOCK_NAME_CAMEL_CASE: StateType;
-    loading: { models: { [key: string]: boolean } };
+    loading: { models: Record<string, boolean> };
   }) => ({
     BLOCK_NAME_CAMEL_CASE,
     loading: loading.models.BLOCK_NAME_CAMEL_CASE,

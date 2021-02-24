@@ -5,7 +5,7 @@ import { FormattedMessage } from 'umi';
 import React from 'react';
 import numeral from 'numeral';
 import { ChartCard, MiniArea, MiniBar, MiniProgress, Field } from './Charts';
-import { VisitDataType } from '../data.d';
+import type { VisitDataType } from '../data.d';
 import Trend from './Trend';
 import Yuan from '../utils/Yuan';
 import styles from '../style.less';
@@ -20,7 +20,7 @@ const topColResponsiveProps = {
 };
 
 const IntroduceRow = ({ loading, visitData }: { loading: boolean; visitData: VisitDataType[] }) => (
-  <Row gutter={24} type="flex">
+  <Row gutter={24}>
     <Col {...topColResponsiveProps}>
       <ChartCard
         bordered={false}

@@ -1,38 +1,38 @@
-export interface TagType {
+export type TagType = {
   key: string;
   label: string;
-}
-export interface VisitDataType {
+};
+export type VisitDataType = {
   x: string;
   y: number;
-}
+};
 
-export interface SearchDataType {
+export type SearchDataType = {
   index: number;
   keyword: string;
   count: number;
   range: number;
   status: number;
-}
+};
 
-export interface OfflineDataType {
+export type OfflineDataType = {
   name: string;
   cvr: number;
-}
+};
 
-export interface OfflineChartData {
+export type OfflineChartData = {
   x: any;
   y1: number;
   y2: number;
-}
+};
 
-export interface RadarData {
+export type RadarData = {
   name: string;
   label: string;
   value: number;
-}
+};
 
-export interface AnalysisData {
+export type AnalysisData = {
   visitData: VisitDataType[];
   visitData2: VisitDataType[];
   salesData: VisitDataType[];
@@ -43,9 +43,9 @@ export interface AnalysisData {
   salesTypeDataOnline: VisitDataType[];
   salesTypeDataOffline: VisitDataType[];
   radarData: RadarData[];
-}
+};
 
-export interface GeographicType {
+export type GeographicType = {
   province: {
     label: string;
     key: string;
@@ -54,9 +54,9 @@ export interface GeographicType {
     label: string;
     key: string;
   };
-}
+};
 
-export interface NoticeType {
+export type NoticeType = {
   id: string;
   title: string;
   logo: string;
@@ -65,9 +65,9 @@ export interface NoticeType {
   member: string;
   href: string;
   memberLink: string;
-}
+};
 
-export interface CurrentUser {
+export type CurrentUser = {
   name: string;
   avatar: string;
   userid: string;
@@ -83,14 +83,14 @@ export interface CurrentUser {
   geographic: GeographicType;
   address: string;
   phone: string;
-}
-export interface Member {
+};
+export type Member = {
   avatar: string;
   name: string;
   id: string;
-}
+};
 
-export interface ActivitiesType {
+export type ActivitiesType = {
   id: string;
   updatedAt: string;
   user: {
@@ -107,10 +107,10 @@ export interface ActivitiesType {
   };
 
   template: string;
-}
+};
 
-export interface RadarDataType {
+export type RadarDataType = {
   label: string;
   name: string;
   value: number;
-}
+};

@@ -1,21 +1,22 @@
 import { PlusOutlined } from '@ant-design/icons';
 import { Button, Divider, Input, Popconfirm, Table, message } from 'antd';
-import React, { FC, useState } from 'react';
+import type { FC } from 'react';
+import React, { useState } from 'react';
 
 import styles from '../style.less';
 
-interface TableFormDateType {
+type TableFormDateType = {
   key: string;
   workId?: string;
   name?: string;
   department?: string;
   isNew?: boolean;
   editable?: boolean;
-}
-interface TableFormProps {
+};
+type TableFormProps = {
   value?: TableFormDateType[];
   onChange?: (value: TableFormDateType[]) => void;
-}
+};
 
 const TableForm: FC<TableFormProps> = ({ value, onChange }) => {
   const [clickedCancel, setClickedCancel] = useState(false);

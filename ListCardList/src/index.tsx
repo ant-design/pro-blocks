@@ -3,23 +3,24 @@ import { Button, Card, List, Typography } from 'antd';
 import React, { Component } from 'react';
 
 import { PageContainer } from '@ant-design/pro-layout';
-import { connect, Dispatch } from 'umi';
-import { StateType } from './model';
-import { CardListItemDataType } from './data.d';
+import type { Dispatch } from 'umi';
+import { connect } from 'umi';
+import type { StateType } from './model';
+import type { CardListItemDataType } from './data.d';
 import styles from './style.less';
 
 const { Paragraph } = Typography;
 
-interface PAGE_NAME_UPPER_CAMEL_CASEProps {
+type PAGE_NAME_UPPER_CAMEL_CASEProps = {
   BLOCK_NAME_CAMEL_CASE: StateType;
-  dispatch: Dispatch<any>;
+  dispatch: Dispatch;
   loading: boolean;
-}
-interface PAGE_NAME_UPPER_CAMEL_CASEState {
+};
+type PAGE_NAME_UPPER_CAMEL_CASEState = {
   visible: boolean;
   done: boolean;
   current?: Partial<CardListItemDataType>;
-}
+};
 
 class PAGE_NAME_UPPER_CAMEL_CASE extends Component<
   PAGE_NAME_UPPER_CAMEL_CASEProps,
@@ -133,7 +134,7 @@ export default connect(
   }: {
     BLOCK_NAME_CAMEL_CASE: StateType;
     loading: {
-      models: { [key: string]: boolean };
+      models: Record<string, boolean>;
     };
   }) => ({
     BLOCK_NAME_CAMEL_CASE,

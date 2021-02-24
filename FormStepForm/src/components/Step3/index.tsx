@@ -1,13 +1,14 @@
 import { Button, Result, Descriptions, Statistic } from 'antd';
 import React from 'react';
-import { connect, Dispatch } from 'umi';
-import { StateType } from '../../model';
+import type { Dispatch } from 'umi';
+import { connect } from 'umi';
+import type { StateType } from '../../model';
 import styles from './index.less';
 
-interface Step3Props {
+type Step3Props = {
   data?: StateType['step'];
-  dispatch?: Dispatch<any>;
-}
+  dispatch?: Dispatch;
+};
 
 const Step3: React.FC<Step3Props> = (props) => {
   const { data, dispatch } = props;

@@ -1,36 +1,35 @@
 import { EllipsisOutlined } from '@ant-design/icons';
 import { Col, Dropdown, Menu, Row } from 'antd';
-import React, { Component, Suspense } from 'react';
+import React, { Componen } from 'react';
 import { GridContent } from '@ant-design/pro-layout';
-import { RadioChangeEvent } from 'antd/es/radio';
-import { RangePickerProps } from 'antd/es/date-picker/generatePicker';
-import moment from 'moment';
-import { connect, Dispatch } from 'umi';
+import type { RadioChangeEvent } from 'antd/es/radio';
+import type { RangePickerProps } from 'antd/es/date-picker/generatePicker';
+import type moment from 'moment';
+import type { Dispatch } from 'umi';
+import { connect } from 'umi';
+import IntroduceRow from './components/IntroduceRow';
+import SalesCard from './components/SalesCard';
+import TopSearch from './components/TopSearch';
+import ProportionSales from './components/ProportionSales';
+import OfflineData from './components/OfflineData';
 
-import PageLoading from './components/PageLoading';
 import { getTimeDistance } from './utils/utils';
-import { AnalysisData } from './data.d';
+import type { AnalysisData } from './data.d';
 import styles from './style.less';
-
-const IntroduceRow = React.lazy(() => import('./components/IntroduceRow'));
-const SalesCard = React.lazy(() => import('./components/SalesCard'));
-const TopSearch = React.lazy(() => import('./components/TopSearch'));
-const ProportionSales = React.lazy(() => import('./components/ProportionSales'));
-const OfflineData = React.lazy(() => import('./components/OfflineData'));
 
 type RangePickerValue = RangePickerProps<moment.Moment>['value'];
 
-interface PAGE_NAME_UPPER_CAMEL_CASEProps {
+type PAGE_NAME_UPPER_CAMEL_CASEProps = {
   BLOCK_NAME_CAMEL_CASE: AnalysisData;
-  dispatch: Dispatch<any>;
+  dispatch: Dispatch;
   loading: boolean;
-}
+};
 
-interface PAGE_NAME_UPPER_CAMEL_CASEState {
+type PAGE_NAME_UPPER_CAMEL_CASEState = {
   salesType: 'all' | 'online' | 'stores';
   currentTabKey: string;
   rangePickerValue: RangePickerValue;
-}
+};
 
 class PAGE_NAME_UPPER_CAMEL_CASE extends Component<
   PAGE_NAME_UPPER_CAMEL_CASEProps,
@@ -158,19 +157,15 @@ class PAGE_NAME_UPPER_CAMEL_CASE extends Component<
     return (
       <GridContent>
         <React.Fragment>
-          <Suspense fallback={<PageLoading />}>
-            <IntroduceRow loading={loading} visitData={visitData} />
-          </Suspense>
-          <Suspense fallback={null}>
-            <SalesCard
-              rangePickerValue={rangePickerValue}
-              salesData={salesData}
-              isActive={this.isActive}
-              handleRangePickerChange={this.handleRangePickerChange}
-              loading={loading}
-              selectDate={this.selectDate}
-            />
-          </Suspense>
+          <IntroduceRow loading={loading} visitData={visitData} />
+          <SalesCard
+            rangePickerValue={rangePickerValue}
+            salesData={salesData}
+            isActive={this.isActive}
+            handleRangePickerChange={this.handleRangePickerChange}
+            loading={loading}
+            selectDate={this.selectDate}
+          />
           <Row
             gutter={24}
             style={{
@@ -178,36 +173,30 @@ class PAGE_NAME_UPPER_CAMEL_CASE extends Component<
             }}
           >
             <Col xl={12} lg={24} md={24} sm={24} xs={24}>
-              <Suspense fallback={null}>
-                <TopSearch
-                  loading={loading}
-                  visitData2={visitData2}
-                  searchData={searchData}
-                  dropdownGroup={dropdownGroup}
-                />
-              </Suspense>
+              <TopSearch
+                loading={loading}
+                visitData2={visitData2}
+                searchData={searchData}
+                dropdownGroup={dropdownGroup}
+              />
             </Col>
             <Col xl={12} lg={24} md={24} sm={24} xs={24}>
-              <Suspense fallback={null}>
-                <ProportionSales
-                  dropdownGroup={dropdownGroup}
-                  salesType={salesType}
-                  loading={loading}
-                  salesPieData={salesPieData}
-                  handleChangeSalesType={this.handleChangeSalesType}
-                />
-              </Suspense>
+              <ProportionSales
+                dropdownGroup={dropdownGroup}
+                salesType={salesType}
+                loading={loading}
+                salesPieData={salesPieData}
+                handleChangeSalesType={this.handleChangeSalesType}
+              />
             </Col>
           </Row>
-          <Suspense fallback={null}>
-            <OfflineData
-              activeKey={activeKey}
-              loading={loading}
-              offlineData={offlineData}
-              offlineChartData={offlineChartData}
-              handleTabChange={this.handleTabChange}
-            />
-          </Suspense>
+          <OfflineData
+            activeKey={activeKey}
+            loading={loading}
+            offlineData={offlineData}
+            offlineChartData={offlineChartData}
+            handleTabChange={this.handleTabChange}
+          />
         </React.Fragment>
       </GridContent>
     );
@@ -221,7 +210,7 @@ export default connect(
   }: {
     BLOCK_NAME_CAMEL_CASE: any;
     loading: {
-      effects: { [key: string]: boolean };
+      effects: Record<string, boolean>;
     };
   }) => ({
     BLOCK_NAME_CAMEL_CASE,

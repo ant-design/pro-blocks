@@ -3,7 +3,7 @@ import React from 'react';
 import moment from 'moment';
 import styles from './index.less';
 
-export interface ApplicationsProps {
+export type ApplicationsProps = {
   data: {
     content?: string;
     updatedAt?: any;
@@ -11,7 +11,7 @@ export interface ApplicationsProps {
     owner?: string;
     href?: string;
   };
-}
+};
 const ArticleListContent: React.FC<ApplicationsProps> = ({
   data: { content, updatedAt, avatar, owner, href },
 }) => (

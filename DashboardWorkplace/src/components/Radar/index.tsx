@@ -5,7 +5,7 @@ import React, { Component } from 'react';
 import autoHeight from './autoHeight';
 import styles from './index.less';
 
-export interface RadarProps {
+export type RadarProps = {
   title?: React.ReactNode;
   height?: number;
   padding?: [number, number, number, number];
@@ -20,8 +20,8 @@ export interface RadarProps {
   forceFit?: boolean;
   tickCount?: number;
   style?: React.CSSProperties;
-}
-interface RadarState {
+};
+type RadarState = {
   legendData: {
     checked: boolean;
     name: string;
@@ -29,7 +29,7 @@ interface RadarState {
     percent: number;
     value: string;
   }[];
-}
+};
 /* eslint react/no-danger:0 */
 class Radar extends Component<RadarProps, RadarState> {
   state: RadarState = {

@@ -1,10 +1,11 @@
 import { Card, Col, Row, Statistic } from 'antd';
-import { FormattedMessage, connect, formatMessage, Dispatch } from 'umi';
+import type { Dispatch } from 'umi';
+import { FormattedMessage, connect, formatMessage } from 'umi';
 import React, { Component } from 'react';
 
 import { GridContent } from '@ant-design/pro-layout';
 import numeral from 'numeral';
-import { StateType } from './model';
+import type { StateType } from './model';
 import { Pie, WaterWave, Gauge, TagCloud, Map } from './components/Charts';
 import ActiveChart from './components/ActiveChart';
 import styles from './style.less';
@@ -13,11 +14,11 @@ const { Countdown } = Statistic;
 
 const deadline = Date.now() + 1000 * 60 * 60 * 24 * 2 + 1000 * 30; // Moment is also OK
 
-interface PAGE_NAME_UPPER_CAMEL_CASEProps {
+type PAGE_NAME_UPPER_CAMEL_CASEProps = {
   BLOCK_NAME_CAMEL_CASE: StateType;
-  dispatch: Dispatch<any>;
+  dispatch: Dispatch;
   loading: boolean;
-}
+};
 
 class PAGE_NAME_UPPER_CAMEL_CASE extends Component<PAGE_NAME_UPPER_CAMEL_CASEProps> {
   componentDidMount() {
@@ -248,7 +249,7 @@ export default connect(
   }: {
     BLOCK_NAME_CAMEL_CASE: StateType;
     loading: {
-      models: { [key: string]: boolean };
+      models: Record<string, boolean>;
     };
   }) => ({
     BLOCK_NAME_CAMEL_CASE,

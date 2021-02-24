@@ -4,7 +4,7 @@ import React from 'react';
 import autoHeight from '../autoHeight';
 import styles from '../index.less';
 
-export interface MiniBarProps {
+export type MiniBarProps = {
   color?: string;
   height?: number;
   data: {
@@ -13,7 +13,7 @@ export interface MiniBarProps {
   }[];
   forceFit?: boolean;
   style?: React.CSSProperties;
-}
+};
 
 const MiniBar: React.FC<MiniBarProps> = (props) => {
   const { height = 0, forceFit = true, color = '#1890FF', data = [] } = props;

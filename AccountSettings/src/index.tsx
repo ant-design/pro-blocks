@@ -1,30 +1,29 @@
 import React, { Component } from 'react';
 
-import { FormattedMessage, Dispatch, connect } from 'umi';
+import type { Dispatch } from 'umi';
+import { FormattedMessage, connect } from 'umi';
 import { GridContent } from '@ant-design/pro-layout';
 import { Menu } from 'antd';
 import BaseView from './components/base';
 import BindingView from './components/binding';
-import { CurrentUser } from './data.d';
+import type { CurrentUser } from './data.d';
 import NotificationView from './components/notification';
 import SecurityView from './components/security';
 import styles from './style.less';
 
 const { Item } = Menu;
 
-interface PAGE_NAME_UPPER_CAMEL_CASEProps {
+type PAGE_NAME_UPPER_CAMEL_CASEProps = {
   dispatch: Dispatch;
   currentUser: CurrentUser;
-}
+};
 
 type PAGE_NAME_UPPER_CAMEL_CASEStateKeys = 'base' | 'security' | 'binding' | 'notification';
-interface PAGE_NAME_UPPER_CAMEL_CASEState {
+type PAGE_NAME_UPPER_CAMEL_CASEState = {
   mode: 'inline' | 'horizontal';
-  menuMap: {
-    [key: string]: React.ReactNode;
-  };
+  menuMap: Record<string, React.ReactNode>;
   selectKey: PAGE_NAME_UPPER_CAMEL_CASEStateKeys;
-}
+};
 
 class PAGE_NAME_UPPER_CAMEL_CASE extends Component<
   PAGE_NAME_UPPER_CAMEL_CASEProps,

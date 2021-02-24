@@ -7,13 +7,13 @@ import styles from './index.less';
 /* eslint no-mixed-operators: 0 */
 // riddle: https://riddle.alibaba-inc.com/riddles/2d9a4b90
 
-export interface WaterWaveProps {
+export type WaterWaveProps = {
   title: React.ReactNode;
   color?: string;
   height?: number;
   percent: number;
   style?: React.CSSProperties;
-}
+};
 
 class WaterWave extends Component<WaterWaveProps> {
   state = {
@@ -110,7 +110,7 @@ class WaterWave extends Component<WaterWaveProps> {
     ctx.strokeStyle = color;
     ctx.moveTo(cStartPoint[0], cStartPoint[1]);
 
-    function drawSin() {
+    const drawSin = () => {
       if (!ctx) {
         return;
       }
@@ -140,9 +140,9 @@ class WaterWave extends Component<WaterWaveProps> {
       ctx.fillStyle = gradient;
       ctx.fill();
       ctx.restore();
-    }
+    };
 
-    function render() {
+    const render = () => {
       if (!ctx) {
         return;
       }
@@ -203,7 +203,7 @@ class WaterWave extends Component<WaterWaveProps> {
         drawSin();
       }
       self.timer = requestAnimationFrame(render);
-    }
+    };
     render();
   }
 

@@ -7,14 +7,14 @@ import styles from './index.less';
 
 const { CheckableTag } = Tag;
 
-export interface TagSelectOptionProps {
+export type TagSelectOptionProps = {
   value?: string | number;
   style?: React.CSSProperties;
   checked?: boolean;
   onChange?: (value: string | number | undefined, state: boolean) => void;
-}
+};
 
-export interface TagSelectProps {
+export type TagSelectProps = {
   onChange?: (value: (string | number)[]) => void;
   expandable?: boolean;
   value?: (string | number)[];
@@ -29,7 +29,7 @@ export interface TagSelectProps {
   className?: string;
   Option?: TagSelectOptionProps;
   children?: React.ReactElement<TagSelectOptionType> | React.ReactElement<TagSelectOptionType>[];
-}
+};
 
 const TagSelectOption: React.FC<TagSelectOptionProps> & {
   isTagSelectOption: boolean;
@@ -47,10 +47,10 @@ TagSelectOption.isTagSelectOption = true;
 
 type TagSelectOptionType = typeof TagSelectOption;
 
-interface TagSelectState {
+type TagSelectState = {
   expand: boolean;
   value: (string | number)[];
-}
+};
 
 class TagSelect extends Component<TagSelectProps, TagSelectState> {
   static defaultProps = {

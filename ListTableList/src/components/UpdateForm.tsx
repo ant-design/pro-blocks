@@ -1,32 +1,32 @@
 import React, { useState } from 'react';
 import { Form, Button, DatePicker, Input, Modal, Radio, Select, Steps } from 'antd';
 
-import { TableListItem } from '../data.d';
+import type { TableListItem } from '../data.d';
 
-export interface FormValueType extends Partial<TableListItem> {
+export type FormValueType = {
   target?: string;
   template?: string;
   type?: string;
   time?: string;
   frequency?: string;
-}
+} & Partial<TableListItem>;
 
-export interface UpdateFormProps {
+export type UpdateFormProps = {
   onCancel: (flag?: boolean, formVals?: FormValueType) => void;
   onSubmit: (values: FormValueType) => void;
   updateModalVisible: boolean;
   values: Partial<TableListItem>;
-}
+};
 const FormItem = Form.Item;
 const { Step } = Steps;
 const { TextArea } = Input;
 const { Option } = Select;
 const RadioGroup = Radio.Group;
 
-export interface UpdateFormState {
+export type UpdateFormState = {
   formVals: FormValueType;
   currentStep: number;
-}
+};
 
 const formLayout = {
   labelCol: { span: 7 },

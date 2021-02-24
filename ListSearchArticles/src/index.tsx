@@ -1,10 +1,12 @@
-import React, { FC, useEffect } from 'react';
+import type { FC } from 'react';
+import React, { useEffect } from 'react';
 import { Button, Card, Col, Form, List, Row, Select, Tag } from 'antd';
 import { LoadingOutlined, StarOutlined, LikeOutlined, MessageOutlined } from '@ant-design/icons';
-import { connect, Dispatch } from 'umi';
+import type { Dispatch } from 'umi';
+import { connect } from 'umi';
 import ArticleListContent from './components/ArticleListContent';
-import { StateType } from './model';
-import { ListItemDataType } from './data.d';
+import type { StateType } from './model';
+import type { ListItemDataType } from './data.d';
 import StandardFormRow from './components/StandardFormRow';
 import TagSelect from './components/TagSelect';
 import styles from './style.less';
@@ -14,11 +16,11 @@ const FormItem = Form.Item;
 
 const pageSize = 5;
 
-interface PAGE_NAME_UPPER_CAMEL_CASEProps {
-  dispatch: Dispatch<any>;
+type PAGE_NAME_UPPER_CAMEL_CASEProps = {
+  dispatch: Dispatch;
   BLOCK_NAME_CAMEL_CASE: StateType;
   loading: boolean;
-}
+};
 const PAGE_NAME_UPPER_CAMEL_CASE: FC<PAGE_NAME_UPPER_CAMEL_CASEProps> = ({
   dispatch,
   BLOCK_NAME_CAMEL_CASE: { list },
@@ -245,7 +247,7 @@ export default connect(
     loading,
   }: {
     BLOCK_NAME_CAMEL_CASE: StateType;
-    loading: { models: { [key: string]: boolean } };
+    loading: { models: Record<string, boolean> };
   }) => ({
     BLOCK_NAME_CAMEL_CASE,
     loading: loading.models.BLOCK_NAME_CAMEL_CASE,

@@ -1,7 +1,8 @@
 import React from 'react';
 import { Form, Alert, Button, Descriptions, Divider, Statistic, Input } from 'antd';
-import { connect, Dispatch } from 'umi';
-import { StateType } from '../../model';
+import type { Dispatch } from 'umi';
+import { connect } from 'umi';
+import type { StateType } from '../../model';
 import styles from './index.less';
 
 const formItemLayout = {
@@ -12,11 +13,11 @@ const formItemLayout = {
     span: 19,
   },
 };
-interface Step2Props {
+type Step2Props = {
   data?: StateType['step'];
-  dispatch?: Dispatch<any>;
+  dispatch?: Dispatch;
   submitting?: boolean;
-}
+};
 
 const Step2: React.FC<Step2Props> = (props) => {
   const [form] = Form.useForm();
@@ -113,7 +114,7 @@ export default connect(
   }: {
     BLOCK_NAME_CAMEL_CASE: StateType;
     loading: {
-      effects: { [key: string]: boolean };
+      effects: Record<string, boolean>;
     };
   }) => ({
     submitting: loading.effects['BLOCK_NAME_CAMEL_CASE/submitStepForm'],

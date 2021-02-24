@@ -4,7 +4,7 @@ import { Input } from 'antd';
 import { PageContainer } from '@ant-design/pro-layout';
 import { history } from 'umi';
 
-interface PAGE_NAME_UPPER_CAMEL_CASEProps {
+type PAGE_NAME_UPPER_CAMEL_CASEProps = {
   match: {
     url: string;
     path: string;
@@ -12,7 +12,7 @@ interface PAGE_NAME_UPPER_CAMEL_CASEProps {
   location: {
     pathname: string;
   };
-}
+};
 
 class PAGE_NAME_UPPER_CAMEL_CASE extends Component<PAGE_NAME_UPPER_CAMEL_CASEProps> {
   handleTabChange = (key: string) => {

@@ -9,7 +9,7 @@ import classNames from 'classnames';
 import autoHeight from '../autoHeight';
 import styles from './index.less';
 
-export interface PieProps {
+export type PieProps = {
   animate?: boolean;
   color?: string;
   colors?: string[];
@@ -33,11 +33,11 @@ export interface PieProps {
   tooltip?: boolean;
   valueFormat?: (value: string) => string | React.ReactNode;
   subTitle?: React.ReactNode;
-}
-interface PieState {
+};
+type PieState = {
   legendData: { checked: boolean; x: string; color: string; percent: number; y: string }[];
   legendBlock: boolean;
-}
+};
 class Pie extends Component<PieProps, PieState> {
   state: PieState = {
     legendData: [],

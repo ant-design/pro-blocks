@@ -1,7 +1,9 @@
 import { InfoCircleOutlined } from '@ant-design/icons';
 import { Button, Card, DatePicker, Input, Form, InputNumber, Radio, Select, Tooltip } from 'antd';
-import { connect, Dispatch, FormattedMessage, formatMessage } from 'umi';
-import React, { FC } from 'react';
+import type { Dispatch } from 'umi';
+import { connect, FormattedMessage, formatMessage } from 'umi';
+import type { FC } from 'react';
+import React from 'react';
 import { PageContainer } from '@ant-design/pro-layout';
 import styles from './style.less';
 
@@ -10,10 +12,10 @@ const { Option } = Select;
 const { RangePicker } = DatePicker;
 const { TextArea } = Input;
 
-interface PAGE_NAME_UPPER_CAMEL_CASEProps {
+type PAGE_NAME_UPPER_CAMEL_CASEProps = {
   submitting: boolean;
-  dispatch: Dispatch<any>;
-}
+  dispatch: Dispatch;
+};
 
 const PAGE_NAME_UPPER_CAMEL_CASE: FC<PAGE_NAME_UPPER_CAMEL_CASEProps> = (props) => {
   const { submitting } = props;
@@ -38,7 +40,7 @@ const PAGE_NAME_UPPER_CAMEL_CASE: FC<PAGE_NAME_UPPER_CAMEL_CASEProps> = (props) 
     },
   };
 
-  const onFinish = (values: { [key: string]: any }) => {
+  const onFinish = (values: Record<string, any>) => {
     const { dispatch } = props;
     dispatch({
       type: 'BLOCK_NAME_CAMEL_CASE/submitRegularForm',
@@ -51,7 +53,7 @@ const PAGE_NAME_UPPER_CAMEL_CASE: FC<PAGE_NAME_UPPER_CAMEL_CASEProps> = (props) 
     console.log('Failed:', errorInfo);
   };
 
-  const onValuesChange = (changedValues: { [key: string]: any }) => {
+  const onValuesChange = (changedValues: Record<string, any>) => {
     const { publicType } = changedValues;
     if (publicType) setShowPublicUsers(publicType === '2');
   };
@@ -239,6 +241,6 @@ const PAGE_NAME_UPPER_CAMEL_CASE: FC<PAGE_NAME_UPPER_CAMEL_CASEProps> = (props) 
   );
 };
 
-export default connect(({ loading }: { loading: { effects: { [key: string]: boolean } } }) => ({
+export default connect(({ loading }: { loading: { effects: Record<string, boolean> } }) => ({
   submitting: loading.effects['BLOCK_NAME_CAMEL_CASE/submitRegularForm'],
 }))(PAGE_NAME_UPPER_CAMEL_CASE);

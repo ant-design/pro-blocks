@@ -1,13 +1,13 @@
-import { Effect, Reducer } from 'umi';
+import type { Effect, Reducer } from 'umi';
 
-import { BasicGood } from './data.d';
+import type { BasicGood } from './data.d';
 import { queryBasicProfile } from './service';
 
-export interface StateType {
+export type StateType = {
   basicGoods: BasicGood[];
-}
+};
 
-export interface ModelType {
+export type ModelType = {
   namespace: string;
   state: StateType;
   effects: {
@@ -16,7 +16,7 @@ export interface ModelType {
   reducers: {
     show: Reducer<StateType>;
   };
-}
+};
 
 const Model: ModelType = {
   namespace: 'BLOCK_NAME_CAMEL_CASE',

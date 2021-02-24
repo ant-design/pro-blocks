@@ -1,5 +1,5 @@
 import moment from 'moment';
-import { AnalysisData, RadarData, VisitDataType } from './data.d';
+import type { AnalysisData, RadarData, VisitDataType } from './data.d';
 
 // mock data
 const visitData: VisitDataType[] = [];

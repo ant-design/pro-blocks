@@ -2,13 +2,14 @@ import { PlusOutlined, HomeOutlined, ContactsOutlined, ClusterOutlined } from '@
 import { Avatar, Card, Col, Divider, Input, Row, Tag } from 'antd';
 import React, { Component, useState, useRef } from 'react';
 import { GridContent } from '@ant-design/pro-layout';
-import { Link, connect, Dispatch } from 'umi';
-import { RouteChildrenProps } from 'react-router';
-import { ModalState } from './model';
+import type { Dispatch } from 'umi';
+import { Link, connect } from 'umi';
+import type { RouteChildrenProps } from 'react-router';
+import type { ModalState } from './model';
 import Projects from './components/Projects';
 import Articles from './components/Articles';
 import Applications from './components/Applications';
-import { CurrentUser, TagType } from './data.d';
+import type { CurrentUser, TagType } from './data.d';
 import styles from './Center.less';
 
 const operationTabList = [
@@ -38,14 +39,14 @@ const operationTabList = [
   },
 ];
 
-interface PAGE_NAME_UPPER_CAMEL_CASEProps extends RouteChildrenProps {
-  dispatch: Dispatch<any>;
+type PAGE_NAME_UPPER_CAMEL_CASEProps = {
+  dispatch: Dispatch;
   currentUser: Partial<CurrentUser>;
   currentUserLoading: boolean;
-}
-interface PAGE_NAME_UPPER_CAMEL_CASEState {
+} & RouteChildrenProps;
+type PAGE_NAME_UPPER_CAMEL_CASEState = {
   tabKey?: 'articles' | 'applications' | 'projects';
-}
+};
 
 const TagList: React.FC<{ tags: CurrentUser['tags'] }> = ({ tags }) => {
   const ref = useRef<Input | null>(null);
@@ -260,7 +261,7 @@ export default connect(
     loading,
     BLOCK_NAME_CAMEL_CASE,
   }: {
-    loading: { effects: { [key: string]: boolean } };
+    loading: { effects: Record<string, boolean> };
     BLOCK_NAME_CAMEL_CASE: ModalState;
   }) => ({
     currentUser: BLOCK_NAME_CAMEL_CASE.currentUser,

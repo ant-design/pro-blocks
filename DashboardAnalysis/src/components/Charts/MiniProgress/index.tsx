@@ -2,14 +2,14 @@ import React from 'react';
 import { Tooltip } from 'antd';
 import styles from './index.less';
 
-export interface MiniProgressProps {
+export type MiniProgressProps = {
   target: number;
   targetLabel?: string;
   color?: string;
   strokeWidth?: number;
   percent?: number;
   style?: React.CSSProperties;
-}
+};
 
 const MiniProgress: React.FC<MiniProgressProps> = ({
   targetLabel,

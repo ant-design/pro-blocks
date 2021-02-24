@@ -1,11 +1,11 @@
 import { Card, Col, DatePicker, Row, Tabs } from 'antd';
 import { FormattedMessage, formatMessage } from 'umi';
-import { RangePickerProps } from 'antd/es/date-picker/generatePicker';
-import moment from 'moment';
+import type { RangePickerProps } from 'antd/es/date-picker/generatePicker';
+import type moment from 'moment';
 
 import React from 'react';
 import numeral from 'numeral';
-import { VisitDataType } from '../data.d';
+import type { VisitDataType } from '../data.d';
 import { Bar } from './Charts';
 import styles from '../style.less';
 

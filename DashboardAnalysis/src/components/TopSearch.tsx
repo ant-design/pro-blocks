@@ -3,7 +3,7 @@ import { Card, Col, Row, Table, Tooltip } from 'antd';
 import { FormattedMessage } from 'umi';
 import React from 'react';
 import numeral from 'numeral';
-import { SearchDataType, VisitDataType } from '../data.d';
+import type { SearchDataType, VisitDataType } from '../data.d';
 
 import { MiniArea } from './Charts';
 import NumberInfo from './NumberInfo';
@@ -69,7 +69,7 @@ const TopSearch = ({
       height: '100%',
     }}
   >
-    <Row gutter={68} type="flex">
+    <Row gutter={68}>
       <Col sm={12} xs={24} style={{ marginBottom: 24 }}>
         <NumberInfo
           subTitle={

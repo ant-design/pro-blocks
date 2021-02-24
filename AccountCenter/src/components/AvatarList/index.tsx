@@ -6,22 +6,22 @@ import styles from './index.less';
 
 export declare type SizeType = number | 'small' | 'default' | 'large';
 
-export interface AvatarItemProps {
+export type AvatarItemProps = {
   tips: React.ReactNode;
   src: string;
   size?: SizeType;
   style?: React.CSSProperties;
   onClick?: () => void;
-}
+};
 
-export interface AvatarListProps {
+export type AvatarListProps = {
   Item?: React.ReactElement<AvatarItemProps>;
   size?: SizeType;
   maxLength?: number;
   excessItemsStyle?: React.CSSProperties;
   style?: React.CSSProperties;
   children: React.ReactElement<AvatarItemProps> | React.ReactElement<AvatarItemProps>[];
-}
+};
 
 const avatarSizeToClassName = (size?: SizeType | 'mini') =>
   classNames(styles.avatarItem, {

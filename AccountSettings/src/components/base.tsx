@@ -3,7 +3,7 @@ import { Button, Input, Select, Upload, Form, message } from 'antd';
 import { connect, FormattedMessage, formatMessage } from 'umi';
 import React, { Component } from 'react';
 
-import { CurrentUser } from '../data.d';
+import type { CurrentUser } from '../data.d';
 import GeographicView from './GeographicView';
 import PhoneView from './PhoneView';
 import styles from './BaseView.less';
@@ -29,10 +29,10 @@ const AvatarView = ({ avatar }: { avatar: string }) => (
     </Upload>
   </>
 );
-interface SelectItem {
+type SelectItem = {
   label: string;
   key: string;
-}
+};
 
 const validatorGeographic = (
   _: any,
@@ -63,9 +63,9 @@ const validatorPhone = (rule: any, value: string, callback: (message?: string) =
   callback();
 };
 
-interface BaseViewProps {
+type BaseViewProps = {
   currentUser?: CurrentUser;
-}
+};
 
 class BaseView extends Component<BaseViewProps> {
   view: HTMLDivElement | undefined = undefined;

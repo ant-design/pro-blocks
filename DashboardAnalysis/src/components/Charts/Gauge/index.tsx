@@ -5,7 +5,7 @@ import autoHeight from '../autoHeight';
 
 const { Arc, Html, Line } = Guide;
 
-export interface GaugeProps {
+export type GaugeProps = {
   title: React.ReactNode;
   color?: string;
   height?: number;
@@ -14,7 +14,7 @@ export interface GaugeProps {
   forceFit?: boolean;
   style?: React.CSSProperties;
   formatter: (value: string) => string;
-}
+};
 
 const defaultFormatter = (val: string): string => {
   switch (val) {

@@ -1,13 +1,13 @@
-import { Effect, Reducer } from 'umi';
+import type { Effect, Reducer } from 'umi';
 
-import { CardListItemDataType } from './data.d';
+import type { CardListItemDataType } from './data.d';
 import { queryFakeList } from './service';
 
-export interface StateType {
+export type StateType = {
   list: CardListItemDataType[];
-}
+};
 
-export interface ModelType {
+export type ModelType = {
   namespace: string;
   state: StateType;
   effects: {
@@ -16,7 +16,7 @@ export interface ModelType {
   reducers: {
     queryList: Reducer<StateType>;
   };
-}
+};
 
 const Model: ModelType = {
   namespace: 'BLOCK_NAME_CAMEL_CASE',

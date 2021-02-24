@@ -1,10 +1,12 @@
 import { Card, Col, Form, List, Row, Select, Typography } from 'antd';
-import React, { FC, useEffect } from 'react';
-import { connect, Dispatch } from 'umi';
+import type { FC } from 'react';
+import React, { useEffect } from 'react';
+import type { Dispatch } from 'umi';
+import { connect } from 'umi';
 import moment from 'moment';
 import AvatarList from './components/AvatarList';
-import { StateType } from './model';
-import { ListItemDataType } from './data.d';
+import type { StateType } from './model';
+import type { ListItemDataType } from './data.d';
 import StandardFormRow from './components/StandardFormRow';
 import TagSelect from './components/TagSelect';
 import styles from './style.less';
@@ -13,11 +15,11 @@ const { Option } = Select;
 const FormItem = Form.Item;
 const { Paragraph } = Typography;
 
-interface PAGE_NAME_UPPER_CAMEL_CASEProps {
-  dispatch: Dispatch<any>;
+type PAGE_NAME_UPPER_CAMEL_CASEProps = {
+  dispatch: Dispatch;
   BLOCK_NAME_CAMEL_CASE: StateType;
   loading: boolean;
-}
+};
 
 const getKey = (id: string, index: number) => `${id}-${index}`;
 
@@ -152,7 +154,7 @@ export default connect(
     loading,
   }: {
     BLOCK_NAME_CAMEL_CASE: StateType;
-    loading: { models: { [key: string]: boolean } };
+    loading: { models: Record<string, boolean> };
   }) => ({
     BLOCK_NAME_CAMEL_CASE,
     loading: loading.models.BLOCK_NAME_CAMEL_CASE,

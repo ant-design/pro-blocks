@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import { Select, Spin } from 'antd';
-import { LabeledValue } from 'antd/es/select';
-import { connect, Dispatch } from 'umi';
-import { GeographicItemType } from '../data.d';
+import type { LabeledValue } from 'antd/es/select';
+import type { Dispatch } from 'umi';
+import { connect } from 'umi';
+import type { GeographicItemType } from '../data.d';
 import styles from './GeographicView.less';
 
 const { Option } = Select;
@@ -13,8 +14,8 @@ const nullSelectItem: LabeledValue = {
   key: '',
 };
 
-interface GeographicViewProps {
-  dispatch?: Dispatch<any>;
+type GeographicViewProps = {
+  dispatch?: Dispatch;
   province?: GeographicItemType[];
   city?: GeographicItemType[];
   value?: {
@@ -23,7 +24,7 @@ interface GeographicViewProps {
   };
   loading?: boolean;
   onChange?: (value: { province: LabeledValue; city: LabeledValue }) => void;
-}
+};
 
 class GeographicView extends Component<GeographicViewProps> {
   componentDidMount = () => {

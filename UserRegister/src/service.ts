@@ -1,5 +1,5 @@
 import request from 'umi-request';
-import { UserRegisterParams } from './index';
+import type { UserRegisterParams } from './index';
 
 export async function fakeRegister(params: UserRegisterParams) {
   return request('/api/register', {

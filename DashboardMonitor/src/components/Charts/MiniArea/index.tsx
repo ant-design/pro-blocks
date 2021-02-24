@@ -1,10 +1,11 @@
-import { Axis, AxisProps, Chart, Geom, Tooltip } from 'bizcharts';
+import type { AxisProps } from 'bizcharts';
+import { Axis, Chart, Geom, Tooltip } from 'bizcharts';
 
 import React from 'react';
 import autoHeight from '../autoHeight';
 import styles from '../index.less';
 
-export interface MiniAreaProps {
+export type MiniAreaProps = {
   color?: string;
   height?: number;
   borderColor?: string;
@@ -26,7 +27,7 @@ export interface MiniAreaProps {
     x: number | string;
     y: number;
   }[];
-}
+};
 
 const MiniArea: React.FC<MiniAreaProps> = (props) => {
   const {

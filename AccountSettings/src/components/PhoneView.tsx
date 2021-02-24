@@ -3,10 +3,10 @@ import React from 'react';
 import { Input } from 'antd';
 import styles from './PhoneView.less';
 
-interface PhoneViewProps {
+type PhoneViewProps = {
   value?: string;
   onChange?: (value: string) => void;
-}
+};
 
 const PhoneView: React.FC<PhoneViewProps> = (props) => {
   const { value, onChange } = props;

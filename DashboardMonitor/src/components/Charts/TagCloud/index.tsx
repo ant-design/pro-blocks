@@ -12,7 +12,7 @@ import styles from './index.less';
 
 const imgUrl = 'https://gw.alipayobjects.com/zos/rmsportal/gWyeGLCdFFRavBGIDzWk.png';
 
-export interface TagCloudProps {
+export type TagCloudProps = {
   data: {
     name: string;
     value: string;
@@ -20,13 +20,13 @@ export interface TagCloudProps {
   height?: number;
   className?: string;
   style?: React.CSSProperties;
-}
+};
 
-interface TagCloudState {
+type TagCloudState = {
   dv: any;
   height?: number;
   width: number;
-}
+};
 
 class TagCloud extends Component<TagCloudProps, TagCloudState> {
   state = {

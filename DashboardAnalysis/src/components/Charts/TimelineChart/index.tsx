@@ -6,7 +6,7 @@ import Slider from 'bizcharts-plugin-slider';
 import autoHeight from '../autoHeight';
 import styles from './index.less';
 
-export interface TimelineChartProps {
+export type TimelineChartProps = {
   data: {
     x: number;
     y1: number;
@@ -18,7 +18,7 @@ export interface TimelineChartProps {
   height?: number;
   style?: React.CSSProperties;
   borderWidth?: number;
-}
+};
 
 const TimelineChart: React.FC<TimelineChartProps> = (props) => {
   const {

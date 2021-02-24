@@ -1,7 +1,7 @@
 // eslint-disable-next-line import/no-extraneous-dependencies
-import { Request, Response } from 'express';
+import type { Request, Response } from 'express';
 import { parse } from 'url';
-import { TableListItem, TableListParams } from './data.d';
+import type { TableListItem, TableListParams } from './data.d';
 
 // mock tableListDataSource
 const genList = (current: number, pageSize: number) => {
@@ -68,9 +68,7 @@ function getRule(req: Request, res: Response, u: string) {
     });
   }
   if (params.filter) {
-    const filter = JSON.parse(params.filter as any) as {
-      [key: string]: string[];
-    };
+    const filter = JSON.parse(params.filter as any) as Record<string, string[]>;
     if (Object.keys(filter).length > 0) {
       dataSource = dataSource.filter((item) => {
         return Object.keys(filter).some((key) => {

@@ -2,11 +2,13 @@ import { PlusOutlined } from '@ant-design/icons';
 import { Button, Divider, message, Input, Drawer } from 'antd';
 import React, { useState, useRef } from 'react';
 import { PageContainer, FooterToolbar } from '@ant-design/pro-layout';
-import ProTable, { ProColumns, ActionType } from '@ant-design/pro-table';
+import type { ProColumns, ActionType } from '@ant-design/pro-table';
+import ProTable from '@ant-design/pro-table';
 import ProDescriptions from '@ant-design/pro-descriptions';
 import CreateForm from './components/CreateForm';
-import UpdateForm, { FormValueType } from './components/UpdateForm';
-import { TableListItem } from './data.d';
+import type { FormValueType } from './components/UpdateForm';
+import UpdateForm from './components/UpdateForm';
+import type { TableListItem } from './data.d';
 import { queryRule, updateRule, addRule, removeRule } from './service';
 
 /**
@@ -143,16 +145,16 @@ const TableList: React.FC<{}> = () => {
       dataIndex: 'option',
       valueType: 'option',
       render: (_, record) => [
-          <a
-            onClick={() => {
-              handleUpdateModalVisible(true);
-              setStepFormValues(record);
-            }}
-          >
-            配置
-          </a>,
-          <Divider type="vertical" />,
-          <a href="">订阅警报</a>,
+        <a
+          onClick={() => {
+            handleUpdateModalVisible(true);
+            setStepFormValues(record);
+          }}
+        >
+          配置
+        </a>,
+        <Divider type="vertical" />,
+        <a href="">订阅警报</a>,
       ],
     },
   ];

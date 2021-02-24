@@ -1,8 +1,10 @@
 import { CloseCircleOutlined } from '@ant-design/icons';
 import { Button, Card, Col, DatePicker, Form, Input, Popover, Row, Select, TimePicker } from 'antd';
-import React, { FC, useState } from 'react';
+import type { FC } from 'react';
+import React, { useState } from 'react';
 import { PageContainer, FooterToolbar } from '@ant-design/pro-layout';
-import { connect, Dispatch } from 'umi';
+import type { Dispatch } from 'umi';
+import { connect } from 'umi';
 import TableForm from './components/TableForm';
 import styles from './style.less';
 
@@ -47,15 +49,15 @@ const tableData = [
   },
 ];
 
-interface PAGE_NAME_UPPER_CAMEL_CASEProps {
-  dispatch: Dispatch<any>;
+type PAGE_NAME_UPPER_CAMEL_CASEProps = {
+  dispatch: Dispatch;
   submitting: boolean;
-}
+};
 
-interface ErrorField {
+type ErrorField = {
   name: InternalNamePath;
   errors: string[];
-}
+};
 
 const PAGE_NAME_UPPER_CAMEL_CASE: FC<PAGE_NAME_UPPER_CAMEL_CASEProps> = ({
   submitting,
@@ -108,7 +110,7 @@ const PAGE_NAME_UPPER_CAMEL_CASE: FC<PAGE_NAME_UPPER_CAMEL_CASEProps> = ({
     );
   };
 
-  const onFinish = (values: { [key: string]: any }) => {
+  const onFinish = (values: Record<string, any>) => {
     setError([]);
     dispatch({
       type: 'BLOCK_NAME_CAMEL_CASE/submitAdvancedForm',
@@ -298,6 +300,6 @@ const PAGE_NAME_UPPER_CAMEL_CASE: FC<PAGE_NAME_UPPER_CAMEL_CASEProps> = ({
   );
 };
 
-export default connect(({ loading }: { loading: { effects: { [key: string]: boolean } } }) => ({
+export default connect(({ loading }: { loading: { effects: Record<string, boolean> } }) => ({
   submitting: loading.effects['BLOCK_NAME_CAMEL_CASE/submitAdvancedForm'],
 }))(PAGE_NAME_UPPER_CAMEL_CASE);

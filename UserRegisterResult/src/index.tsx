@@ -1,7 +1,7 @@
 import { Button, Result } from 'antd';
 import { FormattedMessage, formatMessage, Link } from 'umi';
 import React from 'react';
-import { RouteChildrenProps } from 'react-router';
+import type { RouteChildrenProps } from 'react-router';
 
 import styles from './style.less';
 

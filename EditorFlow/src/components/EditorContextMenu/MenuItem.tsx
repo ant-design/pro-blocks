@@ -6,11 +6,11 @@ import styles from './index.less';
 const upperFirst = (str: string) =>
   str.toLowerCase().replace(/( |^)[a-z]/g, (l: string) => l.toUpperCase());
 
-interface MenuItemProps {
+type MenuItemProps = {
   command: string;
   icon?: string;
   text?: string;
-}
+};
 const MenuItem: React.FC<MenuItemProps> = (props) => {
   const { command, icon, text } = props;
 

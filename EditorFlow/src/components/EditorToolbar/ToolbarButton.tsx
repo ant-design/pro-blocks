@@ -7,11 +7,11 @@ import styles from './index.less';
 const upperFirst = (str: string) =>
   str.toLowerCase().replace(/( |^)[a-z]/g, (l: string) => l.toUpperCase());
 
-interface ToolbarButtonProps {
+type ToolbarButtonProps = {
   command: string;
   icon?: string;
   text?: string;
-}
+};
 const ToolbarButton: React.FC<ToolbarButtonProps> = (props) => {
   const { command, icon, text } = props;
 

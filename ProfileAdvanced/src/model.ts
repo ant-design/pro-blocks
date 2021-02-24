@@ -1,8 +1,8 @@
-import { Effect, Reducer } from 'umi';
-import { AdvancedProfileData } from './data.d';
+import type { Effect, Reducer } from 'umi';
+import type { AdvancedProfileData } from './data.d';
 import { queryAdvancedProfile } from './service';
 
-export interface ModelType {
+export type ModelType = {
   namespace: string;
   state: AdvancedProfileData;
   effects: {
@@ -11,7 +11,7 @@ export interface ModelType {
   reducers: {
     show: Reducer<AdvancedProfileData>;
   };
-}
+};
 
 const Model: ModelType = {
   namespace: 'BLOCK_NAME_CAMEL_CASE',

@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Card, Steps } from 'antd';
 import { PageContainer } from '@ant-design/pro-layout';
 import { connect } from 'umi';
-import { StateType } from './model';
+import type { StateType } from './model';
 import Step1 from './components/Step1';
 import Step2 from './components/Step2';
 import Step3 from './components/Step3';
@@ -10,9 +10,9 @@ import styles from './style.less';
 
 const { Step } = Steps;
 
-interface PAGE_NAME_UPPER_CAMEL_CASEProps {
+type PAGE_NAME_UPPER_CAMEL_CASEProps = {
   current: StateType['current'];
-}
+};
 
 const getCurrentStepAndComponent = (current?: string) => {
   switch (current) {

@@ -1,14 +1,15 @@
 import { Avatar, Card, Col, List, Skeleton, Row, Statistic } from 'antd';
 import React, { Component } from 'react';
 
-import { Link, Dispatch, connect } from 'umi';
+import type { Dispatch } from 'umi';
+import { Link, connect } from 'umi';
 import { PageContainer } from '@ant-design/pro-layout';
 import moment from 'moment';
 import Radar from './components/Radar';
-import { ModalState } from './model';
+import type { ModalState } from './model';
 import EditableLinkGroup from './components/EditableLinkGroup';
 import styles from './style.less';
-import { ActivitiesType, CurrentUser, NoticeType, RadarDataType } from './data.d';
+import type { ActivitiesType, CurrentUser, NoticeType, RadarDataType } from './data.d';
 
 const links = [
   {
@@ -37,16 +38,16 @@ const links = [
   },
 ];
 
-interface PAGE_NAME_UPPER_CAMEL_CASEProps {
+type PAGE_NAME_UPPER_CAMEL_CASEProps = {
   currentUser?: CurrentUser;
   projectNotice: NoticeType[];
   activities: ActivitiesType[];
   radarData: RadarDataType[];
-  dispatch: Dispatch<any>;
+  dispatch: Dispatch;
   currentUserLoading: boolean;
   projectLoading: boolean;
   activitiesLoading: boolean;
-}
+};
 
 const PageHeaderContent: React.FC<{ currentUser: CurrentUser }> = ({ currentUser }) => {
   const loading = currentUser && Object.keys(currentUser).length;
@@ -254,9 +255,7 @@ export default connect(
   }: {
     BLOCK_NAME_CAMEL_CASE: ModalState;
     loading: {
-      effects: {
-        [key: string]: boolean;
-      };
+      effects: Record<string, boolean>;
     };
   }) => ({
     currentUser,

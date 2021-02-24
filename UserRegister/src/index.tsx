@@ -1,8 +1,10 @@
 import { Form, Button, Col, Input, Popover, Progress, Row, Select, message } from 'antd';
-import React, { FC, useState, useEffect } from 'react';
-import { Link, connect, history, FormattedMessage, formatMessage, Dispatch } from 'umi';
+import type { FC } from 'react';
+import React, { useState, useEffect } from 'react';
+import type { Dispatch } from 'umi';
+import { Link, connect, history, FormattedMessage, formatMessage } from 'umi';
 
-import { StateType } from './model';
+import type { StateType } from './model';
 import styles from './style.less';
 
 const FormItem = Form.Item;
@@ -37,20 +39,20 @@ const passwordProgressMap: {
   poor: 'exception',
 };
 
-interface PAGE_NAME_UPPER_CAMEL_CASEProps {
-  dispatch: Dispatch<any>;
+type PAGE_NAME_UPPER_CAMEL_CASEProps = {
+  dispatch: Dispatch;
   BLOCK_NAME_CAMEL_CASE: StateType;
   submitting: boolean;
-}
+};
 
-export interface UserRegisterParams {
+export type UserRegisterParams = {
   mail: string;
   password: string;
   confirm: string;
   mobile: string;
   captcha: string;
   prefix: string;
-}
+};
 
 const PAGE_NAME_UPPER_CAMEL_CASE: FC<PAGE_NAME_UPPER_CAMEL_CASEProps> = ({
   submitting,
@@ -106,7 +108,7 @@ const PAGE_NAME_UPPER_CAMEL_CASE: FC<PAGE_NAME_UPPER_CAMEL_CASEProps> = ({
     }
     return 'poor';
   };
-  const onFinish = (values: { [key: string]: any }) => {
+  const onFinish = (values: Record<string, any>) => {
     dispatch({
       type: 'BLOCK_NAME_CAMEL_CASE/submit',
       payload: {
@@ -322,9 +324,7 @@ export default connect(
   }: {
     BLOCK_NAME_CAMEL_CASE: StateType;
     loading: {
-      effects: {
-        [key: string]: boolean;
-      };
+      effects: Record<string, boolean>;
     };
   }) => ({
     BLOCK_NAME_CAMEL_CASE,

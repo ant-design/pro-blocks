@@ -3,7 +3,7 @@ import React from 'react';
 import moment from 'moment';
 import styles from './index.less';
 
-interface ArticleListContentProps {
+type ArticleListContentProps = {
   data: {
     content: React.ReactNode;
     updatedAt: number;
@@ -11,7 +11,7 @@ interface ArticleListContentProps {
     owner: string;
     href: string;
   };
-}
+};
 
 const ArticleListContent: React.FC<ArticleListContentProps> = ({
   data: { content, updatedAt, avatar, owner, href },

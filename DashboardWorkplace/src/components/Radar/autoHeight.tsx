@@ -31,9 +31,9 @@ function getAutoHeight(n: HTMLDivElement | undefined) {
   return height;
 }
 
-interface AutoHeightProps {
+type AutoHeightProps = {
   height?: number;
-}
+};
 
 function autoHeight() {
   return <P extends AutoHeightProps>(

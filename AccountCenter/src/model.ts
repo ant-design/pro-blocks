@@ -1,13 +1,13 @@
-import { Reducer, Effect } from 'umi';
-import { CurrentUser, ListItemDataType } from './data.d';
+import type { Reducer, Effect } from 'umi';
+import type { CurrentUser, ListItemDataType } from './data.d';
 import { queryCurrent, queryFakeList } from './service';
 
-export interface ModalState {
+export type ModalState = {
   currentUser: Partial<CurrentUser>;
   list: ListItemDataType[];
-}
+};
 
-export interface ModelType {
+export type ModelType = {
   namespace: string;
   state: ModalState;
   effects: {
@@ -18,7 +18,7 @@ export interface ModelType {
     saveCurrentUser: Reducer<ModalState>;
     queryList: Reducer<ModalState>;
   };
-}
+};
 
 const Model: ModelType = {
   namespace: 'BLOCK_NAME_CAMEL_CASE',

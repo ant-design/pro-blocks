@@ -1,9 +1,9 @@
 import request from 'umi-request';
-import { BasicListItemDataType } from './data.d';
+import type { BasicListItemDataType } from './data.d';
 
-interface ParamsType extends Partial<BasicListItemDataType> {
+type ParamsType = {
   count?: number;
-}
+} & Partial<BasicListItemDataType>;
 
 export async function queryFakeList(params: ParamsType) {
   return request('/api/fake_list', {

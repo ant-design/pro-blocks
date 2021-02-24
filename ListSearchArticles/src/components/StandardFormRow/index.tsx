@@ -2,13 +2,13 @@ import React from 'react';
 import classNames from 'classnames';
 import styles from './index.less';
 
-interface StandardFormRowProps {
+type StandardFormRowProps = {
   title?: string;
   last?: boolean;
   block?: boolean;
   grid?: boolean;
   style?: React.CSSProperties;
-}
+};
 
 const StandardFormRow: React.FC<StandardFormRowProps> = ({
   title,

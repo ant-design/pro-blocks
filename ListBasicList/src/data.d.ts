@@ -1,10 +1,10 @@
-export interface Member {
+export type Member = {
   avatar: string;
   name: string;
   id: string;
-}
+};
 
-export interface BasicListItemDataType {
+export type BasicListItemDataType = {
   id: string;
   owner: string;
   title: string;
@@ -26,4 +26,4 @@ export interface BasicListItemDataType {
   message: number;
   content: string;
   members: Member[];
-}
+};

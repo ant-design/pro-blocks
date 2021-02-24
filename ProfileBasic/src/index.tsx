@@ -2,8 +2,9 @@ import { Badge, Card, Descriptions, Divider, Table } from 'antd';
 import React, { Component } from 'react';
 
 import { PageContainer } from '@ant-design/pro-layout';
-import { connect, Dispatch } from 'umi';
-import { BasicProfileDataType } from './data.d';
+import type { Dispatch } from 'umi';
+import { connect } from 'umi';
+import type { BasicProfileDataType } from './data.d';
 import styles from './style.less';
 
 const progressColumns = [
@@ -41,14 +42,14 @@ const progressColumns = [
   },
 ];
 
-interface PAGE_NAME_UPPER_CAMEL_CASEProps {
+type PAGE_NAME_UPPER_CAMEL_CASEProps = {
   loading: boolean;
-  dispatch: Dispatch<any>;
+  dispatch: Dispatch;
   BLOCK_NAME_CAMEL_CASE: BasicProfileDataType;
-}
-interface PAGE_NAME_UPPER_CAMEL_CASEState {
+};
+type PAGE_NAME_UPPER_CAMEL_CASEState = {
   visible: boolean;
-}
+};
 
 class PAGE_NAME_UPPER_CAMEL_CASE extends Component<
   PAGE_NAME_UPPER_CAMEL_CASEProps,
@@ -200,7 +201,7 @@ export default connect(
   }: {
     BLOCK_NAME_CAMEL_CASE: BasicProfileDataType;
     loading: {
-      effects: { [key: string]: boolean };
+      effects: Record<string, boolean>;
     };
   }) => ({
     BLOCK_NAME_CAMEL_CASE,
