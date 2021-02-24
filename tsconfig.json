@@ -6,7 +6,8 @@
     "lib": ["esnext", "dom"],
     "sourceMap": true,
     "baseUrl": ".",
-    "jsx": "react",
+    "jsx": "react-jsx",
+    "resolveJsonModule": true,
     "allowSyntheticDefaultImports": true,
     "moduleResolution": "node",
     "forceConsistentCasingInFileNames": true,
@@ -19,22 +20,12 @@
     "strict": true,
     "paths": {
       "@/*": ["./src/*"],
-      "@@/*": ["./.umi/*"]
+      "@@/*": ["./src/.umi/*"]
     }
   },
-  "exclude": [
-    "node_modules",
-    "build",
-    "dist",
-    "scripts",
-    "acceptance-tests",
-    "webpack",
-    "jest",
-    "src/setupTests.ts"
-  ],
   "include": [
-    "typings.d.ts",
-    "**/src/**/*",
+    "mock/**/*",
+    "src/**/*",
     "tests/**/*",
     "test/**/*",
     "__test__/**/*",
@@ -43,6 +34,8 @@
     ".eslintrc.js",
     ".stylelintrc.js",
     ".prettierrc.js",
-    "jest.config.js"
-  ]
+    "jest.config.js",
+    "mock/*"
+  ],
+  "exclude": ["node_modules", "build", "dist", "scripts", "src/.umi/*", "webpack", "jest"]
 }
