@@ -17,10 +17,10 @@ const inlineFormItemLayout = {
   },
 };
 
-interface DetailFormProps {
+type DetailFormProps = {
   type: string;
   propsAPI?: any;
-}
+};
 
 class DetailForm extends React.Component<DetailFormProps> {
   get item() {

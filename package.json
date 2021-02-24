@@ -40,7 +40,7 @@
   },
   "devDependencies": {
     "@types/classnames": "^2.2.7",
-    "@types/numeral": "^0.0.26",
+    "@types/numeral": "^0.0.28",
     "@types/react-dom": "^16.8.4",
     "@umijs/fabric": "^2.0.0",
     "@umijs/plugin-block-devtool": "^1.1.1",
@@ -52,6 +52,8 @@
     "lint-staged": "^10.0.1",
     "mockjs": "^1.1.0",
     "prettier": "^2.0.2",
+    "prettier-plugin-jsdoc": "^0.2.13",
+    "prettier-plugin-style-order": "^0.2.2",
     "stylelint": "^13.0.0",
     "typescript": "^4.0.0"
   },

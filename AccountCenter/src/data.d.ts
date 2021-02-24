@@ -2,9 +2,9 @@ export type tabKeyType = 'articles' | 'applications' | 'projects';
 export interface TagType {
   key: string;
   label: string;
-}
+};
 
-export interface GeographicType {
+export type GeographicType = {
   province: {
     label: string;
     key: string;
@@ -13,9 +13,9 @@ export interface GeographicType {
     label: string;
     key: string;
   };
-}
+};
 
-export interface NoticeType {
+export type NoticeType = {
   id: string;
   title: string;
   logo: string;
@@ -24,9 +24,9 @@ export interface NoticeType {
   member: string;
   href: string;
   memberLink: string;
-}
+};
 
-export interface CurrentUser {
+export type CurrentUser = {
   name: string;
   avatar: string;
   userid: string;
@@ -42,15 +42,15 @@ export interface CurrentUser {
   geographic: GeographicType;
   address: string;
   phone: string;
-}
+};
 
-export interface Member {
+export type Member = {
   avatar: string;
   name: string;
   id: string;
-}
+};
 
-export interface ListItemDataType {
+export type ListItemDataType = {
   id: string;
   owner: string;
   title: string;
@@ -72,4 +72,4 @@ export interface ListItemDataType {
   message: number;
   content: string;
   members: Member[];
-}
+};

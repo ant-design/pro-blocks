@@ -15,18 +15,12 @@ import { getTimeDistance } from './utils/utils';
 import type { AnalysisData } from './data.d';
 import styles from './style.less';
 
-const IntroduceRow = React.lazy(() => import('./components/IntroduceRow'));
-const SalesCard = React.lazy(() => import('./components/SalesCard'));
-const TopSearch = React.lazy(() => import('./components/TopSearch'));
-const ProportionSales = React.lazy(() => import('./components/ProportionSales'));
-const OfflineData = React.lazy(() => import('./components/OfflineData'));
-
 type RangePickerValue = RangePickerProps<moment.Moment>['value'];
 
-interface PAGE_NAME_UPPER_CAMEL_CASEProps {
+type PAGE_NAME_UPPER_CAMEL_CASEProps = {
   BLOCK_NAME_CAMEL_CASE: AnalysisData;
   loading: boolean;
-}
+};
 
 type SalesType = 'all' | 'online' | 'stores';
 

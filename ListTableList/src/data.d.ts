@@ -1,36 +1,36 @@
-export interface TableListItem {
+export type TableListItem = {
   key: number;
   disabled?: boolean;
   href: string;
   avatar: string;
   name: string;
-  title: string;
   owner: string;
   desc: string;
   callNo: number;
-  status: number;
+  status: string;
   updatedAt: Date;
   createdAt: Date;
   progress: number;
-}
+};
 
-export interface TableListPagination {
+export type TableListPagination = {
   total: number;
   pageSize: number;
   current: number;
-}
+};
 
-export interface TableListData {
+export type TableListData = {
   list: TableListItem[];
   pagination: Partial<TableListPagination>;
-}
+};
 
-export interface TableListParams {
-  sorter?: string;
+export type TableListParams = {
   status?: string;
   name?: string;
   desc?: string;
   key?: number;
   pageSize?: number;
   currentPage?: number;
-}
+  filter?: Record<string, any[]>;
+  sorter?: Record<string, any>;
+};

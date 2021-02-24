@@ -64,7 +64,7 @@ const tableData = [
 interface ErrorField {
   name: InternalNamePath;
   errors: string[];
-}
+};
 
 const PAGE_NAME_UPPER_CAMEL_CASE: FC<Record<string, any>> = () => {
   const [error, setError] = useState<ErrorField[]>([]);

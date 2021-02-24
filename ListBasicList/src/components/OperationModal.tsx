@@ -11,7 +11,7 @@ import type { BasicListItemDataType } from '../data.d';
 import styles from '../style.less';
 import { Button, Result } from 'antd';
 
-interface OperationModalProps {
+type OperationModalProps = {
   done: boolean;
   visible: boolean;
   current: Partial<BasicListItemDataType> | undefined;

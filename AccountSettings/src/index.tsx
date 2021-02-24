@@ -10,10 +10,10 @@ import styles from './style.less';
 const { Item } = Menu;
 
 type PAGE_NAME_UPPER_CAMEL_CASEStateKeys = 'base' | 'security' | 'binding' | 'notification';
-interface PAGE_NAME_UPPER_CAMEL_CASEState {
+type PAGE_NAME_UPPER_CAMEL_CASEState = {
   mode: 'inline' | 'horizontal';
   selectKey: PAGE_NAME_UPPER_CAMEL_CASEStateKeys;
-}
+};
 
 const PAGE_NAME_UPPER_CAMEL_CASE: React.FC = () => {
   const menuMap: Record<string, React.ReactNode> = {

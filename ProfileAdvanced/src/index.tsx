@@ -201,10 +201,10 @@ const columns = [
   },
 ];
 
-interface PAGE_NAME_UPPER_CAMEL_CASEState {
+type PAGE_NAME_UPPER_CAMEL_CASEState = {
   operationKey: string;
   tabActiveKey: string;
-}
+};
 
 const PAGE_NAME_UPPER_CAMEL_CASE: FC = () => {
   const [tabStatus, seTabStatus] = useState<PAGE_NAME_UPPER_CAMEL_CASEState>({

@@ -3,13 +3,13 @@ import React from 'react';
 import classNames from 'classnames';
 import styles from './index.less';
 
-export interface TrendProps {
+export type TrendProps = {
   colorful?: boolean;
   flag: 'up' | 'down';
   style?: React.CSSProperties;
   reverseColor?: boolean;
   className?: string;
-}
+};
 
 const Trend: React.FC<TrendProps> = ({
   colorful = true,

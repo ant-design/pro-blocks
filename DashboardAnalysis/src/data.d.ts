@@ -5,20 +5,20 @@ export { DataItem };
 export interface VisitDataType {
   x: string;
   y: number;
-}
+};
 
-export interface SearchDataType {
+export type SearchDataType = {
   index: number;
   keyword: string;
   count: number;
   range: number;
   status: number;
-}
+};
 
-export interface OfflineDataType {
+export type OfflineDataType = {
   name: string;
   cvr: number;
-}
+};
 
 export interface OfflineChartData {
   date: number;
@@ -26,11 +26,11 @@ export interface OfflineChartData {
   value: number;
 }
 
-export interface RadarData {
+export type RadarData = {
   name: string;
   label: string;
   value: number;
-}
+};
 
 export interface AnalysisData {
   visitData: DataItem[];
@@ -43,4 +43,4 @@ export interface AnalysisData {
   salesTypeDataOnline: DataItem[];
   salesTypeDataOffline: DataItem[];
   radarData: RadarData[];
-}
+};

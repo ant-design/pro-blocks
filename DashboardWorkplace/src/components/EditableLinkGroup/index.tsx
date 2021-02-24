@@ -4,17 +4,17 @@ import { Button } from 'antd';
 
 import styles from './index.less';
 
-export interface EditableLink {
+export type EditableLink = {
   title: string;
   href: string;
   id?: string;
-}
+};
 
-interface EditableLinkGroupProps {
+type EditableLinkGroupProps = {
   onAdd: () => void;
   links: EditableLink[];
   linkElement: any;
-}
+};
 
 const EditableLinkGroup: React.FC<EditableLinkGroupProps> = (props) => {
   const { links, linkElement, onAdd } = props;

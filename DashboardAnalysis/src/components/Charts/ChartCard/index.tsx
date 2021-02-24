@@ -24,7 +24,7 @@ const renderTotal = (total?: number | totalType | React.ReactNode) => {
   return totalDom;
 };
 
-export interface ChartCardProps extends CardProps {
+export type ChartCardProps = {
   title: React.ReactNode;
   action?: React.ReactNode;
   total?: React.ReactNode | number | (() => React.ReactNode | number);
@@ -32,7 +32,7 @@ export interface ChartCardProps extends CardProps {
   contentHeight?: number;
   avatar?: React.ReactNode;
   style?: React.CSSProperties;
-}
+} & CardProps;
 
 class ChartCard extends React.Component<ChartCardProps> {
   renderContent = () => {

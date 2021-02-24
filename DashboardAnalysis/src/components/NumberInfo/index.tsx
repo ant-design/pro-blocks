@@ -3,7 +3,7 @@ import React from 'react';
 import classNames from 'classnames';
 import styles from './index.less';
 
-export interface NumberInfoProps {
+export type NumberInfoProps = {
   title?: React.ReactNode | string;
   subTitle?: React.ReactNode | string;
   total?: React.ReactNode | string;
@@ -13,7 +13,7 @@ export interface NumberInfoProps {
   subTotal?: number;
   suffix?: string;
   style?: React.CSSProperties;
-}
+};
 const NumberInfo: React.FC<NumberInfoProps> = ({
   theme,
   title,

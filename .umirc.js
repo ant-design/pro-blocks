@@ -10,5 +10,9 @@ export default {
   targets: {
     ie: 11,
   },
+  chainWebpack(memo) {
+    memo.module.rule('ts-in-node_modules').include.clear();
+    return memo;
+  },
   dva: {},
 };

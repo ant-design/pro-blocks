@@ -4,7 +4,7 @@ import type { FC } from 'react';
 import React from 'react';
 import { history } from 'umi';
 
-interface PAGE_NAME_UPPER_CAMEL_CASEProps {
+type PAGE_NAME_UPPER_CAMEL_CASEProps = {
   match: {
     url: string;
     path: string;
@@ -12,7 +12,7 @@ interface PAGE_NAME_UPPER_CAMEL_CASEProps {
   location: {
     pathname: string;
   };
-}
+};
 
 const tabList = [
   {

@@ -1,11 +1,11 @@
 import React from 'react';
 import styles from './index.less';
 
-export interface FieldProps {
+export type FieldProps = {
   label: React.ReactNode;
   value: React.ReactNode;
   style?: React.CSSProperties;
-}
+};
 
 const Field: React.FC<FieldProps> = ({ label, value, ...rest }) => (
   <div className={styles.field} {...rest}>

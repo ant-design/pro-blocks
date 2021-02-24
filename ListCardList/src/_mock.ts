@@ -103,7 +103,7 @@ function fakeList(count: number): CardListItemDataType[] {
 }
 
 function getFakeList(req: Request, res: Response) {
-  const params = req.query;
+  const params = req.query as any;
 
   const count = Number(params.count) * 1 || 20;
 
