@@ -1,7 +1,7 @@
 import { Button, Result } from 'antd';
-import { FormattedMessage, formatMessage, Link } from 'umi';
+import type { IRouteProps } from 'umi';
+import { FormattedMessage, Link } from 'umi';
 import React from 'react';
-import type { RouteChildrenProps } from 'react-router';
 
 import styles from './style.less';
 
@@ -20,7 +20,7 @@ const actions = (
   </div>
 );
 
-const PAGE_NAME_UPPER_CAMEL_CASE: React.FC<RouteChildrenProps> = ({ location }) => (
+const PAGE_NAME_UPPER_CAMEL_CASE: React.FC<IRouteProps> = ({ location }) => (
   <Result
     className={styles.registerResult}
     status="success"
@@ -32,7 +32,7 @@ const PAGE_NAME_UPPER_CAMEL_CASE: React.FC<RouteChildrenProps> = ({ location }) 
         />
       </div>
     }
-    subTitle={formatMessage({ id: 'BLOCK_NAME.register-result.activation-email' })}
+    subTitle={<FormattedMessage id="BLOCK_NAME.register-result.activation-email" />}
     extra={actions}
   />
 );

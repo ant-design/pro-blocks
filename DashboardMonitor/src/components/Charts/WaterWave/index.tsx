@@ -201,7 +201,7 @@ class WaterWave extends Component<WaterWaveProps> {
         sp += 0.07;
         drawSin();
       }
-      self.timer = requestAnimationFrame(render);
+      this.timer = requestAnimationFrame(render);
     };
     render();
   }

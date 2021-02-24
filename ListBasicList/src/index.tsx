@@ -112,7 +112,7 @@ export const PAGE_NAME_UPPER_CAMEL_CASE: FC<PAGE_NAME_UPPER_CAMEL_CASEProps> = (
     });
   };
 
-  const editAndDelete = (key: string, currentItem: BasicListItemDataType) => {
+  const editAndDelete = (key: string | number, currentItem: BasicListItemDataType) => {
     if (key === 'edit') showEditModal(currentItem);
     else if (key === 'delete') {
       Modal.confirm({
@@ -174,14 +174,12 @@ export const PAGE_NAME_UPPER_CAMEL_CASE: FC<PAGE_NAME_UPPER_CAMEL_CASEProps> = (
   };
 
   const handleSubmit = (values: BasicListItemDataType) => {
-    const id = current ? current.id : '';
-
     setAddBtnblur();
 
     setDone(true);
     dispatch({
       type: 'BLOCK_NAME_CAMEL_CASE/submit',
-      payload: { id, ...values },
+      payload: values,
     });
   };
 

@@ -124,12 +124,12 @@ class TagSelect extends Component<TagSelectProps, TagSelectState> {
     });
   };
 
-  isTagSelectOption = (node: React.ReactElement<TagSelectOptionType, TagSelectOptionType>) =>
+  isTagSelectOption = (node: React.ReactElement<any, any>) =>
     node &&
     node.type &&
     (node.type.isTagSelectOption || node.type.displayName === 'TagSelectOption');
 
-  static Option: TagSelectOptionType = TagSelectOption;
+  static Option: React.FC<TagSelectOptionProps> = TagSelectOption;
 
   render() {
     const { value, expand } = this.state;
