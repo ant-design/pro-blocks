@@ -14,8 +14,7 @@
   "dependencies": {
     "@ant-design/icons": "^4.0.0",
     "classnames": "^2.2.6",
-    "lodash-decorators": "^6.0.0",
-    "umi-request": "^1.0.0"
+    "lodash-decorators": "^6.0.0"
   },
   "peerDependencies": {
     "@ant-design/pro-layout": "^6.0.0"

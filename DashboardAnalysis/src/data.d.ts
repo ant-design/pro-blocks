@@ -1,4 +1,8 @@
-export type VisitDataType = {
+import { DataItem } from '@antv/g2plot/esm/interface/config';
+
+export { DataItem };
+
+export interface VisitDataType {
   x: string;
   y: number;
 };
@@ -16,11 +20,11 @@ export type OfflineDataType = {
   cvr: number;
 };
 
-export type OfflineChartData = {
-  x: any;
-  y1: number;
-  y2: number;
-};
+export interface OfflineChartData {
+  date: number;
+  type: number;
+  value: number;
+}
 
 export type RadarData = {
   name: string;
@@ -28,15 +32,15 @@ export type RadarData = {
   value: number;
 };
 
-export type AnalysisData = {
-  visitData: VisitDataType[];
-  visitData2: VisitDataType[];
-  salesData: VisitDataType[];
-  searchData: SearchDataType[];
+export interface AnalysisData {
+  visitData: DataItem[];
+  visitData2: DataItem[];
+  salesData: DataItem[];
+  searchData: DataItem[];
   offlineData: OfflineDataType[];
-  offlineChartData: OfflineChartData[];
-  salesTypeData: VisitDataType[];
-  salesTypeDataOnline: VisitDataType[];
-  salesTypeDataOffline: VisitDataType[];
+  offlineChartData: DataItem[];
+  salesTypeData: DataItem[];
+  salesTypeDataOnline: DataItem[];
+  salesTypeDataOffline: DataItem[];
   radarData: RadarData[];
 };

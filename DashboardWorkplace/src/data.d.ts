@@ -1,11 +1,11 @@
-export type TagType = {
+import { DataItem } from '@antv/g2plot/esm/interface/config';
+
+export { DataItem };
+
+export interface TagType {
   key: string;
   label: string;
-};
-export type VisitDataType = {
-  x: string;
-  y: number;
-};
+}
 
 export type SearchDataType = {
   index: number;
@@ -20,13 +20,7 @@ export type OfflineDataType = {
   cvr: number;
 };
 
-export type OfflineChartData = {
-  x: any;
-  y1: number;
-  y2: number;
-};
-
-export type RadarData = {
+export interface RadarData {
   name: string;
   label: string;
   value: number;
@@ -42,8 +36,8 @@ export type AnalysisData = {
   salesTypeData: VisitDataType[];
   salesTypeDataOnline: VisitDataType[];
   salesTypeDataOffline: VisitDataType[];
-  radarData: RadarData[];
-};
+  radarData: DataItem[];
+}
 
 export type GeographicType = {
   province: {

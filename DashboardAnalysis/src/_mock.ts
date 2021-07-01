@@ -1,8 +1,9 @@
 import moment from 'moment';
-import type { AnalysisData, RadarData, VisitDataType } from './data.d';
+import type { Request, Response } from 'express';
+import type { AnalysisData, RadarData, DataItem } from './data.d';
 
 // mock data
-const visitData: VisitDataType[] = [];
+const visitData: DataItem[] = [];
 const beginDay = new Date().getTime();
 
 const fakeY = [7, 5, 4, 2, 4, 7, 5, 6, 5, 9, 6, 3, 1, 5, 3, 6, 5];
@@ -125,10 +126,16 @@ for (let i = 0; i < 10; i += 1) {
 }
 const offlineChartData = [];
 for (let i = 0; i < 20; i += 1) {
+  const date = moment(new Date().getTime() + 1000 * 60 * 30 * i).format('HH:mm');
   offlineChartData.push({
-    x: new Date().getTime() + 1000 * 60 * 30 * i,
-    y1: Math.floor(Math.random() * 100) + 10,
-    y2: Math.floor(Math.random() * 100) + 10,
+    date,
+    type: '客流量',
+    value: Math.floor(Math.random() * 100) + 10,
+  });
+  offlineChartData.push({
+    date,
+    type: '支付笔数',
+    value: Math.floor(Math.random() * 100) + 10,
   });
 }
 
@@ -192,6 +199,12 @@ const getFakeChartData: AnalysisData = {
   radarData,
 };
 
+const fakeChartData = (_: Request, res: Response) => {
+  return res.json({
+    data: getFakeChartData,
+  });
+};
+
 export default {
-  'GET  /api/fake_chart_data': getFakeChartData,
+  'GET  /api/fake_analysis_chart_data': fakeChartData,
 };

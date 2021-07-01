@@ -22,8 +22,7 @@
       "url": "https://github.com/ant-design/pro-blocks/tree/master/AccountCenter",
       "path": "AccountCenter",
       "features": [
-        "antd",
-        "dva"
+        "antd"
       ],
       "img": "https://raw.githubusercontent.com/ant-design/pro-blocks/master/AccountCenter/snapshot.png?raw=true",
       "tags": [
@@ -38,9 +37,7 @@
       "url": "https://github.com/ant-design/pro-blocks/tree/master/AccountSettings",
       "path": "AccountSettings",
       "features": [
-        "antd",
-        "i18n",
-        "dva"
+        "antd"
       ],
       "img": "https://raw.githubusercontent.com/ant-design/pro-blocks/master/AccountSettings/snapshot.png?raw=true",
       "tags": [
@@ -55,9 +52,7 @@
       "url": "https://github.com/ant-design/pro-blocks/tree/master/DashboardAnalysis",
       "path": "DashboardAnalysis",
       "features": [
-        "antd",
-        "i18n",
-        "dva"
+        "antd"
       ],
       "img": "https://raw.githubusercontent.com/ant-design/pro-blocks/master/DashboardAnalysis/snapshot.png?raw=true",
       "tags": [
@@ -72,9 +67,7 @@
       "url": "https://github.com/ant-design/pro-blocks/tree/master/DashboardMonitor",
       "path": "DashboardMonitor",
       "features": [
-        "antd",
-        "i18n",
-        "dva"
+        "antd"
       ],
       "img": "https://raw.githubusercontent.com/ant-design/pro-blocks/master/DashboardMonitor/snapshot.png?raw=true",
       "tags": [
@@ -89,8 +82,7 @@
       "url": "https://github.com/ant-design/pro-blocks/tree/master/DashboardWorkplace",
       "path": "DashboardWorkplace",
       "features": [
-        "antd",
-        "dva"
+        "antd"
       ],
       "img": "https://raw.githubusercontent.com/ant-design/pro-blocks/master/DashboardWorkplace/snapshot.png?raw=true",
       "tags": [
@@ -105,8 +97,7 @@
       "url": "https://github.com/ant-design/pro-blocks/tree/master/EditorFlow",
       "path": "EditorFlow",
       "features": [
-        "antd",
-        "i18n"
+        "antd"
       ],
       "img": "https://raw.githubusercontent.com/ant-design/pro-blocks/master/EditorFlow/snapshot.png?raw=true",
       "tags": [
@@ -121,8 +112,7 @@
       "url": "https://github.com/ant-design/pro-blocks/tree/master/EditorKoni",
       "path": "EditorKoni",
       "features": [
-        "antd",
-        "i18n"
+        "antd"
       ],
       "img": "https://raw.githubusercontent.com/ant-design/pro-blocks/master/EditorKoni/snapshot.png?raw=true",
       "tags": [
@@ -137,8 +127,7 @@
       "url": "https://github.com/ant-design/pro-blocks/tree/master/EditorMind",
       "path": "EditorMind",
       "features": [
-        "antd",
-        "i18n"
+        "antd"
       ],
       "img": "https://raw.githubusercontent.com/ant-design/pro-blocks/master/EditorMind/snapshot.png?raw=true",
       "tags": [
@@ -183,8 +172,7 @@
       "url": "https://github.com/ant-design/pro-blocks/tree/master/Exception500",
       "path": "Exception500",
       "features": [
-        "antd",
-        "i18n"
+        "antd"
       ],
       "img": "https://raw.githubusercontent.com/ant-design/pro-blocks/master/Exception500/snapshot.png?raw=true",
       "tags": [
@@ -199,8 +187,7 @@
       "url": "https://github.com/ant-design/pro-blocks/tree/master/FormAdvancedForm",
       "path": "FormAdvancedForm",
       "features": [
-        "antd",
-        "dva"
+        "antd"
       ],
       "img": "https://raw.githubusercontent.com/ant-design/pro-blocks/master/FormAdvancedForm/snapshot.png?raw=true",
       "tags": [
@@ -216,9 +203,7 @@
       "url": "https://github.com/ant-design/pro-blocks/tree/master/FormBasicForm",
       "path": "FormBasicForm",
       "features": [
-        "antd",
-        "i18n",
-        "dva"
+        "antd"
       ],
       "img": "https://raw.githubusercontent.com/ant-design/pro-blocks/master/FormBasicForm/snapshot.png?raw=true",
       "tags": [
@@ -234,9 +219,7 @@
       "url": "https://github.com/ant-design/pro-blocks/tree/master/FormStepForm",
       "path": "FormStepForm",
       "features": [
-        "antd",
-        "i18n",
-        "dva"
+        "antd"
       ],
       "img": "https://raw.githubusercontent.com/ant-design/pro-blocks/master/FormStepForm/snapshot.png?raw=true",
       "tags": [
@@ -251,8 +234,7 @@
       "url": "https://github.com/ant-design/pro-blocks/tree/master/ListBasicList",
       "path": "ListBasicList",
       "features": [
-        "antd",
-        "dva"
+        "antd"
       ],
       "img": "https://raw.githubusercontent.com/ant-design/pro-blocks/master/ListBasicList/snapshot.png?raw=true",
       "tags": [
@@ -268,8 +250,7 @@
       "url": "https://github.com/ant-design/pro-blocks/tree/master/ListCardList",
       "path": "ListCardList",
       "features": [
-        "antd",
-        "dva"
+        "antd"
       ],
       "img": "https://raw.githubusercontent.com/ant-design/pro-blocks/master/ListCardList/snapshot.png?raw=true",
       "tags": [
@@ -300,8 +281,7 @@
       "url": "https://github.com/ant-design/pro-blocks/tree/master/ListSearchApplications",
       "path": "ListSearchApplications",
       "features": [
-        "antd",
-        "dva"
+        "antd"
       ],
       "img": "https://raw.githubusercontent.com/ant-design/pro-blocks/master/ListSearchApplications/snapshot.png?raw=true",
       "tags": [
@@ -317,8 +297,7 @@
       "url": "https://github.com/ant-design/pro-blocks/tree/master/ListSearchArticles",
       "path": "ListSearchArticles",
       "features": [
-        "antd",
-        "dva"
+        "antd"
       ],
       "img": "https://raw.githubusercontent.com/ant-design/pro-blocks/master/ListSearchArticles/snapshot.png?raw=true",
       "tags": [
@@ -334,8 +313,7 @@
       "url": "https://github.com/ant-design/pro-blocks/tree/master/ListSearchProjects",
       "path": "ListSearchProjects",
       "features": [
-        "antd",
-        "dva"
+        "antd"
       ],
       "img": "https://raw.githubusercontent.com/ant-design/pro-blocks/master/ListSearchProjects/snapshot.png?raw=true",
       "tags": [
@@ -367,8 +345,7 @@
       "url": "https://github.com/ant-design/pro-blocks/tree/master/ProfileAdvanced",
       "path": "ProfileAdvanced",
       "features": [
-        "antd",
-        "dva"
+        "antd"
       ],
       "img": "https://raw.githubusercontent.com/ant-design/pro-blocks/master/ProfileAdvanced/snapshot.png?raw=true",
       "tags": [
@@ -384,8 +361,7 @@
       "url": "https://github.com/ant-design/pro-blocks/tree/master/ProfileBasic",
       "path": "ProfileBasic",
       "features": [
-        "antd",
-        "dva"
+        "antd"
       ],
       "img": "https://raw.githubusercontent.com/ant-design/pro-blocks/master/ProfileBasic/snapshot.png?raw=true",
       "tags": [
@@ -401,8 +377,7 @@
       "url": "https://github.com/ant-design/pro-blocks/tree/master/ResultFail",
       "path": "ResultFail",
       "features": [
-        "antd",
-        "i18n"
+        "antd"
       ],
       "img": "https://raw.githubusercontent.com/ant-design/pro-blocks/master/ResultFail/snapshot.png?raw=true",
       "tags": [
@@ -417,8 +392,7 @@
       "url": "https://github.com/ant-design/pro-blocks/tree/master/ResultSuccess",
       "path": "ResultSuccess",
       "features": [
-        "antd",
-        "i18n"
+        "antd"
       ],
       "img": "https://raw.githubusercontent.com/ant-design/pro-blocks/master/ResultSuccess/snapshot.png?raw=true",
       "tags": [
@@ -433,9 +407,7 @@
       "url": "https://github.com/ant-design/pro-blocks/tree/master/UserRegister",
       "path": "UserRegister",
       "features": [
-        "antd",
-        "i18n",
-        "dva"
+        "antd"
       ],
       "img": "https://raw.githubusercontent.com/ant-design/pro-blocks/master/UserRegister/snapshot.png?raw=true",
       "tags": [
@@ -451,8 +423,7 @@
       "url": "https://github.com/ant-design/pro-blocks/tree/master/UserRegisterResult",
       "path": "UserRegisterResult",
       "features": [
-        "antd",
-        "i18n"
+        "antd"
       ],
       "img": "https://raw.githubusercontent.com/ant-design/pro-blocks/master/UserRegisterResult/snapshot.png?raw=true",
       "tags": [

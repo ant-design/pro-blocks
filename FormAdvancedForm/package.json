@@ -13,10 +13,9 @@
   },
   "dependencies": {
     "@ant-design/icons": "^4.0.0",
-    "@types/lodash.isequal": "^4.5.5",
-    "classnames": "^2.2.6",
-    "lodash.isequal": "^4.5.0",
-    "umi-request": "^1.0.0"
+    "@ant-design/pro-form": "^1.16.0",
+    "@ant-design/pro-table": "^2.30.0",
+    "classnames": "^2.2.6"
   },
   "peerDependencies": {
     "@ant-design/pro-layout": "^6.0.0"

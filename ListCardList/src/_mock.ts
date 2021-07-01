@@ -105,12 +105,16 @@ function fakeList(count: number): CardListItemDataType[] {
 function getFakeList(req: Request, res: Response) {
   const params = req.query as any;
 
-  const count = params.count * 1 || 20;
+  const count = Number(params.count) * 1 || 20;
 
   const result = fakeList(count);
-  return res.json(result);
+  return res.json({
+    data: {
+      list: result,
+    },
+  });
 }
 
 export default {
-  'GET  /api/fake_list': getFakeList,
+  'GET  /api/card_fake_list': getFakeList,
 };

@@ -14,9 +14,4 @@ export type BasicProgress = {
   status: string;
   operator: string;
   cost: string;
-};
-
-export type BasicProfileDataType = {
-  basicGoods: BasicGood[];
-  basicProgress: BasicProgress[];
-};
+}

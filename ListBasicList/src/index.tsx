@@ -1,5 +1,5 @@
 import type { FC } from 'react';
-import React, { useRef, useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { DownOutlined, PlusOutlined } from '@ant-design/icons';
 import {
   Avatar,
@@ -16,25 +16,17 @@ import {
   Row,
 } from 'antd';
 
-import { findDOMNode } from 'react-dom';
 import { PageContainer } from '@ant-design/pro-layout';
-import type { Dispatch } from 'umi';
-import { connect } from 'umi';
+import { useRequest } from 'umi';
 import moment from 'moment';
 import OperationModal from './components/OperationModal';
-import type { StateType } from './model';
+import { addFakeList, queryFakeList, removeFakeList, updateFakeList } from './service';
 import type { BasicListItemDataType } from './data.d';
 import styles from './style.less';
 
 const RadioButton = Radio.Button;
 const RadioGroup = Radio.Group;
 const { Search } = Input;
-
-type PAGE_NAME_UPPER_CAMEL_CASEProps = {
-  BLOCK_NAME_CAMEL_CASE: StateType;
-  dispatch: Dispatch;
-  loading: boolean;
-};
 
 const Info: FC<{
   title: React.ReactNode;
@@ -68,36 +60,41 @@ const ListContent = ({
   </div>
 );
 
-export const PAGE_NAME_UPPER_CAMEL_CASE: FC<PAGE_NAME_UPPER_CAMEL_CASEProps> = (props) => {
-  const addBtn = useRef(null);
-  const {
-    loading,
-    dispatch,
-    BLOCK_NAME_CAMEL_CASE: { list },
-  } = props;
+export const PAGE_NAME_UPPER_CAMEL_CASE: FC = () => {
   const [done, setDone] = useState<boolean>(false);
   const [visible, setVisible] = useState<boolean>(false);
   const [current, setCurrent] = useState<Partial<BasicListItemDataType> | undefined>(undefined);
 
-  useEffect(() => {
-    dispatch({
-      type: 'BLOCK_NAME_CAMEL_CASE/fetch',
-      payload: {
-        count: 5,
-      },
+  const { data: listData, loading, mutate } = useRequest(() => {
+    return queryFakeList({
+      count: 50,
     });
-  }, [1]);
+  });
+  const { run: postRun } = useRequest(
+    (method, params) => {
+      if (method === 'remove') {
+        return removeFakeList(params);
+      }
+      if (method === 'update') {
+        return updateFakeList(params);
+      }
+      return addFakeList(params);
+    },
+    {
+      manual: true,
+      onSuccess: (result) => {
+        mutate(result);
+      },
+    },
+  );
+
+  const list = listData?.list || [];
 
   const paginationProps = {
     showSizeChanger: true,
     showQuickJumper: true,
     pageSize: 5,
-    total: 50,
-  };
-
-  const showModal = () => {
-    setVisible(true);
-    setCurrent(undefined);
+    total: list.length,
   };
 
   const showEditModal = (item: BasicListItemDataType) => {
@@ -106,10 +103,7 @@ export const PAGE_NAME_UPPER_CAMEL_CASE: FC<PAGE_NAME_UPPER_CAMEL_CASEProps> = (
   };
 
   const deleteItem = (id: string) => {
-    dispatch({
-      type: 'BLOCK_NAME_CAMEL_CASE/submit',
-      payload: { id },
-    });
+    postRun('remove', { id });
   };
 
   const editAndDelete = (key: string | number, currentItem: BasicListItemDataType) => {
@@ -153,34 +147,16 @@ export const PAGE_NAME_UPPER_CAMEL_CASE: FC<PAGE_NAME_UPPER_CAMEL_CASEProps> = (
     </Dropdown>
   );
 
-  const setAddBtnblur = () => {
-    if (addBtn.current) {
-      // eslint-disable-next-line react/no-find-dom-node
-      const addBtnDom = findDOMNode(addBtn.current) as HTMLButtonElement;
-      setTimeout(() => addBtnDom.blur(), 0);
-    }
-  };
-
   const handleDone = () => {
-    setAddBtnblur();
-
     setDone(false);
     setVisible(false);
-  };
-
-  const handleCancel = () => {
-    setAddBtnblur();
-    setVisible(false);
+    setCurrent({});
   };
 
   const handleSubmit = (values: BasicListItemDataType) => {
-    setAddBtnblur();
-
     setDone(true);
-    dispatch({
-      type: 'BLOCK_NAME_CAMEL_CASE/submit',
-      payload: values,
-    });
+    const method = values?.id ? 'update' : 'add';
+    postRun(method, values);
   };
 
   return (
@@ -209,16 +185,6 @@ export const PAGE_NAME_UPPER_CAMEL_CASE: FC<PAGE_NAME_UPPER_CAMEL_CASEProps> = (
             bodyStyle={{ padding: '0 32px 40px 32px' }}
             extra={extraContent}
           >
-            <Button
-              type="dashed"
-              style={{ width: '100%', marginBottom: 8 }}
-              onClick={showModal}
-              ref={addBtn}
-            >
-              <PlusOutlined />
-              添加
-            </Button>
-
             <List
               size="large"
               rowKey="id"
@@ -252,30 +218,25 @@ export const PAGE_NAME_UPPER_CAMEL_CASE: FC<PAGE_NAME_UPPER_CAMEL_CASEProps> = (
           </Card>
         </div>
       </PageContainer>
-
+      <Button
+        type="dashed"
+        onClick={() => {
+          setVisible(true);
+        }}
+        style={{ width: '100%', marginBottom: 8 }}
+      >
+        <PlusOutlined />
+        添加
+      </Button>
       <OperationModal
         done={done}
-        current={current}
         visible={visible}
+        current={current}
         onDone={handleDone}
-        onCancel={handleCancel}
         onSubmit={handleSubmit}
       />
     </div>
   );
 };
 
-export default connect(
-  ({
-    BLOCK_NAME_CAMEL_CASE,
-    loading,
-  }: {
-    BLOCK_NAME_CAMEL_CASE: StateType;
-    loading: {
-      models: Record<string, boolean>;
-    };
-  }) => ({
-    BLOCK_NAME_CAMEL_CASE,
-    loading: loading.models.BLOCK_NAME_CAMEL_CASE,
-  }),
-)(PAGE_NAME_UPPER_CAMEL_CASE);
+export default PAGE_NAME_UPPER_CAMEL_CASE;

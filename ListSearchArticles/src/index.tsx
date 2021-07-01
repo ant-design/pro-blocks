@@ -1,14 +1,13 @@
-import type { FC } from 'react';
-import React, { useEffect } from 'react';
+import { LikeOutlined, LoadingOutlined, MessageOutlined, StarOutlined } from '@ant-design/icons';
 import { Button, Card, Col, Form, List, Row, Select, Tag } from 'antd';
-import { LoadingOutlined, StarOutlined, LikeOutlined, MessageOutlined } from '@ant-design/icons';
-import type { Dispatch } from 'umi';
-import { connect } from 'umi';
+import type { FC } from 'react';
+import React from 'react';
+import { useRequest } from 'umi';
 import ArticleListContent from './components/ArticleListContent';
-import type { StateType } from './model';
-import type { ListItemDataType } from './data.d';
 import StandardFormRow from './components/StandardFormRow';
 import TagSelect from './components/TagSelect';
+import type { ListItemDataType } from './data.d';
+import { queryFakeList } from './service';
 import styles from './style.less';
 
 const { Option } = Select;
@@ -16,37 +15,25 @@ const FormItem = Form.Item;
 
 const pageSize = 5;
 
-type PAGE_NAME_UPPER_CAMEL_CASEProps = {
-  dispatch: Dispatch;
-  BLOCK_NAME_CAMEL_CASE: StateType;
-  loading: boolean;
-};
-const PAGE_NAME_UPPER_CAMEL_CASE: FC<PAGE_NAME_UPPER_CAMEL_CASEProps> = ({
-  dispatch,
-  BLOCK_NAME_CAMEL_CASE: { list },
-  loading,
-}) => {
+const PAGE_NAME_UPPER_CAMEL_CASE: FC = () => {
   const [form] = Form.useForm();
-  useEffect(() => {
-    dispatch({
-      type: 'BLOCK_NAME_CAMEL_CASE/fetch',
-      payload: {
-        count: 5,
-      },
-    });
-  }, []);
+
+  const { data, reload, loading, loadMore, loadingMore } = useRequest(
+    () => {
+      return queryFakeList({
+        count: pageSize,
+      });
+    },
+    {
+      loadMore: true,
+    },
+  );
+
+  const list = data?.list || [];
+
   const setOwner = () => {
     form.setFieldsValue({
       owner: ['wzj'],
-    });
-  };
-
-  const fetchMore = () => {
-    dispatch({
-      type: 'BLOCK_NAME_CAMEL_CASE/appendFetch',
-      payload: {
-        count: pageSize,
-      },
     });
   };
 
@@ -112,10 +99,10 @@ const PAGE_NAME_UPPER_CAMEL_CASE: FC<PAGE_NAME_UPPER_CAMEL_CASEProps> = ({
     },
   };
 
-  const loadMore = list.length > 0 && (
+  const loadMoreDom = list.length > 0 && (
     <div style={{ textAlign: 'center', marginTop: 16 }}>
-      <Button onClick={fetchMore} style={{ paddingLeft: 48, paddingRight: 48 }}>
-        {loading ? (
+      <Button onClick={loadMore} style={{ paddingLeft: 48, paddingRight: 48 }}>
+        {loadingMore ? (
           <span>
             <LoadingOutlined /> 加载中...
           </span>
@@ -135,14 +122,7 @@ const PAGE_NAME_UPPER_CAMEL_CASE: FC<PAGE_NAME_UPPER_CAMEL_CASEProps> = ({
           initialValues={{
             owner: ['wjh', 'zxx'],
           }}
-          onValuesChange={() => {
-            dispatch({
-              type: 'BLOCK_NAME_CAMEL_CASE/fetch',
-              payload: {
-                count: 8,
-              },
-            });
-          }}
+          onValuesChange={reload}
         >
           <StandardFormRow title="所属类目" block style={{ paddingBottom: 11 }}>
             <FormItem name="category">
@@ -203,10 +183,10 @@ const PAGE_NAME_UPPER_CAMEL_CASE: FC<PAGE_NAME_UPPER_CAMEL_CASEProps> = ({
       >
         <List<ListItemDataType>
           size="large"
-          loading={list.length === 0 ? loading : false}
+          loading={loading}
           rowKey="id"
           itemLayout="vertical"
-          loadMore={loadMore}
+          loadMore={loadMoreDom}
           dataSource={list}
           renderItem={(item) => (
             <List.Item
@@ -241,15 +221,4 @@ const PAGE_NAME_UPPER_CAMEL_CASE: FC<PAGE_NAME_UPPER_CAMEL_CASEProps> = ({
   );
 };
 
-export default connect(
-  ({
-    BLOCK_NAME_CAMEL_CASE,
-    loading,
-  }: {
-    BLOCK_NAME_CAMEL_CASE: StateType;
-    loading: { models: Record<string, boolean> };
-  }) => ({
-    BLOCK_NAME_CAMEL_CASE,
-    loading: loading.models.BLOCK_NAME_CAMEL_CASE,
-  }),
-)(PAGE_NAME_UPPER_CAMEL_CASE);
+export default PAGE_NAME_UPPER_CAMEL_CASE;

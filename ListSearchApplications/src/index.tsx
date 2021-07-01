@@ -4,17 +4,16 @@ import {
   EllipsisOutlined,
   ShareAltOutlined,
 } from '@ant-design/icons';
-import { Avatar, Card, Col, Dropdown, List, Menu, Row, Select, Tooltip, Form } from 'antd';
-import type { FC } from 'react';
-import React, { useEffect } from 'react';
-import type { Dispatch } from 'umi';
-import { connect } from 'umi';
+import { Avatar, Card, Col, Dropdown, Form, List, Menu, Row, Select, Tooltip } from 'antd';
 import numeral from 'numeral';
-import type { ListItemDataType } from './data.d';
+import type { FC } from 'react';
+import React from 'react';
+import { useRequest } from 'umi';
 import StandardFormRow from './components/StandardFormRow';
 import TagSelect from './components/TagSelect';
+import type { ListItemDataType } from './data.d';
+import { queryFakeList } from './service';
 import styles from './style.less';
-import type { StateType } from './model';
 
 const { Option } = Select;
 
@@ -44,12 +43,6 @@ export function formatWan(val: number) {
   return result;
 }
 
-type PAGE_NAME_UPPER_CAMEL_CASEProps = {
-  dispatch: Dispatch;
-  BLOCK_NAME_CAMEL_CASE: StateType;
-  loading: boolean;
-};
-
 const formItemLayout = {
   wrapperCol: {
     xs: { span: 24 },
@@ -73,30 +66,15 @@ const CardInfo: React.FC<{
   </div>
 );
 
-export const PAGE_NAME_UPPER_CAMEL_CASE: FC<PAGE_NAME_UPPER_CAMEL_CASEProps> = (props) => {
-  const {
-    dispatch,
-    loading,
-    BLOCK_NAME_CAMEL_CASE: { list },
-  } = props;
-
-  useEffect(() => {
-    dispatch({
-      type: 'BLOCK_NAME_CAMEL_CASE/fetch',
-      payload: {
-        count: 8,
-      },
+export const PAGE_NAME_UPPER_CAMEL_CASE: FC<Record<string, any>> = () => {
+  const { data, loading, run } = useRequest((values: any) => {
+    console.log('form data', values);
+    return queryFakeList({
+      count: 8,
     });
-  }, [1]);
+  });
 
-  const handleValuesChange = () => {
-    dispatch({
-      type: 'BLOCK_NAME_CAMEL_CASE/fetch',
-      payload: {
-        count: 8,
-      },
-    });
-  };
+  const list = data?.list || [];
 
   const itemMenu = (
     <Menu>
@@ -121,7 +99,11 @@ export const PAGE_NAME_UPPER_CAMEL_CASE: FC<PAGE_NAME_UPPER_CAMEL_CASEProps> = (
   return (
     <div className={styles.filterCardList}>
       <Card bordered={false}>
-        <Form onValuesChange={handleValuesChange}>
+        <Form
+          onValuesChange={(_, values) => {
+            run(values);
+          }}
+        >
           <StandardFormRow title="所属类目" block style={{ paddingBottom: 11 }}>
             <Form.Item name="category">
               <TagSelect expandable>
@@ -210,15 +192,4 @@ export const PAGE_NAME_UPPER_CAMEL_CASE: FC<PAGE_NAME_UPPER_CAMEL_CASEProps> = (
   );
 };
 
-export default connect(
-  ({
-    BLOCK_NAME_CAMEL_CASE,
-    loading,
-  }: {
-    BLOCK_NAME_CAMEL_CASE: StateType;
-    loading: { models: Record<string, boolean> };
-  }) => ({
-    BLOCK_NAME_CAMEL_CASE,
-    loading: loading.models.BLOCK_NAME_CAMEL_CASE,
-  }),
-)(PAGE_NAME_UPPER_CAMEL_CASE);
+export default PAGE_NAME_UPPER_CAMEL_CASE;

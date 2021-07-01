@@ -4,7 +4,10 @@ export type Member = {
   id: string;
 };
 
-export type ListItemDataType = {
+export interface Params {
+  count: number;
+}
+export interface ListItemDataType {
   id: string;
   owner: string;
   title: string;

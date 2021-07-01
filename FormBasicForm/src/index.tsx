@@ -1,246 +1,189 @@
-import { InfoCircleOutlined } from '@ant-design/icons';
-import { Button, Card, DatePicker, Input, Form, InputNumber, Radio, Select, Tooltip } from 'antd';
-import type { Dispatch } from 'umi';
-import { connect, FormattedMessage, formatMessage } from 'umi';
+import { Card, message } from 'antd';
+import ProForm, {
+  ProFormDateRangePicker,
+  ProFormDependency,
+  ProFormDigit,
+  ProFormRadio,
+  ProFormSelect,
+  ProFormText,
+  ProFormTextArea,
+} from '@ant-design/pro-form';
+import { useRequest } from 'umi';
 import type { FC } from 'react';
 import React from 'react';
 import { PageContainer } from '@ant-design/pro-layout';
+import { fakeSubmitForm } from './service';
 import styles from './style.less';
 
-const FormItem = Form.Item;
-const { Option } = Select;
-const { RangePicker } = DatePicker;
-const { TextArea } = Input;
-
-type PAGE_NAME_UPPER_CAMEL_CASEProps = {
-  submitting: boolean;
-  dispatch: Dispatch;
-};
-
-const PAGE_NAME_UPPER_CAMEL_CASE: FC<PAGE_NAME_UPPER_CAMEL_CASEProps> = (props) => {
-  const { submitting } = props;
-  const [form] = Form.useForm();
-  const [showPublicUsers, setShowPublicUsers] = React.useState(false);
-  const formItemLayout = {
-    labelCol: {
-      xs: { span: 24 },
-      sm: { span: 7 },
+const PAGE_NAME_UPPER_CAMEL_CASE: FC<Record<string, any>> = () => {
+  const { run } = useRequest(fakeSubmitForm, {
+    manual: true,
+    onSuccess: () => {
+      message.success('提交成功');
     },
-    wrapperCol: {
-      xs: { span: 24 },
-      sm: { span: 12 },
-      md: { span: 10 },
-    },
-  };
+  });
 
-  const submitFormLayout = {
-    wrapperCol: {
-      xs: { span: 24, offset: 0 },
-      sm: { span: 10, offset: 7 },
-    },
-  };
-
-  const onFinish = (values: Record<string, any>) => {
-    const { dispatch } = props;
-    dispatch({
-      type: 'BLOCK_NAME_CAMEL_CASE/submitRegularForm',
-      payload: values,
-    });
-  };
-
-  const onFinishFailed = (errorInfo: any) => {
-    // eslint-disable-next-line no-console
-    console.log('Failed:', errorInfo);
-  };
-
-  const onValuesChange = (changedValues: Record<string, any>) => {
-    const { publicType } = changedValues;
-    if (publicType) setShowPublicUsers(publicType === '2');
+  const onFinish = async (values: Record<string, any>) => {
+    run(values);
   };
 
   return (
-    <PageContainer content={<FormattedMessage id="BLOCK_NAME.basic.description" />}>
+    <PageContainer content="表单页用于向用户收集或验证信息，基础表单常见于数据项较少的表单场景。">
       <Card bordered={false}>
-        <Form
+        <ProForm
           hideRequiredMark
           style={{ marginTop: 8 }}
-          form={form}
           name="basic"
+          layout="vertical"
           initialValues={{ public: '1' }}
           onFinish={onFinish}
-          onFinishFailed={onFinishFailed}
-          onValuesChange={onValuesChange}
         >
-          <FormItem
-            {...formItemLayout}
-            label={<FormattedMessage id="BLOCK_NAME.title.label" />}
+          <ProFormText
+            width="md"
+            label="标题"
             name="title"
             rules={[
               {
                 required: true,
-                message: formatMessage({ id: 'BLOCK_NAME.title.required' }),
+                message: '请输入标题',
               },
             ]}
-          >
-            <Input placeholder={formatMessage({ id: 'BLOCK_NAME.title.placeholder' })} />
-          </FormItem>
-          <FormItem
-            {...formItemLayout}
-            label={<FormattedMessage id="BLOCK_NAME.date.label" />}
+            placeholder="给目标起个名字"
+          />
+          <ProFormDateRangePicker
+            label="起止日期"
+            width="md"
             name="date"
             rules={[
               {
                 required: true,
-                message: formatMessage({ id: 'BLOCK_NAME.date.required' }),
+                message: '请选择起止日期',
               },
             ]}
-          >
-            <RangePicker
-              style={{ width: '100%' }}
-              placeholder={[
-                formatMessage({ id: 'BLOCK_NAME.placeholder.start' }),
-                formatMessage({ id: 'BLOCK_NAME.placeholder.end' }),
-              ]}
-            />
-          </FormItem>
-          <FormItem
-            {...formItemLayout}
-            label={<FormattedMessage id="BLOCK_NAME.goal.label" />}
+            placeholder={['开始日期', '结束日期']}
+          />
+          <ProFormTextArea
+            label="目标描述"
+            width="xl"
             name="goal"
             rules={[
               {
                 required: true,
-                message: formatMessage({ id: 'BLOCK_NAME.goal.required' }),
+                message: '请输入目标描述',
               },
             ]}
-          >
-            <TextArea
-              style={{ minHeight: 32 }}
-              placeholder={formatMessage({ id: 'BLOCK_NAME.goal.placeholder' })}
-              rows={4}
-            />
-          </FormItem>
-          <FormItem
-            {...formItemLayout}
-            label={<FormattedMessage id="BLOCK_NAME.standard.label" />}
+            placeholder="请输入你的阶段性工作目标"
+          />
+
+          <ProFormTextArea
+            label="衡量标准"
             name="standard"
+            width="xl"
             rules={[
               {
                 required: true,
-                message: formatMessage({ id: 'BLOCK_NAME.standard.required' }),
+                message: '请输入衡量标准',
               },
             ]}
-          >
-            <TextArea
-              style={{ minHeight: 32 }}
-              placeholder={formatMessage({ id: 'BLOCK_NAME.standard.placeholder' })}
-              rows={4}
-            />
-          </FormItem>
-          <FormItem
-            {...formItemLayout}
+            placeholder="请输入衡量标准"
+          />
+
+          <ProFormText
+            width="md"
             label={
               <span>
-                <FormattedMessage id="BLOCK_NAME.client.label" />
-                <em className={styles.optional}>
-                  <FormattedMessage id="BLOCK_NAME.form.optional" />
-                  <Tooltip title={<FormattedMessage id="BLOCK_NAME.label.tooltip" />}>
-                    <InfoCircleOutlined style={{ marginRight: 4 }} />
-                  </Tooltip>
-                </em>
+                客户
+                <em className={styles.optional}>（选填）</em>
               </span>
             }
+            tooltip="目标的服务对象"
             name="client"
-          >
-            <Input placeholder={formatMessage({ id: 'BLOCK_NAME.client.placeholder' })} />
-          </FormItem>
-          <FormItem
-            {...formItemLayout}
+            placeholder="请描述你服务的客户，内部客户直接 @姓名／工号"
+          />
+
+          <ProFormText
+            width="md"
             label={
               <span>
-                <FormattedMessage id="BLOCK_NAME.invites.label" />
-                <em className={styles.optional}>
-                  <FormattedMessage id="BLOCK_NAME.form.optional" />
-                </em>
+                邀评人
+                <em className={styles.optional}>（选填）</em>
               </span>
             }
             name="invites"
-          >
-            <Input placeholder={formatMessage({ id: 'BLOCK_NAME.invites.placeholder' })} />
-          </FormItem>
-          <FormItem
-            {...formItemLayout}
+            placeholder="请直接 @姓名／工号，最多可邀请 5 人"
+          />
+
+          <ProFormDigit
             label={
               <span>
-                <FormattedMessage id="BLOCK_NAME.weight.label" />
-                <em className={styles.optional}>
-                  <FormattedMessage id="BLOCK_NAME.form.optional" />
-                </em>
+                权重
+                <em className={styles.optional}>（选填）</em>
               </span>
             }
             name="weight"
-          >
-            <InputNumber
-              placeholder={formatMessage({ id: 'BLOCK_NAME.weight.placeholder' })}
-              min={0}
-              max={100}
-            />
-            <span className="ant-form-text">%</span>
-          </FormItem>
-          <FormItem
-            {...formItemLayout}
-            label={<FormattedMessage id="BLOCK_NAME.public.label" />}
-            help={<FormattedMessage id="BLOCK_NAME.label.help" />}
+            placeholder="请输入"
+            min={0}
+            max={100}
+            width="xs"
+            fieldProps={{
+              formatter: (value) => `${value || 0}%`,
+              parser: (value) => (value ? value.replace('%', '') : '0'),
+            }}
+          />
+
+          <ProFormRadio.Group
+            options={[
+              {
+                value: '1',
+                label: '公开',
+              },
+              {
+                value: '2',
+                label: '部分公开',
+              },
+              {
+                value: '3',
+                label: '不公开',
+              },
+            ]}
+            label="目标公开"
+            help="客户、邀评人默认被分享"
             name="publicType"
-          >
-            <div>
-              <Radio.Group>
-                <Radio value="1">
-                  <FormattedMessage id="BLOCK_NAME.radio.public" />
-                </Radio>
-                <Radio value="2">
-                  <FormattedMessage id="BLOCK_NAME.radio.partially-public" />
-                </Radio>
-                <Radio value="3">
-                  <FormattedMessage id="BLOCK_NAME.radio.private" />
-                </Radio>
-              </Radio.Group>
-              <FormItem style={{ marginBottom: 0 }} name="publicUsers">
-                <Select
-                  mode="multiple"
-                  placeholder={formatMessage({ id: 'BLOCK_NAME.publicUsers.placeholder' })}
-                  style={{
-                    margin: '8px 0',
-                    display: showPublicUsers ? 'block' : 'none',
+          />
+          <ProFormDependency name={['publicType']}>
+            {({ publicType }) => {
+              return (
+                <ProFormSelect
+                  width="md"
+                  name="publicUsers"
+                  fieldProps={{
+                    style: {
+                      margin: '8px 0',
+                      display: publicType && publicType === '2' ? 'block' : 'none',
+                    },
                   }}
-                >
-                  <Option value="1">
-                    <FormattedMessage id="BLOCK_NAME.option.A" />
-                  </Option>
-                  <Option value="2">
-                    <FormattedMessage id="BLOCK_NAME.option.B" />
-                  </Option>
-                  <Option value="3">
-                    <FormattedMessage id="BLOCK_NAME.option.C" />
-                  </Option>
-                </Select>
-              </FormItem>
-            </div>
-          </FormItem>
-          <FormItem {...submitFormLayout} style={{ marginTop: 32 }}>
-            <Button type="primary" htmlType="submit" loading={submitting}>
-              <FormattedMessage id="BLOCK_NAME.form.submit" />
-            </Button>
-            <Button style={{ marginLeft: 8 }}>
-              <FormattedMessage id="BLOCK_NAME.form.save" />
-            </Button>
-          </FormItem>
-        </Form>
+                  options={[
+                    {
+                      value: '1',
+                      label: '同事甲',
+                    },
+                    {
+                      value: '2',
+                      label: '同事乙',
+                    },
+                    {
+                      value: '3',
+                      label: '同事丙',
+                    },
+                  ]}
+                />
+              );
+            }}
+          </ProFormDependency>
+        </ProForm>
       </Card>
     </PageContainer>
   );
 };
 
-export default connect(({ loading }: { loading: { effects: Record<string, boolean> } }) => ({
-  submitting: loading.effects['BLOCK_NAME_CAMEL_CASE/submitRegularForm'],
-}))(PAGE_NAME_UPPER_CAMEL_CASE);
+export default PAGE_NAME_UPPER_CAMEL_CASE;

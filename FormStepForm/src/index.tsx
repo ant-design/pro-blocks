@@ -1,57 +1,196 @@
-import React, { useState, useEffect } from 'react';
-import { Card, Steps } from 'antd';
+import React, { useRef, useState } from 'react';
+import type { FormInstance } from 'antd';
+import { Card, Result, Button, Descriptions, Divider, Alert, Statistic } from 'antd';
 import { PageContainer } from '@ant-design/pro-layout';
-import { connect } from 'umi';
-import type { StateType } from './model';
-import Step1 from './components/Step1';
-import Step2 from './components/Step2';
-import Step3 from './components/Step3';
+import ProForm, { ProFormDigit, ProFormSelect, ProFormText, StepsForm } from '@ant-design/pro-form';
+import type { StepDataType } from './data.d';
 import styles from './style.less';
 
-const { Step } = Steps;
-
-type PAGE_NAME_UPPER_CAMEL_CASEProps = {
-  current: StateType['current'];
+const StepDescriptions: React.FC<{
+  stepData: StepDataType;
+  bordered?: boolean;
+}> = ({ stepData, bordered }) => {
+  const { payAccount, receiverAccount, receiverName, amount } = stepData;
+  return (
+    <Descriptions column={1} bordered={bordered}>
+      <Descriptions.Item label="付款账户"> {payAccount}</Descriptions.Item>
+      <Descriptions.Item label="收款账户"> {receiverAccount}</Descriptions.Item>
+      <Descriptions.Item label="收款人姓名"> {receiverName}</Descriptions.Item>
+      <Descriptions.Item label="转账金额">
+        <Statistic
+          value={amount}
+          suffix={
+            <span
+              style={{
+                fontSize: 14,
+              }}
+            >
+              元
+            </span>
+          }
+          precision={2}
+        />
+      </Descriptions.Item>
+    </Descriptions>
+  );
 };
 
-const getCurrentStepAndComponent = (current?: string) => {
-  switch (current) {
-    case 'confirm':
-      return { step: 1, component: <Step2 /> };
-    case 'result':
-      return { step: 2, component: <Step3 /> };
-    case 'info':
-    default:
-      return { step: 0, component: <Step1 /> };
-  }
+const StepResult: React.FC<{
+  onFinish: () => Promise<void>;
+}> = (props) => {
+  return (
+    <Result
+      status="success"
+      title="操作成功"
+      subTitle="预计两小时内到账"
+      extra={
+        <>
+          <Button type="primary" onClick={props.onFinish}>
+            再转一笔
+          </Button>
+          <Button>查看账单</Button>
+        </>
+      }
+      className={styles.result}
+    >
+      {props.children}
+    </Result>
+  );
 };
 
-const PAGE_NAME_UPPER_CAMEL_CASE: React.FC<PAGE_NAME_UPPER_CAMEL_CASEProps> = ({ current }) => {
-  const [stepComponent, setStepComponent] = useState<React.ReactNode>(<Step1 />);
-  const [currentStep, setCurrentStep] = useState<number>(0);
-
-  useEffect(() => {
-    const { step, component } = getCurrentStepAndComponent(current);
-    setCurrentStep(step);
-    setStepComponent(component);
-  }, [current]);
+const PAGE_NAME_UPPER_CAMEL_CASE: React.FC<Record<string, any>> = () => {
+  const [stepData, setStepData] = useState<StepDataType>({
+    payAccount: 'ant-design@alipay.com',
+    receiverAccount: 'test@example.com',
+    receiverName: 'Alex',
+    amount: '500',
+    receiverMode: 'alipay',
+  });
+  const [current, setCurrent] = useState(0);
+  const formRef = useRef<FormInstance>();
 
   return (
     <PageContainer content="将一个冗长或用户不熟悉的表单任务分成多个步骤，指导用户完成。">
       <Card bordered={false}>
-        <>
-          <Steps current={currentStep} className={styles.steps}>
-            <Step title="填写转账信息" />
-            <Step title="确认转账信息" />
-            <Step title="完成" />
-          </Steps>
-          {stepComponent}
-        </>
+        <StepsForm
+          current={current}
+          onCurrentChange={setCurrent}
+          submitter={{
+            render: (props, dom) => {
+              if (props.step === 2) {
+                return null;
+              }
+              return dom;
+            },
+          }}
+        >
+          <StepsForm.StepForm<StepDataType>
+            formRef={formRef}
+            title="填写转账信息"
+            initialValues={stepData}
+            onFinish={async (values) => {
+              setStepData(values);
+              return true;
+            }}
+          >
+            <ProFormSelect
+              label="付款账户"
+              width="md"
+              name="payAccount"
+              rules={[{ required: true, message: '请选择付款账户' }]}
+              valueEnum={{
+                'ant-design@alipay.com': 'ant-design@alipay.com',
+              }}
+            />
+
+            <ProForm.Group title="收款账户" size={8}>
+              <ProFormSelect
+                name="receiverMode"
+                rules={[{ required: true, message: '请选择付款账户' }]}
+                valueEnum={{
+                  alipay: '支付宝',
+                  bank: '银行账户',
+                }}
+              />
+              <ProFormText
+                name="receiverAccount"
+                rules={[
+                  { required: true, message: '请输入收款人账户' },
+                  { type: 'email', message: '账户名应为邮箱格式' },
+                ]}
+                placeholder="test@example.com"
+              />
+            </ProForm.Group>
+            <ProFormText
+              label="收款人姓名"
+              width="md"
+              name="receiverName"
+              rules={[{ required: true, message: '请输入收款人姓名' }]}
+              placeholder="请输入收款人姓名"
+            />
+            <ProFormDigit
+              label="转账金额"
+              name="amount"
+              width="md"
+              rules={[
+                { required: true, message: '请输入转账金额' },
+                {
+                  pattern: /^(\d+)((?:\.\d+)?)$/,
+                  message: '请输入合法金额数字',
+                },
+              ]}
+              placeholder="请输入金额"
+              fieldProps={{
+                prefix: '￥',
+              }}
+            />
+          </StepsForm.StepForm>
+
+          <StepsForm.StepForm title="确认转账信息">
+            <div className={styles.result}>
+              <Alert
+                closable
+                showIcon
+                message="确认转账后，资金将直接打入对方账户，无法退回。"
+                style={{ marginBottom: 24 }}
+              />
+              <StepDescriptions stepData={stepData} bordered />
+              <Divider style={{ margin: '24px 0' }} />
+              <ProFormText.Password
+                label="支付密码"
+                width="md"
+                name="password"
+                required={false}
+                rules={[{ required: true, message: '需要支付密码才能进行支付' }]}
+              />
+            </div>
+          </StepsForm.StepForm>
+          <StepsForm.StepForm title="完成">
+            <StepResult
+              onFinish={async () => {
+                setCurrent(0);
+                formRef.current?.resetFields();
+              }}
+            >
+              <StepDescriptions stepData={stepData} />
+            </StepResult>
+          </StepsForm.StepForm>
+        </StepsForm>
+        <Divider style={{ margin: '40px 0 24px' }} />
+        <div className={styles.desc}>
+          <h3>说明</h3>
+          <h4>转账到支付宝账户</h4>
+          <p>
+            如果需要，这里可以放一些关于产品的常见问题说明。如果需要，这里可以放一些关于产品的常见问题说明。如果需要，这里可以放一些关于产品的常见问题说明。
+          </p>
+          <h4>转账到银行卡</h4>
+          <p>
+            如果需要，这里可以放一些关于产品的常见问题说明。如果需要，这里可以放一些关于产品的常见问题说明。如果需要，这里可以放一些关于产品的常见问题说明。
+          </p>
+        </div>
       </Card>
     </PageContainer>
   );
 };
 
-export default connect(({ BLOCK_NAME_CAMEL_CASE }: { BLOCK_NAME_CAMEL_CASE: StateType }) => ({
-  current: BLOCK_NAME_CAMEL_CASE.current,
-}))(PAGE_NAME_UPPER_CAMEL_CASE);
+export default PAGE_NAME_UPPER_CAMEL_CASE;

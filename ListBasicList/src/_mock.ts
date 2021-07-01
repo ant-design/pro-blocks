@@ -107,11 +107,15 @@ let sourceData: BasicListItemDataType[] = [];
 function getFakeList(req: Request, res: Response) {
   const params = req.query as any
 
-  const count = params.count * 1 || 20;
+  const count = Number(params.count) * 1 || 20;
 
   const result = fakeList(count);
   sourceData = result;
-  return res.json(result);
+  return res.json({
+    data: {
+      list: result,
+    },
+  });
 }
 
 function postFakeList(req: Request, res: Response) {
@@ -143,10 +147,14 @@ function postFakeList(req: Request, res: Response) {
       break;
   }
 
-  return res.json(result);
+  return res.json({
+    data: {
+      list: result,
+    },
+  });
 }
 
 export default {
-  'GET  /api/fake_list': getFakeList,
-  'POST  /api/fake_list': postFakeList,
+  'GET  /api/get_list': getFakeList,
+  'POST  /api/post_fake_list': postFakeList,
 };

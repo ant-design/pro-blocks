@@ -1,38 +1,53 @@
-import request from 'umi-request';
-import type { TableListParams } from './data.d';
+// @ts-ignore
+/* eslint-disable */
+import { request } from 'umi';
+import { TableListItem } from './data';
 
-export async function queryRule(params?: TableListParams) {
-  return request('/api/rule', {
-    params,
+/** 获取规则列表 GET /api/rule */
+export async function rule(
+  params: {
+    // query
+    /** 当前的页码 */
+    current?: number;
+    /** 页面的容量 */
+    pageSize?: number;
+  },
+  options?: { [key: string]: any },
+) {
+  return request<{
+    data: TableListItem[];
+    /** 列表的内容总数 */
+    total?: number;
+    success?: boolean;
+  }>('/api/rule', {
+    method: 'GET',
+    params: {
+      ...params,
+    },
+    ...(options || {}),
   });
 }
 
-export async function removeRule(params: { key: number[] }) {
-  return request('/api/rule', {
-    method: 'POST',
-    data: {
-      ...params,
-      method: 'delete',
-    },
+/** 新建规则 PUT /api/rule */
+export async function updateRule(options?: { [key: string]: any }) {
+  return request<TableListItem>('/api/rule', {
+    method: 'PUT',
+    ...(options || {}),
   });
 }
 
-export async function addRule(params: TableListParams) {
-  return request('/api/rule', {
+/** 新建规则 POST /api/rule */
+export async function addRule(options?: { [key: string]: any }) {
+  return request<TableListItem>('/api/rule', {
     method: 'POST',
-    data: {
-      ...params,
-      method: 'post',
-    },
+    ...(options || {}),
   });
 }
 
-export async function updateRule(params: TableListParams) {
-  return request('/api/rule', {
-    method: 'POST',
-    data: {
-      ...params,
-      method: 'update',
-    },
+/** 删除规则 DELETE /api/rule */
+export async function removeRule(options?: { [key: string]: any }) {
+  return request<Record<string, any>>('/api/rule', {
+    method: 'DELETE',
+    ...(options || {}),
   });
 }

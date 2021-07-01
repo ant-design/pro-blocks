@@ -87,6 +87,12 @@ function getRule(req: Request, res: Response, u: string) {
   if (params.name) {
     dataSource = dataSource.filter((data) => data.name.includes(params.name || ''));
   }
+
+  let pageSize = 10;
+  if (params.pageSize) {
+    pageSize = parseInt(`${params.pageSize}`, 10);
+  }
+
   const result = {
     data: dataSource,
     total: tableListDataSource.length,

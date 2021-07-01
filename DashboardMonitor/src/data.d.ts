@@ -1,5 +1,5 @@
 export type TagType = {
   name: string;
-  value: string;
+  value: number;
   type: string;
 };

@@ -23,15 +23,18 @@
       "@@/*": ["./src/.umi/*"]
     }
   },
+
   "include": [
     "mock/**/*",
     "src/**/*",
     "tests/**/*",
     "test/**/*",
+    "models/**.ts",
     "__test__/**/*",
     "typings/**/*",
     "config/**/*",
     ".eslintrc.js",
+    "typings.d.ts",
     ".stylelintrc.js",
     ".prettierrc.js",
     "jest.config.js",

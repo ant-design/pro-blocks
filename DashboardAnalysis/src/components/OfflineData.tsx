@@ -1,9 +1,8 @@
 import { Card, Col, Row, Tabs } from 'antd';
-import { FormattedMessage, formatMessage } from 'umi';
 import React from 'react';
-import type { OfflineChartData, OfflineDataType } from '../data.d';
+import { RingProgress, Line } from '@ant-design/charts';
+import type { OfflineDataType, DataItem } from '../data.d';
 
-import { TimelineChart, Pie } from './Charts';
 import NumberInfo from './NumberInfo';
 import styles from '../style.less';
 
@@ -18,26 +17,14 @@ const CustomTab = ({
     <Col span={12}>
       <NumberInfo
         title={data.name}
-        subTitle={
-          <FormattedMessage
-            id="BLOCK_NAME.analysis.conversion-rate"
-            defaultMessage="Conversion Rate"
-          />
-        }
+        subTitle="转化率"
         gap={2}
         total={`${data.cvr * 100}%`}
         theme={currentKey !== data.name ? 'light' : undefined}
       />
     </Col>
     <Col span={12} style={{ paddingTop: 36 }}>
-      <Pie
-        animate={false}
-        inner={0.55}
-        tooltip={false}
-        margin={[0, 0, 0, 0]}
-        percent={data.cvr * 100}
-        height={64}
-      />
+      <RingProgress forceFit height={60} width={60} percent={data.cvr} />
     </Col>
   </Row>
 );
@@ -54,7 +41,7 @@ const OfflineData = ({
   activeKey: string;
   loading: boolean;
   offlineData: OfflineDataType[];
-  offlineChartData: OfflineChartData[];
+  offlineChartData: DataItem[];
   handleTabChange: (activeKey: string) => void;
 }) => (
   <Card loading={loading} className={styles.offlineCard} bordered={false} style={{ marginTop: 32 }}>
@@ -62,12 +49,22 @@ const OfflineData = ({
       {offlineData.map((shop) => (
         <TabPane tab={<CustomTab data={shop} currentTabKey={activeKey} />} key={shop.name}>
           <div style={{ padding: '0 24px' }}>
-            <TimelineChart
+            <Line
+              forceFit
               height={400}
               data={offlineChartData}
-              titleMap={{
-                y1: formatMessage({ id: 'BLOCK_NAME.analysis.traffic' }),
-                y2: formatMessage({ id: 'BLOCK_NAME.analysis.payments' }),
+              responsive
+              xField="date"
+              yField="value"
+              seriesField="type"
+              interactions={[
+                {
+                  type: 'slider',
+                  cfg: {},
+                },
+              ]}
+              legend={{
+                position: 'top-center',
               }}
             />
           </div>

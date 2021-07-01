@@ -25,8 +25,8 @@ export type AdvancedOperation3 = {
   memo: string;
 };
 
-export type AdvancedProfileData = {
-  advancedOperation1: AdvancedOperation1[];
-  advancedOperation2: AdvancedOperation2[];
-  advancedOperation3: AdvancedOperation3[];
-};
+export interface AdvancedProfileData {
+  advancedOperation1?: AdvancedOperation1[];
+  advancedOperation2?: AdvancedOperation2[];
+  advancedOperation3?: AdvancedOperation3[];
+}

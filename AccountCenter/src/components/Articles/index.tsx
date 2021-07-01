@@ -1,15 +1,13 @@
-import { StarTwoTone, LikeOutlined, MessageFilled } from '@ant-design/icons';
-import { List, Tag } from 'antd';
 import React from 'react';
-
-import { connect } from 'umi';
+import { StarTwoTone, LikeOutlined, MessageFilled } from '@ant-design/icons';
+import { useRequest } from 'umi';
+import { List, Tag } from 'antd';
 import ArticleListContent from '../ArticleListContent';
 import type { ListItemDataType } from '../../data.d';
-import type { ModalState } from '../../model';
+import { queryFakeList } from '../../service';
 import styles from './index.less';
 
-const Articles: React.FC<Partial<ModalState>> = (props) => {
-  const { list } = props;
+const Articles: React.FC = () => {
   const IconText: React.FC<{
     icon: React.ReactNode;
     text: React.ReactNode;
@@ -18,13 +16,20 @@ const Articles: React.FC<Partial<ModalState>> = (props) => {
       {icon} {text}
     </span>
   );
+
+  // 获取tab列表数据
+  const { data: listData } = useRequest(() => {
+    return queryFakeList({
+      count: 30,
+    });
+  });
   return (
     <List<ListItemDataType>
       size="large"
       className={styles.articleList}
       rowKey="id"
       itemLayout="vertical"
-      dataSource={list}
+      dataSource={listData?.list || []}
       renderItem={(item) => (
         <List.Item
           key={item.id}
@@ -55,6 +60,4 @@ const Articles: React.FC<Partial<ModalState>> = (props) => {
   );
 };
 
-export default connect(({ BLOCK_NAME_CAMEL_CASE }: { BLOCK_NAME_CAMEL_CASE: ModalState }) => ({
-  list: BLOCK_NAME_CAMEL_CASE.list,
-}))(Articles);
+export default Articles;
