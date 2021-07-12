@@ -15,4 +15,9 @@ export default {
     return memo;
   },
   dva: {},
+  mfsu: {},
+  webpack5: {},
+  layout: {
+    disableContentMargin: false,
+  },
 };

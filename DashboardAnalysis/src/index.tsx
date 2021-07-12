@@ -1,11 +1,16 @@
 import type { FC } from 'react';
-import React, { Suspense, useState } from 'react';
+import { Suspense, useState } from 'react';
 import { EllipsisOutlined } from '@ant-design/icons';
 import { Col, Dropdown, Menu, Row } from 'antd';
 import { GridContent } from '@ant-design/pro-layout';
 import type { RadioChangeEvent } from 'antd/es/radio';
 import type { RangePickerProps } from 'antd/es/date-picker/generatePicker';
 import type moment from 'moment';
+import IntroduceRow from './components/IntroduceRow';
+import SalesCard from './components/SalesCard';
+import TopSearch from './components/TopSearch';
+import ProportionSales from './components/ProportionSales';
+import OfflineData from './components/OfflineData';
 import { useRequest } from 'umi';
 
 import { fakeChartData } from './service';

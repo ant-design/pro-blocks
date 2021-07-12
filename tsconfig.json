@@ -5,7 +5,6 @@
     "target": "esnext",
     "lib": ["esnext", "dom"],
     "sourceMap": true,
-    "baseUrl": ".",
     "jsx": "react-jsx",
     "resolveJsonModule": true,
     "allowSyntheticDefaultImports": true,
@@ -18,27 +17,26 @@
     "skipLibCheck": true,
     "experimentalDecorators": true,
     "strict": true,
+    "baseUrl": ".",
     "paths": {
       "@/*": ["./src/*"],
-      "@@/*": ["./src/.umi/*"]
+      "@@/*": ["./.umi/*"]
     }
   },
-
   "include": [
-    "mock/**/*",
-    "src/**/*",
-    "tests/**/*",
-    "test/**/*",
-    "models/**.ts",
-    "__test__/**/*",
+    "./mock/**/*",
+    "./**/src/**/*",
+    "./.script/**/*",
     "typings/**/*",
     "config/**/*",
+    "models/**.ts",
     ".eslintrc.js",
-    "typings.d.ts",
+    "./tests/__tests__/index.test.js",
     ".stylelintrc.js",
     ".prettierrc.js",
     "jest.config.js",
-    "mock/*"
+    "mock/*",
+    "typings.d.ts"
   ],
-  "exclude": ["node_modules", "build", "dist", "scripts", "src/.umi/*", "webpack", "jest"]
+  "exclude": ["node_modules", "build", "dist", "scripts", "webpack", "jest"]
 }

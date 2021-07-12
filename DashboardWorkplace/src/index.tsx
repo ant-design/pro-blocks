@@ -1,5 +1,4 @@
 import type { FC } from 'react';
-import React from 'react';
 import { Avatar, Card, Col, List, Skeleton, Row, Statistic } from 'antd';
 import { Radar } from '@ant-design/charts';
 

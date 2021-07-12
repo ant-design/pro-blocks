@@ -1,5 +1,5 @@
 {
-  "name": "@umi-block/flow",
+  "name": "@umi-block/koni",
   "version": "0.0.1",
   "description": "拓扑结构图可以清晰展示网络节点和通信介质构成的网络结构。",
   "repository": {

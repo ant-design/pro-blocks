@@ -39,7 +39,7 @@ function getRule(req: Request, res: Response, u: string) {
     realUrl = req.url;
   }
   const { current = 1, pageSize = 10 } = req.query;
-  const params = (parse(realUrl, true).query as unknown) as TableListParams;
+  const params = parse(realUrl, true).query as unknown as TableListParams;
 
   let dataSource = [...tableListDataSource].slice(
     ((current as number) - 1) * (pageSize as number),
@@ -88,16 +88,16 @@ function getRule(req: Request, res: Response, u: string) {
     dataSource = dataSource.filter((data) => data.name.includes(params.name || ''));
   }
 
-  let pageSize = 10;
+  let finalPageSize = 10;
   if (params.pageSize) {
-    pageSize = parseInt(`${params.pageSize}`, 10);
+    finalPageSize = parseInt(`${params.pageSize}`, 10);
   }
 
   const result = {
     data: dataSource,
     total: tableListDataSource.length,
     success: true,
-    pageSize,
+    pageSize: finalPageSize,
     current: parseInt(`${params.currentPage}`, 10) || 1,
   };
 

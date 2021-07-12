@@ -1,3 +1,5 @@
+import type { Request, Response } from 'express';
+
 const basicGoods = [
   {
     id: '1234561',

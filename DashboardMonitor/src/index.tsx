@@ -1,8 +1,6 @@
 import { Card, Col, Row, Statistic } from 'antd';
 import { useRequest } from 'umi';
 import type { FC } from 'react';
-import React from 'react';
-import { uniqueId } from 'lodash';
 import { Gauge, WordCloud, Liquid, RingProgress } from '@ant-design/charts';
 import type { WordCloudData } from '@antv/g2plot/esm/plots/word-cloud/layer';
 
@@ -22,7 +20,7 @@ const PAGE_NAME_UPPER_CAMEL_CASE: FC = () => {
 
   const wordCloudData: WordCloudData[] = (data?.list || []).map((item) => {
     return {
-      id: +uniqueId(),
+      id: +Date.now(),
       word: item.name,
       weight: item.value,
     };
