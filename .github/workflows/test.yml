@@ -10,10 +10,10 @@ jobs:
         uses: actions/checkout@master
 
       - name: install
-        run: npm install
+        run: yarn
 
       - name: lint
-        run: npm run lint
+        run: yarn run lint
 
   test-js:
     runs-on: ubuntu-latest
@@ -23,7 +23,7 @@ jobs:
         run: git clone https://github.com/ant-design/ant-design-pro.git  --depth=1
 
       - name: install
-        run: cd ant-design-pro && npm install
+        run: cd ant-design-pro && yarn
 
       - name: fetch
         run: cd ant-design-pro && yarn pro fetch-blocks --js --branch ${GITHUB_REF##*/}
