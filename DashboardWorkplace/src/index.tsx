@@ -8,7 +8,7 @@ import moment from 'moment';
 import EditableLinkGroup from './components/EditableLinkGroup';
 import styles from './style.less';
 import type { ActivitiesType, CurrentUser } from './data.d';
-import { queryCurrent, queryProjectNotice, queryActivities, fakeChartData } from './service';
+import { queryProjectNotice, queryActivities, fakeChartData } from './service';
 
 const links = [
   {
@@ -37,7 +37,7 @@ const links = [
   },
 ];
 
-const PageHeaderContent: FC<{ currentUser: CurrentUser }> = ({ currentUser }) => {
+const PageHeaderContent: FC<{ currentUser: Partial<CurrentUser> }> = ({ currentUser }) => {
   const loading = currentUser && Object.keys(currentUser).length;
   if (!loading) {
     return <Skeleton avatar paragraph={{ rows: 1 }} active />;
@@ -76,7 +76,6 @@ const ExtraContent: FC<Record<string, any>> = () => (
 );
 
 const PAGE_NAME_UPPER_CAMEL_CASE: FC = () => {
-  const { data: currentUser } = useRequest(queryCurrent);
   const { loading: projectLoading, data: projectNotice = [] } = useRequest(queryProjectNotice);
   const { loading: activitiesLoading, data: activities = [] } = useRequest(queryActivities);
   const { data } = useRequest(fakeChartData);
@@ -115,7 +114,19 @@ const PAGE_NAME_UPPER_CAMEL_CASE: FC = () => {
 
   return (
     <PageContainer
-      content={<PageHeaderContent currentUser={currentUser || ({} as CurrentUser)} />}
+      content={
+        <PageHeaderContent
+          currentUser={{
+            avatar: 'https://gw.alipayobjects.com/zos/rmsportal/BiazfanxmamNRoxxVxka.png',
+            name: '吴彦祖',
+            userid: '00000001',
+            email: 'antdesign@alipay.com',
+            signature: '海纳百川，有容乃大',
+            title: '交互专家',
+            group: '蚂蚁金服－某某某事业群－某某平台部－某某技术部－UED',
+          }}
+        />
+      }
       extraContent={<ExtraContent />}
     >
       <Row gutter={24}>
