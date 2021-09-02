@@ -45,8 +45,8 @@ function getRule(req: Request, res: Response, u: string) {
     ((current as number) - 1) * (pageSize as number),
     (current as number) * (pageSize as number),
   );
-  const sorter = JSON.parse(params.sorter as any);
-  if (sorter) {
+  if (params.sorter) {
+    const sorter = JSON.parse(params.sorter as any);
     dataSource = dataSource.sort((prev, next) => {
       let sortNumber = 0;
       Object.keys(sorter).forEach((key) => {
@@ -111,14 +111,14 @@ function postRule(req: Request, res: Response, u: string, b: Request) {
   }
 
   const body = (b && b.body) || req.body;
-  const { method, name, desc, key } = body;
+  const { name, desc, key } = body;
 
-  switch (method) {
+  switch (req.method) {
     /* eslint no-case-declarations:0 */
-    case 'delete':
+    case 'DELETE':
       tableListDataSource = tableListDataSource.filter((item) => key.indexOf(item.key) === -1);
       break;
-    case 'post':
+    case 'POST':
       (() => {
         const i = Math.ceil(Math.random() * 10000);
         const newRule = {
@@ -142,7 +142,7 @@ function postRule(req: Request, res: Response, u: string, b: Request) {
       })();
       return;
 
-    case 'update':
+    case 'PUT':
       (() => {
         let newRule = {};
         tableListDataSource = tableListDataSource.map((item) => {
@@ -172,4 +172,6 @@ function postRule(req: Request, res: Response, u: string, b: Request) {
 export default {
   'GET /api/rule': getRule,
   'POST /api/rule': postRule,
+  'DELETE /api/rule': postRule,
+  'PUT /api/rule': postRule,
 };
