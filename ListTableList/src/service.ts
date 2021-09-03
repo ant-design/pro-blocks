@@ -29,24 +29,27 @@ export async function rule(
 }
 
 /** 新建规则 PUT /api/rule */
-export async function updateRule(options?: { [key: string]: any }) {
+export async function updateRule(data: { [key: string]: any }, options?: { [key: string]: any }) {
   return request<TableListItem>('/api/rule', {
+    data,
     method: 'PUT',
     ...(options || {}),
   });
 }
 
 /** 新建规则 POST /api/rule */
-export async function addRule(options?: { [key: string]: any }) {
+export async function addRule(data: { [key: string]: any }, options?: { [key: string]: any }) {
   return request<TableListItem>('/api/rule', {
+    data,
     method: 'POST',
     ...(options || {}),
   });
 }
 
 /** 删除规则 DELETE /api/rule */
-export async function removeRule(options?: { [key: string]: any }) {
+export async function removeRule(data: { key: number[] }, options?: { [key: string]: any }) {
   return request<Record<string, any>>('/api/rule', {
+    data,
     method: 'DELETE',
     ...(options || {}),
   });

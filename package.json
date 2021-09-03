@@ -58,6 +58,10 @@
     "**/*.{js,jsx}": "npm run lint-staged:js",
     "**/*.{js,ts,tsx}": "npm run lint-staged:js"
   },
+  "resolutions": {
+    "prettier": "^2.0.2",
+    "typescript": "^4.0.0"
+  },
   "dependencies": {
     "@ant-design/icons": "^4.0.0",
     "@ant-design/pro-cli": "^1.0.5",
@@ -88,10 +92,6 @@
     "prettier-plugin-style-order": "^0.2.2",
     "stylelint": "^13.0.0",
     "typescript": "^4.0.0"
-  },
-  "resolutions": {
-    "typescript": "^4.0.0",
-    "prettier": "^2.0.2"
   },
   "checkFiles": [
     "**/*.ts*",

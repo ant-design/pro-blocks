@@ -37,14 +37,13 @@ const handleAdd = async (fields: TableListItem) => {
  * @param fields
  */
 
-const handleUpdate = async (fields: FormValueType) => {
+const handleUpdate = async (fields: FormValueType, currentRow?: TableListItem) => {
   const hide = message.loading('正在配置');
 
   try {
     await updateRule({
-      name: fields.name,
-      desc: fields.desc,
-      key: fields.key,
+      ...currentRow,
+      ...fields,
     });
     hide();
     message.success('配置成功');
@@ -272,7 +271,7 @@ const TableList: React.FC = () => {
       </ModalForm>
       <UpdateForm
         onSubmit={async (value) => {
-          const success = await handleUpdate(value);
+          const success = await handleUpdate(value, currentRow);
 
           if (success) {
             handleUpdateModalVisible(false);
