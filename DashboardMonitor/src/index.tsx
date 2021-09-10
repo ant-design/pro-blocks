@@ -2,8 +2,6 @@ import { Card, Col, Row, Statistic } from 'antd';
 import { useRequest } from 'umi';
 import type { FC } from 'react';
 import { Gauge, WordCloud, Liquid, RingProgress } from '@ant-design/charts';
-import type { WordCloudData } from '@antv/g2plot/esm/plots/word-cloud/layer';
-
 import { GridContent } from '@ant-design/pro-layout';
 import numeral from 'numeral';
 import Map from './components/Map';
@@ -18,13 +16,7 @@ const deadline = Date.now() + 1000 * 60 * 60 * 24 * 2 + 1000 * 30; // Moment is 
 const PAGE_NAME_UPPER_CAMEL_CASE: FC = () => {
   const { loading, data } = useRequest(queryTags);
 
-  const wordCloudData: WordCloudData[] = (data?.list || []).map((item) => {
-    return {
-      id: +Date.now(),
-      word: item.name,
-      weight: item.value,
-    };
-  });
+  const wordCloudData = (data?.list || []);
 
   return (
     <GridContent>
@@ -67,15 +59,25 @@ const PAGE_NAME_UPPER_CAMEL_CASE: FC = () => {
             >
               <Gauge
                 height={180}
-                min={0}
-                max={100}
-                forceFit
-                value={87}
-                range={[0, 25, 50, 75, 100]}
+                autoFit
+                percent={0.87}
+                range={{
+                  ticks: [0, 1/4, 2/4, 3/4, 1],
+                }}
+                axis= {{
+                  label: {
+                    formatter: function formatter(v) {
+                      return Number(v) * 100;
+                    },
+                  },
+                }}
                 statistic={{
-                  visible: true,
-                  text: '优',
-                  color: '#30bf78',
+                  content: {
+                    content: '优',
+                    style: {
+                      color: '#30bf78'
+                    },
+                  }
                 }}
               />
             </Card>
@@ -86,21 +88,13 @@ const PAGE_NAME_UPPER_CAMEL_CASE: FC = () => {
             <Card title="各品类占比" bordered={false} className={styles.pieCard}>
               <Row style={{ padding: '16px 0' }}>
                 <Col span={8}>
-                  <RingProgress forceFit height={128} percent={0.28} />
-                  {/* <Pie
-                    animate={false}
-                    percent={28}
-                    title="中式快餐"
-                    total="28%"
-                    height={128}
-                    lineWidth={2}
-                  /> */}
+                  <RingProgress autoFit height={128} percent={0.28} />
                 </Col>
                 <Col span={8}>
-                  <RingProgress color="#5DDECF" forceFit height={128} percent={0.22} />
+                  <RingProgress color="#5DDECF" autoFit height={128} percent={0.22} />
                 </Col>
                 <Col span={8}>
-                  <RingProgress color="#2FC25B" forceFit height={128} percent={0.32} />
+                  <RingProgress color="#2FC25B" autoFit height={128} percent={0.32} />
                 </Col>
               </Row>
             </Card>
@@ -114,14 +108,15 @@ const PAGE_NAME_UPPER_CAMEL_CASE: FC = () => {
             >
               <WordCloud
                 data={wordCloudData}
-                forceFit
+                autoFit
+                wordField="name"
+                weightField="value"
+                colorField="name"
                 height={162}
                 wordStyle={{
                   fontSize: [10, 20],
                 }}
-                shape="triangle"
               />
-              {/* <TagCloud data={data?.list || []} height={161} /> */}
             </Card>
           </Col>
           <Col xl={6} lg={12} sm={24} xs={24} style={{ marginBottom: 24 }}>
@@ -132,13 +127,19 @@ const PAGE_NAME_UPPER_CAMEL_CASE: FC = () => {
             >
               <Liquid
                 height={161}
-                min={0}
-                max={10000}
-                value={5639}
-                forceFit
+                percent={0.35}
+                autoFit
+                outline={{
+                  border: 2,
+                  distance: 4,
+                }}
                 padding={[0, 0, 0, 0]}
                 statistic={{
-                  formatter: (value) => `${((100 * value) / 10000).toFixed(1)}%`,
+                  content: {
+                    style: {
+                      fontSize: '16px'
+                    }
+                  }
                 }}
               />
             </Card>
