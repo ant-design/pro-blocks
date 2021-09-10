@@ -1,7 +1,6 @@
 import { Card, Col, Row, Tabs } from 'antd';
 import { RingProgress, Line } from '@ant-design/charts';
 import type { OfflineDataType, DataItem } from '../data.d';
-
 import NumberInfo from './NumberInfo';
 import styles from '../style.less';
 
@@ -23,7 +22,17 @@ const CustomTab = ({
       />
     </Col>
     <Col span={12} style={{ paddingTop: 36 }}>
-      <RingProgress forceFit height={60} width={60} percent={data.cvr} />
+      <RingProgress
+        autoFit
+        height={60}
+        innerRadius={0.7}
+        width={60}
+        percent={data.cvr}
+        statistic={{
+          title: false,
+          content: false,
+        }}
+      />
     </Col>
   </Row>
 );
@@ -49,13 +58,16 @@ const OfflineData = ({
         <TabPane tab={<CustomTab data={shop} currentTabKey={activeKey} />} key={shop.name}>
           <div style={{ padding: '0 24px' }}>
             <Line
-              forceFit
+              autoFit
               height={400}
               data={offlineChartData}
-              responsive
               xField="date"
               yField="value"
               seriesField="type"
+              slider= {{
+                start: 0.1,
+                end: 0.5,
+              }}
               interactions={[
                 {
                   type: 'slider',
@@ -63,7 +75,7 @@ const OfflineData = ({
                 },
               ]}
               legend={{
-                position: 'top-center',
+                position: 'top',
               }}
             />
           </div>

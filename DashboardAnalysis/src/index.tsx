@@ -1,4 +1,5 @@
 import type { FC } from 'react';
+import { useRequest } from 'umi';
 import { Suspense, useState } from 'react';
 import { EllipsisOutlined } from '@ant-design/icons';
 import { Col, Dropdown, Menu, Row } from 'antd';
@@ -11,8 +12,6 @@ import SalesCard from './components/SalesCard';
 import TopSearch from './components/TopSearch';
 import ProportionSales from './components/ProportionSales';
 import OfflineData from './components/OfflineData';
-import { useRequest } from 'umi';
-
 import { fakeChartData } from './service';
 import PageLoading from './components/PageLoading';
 import type { TimeType } from './components/SalesCard';
@@ -126,8 +125,8 @@ const PAGE_NAME_UPPER_CAMEL_CASE: FC<PAGE_NAME_UPPER_CAMEL_CASEProps> = () => {
             <Suspense fallback={null}>
               <TopSearch
                 loading={loading}
-                visitData2={data?.visitData2 || []}
-                searchData={data?.searchData || []}
+                visitData2={data?.visitData2}
+                searchData={data?.searchData}
                 dropdownGroup={dropdownGroup}
               />
             </Suspense>

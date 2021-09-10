@@ -1,7 +1,6 @@
 import { InfoCircleOutlined } from '@ant-design/icons';
 import { TinyArea, TinyColumn, Progress } from '@ant-design/charts';
 import { Col, Row, Tooltip } from 'antd';
-
 import numeral from 'numeral';
 import { ChartCard, Field } from './Charts';
 import type { DataItem } from '../data.d';
@@ -18,7 +17,7 @@ const topColResponsiveProps = {
   style: { marginBottom: 24 },
 };
 
-const IntroduceRow = ({ loading, visitData }: { loading: boolean; visitData: DataItem[] }) => (
+const IntroduceRow = ({ loading, visitData = [] }: { loading: boolean; visitData: DataItem[] }) => (
   <Row gutter={24}>
     <Col {...topColResponsiveProps}>
       <ChartCard
@@ -60,16 +59,20 @@ const IntroduceRow = ({ loading, visitData }: { loading: boolean; visitData: Dat
         contentHeight={46}
       >
         <TinyArea
-          color="#975FE4"
-          xField="x"
           height={46}
-          forceFit
-          yField="y"
+          autoFit
           smooth
-          data={visitData}
+          areaStyle={{
+            fill: 'l(270) 0:rgb(151 95 228 / 10%) 0.5:rgb(151 95 228 / 60%) 1:rgb(151 95 228)'
+          }}
+          line={{
+            color: '#975FE4',
+          }}
+          data={visitData.map((item => item.y))}
         />
       </ChartCard>
     </Col>
+
     <Col {...topColResponsiveProps}>
       <ChartCard
         bordered={false}
@@ -84,7 +87,11 @@ const IntroduceRow = ({ loading, visitData }: { loading: boolean; visitData: Dat
         footer={<Field label="转化率" value="60%" />}
         contentHeight={46}
       >
-        <TinyColumn xField="x" height={46} forceFit yField="y" data={visitData} />
+        <TinyColumn
+          height={46}
+          autoFit
+          data={visitData.map((item => item.y))}
+        />
       </ChartCard>
     </Col>
     <Col {...topColResponsiveProps}>
@@ -114,13 +121,15 @@ const IntroduceRow = ({ loading, visitData }: { loading: boolean; visitData: Dat
       >
         <Progress
           height={46}
+          padding={[15, 0]}
           percent={0.78}
           color="#13C2C2"
-          forceFit
-          size={8}
-          marker={[
+          autoFit
+          annotations={[
             {
-              value: 0.8,
+              type: 'line',
+              start: ['80%', '0%'],
+              end: ['80%', '100%'],
               style: {
                 stroke: '#13C2C2',
               },
