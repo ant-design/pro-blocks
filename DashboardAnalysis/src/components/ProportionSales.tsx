@@ -1,8 +1,8 @@
 import { Card, Radio, Typography } from 'antd';
 import numeral from 'numeral';
 import type { RadioChangeEvent } from 'antd/es/radio';
+import type { PieConfig } from '@ant-design/charts';
 import { Pie } from '@ant-design/charts';
-import type { PieConfig } from '@ant-design/charts/es/plots/pie';
 import React from 'react';
 import type { DataItem } from '../data.d';
 import styles from '../style.less';
