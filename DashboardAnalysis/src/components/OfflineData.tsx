@@ -64,7 +64,7 @@ const OfflineData = ({
               xField="date"
               yField="value"
               seriesField="type"
-              slider= {{
+              slider={{
                 start: 0.1,
                 end: 0.5,
               }}

@@ -22,7 +22,6 @@ const ProportionSales = ({
   salesPieData: DataItem[];
   handleChangeSalesType?: (e: RadioChangeEvent) => void;
 }) => {
-
   const pieConfig: PieConfig = {
     autoFit: true,
     height: 300,
@@ -41,10 +40,10 @@ const ProportionSales = ({
     },
     statistic: {
       title: {
-        content: '销售额'
+        content: '销售额',
       },
-    }
-  }
+    },
+  };
 
   return (
     <Card
@@ -70,10 +69,10 @@ const ProportionSales = ({
     >
       <div>
         <Text>销售额</Text>
-        <Pie {...pieConfig}/>
+        <Pie {...pieConfig} />
       </div>
     </Card>
-  )
+  );
 };
 
 export default ProportionSales;

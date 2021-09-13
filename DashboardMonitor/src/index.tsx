@@ -16,7 +16,7 @@ const deadline = Date.now() + 1000 * 60 * 60 * 24 * 2 + 1000 * 30; // Moment is 
 const PAGE_NAME_UPPER_CAMEL_CASE: FC = () => {
   const { loading, data } = useRequest(queryTags);
 
-  const wordCloudData = (data?.list || []);
+  const wordCloudData = data?.list || [];
 
   return (
     <GridContent>
@@ -62,9 +62,9 @@ const PAGE_NAME_UPPER_CAMEL_CASE: FC = () => {
                 autoFit
                 percent={0.87}
                 range={{
-                  ticks: [0, 1/4, 2/4, 3/4, 1],
+                  ticks: [0, 1 / 4, 2 / 4, 3 / 4, 1],
                 }}
-                axis= {{
+                axis={{
                   label: {
                     formatter: function formatter(v) {
                       return Number(v) * 100;
@@ -75,9 +75,9 @@ const PAGE_NAME_UPPER_CAMEL_CASE: FC = () => {
                   content: {
                     content: '优',
                     style: {
-                      color: '#30bf78'
+                      color: '#30bf78',
                     },
-                  }
+                  },
                 }}
               />
             </Card>
@@ -137,9 +137,9 @@ const PAGE_NAME_UPPER_CAMEL_CASE: FC = () => {
                 statistic={{
                   content: {
                     style: {
-                      fontSize: '16px'
-                    }
-                  }
+                      fontSize: '16px',
+                    },
+                  },
                 }}
               />
             </Card>

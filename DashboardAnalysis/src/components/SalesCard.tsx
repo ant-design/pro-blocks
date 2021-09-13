@@ -76,10 +76,10 @@ const SalesCard = ({
                   xField="x"
                   yField="y"
                   xAxis={{
-                    title: null
+                    title: null,
                   }}
                   yAxis={{
-                    title: null
+                    title: null,
                   }}
                   meta={{
                     y: {
