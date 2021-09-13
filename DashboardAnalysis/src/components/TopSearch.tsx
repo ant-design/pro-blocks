@@ -4,7 +4,6 @@ import { TinyArea } from '@ant-design/charts';
 import React from 'react';
 import numeral from 'numeral';
 import type { DataItem } from '../data.d';
-
 import NumberInfo from './NumberInfo';
 import Trend from './Trend';
 import styles from '../style.less';
@@ -43,14 +42,14 @@ const columns = [
 
 const TopSearch = ({
   loading,
-  visitData2,
-  searchData,
+  visitData2 = [],
+  searchData = [],
   dropdownGroup,
 }: {
   loading: boolean;
-  visitData2: DataItem[];
+  visitData2?: DataItem[];
+  searchData?: DataItem[];
   dropdownGroup: React.ReactNode;
-  searchData: DataItem[];
 }) => (
   <Card
     loading={loading}
@@ -77,7 +76,7 @@ const TopSearch = ({
           status="up"
           subTotal={17.1}
         />
-        <TinyArea xField="x" height={45} forceFit yField="y" smooth data={visitData2} />
+        <TinyArea height={45} autoFit smooth data={visitData2.map((item) => item.y)} />
       </Col>
       <Col sm={12} xs={24} style={{ marginBottom: 24 }}>
         <NumberInfo
@@ -94,7 +93,7 @@ const TopSearch = ({
           subTotal={26.2}
           gap={8}
         />
-        <TinyArea xField="x" height={45} forceFit yField="y" smooth data={visitData2} />
+        <TinyArea height={45} autoFit smooth data={visitData2.map((item) => item.y)} />
       </Col>
     </Row>
     <Table<any>

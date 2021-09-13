@@ -199,17 +199,12 @@ const PAGE_NAME_UPPER_CAMEL_CASE: FC = () => {
               <Radar
                 height={343}
                 data={data?.radarData || []}
-                angleField="label"
                 seriesField="name"
-                radiusField="value"
-                area={{
-                  visible: false,
-                }}
-                point={{
-                  visible: true,
-                }}
+                xField="label"
+                yField="value"
+                point={{}}
                 legend={{
-                  position: 'bottom-center',
+                  position: 'bottom',
                 }}
               />
             </div>

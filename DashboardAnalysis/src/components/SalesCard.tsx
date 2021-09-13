@@ -71,28 +71,15 @@ const SalesCard = ({
               <div className={styles.salesBar}>
                 <Column
                   height={300}
-                  forceFit
-                  data={salesData as any}
+                  autoFit
+                  data={salesData}
                   xField="x"
                   yField="y"
                   xAxis={{
-                    visible: true,
-                    title: {
-                      visible: false,
-                    },
+                    title: null,
                   }}
                   yAxis={{
-                    visible: true,
-                    title: {
-                      visible: false,
-                    },
-                  }}
-                  title={{
-                    visible: true,
-                    text: '销售趋势',
-                    style: {
-                      fontSize: 14,
-                    },
+                    title: null,
                   }}
                   meta={{
                     y: {
@@ -130,28 +117,15 @@ const SalesCard = ({
               <div className={styles.salesBar}>
                 <Column
                   height={300}
-                  forceFit
-                  data={salesData as any}
+                  autoFit
+                  data={salesData}
                   xField="x"
                   yField="y"
                   xAxis={{
-                    visible: true,
-                    title: {
-                      visible: false,
-                    },
+                    title: null,
                   }}
                   yAxis={{
-                    visible: true,
-                    title: {
-                      visible: false,
-                    },
-                  }}
-                  title={{
-                    visible: true,
-                    text: '访问量趋势',
-                    style: {
-                      fontSize: 14,
-                    },
+                    title: null,
                   }}
                   meta={{
                     y: {
