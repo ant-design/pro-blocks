@@ -2,18 +2,19 @@ import { Card, Col, Row, Statistic } from 'antd';
 import { useRequest } from 'umi';
 import type { FC } from 'react';
 import { Gauge, WordCloud, Liquid, RingProgress } from '@ant-design/charts';
-import { GridContent } from '@ant-design/pro-layout';
+import { GridContent } from '@ant-design/pro-components';
 import numeral from 'numeral';
 import Map from './components/Map';
 import ActiveChart from './components/ActiveChart';
 import { queryTags } from './service';
-import styles from './style.less';
+import useStyles from './style.style';
 
 const { Countdown } = Statistic;
 
 const deadline = Date.now() + 1000 * 60 * 60 * 24 * 2 + 1000 * 30; // Moment is also OK
 
 const PAGE_NAME_UPPER_CAMEL_CASE: FC = () => {
+  const { styles } = useStyles();
   const { loading, data } = useRequest(queryTags);
 
   const wordCloudData = data?.list || [];
@@ -85,7 +86,7 @@ const PAGE_NAME_UPPER_CAMEL_CASE: FC = () => {
         </Row>
         <Row gutter={24}>
           <Col xl={12} lg={24} sm={24} xs={24} style={{ marginBottom: 24 }}>
-            <Card title="各品类占比" bordered={false} className={styles.pieCard}>
+            <Card title="各品类占比" bordered={false}>
               <Row style={{ padding: '16px 0' }}>
                 <Col span={8}>
                   <RingProgress autoFit height={128} percent={0.28} />

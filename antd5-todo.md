@@ -4,7 +4,7 @@
 - [x] "AccountCenter"
 - [x] "AccountSettings"
 - [x] "DashboardAnalysis"
-- [ ] "DashboardMonitor"
+- [x] "DashboardMonitor"
 - [ ] "DashboardWorkplace"
 - [ ] "EditorFlow"
 - [ ] "EditorKoni"
