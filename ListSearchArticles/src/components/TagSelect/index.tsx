@@ -4,7 +4,7 @@ import { Tag } from 'antd';
 import classNames from 'classnames';
 import type { FC } from 'react';
 import React from 'react';
-import styles from './index.less';
+import useStyles from './index.style';
 
 const { CheckableTag } = Tag;
 
@@ -48,6 +48,7 @@ export interface TagSelectProps {
 }
 
 const TagSelect: FC<TagSelectProps> & { Option: typeof TagSelectOption } = (props) => {
+  const { styles } = useStyles();
   const { children, hideCheckAll = false, className, style, expandable, actionsText = {} } = props;
 
   const [expand, { toggle }] = useBoolean();
@@ -102,6 +103,7 @@ const TagSelect: FC<TagSelectProps> & { Option: typeof TagSelectOption } = (prop
           {selectAllText}
         </CheckableTag>
       )}
+
       {children &&
         React.Children.map(children, (child: TagSelectOptionElement) => {
           if (isTagSelectOption(child)) {

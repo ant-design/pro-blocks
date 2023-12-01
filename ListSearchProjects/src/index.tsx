@@ -7,7 +7,7 @@ import StandardFormRow from './components/StandardFormRow';
 import TagSelect from './components/TagSelect';
 import type { ListItemDataType } from './data.d';
 import { queryFakeList } from './service';
-import styles from './style.less';
+import useStyles from './style.style';
 
 const { Option } = Select;
 const FormItem = Form.Item;
@@ -16,6 +16,7 @@ const { Paragraph } = Typography;
 const getKey = (id: string, index: number) => `${id}-${index}`;
 
 const PAGE_NAME_UPPER_CAMEL_CASE: FC = () => {
+  const { styles } = useStyles();
   const { data, loading, run } = useRequest((values: any) => {
     console.log('form data', values);
     return queryFakeList({
@@ -50,6 +51,7 @@ const PAGE_NAME_UPPER_CAMEL_CASE: FC = () => {
                 </Paragraph>
               }
             />
+
             <div className={styles.cardItemContent}>
               <span>{moment(item.updatedAt).fromNow()}</span>
               <div className={styles.avatarList}>

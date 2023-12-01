@@ -8,7 +8,7 @@ import StandardFormRow from './components/StandardFormRow';
 import TagSelect from './components/TagSelect';
 import type { ListItemDataType } from './data.d';
 import { queryFakeList } from './service';
-import styles from './style.less';
+import useStyles from './style.style';
 
 const { Option } = Select;
 const FormItem = Form.Item;
@@ -16,6 +16,7 @@ const FormItem = Form.Item;
 const pageSize = 5;
 
 const PAGE_NAME_UPPER_CAMEL_CASE: FC = () => {
+  const { styles } = useStyles();
   const [form] = Form.useForm();
 
   const { data, reload, loading, loadMore, loadingMore } = useRequest(
@@ -72,6 +73,7 @@ const PAGE_NAME_UPPER_CAMEL_CASE: FC = () => {
             {text}
           </span>
         );
+
       case 'like-o':
         return (
           <span>
@@ -79,6 +81,7 @@ const PAGE_NAME_UPPER_CAMEL_CASE: FC = () => {
             {text}
           </span>
         );
+
       case 'message':
         return (
           <span>
@@ -86,6 +89,7 @@ const PAGE_NAME_UPPER_CAMEL_CASE: FC = () => {
             {text}
           </span>
         );
+
       default:
         return null;
     }
@@ -212,6 +216,7 @@ const PAGE_NAME_UPPER_CAMEL_CASE: FC = () => {
                   </span>
                 }
               />
+
               <ArticleListContent data={item} />
             </List.Item>
           )}
