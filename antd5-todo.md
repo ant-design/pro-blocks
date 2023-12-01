@@ -5,7 +5,7 @@
 - [x] "AccountSettings"
 - [x] "DashboardAnalysis"
 - [x] "DashboardMonitor"
-- [ ] "DashboardWorkplace"
+- [x] "DashboardWorkplace"
 - [ ] "EditorFlow"
 - [ ] "EditorKoni"
 - [ ] "EditorMind"

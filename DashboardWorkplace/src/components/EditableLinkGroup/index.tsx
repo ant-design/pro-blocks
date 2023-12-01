@@ -1,8 +1,7 @@
 import React, { createElement } from 'react';
 import { PlusOutlined } from '@ant-design/icons';
 import { Button } from 'antd';
-
-import styles from './index.less';
+import useStyles from './index.style';
 
 export type EditableLink = {
   title: string;
@@ -17,6 +16,7 @@ type EditableLinkGroupProps = {
 };
 
 const EditableLinkGroup: React.FC<EditableLinkGroupProps> = (props) => {
+  const { styles } = useStyles();
   const { links, linkElement, onAdd } = props;
   return (
     <div className={styles.linkGroup}>

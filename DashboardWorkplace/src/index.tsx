@@ -1,12 +1,11 @@
 import type { FC } from 'react';
 import { Avatar, Card, Col, List, Skeleton, Row, Statistic } from 'antd';
 import { Radar } from '@ant-design/charts';
-
 import { Link, useRequest } from 'umi';
-import { PageContainer } from '@ant-design/pro-layout';
+import { PageContainer } from '@ant-design/pro-components';
 import moment from 'moment';
 import EditableLinkGroup from './components/EditableLinkGroup';
-import styles from './style.less';
+import useStyles from './style.style';
 import type { ActivitiesType, CurrentUser } from './data.d';
 import { queryProjectNotice, queryActivities, fakeChartData } from './service';
 
@@ -38,6 +37,7 @@ const links = [
 ];
 
 const PageHeaderContent: FC<{ currentUser: Partial<CurrentUser> }> = ({ currentUser }) => {
+  const { styles } = useStyles();
   const loading = currentUser && Object.keys(currentUser).length;
   if (!loading) {
     return <Skeleton avatar paragraph={{ rows: 1 }} active />;
@@ -61,25 +61,28 @@ const PageHeaderContent: FC<{ currentUser: Partial<CurrentUser> }> = ({ currentU
   );
 };
 
-const ExtraContent: FC<Record<string, any>> = () => (
-  <div className={styles.extraContent}>
-    <div className={styles.statItem}>
-      <Statistic title="项目数" value={56} />
+const ExtraContent: FC<Record<string, any>> = () => {
+  const { styles } = useStyles();
+  return (
+    <div className={styles.extraContent}>
+      <div className={styles.statItem}>
+        <Statistic title="项目数" value={56} />
+      </div>
+      <div className={styles.statItem}>
+        <Statistic title="团队内排名" value={8} suffix="/ 24" />
+      </div>
+      <div className={styles.statItem}>
+        <Statistic title="项目访问" value={2223} />
+      </div>
     </div>
-    <div className={styles.statItem}>
-      <Statistic title="团队内排名" value={8} suffix="/ 24" />
-    </div>
-    <div className={styles.statItem}>
-      <Statistic title="项目访问" value={2223} />
-    </div>
-  </div>
-);
+  );
+};
 
 const PAGE_NAME_UPPER_CAMEL_CASE: FC = () => {
   const { loading: projectLoading, data: projectNotice = [] } = useRequest(queryProjectNotice);
   const { loading: activitiesLoading, data: activities = [] } = useRequest(queryActivities);
   const { data } = useRequest(fakeChartData);
-
+  const { styles } = useStyles();
   const renderActivities = (item: ActivitiesType) => {
     const events = item.template.split(/@\{([^{}]*)\}/gi).map((key) => {
       if (item[key]) {
@@ -152,6 +155,7 @@ const PAGE_NAME_UPPER_CAMEL_CASE: FC = () => {
                     }
                     description={item.description}
                   />
+
                   <div className={styles.projectItemContent}>
                     <Link to={item.memberLink}>{item.member || ''}</Link>
                     {item.updatedAt && (
@@ -219,7 +223,8 @@ const PAGE_NAME_UPPER_CAMEL_CASE: FC = () => {
               <Row gutter={48}>
                 {projectNotice.map((item) => (
                   <Col span={12} key={`members-item-${item.id}`}>
-                    <Link to={item.href}>
+                    {/* to 现在必传 */}
+                    <Link to={item.href || '/'}>
                       <Avatar src={item.logo} size="small" />
                       <span className={styles.member}>{item.member}</span>
                     </Link>
