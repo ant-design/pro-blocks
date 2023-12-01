@@ -15,7 +15,7 @@
 - [x] "Exception500"
 - [x] "FormAdvancedForm"
 - [x] "FormBasicForm"
-- [ ] "FormStepForm"
+- [x] "FormStepForm"
 - [ ] "ListBasicList"
 - [ ] "ListCardList"
 - [ ] "ListSearch"
