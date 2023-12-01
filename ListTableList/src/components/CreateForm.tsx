@@ -17,6 +17,7 @@ const CreateForm: React.FC<CreateFormProps> = (props) => {
       onCancel={() => onCancel()}
       footer={null}
     >
+      {/* @ts-ignore */}
       {props.children}
     </Modal>
   );

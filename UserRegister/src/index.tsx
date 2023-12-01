@@ -88,10 +88,7 @@ const PAGE_NAME_UPPER_CAMEL_CASE: FC = () => {
       if (data.status === 'ok') {
         message.success('注册成功！');
         history.push({
-          pathname: '/user/register-result',
-          state: {
-            account: params.email,
-          },
+          pathname: `/user/register-result?account=${params.email}`,
         });
       }
     },
@@ -137,10 +134,10 @@ const PAGE_NAME_UPPER_CAMEL_CASE: FC = () => {
     const value = form.getFieldValue('password');
     const passwordStatus = getPasswordStatus();
     return value && value.length ? (
+      // @ts-ignore
       <div className={styles[`progress-${passwordStatus}`]}>
         <Progress
           status={passwordProgressMap[passwordStatus]}
-          className={styles.progress}
           strokeWidth={6}
           percent={value.length * 10 > 100 ? 100 : value.length * 10}
           showInfo={false}

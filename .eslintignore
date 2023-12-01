@@ -6,3 +6,6 @@ _test_
 .eslintrc.js
 
 node_modules
+.husky/**
+pnpm-lock.yaml
+.npmrc

@@ -22,8 +22,8 @@ const PAGE_NAME_UPPER_CAMEL_CASE: React.FC<RouteChildrenProps> = () => {
     </div>
   );
 
-  const email = location.state
-    ? (location.state as LocationState).account
+  const email: string = location.state
+    ? ((location.state as LocationState).account as string)
     : 'AntDesign@example.com';
   return (
     <Result
