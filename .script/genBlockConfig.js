@@ -171,7 +171,8 @@ const getFolderTreeData = (filePath) => {
     url: 'https://github.com/ant-design/pro-blocks/tree/master/EmptyPage',
     path: 'NewPage',
     features: ['antd'],
-    img: 'https://raw.githubusercontent.com/ant-design/pro-blocks/master/EmptyPage/snapshot.png?raw=true',
+    img:
+      'https://raw.githubusercontent.com/ant-design/pro-blocks/master/EmptyPage/snapshot.png?raw=true',
     tags: ['空白页'],
     previewUrl: 'https://preview.pro.ant.design',
   });
