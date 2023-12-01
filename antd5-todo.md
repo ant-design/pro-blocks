@@ -6,7 +6,7 @@
 - [x] "DashboardAnalysis"
 - [x] "DashboardMonitor"
 - [x] "DashboardWorkplace"
-- [ ] "EditorFlow"
+- [x] "EditorFlow"
 - [ ] "EditorKoni"
 - [ ] "EditorMind"
 - [x] "EmptyPage"
