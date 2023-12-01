@@ -3,7 +3,7 @@ import { Button, Divider, Input, Popconfirm, Table, message } from 'antd';
 import type { FC } from 'react';
 import React, { useState } from 'react';
 
-import styles from '../style.less';
+import useStyles from '../style.style';
 
 type TableFormDateType = {
   key: string;
@@ -19,6 +19,7 @@ type TableFormProps = {
 };
 
 const TableForm: FC<TableFormProps> = ({ value, onChange }) => {
+  const { styles } = useStyles();
   const [clickedCancel, setClickedCancel] = useState(false);
   const [loading, setLoading] = useState(false);
   const [index, setIndex] = useState(0);
@@ -242,6 +243,7 @@ const TableForm: FC<TableFormProps> = ({ value, onChange }) => {
         pagination={false}
         rowClassName={(record) => (record.editable ? styles.editable : '')}
       />
+
       <Button
         style={{ width: '100%', marginTop: 16, marginBottom: 8 }}
         type="dashed"

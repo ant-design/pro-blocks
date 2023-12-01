@@ -14,7 +14,7 @@ import type { ProColumnType } from '@ant-design/pro-components';
 import { EditableProTable } from '@ant-design/pro-components';
 import { PageContainer, FooterToolbar } from '@ant-design/pro-components';
 import { fakeSubmitForm } from './service';
-import styles from './style.less';
+import useStyles from './style.style';
 
 interface TableFormDateType {
   key: string;
@@ -68,6 +68,7 @@ interface ErrorField {
 }
 
 const PAGE_NAME_UPPER_CAMEL_CASE: FC<Record<string, any>> = () => {
+  const { styles } = useStyles();
   const [error, setError] = useState<ErrorField[]>([]);
   const getErrorInfo = (errors: ErrorField[]) => {
     const errorCount = errors.filter((item) => item.errors.length > 0).length;

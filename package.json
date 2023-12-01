@@ -40,7 +40,7 @@
     "lint:prettier": "prettier -c --write \"**/**.{js,jsx,tsx,ts,less,md,json}\" --end-of-line auto",
     "prettier": "prettier -c --write \"**/*\"",
     "screenshot": "pro screenshot",
-    "start": "max dev EditorMind",
+    "start": "max dev FormAdvancedForm",
     "test": "max test",
     "prepare": "husky install"
   },
