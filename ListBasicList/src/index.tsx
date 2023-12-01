@@ -22,7 +22,7 @@ import moment from 'moment';
 import OperationModal from './components/OperationModal';
 import { addFakeList, queryFakeList, removeFakeList, updateFakeList } from './service';
 import type { BasicListItemDataType } from './data.d';
-import styles from './style.less';
+import useStyles from './style.style';
 
 const RadioButton = Radio.Button;
 const RadioGroup = Radio.Group;
@@ -32,38 +32,46 @@ const Info: FC<{
   title: React.ReactNode;
   value: React.ReactNode;
   bordered?: boolean;
-}> = ({ title, value, bordered }) => (
-  <div className={styles.headerInfo}>
-    <span>{title}</span>
-    <p>{value}</p>
-    {bordered && <em />}
-  </div>
-);
+}> = ({ title, value, bordered }) => {
+  const { styles } = useStyles();
+  return (
+    <div className={styles.headerInfo}>
+      <span>{title}</span>
+      <p>{value}</p>
+      {bordered && <em />}
+    </div>
+  );
+};
 
 const ListContent = ({
   data: { owner, createdAt, percent, status },
 }: {
   data: BasicListItemDataType;
-}) => (
-  <div className={styles.listContent}>
-    <div className={styles.listContentItem}>
-      <span>Owner</span>
-      <p>{owner}</p>
+}) => {
+  const { styles } = useStyles();
+  return (
+    <div className={styles.listContent}>
+      <div className={styles.listContentItem}>
+        <span>Owner</span>
+        <p>{owner}</p>
+      </div>
+      <div className={styles.listContentItem}>
+        <span>开始时间</span>
+        <p>{moment(createdAt).format('YYYY-MM-DD HH:mm')}</p>
+      </div>
+      <div className={styles.listContentItem}>
+        {/*TODO: size={6}  不渲染？？*/}
+        <Progress percent={percent} status={status} style={{ width: 180 }} />
+      </div>
     </div>
-    <div className={styles.listContentItem}>
-      <span>开始时间</span>
-      <p>{moment(createdAt).format('YYYY-MM-DD HH:mm')}</p>
-    </div>
-    <div className={styles.listContentItem}>
-      <Progress percent={percent} status={status} strokeWidth={6} style={{ width: 180 }} />
-    </div>
-  </div>
-);
+  );
+};
 
 export const PAGE_NAME_UPPER_CAMEL_CASE: FC = () => {
   const [done, setDone] = useState<boolean>(false);
   const [visible, setVisible] = useState<boolean>(false);
   const [current, setCurrent] = useState<Partial<BasicListItemDataType> | undefined>(undefined);
+  const { styles } = useStyles();
 
   const {
     data: listData,
@@ -124,7 +132,7 @@ export const PAGE_NAME_UPPER_CAMEL_CASE: FC = () => {
   };
 
   const extraContent = (
-    <div className={styles.extraContent}>
+    <div>
       <RadioGroup defaultValue="all">
         <RadioButton value="all">全部</RadioButton>
         <RadioButton value="progress">进行中</RadioButton>
@@ -138,7 +146,7 @@ export const PAGE_NAME_UPPER_CAMEL_CASE: FC = () => {
     item: BasicListItemDataType;
   }> = ({ item }) => (
     <Dropdown
-      overlay={
+      menu={
         <Menu onClick={({ key }) => editAndDelete(key, item)}>
           <Menu.Item key="edit">编辑</Menu.Item>
           <Menu.Item key="delete">删除</Menu.Item>
@@ -215,6 +223,7 @@ export const PAGE_NAME_UPPER_CAMEL_CASE: FC = () => {
                     title={<a href={item.href}>{item.title}</a>}
                     description={item.subDescription}
                   />
+
                   <ListContent data={item} />
                 </List.Item>
               )}

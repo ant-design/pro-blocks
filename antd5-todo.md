@@ -16,7 +16,7 @@
 - [x] "FormAdvancedForm"
 - [x] "FormBasicForm"
 - [x] "FormStepForm"
-- [ ] "ListBasicList"
+- [x] "ListBasicList"
 - [ ] "ListCardList"
 - [ ] "ListSearch"
 - [ ] "ListSearchApplications"
