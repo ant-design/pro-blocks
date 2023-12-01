@@ -2,7 +2,7 @@ import { Chart, Geom, Tooltip } from 'bizcharts';
 
 import React from 'react';
 import autoHeight from '../autoHeight';
-import styles from '../index.less';
+import useStyles from '../index.style';
 
 export type MiniBarProps = {
   color?: string;
@@ -16,6 +16,7 @@ export type MiniBarProps = {
 };
 
 const MiniBar: React.FC<MiniBarProps> = (props) => {
+  const { styles } = useStyles();
   const { height = 0, forceFit = true, color = '#1890FF', data = [] } = props;
 
   const scale = {

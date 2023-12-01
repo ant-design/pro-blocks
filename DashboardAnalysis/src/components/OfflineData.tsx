@@ -2,7 +2,7 @@ import { Card, Col, Row, Tabs } from 'antd';
 import { RingProgress, Line } from '@ant-design/charts';
 import type { OfflineDataType, DataItem } from '../data.d';
 import NumberInfo from './NumberInfo';
-import styles from '../style.less';
+import useStyles from '../style.style';
 
 const CustomTab = ({
   data,
@@ -51,38 +51,46 @@ const OfflineData = ({
   offlineData: OfflineDataType[];
   offlineChartData: DataItem[];
   handleTabChange: (activeKey: string) => void;
-}) => (
-  <Card loading={loading} className={styles.offlineCard} bordered={false} style={{ marginTop: 32 }}>
-    <Tabs activeKey={activeKey} onChange={handleTabChange}>
-      {offlineData.map((shop) => (
-        <TabPane tab={<CustomTab data={shop} currentTabKey={activeKey} />} key={shop.name}>
-          <div style={{ padding: '0 24px' }}>
-            <Line
-              autoFit
-              height={400}
-              data={offlineChartData}
-              xField="date"
-              yField="value"
-              seriesField="type"
-              slider={{
-                start: 0.1,
-                end: 0.5,
-              }}
-              interactions={[
-                {
-                  type: 'slider',
-                  cfg: {},
-                },
-              ]}
-              legend={{
-                position: 'top',
-              }}
-            />
-          </div>
-        </TabPane>
-      ))}
-    </Tabs>
-  </Card>
-);
+}) => {
+  const { styles } = useStyles();
+  return (
+    <Card
+      loading={loading}
+      className={styles.offlineCard}
+      bordered={false}
+      style={{ marginTop: 32 }}
+    >
+      <Tabs activeKey={activeKey} onChange={handleTabChange}>
+        {offlineData.map((shop) => (
+          <TabPane tab={<CustomTab data={shop} currentTabKey={activeKey} />} key={shop.name}>
+            <div style={{ padding: '0 24px' }}>
+              <Line
+                autoFit
+                height={400}
+                data={offlineChartData}
+                xField="date"
+                yField="value"
+                seriesField="type"
+                slider={{
+                  start: 0.1,
+                  end: 0.5,
+                }}
+                interactions={[
+                  {
+                    type: 'slider',
+                    cfg: {},
+                  },
+                ]}
+                legend={{
+                  position: 'top',
+                }}
+              />
+            </div>
+          </TabPane>
+        ))}
+      </Tabs>
+    </Card>
+  );
+};
 
 export default OfflineData;

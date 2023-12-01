@@ -120,6 +120,7 @@ class Bar extends Component<
               label={autoHideXLabels ? undefined : {}}
               tickLine={autoHideXLabels ? undefined : {}}
             />
+
             <Axis name="y" min={0} />
             <Tooltip showTitle={false} crosshairs={false} />
             <Geom type="interval" position="x*y" color={color} tooltip={tooltip} />

@@ -6,7 +6,6 @@ import numeral from 'numeral';
 import type { DataItem } from '../data.d';
 import NumberInfo from './NumberInfo';
 import Trend from './Trend';
-import styles from '../style.less';
 
 const columns = [
   {
@@ -25,7 +24,8 @@ const columns = [
     dataIndex: 'count',
     key: 'count',
     sorter: (a: { count: number }, b: { count: number }) => a.count - b.count,
-    className: styles.alignRight,
+    // less 里面也没有 alignRight 啊？？？
+    // className: styles.alignRight,
   },
   {
     title: '周涨幅',
@@ -76,6 +76,7 @@ const TopSearch = ({
           status="up"
           subTotal={17.1}
         />
+
         <TinyArea height={45} autoFit smooth data={visitData2.map((item) => item.y)} />
       </Col>
       <Col sm={12} xs={24} style={{ marginBottom: 24 }}>
@@ -93,6 +94,7 @@ const TopSearch = ({
           subTotal={26.2}
           gap={8}
         />
+
         <TinyArea height={45} autoFit smooth data={visitData2.map((item) => item.y)} />
       </Col>
     </Row>

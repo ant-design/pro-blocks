@@ -3,7 +3,7 @@
 - [x] blocks-dev-plugin
 - [x] "AccountCenter"
 - [x] "AccountSettings"
-- [ ] "DashboardAnalysis"
+- [x] "DashboardAnalysis"
 - [ ] "DashboardMonitor"
 - [ ] "DashboardWorkplace"
 - [ ] "EditorFlow"

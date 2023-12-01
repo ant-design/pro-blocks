@@ -3,7 +3,7 @@ import { useRequest } from 'umi';
 import { Suspense, useState } from 'react';
 import { EllipsisOutlined } from '@ant-design/icons';
 import { Col, Dropdown, Menu, Row } from 'antd';
-import { GridContent } from '@ant-design/pro-layout';
+import { GridContent } from '@ant-design/pro-components';
 import type { RadioChangeEvent } from 'antd/es/radio';
 import type { RangePickerProps } from 'antd/es/date-picker/generatePicker';
 import type moment from 'moment';
@@ -17,7 +17,7 @@ import PageLoading from './components/PageLoading';
 import type { TimeType } from './components/SalesCard';
 import { getTimeDistance } from './utils/utils';
 import type { AnalysisData } from './data.d';
-import styles from './style.less';
+import useStyles from './style.style';
 
 type RangePickerValue = RangePickerProps<moment.Moment>['value'];
 
@@ -29,6 +29,7 @@ type PAGE_NAME_UPPER_CAMEL_CASEProps = {
 type SalesType = 'all' | 'online' | 'stores';
 
 const PAGE_NAME_UPPER_CAMEL_CASE: FC<PAGE_NAME_UPPER_CAMEL_CASEProps> = () => {
+  const { styles } = useStyles();
   const [salesType, setSalesType] = useState<SalesType>('all');
   const [currentTabKey, setCurrentTabKey] = useState<string>('');
   const [rangePickerValue, setRangePickerValue] = useState<RangePickerValue>(
@@ -96,7 +97,6 @@ const PAGE_NAME_UPPER_CAMEL_CASE: FC<PAGE_NAME_UPPER_CAMEL_CASEProps> = () => {
   };
 
   const activeKey = currentTabKey || (data?.offlineData[0] && data?.offlineData[0].name) || '';
-
   return (
     <GridContent>
       <>
@@ -106,7 +106,6 @@ const PAGE_NAME_UPPER_CAMEL_CASE: FC<PAGE_NAME_UPPER_CAMEL_CASEProps> = () => {
 
         <Suspense fallback={null}>
           <SalesCard
-            rangePickerValue={rangePickerValue}
             salesData={data?.salesData || []}
             isActive={isActive}
             handleRangePickerChange={handleRangePickerChange}

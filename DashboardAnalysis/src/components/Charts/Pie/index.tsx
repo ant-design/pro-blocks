@@ -291,6 +291,7 @@ class Pie extends Component<PieProps, PieState> {
                     backgroundColor: !item.checked ? '#aaa' : item.color,
                   }}
                 />
+
                 <span className={styles.legendTitle}>{item.x}</span>
                 <Divider type="vertical" />
                 <span className={styles.percent}>
