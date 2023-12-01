@@ -8,7 +8,7 @@
 - [x] "DashboardWorkplace"
 - [x] "EditorFlow"
 - [x] "EditorKoni"
-- [ ] "EditorMind"
+- [x] "EditorMind"
 - [x] "EmptyPage"
 - [ ] "Exception403"
 - [ ] "Exception404"
