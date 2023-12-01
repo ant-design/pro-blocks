@@ -1,6 +1,12 @@
 import { IApi } from '@umijs/max';
 import { join } from 'path';
 import { readdirSync, existsSync } from 'fs';
+import blocks from './umi-block.json';
+
+const blockHash = {} as any;
+blocks.list.forEach((item) => {
+  blockHash[item.key] = item;
+});
 
 export default (api: IApi) => {
   api.modifyTSConfig((memo) => {
@@ -8,12 +14,11 @@ export default (api: IApi) => {
     return memo;
   });
   if (api.name !== 'dev') return;
-  console.log(api.args);
   const { _ } = api.args;
   // 取巧，没传代表全部
-  const [name = ''] = _;
+  const [page = ''] = _;
   const components = readdirSync(api.cwd).filter((componentsPath) => {
-    if (existsSync(join(componentsPath, 'package.json')) && componentsPath.includes(name)) {
+    if (existsSync(join(componentsPath, 'package.json')) && componentsPath.includes(page)) {
       return true;
     }
     return false;
@@ -24,19 +29,23 @@ export default (api: IApi) => {
     };
     return memo;
   });
-  api.modifyRoutes(() => {
-    let routers = {} as any;
+  api.modifyRoutes((memo) => {
     components.forEach((pagePath) => {
       // 临时调试方便
-      const path = name ? '/' : pagePath.toLocaleLowerCase();
-      routers['path'] = {
-        path,
+      const path = page ? '/' : pagePath.toLocaleLowerCase();
+      const { name = 'haha' } = blockHash[pagePath];
+      memo[path] = {
+        path: `/${path}`,
         id: path,
+        icon: 'smile',
+        name,
+        component: join(api.cwd, pagePath, './src/index'),
+        parentId: 'ant-design-pro-layout',
         file: join(api.cwd, pagePath, './src/index'),
-        absPath: join(api.cwd, pagePath, './src/index'),
+        absPath: `/${path}`,
         __absFile: join(api.cwd, pagePath, './src/index'),
       };
     });
-    return routers;
+    return memo;
   });
 };
