@@ -1,10 +1,11 @@
-import { PageContainer } from '@ant-design/pro-layout';
+import { PageContainer } from '@ant-design/pro-components';
 import { useState, useEffect } from 'react';
 import { Spin } from 'antd';
-import styles from './index.less';
+import useStyles from './index.style';
 
 export default () => {
   const [loading, setLoading] = useState<boolean>(true);
+  const { styles } = useStyles();
   useEffect(() => {
     setTimeout(() => {
       setLoading(false);
