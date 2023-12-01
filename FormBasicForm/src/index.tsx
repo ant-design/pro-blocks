@@ -13,9 +13,10 @@ import { useRequest } from 'umi';
 import type { FC } from 'react';
 import { PageContainer } from '@ant-design/pro-components';
 import { fakeSubmitForm } from './service';
-import styles from './style.less';
+import useStyles from './style.style';
 
 const PAGE_NAME_UPPER_CAMEL_CASE: FC<Record<string, any>> = () => {
+  const { styles } = useStyles();
   const { run } = useRequest(fakeSubmitForm, {
     manual: true,
     onSuccess: () => {
@@ -50,6 +51,7 @@ const PAGE_NAME_UPPER_CAMEL_CASE: FC<Record<string, any>> = () => {
             ]}
             placeholder="给目标起个名字"
           />
+
           <ProFormDateRangePicker
             label="起止日期"
             width="md"
@@ -62,6 +64,7 @@ const PAGE_NAME_UPPER_CAMEL_CASE: FC<Record<string, any>> = () => {
             ]}
             placeholder={['开始日期', '结束日期']}
           />
+
           <ProFormTextArea
             label="目标描述"
             width="xl"
@@ -150,6 +153,7 @@ const PAGE_NAME_UPPER_CAMEL_CASE: FC<Record<string, any>> = () => {
             help="客户、邀评人默认被分享"
             name="publicType"
           />
+
           <ProFormDependency name={['publicType']}>
             {({ publicType }) => {
               return (

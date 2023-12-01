@@ -14,7 +14,7 @@
 - [x] "Exception404"
 - [x] "Exception500"
 - [x] "FormAdvancedForm"
-- [ ] "FormBasicForm"
+- [x] "FormBasicForm"
 - [ ] "FormStepForm"
 - [ ] "ListBasicList"
 - [ ] "ListCardList"
