@@ -1,7 +1,7 @@
 import React from 'react';
 
 import { Input } from 'antd';
-import styles from './PhoneView.less';
+import useStyles from './BaseView.style';
 
 type PhoneViewProps = {
   value?: string;
@@ -9,6 +9,7 @@ type PhoneViewProps = {
 };
 
 const PhoneView: React.FC<PhoneViewProps> = (props) => {
+  const { styles } = useStyles();
   const { value, onChange } = props;
   let values = ['', ''];
   if (value) {
@@ -26,6 +27,7 @@ const PhoneView: React.FC<PhoneViewProps> = (props) => {
           }
         }}
       />
+
       <Input
         className={styles.phone_number}
         onChange={(e) => {
