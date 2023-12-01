@@ -22,7 +22,7 @@
     "react-fittext": "^1.0.0"
   },
   "peerDependencies": {
-    "@ant-design/pro-layout": "^6.0.0"
+    "@ant-design/pro-components": "^2.6.43"
   },
   "devDependencies": {
     "@types/numeral": "^0.0.25"

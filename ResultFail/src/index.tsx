@@ -2,7 +2,7 @@ import { CloseCircleOutlined, RightOutlined } from '@ant-design/icons';
 import { Button, Card, Result } from 'antd';
 import { Fragment } from 'react';
 
-import { GridContent } from '@ant-design/pro-layout';
+import { GridContent } from '@ant-design/pro-components';
 import styles from './index.less';
 
 const Content = (

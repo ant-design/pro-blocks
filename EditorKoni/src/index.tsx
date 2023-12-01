@@ -1,7 +1,7 @@
 import { Col, Row } from 'antd';
 import GGEditor, { Koni } from 'gg-editor';
 
-import { PageContainer } from '@ant-design/pro-layout';
+import { PageContainer } from '@ant-design/pro-components';
 import EditorMinimap from './components/EditorMinimap';
 import { KoniContextMenu } from './components/EditorContextMenu';
 import { KoniDetailPanel } from './components/EditorDetailPanel';

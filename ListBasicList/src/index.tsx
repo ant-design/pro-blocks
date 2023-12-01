@@ -16,7 +16,7 @@ import {
   Row,
 } from 'antd';
 
-import { PageContainer } from '@ant-design/pro-layout';
+import { PageContainer } from '@ant-design/pro-components';
 import { useRequest } from 'umi';
 import moment from 'moment';
 import OperationModal from './components/OperationModal';
