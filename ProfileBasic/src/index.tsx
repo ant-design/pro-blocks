@@ -6,7 +6,7 @@ import React from 'react';
 import { useRequest } from 'umi';
 import type { BasicGood, BasicProgress } from './data.d';
 import { queryBasicProfile } from './service';
-import styles from './style.less';
+import useStyles from './style.style';
 
 const progressColumns: ProColumns<BasicProgress>[] = [
   {
@@ -44,6 +44,7 @@ const progressColumns: ProColumns<BasicProgress>[] = [
 ];
 
 const PAGE_NAME_UPPER_CAMEL_CASE: FC = () => {
+  const { styles } = useStyles();
   const { data, loading } = useRequest(() => {
     return queryBasicProfile();
   });
@@ -173,6 +174,7 @@ const PAGE_NAME_UPPER_CAMEL_CASE: FC = () => {
           columns={goodsColumns}
           rowKey="id"
         />
+
         <div className={styles.title}>退货进度</div>
         <ProTable
           style={{ marginBottom: 16 }}

@@ -22,184 +22,14 @@ import {
 import { GridContent, PageContainer, RouteContext } from '@ant-design/pro-components';
 import type { FC } from 'react';
 import React, { Fragment, useState } from 'react';
-
 import classNames from 'classnames';
 import { useRequest } from 'umi';
 import type { AdvancedProfileData } from './data.d';
 import { queryAdvancedProfile } from './service';
-import styles from './style.less';
+import useStyles from './style.style';
 
 const { Step } = Steps;
 const ButtonGroup = Button.Group;
-
-const menu = (
-  <Menu>
-    <Menu.Item key="1">选项一</Menu.Item>
-    <Menu.Item key="2">选项二</Menu.Item>
-    <Menu.Item key="3">选项三</Menu.Item>
-  </Menu>
-);
-
-const mobileMenu = (
-  <Menu>
-    <Menu.Item key="1">操作一</Menu.Item>
-    <Menu.Item key="2">操作二</Menu.Item>
-    <Menu.Item key="3">选项一</Menu.Item>
-    <Menu.Item key="4">选项二</Menu.Item>
-    <Menu.Item key="">选项三</Menu.Item>
-  </Menu>
-);
-
-const action = (
-  <RouteContext.Consumer>
-    {({ isMobile }) => {
-      if (isMobile) {
-        return (
-          <Dropdown.Button
-            type="primary"
-            icon={<DownOutlined />}
-            overlay={mobileMenu}
-            placement="bottomRight"
-          >
-            主操作
-          </Dropdown.Button>
-        );
-      }
-      return (
-        <Fragment>
-          <ButtonGroup>
-            <Button>操作一</Button>
-            <Button>操作二</Button>
-            <Dropdown overlay={menu} placement="bottomRight">
-              <Button>
-                <EllipsisOutlined />
-              </Button>
-            </Dropdown>
-          </ButtonGroup>
-          <Button type="primary">主操作</Button>
-        </Fragment>
-      );
-    }}
-  </RouteContext.Consumer>
-);
-
-const extra = (
-  <div className={styles.moreInfo}>
-    <Statistic title="状态" value="待审批" />
-    <Statistic title="订单金额" value={568.08} prefix="¥" />
-  </div>
-);
-
-const description = (
-  <RouteContext.Consumer>
-    {({ isMobile }) => (
-      <Descriptions className={styles.headerList} size="small" column={isMobile ? 1 : 2}>
-        <Descriptions.Item label="创建人">曲丽丽</Descriptions.Item>
-        <Descriptions.Item label="订购产品">XX 服务</Descriptions.Item>
-        <Descriptions.Item label="创建时间">2017-07-07</Descriptions.Item>
-        <Descriptions.Item label="关联单据">
-          <a href="">12421</a>
-        </Descriptions.Item>
-        <Descriptions.Item label="生效日期">2017-07-07 ~ 2017-08-08</Descriptions.Item>
-        <Descriptions.Item label="备注">请于两个工作日内确认</Descriptions.Item>
-      </Descriptions>
-    )}
-  </RouteContext.Consumer>
-);
-
-const desc1 = (
-  <div className={classNames(styles.textSecondary, styles.stepDescription)}>
-    <Fragment>
-      曲丽丽
-      <DingdingOutlined style={{ marginLeft: 8 }} />
-    </Fragment>
-    <div>2016-12-12 12:32</div>
-  </div>
-);
-
-const desc2 = (
-  <div className={styles.stepDescription}>
-    <Fragment>
-      周毛毛
-      <DingdingOutlined style={{ color: '#00A0E9', marginLeft: 8 }} />
-    </Fragment>
-    <div>
-      <a href="">催一下</a>
-    </div>
-  </div>
-);
-
-const popoverContent = (
-  <div style={{ width: 160 }}>
-    吴加号
-    <span className={styles.textSecondary} style={{ float: 'right' }}>
-      <Badge status="default" text={<span style={{ color: 'rgba(0, 0, 0, 0.45)' }}>未响应</span>} />
-    </span>
-    <div className={styles.textSecondary} style={{ marginTop: 4 }}>
-      耗时：2小时25分钟
-    </div>
-  </div>
-);
-
-const customDot = (dot: React.ReactNode, { status }: { status: string }) => {
-  if (status === 'process') {
-    return (
-      <Popover placement="topLeft" arrowPointAtCenter content={popoverContent}>
-        <span>{dot}</span>
-      </Popover>
-    );
-  }
-  return dot;
-};
-
-const operationTabList = [
-  {
-    key: 'tab1',
-    tab: '操作日志一',
-  },
-  {
-    key: 'tab2',
-    tab: '操作日志二',
-  },
-  {
-    key: 'tab3',
-    tab: '操作日志三',
-  },
-];
-
-const columns = [
-  {
-    title: '操作类型',
-    dataIndex: 'type',
-    key: 'type',
-  },
-  {
-    title: '操作人',
-    dataIndex: 'name',
-    key: 'name',
-  },
-  {
-    title: '执行结果',
-    dataIndex: 'status',
-    key: 'status',
-    render: (text: string) => {
-      if (text === 'agree') {
-        return <Badge status="success" text="成功" />;
-      }
-      return <Badge status="error" text="驳回" />;
-    },
-  },
-  {
-    title: '操作时间',
-    dataIndex: 'updatedAt',
-    key: 'updatedAt',
-  },
-  {
-    title: '备注',
-    dataIndex: 'memo',
-    key: 'memo',
-  },
-];
 
 type PAGE_NAME_UPPER_CAMEL_CASEState = {
   operationKey: string;
@@ -207,13 +37,186 @@ type PAGE_NAME_UPPER_CAMEL_CASEState = {
 };
 
 const PAGE_NAME_UPPER_CAMEL_CASE: FC = () => {
+  const { styles } = useStyles();
   const [tabStatus, seTabStatus] = useState<PAGE_NAME_UPPER_CAMEL_CASEState>({
     operationKey: 'tab1',
     tabActiveKey: 'detail',
   });
   const { data = {}, loading } = useRequest<{ data: AdvancedProfileData }>(queryAdvancedProfile);
   const { advancedOperation1, advancedOperation2, advancedOperation3 } = data;
-  const contentList = {
+
+  const menu = (
+    <Menu>
+      <Menu.Item key="1">选项一</Menu.Item>
+      <Menu.Item key="2">选项二</Menu.Item>
+      <Menu.Item key="3">选项三</Menu.Item>
+    </Menu>
+  );
+
+  const mobileMenu = (
+    <Menu>
+      <Menu.Item key="1">操作一</Menu.Item>
+      <Menu.Item key="2">操作二</Menu.Item>
+      <Menu.Item key="3">选项一</Menu.Item>
+      <Menu.Item key="4">选项二</Menu.Item>
+      <Menu.Item key="">选项三</Menu.Item>
+    </Menu>
+  );
+
+  const action = (
+    <RouteContext.Consumer>
+      {({ isMobile }) => {
+        if (isMobile) {
+          return (
+            <Dropdown.Button
+              type="primary"
+              icon={<DownOutlined />}
+              overlay={mobileMenu}
+              placement="bottomRight"
+            >
+              主操作
+            </Dropdown.Button>
+          );
+        }
+        return (
+          <Fragment>
+            <ButtonGroup>
+              <Button>操作一</Button>
+              <Button>操作二</Button>
+              <Dropdown overlay={menu} placement="bottomRight">
+                <Button>
+                  <EllipsisOutlined />
+                </Button>
+              </Dropdown>
+            </ButtonGroup>
+            <Button type="primary">主操作</Button>
+          </Fragment>
+        );
+      }}
+    </RouteContext.Consumer>
+  );
+
+  const extra = (
+    <div className={styles.moreInfo}>
+      <Statistic title="状态" value="待审批" />
+      <Statistic title="订单金额" value={568.08} prefix="¥" />
+    </div>
+  );
+
+  const description = (
+    <RouteContext.Consumer>
+      {({ isMobile }) => (
+        <Descriptions className={styles.headerList} size="small" column={isMobile ? 1 : 2}>
+          <Descriptions.Item label="创建人">曲丽丽</Descriptions.Item>
+          <Descriptions.Item label="订购产品">XX 服务</Descriptions.Item>
+          <Descriptions.Item label="创建时间">2017-07-07</Descriptions.Item>
+          <Descriptions.Item label="关联单据">
+            <a href="">12421</a>
+          </Descriptions.Item>
+          <Descriptions.Item label="生效日期">2017-07-07 ~ 2017-08-08</Descriptions.Item>
+          <Descriptions.Item label="备注">请于两个工作日内确认</Descriptions.Item>
+        </Descriptions>
+      )}
+    </RouteContext.Consumer>
+  );
+
+  const desc1 = (
+    <div className={classNames(styles.textSecondary, styles.stepDescription)}>
+      <Fragment>
+        曲丽丽
+        <DingdingOutlined style={{ marginLeft: 8 }} />
+      </Fragment>
+      <div>2016-12-12 12:32</div>
+    </div>
+  );
+
+  const desc2 = (
+    <div className={styles.stepDescription}>
+      <Fragment>
+        周毛毛
+        <DingdingOutlined style={{ color: '#00A0E9', marginLeft: 8 }} />
+      </Fragment>
+      <div>
+        <a href="">催一下</a>
+      </div>
+    </div>
+  );
+
+  const popoverContent = (
+    <div style={{ width: 160 }}>
+      吴加号
+      <span className={styles.textSecondary} style={{ float: 'right' }}>
+        <Badge
+          status="default"
+          text={<span style={{ color: 'rgba(0, 0, 0, 0.45)' }}>未响应</span>}
+        />
+      </span>
+      <div className={styles.textSecondary} style={{ marginTop: 4 }}>
+        耗时：2小时25分钟
+      </div>
+    </div>
+  );
+
+  const customDot = (dot: React.ReactNode, { status }: { status: string }) => {
+    if (status === 'process') {
+      return (
+        <Popover placement="topLeft" arrowPointAtCenter content={popoverContent}>
+          <span>{dot}</span>
+        </Popover>
+      );
+    }
+    return dot;
+  };
+
+  const operationTabList = [
+    {
+      key: 'tab1',
+      tab: '操作日志一',
+    },
+    {
+      key: 'tab2',
+      tab: '操作日志二',
+    },
+    {
+      key: 'tab3',
+      tab: '操作日志三',
+    },
+  ];
+
+  const columns = [
+    {
+      title: '操作类型',
+      dataIndex: 'type',
+      key: 'type',
+    },
+    {
+      title: '操作人',
+      dataIndex: 'name',
+      key: 'name',
+    },
+    {
+      title: '执行结果',
+      dataIndex: 'status',
+      key: 'status',
+      render: (text: string) => {
+        if (text === 'agree') {
+          return <Badge status="success" text="成功" />;
+        }
+        return <Badge status="error" text="驳回" />;
+      },
+    },
+    {
+      title: '操作时间',
+      dataIndex: 'updatedAt',
+      key: 'updatedAt',
+    },
+    {
+      title: '备注',
+      dataIndex: 'memo',
+      key: 'memo',
+    },
+  ];
+  const contentList: any = {
     tab1: (
       <Table
         pagination={false}
@@ -222,6 +225,7 @@ const PAGE_NAME_UPPER_CAMEL_CASE: FC = () => {
         columns={columns}
       />
     ),
+
     tab2: (
       <Table
         pagination={false}
@@ -230,6 +234,7 @@ const PAGE_NAME_UPPER_CAMEL_CASE: FC = () => {
         columns={columns}
       />
     ),
+
     tab3: (
       <Table
         pagination={false}
@@ -339,12 +344,7 @@ const PAGE_NAME_UPPER_CAMEL_CASE: FC = () => {
           <Card title="用户近半年来电记录" style={{ marginBottom: 24 }} bordered={false}>
             <Empty />
           </Card>
-          <Card
-            className={styles.tabsCard}
-            bordered={false}
-            tabList={operationTabList}
-            onTabChange={onOperationTabChange}
-          >
+          <Card bordered={false} tabList={operationTabList} onTabChange={onOperationTabChange}>
             {contentList[tabStatus.operationKey]}
           </Card>
         </GridContent>

@@ -1,26 +1,27 @@
 import { Button, Result } from 'antd';
-import { Link } from 'umi';
+import { Link, useLocation } from 'umi';
 import React from 'react';
 import type { RouteChildrenProps } from 'react-router';
-
-import styles from './style.less';
-
-const actions = (
-  <div className={styles.actions}>
-    <a href="">
-      <Button size="large" type="primary">
-        <span>查看邮箱</span>
-      </Button>
-    </a>
-    <Link to="/">
-      <Button size="large">返回首页</Button>
-    </Link>
-  </div>
-);
+import useStyles from './style.style';
 
 export type LocationState = Record<string, unknown>;
 
-const PAGE_NAME_UPPER_CAMEL_CASE: React.FC<RouteChildrenProps> = ({ location }) => {
+const PAGE_NAME_UPPER_CAMEL_CASE: React.FC<RouteChildrenProps> = () => {
+  const { styles } = useStyles();
+  const location = useLocation();
+  const actions = (
+    <div className={styles.actions}>
+      <a href="">
+        <Button size="large" type="primary">
+          <span>查看邮箱</span>
+        </Button>
+      </a>
+      <Link to="/">
+        <Button size="large">返回首页</Button>
+      </Link>
+    </div>
+  );
+
   const email = location.state
     ? (location.state as LocationState).account
     : 'AntDesign@example.com';

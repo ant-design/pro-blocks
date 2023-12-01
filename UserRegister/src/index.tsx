@@ -6,29 +6,11 @@ import { Link, useRequest, history } from 'umi';
 import type { StateType } from './service';
 import { fakeRegister } from './service';
 
-import styles from './style.less';
+import useStyles from './style.style';
 
 const FormItem = Form.Item;
 const { Option } = Select;
 const InputGroup = Input.Group;
-
-const passwordStatusMap = {
-  ok: (
-    <div className={styles.success}>
-      <span>强度：强</span>
-    </div>
-  ),
-  pass: (
-    <div className={styles.warning}>
-      <span>强度：中</span>
-    </div>
-  ),
-  poor: (
-    <div className={styles.error}>
-      <span>强度：太短</span>
-    </div>
-  ),
-};
 
 const passwordProgressMap: {
   ok: 'success';
@@ -41,6 +23,27 @@ const passwordProgressMap: {
 };
 
 const PAGE_NAME_UPPER_CAMEL_CASE: FC = () => {
+  const { styles } = useStyles();
+
+  const passwordStatusMap = {
+    ok: (
+      <div className={styles.success}>
+        <span>强度：强</span>
+      </div>
+    ),
+
+    pass: (
+      <div className={styles.warning}>
+        <span>强度：中</span>
+      </div>
+    ),
+
+    poor: (
+      <div className={styles.error}>
+        <span>强度：太短</span>
+      </div>
+    ),
+  };
   const [count, setCount]: [number, any] = useState(0);
   const [visible, setVisible]: [boolean, any] = useState(false);
   const [prefix, setPrefix]: [string, any] = useState('86');
