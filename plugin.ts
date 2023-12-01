@@ -27,8 +27,9 @@ export default (api: IApi) => {
   api.modifyRoutes(() => {
     let routers = {} as any;
     components.forEach((pagePath) => {
-      const path = pagePath.toLocaleLowerCase();
-      routers[path] = {
+      // 临时调试方便
+      const path = name ? '/' : pagePath.toLocaleLowerCase();
+      routers['path'] = {
         path,
         id: path,
         file: join(api.cwd, pagePath, './src/index'),

@@ -4,11 +4,12 @@ import { PageContainer } from '@ant-design/pro-components';
 import { useRequest } from 'umi';
 import { queryFakeList } from './service';
 import type { CardListItemDataType } from './data.d';
-import styles from './style.less';
+import useStyles from './style.style';
 
 const { Paragraph } = Typography;
 
 const PAGE_NAME_UPPER_CAMEL_CASE = () => {
+  const { styles } = useStyles();
   const { data, loading } = useRequest(() => {
     return queryFakeList({
       count: 8,
@@ -48,6 +49,7 @@ const PAGE_NAME_UPPER_CAMEL_CASE = () => {
       />
     </div>
   );
+
   const nullData: Partial<CardListItemDataType> = {};
   return (
     <PageContainer content={content} extraContent={extraContent}>
