@@ -10,7 +10,7 @@ import React from 'react';
 import numeral from 'numeral';
 import type { ListItemDataType } from '../../data.d';
 import { queryFakeList } from '../../service';
-import stylesApplications from './index.less';
+import useStyles from './index.style';
 
 export function formatWan(val: number) {
   const v = val * 1;
@@ -39,6 +39,7 @@ export function formatWan(val: number) {
 }
 
 const Applications: React.FC = () => {
+  const { styles } = useStyles();
   // 获取tab列表数据
   const { data: listData } = useRequest(() => {
     return queryFakeList({
@@ -65,11 +66,12 @@ const Applications: React.FC = () => {
       </Menu.Item>
     </Menu>
   );
+
   const CardInfo: React.FC<{
     activeUser: React.ReactNode;
     newUser: React.ReactNode;
   }> = ({ activeUser, newUser }) => (
-    <div className={stylesApplications.cardInfo}>
+    <div className={styles.cardInfo}>
       <div>
         <p>活跃用户</p>
         <p>{activeUser}</p>
@@ -80,10 +82,11 @@ const Applications: React.FC = () => {
       </div>
     </div>
   );
+
   return (
     <List<ListItemDataType>
       rowKey="id"
-      className={stylesApplications.filterCardList}
+      className={styles.filterCardList}
       grid={{ gutter: 24, xxl: 3, xl: 2, lg: 2, md: 2, sm: 2, xs: 1 }}
       dataSource={listData?.list || []}
       renderItem={(item) => (
@@ -101,13 +104,13 @@ const Applications: React.FC = () => {
               <Tooltip title="分享" key="share">
                 <ShareAltOutlined />
               </Tooltip>,
-              <Dropdown overlay={itemMenu} key="ellipsis">
+              <Dropdown menu={itemMenu} key="ellipsis">
                 <EllipsisOutlined />
               </Dropdown>,
             ]}
           >
             <Card.Meta avatar={<Avatar size="small" src={item.avatar} />} title={item.title} />
-            <div className={stylesApplications.cardItemContent}>
+            <div className={styles.cardItemContent}>
               <CardInfo
                 activeUser={formatWan(item.activeUser)}
                 newUser={numeral(item.newUser).format('0,0')}

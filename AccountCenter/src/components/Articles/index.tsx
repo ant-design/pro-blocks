@@ -5,9 +5,10 @@ import { List, Tag } from 'antd';
 import ArticleListContent from '../ArticleListContent';
 import type { ListItemDataType } from '../../data.d';
 import { queryFakeList } from '../../service';
-import styles from './index.less';
+import useStyles from './index.style';
 
 const Articles: React.FC = () => {
+  const { styles } = useStyles();
   const IconText: React.FC<{
     icon: React.ReactNode;
     text: React.ReactNode;
@@ -53,6 +54,7 @@ const Articles: React.FC = () => {
               </span>
             }
           />
+
           <ArticleListContent data={item} />
         </List.Item>
       )}
