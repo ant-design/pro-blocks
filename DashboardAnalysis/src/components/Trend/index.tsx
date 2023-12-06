@@ -11,14 +11,8 @@ export type TrendProps = {
   className?: string;
 };
 
-const Trend: React.FC<TrendProps> = ({
-  colorful = true,
-  reverseColor = false,
-  flag,
-  children,
-  className,
-  ...rest
-}) => {
+const Trend = (props: React.PropsWithChildren<TrendProps>) => {
+  const { colorful = true, reverseColor = false, flag, children, className, ...rest } = props;
   const { styles } = useStyles();
   const classString = classNames(
     styles.trendItem,
