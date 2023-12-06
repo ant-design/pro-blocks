@@ -1,7 +1,7 @@
 import React from 'react';
 
 export type IReactComponent<P = any> =
-  | React.StatelessComponent<P>
+  | React.FunctionComponent<P>
   | React.ComponentClass<P>
   | React.ClassicComponentClass<P>;
 
