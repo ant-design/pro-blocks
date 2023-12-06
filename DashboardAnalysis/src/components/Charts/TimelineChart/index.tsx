@@ -4,7 +4,7 @@ import DataSet from '@antv/data-set';
 import React from 'react';
 import Slider from 'bizcharts-plugin-slider';
 import autoHeight from '../autoHeight';
-import useStyles from './index.style';
+// import useStyles from './index.style';
 
 export type TimelineChartProps = {
   data: {
@@ -21,7 +21,7 @@ export type TimelineChartProps = {
 };
 
 const TimelineChart: React.FC<TimelineChartProps> = (props) => {
-  const { styles } = useStyles();
+  const { styles } = /* useStyles(); */ { styles: {} as any };
   const {
     title,
     height = 400,
