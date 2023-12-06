@@ -2,32 +2,32 @@ import { DownOutlined, UpOutlined } from '@ant-design/icons';
 import { useBoolean, useControllableValue } from 'ahooks';
 import { Tag } from 'antd';
 import classNames from 'classnames';
-import type { FC } from 'react';
 import React from 'react';
 import useStyles from './index.style';
 
 const { CheckableTag } = Tag;
 
-export interface TagSelectOptionProps {
+export type TagSelectOptionProps = React.PropsWithChildren<{
   value: string | number;
   style?: React.CSSProperties;
   checked?: boolean;
   onChange?: (value: string | number, state: boolean) => void;
-}
+}>;
 
-const TagSelectOption: React.FC<TagSelectOptionProps> & {
-  isTagSelectOption: boolean;
-} = ({ children, checked, onChange, value }) => (
-  <CheckableTag
-    checked={!!checked}
-    key={value}
-    onChange={(state) => onChange && onChange(value, state)}
-  >
-    {children}
-  </CheckableTag>
+const TagSelectOption = Object.assign(
+  function TagSelectOption(props: TagSelectOptionProps) {
+    const { checked, value, onChange, children } = props;
+    return (
+      <CheckableTag checked={!!checked} key={value} onChange={(state) => onChange?.(value, state)}>
+        {children}
+      </CheckableTag>
+    );
+  },
+  {
+    isTagSelectOption: true,
+    displayName: 'TagSelectOption',
+  },
 );
-
-TagSelectOption.isTagSelectOption = true;
 
 type TagSelectOptionElement = React.ReactElement<TagSelectOptionProps, typeof TagSelectOption>;
 export interface TagSelectProps {
@@ -47,7 +47,7 @@ export interface TagSelectProps {
   children?: TagSelectOptionElement | TagSelectOptionElement[];
 }
 
-const TagSelect: FC<TagSelectProps> & { Option: typeof TagSelectOption } = (props) => {
+const TagSelect = (props: TagSelectProps) => {
   const { styles } = useStyles();
   const { children, hideCheckAll = false, className, style, expandable, actionsText = {} } = props;
 
@@ -139,6 +139,4 @@ const TagSelect: FC<TagSelectProps> & { Option: typeof TagSelectOption } = (prop
   );
 };
 
-TagSelect.Option = TagSelectOption;
-
-export default TagSelect;
+export default Object.assign(TagSelect, { Option: TagSelectOption });

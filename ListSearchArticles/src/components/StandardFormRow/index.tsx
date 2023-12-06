@@ -10,14 +10,8 @@ type StandardFormRowProps = {
   style?: React.CSSProperties;
 };
 
-const StandardFormRow: React.FC<StandardFormRowProps> = ({
-  title,
-  children,
-  last,
-  block,
-  grid,
-  ...rest
-}) => {
+const StandardFormRow = (props: React.PropsWithChildren<StandardFormRowProps>) => {
+  const { title, children, last, block, grid, ...rest } = props;
   const { styles } = useStyles();
   const cls = classNames(styles.standardFormRow, {
     [styles.standardFormRowBlock]: block,
