@@ -201,7 +201,7 @@ const PAGE_NAME_UPPER_CAMEL_CASE: FC = () => {
             title="XX 指数"
             loading={data?.radarData?.length === 0}
           >
-            <div className={styles.chart}>
+            <div>
               <Radar
                 height={343}
                 data={data?.radarData || []}

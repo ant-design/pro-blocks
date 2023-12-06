@@ -45,11 +45,7 @@ const PAGE_NAME_UPPER_CAMEL_CASE: FC = () => {
           <Card className={styles.card} hoverable cover={<img alt={item.title} src={item.cover} />}>
             <Card.Meta
               title={<a>{item.title}</a>}
-              description={
-                <Paragraph className={styles.item} ellipsis={{ rows: 2 }}>
-                  {item.subDescription}
-                </Paragraph>
-              }
+              description={<Paragraph ellipsis={{ rows: 2 }}>{item.subDescription}</Paragraph>}
             />
 
             <div className={styles.cardItemContent}>
