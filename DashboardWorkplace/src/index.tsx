@@ -85,10 +85,12 @@ const PAGE_NAME_UPPER_CAMEL_CASE: FC = () => {
   const { styles } = useStyles();
   const renderActivities = (item: ActivitiesType) => {
     const events = item.template.split(/@\{([^{}]*)\}/gi).map((key) => {
-      if (item[key]) {
+      // fixme: 这里总感觉很奇怪... 不过应该没啥大毛病
+      const anyItem: any = { ...item };
+      if (anyItem[key]) {
         return (
-          <a href={item[key].link} key={item[key].name}>
-            {item[key].name}
+          <a href={anyItem[key].link} key={anyItem[key].name}>
+            {anyItem[key].name}
           </a>
         );
       }
