@@ -66,8 +66,8 @@ const TimelineChart: React.FC<TimelineChartProps> = (props) => {
       type: 'map',
       callback(row: { y1: string; y2: string }) {
         const newRow = { ...row };
-        newRow[titleMap.y1] = row.y1;
-        newRow[titleMap.y2] = row.y2;
+        newRow[titleMap.y1 as keyof typeof row] = row.y1;
+        newRow[titleMap.y2 as keyof typeof row] = row.y2;
         return newRow;
       },
     })
