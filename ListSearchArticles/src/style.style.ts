@@ -2,7 +2,7 @@ import { createStyles } from 'antd-style';
 
 const useStyles = createStyles(({ token }) => {
   return {
-    'a.listItemMetaTitle': {
+    listItemMetaTitle: {
       color: token.colorTextHeading,
     },
     listItemExtra: {

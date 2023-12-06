@@ -41,9 +41,11 @@ const StepDescriptions: React.FC<{
   );
 };
 
-const StepResult: React.FC<{
-  onFinish: () => Promise<void>;
-}> = (props) => {
+const StepResult = (
+  props: React.PropsWithChildren<{
+    onFinish: () => Promise<void>;
+  }>,
+) => {
   const { styles } = useStyles();
   return (
     <Result
@@ -188,7 +190,7 @@ const PAGE_NAME_UPPER_CAMEL_CASE: React.FC<Record<string, any>> = () => {
           </StepsForm.StepForm>
         </StepsForm>
         <Divider style={{ margin: '40px 0 24px' }} />
-        <div className={styles.desc}>
+        <div>
           <h3>说明</h3>
           <h4>转账到支付宝账户</h4>
           <p>
