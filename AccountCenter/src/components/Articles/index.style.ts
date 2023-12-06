@@ -5,7 +5,7 @@ const useStyles = createStyles(({ token }) => {
     articleList: {
       '.ant-list-item:first-child': { paddingTop: '0' },
     },
-    'a.listItemMetaTitle': {
+    listItemMetaTitle: {
       color: token.colorTextHeading,
     },
   };
