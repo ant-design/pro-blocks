@@ -1,4 +1,3 @@
-import type { FC } from 'react';
 import {
   ModalForm,
   ProFormSelect,
@@ -9,6 +8,7 @@ import {
 import type { BasicListItemDataType } from '../data.d';
 import useStyles from '../style.style';
 import { Button, Result } from 'antd';
+import React from 'react';
 
 type OperationModalProps = {
   done: boolean;
@@ -18,7 +18,7 @@ type OperationModalProps = {
   onSubmit: (values: BasicListItemDataType) => void;
 };
 
-const OperationModal: FC<OperationModalProps> = (props) => {
+const OperationModal = (props: React.PropsWithChildren<OperationModalProps>) => {
   const { styles } = useStyles();
   const { done, visible, current, onDone, onSubmit, children } = props;
   if (!visible) {

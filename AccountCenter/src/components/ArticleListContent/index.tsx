@@ -17,7 +17,7 @@ const ArticleListContent: React.FC<ApplicationsProps> = ({
 }) => {
   const { styles } = useStyles();
   return (
-    <div className={styles.listContent}>
+    <div>
       <div className={styles.description}>{content}</div>
       <div className={styles.extra}>
         <Avatar src={avatar} size="small" />

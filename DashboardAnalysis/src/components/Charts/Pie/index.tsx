@@ -7,7 +7,8 @@ import { Divider } from 'antd';
 import ReactFitText from 'react-fittext';
 import classNames from 'classnames';
 import autoHeight from '../autoHeight';
-import styles from './index.less';
+// import styles from './index.less';
+const styles = {} as any;
 
 export type PieProps = {
   animate?: boolean;
@@ -141,7 +142,7 @@ class Pie extends Component<PieProps, PieState> {
     newItem.checked = !newItem.checked;
 
     const { legendData } = this.state;
-    legendData[i] = newItem;
+    legendData[Number(i)] = newItem;
 
     const filteredLegendData = legendData.filter((l) => l.checked).map((l) => l.x);
 

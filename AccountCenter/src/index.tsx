@@ -1,5 +1,5 @@
 import { PlusOutlined, HomeOutlined, ContactsOutlined, ClusterOutlined } from '@ant-design/icons';
-import { Avatar, Card, Col, Divider, Input, Row, Tag } from 'antd';
+import { Avatar, Card, Col, Divider, Input, Row, Tag, InputRef } from 'antd';
 import React, { useState, useRef } from 'react';
 import { GridContent } from '@ant-design/pro-components';
 import { Link, useRequest } from '@umijs/max';
@@ -40,7 +40,7 @@ const operationTabList = [
 
 const TagList: React.FC<{ tags: CurrentUser['tags'] }> = ({ tags }) => {
   const { styles } = useStyles();
-  const ref = useRef<Input | null>(null);
+  const ref = useRef<InputRef>(null);
   const [newTags, setNewTags] = useState<TagType[]>([]);
   const [inputVisible, setInputVisible] = useState<boolean>(false);
   const [inputValue, setInputValue] = useState<string>('');

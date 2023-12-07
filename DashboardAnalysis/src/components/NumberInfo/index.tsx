@@ -27,12 +27,7 @@ const NumberInfo: React.FC<NumberInfoProps> = ({
 }) => {
   const { styles } = useStyles();
   return (
-    <div
-      className={classNames(styles.numberInfo, {
-        [styles[`numberInfo${theme}`]]: theme,
-      })}
-      {...rest}
-    >
+    <div className={classNames(styles[`numberInfo${theme}` as keyof typeof styles])} {...rest}>
       {title && (
         <div className={styles.numberInfoTitle} title={typeof title === 'string' ? title : ''}>
           {title}

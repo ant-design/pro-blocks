@@ -67,7 +67,7 @@
   "devDependencies": {
     "@types/classnames": "^2.2.7",
     "@types/numeral": "^0.0.28",
-    "@types/react": "17.0.30",
+    "@types/react": "18.2.42",
     "@types/react-dom": "^17.0.25",
     "cross-env": "^7.0.0",
     "eslint": "^8.35.0",

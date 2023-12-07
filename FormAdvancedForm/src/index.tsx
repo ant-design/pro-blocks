@@ -85,11 +85,11 @@ const PAGE_NAME_UPPER_CAMEL_CASE: FC<Record<string, any>> = () => {
       if (!err || err.errors.length === 0) {
         return null;
       }
-      const key = err.name[0] as string;
+      const key = err.name[0] as keyof typeof fieldLabels;
       return (
         <li key={key} className={styles.errorListItem} onClick={() => scrollToField(key)}>
           <CloseCircleOutlined className={styles.errorIcon} />
-          <div className={styles.errorMessage}>{err.errors[0]}</div>
+          <div>{err.errors[0]}</div>
           <div className={styles.errorField}>{fieldLabels[key]}</div>
         </li>
       );

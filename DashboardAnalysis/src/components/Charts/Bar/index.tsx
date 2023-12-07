@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 
 import Debounce from 'lodash.debounce';
 import autoHeight from '../autoHeight';
-import styles from '../index.less';
+// import styles from '../index.less';
 
 export type BarProps = {
   title: React.ReactNode;
@@ -104,7 +104,7 @@ class Bar extends Component<
     ];
 
     return (
-      <div className={styles.chart} style={{ height }} ref={this.handleRoot}>
+      <div style={{ height }} ref={this.handleRoot}>
         <div ref={this.handleRef}>
           {title && <h4 style={{ marginBottom: 20 }}>{title}</h4>}
           <Chart

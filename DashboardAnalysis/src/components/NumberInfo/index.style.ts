@@ -11,7 +11,8 @@ const useStyles = createStyles(({ token }) => {
     numberInfoTitle: {
       marginBottom: '16px',
       color: token.colorText,
-      fontSize: token['font-size-lg'],
+      // fontSize: token['font-size-lg'],
+      fontSize: `${token.fontSizeLG}px`,
       transition: 'all 0.3s',
     },
     numberInfoSubTitle: {
@@ -36,7 +37,8 @@ const useStyles = createStyles(({ token }) => {
     subTotal: {
       marginRight: '0',
       color: token.colorTextSecondary,
-      fontSize: token['font-size-lg'],
+      // fontSize: token['font-size-lg'],
+      fontSize: `${token.fontSizeLG}px`,
       verticalAlign: 'top',
     },
     anticon: {

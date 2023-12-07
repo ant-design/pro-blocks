@@ -5,7 +5,8 @@ import DataSet from '@antv/data-set';
 import Debounce from 'lodash.debounce';
 import classNames from 'classnames';
 import autoHeight from '../autoHeight';
-import styles from './index.less';
+// import styles from './index.less';
+const styles: any = {};
 
 /* eslint no-underscore-dangle: 0 */
 /* eslint no-param-reassign: 0 */

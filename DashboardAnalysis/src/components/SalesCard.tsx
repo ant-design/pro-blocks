@@ -1,13 +1,14 @@
 import { Card, Col, DatePicker, Row, Tabs } from 'antd';
 import type { RangePickerProps } from 'antd/es/date-picker/generatePicker';
-import type moment from 'moment';
+// import type moment from 'moment';
 import { Column } from '@ant-design/charts';
 
 import numeral from 'numeral';
 import type { DataItem } from '../data.d';
 import useStyles from '../style.style';
 
-type RangePickerValue = RangePickerProps<moment.Moment>['value'];
+// FIXME: antd5 已经升级为 dayjs 了
+type RangePickerValue = RangePickerProps<any>['value'];
 export type TimeType = 'today' | 'week' | 'month' | 'year';
 
 const { RangePicker } = DatePicker;
@@ -21,21 +22,18 @@ for (let i = 0; i < 7; i += 1) {
   });
 }
 
-const SalesCard = ({
-  rangePickerValue,
-  salesData,
-  isActive,
-  handleRangePickerChange,
-  loading,
-  selectDate,
-}: {
-  rangePickerValue?: RangeValue<DateType>;
+interface SalesCardProps {
+  rangePickerValue?: RangePickerValue;
   isActive: (key: TimeType) => string;
   salesData: DataItem[];
   loading: boolean;
   handleRangePickerChange: (dates: RangePickerValue, dateStrings: [string, string]) => void;
   selectDate: (key: TimeType) => void;
-}) => {
+}
+
+const SalesCard = (props: SalesCardProps) => {
+  const { rangePickerValue, salesData, isActive, handleRangePickerChange, loading, selectDate } =
+    props;
   const { styles } = useStyles();
   return (
     <Card loading={loading} bordered={false} bodyStyle={{ padding: 0 }}>

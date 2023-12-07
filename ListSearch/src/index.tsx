@@ -1,6 +1,6 @@
 import { PageContainer } from '@ant-design/pro-components';
 import { Input } from 'antd';
-import type { FC } from 'react';
+import React from 'react';
 import { history } from 'umi';
 
 type PAGE_NAME_UPPER_CAMEL_CASEProps = {
@@ -28,7 +28,9 @@ const tabList = [
   },
 ];
 
-const PAGE_NAME_UPPER_CAMEL_CASE: FC<PAGE_NAME_UPPER_CAMEL_CASEProps> = (props) => {
+const PAGE_NAME_UPPER_CAMEL_CASE = (
+  props: React.PropsWithChildren<PAGE_NAME_UPPER_CAMEL_CASEProps>,
+) => {
   const handleTabChange = (key: string) => {
     const { match } = props;
     const url = match.url === '/' ? '' : match.url;
