@@ -1,5 +1,5 @@
+// @ts-ignore
 import { CanvasPanel, DetailPanel, NodePanel } from 'gg-editor';
-
 import { Card } from 'antd';
 import DetailForm from './DetailForm';
 import useStyles from './index.style';

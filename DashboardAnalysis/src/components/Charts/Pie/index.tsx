@@ -1,9 +1,10 @@
 import { Chart, Coord, Geom, Tooltip } from 'bizcharts';
 import React, { Component } from 'react';
-
+// @ts-ignore
 import { DataView } from '@antv/data-set';
 import Debounce from 'lodash.debounce';
 import { Divider } from 'antd';
+// @ts-ignore
 import ReactFitText from 'react-fittext';
 import classNames from 'classnames';
 import autoHeight from '../autoHeight';

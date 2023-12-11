@@ -1,3 +1,4 @@
+// @ts-ignore
 import { Command } from 'gg-editor';
 import React from 'react';
 import { Tooltip } from 'antd';

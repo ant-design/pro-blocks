@@ -1,7 +1,7 @@
 import { PageContainer } from '@ant-design/pro-components';
 import { Input } from 'antd';
 import React from 'react';
-import { history } from 'umi';
+import { history } from '@umijs/max';
 
 type PAGE_NAME_UPPER_CAMEL_CASEProps = {
   match: {

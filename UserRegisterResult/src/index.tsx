@@ -1,5 +1,5 @@
 import { Button, Result } from 'antd';
-import { Link, useLocation } from 'umi';
+import { Link, useLocation } from '@umijs/max';
 import React from 'react';
 import type { RouteChildrenProps } from 'react-router';
 import useStyles from './style.style';

@@ -17,7 +17,7 @@ import {
 } from 'antd';
 
 import { PageContainer } from '@ant-design/pro-components';
-import { useRequest } from 'umi';
+import { useRequest } from '@umijs/max';
 import moment from 'moment';
 import OperationModal from './components/OperationModal';
 import { addFakeList, queryFakeList, removeFakeList, updateFakeList } from './service';

@@ -9,7 +9,7 @@ import {
   ProFormText,
   ProFormTextArea,
 } from '@ant-design/pro-components';
-import { useRequest } from 'umi';
+import { useRequest } from '@umijs/max';
 import type { FC } from 'react';
 import { PageContainer } from '@ant-design/pro-components';
 import { fakeSubmitForm } from './service';

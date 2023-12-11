@@ -1,3 +1,4 @@
+// @ts-ignore
 import { Item, ItemPanel } from 'gg-editor';
 
 import { Card } from 'antd';

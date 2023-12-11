@@ -1,5 +1,5 @@
+// @ts-ignore
 import { Item, ItemPanel } from 'gg-editor';
-
 import { Card } from 'antd';
 import useStyles from './index.style';
 

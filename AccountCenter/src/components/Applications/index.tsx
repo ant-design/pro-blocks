@@ -4,7 +4,7 @@ import {
   EllipsisOutlined,
   ShareAltOutlined,
 } from '@ant-design/icons';
-import { useRequest } from 'umi';
+import { useRequest } from '@umijs/max';
 import { Avatar, Card, Dropdown, List, Menu, Tooltip } from 'antd';
 import React from 'react';
 import numeral from 'numeral';

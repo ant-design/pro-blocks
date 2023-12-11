@@ -1,4 +1,5 @@
 import { Col, Row } from 'antd';
+// @ts-ignore
 import GGEditor, { Koni } from 'gg-editor';
 import { PageContainer } from '@ant-design/pro-components';
 import EditorMinimap from './components/EditorMinimap';

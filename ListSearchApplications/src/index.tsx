@@ -8,7 +8,7 @@ import { Avatar, Card, Col, Dropdown, Form, List, Menu, Row, Select, Tooltip } f
 import numeral from 'numeral';
 import type { FC } from 'react';
 import React from 'react';
-import { useRequest } from 'umi';
+import { useRequest } from '@umijs/max';
 import StandardFormRow from './components/StandardFormRow';
 import TagSelect from './components/TagSelect';
 import type { ListItemDataType } from './data.d';

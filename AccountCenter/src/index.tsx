@@ -3,6 +3,7 @@ import { Avatar, Card, Col, Divider, Input, Row, Tag, InputRef } from 'antd';
 import React, { useState, useRef } from 'react';
 import { GridContent } from '@ant-design/pro-components';
 import { Link, useRequest } from '@umijs/max';
+// @ts-ignore
 import type { RouteChildrenProps } from 'react-router';
 import Projects from './components/Projects';
 import Articles from './components/Articles';

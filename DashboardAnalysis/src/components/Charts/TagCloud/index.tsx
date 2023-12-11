@@ -133,13 +133,17 @@ class TagCloud extends Component<TagCloudProps, TagCloudState> {
         type: 'tag-cloud',
         fields: ['name', 'value'],
         imageMask: this.imageMask,
+        // @ts-ignore
         font: 'Verdana',
+        // @ts-ignore
         size: [w, h], // 宽高设置最好根据 imageMask 做调整
         padding: 0,
         timeInterval: 5000, // max execute time
+        // @ts-ignore
         rotate() {
           return 0;
         },
+        // @ts-ignore
         fontSize(d: { value: number }) {
           const size = ((d.value - min) / (max - min)) ** 2;
           return size * (17.5 - 5) + 5;

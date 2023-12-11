@@ -2,7 +2,7 @@ import { LikeOutlined, LoadingOutlined, MessageOutlined, StarOutlined } from '@a
 import { Button, Card, Col, Form, List, Row, Select, Tag } from 'antd';
 import type { FC } from 'react';
 import React from 'react';
-import { useRequest } from 'umi';
+import { useRequest } from '@umijs/max';
 import ArticleListContent from './components/ArticleListContent';
 import StandardFormRow from './components/StandardFormRow';
 import TagSelect from './components/TagSelect';

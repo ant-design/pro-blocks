@@ -1,7 +1,7 @@
 import type { FC } from 'react';
 import { Avatar, Card, Col, List, Skeleton, Row, Statistic } from 'antd';
 import { Radar } from '@ant-design/charts';
-import { Link, useRequest } from 'umi';
+import { Link, useRequest } from '@umijs/max';
 import { PageContainer } from '@ant-design/pro-components';
 import moment from 'moment';
 import EditableLinkGroup from './components/EditableLinkGroup';

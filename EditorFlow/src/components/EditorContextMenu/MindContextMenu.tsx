@@ -1,5 +1,5 @@
+// @ts-ignore
 import { CanvasMenu, ContextMenu, NodeMenu } from 'gg-editor';
-
 import MenuItem from './MenuItem';
 import useStyles from './index.style';
 

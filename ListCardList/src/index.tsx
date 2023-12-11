@@ -1,7 +1,7 @@
 import { PlusOutlined } from '@ant-design/icons';
 import { Button, Card, List, Typography } from 'antd';
 import { PageContainer } from '@ant-design/pro-components';
-import { useRequest } from 'umi';
+import { useRequest } from '@umijs/max';
 import { queryFakeList } from './service';
 import type { CardListItemDataType } from './data.d';
 import useStyles from './style.style';

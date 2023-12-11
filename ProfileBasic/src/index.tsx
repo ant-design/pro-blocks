@@ -3,7 +3,7 @@ import type { ProColumns } from '@ant-design/pro-components';
 import { Badge, Card, Descriptions, Divider } from 'antd';
 import type { FC } from 'react';
 import React from 'react';
-import { useRequest } from 'umi';
+import { useRequest } from '@umijs/max';
 import type { BasicGood, BasicProgress } from './data.d';
 import { queryBasicProfile } from './service';
 import useStyles from './style.style';

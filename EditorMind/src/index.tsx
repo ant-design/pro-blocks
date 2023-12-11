@@ -1,4 +1,5 @@
 import { Col, Row } from 'antd';
+// @ts-ignore
 import GGEditor, { Mind } from 'gg-editor';
 
 import { PageContainer } from '@ant-design/pro-components';

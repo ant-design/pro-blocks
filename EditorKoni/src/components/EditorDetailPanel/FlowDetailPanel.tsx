@@ -1,3 +1,4 @@
+// @ts-ignore
 import { CanvasPanel, DetailPanel, EdgePanel, GroupPanel, MultiPanel, NodePanel } from 'gg-editor';
 
 import { Card } from 'antd';

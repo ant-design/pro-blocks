@@ -1,5 +1,5 @@
 import type { FC } from 'react';
-import { useRequest } from 'umi';
+import { useRequest } from '@umijs/max';
 import { Suspense, useState } from 'react';
 import { EllipsisOutlined } from '@ant-design/icons';
 import { Col, Dropdown, Menu, Row } from 'antd';

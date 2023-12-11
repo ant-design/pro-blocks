@@ -1,5 +1,5 @@
 import { Card, List } from 'antd';
-import { useRequest } from 'umi';
+import { useRequest } from '@umijs/max';
 import React from 'react';
 import moment from 'moment';
 import { queryFakeList } from '../../service';

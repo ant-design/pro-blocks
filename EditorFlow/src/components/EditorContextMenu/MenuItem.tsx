@@ -1,3 +1,4 @@
+// @ts-ignore
 import { Command } from 'gg-editor';
 import React from 'react';
 import IconFont from '../../common/IconFont';

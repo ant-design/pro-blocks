@@ -1,4 +1,5 @@
 import { Divider } from 'antd';
+// @ts-ignore
 import { Toolbar } from 'gg-editor';
 import ToolbarButton from './ToolbarButton';
 import useStyles from './index.style';

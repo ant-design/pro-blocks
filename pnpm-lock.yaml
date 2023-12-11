@@ -17,6 +17,9 @@ importers:
       '@ant-design/pro-components':
         specifier: ^2.6.43
         version: 2.6.43(antd@5.11.5)(react-dom@18.2.0)(react@18.2.0)
+      '@antv/data-set':
+        specifier: ^0.11.0
+        version: 0.11.0
       '@types/express':
         specifier: ^4.17.13
         version: 4.17.13
@@ -32,6 +35,12 @@ importers:
       bizcharts:
         specifier: ^3.5.4
         version: 3.5.4(react@18.2.0)
+      bizcharts-plugin-slider:
+        specifier: ^2.1.1-beta.1
+        version: 2.1.1-beta.1(bizcharts@3.5.4)(react-dom@18.2.0)(react@18.2.0)
+      lodash.debounce:
+        specifier: ^4.0.8
+        version: 4.0.8
       numeral:
         specifier: ^2.0.6
         version: 2.0.6
@@ -45,6 +54,12 @@ importers:
       '@types/classnames':
         specifier: ^2.2.7
         version: 2.2.7
+      '@types/lodash.debounce':
+        specifier: ^4.0.6
+        version: 4.0.6
+      '@types/mockjs':
+        specifier: ^1.0.10
+        version: 1.0.10
       '@types/numeral':
         specifier: ^0.0.28
         version: 0.0.28
@@ -3915,6 +3930,10 @@ packages:
   /@types/minimist@1.2.5:
     resolution: {integrity: sha512-hov8bUuiLiyFPGyFPE1lwWhmzYbirOXQNNo40+y3zow8aFVTeyn3VWL0VFFfdNddA8S4Vf0Tc062rzyNr7Paag==}
     dev: false
+
+  /@types/mockjs@1.0.10:
+    resolution: {integrity: sha512-SXgrhajHG7boLv6oU93CcmdDm0HYRiceuz6b+7z+/2lCJPTWDv0V5YiwFHT2ejE4bQqgSXQiVPQYPWv7LGsK1g==}
+    dev: true
 
   /@types/node@12.20.55:
     resolution: {integrity: sha512-J8xLz7q2OFulZ2cyGTLE1TbbZcjpno7FaN6zdJNrgAdrJ+DZzh/uFR6YrTb4C+nXakvud8Q4+rbhoIWlYQbUFQ==}

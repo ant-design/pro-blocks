@@ -1,5 +1,6 @@
 import React from 'react';
 import { Card, Input, Select, Form } from 'antd';
+// @ts-ignore
 import { withPropsAPI } from 'gg-editor';
 
 const upperFirst = (str: string) =>
