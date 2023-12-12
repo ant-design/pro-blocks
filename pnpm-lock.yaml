@@ -1,9 +1,5 @@
 lockfileVersion: '6.0'
 
-settings:
-  autoInstallPeers: false
-  excludeLinksFromLockfile: false
-
 importers:
 
   .:
@@ -95,7 +91,7 @@ importers:
     dependencies:
       '@ant-design/icons':
         specifier: ^4.0.0
-        version: 4.0.0(react@18.2.0)
+        version: 4.0.0
       classnames:
         specifier: ^2.2.6
         version: 2.3.2
@@ -105,9 +101,6 @@ importers:
       numeral:
         specifier: ^2.0.6
         version: 2.0.6
-      react-router:
-        specifier: ^4.3.1
-        version: 4.3.1(react@18.2.0)
     devDependencies:
       '@types/express':
         specifier: ^4.17.0
@@ -117,7 +110,7 @@ importers:
     dependencies:
       '@ant-design/icons':
         specifier: ^4.0.0
-        version: 4.0.0(react@18.2.0)
+        version: 4.0.0
     devDependencies:
       '@types/express':
         specifier: ^4.17.0
@@ -127,10 +120,10 @@ importers:
     dependencies:
       '@ant-design/charts':
         specifier: ^1.2.11
-        version: 1.2.11(react-dom@18.2.0)(react@18.2.0)
+        version: 1.2.11
       '@ant-design/icons':
         specifier: ^4.0.0
-        version: 4.0.0(react@18.2.0)
+        version: 4.0.0
       classnames:
         specifier: ^2.2.6
         version: 2.3.2
@@ -149,7 +142,7 @@ importers:
     dependencies:
       '@ant-design/charts':
         specifier: ^1.2.11
-        version: 1.2.11(react-dom@18.2.0)(react@18.2.0)
+        version: 1.2.11
       '@antv/l7':
         specifier: ^2.3.7
         version: 2.3.7
@@ -158,7 +151,7 @@ importers:
         version: 2.3.7
       '@antv/l7-react':
         specifier: ^2.1.9
-        version: 2.1.9(react-dom@18.2.0)(react@18.2.0)
+        version: 2.1.9
       numeral:
         specifier: ^2.0.6
         version: 2.0.6
@@ -174,10 +167,10 @@ importers:
     dependencies:
       '@ant-design/charts':
         specifier: ^1.2.11
-        version: 1.2.11(react-dom@18.2.0)(react@18.2.0)
+        version: 1.2.11
       '@ant-design/icons':
         specifier: ^4.0.0
-        version: 4.0.0(react@18.2.0)
+        version: 4.0.0
       moment:
         specifier: ^2.22.2
         version: 2.29.4
@@ -186,19 +179,19 @@ importers:
     dependencies:
       '@ant-design/icons':
         specifier: ^4.0.0
-        version: 4.0.0(react@18.2.0)
+        version: 4.0.0
       '@antv/data-set':
         specifier: ^0.11.0
         version: 0.11.0
       bizcharts:
         specifier: ^3.5.3-beta.0
-        version: 3.5.4(react@18.2.0)
+        version: 3.5.4
       bizcharts-plugin-slider:
         specifier: ^2.1.1-beta.1
-        version: 2.1.1-beta.1(bizcharts@3.5.4)(react-dom@18.2.0)(react@18.2.0)
+        version: 2.1.1-beta.1(bizcharts@3.5.4)
       gg-editor:
         specifier: ^2.0.2
-        version: 2.0.2(react@18.2.0)
+        version: 2.0.2
       moment:
         specifier: ^2.22.2
         version: 2.29.4
@@ -207,7 +200,7 @@ importers:
         version: 2.0.6
       react-fittext:
         specifier: ^1.0.0
-        version: 1.0.0(react-dom@18.2.0)(react@18.2.0)
+        version: 1.0.0
     devDependencies:
       '@types/numeral':
         specifier: ^0.0.25
@@ -220,13 +213,13 @@ importers:
         version: 0.11.0
       bizcharts:
         specifier: ^3.5.3-beta.0
-        version: 3.5.4(react@18.2.0)
+        version: 3.5.4
       bizcharts-plugin-slider:
         specifier: ^2.1.1-beta.1
-        version: 2.1.1-beta.1(bizcharts@3.5.4)(react-dom@18.2.0)(react@18.2.0)
+        version: 2.1.1-beta.1(bizcharts@3.5.4)
       gg-editor:
         specifier: ^2.0.2
-        version: 2.0.2(react@18.2.0)
+        version: 2.0.2
       moment:
         specifier: ^2.22.2
         version: 2.29.4
@@ -235,7 +228,7 @@ importers:
         version: 2.0.6
       react-fittext:
         specifier: ^1.0.0
-        version: 1.0.0(react-dom@18.2.0)(react@18.2.0)
+        version: 1.0.0
     devDependencies:
       '@types/numeral':
         specifier: ^0.0.25
@@ -248,13 +241,13 @@ importers:
         version: 0.11.0
       bizcharts:
         specifier: ^3.5.3-beta.0
-        version: 3.5.4(react@18.2.0)
+        version: 3.5.4
       bizcharts-plugin-slider:
         specifier: ^2.1.1-beta.1
-        version: 2.1.1-beta.1(bizcharts@3.5.4)(react-dom@18.2.0)(react@18.2.0)
+        version: 2.1.1-beta.1(bizcharts@3.5.4)
       gg-editor:
         specifier: ^2.0.2
-        version: 2.0.2(react@18.2.0)
+        version: 2.0.2
       moment:
         specifier: ^2.22.2
         version: 2.29.4
@@ -263,7 +256,7 @@ importers:
         version: 2.0.6
       react-fittext:
         specifier: ^1.0.0
-        version: 1.0.0(react-dom@18.2.0)(react@18.2.0)
+        version: 1.0.0
     devDependencies:
       '@types/numeral':
         specifier: ^0.0.25
@@ -293,7 +286,7 @@ importers:
     dependencies:
       '@ant-design/icons':
         specifier: ^4.0.0
-        version: 4.0.0(react@18.2.0)
+        version: 4.0.0
       classnames:
         specifier: ^2.2.6
         version: 2.3.2
@@ -306,7 +299,7 @@ importers:
     dependencies:
       '@ant-design/icons':
         specifier: ^4.0.0
-        version: 4.0.0(react@18.2.0)
+        version: 4.0.0
     devDependencies:
       '@types/express':
         specifier: ^4.17.0
@@ -329,10 +322,10 @@ importers:
     dependencies:
       '@ant-design/icons':
         specifier: ^4.0.0
-        version: 4.0.0(react@18.2.0)
+        version: 4.0.0
       ahooks:
         specifier: ^2.0.0
-        version: 2.0.0(react@18.2.0)
+        version: 2.0.0
       classnames:
         specifier: ^2.2.6
         version: 2.3.2
@@ -348,10 +341,10 @@ importers:
     dependencies:
       '@ant-design/icons':
         specifier: ^4.0.0
-        version: 4.0.0(react@18.2.0)
+        version: 4.0.0
       ahooks:
         specifier: ^2.0.0
-        version: 2.0.0(react@18.2.0)
+        version: 2.0.0
     devDependencies:
       '@types/express':
         specifier: ^4.17.0
@@ -376,10 +369,10 @@ importers:
     dependencies:
       '@ant-design/icons':
         specifier: ^4.0.0
-        version: 4.0.0(react@18.2.0)
+        version: 4.0.0
       ahooks:
         specifier: ^2.0.0
-        version: 2.0.0(react@18.2.0)
+        version: 2.0.0
       classnames:
         specifier: ^2.2.6
         version: 2.3.2
@@ -401,7 +394,7 @@ importers:
     dependencies:
       ahooks:
         specifier: ^2.0.0
-        version: 2.0.0(react@18.2.0)
+        version: 2.0.0
       classnames:
         specifier: ^2.2.6
         version: 2.3.2
@@ -417,7 +410,7 @@ importers:
     dependencies:
       ahooks:
         specifier: ^2.0.0
-        version: 2.0.0(react@18.2.0)
+        version: 2.0.0
       classnames:
         specifier: ^2.2.6
         version: 2.3.2
@@ -433,7 +426,7 @@ importers:
     dependencies:
       '@ant-design/icons':
         specifier: ^4.0.0
-        version: 4.0.0(react@18.2.0)
+        version: 4.0.0
       moment:
         specifier: ^2.22.2
         version: 2.29.4
@@ -446,7 +439,7 @@ importers:
     dependencies:
       '@ant-design/icons':
         specifier: ^4.0.0
-        version: 4.0.0(react@18.2.0)
+        version: 4.0.0
       classnames:
         specifier: ^2.2.6
         version: 2.3.2
@@ -486,19 +479,21 @@ importers:
       classnames:
         specifier: ^2.2.6
         version: 2.3.2
-      react-router:
-        specifier: ^4.3.1
-        version: 4.3.1(react@18.2.0)
-    devDependencies:
-      '@types/react-router':
-        specifier: ^5.0.2
-        version: 5.0.2
 
 packages:
 
   /@aashutoshrathi/word-wrap@1.2.6:
     resolution: {integrity: sha512-1Yjs2SvM8TflER/OD3cOjhWWOZb58A2t7wpE2S9XfBYTiIl+XFhQG2bjy4Pu1I+EAlCNUzRDYDdFwFYUKvXcIA==}
     engines: {node: '>=0.10.0'}
+
+  /@ahooksjs/use-request@2.8.15:
+    resolution: {integrity: sha512-xhVaM4fyIiAMdVFuuU5i3CFUdFa/IblF+fvITVMFaUEO3w/V5tVCAF6WIA3T03n1/RPuzRkA7Ao1PFtSGtGelw==}
+    peerDependencies:
+      react: ^16.8.0 || ^17.0.0
+    dependencies:
+      lodash.debounce: 4.0.8
+      lodash.throttle: 4.1.1
+    dev: false
 
   /@ahooksjs/use-request@2.8.15(react@18.2.0):
     resolution: {integrity: sha512-xhVaM4fyIiAMdVFuuU5i3CFUdFa/IblF+fvITVMFaUEO3w/V5tVCAF6WIA3T03n1/RPuzRkA7Ao1PFtSGtGelw==}
@@ -526,7 +521,7 @@ packages:
     resolution: {integrity: sha512-0vr5GCwM7xlAl6NxG1lPbABO+SYioNJL3HVy2FA8wTlsIMoZvQwcwsxTw6eLQCiN9V2UQ8kBtfz8DW8utVVE5w==}
     dev: false
 
-  /@ant-design/charts@1.2.11(react-dom@18.2.0)(react@18.2.0):
+  /@ant-design/charts@1.2.11:
     resolution: {integrity: sha512-sjwQTlT5CPys+akT7S7M2cVTblwHgzFAhhbriR2GKAcZd+1bgxyxyV9NWDBB1HukqqLmB0I4P4RPur9Kbfnb0A==}
     peerDependencies:
       react: '>=16.8.4'
@@ -535,9 +530,7 @@ packages:
       '@antv/g2plot': 2.4.31
       '@antv/g6': 4.2.4
       '@antv/util': 2.0.17
-      react: 18.2.0
-      react-content-loader: 5.1.4(react@18.2.0)
-      react-dom: 18.2.0(react@18.2.0)
+      react-content-loader: 5.1.4
     dev: false
 
   /@ant-design/colors@3.2.2:
@@ -583,6 +576,19 @@ packages:
 
   /@ant-design/icons-svg@4.3.1:
     resolution: {integrity: sha512-4QBZg8ccyC6LPIRii7A0bZUk3+lEDCLnhB+FVsflGdcWPPmV+j3fire4AwwoqHV/BibgvBmR9ZIo4s867smv+g==}
+    dev: false
+
+  /@ant-design/icons@4.0.0:
+    resolution: {integrity: sha512-oJTNTyo/6DjVmK/DSa58A+7gZRGgzBCAEJ9Pfa6U+BAZO28tvOE3YzlQd9gq9Qu6d47JL1ixyID3qsmRFqitlQ==}
+    engines: {node: '>=8'}
+    peerDependencies:
+      react: 16.x
+    dependencies:
+      '@ant-design/colors': 3.2.2
+      '@ant-design/icons-svg': 4.3.1
+      classnames: 2.3.2
+      insert-css: 2.0.0
+      rc-util: 4.21.1
     dev: false
 
   /@ant-design/icons@4.0.0(react@18.2.0):
@@ -1708,7 +1714,7 @@ packages:
       viewport-mercator-project: 6.2.3
     dev: false
 
-  /@antv/l7-react@2.1.9(react-dom@18.2.0)(react@18.2.0):
+  /@antv/l7-react@2.1.9:
     resolution: {integrity: sha512-aRqf/jIjBtUa5+i0s1wEuHEnp40toQqDbZHRHYhlNc+AF534qBGXKRRTAkXsXGSLUk2GO77aKaRk4jDZ/vCGIQ==}
     peerDependencies:
       react: ^16.8.6
@@ -1718,8 +1724,6 @@ packages:
       '@antv/l7-maps': 2.3.7
       '@babel/runtime': 7.23.5
       load-styles: 2.0.0
-      react: 18.2.0
-      react-dom: 18.2.0(react@18.2.0)
     dev: false
 
   /@antv/l7-renderer@2.3.7:
@@ -2249,6 +2253,7 @@ packages:
     engines: {node: '>=6.9.0'}
     dependencies:
       regenerator-runtime: 0.14.0
+    dev: false
 
   /@babel/template@7.22.15:
     resolution: {integrity: sha512-QPErUVm4uyJa60rkI73qneDacvdvzxshT3kksGqlGWYdOTIUOwJ7RDUL8sGqslY1uXWSL6xMFKEXDS3ox2uF0w==}
@@ -3852,13 +3857,6 @@ packages:
     resolution: {integrity: sha512-oOMFT8vmCTFncsF1engrs04jatz8/Anwx3De9uxnOK4chgSEgWBvFtpSoJo8u3784JNO+ql5tzRR6phHoRnscQ==}
     dev: false
 
-  /@types/history@5.0.0:
-    resolution: {integrity: sha512-hy8b7Y1J8OGe6LbAjj3xniQrj3v6lsivCcrmf4TzSgPzLkhIeKgc5IZnT7ReIqmEuodjfO8EYAuoFvIrHi/+jQ==}
-    deprecated: This is a stub types definition. history provides its own type definitions, so you do not need this installed.
-    dependencies:
-      history: 5.3.0
-    dev: true
-
   /@types/hoist-non-react-statics@3.3.5:
     resolution: {integrity: sha512-SbcrWzkKBw2cdwRTwQAswfpB9g9LJWfjtUeW/jvNwbhC8cpmmNYVePa+ncbUe0rGTQ7G3Ff6mYUN2VMfLVr+Sg==}
     dependencies:
@@ -3972,13 +3970,6 @@ packages:
     resolution: {integrity: sha512-urx7A7UxkZQmThYA4So0NelOVjx3V4rNFVJwp0WZlbIK5eM4rNJDiN3R/E9ix0MBh6kAEojk/9YL+Te6D9zHNA==}
     dependencies:
       '@types/react': 17.0.30
-
-  /@types/react-router@5.0.2:
-    resolution: {integrity: sha512-sdMN284GEOcqDEMS/hE/XD06Abw2fws30+xkZf3C9cSRcWopiv/HDTmunYI7DKLYKVRaWFkq1lkuJ6qeYu0E7A==}
-    dependencies:
-      '@types/history': 5.0.0
-      '@types/react': 17.0.30
-    dev: true
 
   /@types/react@17.0.30:
     resolution: {integrity: sha512-3Dt/A8gd3TCXi2aRe84y7cK1K8G+N9CZRDG8kDGguOKa0kf/ZkSwTmVIDPsm/KbQOVMaDJXwhBtuOXxqwdpWVg==}
@@ -4959,18 +4950,17 @@ packages:
       es6-promisify: 5.0.0
     dev: false
 
-  /ahooks@2.0.0(react@18.2.0):
+  /ahooks@2.0.0:
     resolution: {integrity: sha512-5/IGEshFgXGTi/TeAsjCSQ6tfFSQ+KxnsvTTZCyBuztnirn2zbeuqk892XHy5x9GKLSqv4VPdZ3xETQvcxK66Q==}
     engines: {node: '>=8.0.0'}
     peerDependencies:
       react: ^16.8.6
     dependencies:
-      '@ahooksjs/use-request': 2.8.15(react@18.2.0)
+      '@ahooksjs/use-request': 2.8.15
       intersection-observer: 0.7.0
       lodash.debounce: 4.0.8
       lodash.isequal: 4.5.0
       lodash.throttle: 4.1.1
-      react: 18.2.0
       resize-observer-polyfill: 1.5.1
       screenfull: 5.2.0
     dev: false
@@ -5705,6 +5695,19 @@ packages:
     engines: {node: '>=8'}
     dev: false
 
+  /bizcharts-plugin-slider@2.1.1-beta.1(bizcharts@3.5.4):
+    resolution: {integrity: sha512-52ufgODGV0YMjeLm5i8rcz/dpM5booJFj6Xi+Q1LIbnnZL5CjMnLs0i7Dt38A8S4n1xP595IPNlR1R6TEgSlBg==}
+    peerDependencies:
+      bizcharts: '>=3.2.3'
+      react: '>15'
+      react-dom: '>15'
+    dependencies:
+      '@antv/g2-plugin-slider': 2.1.0
+      bizcharts: 3.5.4
+    transitivePeerDependencies:
+      - '@antv/g2'
+    dev: false
+
   /bizcharts-plugin-slider@2.1.1-beta.1(bizcharts@3.5.4)(react-dom@18.2.0)(react@18.2.0):
     resolution: {integrity: sha512-52ufgODGV0YMjeLm5i8rcz/dpM5booJFj6Xi+Q1LIbnnZL5CjMnLs0i7Dt38A8S4n1xP595IPNlR1R6TEgSlBg==}
     peerDependencies:
@@ -5718,6 +5721,19 @@ packages:
       react-dom: 18.2.0(react@18.2.0)
     transitivePeerDependencies:
       - '@antv/g2'
+    dev: false
+
+  /bizcharts@3.5.4:
+    resolution: {integrity: sha512-CJKZeB4qhW/H4R+XhAif4242uflCUrgGKH52czlOdRsoCsFvpCilcj0+fmw1nSC5S/RbwGS6jTIVxq7Y4QoSxw==}
+    peerDependencies:
+      react: ^15.0.0 || ^16.0.0
+    dependencies:
+      '@antv/g2': 3.5.7
+      invariant: 2.2.4
+      lodash.debounce: 4.0.8
+      prop-types: 15.8.1
+      resize-observer-polyfill: 1.5.1
+      warning: 3.0.0
     dev: false
 
   /bizcharts@3.5.4(react@18.2.0):
@@ -8958,7 +8974,7 @@ packages:
       wolfy87-eventemitter: 5.2.9
     dev: false
 
-  /gg-editor@2.0.2(react@18.2.0):
+  /gg-editor@2.0.2:
     resolution: {integrity: sha512-p/qZLtyhcIpR9p7sfQOmocmoI2s8vFrQvM4IIFgugLLD+/c9u9//zySiuzxQl0xV+YwVzwBafXX9mvsYiyoMww==}
     peerDependencies:
       react: ^16.3.0
@@ -8967,7 +8983,6 @@ packages:
       core-js: 3.33.3
       gg-editor-core: 1.3.3
       lodash: 4.17.21
-      react: 18.2.0
     dev: false
 
   /git-hooks-list@3.1.0:
@@ -9277,21 +9292,11 @@ packages:
     hasBin: true
     dev: false
 
-  /history@4.10.1:
-    resolution: {integrity: sha512-36nwAD620w12kuzPAsyINPWJqlNbij+hpK1k9XRloDtym8mxzGYl2c17LnV6IAGB2Dmg4tEa7G7DlawS0+qjew==}
-    dependencies:
-      '@babel/runtime': 7.23.5
-      loose-envify: 1.4.0
-      resolve-pathname: 3.0.0
-      tiny-invariant: 1.3.1
-      tiny-warning: 1.0.3
-      value-equal: 1.0.1
-    dev: false
-
   /history@5.3.0:
     resolution: {integrity: sha512-ZqaKwjjrAYUYfLG+htGaIIZ4nioX2L70ZUMIFysS3xvBsSG4x/n1V6TXV3N8ZYNuFGlDirFg32T7B6WOUPDYcQ==}
     dependencies:
       '@babel/runtime': 7.23.5
+    dev: false
 
   /hmac-drbg@1.0.1:
     resolution: {integrity: sha512-Tti3gMqLdZfhOQY1Mzf/AanLiqh1WTiJgEj26ZuYQ9fbkLomzGchCws4FyrSd4VkpBfiNhaE1On+lOz894jvXg==}
@@ -9299,10 +9304,6 @@ packages:
       hash.js: 1.1.7
       minimalistic-assert: 1.0.1
       minimalistic-crypto-utils: 1.0.1
-    dev: false
-
-  /hoist-non-react-statics@2.5.5:
-    resolution: {integrity: sha512-rqcy4pJo55FTTLWt+bU8ukscqHeE/e9KWvsOW2b/a3afxQZhwkQdT1rPPCJ0rYXdj4vNcasY8zHTH+jF/qStxw==}
     dev: false
 
   /hoist-non-react-statics@3.3.2:
@@ -11884,12 +11885,6 @@ packages:
       isarray: 0.0.1
     dev: false
 
-  /path-to-regexp@1.8.0:
-    resolution: {integrity: sha512-n43JRhlUKUAlibEJhPeir1ncUID16QnEjNpwzNdO3Lm4ywrBpBZ5oLD0I6br9evr1Y9JTqwRtAh7JLoOzAQdVA==}
-    dependencies:
-      isarray: 0.0.1
-    dev: false
-
   /path-to-regexp@2.4.0:
     resolution: {integrity: sha512-G6zHoVqC6GGTQkZwF4lkuEyMbVOjoBKAEybQUypI1WTkqinCOrq2x6U2+phkJ1XsEMTy4LjtwPI7HW+NVrRR2w==}
     dev: false
@@ -13875,13 +13870,11 @@ packages:
       react-dom: 18.2.0(react@18.2.0)
     dev: false
 
-  /react-content-loader@5.1.4(react@18.2.0):
+  /react-content-loader@5.1.4:
     resolution: {integrity: sha512-hTq7pZi2GKCK6a9d3u6XStozm0QGCEjw8cSqQReiWnh2up6IwCha5R5TF0o6SY5qUDpByloEZEZtnFxpJyENFw==}
     engines: {node: '>=10'}
     peerDependencies:
       react: '>=16.0.0'
-    dependencies:
-      react: 18.2.0
     dev: false
 
   /react-dom@18.1.0(react@18.1.0):
@@ -13912,7 +13905,7 @@ packages:
     resolution: {integrity: sha512-nsO+KSNgo1SbJqJEYRE9ERzo7YtYbou/OqjSQKxV7jcKox7+usiUVZOAC+XnDOABXggQTno0Y1CpVnuWEc1boQ==}
     dev: false
 
-  /react-fittext@1.0.0(react-dom@18.2.0)(react@18.2.0):
+  /react-fittext@1.0.0:
     resolution: {integrity: sha512-OmQCwFI5sHomW0WiVzXPm7tcdUNwal0lhSK/vDeOc2BPl/zB25ExJIrZun7uO1AV+fr4GQCMrfz5+PMTDc55rQ==}
     peerDependencies:
       react: ^15.0.0
@@ -13920,8 +13913,6 @@ packages:
     dependencies:
       create-react-class: 15.7.0
       prop-types: 15.8.1
-      react: 18.2.0
-      react-dom: 18.2.0(react@18.2.0)
     dev: false
 
   /react-helmet-async@1.3.0(react-dom@18.1.0)(react@18.1.0):
@@ -14051,21 +14042,6 @@ packages:
       react: 18.2.0
       react-dom: 18.2.0(react@18.2.0)
       react-router: 6.3.0(react@18.2.0)
-    dev: false
-
-  /react-router@4.3.1(react@18.2.0):
-    resolution: {integrity: sha512-yrvL8AogDh2X42Dt9iknk4wF4V8bWREPirFfS9gLU1huk6qK41sg7Z/1S81jjTrGHxa3B8R3J6xIkDAA6CVarg==}
-    peerDependencies:
-      react: '>=15'
-    dependencies:
-      history: 4.10.1
-      hoist-non-react-statics: 2.5.5
-      invariant: 2.2.4
-      loose-envify: 1.4.0
-      path-to-regexp: 1.8.0
-      prop-types: 15.8.1
-      react: 18.2.0
-      warning: 4.0.3
     dev: false
 
   /react-router@6.3.0(react@18.1.0):
@@ -14265,6 +14241,7 @@ packages:
 
   /regenerator-runtime@0.14.0:
     resolution: {integrity: sha512-srw17NI0TUWHuGa5CFGGmhfNIeja30WMBfbslPNhf6JrqQlLN5gcrvig1oqPxiVaXb0oW0XRKtH6Nngs5lKCIA==}
+    dev: false
 
   /regex-not@1.0.2:
     resolution: {integrity: sha512-J6SDjUgDxQj5NusnOtdFxDwN/+HWykR8GELwctJ7mdqhcyy1xEc4SRFHUXvxTp661YaVKAjfRLZ9cCqS6tn32A==}
@@ -14463,10 +14440,6 @@ packages:
   /resolve-from@5.0.0:
     resolution: {integrity: sha512-qYg9KP24dD5qka9J47d0aVky0N+b4fTU89LN9iDnjB5waksiC49rvMB0PrUJQGoTmH50XPiqOvAjDfaijGxYZw==}
     engines: {node: '>=8'}
-    dev: false
-
-  /resolve-pathname@3.0.0:
-    resolution: {integrity: sha512-C7rARubxI8bXFNB/hqcp/4iUeIXJhJZvFPFPiSPRnhU5UPxzMFIl+2E6yY6c4k9giDJAhtV+enfA+G89N6Csng==}
     dev: false
 
   /resolve-pkg-maps@1.0.0:
@@ -15844,14 +15817,6 @@ packages:
       setimmediate: 1.0.5
     dev: false
 
-  /tiny-invariant@1.3.1:
-    resolution: {integrity: sha512-AD5ih2NlSssTCwsMznbvwMZpJ1cbhkGd2uueNxzv2jDlEeZdU04JQfRnggJQ8DrcVBGjAsCKwFBbDlVNtEMlzw==}
-    dev: false
-
-  /tiny-warning@1.0.3:
-    resolution: {integrity: sha512-lBN9zLN/oAf68o3zNXYrdCt1kP8WsiGW8Oo2ka41b2IM5JL/S1CTyX1rW0mb/zSuJun0ZUrDxx4sqvYS2FWzPA==}
-    dev: false
-
   /tinycolor2@1.6.0:
     resolution: {integrity: sha512-XPaBkWQJdsf3pLKJV9p4qN/S+fm2Oj8AIPo1BTUhg5oxkvm9+SVEGFdhyOz7tTdUTfvxMiAs4sp6/eZO2Ew+pw==}
     dev: false
@@ -16437,10 +16402,6 @@ packages:
       use-sync-external-store: 1.2.0(react@18.2.0)
     dev: false
 
-  /value-equal@1.0.1:
-    resolution: {integrity: sha512-NOJ6JZCAWr0zlxZt+xqCHNTEKOsrks2HQd4MqhP1qy4z1SkbEP467eNx6TgDKXMvUOb+OENfJCZwM+16n7fRfw==}
-    dev: false
-
   /vary@1.1.2:
     resolution: {integrity: sha512-BNGbWLfd0eUPabhkXUVm0j8uuvREyTh5ovRa/dyow/BqAbZJyC+5fU+IzQOzmAKzYqYRAISoRhdQr3eIZ/PXqg==}
     engines: {node: '>= 0.8'}
@@ -16822,3 +16783,7 @@ packages:
   /yocto-queue@0.1.0:
     resolution: {integrity: sha512-rVksvsnNCdJ/ohGc6xgPwyN8eheCxsiLM8mxuE/t/mOVqJewPuO1miLpTHQiRgTKCLexL4MeAFVagts7HmNZ2Q==}
     engines: {node: '>=10'}
+
+settings:
+  autoInstallPeers: false
+  excludeLinksFromLockfile: false

@@ -3,8 +3,6 @@ import { Avatar, Card, Col, Divider, Input, Row, Tag, InputRef } from 'antd';
 import React, { useState, useRef } from 'react';
 import { GridContent } from '@ant-design/pro-components';
 import { Link, useRequest } from '@umijs/max';
-// @ts-ignore
-import type { RouteChildrenProps } from 'react-router';
 import Projects from './components/Projects';
 import Articles from './components/Articles';
 import Applications from './components/Applications';
@@ -96,7 +94,7 @@ const TagList: React.FC<{ tags: CurrentUser['tags'] }> = ({ tags }) => {
   );
 };
 
-const PAGE_NAME_UPPER_CAMEL_CASE: React.FC<RouteChildrenProps> = () => {
+const PAGE_NAME_UPPER_CAMEL_CASE: React.FC = () => {
   const { styles } = useStyles();
   const [tabKey, setTabKey] = useState<tabKeyType>('articles');
 

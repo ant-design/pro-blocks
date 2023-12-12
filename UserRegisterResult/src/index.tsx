@@ -1,12 +1,11 @@
 import { Button, Result } from 'antd';
 import { Link, useLocation } from '@umijs/max';
 import React from 'react';
-import type { RouteChildrenProps } from 'react-router';
 import useStyles from './style.style';
 
 export type LocationState = Record<string, unknown>;
 
-const PAGE_NAME_UPPER_CAMEL_CASE: React.FC<RouteChildrenProps> = () => {
+const PAGE_NAME_UPPER_CAMEL_CASE: React.FC = () => {
   const { styles } = useStyles();
   const location = useLocation();
   const actions = (
