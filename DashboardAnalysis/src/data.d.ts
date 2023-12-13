@@ -1,6 +1,7 @@
-import { DataItem } from '@antv/g2plot/esm/interface/config';
-
-export { DataItem };
+export interface DataItem {
+  x: string;
+  y: number;
+}
 
 export interface VisitDataType {
   x: string;
