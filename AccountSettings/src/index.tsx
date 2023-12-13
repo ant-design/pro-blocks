@@ -7,8 +7,6 @@ import NotificationView from './components/notification';
 import SecurityView from './components/security';
 import useStyles from './style.style';
 
-const { Item } = Menu;
-
 type PAGE_NAME_UPPER_CAMEL_CASEStateKeys = 'base' | 'security' | 'binding' | 'notification';
 type PAGE_NAME_UPPER_CAMEL_CASEState = {
   mode: 'inline' | 'horizontal';
@@ -58,7 +56,7 @@ const PAGE_NAME_UPPER_CAMEL_CASE: React.FC = () => {
   }, [dom.current]);
 
   const getMenu = () => {
-    return Object.keys(menuMap).map((item) => <Item key={item}>{menuMap[item]}</Item>);
+    return Object.keys(menuMap).map((item) => ({ key: item, label: menuMap[item] }));
   };
 
   const renderChildren = () => {
@@ -97,9 +95,8 @@ const PAGE_NAME_UPPER_CAMEL_CASE: React.FC = () => {
                 selectKey: key as PAGE_NAME_UPPER_CAMEL_CASEStateKeys,
               });
             }}
-          >
-            {getMenu()}
-          </Menu>
+            items={getMenu()}
+          ></Menu>
         </div>
         <div className={styles.right}>
           <div className={styles.title}>{menuMap[initConfig.selectKey]}</div>

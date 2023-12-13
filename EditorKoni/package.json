@@ -12,13 +12,9 @@
     "dev": "umi dev"
   },
   "dependencies": {
-    "@antv/data-set": "^0.11.0",
-    "bizcharts": "^3.5.3-beta.0",
-    "bizcharts-plugin-slider": "^2.1.1-beta.1",
     "gg-editor": "^2.0.2",
     "moment": "^2.22.2",
-    "numeral": "^2.0.6",
-    "react-fittext": "^1.0.0"
+    "numeral": "^2.0.6"
   },
   "devDependencies": {
     "@types/numeral": "^0.0.25"

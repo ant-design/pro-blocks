@@ -5,7 +5,7 @@ import {
   ShareAltOutlined,
 } from '@ant-design/icons';
 import { useRequest } from '@umijs/max';
-import { Avatar, Card, Dropdown, List, Menu, Tooltip } from 'antd';
+import { Avatar, Card, Dropdown, List, Tooltip } from 'antd';
 import React from 'react';
 import numeral from 'numeral';
 import type { ListItemDataType } from '../../data.d';
@@ -47,26 +47,6 @@ const Applications: React.FC = () => {
     });
   });
 
-  const itemMenu = (
-    <Menu>
-      <Menu.Item>
-        <a target="_blank" rel="noopener noreferrer" href="https://www.alipay.com/">
-          1st menu item
-        </a>
-      </Menu.Item>
-      <Menu.Item>
-        <a target="_blank" rel="noopener noreferrer" href="https://www.taobao.com/">
-          2nd menu item
-        </a>
-      </Menu.Item>
-      <Menu.Item>
-        <a target="_blank" rel="noopener noreferrer" href="https://www.tmall.com/">
-          3d menu item
-        </a>
-      </Menu.Item>
-    </Menu>
-  );
-
   const CardInfo: React.FC<{
     activeUser: React.ReactNode;
     newUser: React.ReactNode;
@@ -104,7 +84,19 @@ const Applications: React.FC = () => {
               <Tooltip title="分享" key="share">
                 <ShareAltOutlined />
               </Tooltip>,
-              <Dropdown overlay={itemMenu} key="ellipsis">
+              <Dropdown
+                menu={{
+                  items: [
+                    { key: 'alipay', label: 'alipay' },
+                    { key: 'taobao', label: 'taobao' },
+                    { key: 'tmall', label: 'tmall' },
+                  ],
+                  onClick: ({ key }) => {
+                    window.open(`https://www.${key}.com/`, '_blank');
+                  },
+                }}
+                key="ellipsis"
+              >
                 <EllipsisOutlined />
               </Dropdown>,
             ]}

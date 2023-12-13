@@ -12,7 +12,6 @@ import {
   Descriptions,
   Divider,
   Dropdown,
-  Menu,
   Popover,
   Steps,
   Table,
@@ -45,24 +44,6 @@ const PAGE_NAME_UPPER_CAMEL_CASE: FC = () => {
   const { data = {}, loading } = useRequest<{ data: AdvancedProfileData }>(queryAdvancedProfile);
   const { advancedOperation1, advancedOperation2, advancedOperation3 } = data;
 
-  const menu = (
-    <Menu>
-      <Menu.Item key="1">选项一</Menu.Item>
-      <Menu.Item key="2">选项二</Menu.Item>
-      <Menu.Item key="3">选项三</Menu.Item>
-    </Menu>
-  );
-
-  const mobileMenu = (
-    <Menu>
-      <Menu.Item key="1">操作一</Menu.Item>
-      <Menu.Item key="2">操作二</Menu.Item>
-      <Menu.Item key="3">选项一</Menu.Item>
-      <Menu.Item key="4">选项二</Menu.Item>
-      <Menu.Item key="">选项三</Menu.Item>
-    </Menu>
-  );
-
   const action = (
     <RouteContext.Consumer>
       {({ isMobile }) => {
@@ -71,7 +52,15 @@ const PAGE_NAME_UPPER_CAMEL_CASE: FC = () => {
             <Dropdown.Button
               type="primary"
               icon={<DownOutlined />}
-              overlay={mobileMenu}
+              menu={{
+                items: [
+                  { key: '1', label: '操作一' },
+                  { key: '2', label: '操作二' },
+                  { key: '3', label: '选项一' },
+                  { key: '4', label: '选项二' },
+                  { key: '', label: '选项三' },
+                ],
+              }}
               placement="bottomRight"
             >
               主操作
@@ -83,7 +72,16 @@ const PAGE_NAME_UPPER_CAMEL_CASE: FC = () => {
             <ButtonGroup>
               <Button>操作一</Button>
               <Button>操作二</Button>
-              <Dropdown overlay={menu} placement="bottomRight">
+              <Dropdown
+                menu={{
+                  items: [
+                    { key: '1', label: '选项一' },
+                    { key: '2', label: '选项二' },
+                    { key: '3', label: '选项三' },
+                  ],
+                }}
+                placement="bottomRight"
+              >
                 <Button>
                   <EllipsisOutlined />
                 </Button>

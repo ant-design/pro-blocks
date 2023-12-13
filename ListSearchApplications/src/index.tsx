@@ -4,7 +4,7 @@ import {
   EllipsisOutlined,
   ShareAltOutlined,
 } from '@ant-design/icons';
-import { Avatar, Card, Col, Dropdown, Form, List, Menu, Row, Select, Tooltip } from 'antd';
+import { Avatar, Card, Col, Dropdown, Form, List, Row, Select, Tooltip } from 'antd';
 import numeral from 'numeral';
 import type { FC } from 'react';
 import React from 'react';
@@ -79,26 +79,6 @@ export const PAGE_NAME_UPPER_CAMEL_CASE: FC<Record<string, any>> = () => {
   });
 
   const list = data?.list || [];
-
-  const itemMenu = (
-    <Menu>
-      <Menu.Item>
-        <a target="_blank" rel="noopener noreferrer" href="https://www.alipay.com/">
-          1st menu item
-        </a>
-      </Menu.Item>
-      <Menu.Item>
-        <a target="_blank" rel="noopener noreferrer" href="https://www.taobao.com/">
-          2nd menu item
-        </a>
-      </Menu.Item>
-      <Menu.Item>
-        <a target="_blank" rel="noopener noreferrer" href="https://www.tmall.com/">
-          3d menu item
-        </a>
-      </Menu.Item>
-    </Menu>
-  );
 
   return (
     <div className={styles.filterCardList}>
@@ -176,7 +156,19 @@ export const PAGE_NAME_UPPER_CAMEL_CASE: FC<Record<string, any>> = () => {
                 <Tooltip title="分享" key="share">
                   <ShareAltOutlined />
                 </Tooltip>,
-                <Dropdown key="ellipsis" overlay={itemMenu}>
+                <Dropdown
+                  key="ellipsis"
+                  menu={{
+                    items: [
+                      { key: 'alipay', label: 'alipay' },
+                      { key: 'taobao', label: 'taobao' },
+                      { key: 'tmall', label: 'tmall' },
+                    ],
+                    onClick: ({ key }) => {
+                      window.open(`https://www.${key}.com/`, '_blank');
+                    },
+                  }}
+                >
                   <EllipsisOutlined />
                 </Dropdown>,
               ]}

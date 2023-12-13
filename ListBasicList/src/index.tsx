@@ -9,7 +9,6 @@ import {
   Dropdown,
   Input,
   List,
-  Menu,
   Modal,
   Progress,
   Radio,
@@ -146,12 +145,13 @@ export const PAGE_NAME_UPPER_CAMEL_CASE: FC = () => {
     item: BasicListItemDataType;
   }> = ({ item }) => (
     <Dropdown
-      overlay={
-        <Menu onClick={({ key }) => editAndDelete(key, item)}>
-          <Menu.Item key="edit">编辑</Menu.Item>
-          <Menu.Item key="delete">删除</Menu.Item>
-        </Menu>
-      }
+      menu={{
+        items: [
+          { key: 'edit', label: '编辑' },
+          { key: 'delete', label: '删除' },
+        ],
+        onClick: ({ key }) => editAndDelete(key, item),
+      }}
     >
       <a>
         更多 <DownOutlined />

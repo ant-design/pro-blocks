@@ -2,7 +2,7 @@ import type { FC } from 'react';
 import { useRequest } from '@umijs/max';
 import { Suspense, useState } from 'react';
 import { EllipsisOutlined } from '@ant-design/icons';
-import { Col, Dropdown, Menu, Row } from 'antd';
+import { Col, Dropdown, Row } from 'antd';
 import { GridContent } from '@ant-design/pro-components';
 import type { RadioChangeEvent } from 'antd/es/radio';
 import type { RangePickerProps } from 'antd/es/date-picker/generatePicker';
@@ -73,16 +73,14 @@ const PAGE_NAME_UPPER_CAMEL_CASE: FC<PAGE_NAME_UPPER_CAMEL_CASEProps> = () => {
     salesPieData = salesType === 'online' ? data?.salesTypeDataOnline : data?.salesTypeDataOffline;
   }
 
-  const menu = (
-    <Menu>
-      <Menu.Item>操作一</Menu.Item>
-      <Menu.Item>操作二</Menu.Item>
-    </Menu>
-  );
+  const items = [
+    { key: 1, label: '操作一' },
+    { key: 2, label: '操作二' },
+  ];
 
   const dropdownGroup = (
     <span className={styles.iconGroup}>
-      <Dropdown overlay={menu} placement="bottomRight">
+      <Dropdown menu={{ items }} placement="bottomRight">
         <EllipsisOutlined />
       </Dropdown>
     </span>
