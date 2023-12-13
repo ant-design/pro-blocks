@@ -1,18 +1,19 @@
 import React from 'react';
 import { UploadOutlined } from '@ant-design/icons';
 import { Button, Input, Upload, message } from 'antd';
-import ProForm, {
+import {
+  ProForm,
   ProFormDependency,
   ProFormFieldSet,
   ProFormSelect,
   ProFormText,
   ProFormTextArea,
-} from '@ant-design/pro-form';
-import { useRequest } from 'umi';
+} from '@ant-design/pro-components';
+import { useRequest } from '@umijs/max';
 import { queryCurrent } from '../service';
 import { queryProvince, queryCity } from '../service';
 
-import styles from './BaseView.less';
+import useStyles from './BaseView.style';
 
 const validatorPhone = (rule: any, value: string, callback: (message?: string) => void) => {
   const values = value.split('-');
@@ -25,24 +26,28 @@ const validatorPhone = (rule: any, value: string, callback: (message?: string) =
   callback();
 };
 // 头像组件 方便以后独立，增加裁剪之类的功能
-const AvatarView = ({ avatar }: { avatar: string }) => (
-  <>
-    <div className={styles.avatar_title}>头像</div>
-    <div className={styles.avatar}>
-      <img src={avatar} alt="avatar" />
-    </div>
-    <Upload showUploadList={false}>
-      <div className={styles.button_view}>
-        <Button>
-          <UploadOutlined />
-          更换头像
-        </Button>
+const AvatarView = ({ avatar }: { avatar: string }) => {
+  const { styles } = useStyles();
+  return (
+    <>
+      <div className={styles.avatar_title}>头像</div>
+      <div className={styles.avatar}>
+        <img src={avatar} alt="avatar" />
       </div>
-    </Upload>
-  </>
-);
+      <Upload showUploadList={false}>
+        <div className={styles.button_view}>
+          <Button>
+            <UploadOutlined />
+            更换头像
+          </Button>
+        </div>
+      </Upload>
+    </>
+  );
+};
 
 const BaseView: React.FC = () => {
+  const { styles } = useStyles();
   const { data: currentUser, loading } = useRequest(() => {
     return queryCurrent();
   });
@@ -96,6 +101,7 @@ const BaseView: React.FC = () => {
                   },
                 ]}
               />
+
               <ProFormText
                 width="md"
                 name="name"
@@ -107,6 +113,7 @@ const BaseView: React.FC = () => {
                   },
                 ]}
               />
+
               <ProFormTextArea
                 name="profile"
                 label="个人简介"
@@ -118,6 +125,7 @@ const BaseView: React.FC = () => {
                 ]}
                 placeholder="个人简介"
               />
+
               <ProFormSelect
                 width="sm"
                 name="country"
@@ -149,7 +157,6 @@ const BaseView: React.FC = () => {
                     labelInValue: true,
                   }}
                   name="province"
-                  className={styles.item}
                   request={async () => {
                     return queryProvince().then(({ data }) => {
                       return data.map((item) => {
@@ -161,6 +168,7 @@ const BaseView: React.FC = () => {
                     });
                   }}
                 />
+
                 <ProFormDependency name={['province']}>
                   {({ province }) => {
                     return (
@@ -177,7 +185,6 @@ const BaseView: React.FC = () => {
                           },
                         ]}
                         disabled={!province}
-                        className={styles.item}
                         request={async () => {
                           if (!province?.key) {
                             return [];
@@ -207,6 +214,7 @@ const BaseView: React.FC = () => {
                   },
                 ]}
               />
+
               <ProFormFieldSet
                 name="phone"
                 label="联系电话"

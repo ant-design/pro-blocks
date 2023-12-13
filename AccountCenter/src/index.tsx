@@ -1,15 +1,14 @@
 import { PlusOutlined, HomeOutlined, ContactsOutlined, ClusterOutlined } from '@ant-design/icons';
-import { Avatar, Card, Col, Divider, Input, Row, Tag } from 'antd';
+import { Avatar, Card, Col, Divider, Input, Row, Tag, InputRef } from 'antd';
 import React, { useState, useRef } from 'react';
-import { GridContent } from '@ant-design/pro-layout';
-import { Link, useRequest } from 'umi';
-import type { RouteChildrenProps } from 'react-router';
+import { GridContent } from '@ant-design/pro-components';
+import { Link, useRequest } from '@umijs/max';
 import Projects from './components/Projects';
 import Articles from './components/Articles';
 import Applications from './components/Applications';
 import type { CurrentUser, TagType, tabKeyType } from './data.d';
 import { queryCurrent } from './service';
-import styles from './Center.less';
+import useStyles from './Center.style';
 
 const operationTabList = [
   {
@@ -39,7 +38,8 @@ const operationTabList = [
 ];
 
 const TagList: React.FC<{ tags: CurrentUser['tags'] }> = ({ tags }) => {
-  const ref = useRef<Input | null>(null);
+  const { styles } = useStyles();
+  const ref = useRef<InputRef>(null);
   const [newTags, setNewTags] = useState<TagType[]>([]);
   const [inputVisible, setInputVisible] = useState<boolean>(false);
   const [inputValue, setInputValue] = useState<string>('');
@@ -84,6 +84,7 @@ const TagList: React.FC<{ tags: CurrentUser['tags'] }> = ({ tags }) => {
           onPressEnter={handleInputConfirm}
         />
       )}
+
       {!inputVisible && (
         <Tag onClick={showInput} style={{ borderStyle: 'dashed' }}>
           <PlusOutlined />
@@ -93,7 +94,8 @@ const TagList: React.FC<{ tags: CurrentUser['tags'] }> = ({ tags }) => {
   );
 };
 
-const PAGE_NAME_UPPER_CAMEL_CASE: React.FC<RouteChildrenProps> = () => {
+const PAGE_NAME_UPPER_CAMEL_CASE: React.FC = () => {
+  const { styles } = useStyles();
   const [tabKey, setTabKey] = useState<tabKeyType>('articles');
 
   //  获取用户信息
@@ -111,6 +113,7 @@ const PAGE_NAME_UPPER_CAMEL_CASE: React.FC<RouteChildrenProps> = () => {
               marginRight: 8,
             }}
           />
+
           {title}
         </p>
         <p>
@@ -119,6 +122,7 @@ const PAGE_NAME_UPPER_CAMEL_CASE: React.FC<RouteChildrenProps> = () => {
               marginRight: 8,
             }}
           />
+
           {group}
         </p>
         <p>
@@ -127,6 +131,7 @@ const PAGE_NAME_UPPER_CAMEL_CASE: React.FC<RouteChildrenProps> = () => {
               marginRight: 8,
             }}
           />
+
           {(geographic || { province: { label: '' } }).province.label}
           {
             (

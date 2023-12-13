@@ -1,10 +1,16 @@
 import React, { useRef, useState } from 'react';
 import type { FormInstance } from 'antd';
 import { Card, Result, Button, Descriptions, Divider, Alert, Statistic } from 'antd';
-import { PageContainer } from '@ant-design/pro-layout';
-import ProForm, { ProFormDigit, ProFormSelect, ProFormText, StepsForm } from '@ant-design/pro-form';
+import {
+  ProForm,
+  PageContainer,
+  ProFormDigit,
+  ProFormSelect,
+  ProFormText,
+  StepsForm,
+} from '@ant-design/pro-components';
 import type { StepDataType } from './data.d';
-import styles from './style.less';
+import useStyles from './style.style';
 
 const StepDescriptions: React.FC<{
   stepData: StepDataType;
@@ -35,9 +41,12 @@ const StepDescriptions: React.FC<{
   );
 };
 
-const StepResult: React.FC<{
-  onFinish: () => Promise<void>;
-}> = (props) => {
+const StepResult = (
+  props: React.PropsWithChildren<{
+    onFinish: () => Promise<void>;
+  }>,
+) => {
+  const { styles } = useStyles();
   return (
     <Result
       status="success"
@@ -59,6 +68,7 @@ const StepResult: React.FC<{
 };
 
 const PAGE_NAME_UPPER_CAMEL_CASE: React.FC<Record<string, any>> = () => {
+  const { styles } = useStyles();
   const [stepData, setStepData] = useState<StepDataType>({
     payAccount: 'ant-design@alipay.com',
     receiverAccount: 'test@example.com',
@@ -112,6 +122,7 @@ const PAGE_NAME_UPPER_CAMEL_CASE: React.FC<Record<string, any>> = () => {
                   bank: '银行账户',
                 }}
               />
+
               <ProFormText
                 name="receiverAccount"
                 rules={[
@@ -128,6 +139,7 @@ const PAGE_NAME_UPPER_CAMEL_CASE: React.FC<Record<string, any>> = () => {
               rules={[{ required: true, message: '请输入收款人姓名' }]}
               placeholder="请输入收款人姓名"
             />
+
             <ProFormDigit
               label="转账金额"
               name="amount"
@@ -154,6 +166,7 @@ const PAGE_NAME_UPPER_CAMEL_CASE: React.FC<Record<string, any>> = () => {
                 message="确认转账后，资金将直接打入对方账户，无法退回。"
                 style={{ marginBottom: 24 }}
               />
+
               <StepDescriptions stepData={stepData} bordered />
               <Divider style={{ margin: '24px 0' }} />
               <ProFormText.Password
@@ -177,7 +190,7 @@ const PAGE_NAME_UPPER_CAMEL_CASE: React.FC<Record<string, any>> = () => {
           </StepsForm.StepForm>
         </StepsForm>
         <Divider style={{ margin: '40px 0 24px' }} />
-        <div className={styles.desc}>
+        <div>
           <h3>说明</h3>
           <h4>转账到支付宝账户</h4>
           <p>

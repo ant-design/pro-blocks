@@ -4,16 +4,16 @@ import {
   EllipsisOutlined,
   ShareAltOutlined,
 } from '@ant-design/icons';
-import { Avatar, Card, Col, Dropdown, Form, List, Menu, Row, Select, Tooltip } from 'antd';
+import { Avatar, Card, Col, Dropdown, Form, List, Row, Select, Tooltip } from 'antd';
 import numeral from 'numeral';
 import type { FC } from 'react';
 import React from 'react';
-import { useRequest } from 'umi';
+import { useRequest } from '@umijs/max';
 import StandardFormRow from './components/StandardFormRow';
 import TagSelect from './components/TagSelect';
 import type { ListItemDataType } from './data.d';
 import { queryFakeList } from './service';
-import styles from './style.less';
+import useStyles from './style.style';
 
 const { Option } = Select;
 
@@ -53,20 +53,24 @@ const formItemLayout = {
 const CardInfo: React.FC<{
   activeUser: React.ReactNode;
   newUser: React.ReactNode;
-}> = ({ activeUser, newUser }) => (
-  <div className={styles.cardInfo}>
-    <div>
-      <p>活跃用户</p>
-      <p>{activeUser}</p>
+}> = ({ activeUser, newUser }) => {
+  const { styles } = useStyles();
+  return (
+    <div className={styles.cardInfo}>
+      <div>
+        <p>活跃用户</p>
+        <p>{activeUser}</p>
+      </div>
+      <div>
+        <p>新增用户</p>
+        <p>{newUser}</p>
+      </div>
     </div>
-    <div>
-      <p>新增用户</p>
-      <p>{newUser}</p>
-    </div>
-  </div>
-);
+  );
+};
 
 export const PAGE_NAME_UPPER_CAMEL_CASE: FC<Record<string, any>> = () => {
+  const { styles } = useStyles();
   const { data, loading, run } = useRequest((values: any) => {
     console.log('form data', values);
     return queryFakeList({
@@ -75,26 +79,6 @@ export const PAGE_NAME_UPPER_CAMEL_CASE: FC<Record<string, any>> = () => {
   });
 
   const list = data?.list || [];
-
-  const itemMenu = (
-    <Menu>
-      <Menu.Item>
-        <a target="_blank" rel="noopener noreferrer" href="https://www.alipay.com/">
-          1st menu item
-        </a>
-      </Menu.Item>
-      <Menu.Item>
-        <a target="_blank" rel="noopener noreferrer" href="https://www.taobao.com/">
-          2nd menu item
-        </a>
-      </Menu.Item>
-      <Menu.Item>
-        <a target="_blank" rel="noopener noreferrer" href="https://www.tmall.com/">
-          3d menu item
-        </a>
-      </Menu.Item>
-    </Menu>
-  );
 
   return (
     <div className={styles.filterCardList}>
@@ -172,13 +156,25 @@ export const PAGE_NAME_UPPER_CAMEL_CASE: FC<Record<string, any>> = () => {
                 <Tooltip title="分享" key="share">
                   <ShareAltOutlined />
                 </Tooltip>,
-                <Dropdown key="ellipsis" overlay={itemMenu}>
+                <Dropdown
+                  key="ellipsis"
+                  menu={{
+                    items: [
+                      { key: 'alipay', label: 'alipay' },
+                      { key: 'taobao', label: 'taobao' },
+                      { key: 'tmall', label: 'tmall' },
+                    ],
+                    onClick: ({ key }) => {
+                      window.open(`https://www.${key}.com/`, '_blank');
+                    },
+                  }}
+                >
                   <EllipsisOutlined />
                 </Dropdown>,
               ]}
             >
               <Card.Meta avatar={<Avatar size="small" src={item.avatar} />} title={item.title} />
-              <div className={styles.cardItemContent}>
+              <div>
                 <CardInfo
                   activeUser={formatWan(item.activeUser)}
                   newUser={numeral(item.newUser).format('0,0')}

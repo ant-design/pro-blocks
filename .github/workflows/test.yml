@@ -10,10 +10,10 @@ jobs:
         uses: actions/checkout@master
 
       - name: install
-        run: yarn
+        run: pnpm i
 
       - name: lint
-        run: yarn run lint
+        run: pnpm run lint
 
   test-js:
     runs-on: ubuntu-latest

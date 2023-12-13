@@ -1,13 +1,11 @@
 import React, { useState, useRef, useLayoutEffect } from 'react';
-import { GridContent } from '@ant-design/pro-layout';
+import { GridContent } from '@ant-design/pro-components';
 import { Menu } from 'antd';
 import BaseView from './components/base';
 import BindingView from './components/binding';
 import NotificationView from './components/notification';
 import SecurityView from './components/security';
-import styles from './style.less';
-
-const { Item } = Menu;
+import useStyles from './style.style';
 
 type PAGE_NAME_UPPER_CAMEL_CASEStateKeys = 'base' | 'security' | 'binding' | 'notification';
 type PAGE_NAME_UPPER_CAMEL_CASEState = {
@@ -16,6 +14,7 @@ type PAGE_NAME_UPPER_CAMEL_CASEState = {
 };
 
 const PAGE_NAME_UPPER_CAMEL_CASE: React.FC = () => {
+  const { styles } = useStyles();
   const menuMap: Record<string, React.ReactNode> = {
     base: '基本设置',
     security: '安全设置',
@@ -57,7 +56,7 @@ const PAGE_NAME_UPPER_CAMEL_CASE: React.FC = () => {
   }, [dom.current]);
 
   const getMenu = () => {
-    return Object.keys(menuMap).map((item) => <Item key={item}>{menuMap[item]}</Item>);
+    return Object.keys(menuMap).map((item) => ({ key: item, label: menuMap[item] }));
   };
 
   const renderChildren = () => {
@@ -96,9 +95,8 @@ const PAGE_NAME_UPPER_CAMEL_CASE: React.FC = () => {
                 selectKey: key as PAGE_NAME_UPPER_CAMEL_CASEStateKeys,
               });
             }}
-          >
-            {getMenu()}
-          </Menu>
+            items={getMenu()}
+          ></Menu>
         </div>
         <div className={styles.right}>
           <div className={styles.title}>{menuMap[initConfig.selectKey]}</div>

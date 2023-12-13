@@ -1,7 +1,7 @@
-import { PageContainer } from '@ant-design/pro-layout';
+import { PageContainer } from '@ant-design/pro-components';
 import { Input } from 'antd';
-import type { FC } from 'react';
-import { history } from 'umi';
+import React from 'react';
+import { history, useLocation, useMatch, useRouteData } from '@umijs/max';
 
 type PAGE_NAME_UPPER_CAMEL_CASEProps = {
   match: {
@@ -28,10 +28,14 @@ const tabList = [
   },
 ];
 
-const PAGE_NAME_UPPER_CAMEL_CASE: FC<PAGE_NAME_UPPER_CAMEL_CASEProps> = (props) => {
+const PAGE_NAME_UPPER_CAMEL_CASE = (
+  props: React.PropsWithChildren<PAGE_NAME_UPPER_CAMEL_CASEProps>,
+) => {
+  const location = useLocation();
+  const { route } = useRouteData();
+  const match = useMatch(route.path!) as any;
   const handleTabChange = (key: string) => {
-    const { match } = props;
-    const url = match.url === '/' ? '' : match.url;
+    const url = match?.path === '/' ? '' : match?.path;
     switch (key) {
       case 'articles':
         history.push(`${url}/articles`);
@@ -53,8 +57,7 @@ const PAGE_NAME_UPPER_CAMEL_CASE: FC<PAGE_NAME_UPPER_CAMEL_CASEProps> = (props) 
   };
 
   const getTabKey = () => {
-    const { match, location } = props;
-    const url = match.path === '/' ? '' : match.path;
+    const url = match?.path === '/' ? '' : match?.path;
     const tabKey = location.pathname.replace(`${url}/`, '');
     if (tabKey && tabKey !== '/') {
       return tabKey;

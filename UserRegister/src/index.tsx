@@ -2,33 +2,15 @@ import type { FC } from 'react';
 import { useState, useEffect } from 'react';
 import { Form, Button, Col, Input, Popover, Progress, Row, Select, message } from 'antd';
 import type { Store } from 'antd/es/form/interface';
-import { Link, useRequest, history } from 'umi';
+import { Link, useRequest, history } from '@umijs/max';
 import type { StateType } from './service';
 import { fakeRegister } from './service';
 
-import styles from './style.less';
+import useStyles from './style.style';
 
 const FormItem = Form.Item;
 const { Option } = Select;
 const InputGroup = Input.Group;
-
-const passwordStatusMap = {
-  ok: (
-    <div className={styles.success}>
-      <span>强度：强</span>
-    </div>
-  ),
-  pass: (
-    <div className={styles.warning}>
-      <span>强度：中</span>
-    </div>
-  ),
-  poor: (
-    <div className={styles.error}>
-      <span>强度：太短</span>
-    </div>
-  ),
-};
 
 const passwordProgressMap: {
   ok: 'success';
@@ -41,6 +23,27 @@ const passwordProgressMap: {
 };
 
 const PAGE_NAME_UPPER_CAMEL_CASE: FC = () => {
+  const { styles } = useStyles();
+
+  const passwordStatusMap = {
+    ok: (
+      <div className={styles.success}>
+        <span>强度：强</span>
+      </div>
+    ),
+
+    pass: (
+      <div className={styles.warning}>
+        <span>强度：中</span>
+      </div>
+    ),
+
+    poor: (
+      <div className={styles.error}>
+        <span>强度：太短</span>
+      </div>
+    ),
+  };
   const [count, setCount]: [number, any] = useState(0);
   const [visible, setVisible]: [boolean, any] = useState(false);
   const [prefix, setPrefix]: [string, any] = useState('86');
@@ -85,10 +88,7 @@ const PAGE_NAME_UPPER_CAMEL_CASE: FC = () => {
       if (data.status === 'ok') {
         message.success('注册成功！');
         history.push({
-          pathname: '/user/register-result',
-          state: {
-            account: params.email,
-          },
+          pathname: `/user/register-result?account=${params.email}`,
         });
       }
     },
@@ -134,10 +134,10 @@ const PAGE_NAME_UPPER_CAMEL_CASE: FC = () => {
     const value = form.getFieldValue('password');
     const passwordStatus = getPasswordStatus();
     return value && value.length ? (
+      // @ts-ignore
       <div className={styles[`progress-${passwordStatus}`]}>
         <Progress
           status={passwordProgressMap[passwordStatus]}
-          className={styles.progress}
           strokeWidth={6}
           percent={value.length * 10 > 100 ? 100 : value.length * 10}
           showInfo={false}

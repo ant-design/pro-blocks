@@ -1,8 +1,7 @@
 import { Avatar, Tooltip } from 'antd';
-
 import React from 'react';
 import classNames from 'classnames';
-import styles from './index.less';
+import useStyles from './index.style';
 
 export declare type SizeType = number | 'small' | 'default' | 'large';
 
@@ -23,7 +22,7 @@ export type AvatarListProps = {
   children: React.ReactElement<AvatarItemProps> | React.ReactElement<AvatarItemProps>[];
 };
 
-const avatarSizeToClassName = (size?: SizeType | 'mini') =>
+const avatarSizeToClassName = (styles: any, size?: SizeType | 'mini') =>
   classNames(styles.avatarItem, {
     [styles.avatarItemLarge]: size === 'large',
     [styles.avatarItemSmall]: size === 'small',
@@ -31,7 +30,9 @@ const avatarSizeToClassName = (size?: SizeType | 'mini') =>
   });
 
 const Item: React.FC<AvatarItemProps> = ({ src, size, tips, onClick = () => {} }) => {
-  const cls = avatarSizeToClassName(size);
+  const { styles } = useStyles();
+
+  const cls = avatarSizeToClassName(styles, size);
 
   return (
     <li className={cls} onClick={onClick}>
@@ -53,6 +54,7 @@ const AvatarList: React.FC<AvatarListProps> & { Item: typeof Item } = ({
   excessItemsStyle,
   ...other
 }) => {
+  const { styles } = useStyles();
   const numOfChildren = React.Children.count(children);
   const numToShow = maxLength >= numOfChildren ? numOfChildren : maxLength;
   const childrenArray = React.Children.toArray(children) as React.ReactElement<AvatarItemProps>[];
@@ -63,7 +65,7 @@ const AvatarList: React.FC<AvatarListProps> & { Item: typeof Item } = ({
   );
 
   if (numToShow < numOfChildren) {
-    const cls = avatarSizeToClassName(size);
+    const cls = avatarSizeToClassName(styles, size);
 
     childrenWithProps.push(
       <li key="exceed" className={cls}>

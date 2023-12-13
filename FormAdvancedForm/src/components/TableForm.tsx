@@ -3,7 +3,7 @@ import { Button, Divider, Input, Popconfirm, Table, message } from 'antd';
 import type { FC } from 'react';
 import React, { useState } from 'react';
 
-import styles from '../style.less';
+import useStyles from '../style.style';
 
 type TableFormDateType = {
   key: string;
@@ -19,10 +19,11 @@ type TableFormProps = {
 };
 
 const TableForm: FC<TableFormProps> = ({ value, onChange }) => {
+  const { styles } = useStyles();
   const [clickedCancel, setClickedCancel] = useState(false);
   const [loading, setLoading] = useState(false);
   const [index, setIndex] = useState(0);
-  const [cacheOriginData, setCacheOriginData] = useState({});
+  const [cacheOriginData, setCacheOriginData] = useState<any>({});
   const [data, setData] = useState(value);
 
   const getRowByKey = (key: string, newData?: TableFormDateType[]) =>
@@ -68,13 +69,14 @@ const TableForm: FC<TableFormProps> = ({ value, onChange }) => {
 
   const handleFieldChange = (
     e: React.ChangeEvent<HTMLInputElement>,
-    fieldName: string,
+    fieldName: keyof TableFormDateType,
     key: string,
   ) => {
     const newData = [...(data as TableFormDateType[])];
     const target = getRowByKey(key, newData);
     if (target) {
-      target[fieldName] = e.target.value;
+      // fixme: ts
+      (target as any)[fieldName] = e.target.value;
       setData(newData);
     }
   };
@@ -242,6 +244,7 @@ const TableForm: FC<TableFormProps> = ({ value, onChange }) => {
         pagination={false}
         rowClassName={(record) => (record.editable ? styles.editable : '')}
       />
+
       <Button
         style={{ width: '100%', marginTop: 16, marginBottom: 8 }}
         type="dashed"

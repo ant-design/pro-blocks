@@ -23,7 +23,7 @@
     "@types/numeral": "^0.0.25"
   },
   "peerDependencies": {
-    "@ant-design/pro-layout": "^6.0.0"
+    "@ant-design/pro-components": "^2.6.43"
   },
   "blockConfig": {
     "specVersion": "0.1"

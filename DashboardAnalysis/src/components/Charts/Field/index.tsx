@@ -1,5 +1,5 @@
 import React from 'react';
-import styles from './index.less';
+import useStyles from './index.style';
 
 export type FieldProps = {
   label: React.ReactNode;
@@ -7,11 +7,14 @@ export type FieldProps = {
   style?: React.CSSProperties;
 };
 
-const Field: React.FC<FieldProps> = ({ label, value, ...rest }) => (
-  <div className={styles.field} {...rest}>
-    <span className={styles.label}>{label}</span>
-    <span className={styles.number}>{value}</span>
-  </div>
-);
+const Field: React.FC<FieldProps> = ({ label, value, ...rest }) => {
+  const { styles } = useStyles();
+  return (
+    <div className={styles.field} {...rest}>
+      <span className={styles.label}>{label}</span>
+      <span className={styles.number}>{value}</span>
+    </div>
+  );
+};
 
 export default Field;

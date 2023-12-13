@@ -1,8 +1,7 @@
-import { Component } from 'react';
+import { FC, useState, useEffect, useRef } from 'react';
 import { TinyArea } from '@ant-design/charts';
-
 import { Statistic } from 'antd';
-import styles from './index.less';
+import useStyles from './index.style';
 
 function fixedZero(val: number) {
   return val * 1 < 10 ? `0${val}` : val;
@@ -19,72 +18,57 @@ function getActiveData() {
   return activeData;
 }
 
-export default class ActiveChart extends Component {
-  state = {
-    activeData: getActiveData(),
-  };
-
-  timer: number | undefined = undefined;
-
-  requestRef: number | undefined = undefined;
-
-  componentDidMount() {
-    this.loopData();
-  }
-
-  componentWillUnmount() {
-    clearTimeout(this.timer);
-    if (this.requestRef) {
-      cancelAnimationFrame(this.requestRef);
-    }
-  }
-
-  loopData = () => {
-    this.requestRef = requestAnimationFrame(() => {
-      this.timer = window.setTimeout(() => {
-        this.setState(
-          {
-            activeData: getActiveData(),
-          },
-          () => {
-            this.loopData();
-          },
-        );
+const ActiveChart: FC = () => {
+  const { styles } = useStyles();
+  const [activeData, setActiveData] = useState(getActiveData());
+  const requestRef = useRef(0);
+  const timer = useRef(0);
+  const loopData = () => {
+    requestRef.current = requestAnimationFrame(() => {
+      timer.current = window.setTimeout(() => {
+        setActiveData(getActiveData());
+        loopData();
       }, 1000);
     });
   };
-
-  render() {
-    const { activeData = [] } = this.state;
-
-    return (
-      <div className={styles.activeChart}>
-        <Statistic title="目标评估" value="有望达到预期" />
-        <div style={{ marginTop: 32 }}>
-          <TinyArea autoFit data={activeData.map((item) => item.y)} height={84} />
-        </div>
-        {activeData && (
-          <div>
-            <div className={styles.activeChartGrid}>
-              <p>{[...activeData].sort()[activeData.length - 1].y + 200} 亿元</p>
-              <p>{[...activeData].sort()[Math.floor(activeData.length / 2)].y} 亿元</p>
-            </div>
-            <div className={styles.dashedLine}>
-              <div className={styles.line} />
-            </div>
-            <div className={styles.dashedLine}>
-              <div className={styles.line} />
-            </div>
-          </div>
-        )}
-        {activeData && (
-          <div className={styles.activeChartLegend}>
-            <span>00:00</span>
-            <span>{activeData[Math.floor(activeData.length / 2)].x}</span>
-            <span>{activeData[activeData.length - 1].x}</span>
-          </div>
-        )}
+  useEffect(() => {
+    loopData();
+    return () => {
+      clearTimeout(timer.current);
+      if (requestRef) {
+        cancelAnimationFrame(requestRef.current);
+      }
+    };
+  }, []);
+  return (
+    <div className={styles.activeChart}>
+      <Statistic title="目标评估" value="有望达到预期" />
+      <div style={{ marginTop: 32 }}>
+        <TinyArea autoFit data={activeData.map((item) => item.y)} height={84} />
       </div>
-    );
-  }
-}
+      {activeData && (
+        <div>
+          <div className={styles.activeChartGrid}>
+            <p>{[...activeData].sort()[activeData.length - 1].y + 200} 亿元</p>
+            <p>{[...activeData].sort()[Math.floor(activeData.length / 2)].y} 亿元</p>
+          </div>
+          <div className={styles.dashedLine}>
+            <div className={styles.line} />
+          </div>
+          <div className={styles.dashedLine}>
+            <div className={styles.line} />
+          </div>
+        </div>
+      )}
+
+      {activeData && (
+        <div className={styles.activeChartLegend}>
+          <span>00:00</span>
+          <span>{activeData[Math.floor(activeData.length / 2)].x}</span>
+          <span>{activeData[activeData.length - 1].x}</span>
+        </div>
+      )}
+    </div>
+  );
+};
+export default ActiveChart;

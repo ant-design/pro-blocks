@@ -1,14 +1,14 @@
-import type { FC } from 'react';
 import {
   ModalForm,
   ProFormSelect,
   ProFormDateTimePicker,
   ProFormText,
   ProFormTextArea,
-} from '@ant-design/pro-form';
+} from '@ant-design/pro-components';
 import type { BasicListItemDataType } from '../data.d';
-import styles from '../style.less';
+import useStyles from '../style.style';
 import { Button, Result } from 'antd';
+import React from 'react';
 
 type OperationModalProps = {
   done: boolean;
@@ -18,7 +18,8 @@ type OperationModalProps = {
   onSubmit: (values: BasicListItemDataType) => void;
 };
 
-const OperationModal: FC<OperationModalProps> = (props) => {
+const OperationModal = (props: React.PropsWithChildren<OperationModalProps>) => {
+  const { styles } = useStyles();
   const { done, visible, current, onDone, onSubmit, children } = props;
   if (!visible) {
     return null;
@@ -51,6 +52,7 @@ const OperationModal: FC<OperationModalProps> = (props) => {
             rules={[{ required: true, message: '请输入任务名称' }]}
             placeholder="请输入"
           />
+
           <ProFormDateTimePicker
             name="createdAt"
             label="开始时间"
@@ -62,6 +64,7 @@ const OperationModal: FC<OperationModalProps> = (props) => {
             }}
             placeholder="请选择"
           />
+
           <ProFormSelect
             name="owner"
             label="任务负责人"
@@ -78,6 +81,7 @@ const OperationModal: FC<OperationModalProps> = (props) => {
             ]}
             placeholder="请选择管理员"
           />
+
           <ProFormTextArea
             name="subDescription"
             label="产品描述"

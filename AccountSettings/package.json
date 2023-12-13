@@ -12,11 +12,10 @@
     "dev": "umi dev"
   },
   "dependencies": {
-    "@ant-design/icons": "^4.0.0",
-    "@ant-design/pro-form": "^1.16.0"
+    "@ant-design/icons": "^4.0.0"
   },
   "peerDependencies": {
-    "@ant-design/pro-layout": "^6.0.0"
+    "@ant-design/pro-components":"^2.6.43"
   },
   "blockConfig": {
     "specVersion": "0.1"

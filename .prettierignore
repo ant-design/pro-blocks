@@ -21,3 +21,6 @@ yarn-error.log
 CNAME
 /build
 umi-block.json
+.husky/**
+pnpm-lock.yaml
+.npmrc

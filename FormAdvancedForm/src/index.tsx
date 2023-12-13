@@ -3,17 +3,18 @@ import { Card, Col, Popover, Row, message } from 'antd';
 
 import type { FC } from 'react';
 import { useState } from 'react';
-import ProForm, {
+import {
+  ProForm,
   ProFormDateRangePicker,
   ProFormSelect,
   ProFormText,
   ProFormTimePicker,
-} from '@ant-design/pro-form';
-import type { ProColumnType } from '@ant-design/pro-table';
-import { EditableProTable } from '@ant-design/pro-table';
-import { PageContainer, FooterToolbar } from '@ant-design/pro-layout';
+} from '@ant-design/pro-components';
+import type { ProColumnType } from '@ant-design/pro-components';
+import { EditableProTable } from '@ant-design/pro-components';
+import { PageContainer, FooterToolbar } from '@ant-design/pro-components';
 import { fakeSubmitForm } from './service';
-import styles from './style.less';
+import useStyles from './style.style';
 
 interface TableFormDateType {
   key: string;
@@ -67,6 +68,7 @@ interface ErrorField {
 }
 
 const PAGE_NAME_UPPER_CAMEL_CASE: FC<Record<string, any>> = () => {
+  const { styles } = useStyles();
   const [error, setError] = useState<ErrorField[]>([]);
   const getErrorInfo = (errors: ErrorField[]) => {
     const errorCount = errors.filter((item) => item.errors.length > 0).length;
@@ -83,11 +85,11 @@ const PAGE_NAME_UPPER_CAMEL_CASE: FC<Record<string, any>> = () => {
       if (!err || err.errors.length === 0) {
         return null;
       }
-      const key = err.name[0] as string;
+      const key = err.name[0] as keyof typeof fieldLabels;
       return (
         <li key={key} className={styles.errorListItem} onClick={() => scrollToField(key)}>
           <CloseCircleOutlined className={styles.errorIcon} />
-          <div className={styles.errorMessage}>{err.errors[0]}</div>
+          <div>{err.errors[0]}</div>
           <div className={styles.errorField}>{fieldLabels[key]}</div>
         </li>
       );

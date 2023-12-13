@@ -12,11 +12,7 @@
     "dev": "umi dev"
   },
   "dependencies": {
-    "classnames": "^2.2.6",
-    "react-router": "^4.3.1"
-  },
-  "devDependencies": {
-    "@types/react-router": "^5.0.2"
+    "classnames": "^2.2.6"
   },
   "blockConfig": {
     "specVersion": "0.1"

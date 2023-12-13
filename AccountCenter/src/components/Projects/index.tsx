@@ -1,20 +1,20 @@
 import { Card, List } from 'antd';
-import { useRequest } from 'umi';
+import { useRequest } from '@umijs/max';
 import React from 'react';
 import moment from 'moment';
 import { queryFakeList } from '../../service';
 import AvatarList from '../AvatarList';
 import type { ListItemDataType } from '../../data.d';
-import styles from './index.less';
+import useStyles from './index.style';
 
 const Projects: React.FC = () => {
+  const { styles } = useStyles();
   // 获取tab列表数据
   const { data: listData } = useRequest(() => {
     return queryFakeList({
       count: 30,
     });
   });
-
   return (
     <List<ListItemDataType>
       className={styles.coverCardList}

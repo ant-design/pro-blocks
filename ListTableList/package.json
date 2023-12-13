@@ -13,14 +13,10 @@
   },
   "dependencies": {
     "@ant-design/icons": "^4.0.0",
-    "@ant-design/pro-descriptions": "^1.6.0",
-    "@ant-design/pro-form": "^1.16.0",
-    "@ant-design/pro-layout": "^6.0.0",
-    "@ant-design/pro-table": "^2.30.0",
     "moment": "^2.22.2"
   },
   "peerDependencies": {
-    "@ant-design/pro-layout": "^6.0.0"
+    "@ant-design/pro-components": "^2.6.43"
   },
   "devDependencies": {
     "@types/express": "^4.17.0"

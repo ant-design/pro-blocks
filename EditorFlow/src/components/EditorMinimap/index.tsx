@@ -1,4 +1,5 @@
 import { Card } from 'antd';
+// @ts-ignore
 import { Minimap } from 'gg-editor';
 
 const EditorMinimap = () => (

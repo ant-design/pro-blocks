@@ -1,6 +1,17 @@
-import { DataItem } from '@antv/g2plot/esm/interface/config';
-
-export { DataItem };
+export interface DataItem {
+  x?: number | string;
+  y?: number;
+  y1?: number;
+  y2?: number;
+  index?: number;
+  keyword?: string;
+  count?: number;
+  range?: number;
+  status?: number;
+  date?: string;
+  type?: string;
+  value?: number;
+}
 
 export interface VisitDataType {
   x: string;

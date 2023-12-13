@@ -1,4 +1,4 @@
-// eslint-disable-next-line import/no-extraneous-dependencies
+// @ts-nocheck
 import type { Request, Response } from 'express';
 
 export default {

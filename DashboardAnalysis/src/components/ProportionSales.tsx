@@ -5,7 +5,7 @@ import type { PieConfig } from '@ant-design/charts';
 import { Pie } from '@ant-design/charts';
 import React from 'react';
 import type { DataItem } from '../data.d';
-import styles from '../style.less';
+import useStyles from '../style.style';
 
 const { Text } = Typography;
 
@@ -22,6 +22,7 @@ const ProportionSales = ({
   salesPieData: DataItem[];
   handleChangeSalesType?: (e: RadioChangeEvent) => void;
 }) => {
+  const { styles } = useStyles();
   const pieConfig: PieConfig = {
     autoFit: true,
     height: 300,
