@@ -70,7 +70,7 @@ const IntroduceRow = ({ loading, visitData = [] }: { loading: boolean; visitData
             line={{
               color: '#975FE4',
             }}
-            data={visitData.map((item) => item.y)}
+            data={visitData.map((item) => item.y!)}
           />
         </ChartCard>
       </Col>
@@ -89,7 +89,7 @@ const IntroduceRow = ({ loading, visitData = [] }: { loading: boolean; visitData
           footer={<Field label="转化率" value="60%" />}
           contentHeight={46}
         >
-          <TinyColumn height={46} autoFit data={visitData.map((item) => item.y)} />
+          <TinyColumn height={46} autoFit data={visitData.map((item) => item.y!)} />
         </ChartCard>
       </Col>
       <Col {...topColResponsiveProps}>
